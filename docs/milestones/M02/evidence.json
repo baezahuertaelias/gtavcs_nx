@@ -1,0 +1,26 @@
+{
+  "M02-01": [
+    {
+      "path": "docs/milestones/M02/VERIFICATION.md",
+      "result": "Isolated unchanged desktop reference built with Clang23.1.4/AVX2/LTO-off; 30-second hidden disc boot/movie baseline captured with separate userdata"
+    }
+  ],
+  "M02-02": [
+    {
+      "path": "docs/milestones/M02/VERIFICATION.md",
+      "result": "Native AMD64 recompiler and analyzer built separately from the AArch64 target project; native PE identities/hashes validated"
+    }
+  ],
+  "M02-03": [
+    {
+      "path": "docs/milestones/M02/VERIFICATION.md",
+      "result": "Supported ELF privately recompiled; stamp, 236304 assignments/10383 owners and every 1196-warning/561-error owner retained as metadata without claiming diagnostics resolved"
+    }
+  ],
+  "M02-15": [
+    {
+      "path": "docs/milestones/M02/VERIFICATION.md",
+      "result": "Disposable pinned checkout overlay tool passed Git new-file/modified-file round trips, idempotence, checksum/path/user-edit refusal and actual pinned prepare/reverse/prepare"
+    }
+  ]
+}

@@ -125,9 +125,9 @@ Branch: `milestone/m02-arm64-core` <!-- M02 -->
 Exit: reproducible private generated EE/VU code compiles and executes validated
 CPU/scheduler workloads on ARM64, with guest semantics preserved.
 
-- [ ] M02-01 Capture a desktop reference baseline from the verified disc, isolated saves and recorded source/flags; preserve upstream's reference path.
-- [ ] M02-02 Build recompiler/analyzer as host tools separately from target code; prove generator does not try to execute AArch64 utilities on the host.
-- [ ] M02-03 Run upstream recompile.py on the exact supported ELF; record stamp, generated registration count and all missing/unresolved functions.
+- [x] M02-01 Capture a desktop reference baseline from the verified disc, isolated saves and recorded source/flags; preserve upstream's reference path.
+- [x] M02-02 Build recompiler/analyzer as host tools separately from target code; prove generator does not try to execute AArch64 utilities on the host.
+- [x] M02-03 Run upstream recompile.py on the exact supported ELF; record stamp, generated registration count and all missing/unresolved functions.
 - [ ] M02-04 Audit generated constructs and compiler compatibility; decide documented GCC-compatible adaptation or compatible Clang cross setup without masking errors.
 - [ ] M02-05 Classify every x86 SIMD candidate by operation/owner; port guest 128-bit memory/register representation and unaligned accesses.
 - [ ] M02-06 Port packed EE arithmetic, saturation, shifts, shuffles, comparisons and bit casts with edge-case/reference differential evidence.
@@ -139,6 +139,7 @@ CPU/scheduler workloads on ARM64, with guest semantics preserved.
 - [ ] M02-12 Run relevant existing EE/VU/memory/kernel tests plus differential suites on host and ARM64; retain failures and final passing outputs.
 - [ ] M02-13 Establish memory/stack/worker budgets under full application mode and compile a null-renderer core harness with no desktop dependencies.
 - [ ] M02-14 Demonstrate deterministic scheduler/guest execution progress and clean stop on target; keep generated code/ELF entirely out of Git/CI.
+- [x] M02-15 Establish the required root-owned ordered patch application/reversal tool against the pinned upstream, using disposable build checkouts; prove new-file round trips, idempotence and refusal to overwrite unowned edits or accept altered patches.
 
 Proof: per-operation comparison, toolchain decision, generated identity/register
 metadata, native test logs, target trace. Compilation alone does not close execution.
