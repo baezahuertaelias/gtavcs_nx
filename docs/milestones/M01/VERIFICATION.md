@@ -220,7 +220,7 @@ required before acceptance.
 Corrected error-path NRO SHA-256
 `2f0d01cb72a59554fca1a33754585d630dae684b84679189b8e4677314d95573`:
 nxlink returned after the diagnostic interval, FTP restored gamefolder, and the
-post-run crash-report filename set contained no additions to the 130-file
+post-run crash-report filename set contained no additions to the 130-entry (129 report files plus the dumps directory)
 baseline. Private metadata: `hardware/crash-baseline.json` and
 `hardware/crash-after-fixed-error.json`; root log `hardware/fixed-error-boot.log`.
 This validates elimination of the exact observed final-stream-close crash for
@@ -247,7 +247,7 @@ error. Retrieved `hardware/final-handheld.log`, SHA-256
 `932a790c8da200ee10b33043ae2982e4070eabe73602644451b7b7e524f1c0af`,
 records the exact device format, bounded queue, frame progress, Start bit and
 orderly app cleanup. `hardware/crash-after-final-handheld.json` has no new crash
-reports against the 130-file baseline. This closes the reopened M01-09 with
+reports against the 130-entry (129 report files plus the dumps directory) baseline. This closes the reopened M01-09 with
 full-process exit evidence, rather than a cleanup marker alone.
 
 The delayed HOME/sleep run still recorded only the initial focus notification;

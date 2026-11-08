@@ -77,6 +77,10 @@
     {
       "path": "docs/milestones/M01/SCOPE_DECISIONS.md",
       "result": "User directed finishing M01 with supplied tests; Pro/formal controller and docking work explicitly retained as unchecked M06-14/M06-13 for first real main-menu boot, without claiming those tests passed"
+    },
+    {
+      "path": "docs/milestones/M01/REVIEW_FINDINGS.md",
+      "result": "Independent P3 baseline-count finding resolved: retained JSON has 130 entries, 129 report files plus dumps directory; narrative corrected without changing hardware results or code"
     }
   ]
 }
