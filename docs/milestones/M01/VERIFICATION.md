@@ -100,7 +100,8 @@ test. FTP retrieved `build/evidence/M01/hardware/bright-plus-exit.log`, SHA-256
 `a28d0459d1db7a428814f8fb6149ceeee9cec6a7afcabe8be26b129c053d3bc1`.
 It records SDL button bit 00000040 (Start/Plus) then an orderly shutdown marker
 after audio/stream/controller/context/window/SDL cleanup, high water 12288 bytes.
-This closes M01-07 and M01-09. `aarch64-none-elf-nm -A` on the pinned
+This closed M01-07 and initially M01-09; M01-09 was later reopened by the
+exact-build crash report described below. `aarch64-none-elf-nm -A` on the pinned
 `libSDL2.a` shows `SDL_switchaudio.o` referencing audrenInitialize, audrenExit,
 audrenStartAudioRenderer and audrenWaitFrame; runtime reported that Switch
 audio backend. The program does not initialize audren itself.
@@ -170,6 +171,44 @@ through the public ConsoleRenderer interface so stdio redirection cannot hide
 the on-device diagnostic. It still runs only before SDL init or after all SDL
 display ownership has been destroyed. Missing-root visible confirmation remains
 pending for this fix.
+
+## Error-path failure and stream ownership correction
+
+Candidate `7395d31c7f45375e4332b1bdf1b357964460da30` failed the repeated
+missing-root test: the user reported a Nintendo software error and no visible
+text. FTP restored the smoke folder after the test; before renaming, its contents
+were verified to contain only this scaffold's gtavcs.log, with no assets/saves.
+The root and logs were preserved. M01-06/M01-11/M01-12 stay open.
+
+The latest Atmosphere report was retrieved privately as
+`build/evidence/M01/hardware/atmosphere-latest-crash.log`. Its module ID
+`A56B573AA45CC780A9617B9F4F4F875E331F23C1000000000000000000000000`
+exactly matches bytes 0x40..0x60 of the tested NRO. It reports 2168-0002/data
+abort at null+0x18, PC gtavcs+0x442710. Using the matching ELF,
+`aarch64-none-elf-addr2line` maps the PC to _close_r and callers to _fclose_r
+and _fwalk_sglue. Disassembly shows dereferencing a null device-table entry at
+the fault. This is a libc final-stream-close failure, after app cleanup, rather
+than evidence of a drawChar fault.
+
+The [pinned nxlink implementation](https://github.com/switchbrew/libnx/blob/v4.12.0/nx/source/runtime/nxlink_stdio.c)
+duplicates its socket onto stdout. The scaffold closed the original descriptor
+then removed the socket device through socketExit, leaving libc's stdout stream
+for later implicit closure. The fix explicitly flushes/closes stderr's log and
+stdout before closing the original socket and calling socketExit. M01-09 is
+reopened: a cleanup log line is insufficient proof of a successful process exit.
+The corrected failure run is being compared against a pre-test crash-report
+filename baseline; visible diagnostics and absence of a new matching crash are
+required before acceptance.
+
+Corrected error-path NRO SHA-256
+`2f0d01cb72a59554fca1a33754585d630dae684b84679189b8e4677314d95573`:
+nxlink returned after the diagnostic interval, FTP restored gamefolder, and the
+post-run crash-report filename set contained no additions to the 130-file
+baseline. Private metadata: `hardware/crash-baseline.json` and
+`hardware/crash-after-fixed-error.json`; root log `hardware/fixed-error-boot.log`.
+This validates elimination of the exact observed final-stream-close crash for
+that error run. User confirmation of visible text and normal return is pending;
+normal Plus exit must also be rechecked with the corrected stream ownership.
 
 Still required: visible error confirmation, paired Joy-Con and Pro
 mapping/hotplug/disconnect-neutral/reconnect, repeated dock/undock with 1080p,

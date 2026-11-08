@@ -50,7 +50,7 @@
   "M01-09": [
     {
       "path": "docs/milestones/M01/VERIFICATION.md",
-      "result": "SDL Switch audren backend symbols, S16 stereo 48 kHz stream, <=12288-byte queue and logged orderly audio/stream shutdown"
+      "result": "Reopened: device/queue proof passed but exact-build crash report exposed libc stream closure after socketExit; fix and full process-exit revalidation required"
     }
   ],
   "M01-10": [

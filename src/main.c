@@ -330,8 +330,14 @@ cleanup:;
         memcpy(last_message, failure, sizeof(last_message));
         fatal_screen();
     }
-    if (log) fflush(log);
-    if (nx_socket >= 0) close(nx_socket);
+    if (log) { fflush(log); fclose(log); }
+    if (nx_socket >= 0) {
+        /* nxlink dup2's the socket onto stdout. libc must close that FILE
+         * while the socket device is still registered, before socketExit. */
+        fflush(stdout);
+        fclose(stdout);
+        close(nx_socket);
+    }
     if (sockets_started) socketExit();
     return result;
 }
