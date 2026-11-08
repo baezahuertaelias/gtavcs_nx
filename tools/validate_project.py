@@ -40,7 +40,7 @@ def main():
     entries = json.loads((data / "disc_manifest.json").read_text())["entries"]
     if sum(not x["directory"] for x in entries) != summary["disc_files"]: errors.append("Disc file count mismatch")
     tracked = subprocess.check_output(["git", "ls-files", "--stage"], cwd=ROOT, text=True).splitlines()
-    forbidden = {".iso", ".elf", ".nro", ".nacp", ".irx", ".img", ".vb", ".raw", ".sdt", ".psp", ".xtx", ".lvz", ".scm", ".gxt", ".pss", ".dtz", ".exe", ".dll", ".o", ".a"}
+    forbidden = {".iso", ".elf", ".nro", ".nacp", ".irx", ".img", ".bin", ".dir", ".vb", ".raw", ".sdt", ".psp", ".xtx", ".lvz", ".scm", ".gxt", ".pss", ".dtz", ".exe", ".dll", ".o", ".a"}
     submodule = False
     for line in tracked:
         meta, name = line.split("\t", 1)

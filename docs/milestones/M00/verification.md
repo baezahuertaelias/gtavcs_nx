@@ -64,9 +64,12 @@ session was launched. Escalation to targeted REA is documented for later blocker
 
 Foundation workflow checks source inventory/paths/hash and governance tests on
 Ubuntu/Python 3.12 with the public pinned submodule. It requires no private disc.
-M00 completion requires an observed successful remote foundation run before the
-independent reviewer is created. Exact CI run/candidate evidence is recorded in
-this report once observed and in the independent review record after approval.
+The initial remote `foundation` job passed for commit
+`eacb73af5e9cadc7dd030a33c632a1923ec9112e` in
+[run 42505381952](https://github.com/baezahuertaelias/gtavcs_nx/actions/runs/42505381952).
+The final task-completion candidate must also pass foundation CI and the clean
+eligibility gate before reviewer creation; its exact SHA/run is recorded in the
+independent review record. No reviewer is created on the strength of a stale run.
 `milestone-review` is a PR-only gate and must remain blocked until actual review.
 
 ## Known environment limits

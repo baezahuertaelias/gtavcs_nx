@@ -67,21 +67,21 @@ Entry: initial scaffold exists, no target compilation/gameplay evidence.
 Exit: a private, traceable repository and executable development governance;
 all discoverable scoped metadata catalogued with explicit unknowns and next tasks.
 
-- [ ] M00-01 Create private GitHub repo, verify owner/visibility/default main, configure merge-commit-only milestone flow.
-- [ ] M00-02 Establish bootstrap main and isolated M00 branch; register upstream as a pinned submodule and preserve its clean tree.
-- [ ] M00-03 Add ignore/attribute/license policy and verify no game data, generated game code or credentials are tracked.
-- [ ] M00-04 Preserve the initial SDL2/GL scaffold and label its unbuilt, silent, stub-only status accurately.
-- [ ] M00-05 Inspect startup/platform/RHI/runtime/recompiler ownership and document exact entry functions and required replacements.
-- [ ] M00-06 Generate complete metadata inventories within declared source scope: files, parsed definitions/declarators, includes, build declarations and parser gaps.
-- [ ] M00-07 Inventory all supplied guest function-map rows, deduplicated addresses, SDK macro calls, recompiler configuration and VU uploads without game bytes.
-- [ ] M00-08 Verify local disc identity and catalogue every ISO9660 file/directory, size and LBA; classify formats and unresolved archive members.
-- [ ] M00-09 Map every subsystem, dependency and portability candidate family to owning files, milestone tasks, validation and unknowns.
-- [ ] M00-10 Evaluate REA need; document source-first decision and exact escalation workflow for unresolved binary/runtime questions.
-- [ ] M00-11 Write exhaustive ordered milestones with tasks, entry/exit criteria, commands, evidence, recovery and independent-review/merge gates.
-- [ ] M00-12 Implement and test fail-closed all-task/evidence review eligibility and exact-candidate approval checks; test incomplete and stale approval rejection.
-- [ ] M00-13 Add source-only foundation CI, milestone PR gate and packaging exclusions; exercise local checks and remote foundation CI.
-- [ ] M00-14 Attempt GitHub main protection; record actual result and any plan limitation without claiming unavailable enforcement.
-- [ ] M00-15 Record M00 verification, environment blockers and reproducibility limits; verify the final candidate is clean and eligible before creating its independent reviewer.
+- [x] M00-01 Create private GitHub repo, verify owner/visibility/default main, configure merge-commit-only milestone flow.
+- [x] M00-02 Establish bootstrap main and isolated M00 branch; register upstream as a pinned submodule and preserve its clean tree.
+- [x] M00-03 Add ignore/attribute/license policy and verify no game data, generated game code or credentials are tracked.
+- [x] M00-04 Preserve the initial SDL2/GL scaffold and label its unbuilt, silent, stub-only status accurately.
+- [x] M00-05 Inspect startup/platform/RHI/runtime/recompiler ownership and document exact entry functions and required replacements.
+- [x] M00-06 Generate complete metadata inventories within declared source scope: files, parsed definitions/declarators, includes, build declarations and parser gaps.
+- [x] M00-07 Inventory all supplied guest function-map rows, deduplicated addresses, SDK macro calls, recompiler configuration and VU uploads without game bytes.
+- [x] M00-08 Verify local disc identity and catalogue every ISO9660 file/directory, size and LBA; classify formats and unresolved archive members.
+- [x] M00-09 Map every subsystem, dependency and portability candidate family to owning files, milestone tasks, validation and unknowns.
+- [x] M00-10 Evaluate REA need; document source-first decision and exact escalation workflow for unresolved binary/runtime questions.
+- [x] M00-11 Write exhaustive ordered milestones with tasks, entry/exit criteria, commands, evidence, recovery and independent-review/merge gates.
+- [x] M00-12 Implement and test fail-closed all-task/evidence review eligibility and exact-candidate approval checks; test incomplete and stale approval rejection.
+- [x] M00-13 Add source-only foundation CI, milestone PR gate and packaging exclusions; exercise local checks and remote foundation CI.
+- [x] M00-14 Attempt GitHub main protection; record actual result and any plan limitation without claiming unavailable enforcement.
+- [x] M00-15 Record M00 verification, environment blockers and reproducibility limits; verify the final candidate is clean and eligible before creating its independent reviewer.
 
 Commands: discovery and foundation commands in AUTOMATED_EXECUTION; then review
 eligibility gate. Evidence: inventories, discovery narrative, M00 verification,
