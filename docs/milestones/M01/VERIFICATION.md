@@ -4,21 +4,22 @@ M01 is in progress on `milestone/m01-platform-smoke`, based on reviewed main
 `22f418a5d495c5c48b8f0d8890bde1eb21607667`. No reviewer has been created, and
 hardware tasks remain open. This target links `src/core_stub.c`, not game code.
 
-Current checkpoint: **9 verified tasks plus 1 approved deferral record** (10/12
-ledger entries closed). Remaining: M01-08 (full paired wireless/Pro controller
-hotplug and disconnect-neutral matrix) and M01-12 (complete required M01 hardware
-evidence and closure of all failures). Docking is untested and retained as M06-13,
-triggered by the first real game boot that loads the main menu; see
-[the explicit scope decision](SCOPE_DECISIONS.md).
-The user has no Pro Controller or dock/TV available now. No waiver, independent
-review, merge or next-milestone advancement has occurred. Earlier provisional
+Current checkpoint: **all 12 revised M01 ledger tasks are complete**, with the
+user-confirmed Joy-Con functional result accepted and the explicit Pro/formal
+connection-state and docking deferrals preserved in unchecked M06-14/M06-13.
+Those hardware checks are untested and must run at first real game boot/main-menu
+loading, before subsequent gameplay acceptance; see
+[the explicit scope decisions](SCOPE_DECISIONS.md).
+The user instructed finishing M01 with the tests already supplied. No independent
+approval or merge is claimed by this candidate report. Earlier provisional
 claims and failures below are retained as investigation history; the task ledger
 and this checkpoint describe the current acceptance state.
 
 Testing stopped at the user's explicit request after the final Joy-Con test.
 That test is recorded as working based on the user's confirmation. Remaining
-connection-status questions are deferred; do not perform more tests or request
-more manual test steps until the user resumes testing.
+connection-status questions are deferred; do not perform more hardware tests or
+request more manual test steps until the user resumes testing. Required source
+checks, CI and the independent milestone review/merge remain part of M01 closure.
 
 ## Host and toolchain (M01-01 through M01-03)
 

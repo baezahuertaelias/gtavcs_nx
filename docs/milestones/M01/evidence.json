@@ -44,7 +44,11 @@
   "M01-08": [
     {
       "path": "docs/milestones/M01/VERIFICATION.md",
-      "result": "Incomplete: see required hardware observations and open failures"
+      "result": "Supplied attached/wireless Joy-Con input, full disconnect/reattach and Plus test recorded working per user confirmation with retained log hash; no new crash reports"
+    },
+    {
+      "path": "docs/milestones/M01/SCOPE_DECISIONS.md",
+      "result": "User explicitly accepted supplied tests for M01 and deferred Pro Controller/formal physical connection-state verification to real game/main-menu boot; unchecked M06-14 preserves the remaining matrix and connected=1 observation"
     }
   ],
   "M01-09": [
@@ -68,7 +72,11 @@
   "M01-12": [
     {
       "path": "docs/milestones/M01/VERIFICATION.md",
-      "result": "Incomplete: see required hardware observations and open failures"
+      "result": "Source-only cross-build CI and artifact retention observed; supplied exact-NRO hardware logs retained; error display, libc shutdown crash and suspension-reset regressions passed with no new crash reports"
+    },
+    {
+      "path": "docs/milestones/M01/SCOPE_DECISIONS.md",
+      "result": "User directed finishing M01 with supplied tests; Pro/formal controller and docking work explicitly retained as unchecked M06-14/M06-13 for first real main-menu boot, without claiming those tests passed"
     }
   ]
 }
