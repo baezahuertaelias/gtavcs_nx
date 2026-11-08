@@ -18,11 +18,13 @@ static int nx_socket = -1;
 static unsigned audio_high_water, audio_empty;
 static char last_message[512];
 static int resumed;
+static unsigned focus_notifications;
 
 static void lifecycle_hook(AppletHookType type, void *parameter)
 {
     (void)parameter;
     if (type == AppletHookType_OnResume) resumed = 1;
+    if (type == AppletHookType_OnFocusState) ++focus_notifications;
 }
 
 /* stderr remains on SD; stdout is optionally sent to the nxlink listener. */
@@ -156,6 +158,13 @@ int main(int argc, char **argv)
     SDL_SetMainReady();
     if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO | SDL_INIT_GAMECONTROLLER | SDL_INIT_TIMER) < 0)
         goto sdl_error;
+    if (appletGetAppletType() == AppletType_Application) {
+        const Result rc = appletSetFocusHandlingMode(AppletFocusHandlingMode_SuspendHomeSleepNotify);
+        if (R_FAILED(rc)) {
+            diagnostic("[lifecycle] Cannot enable focus notifications: %08x\n", rc);
+            goto cleanup;
+        }
+    }
     diagnostic("[boot] SDL %s; audio %s\n", SDL_GetCurrentVideoDriver(), SDL_GetCurrentAudioDriver());
 
     if (SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3) < 0 ||
@@ -212,9 +221,10 @@ int main(int argc, char **argv)
     GtavcsPad previous_pad = {0};
     while (running && appletMainLoop()) {
         const int active = appletGetFocusState() == AppletFocusState_InFocus;
-        if (active != focused || resumed) {
-            diagnostic("[lifecycle] resume=%d\n", resumed);
+        if (active != focused || resumed || focus_notifications) {
+            diagnostic("[lifecycle] resume=%d focus_notifications=%u\n", resumed, focus_notifications);
             resumed = 0;
+            focus_notifications = 0;
             focused = active;
             SDL_PauseAudioDevice(audio, 1);
             SDL_ClearQueuedAudio(audio);

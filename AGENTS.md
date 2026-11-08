@@ -247,6 +247,10 @@ Its acceptance includes a controllable ingame route with audible music/effects,
    Record median/p95 frame time, audio underruns, memory and CPU/GPU timing at
    stock clocks in both modes. Intro/title FPS is not gameplay proof.
 
-Current verification limits: Docker Linux engine was unavailable, only
-`docker-desktop` appeared in WSL inventory, and no local devkitPro installation
-was found at `C:/devkitPro`. No Switch compilation or hardware run is claimed.
+Current verification status (2026-11-08): Docker's Linux engine works; only
+`docker-desktop` is installed in WSL and no local `C:/devkitPro` is required by
+the pinned container pipeline. Cross compilation and source-only CI pass.
+An actual Switch reports application mode, GL 4.3 core/NV120, 1280x720 and a
+bounded silent audio queue. Visible presentation, controller/device lifecycle,
+docking and suspend acceptance remain open. See M01 evidence; no game code is
+linked and no gameplay validation is claimed.

@@ -82,14 +82,75 @@ orderly-shutdown marker. Private log:
 `build/evidence/M01/hardware/first-success.log`.
 
 The user reported a black screen and no crash, then manually closed the app.
-This does not establish visible clear-screen acceptance or Plus exit. A brighter
+That run did not establish visible clear-screen acceptance or Plus exit. A brighter
 blue clear, first-frame pixel readback/error and presented-frame counter were
-added for the next run. Visual presentation remains an open failure until
-observed working; do not infer a pass from GL version or drawable size.
+added for the next run. Its visual acceptance is recorded below from the user's
+confirmation and the retrieved shutdown log.
 
-Still required: visible clear, persistent/visible error confirmation, paired
-Joy-Con and Pro mapping/hotplug/disconnect-neutral/reconnect, orderly Plus exit,
-audren/device close, repeated dock/undock with 1080p, HOME/focus/sleep/resume and
-failure cleanup. Record model/CFW/Sphaira versions. See HARDWARE.md for the matrix.
+Candidate `a265068fec1737db4f497063610818c61e3d55cd`, NRO SHA-256
+`2b3ad6a286f74a872ce126192e155cd0576fd2523fed12bad520392fe4ba66eb`:
+the third nxlink run read back center pixel RGBA 31,82,178,255 with GL error
+0000 and reported frames 302,603,904,1204,1505,1805,2106 at successive roughly
+five-second samples. Audio high water remained 12288 bytes with one initial
+empty observation. These counters measure only the scaffold loop; visible-screen
+confirmation and orderly exit are recorded below.
+
+The user subsequently confirmed the screen was blue and that Plus closed the
+test. FTP retrieved `build/evidence/M01/hardware/bright-plus-exit.log`, SHA-256
+`a28d0459d1db7a428814f8fb6149ceeee9cec6a7afcabe8be26b129c053d3bc1`.
+It records SDL button bit 00000040 (Start/Plus) then an orderly shutdown marker
+after audio/stream/controller/context/window/SDL cleanup, high water 12288 bytes.
+This closes M01-07 and M01-09. `aarch64-none-elf-nm -A` on the pinned
+`libSDL2.a` shows `SDL_switchaudio.o` referencing audrenInitialize, audrenExit,
+audrenStartAudioRenderer and audrenWaitFrame; runtime reported that Switch
+audio backend. The program does not initialize audren itself.
+
+User hardware identity: Switch V2, Atmosphere, attached Joy-Cons, handheld with
+official charger. Exact Atmosphere and Sphaira versions have not been supplied.
+The user confirmed that a Pro Controller and dock/TV are unavailable in this
+session; M01-08/M01-10 and complete acceptance remain open without waivers.
+
+The brighter candidate's
+[foundation CI](https://github.com/baezahuertaelias/gtavcs_nx/actions/runs/42514795621)
+and [Switch CI](https://github.com/baezahuertaelias/gtavcs_nx/actions/runs/42514795760)
+passed. Downloaded CI ELF/map/NACP/NRO checksums exactly matched local `/work`
+output. Fresh clone, incremental, intentional failed-build rejection and clean
+rebuild proof also passed for `a265068fec1737db4f497063610818c61e3d55cd`;
+the two clean builds at the proof's temporary source path produced identical NRO
+SHA-256 `cde3f668975f46bf6d3a8fb182fe5745460f84b8bf8fdac9d40c481fab020a1e`.
+
+Retrieved SD log hashes: missing-root.log
+`12c1cec19c25935f26547a4e783c02a6c2c7b0a80deecf1a37de7f5a0c597f30`;
+first-success.log
+`75356643aaf0bc37139b79463d9648435dcc5bbab1b24bd52d23ea03e5581176`.
+
+## Joy-Con sweep and lifecycle investigation
+
+The next run used the same brighter NRO. The user confirmed completing an input
+sweep, Joy-Con detach/reattach, HOME/return, sleep/wake/return and Plus exit.
+Retrieved `build/evidence/M01/hardware/joycon-lifecycle.log` has SHA-256
+`bf4824ef9b420b72a150311fe9c1edcb063391dd56172068c5a15cb610be2bd2`.
+It contains both sticks, face/d-pad/shoulder bits, ZL/ZR values 0/32767, bounded
+audio and orderly cleanup. It contains no removal, disconnected-neutral or
+focus/resume markers. Detachment retains wireless connection and cannot prove a
+full disconnect. The controller task remains open, also awaiting Pro testing.
+
+The missing focus markers are a real lifecycle evidence gap. The pinned libnx
+header describes default SuspendHomeSleep and notification-enabled
+SuspendHomeSleepNotify. Its
+[owning source](https://github.com/switchbrew/libnx/blob/v4.12.0/nx/source/services/applet.c)
+initializes the default mode, dispatches OnFocusState/OnResume hooks, and defines
+the notification mode's different suspend flags. SDL_switchvideo.o also calls
+appletMainLoop, so notifications can be consumed during the SDL event pump.
+Sampling final focus alone and retaining only resume can miss a focus transition.
+The fix requests SuspendHomeSleepNotify for Application mode and retains focus
+notifications in the hook for main-thread audio pause/clear/refill and clock
+reset. Hooks themselves perform no SDL/GL work. Hardware revalidation is pending;
+M01-11 remains unchecked.
+
+Still required: visible error confirmation, paired Joy-Con and Pro
+mapping/hotplug/disconnect-neutral/reconnect, repeated dock/undock with 1080p,
+complete HOME/focus/sleep/resume logs and failure cleanup. Record exact
+CFW/Sphaira versions. See HARDWARE.md for the matrix.
 M01-12 remains open despite passing cross-build CI because complete hardware logs
 and closure of every failure are also required. No game/audio-playback claim.

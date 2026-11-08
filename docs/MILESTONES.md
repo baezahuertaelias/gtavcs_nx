@@ -100,9 +100,9 @@ Switch clear-screen/input/audio-device/docking/shutdown proof; no game claim.
 - [x] M01-04 Build scaffold from a fresh checkout/submodule init with all generated GLAD dependencies present; inspect compiler/include/library paths.
 - [x] M01-05 Inspect AArch64 ELF, PIE/relocations/map and NACP/NRO; demonstrate incremental and clean rebuild plus failed-build artifact rejection.
 - [ ] M01-06 Stage only NRO under switch/gtavcs_nx, verify missing asset-root failure and successful checked chdir; provide visible persistent diagnostics.
-- [ ] M01-07 Boot on an actual Switch with full application memory; capture firmware/libnx/driver versions and GL 3.3 context/clear screen.
+- [x] M01-07 Boot on an actual Switch with full application memory; capture firmware/libnx/driver versions and GL 3.3 context/clear screen.
 - [ ] M01-08 Verify paired Joy-Cons and Pro controller initial open, hotplug, disconnect-neutral, reconnect and orderly smoke exit.
-- [ ] M01-09 Verify SDL2 opens audren-backed audio, streams bounded silence and closes it cleanly; record buffer/queue behavior.
+- [x] M01-09 Verify SDL2 opens audren-backed audio, streams bounded silence and closes it cleanly; record buffer/queue behavior.
 - [ ] M01-10 Dock/undock repeatedly; verify drawable pixels, viewport, 720p/1080p output and correct ownership of one context/surface.
 - [ ] M01-11 Exercise HOME/focus/suspend/resume and failure cleanup; eliminate invalid stream/context use and runaway loops.
 - [ ] M01-12 Add source-only cross-build CI/artifact retention with game data excluded; retain reproducible hardware logs and close every M01 failure.
