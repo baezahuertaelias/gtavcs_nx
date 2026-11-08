@@ -10,7 +10,7 @@
   "M00-09": [{"path":"docs/PORT_DISCOVERY.md","result":"Subsystem/function/asset/dependency/portability families mapped to exact owners, milestone tasks and validation unknowns."}],
   "M00-10": [{"path":"docs/PORT_DISCOVERY.md","result":"Read REA skill; source-first route sufficient for scoped discovery; concrete binary/runtime escalation procedure documented."}],
   "M00-11": [{"path":"docs/MILESTONES.md","result":"Defined 12 ordered milestones/142 tasks with evidence, review, merge and next-branch contract plus automated runbook."}],
-  "M00-12": [{"path":"tools/test_milestone_gate.py","result":"Eight focused governance tests passed, including unfinished tasks, absent evidence and stale/nonancestor candidate rejection."}],
+  "M00-12": [{"path":"tools/test_milestone_gate.py","result":"Thirteen focused governance tests passed, including committed-only immutable evidence, malformed schema and stale candidate rejection."},{"path":"docs/milestones/M00/review-findings.md","result":"Both independent P2 findings fixed on M00; new exact-candidate re-review required before approval."}],
   "M00-13": [{"path":"docs/milestones/M00/verification.md","result":"Local source-only foundation checks and remote Ubuntu/Python foundation CI passed; final candidate is checked again before reviewer creation."}],
   "M00-14": [{"path":"docs/milestones/M00/verification.md","result":"Attempted protection API; HTTP 403 plan limitation recorded; repository remains private and no enforcement overclaim."}],
   "M00-15": [{"path":"docs/milestones/M00/verification.md","result":"Environment/reproducibility boundaries and observed checks recorded; reviewer creation requires final committed clean eligibility PASS and current foundation CI."}]

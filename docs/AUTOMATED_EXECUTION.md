@@ -75,7 +75,9 @@ git rev-parse HEAD
 ```
 
 The gate rejects wrong branch, unchecked tasks, missing/extra task evidence keys,
-missing/outside-repo evidence and a dirty working tree. Only after PASS create a
+malformed/blank narratives, Git-internal/ignored/untracked/link evidence, evidence
+whose content differs from its regular committed HEAD blob, and a dirty working
+tree. Only after PASS create a
 fresh independent reviewer agent. No reviewer agent for another milestone while
 any task of that milestone remains incomplete. Implementation agents are not
 authorized merely by this runbook; the user specifically authorized the reviewer.
@@ -99,7 +101,9 @@ source/evidence/task changes. No time-based auto-approval or reviewer averaging.
 After an actual independent approval, record its exact result in
 `docs/milestones/Mxx/review.json`. Required fields: milestone, candidate_commit,
 verdict=`APPROVE`, reviewer_id, independent=true, unresolved_findings=[], checks
-(nonempty list), limitations and observed test results. No invented reviewer ID
+(nonempty list of nonblank text), limitations (list of nonblank text, explicitly
+empty only if none), and observed_test_results (nonempty list of nonblank text).
+No invented reviewer ID
 or a claim that an external person approved. An independent agent is not a GitHub
 account PR approval; do not impersonate one.
 

@@ -50,10 +50,12 @@ session was launched. Escalation to targeted REA is documented for later blocker
 - `python tools/validate_project.py`: PASS, 142 unique tasks in 12 milestones,
   metadata counts, all source-path/hash matches, pinned submodule and tracked
   artifact policy. Re-run after staging and final commit.
-- `python -m unittest discover -s tools -p 'test_*.py' -v`: eight tests passed,
+- `python -m unittest discover -s tools -p 'test_*.py' -v`: thirteen tests passed,
   covering incomplete tasks, missing/outside evidence, duplicate/foreign IDs,
   eligible complete evidence, stale source approval, review-only post-candidate
-  changes and nonancestor candidate rejection.
+  changes and nonancestor candidate rejection. Added after independent review:
+  committed-file evidence enforcement, ignored/untracked/Git-internal/symlink
+  rejection, evidence mutation and malformed evidence/review schema cases.
 - Initial scaffold's existing host CMake guard proof is in docs/VALIDATION.md;
   no compiler/target success was inferred from that deliberate rejection.
 - Generated GLAD and root C/CMake scaffold were preserved. Upstream git status
