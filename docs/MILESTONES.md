@@ -275,6 +275,9 @@ Branch: `milestone/m09-ui-saves` <!-- M09 -->
 - [ ] M09-08 Verify settings/menu close/reopen during gameplay, cutscene transitions and suspend without leaking input or GL state.
 - [ ] M09-09 Verify trainer/dev commands use guest scheduler-safe hooks and cannot invalidate normal release save tests silently.
 - [ ] M09-10 Document player controls/SD layout/troubleshooting and reproduce a full controller-only start-to-save-to-reload session.
+- [ ] M09-11 Implement optional custom textures from `sdmc:/switch/gtavcs_nx/gamefolder/mods/textures/` through the VFS and RHI; document stable texture identifiers, supported formats and precedence, preserve original assets and fall back to original textures when replacements are absent or invalid.
+- [ ] M09-12 Add controller-accessible dev-menu controls to enable/disable and safely reload custom textures; show actionable load errors and bounded memory use, release replaced GPU resources safely and persist the setting under userdata.
+- [ ] M09-13 Validate custom textures on Switch in handheld/docked gameplay: known replacements, original-texture fallback, corrupt/oversized files, rejected absolute/traversing paths, repeated reload, world streaming and suspend/resume; record visual comparison and memory/resource-lifetime evidence.
 
 ## M10 — Stability, lifecycle and measured performance
 

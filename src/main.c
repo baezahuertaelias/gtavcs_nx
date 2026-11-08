@@ -6,18 +6,59 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+#include <stdarg.h>
+#include <arpa/inet.h>
 #include "core.h"
 
 #define ASSET_ROOT "sdmc:/switch/gtavcs_nx/gamefolder"
 #define PCM_FRAMES 1024
 #define PCM_BYTES (PCM_FRAMES * 2 * sizeof(int16_t))
 
+static int nx_socket = -1;
+static unsigned audio_high_water, audio_empty;
+static char last_message[512];
+static int resumed;
+
+static void lifecycle_hook(AppletHookType type, void *parameter)
+{
+    (void)parameter;
+    if (type == AppletHookType_OnResume) resumed = 1;
+}
+
+/* stderr remains on SD; stdout is optionally sent to the nxlink listener. */
+static void diagnostic(const char *format, ...)
+{
+    va_list args;
+    va_start(args, format);
+    vsnprintf(last_message, sizeof(last_message), format, args);
+    va_end(args);
+    fputs(last_message, stderr);
+    fflush(stderr);
+    if (nx_socket >= 0) { fputs(last_message, stdout); fflush(stdout); }
+}
+
+static void fatal_screen(void)
+{
+    /* Only called before SDL init or after its window/context have been freed. */
+    consoleInit(NULL);
+    printf("GTA VCS NX platform smoke failed\n%s\n"
+           "Check /switch/gtavcs_nx/gtavcs-boot.log or gamefolder/gtavcs.log.\n"
+           "Returning in 15 seconds.\n", last_message);
+    for (int i = 0; i < 900 && appletMainLoop(); ++i) consoleUpdate(NULL);
+    consoleExit(NULL);
+}
+
 static SDL_GameController *open_controller(void)
 {
     for (int i = 0; i < SDL_NumJoysticks(); ++i) {
         if (SDL_IsGameController(i)) {
             SDL_GameController *pad = SDL_GameControllerOpen(i);
-            if (pad) return pad;
+            if (pad) {
+                diagnostic("[input] open id=%d name=%s mapping=%s\n",
+                    SDL_JoystickInstanceID(SDL_GameControllerGetJoystick(pad)),
+                    SDL_GameControllerName(pad), SDL_GameControllerGetAttached(pad) ? "attached" : "detached");
+                return pad;
+            }
         }
     }
     return NULL;
@@ -43,8 +84,12 @@ static int pump_audio(SDL_AudioDeviceID device, SDL_AudioStream *stream)
 {
     int16_t pcm[PCM_FRAMES * 2];
     unsigned char converted[PCM_BYTES];
-    if (SDL_GetQueuedAudioSize(device) >= 3 * PCM_BYTES) return 0;
+    const Uint32 queued = SDL_GetQueuedAudioSize(device);
+    if (!queued) ++audio_empty; /* Empty observations, not a measured underrun count. */
+    if (queued > audio_high_water) audio_high_water = queued;
+    if (queued >= 3 * PCM_BYTES) return 0;
     for (int block = 0; block < 3; ++block) {
+        if (SDL_GetQueuedAudioSize(device) > 2 * PCM_BYTES) break;
         const size_t frames = gtavcs_core_audio(pcm, PCM_FRAMES);
         if (frames > PCM_FRAMES) return SDL_SetError("Core returned too many audio frames");
         if (!frames) break;
@@ -55,6 +100,8 @@ static int pump_audio(SDL_AudioDeviceID device, SDL_AudioStream *stream)
             if (bytes < 0) return -1;
             if (!bytes) break;
             if (SDL_QueueAudio(device, converted, (Uint32)bytes) < 0) return -1;
+            const Uint32 depth = SDL_GetQueuedAudioSize(device);
+            if (depth > audio_high_water) audio_high_water = depth;
         }
         if (available < 0) return -1;
         if (SDL_GetQueuedAudioSize(device) >= 3 * PCM_BYTES) break;
@@ -72,20 +119,44 @@ int main(int argc, char **argv)
     SDL_AudioDeviceID audio = 0;
     SDL_AudioStream *stream = NULL;
     FILE *log = NULL;
+    int sockets_started = 0;
+    AppletHookCookie hook;
+    int hook_started = 0;
+    if (__nxlink_host.s_addr && R_SUCCEEDED(socketInitializeDefault())) {
+        sockets_started = 1;
+        nx_socket = nxlinkConnectToHost(true, false);
+    }
+    log = freopen("sdmc:/switch/gtavcs_nx/gtavcs-boot.log", "w", stderr);
+    if (!log) {
+        snprintf(last_message, sizeof(last_message), "Cannot open /switch/gtavcs_nx/gtavcs-boot.log");
+        goto cleanup;
+    }
+    setvbuf(log, NULL, _IOLBF, 0);
+    diagnostic("[boot] platform smoke only; HOS=%08x libnx=%s applet=%d\n",
+        hosversionGet(), GTAVCS_LIBNX_PACKAGE, appletGetAppletType());
+    if (appletGetAppletType() != AppletType_Application &&
+        appletGetAppletType() != AppletType_SystemApplication) {
+        diagnostic("[boot] Full application memory required; launch using title override\n");
+        goto cleanup;
+    }
 
     /* Standard libnx startup mounts sdmc. Do not mount a second copy or change
      * cwd later: workers and all relative asset/mod lookups share this root. */
     if (chdir(ASSET_ROOT) != 0) {
-        fprintf(stderr, "[boot] chdir(%s): %s\n", ASSET_ROOT, strerror(errno));
-        return EXIT_FAILURE;
+        diagnostic("[boot] chdir(%s): %s\n", ASSET_ROOT, strerror(errno));
+        goto cleanup;
     }
     log = freopen("gtavcs.log", "w", stderr);
-    if (!log) return EXIT_FAILURE;
+    if (!log) {
+        snprintf(last_message, sizeof(last_message), "Cannot open gamefolder/gtavcs.log");
+        goto cleanup;
+    }
     setvbuf(log, NULL, _IOLBF, 0);
+    diagnostic("[boot] checked chdir succeeded: %s\n", ASSET_ROOT);
     SDL_SetMainReady();
     if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO | SDL_INIT_GAMECONTROLLER | SDL_INIT_TIMER) < 0)
         goto sdl_error;
-    fprintf(stderr, "[boot] SDL %s; audio %s\n", SDL_GetCurrentVideoDriver(), SDL_GetCurrentAudioDriver());
+    diagnostic("[boot] SDL %s; audio %s\n", SDL_GetCurrentVideoDriver(), SDL_GetCurrentAudioDriver());
 
     if (SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3) < 0 ||
         SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 3) < 0 ||
@@ -102,12 +173,12 @@ int main(int argc, char **argv)
     context = SDL_GL_CreateContext(window);
     if (!context || SDL_GL_MakeCurrent(window, context) < 0) goto sdl_error;
     if (!gladLoadGL((GLADloadfunc)SDL_GL_GetProcAddress) || !GLAD_GL_VERSION_3_3) {
-        fprintf(stderr, "[boot] OpenGL 3.3 entry points unavailable\n");
+        diagnostic("[boot] OpenGL 3.3 entry points unavailable\n");
         goto cleanup;
     }
-    fprintf(stderr, "[boot] GL %s; renderer %s\n", glGetString(GL_VERSION), glGetString(GL_RENDERER));
+    diagnostic("[boot] GL %s; renderer %s\n", glGetString(GL_VERSION), glGetString(GL_RENDERER));
     if (SDL_GL_SetSwapInterval(1) < 0)
-        fprintf(stderr, "[boot] vsync unavailable: %s\n", SDL_GetError());
+        diagnostic("[boot] vsync unavailable: %s\n", SDL_GetError());
     controller = open_controller();
 
     SDL_AudioSpec wanted = {0}, obtained = {0};
@@ -120,8 +191,10 @@ int main(int argc, char **argv)
     stream = SDL_NewAudioStream(AUDIO_S16SYS, 2, 48000,
         obtained.format, obtained.channels, obtained.freq);
     if (!stream) goto sdl_error;
+    diagnostic("[audio] device=%u rate=%d format=%04x channels=%u samples=%u queue_limit=%zu\n",
+        audio, obtained.freq, obtained.format, obtained.channels, obtained.samples, 3 * PCM_BYTES);
     if (gtavcs_core_boot(ASSET_ROOT) != 0) {
-        fprintf(stderr, "[boot] core boot failed\n");
+        diagnostic("[boot] core boot failed\n");
         goto cleanup;
     }
     core_started = 1;
@@ -131,33 +204,71 @@ int main(int argc, char **argv)
     int running = 1;
     Uint64 previous = SDL_GetPerformanceCounter();
     const double frequency = (double)SDL_GetPerformanceFrequency();
+    int focused = 1, previous_width = 0, previous_height = 0;
+    appletHook(&hook, lifecycle_hook, NULL);
+    hook_started = 1;
+    Uint64 last_stats = previous;
+    GtavcsPad previous_pad = {0};
     while (running && appletMainLoop()) {
+        const int active = appletGetFocusState() == AppletFocusState_InFocus;
+        if (active != focused || resumed) {
+            diagnostic("[lifecycle] resume=%d\n", resumed);
+            resumed = 0;
+            focused = active;
+            SDL_PauseAudioDevice(audio, 1);
+            SDL_ClearQueuedAudio(audio);
+            SDL_AudioStreamClear(stream);
+            previous = SDL_GetPerformanceCounter();
+            diagnostic("[lifecycle] focus=%d; audio paused and cleared\n", focused);
+            if (focused) {
+                if (pump_audio(audio, stream) < 0) goto sdl_error;
+                SDL_PauseAudioDevice(audio, 0);
+            }
+        }
         SDL_Event event;
         while (SDL_PollEvent(&event)) {
             if (event.type == SDL_QUIT) running = 0;
             if (event.type == SDL_CONTROLLERDEVICEREMOVED && controller &&
                 SDL_JoystickInstanceID(SDL_GameControllerGetJoystick(controller)) == event.cdevice.which) {
                 SDL_GameControllerClose(controller);
+                diagnostic("[input] removed id=%d; neutral until resampled\n", event.cdevice.which);
                 controller = open_controller();
             }
             if (event.type == SDL_CONTROLLERDEVICEADDED && !controller)
                 controller = open_controller();
         }
         if (!running) break;
+        if (!focused) { SDL_Delay(20); continue; }
         const GtavcsPad pad = sample_controller(controller);
+        if (memcmp(&pad, &previous_pad, sizeof(pad)) != 0) {
+            diagnostic("[input] connected=%d buttons=%08x axes=%d,%d,%d,%d,%d,%d\n",
+                pad.connected, pad.buttons, pad.axes[0], pad.axes[1], pad.axes[2],
+                pad.axes[3], pad.axes[4], pad.axes[5]);
+            previous_pad = pad;
+        }
         /* Smoke-test exit only; Plus becomes PS2 Start when the core is wired. */
         if (pad.buttons & (UINT32_C(1) << SDL_CONTROLLER_BUTTON_START)) break;
         int width, height;
         SDL_GL_GetDrawableSize(window, &width, &height);
+        if (width != previous_width || height != previous_height) {
+            diagnostic("[video] drawable=%dx%d mode=%d; one SDL GL context\n",
+                width, height, appletGetOperationMode());
+            previous_width = width; previous_height = height;
+        }
         if (width <= 0 || height <= 0) { SDL_Delay(10); continue; }
         const Uint64 now = SDL_GetPerformanceCounter();
         const double dt = (double)(now - previous) / frequency;
         previous = now;
+        if ((double)(now - last_stats) / frequency >= 5.0) {
+            diagnostic("[audio] queued=%u high_water=%u empty_observations=%u\n",
+                SDL_GetQueuedAudioSize(audio), audio_high_water, audio_empty);
+            last_stats = now;
+        }
         glViewport(0, 0, width, height);
         glClearColor(0.06f, 0.10f, 0.18f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
         const int state = gtavcs_core_frame(&pad, width, height, dt);
-        if (state < 0) { fprintf(stderr, "[core] frame failed\n"); goto cleanup; }
+        if (state < 0) { diagnostic("[core] frame failed\n"); goto cleanup; }
         if (state == 0) break;
         if (pump_audio(audio, stream) < 0) goto sdl_error;
         SDL_GL_SwapWindow(window);
@@ -167,8 +278,11 @@ int main(int argc, char **argv)
     goto cleanup;
 
 sdl_error:
-    fprintf(stderr, "[SDL] %s\n", SDL_GetError());
-cleanup:
+    diagnostic("[SDL] %s\n", SDL_GetError());
+cleanup:;
+    char failure[sizeof(last_message)];
+    memcpy(failure, last_message, sizeof(failure));
+    if (hook_started) appletUnhook(&hook);
     if (audio) SDL_PauseAudioDevice(audio, 1);
     if (core_started) gtavcs_core_shutdown();
     if (audio) SDL_CloseAudioDevice(audio);
@@ -177,6 +291,14 @@ cleanup:
     if (context) SDL_GL_DeleteContext(context);
     if (window) SDL_DestroyWindow(window);
     SDL_Quit(); /* Also unwind a partially successful SDL_Init. */
+    if (result == EXIT_SUCCESS)
+        diagnostic("[shutdown] audio/stream/controller/context/window/SDL closed; high_water=%u\n", audio_high_water);
+    else {
+        memcpy(last_message, failure, sizeof(last_message));
+        fatal_screen();
+    }
     if (log) fflush(log);
+    if (nx_socket >= 0) close(nx_socket);
+    if (sockets_started) socketExit();
     return result;
 }

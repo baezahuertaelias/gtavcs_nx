@@ -31,7 +31,8 @@ set(ENV{PKG_CONFIG_PATH} "")
 set(ENV{PKG_CONFIG_LIBDIR} "${SWITCH_PORTLIBS}/lib/pkgconfig:${SWITCH_PORTLIBS}/share/pkgconfig")
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(NX_SDL2 REQUIRED sdl2>=2.0.7)
-pkg_check_modules(NX_GL REQUIRED gl)
+# Switch Mesa exposes desktop entry points through EGL + glapi; no gl.pc.
+pkg_check_modules(NX_GL REQUIRED glapi)
 pkg_check_modules(NX_EGL REQUIRED egl)
 find_library(NX_LIBRARY NAMES nx PATHS "${DEVKITPRO}/libnx/lib" NO_DEFAULT_PATH REQUIRED)
 
@@ -45,6 +46,9 @@ set_target_properties(gtavcs PROPERTIES SUFFIX ".elf" LINKER_LANGUAGE CXX)
 target_include_directories(gtavcs PRIVATE src
     ${NX_SDL2_INCLUDE_DIRS} ${NX_GL_INCLUDE_DIRS} ${NX_EGL_INCLUDE_DIRS})
 target_compile_definitions(gtavcs PRIVATE SDL_MAIN_HANDLED)
+execute_process(COMMAND dkp-pacman -Q libnx OUTPUT_VARIABLE NX_PACKAGE
+    OUTPUT_STRIP_TRAILING_WHITESPACE COMMAND_ERROR_IS_FATAL ANY)
+target_compile_definitions(gtavcs PRIVATE GTAVCS_LIBNX_PACKAGE="${NX_PACKAGE}")
 target_compile_options(gtavcs PRIVATE -Wall -Wextra -Wpedantic
     -ffp-contract=off -fno-strict-aliasing
     ${NX_SDL2_CFLAGS_OTHER} ${NX_GL_CFLAGS_OTHER} ${NX_EGL_CFLAGS_OTHER})
