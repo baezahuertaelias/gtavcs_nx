@@ -143,6 +143,8 @@ CPU/scheduler workloads on ARM64, with guest semantics preserved.
 
 Proof: per-operation comparison, toolchain decision, generated identity/register
 metadata, native test logs, target trace. Compilation alone does not close execution.
+Detailed work/proof tracking: [M02 execution checklist](milestones/M02/TASKS.md).
+Required unchecked substeps keep their owning parent task open.
 
 ## M03 — Extracted assets, sector VFS and persistent paths
 
