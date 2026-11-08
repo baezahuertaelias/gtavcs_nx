@@ -208,6 +208,7 @@ int main(int argc, char **argv)
     appletHook(&hook, lifecycle_hook, NULL);
     hook_started = 1;
     Uint64 last_stats = previous;
+    unsigned long frames_presented = 0;
     GtavcsPad previous_pad = {0};
     while (running && appletMainLoop()) {
         const int active = appletGetFocusState() == AppletFocusState_InFocus;
@@ -260,18 +261,25 @@ int main(int argc, char **argv)
         const double dt = (double)(now - previous) / frequency;
         previous = now;
         if ((double)(now - last_stats) / frequency >= 5.0) {
-            diagnostic("[audio] queued=%u high_water=%u empty_observations=%u\n",
-                SDL_GetQueuedAudioSize(audio), audio_high_water, audio_empty);
+            diagnostic("[audio] queued=%u high_water=%u empty_observations=%u frames=%lu\n",
+                SDL_GetQueuedAudioSize(audio), audio_high_water, audio_empty, frames_presented);
             last_stats = now;
         }
         glViewport(0, 0, width, height);
-        glClearColor(0.06f, 0.10f, 0.18f, 1.0f);
+        glClearColor(0.12f, 0.32f, 0.70f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
+        if (frames_presented == 0) {
+            unsigned char pixel[4] = {0};
+            glReadPixels(width / 2, height / 2, 1, 1, GL_RGBA, GL_UNSIGNED_BYTE, pixel);
+            diagnostic("[video] clear center RGBA=%u,%u,%u,%u error=%04x\n",
+                pixel[0], pixel[1], pixel[2], pixel[3], glGetError());
+        }
         const int state = gtavcs_core_frame(&pad, width, height, dt);
         if (state < 0) { diagnostic("[core] frame failed\n"); goto cleanup; }
         if (state == 0) break;
         if (pump_audio(audio, stream) < 0) goto sdl_error;
         SDL_GL_SwapWindow(window);
+        ++frames_presented;
         SDL_Delay(1); /* Avoid a busy loop if swap interval is unsupported. */
     }
     result = EXIT_SUCCESS;

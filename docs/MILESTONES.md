@@ -94,11 +94,11 @@ Branch: `milestone/m01-platform-smoke` <!-- M01 -->
 Entry: reviewed M00 main. Exit: clean-machine reproducible platform NRO and actual
 Switch clear-screen/input/audio-device/docking/shutdown proof; no game claim.
 
-- [ ] M01-01 Restore usable WSL Ubuntu/Docker Linux engine and record host versions/resources without changing unrelated projects.
-- [ ] M01-02 Pin devkitA64 image digest and package versions, official Switch CMake, libnx, SDL2, Mesa and cross pkg-config; save lock manifest.
-- [ ] M01-03 Create noninteractive Dockerfile/build command and cache strategy; fail on unavailable dependencies or accidental host libraries.
-- [ ] M01-04 Build scaffold from a fresh checkout/submodule init with all generated GLAD dependencies present; inspect compiler/include/library paths.
-- [ ] M01-05 Inspect AArch64 ELF, PIE/relocations/map and NACP/NRO; demonstrate incremental and clean rebuild plus failed-build artifact rejection.
+- [x] M01-01 Restore usable WSL Ubuntu/Docker Linux engine and record host versions/resources without changing unrelated projects.
+- [x] M01-02 Pin devkitA64 image digest and package versions, official Switch CMake, libnx, SDL2, Mesa and cross pkg-config; save lock manifest.
+- [x] M01-03 Create noninteractive Dockerfile/build command and cache strategy; fail on unavailable dependencies or accidental host libraries.
+- [x] M01-04 Build scaffold from a fresh checkout/submodule init with all generated GLAD dependencies present; inspect compiler/include/library paths.
+- [x] M01-05 Inspect AArch64 ELF, PIE/relocations/map and NACP/NRO; demonstrate incremental and clean rebuild plus failed-build artifact rejection.
 - [ ] M01-06 Stage only NRO under switch/gtavcs_nx, verify missing asset-root failure and successful checked chdir; provide visible persistent diagnostics.
 - [ ] M01-07 Boot on an actual Switch with full application memory; capture firmware/libnx/driver versions and GL 3.3 context/clear screen.
 - [ ] M01-08 Verify paired Joy-Cons and Pro controller initial open, hotplug, disconnect-neutral, reconnect and orderly smoke exit.
