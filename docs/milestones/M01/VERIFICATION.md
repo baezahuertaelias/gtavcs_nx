@@ -12,6 +12,11 @@ review, merge or next-milestone advancement has occurred. Earlier provisional
 claims and failures below are retained as investigation history; the task ledger
 and this checkpoint describe the current acceptance state.
 
+Testing stopped at the user's explicit request after the final Joy-Con test.
+That test is recorded as working based on the user's confirmation. Remaining
+connection-status questions are deferred; do not perform more tests or request
+more manual test steps until the user resumes testing.
+
 ## Host and toolchain (M01-01 through M01-03)
 
 Observed `docker version`, `docker info`, `wsl --list --verbose` and a disposable
@@ -291,3 +296,22 @@ Foundation validation passed locally. [Cross-build CI](https://github.com/baezah
 and [foundation CI](https://github.com/baezahuertaelias/gtavcs_nx/actions/runs/42516513904)
 passed for this candidate. The controller matrix and docking remain open; silent
 platform-loop progress is not game performance or audible-game validation.
+
+## Final supplied Joy-Con test — working; further tests stopped
+
+The user confirmed both Joy-Cons fully disconnected (LEDs out), reconnected when
+reattached, and Plus exited normally. Record the supplied functional test as
+**working**, as explicitly requested. Private `hardware/joycon-wireless.log`
+SHA-256 is `0714263fe2bedda63cd7173b417156618095d3ed452099c55916bae86bd043bc`.
+It records wireless stick/button activity, return to neutral, frame/audio
+progress and orderly cleanup; no new crash reports appeared against the saved
+baseline. SDL continued reporting connected=1 and produced no device-removal
+record. This metadata observation remains a deferred follow-up, not a claimed
+fix or independently proved disconnect-status transition.
+
+The user said this was the only additional test available now and requested no
+more testing, with any remaining problems to be resolved later. No further
+hardware tests or controller changes were performed. M01-08 remains unchecked
+because its required Pro Controller matrix is unavailable and complete formal
+connection-state proof is outstanding. M01-10 and M01-12 remain unchecked too.
+No independent reviewer was created and the draft PR remains unmerged.

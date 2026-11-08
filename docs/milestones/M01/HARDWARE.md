@@ -39,7 +39,7 @@ Do not check a task until observations satisfy it.
 |---|---|---|
 | M01-06 | Separate missing-root failure and successful checked chdir; visible and persistent diagnostics | Passed: logs, readable error/return confirmed after stdio fix; folder restored |
 | M01-07 | Actual Switch, application mode, GL >=3.3 core, visible blue clear | Passed: V2/Atmosphere, applet=0, GL 4.3 core/NV120; user confirmed blue |
-| M01-08 | Paired Joy-Cons and Pro: initial open, buttons/sticks, disconnect neutral, hotplug/reconnect, Plus orderly exit | Pending hardware |
+| M01-08 | Paired Joy-Cons and Pro: initial open, buttons/sticks, disconnect neutral, hotplug/reconnect, Plus orderly exit | Joy-Con test working per user confirmation; Pro unavailable; SDL connection-status follow-up deferred |
 | M01-09 | audren SDL device, exact S16 stereo 48 kHz, bounded queue <=12288 bytes, clean device/stream close | Passed after stdio fix: full Plus exit, user confirmation and no new crash report |
 | M01-10 | Repeated dock/undock, 1280x720 and 1920x1080 drawable/viewport, clear presentation, one context | Pending hardware |
 | M01-11 | HOME/focus, sleep/resume, no stale queued audio/input, no busy loop or invalid resources; startup failure cleanup | Passed: confirmed 2.77s/13.23s suspensions clear/refill queue; frames resume, Plus exits, no new crash report |
@@ -51,3 +51,10 @@ underrun counter. Silent samples only validate device streaming in M01.
 
 The user supplied `192.168.1.107` for the first nxlink attempt on 2026-11-08;
 this is an execution endpoint, not proof of device identity or test results.
+
+The user confirmed the final Joy-Con wireless/full-disconnect/reattach/Plus test
+worked, then explicitly requested no more testing for now. Record that functional
+test as working. The log's SDL connected flag remained 1 throughout; retain this
+connection-status observation for later follow-up without claiming it was fixed.
+Do not request or run further tests until the user resumes testing. Pro and dock
+requirements remain open, so there is no milestone approval or merge.
