@@ -228,6 +228,10 @@ int main(int argc, char **argv)
     int running = 1;
     Uint64 previous = SDL_GetPerformanceCounter();
     const double frequency = (double)SDL_GetPerformanceFrequency();
+    u64 active_time = 0;
+    const int suspension_clock = R_SUCCEEDED(appletGetProgramTotalActiveTime(&active_time));
+    u64 suspended_epoch = suspension_clock ? armTicksToNs(armGetSystemTick()) - active_time : 0;
+    diagnostic("[lifecycle] suspension_clock=%d\n", suspension_clock);
     int focused = 1, previous_width = 0, previous_height = 0;
     appletHook(&hook, lifecycle_hook, NULL);
     hook_started = 1;
@@ -235,6 +239,22 @@ int main(int argc, char **argv)
     unsigned long frames_presented = 0;
     GtavcsPad previous_pad = {0};
     while (running && appletMainLoop()) {
+        /* Focus messages can be coalesced while Horizon suspends the process.
+         * Compare real ticks to libnx's clock excluding accumulated suspension;
+         * an ordinary render stall advances both clocks and does not reset dt. */
+        if (suspension_clock) {
+            if (R_FAILED(appletGetProgramTotalActiveTime(&active_time))) {
+                diagnostic("[lifecycle] suspension clock failed\n");
+                goto cleanup;
+            }
+            const u64 epoch = armTicksToNs(armGetSystemTick()) - active_time;
+            if (epoch > suspended_epoch && epoch - suspended_epoch > UINT64_C(100000000)) {
+                diagnostic("[lifecycle] confirmed suspension_ns=%llu\n",
+                    (unsigned long long)(epoch - suspended_epoch));
+                resumed = 1;
+            }
+            suspended_epoch = epoch;
+        }
         const int active = appletGetFocusState() == AppletFocusState_InFocus;
         if (active != focused || resumed || focus_notifications) {
             diagnostic("[lifecycle] resume=%d focus_notifications=%u\n", resumed, focus_notifications);

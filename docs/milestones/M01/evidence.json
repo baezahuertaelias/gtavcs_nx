@@ -32,7 +32,7 @@
   "M01-06": [
     {
       "path": "docs/milestones/M01/VERIFICATION.md",
-      "result": "Incomplete: see required hardware observations and open failures"
+      "result": "NRO-only staging, checked successful chdir, observed missing-root failure with persistent SD/nxlink logs and user-confirmed readable error returning to Sphaira without new crash reports"
     }
   ],
   "M01-07": [
@@ -50,7 +50,7 @@
   "M01-09": [
     {
       "path": "docs/milestones/M01/VERIFICATION.md",
-      "result": "Reopened: device/queue proof passed but exact-build crash report exposed libc stream closure after socketExit; fix and full process-exit revalidation required"
+      "result": "Audren-backed SDL device, bounded silent queue and complete Plus process exit revalidated after explicit stdio closure; no new Atmosphere crash report"
     }
   ],
   "M01-10": [

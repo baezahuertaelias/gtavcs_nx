@@ -210,6 +210,44 @@ This validates elimination of the exact observed final-stream-close crash for
 that error run. User confirmation of visible text and normal return is pending;
 normal Plus exit must also be rechecked with the corrected stream ownership.
 
+The user confirmed readable error text and return to Sphaira without a Nintendo
+error for that corrected run. M01-06 is complete: the missing-root and successful
+checked chdir paths are both observed, diagnostics persist on SD, the fatal
+message is visible, and `rg --files --hidden --no-ignore dist` lists only
+`dist/switch/gtavcs_nx/gtavcs.nro`. The smoke folder was restored with its log.
+
+The correction is committed as `b3b43a0737f9e8e5ae78790296cba23133bc28b8`.
+Fresh clone/submodule, incremental no-op, deliberate compilation failure with
+stale-staging rejection and identical clean rebuild passed again. The proof's
+temporary-path NRO SHA-256 was
+`58bd11347a6c54785280a2a681353daebc6b15e0ae1cf8f1e16b4845bc064458`.
+The actual `/work` NRO sent to hardware remains
+`2f0d01cb72a59554fca1a33754585d630dae684b84679189b8e4677314d95573`.
+
+That corrected candidate's normal handheld run was also completed: the user
+confirmed blue survived HOME and sleep/wake, and Plus returned without a Nintendo
+error. Retrieved `hardware/final-handheld.log`, SHA-256
+`932a790c8da200ee10b33043ae2982e4070eabe73602644451b7b7e524f1c0af`,
+records the exact device format, bounded queue, frame progress, Start bit and
+orderly app cleanup. `hardware/crash-after-final-handheld.json` has no new crash
+reports against the 130-file baseline. This closes the reopened M01-09 with
+full-process exit evidence, rather than a cleanup marker alone.
+
+The delayed HOME/sleep run still recorded only the initial focus notification;
+it did not prove audio clearing after later suspensions. M01-11 stays open.
+The next change compares real arm ticks with
+[libnx total active time](https://github.com/switchbrew/libnx/blob/v4.12.0/nx/source/services/applet.c),
+which subtracts kernel-reported accumulated suspension. A >100 ms increase in
+that difference signals confirmed process suspension and resets audio/clock on
+the main thread. Ordinary render stalls advance both clocks and do not trigger
+this reset. The pending hardware test must show a later suspension marker and
+queue clear/refill, not merely successful visuals.
+
+For b3b43a0, [Switch CI](https://github.com/baezahuertaelias/gtavcs_nx/actions/runs/42516173669)
+and [foundation CI](https://github.com/baezahuertaelias/gtavcs_nx/actions/runs/42516173702)
+passed; downloaded ELF/map/NACP/NRO hashes exactly matched local `/work` output.
+The PR milestone-review job correctly failed because tasks/review are incomplete.
+
 Still required: visible error confirmation, paired Joy-Con and Pro
 mapping/hotplug/disconnect-neutral/reconnect, repeated dock/undock with 1080p,
 complete HOME/focus/sleep/resume logs and failure cleanup. Record exact
