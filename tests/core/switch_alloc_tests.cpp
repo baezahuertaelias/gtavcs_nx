@@ -3,7 +3,7 @@
 #include <cstdio>
 #include <initializer_list>
 
-int main()
+int runSwitchAllocTests()
 {
     unsigned checked = 0;
     for (std::size_t alignment : {1u, 2u, 4u, 8u, 16u, 32u, 64u, 128u, 4096u}) {
@@ -25,3 +25,7 @@ int main()
     std::printf("PASS Switch allocation contract: %u alignment cases, write/read/free, null/zero size\n", checked);
     return 0;
 }
+
+#ifndef NX_CORE_TEST_SUITE
+int main() { return runSwitchAllocTests(); }
+#endif

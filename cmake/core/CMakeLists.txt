@@ -37,6 +37,12 @@ endif()
 # the root platform smoke NRO. Core harness/runtime linkage is a separate task.
 add_library(vcs_generated_cpu STATIC ${ee_sources}
     "${VCS_GENERATED_DIR}/vu1/vu1_compiled.cpp")
+# The registration constructor has 236k assignments and VU output has 110k
+# lines. Do not combine both into one optimization unit. Upstream already keeps
+# VU code out of EE unity batches; retain full O2 but omit unused DWARF here.
+set_source_files_properties("${VCS_GENERATED_DIR}/ee/register_functions.cpp"
+    "${VCS_GENERATED_DIR}/vu1/vu1_compiled.cpp" PROPERTIES
+    SKIP_UNITY_BUILD_INCLUSION TRUE COMPILE_OPTIONS "-g0")
 set_target_properties(vcs_generated_cpu PROPERTIES UNITY_BUILD ON UNITY_BUILD_BATCH_SIZE 32
     POSITION_INDEPENDENT_CODE OFF)
 target_include_directories(vcs_generated_cpu PRIVATE

@@ -119,3 +119,65 @@ simd_candidates.json maps all 661 original lexical SIMD sites to operation
 families and parsed owning functions; null owners/manual families explicitly
 retain parser uncertainty. Numeric, unaligned-access, rounding, scheduler and
 ABI equivalence still require M02-04 through M02-14 evidence.
+
+## Packed integer and allocation execution on Switch
+
+The public-source scalar-reference suite covers 42 arithmetic/comparison/bitwise
+operation variants, 4,096 edge/seeded input pairs per variant, packing/QFSRV
+cases, and unaligned/wrapping RDRAM reads/writes: 173,066 vector comparisons.
+The reference was built with the pinned native Clang and strict FP/aliasing
+flags, and passed. An initial test incorrectly omitted the real generator's
+`ctx->sa & 0x7f` boundary for QFSRV; inspecting translateQFSRV corrected the test
+invocation rather than changing guest arithmetic. The initial output is retained
+as packed-integer-initial-sa-contract.log.
+
+The separate public CPU-test NRO contains these synthetic tests and allocation
+checks only; it does not link generated game code or boot the runtime/game.
+It uses the official Switch CMake toolchain, locked SSE2NEON content, the same
+strict CPU flags and a checked gamefolder chdir. It returns automatically and
+closes its SD log before process exit; no button/dock test is involved.
+
+After the user confirmed the Switch was available, nxlink delivered that NRO to
+the separate gtavcs_cpu_tests.nro path. The actual Switch (HOS 22.5.0, applet=0)
+passed all 173,066 vector comparisons and the 16 allocation cases. It reported
+char_signed=1, a 1,048,576-byte stack region and zero additional workers. Both
+test results were zero, and no new Atmosphere crash-report entry appeared.
+
+FTP retrieval independently hashed the SD NRO:
+`433eaa9421fa1f928138621f0a34248d9bbe7f896b220cd486c5027053f2f7a1`,
+matching local build/m02/cpu-tests/gtavcs_cpu_tests.nro. Retained log
+build/evidence/M02/hardware/cpu-tests-M02.log has SHA-256
+`e38c60a9d2f299ba025e9b594bcfd7c1470d0a89dbf0417e528704a2500c9c97`;
+cpu-tests-result.json records the payload/log identities and empty new-crash list.
+The 30,467,864 ns suite timing is a synthetic test trace, not game performance.
+Remaining M02-05/M02-06 operation/layout coverage is tracked explicitly in TASKS.md.
+
+## Heap-override and build-partition follow-up
+
+The first CPU NRO requested a 128 MiB weak __nx_heap_size but reported
+3,343,908,864 total / 3,339,763,712 used bytes from the kernel. This was not a
+verified 128 MiB allocator budget. Inspection of pinned libnx v4.12.0 init.c and
+env.h confirms loader-provided heap overrides take precedence over that weak
+size symbol. Kernel-mapped reservation must not be reported as live allocations.
+
+The prepared correction uses the documented __libnx_initheap hook and bounds
+fake_heap_start/end to a 128 MiB arena within the loader-provided region. It also
+adds an over-budget allocation rejection check and labels mapped/allocator
+measurements separately. This source builds, but its second nxlink connection
+was refused; it has not yet been validated on hardware. The earlier integer/
+allocation PASS must not be used to claim the new arena limit passed.
+
+The original private generated-code build reached 324/326 steps; the remaining
+unity unit combined the 236k-assignment registration constructor with the large
+VU source. A process snapshot showed over 16 minutes of active 99.8%-CPU
+compilation and approximately 2.3 GiB RSS on that single unit. The process was
+alive, not presumed hung. That specific attempt was explicitly cancelled to
+change the source partition; its log is retained as
+generated-arm64-large-unity-cancelled.log and large-unity-process.log.
+
+The revised build keeps registration and VU as separate O2 translation units,
+matching upstream's existing separation of VU from EE unity batches, and omits
+unused DWARF only on those two large sources. No functions, operations or numeric
+checks were removed and no FP flags relaxed. It reuses unaffected objects and
+continues in the project-specific Linux Docker volume. Full archive completion
+and subsequent runtime linking remain open until observed.
