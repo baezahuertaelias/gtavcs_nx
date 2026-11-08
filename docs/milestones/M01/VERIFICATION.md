@@ -148,6 +148,29 @@ notifications in the hook for main-thread audio pause/clear/refill and clock
 reset. Hooks themselves perform no SDL/GL work. Hardware revalidation is pending;
 M01-11 remains unchecked.
 
+Focus candidate `f86079f2e1b3b9295fc31009a39147a9bfe680ac`, NRO SHA-256
+`004350e3368d2367d95f2443c355d30c956fb1fae8379f17800038a7928a5dfc`:
+the user confirmed HOME/return, sleep/wake/return and Plus all worked. Retrieved
+`build/evidence/M01/hardware/focus-notify.log`, SHA-256
+`1ddb9fadb6b5e6778971c70702c0efb1d91f15af7998d1c712657edebb4d6bc7`,
+records a retained focus notification, audio pause/clear, successful rendering
+and bounded refill, then Plus and orderly cleanup. The one notification is
+before the first frame; it is not proof of distinct mid-loop loss/gain events.
+A deliberately delayed mid-loop sequence is still needed to validate each
+transition's reset. User-reported recovery is recorded without overclaiming the
+missing per-transition logs. Fresh/incremental/failure/clean proof passed for
+this candidate; same-directory clean NRO SHA-256
+`442a018bd603aed88a0408cf35133cb677cdba52c77e956da250173817a06ba3`.
+
+The fatal console originally used printf after consoleInit. Inspection of
+[libnx consoleInit/con_write](https://github.com/switchbrew/libnx/blob/v4.12.0/nx/source/runtime/devices/console.c)
+shows the console device registration, while nxlink may retain ownership of the
+already-open stdout descriptor. The fatal-screen implementation now draws text
+through the public ConsoleRenderer interface so stdio redirection cannot hide
+the on-device diagnostic. It still runs only before SDL init or after all SDL
+display ownership has been destroyed. Missing-root visible confirmation remains
+pending for this fix.
+
 Still required: visible error confirmation, paired Joy-Con and Pro
 mapping/hotplug/disconnect-neutral/reconnect, repeated dock/undock with 1080p,
 complete HOME/focus/sleep/resume logs and failure cleanup. Record exact

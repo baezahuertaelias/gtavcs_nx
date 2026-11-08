@@ -42,10 +42,25 @@ static void diagnostic(const char *format, ...)
 static void fatal_screen(void)
 {
     /* Only called before SDL init or after its window/context have been freed. */
-    consoleInit(NULL);
-    printf("GTA VCS NX platform smoke failed\n%s\n"
+    PrintConsole *screen = consoleInit(NULL);
+    char message[768];
+    snprintf(message, sizeof(message), "GTA VCS NX platform smoke failed\n%s\n"
            "Check /switch/gtavcs_nx/gtavcs-boot.log or gamefolder/gtavcs.log.\n"
            "Returning in 15 seconds.\n", last_message);
+    /* nxlink may own stdout's file descriptor. Draw via the public console
+     * renderer so fatal text is visible regardless of stdio redirection. */
+    int x = 0, y = 0;
+    if (screen && screen->consoleInitialised) {
+        for (const unsigned char *p = (const unsigned char *)message; *p; ++p) {
+            if (*p == '\n') { x = 0; ++y; continue; }
+            if (x >= screen->consoleWidth) { x = 0; ++y; }
+            if (y >= screen->consoleHeight) break;
+            if (*p >= screen->font.asciiOffset &&
+                *p - screen->font.asciiOffset < screen->font.numChars)
+                screen->renderer->drawChar(screen, x, y, *p - screen->font.asciiOffset);
+            ++x;
+        }
+    }
     for (int i = 0; i < 900 && appletMainLoop(); ++i) consoleUpdate(NULL);
     consoleExit(NULL);
 }
