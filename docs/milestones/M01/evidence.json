@@ -1,0 +1,86 @@
+{
+  "M01-01": [
+    {
+      "path": "docs/milestones/M01/VERIFICATION.md",
+      "result": "Docker Linux engine 29.9.2 usable, WSL/resources observed without changing other projects"
+    }
+  ],
+  "M01-02": [
+    {
+      "path": "docs/milestones/M01/VERIFICATION.md",
+      "result": "Immutable image digest and complete devkitPro package lock verified"
+    }
+  ],
+  "M01-03": [
+    {
+      "path": "docs/milestones/M01/VERIFICATION.md",
+      "result": "Noninteractive pinned build, offline compilation, restricted Docker context and cache strategy observed"
+    }
+  ],
+  "M01-04": [
+    {
+      "path": "docs/milestones/M01/VERIFICATION.md",
+      "result": "Fresh committed clone and exact local submodule initialization compiled with target compiler/includes/libraries"
+    }
+  ],
+  "M01-05": [
+    {
+      "path": "docs/milestones/M01/VERIFICATION.md",
+      "result": "AArch64 PIE ELF/NRO/NACP inspection, incremental no-op, identical clean rebuild and failed-build artifact rejection passed"
+    }
+  ],
+  "M01-06": [
+    {
+      "path": "docs/milestones/M01/VERIFICATION.md",
+      "result": "NRO-only staging, checked successful chdir, observed missing-root failure with persistent SD/nxlink logs and user-confirmed readable error returning to Sphaira without new crash reports"
+    }
+  ],
+  "M01-07": [
+    {
+      "path": "docs/milestones/M01/VERIFICATION.md",
+      "result": "Switch V2 Atmosphere application-mode boot, HOS 22.5.0, libnx 4.12.0, GL 4.3 core Mesa/NV120 and user-confirmed blue screen"
+    }
+  ],
+  "M01-08": [
+    {
+      "path": "docs/milestones/M01/VERIFICATION.md",
+      "result": "Supplied attached/wireless Joy-Con input, full disconnect/reattach and Plus test recorded working per user confirmation with retained log hash; no new crash reports"
+    },
+    {
+      "path": "docs/milestones/M01/SCOPE_DECISIONS.md",
+      "result": "User explicitly accepted supplied tests for M01 and deferred Pro Controller/formal physical connection-state verification to real game/main-menu boot; unchecked M06-14 preserves the remaining matrix and connected=1 observation"
+    }
+  ],
+  "M01-09": [
+    {
+      "path": "docs/milestones/M01/VERIFICATION.md",
+      "result": "Audren-backed SDL device, bounded silent queue and complete Plus process exit revalidated after explicit stdio closure; no new Atmosphere crash report"
+    }
+  ],
+  "M01-10": [
+    {
+      "path": "docs/milestones/M01/SCOPE_DECISIONS.md",
+      "result": "User explicitly deferred docking testing until the real game loads its main menu; scheduling decision recorded, M01 exit revised, original unchecked acceptance retained as M06-13; no hardware pass claimed"
+    }
+  ],
+  "M01-11": [
+    {
+      "path": "docs/milestones/M01/VERIFICATION.md",
+      "result": "Confirmed 2.77s and 13.23s process suspensions trigger main-thread queue clearing/refill and clock reset; resume frame progress, Plus process exit and error cleanup pass without new crash reports"
+    }
+  ],
+  "M01-12": [
+    {
+      "path": "docs/milestones/M01/VERIFICATION.md",
+      "result": "Source-only cross-build CI and artifact retention observed; supplied exact-NRO hardware logs retained; error display, libc shutdown crash and suspension-reset regressions passed with no new crash reports"
+    },
+    {
+      "path": "docs/milestones/M01/SCOPE_DECISIONS.md",
+      "result": "User directed finishing M01 with supplied tests; Pro/formal controller and docking work explicitly retained as unchecked M06-14/M06-13 for first real main-menu boot, without claiming those tests passed"
+    },
+    {
+      "path": "docs/milestones/M01/REVIEW_FINDINGS.md",
+      "result": "Independent P3 baseline-count finding resolved: retained JSON has 130 entries, 129 report files plus dumps directory; narrative corrected without changing hardware results or code"
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+**
+!Dockerfile.switch
+!docs/
+!docs/milestones/
+!docs/milestones/M01/
+!docs/milestones/M01/package-lock.txt

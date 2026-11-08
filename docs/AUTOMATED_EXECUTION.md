@@ -59,12 +59,14 @@ review. Do not replace old behavioral evidence merely by regenerating metadata.
 6. Run earlier relevant regression proof after any owning-layer change. Capture
    failures and fixes; never erase failing proof to make a task appear complete.
 
-Suggested maintained build interfaces to implement in M01/M02 (NOT available yet):
-noninteractive `tools/build_switch.py`, source/toolchain lock validation,
-host-generation command, private asset preparation, target deployment/log capture
-and deterministic gameplay route execution. These names are design targets, not
-commands the current repo claims to provide. Until implemented use AGENTS.md's
-explicit CMake commands inside the verified toolchain.
+M01 provides `python tools/build_switch.py [--clean]`: noninteractive Docker
+cross-build, immutable base and package-lock validation, ELF/NRO inspection and
+NRO-only staging. It removes the staged NRO before attempting a build and on
+failure. The image cache retains immutable dependencies; `build/switch` retains
+incremental objects until `--clean`. No assets are copied into the Docker build
+context. See `docs/milestones/M01/HARDWARE.md` for the hardware/nxlink procedure.
+Host generation, private asset preparation and deterministic gameplay route
+execution remain future work; this build links the platform stub only.
 
 ## Review creation gate (available now)
 

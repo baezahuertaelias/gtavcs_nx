@@ -1,0 +1,7 @@
+# Dependencies are already in this immutable base; no rolling package updates.
+FROM devkitpro/devkita64@sha256:1fc388c3a0d34bd2045a6dadcb1020e069d5f876a187fd705de14b4440c00282
+COPY docs/milestones/M01/package-lock.txt /tmp/package-lock.txt
+RUN dkp-pacman -Q > /tmp/actual-packages.txt && diff -u /tmp/package-lock.txt /tmp/actual-packages.txt \
+    && cmake --version && ninja --version
+WORKDIR /work
+CMD ["python3", "tools/build_switch.py", "--inside"]

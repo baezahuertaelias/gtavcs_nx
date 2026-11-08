@@ -92,24 +92,31 @@ CI run and repository settings report. No target build required for this milesto
 Branch: `milestone/m01-platform-smoke` <!-- M01 -->
 
 Entry: reviewed M00 main. Exit: clean-machine reproducible platform NRO and actual
-Switch clear-screen/input/audio-device/docking/shutdown proof; no game claim.
+Switch clear-screen/input/audio-device/shutdown proof; no game claim. By explicit
+user decision on 2026-11-08, docking acceptance is deferred to the first real
+game boot that loads the main menu (M06-13). The user subsequently accepted the
+supplied Joy-Con tests for M01 and deferred the Pro Controller/formal physical
+connection-state matrix to the same trigger (M06-14). Neither deferred test is
+claimed passed; see docs/milestones/M01/SCOPE_DECISIONS.md.
 
-- [ ] M01-01 Restore usable WSL Ubuntu/Docker Linux engine and record host versions/resources without changing unrelated projects.
-- [ ] M01-02 Pin devkitA64 image digest and package versions, official Switch CMake, libnx, SDL2, Mesa and cross pkg-config; save lock manifest.
-- [ ] M01-03 Create noninteractive Dockerfile/build command and cache strategy; fail on unavailable dependencies or accidental host libraries.
-- [ ] M01-04 Build scaffold from a fresh checkout/submodule init with all generated GLAD dependencies present; inspect compiler/include/library paths.
-- [ ] M01-05 Inspect AArch64 ELF, PIE/relocations/map and NACP/NRO; demonstrate incremental and clean rebuild plus failed-build artifact rejection.
-- [ ] M01-06 Stage only NRO under switch/gtavcs_nx, verify missing asset-root failure and successful checked chdir; provide visible persistent diagnostics.
-- [ ] M01-07 Boot on an actual Switch with full application memory; capture firmware/libnx/driver versions and GL 3.3 context/clear screen.
-- [ ] M01-08 Verify paired Joy-Cons and Pro controller initial open, hotplug, disconnect-neutral, reconnect and orderly smoke exit.
-- [ ] M01-09 Verify SDL2 opens audren-backed audio, streams bounded silence and closes it cleanly; record buffer/queue behavior.
-- [ ] M01-10 Dock/undock repeatedly; verify drawable pixels, viewport, 720p/1080p output and correct ownership of one context/surface.
-- [ ] M01-11 Exercise HOME/focus/suspend/resume and failure cleanup; eliminate invalid stream/context use and runaway loops.
-- [ ] M01-12 Add source-only cross-build CI/artifact retention with game data excluded; retain reproducible hardware logs and close every M01 failure.
+- [x] M01-01 Restore usable WSL Ubuntu/Docker Linux engine and record host versions/resources without changing unrelated projects.
+- [x] M01-02 Pin devkitA64 image digest and package versions, official Switch CMake, libnx, SDL2, Mesa and cross pkg-config; save lock manifest.
+- [x] M01-03 Create noninteractive Dockerfile/build command and cache strategy; fail on unavailable dependencies or accidental host libraries.
+- [x] M01-04 Build scaffold from a fresh checkout/submodule init with all generated GLAD dependencies present; inspect compiler/include/library paths.
+- [x] M01-05 Inspect AArch64 ELF, PIE/relocations/map and NACP/NRO; demonstrate incremental and clean rebuild plus failed-build artifact rejection.
+- [x] M01-06 Stage only NRO under switch/gtavcs_nx, verify missing asset-root failure and successful checked chdir; provide visible persistent diagnostics.
+- [x] M01-07 Boot on an actual Switch with full application memory; capture firmware/libnx/driver versions and GL 3.3 context/clear screen.
+- [x] M01-08 Record the supplied attached/wireless Joy-Con input, disconnect/reattach and orderly Plus-exit tests as working per user confirmation; retain Pro Controller and formal physical connection-state verification as unchecked M06-14 under the user's explicit main-menu deferral.
+- [x] M01-09 Verify SDL2 opens audren-backed audio, streams bounded silence and closes it cleanly; record buffer/queue behavior.
+- [x] M01-10 Record the user-approved deferral of docking acceptance to first real game boot/main-menu loading, preserve the unchecked hardware requirement as M06-13 and revise M01 exit/evidence without claiming a docking pass.
+- [x] M01-11 Exercise HOME/focus/suspend/resume and failure cleanup; eliminate invalid stream/context use and runaway loops.
+- [x] M01-12 Add source-only cross-build CI/artifact retention with game data excluded; retain reproducible supplied hardware logs, verify fixes for in-scope M01 failures, and explicitly transfer user-deferred controller/docking acceptance to M06-13/M06-14 without claiming those tests passed.
 
 Proof: cross-build logs, package lock, ELF/NRO inspection, console logs/video,
-controller/device matrix, docking/suspend observations. Emulator-only results are
-supplementary and cannot close hardware tasks.
+controller/device matrix and suspend observations. Docking proof is deferred to
+M06-13 and the Pro/formal connection-state matrix to M06-14 by the recorded user
+scope decisions. Emulator-only results are
+supplementary and cannot close required hardware tasks.
 
 ## M02 — Host generator and ARM64 EE/VU foundation
 
@@ -226,6 +233,8 @@ interior and streaming scenes, with faithful HUD and menu/camera behavior.
 - [ ] M06-10 Exercise mission start/progress, pause/map/shop/interior entry and return to gameplay; distinguish menu boot from real game simulation.
 - [ ] M06-11 Capture provisional timing/memory breakdown at fixed stock clocks for later optimization; no 25 FPS claim yet.
 - [ ] M06-12 Verify exit/load/restart with active streaming and eliminate world resource leaks or hangs.
+- [ ] M06-13 At the first real game boot that loads the main menu, perform the user-deferred M01 docking check: dock/undock repeatedly and verify drawable pixels, viewport, 1280x720 handheld/1920x1080 docked output and ownership of one SDL GL context/surface. Record actual hardware observations before subsequent gameplay acceptance; this is not passed by the scaffold or a null-renderer boot.
+- [ ] M06-14 At the first real game boot that loads the main menu, complete the user-deferred Pro Controller and formal physical connection-state matrix: initial open, hotplug, full disconnect-to-neutral, reconnect and orderly application exit. Verify paired Joy-Con/Pro identity and physical connection reporting, investigate and resolve the M01 SDL connected=1 observation, and retain hardware logs before subsequent gameplay acceptance. M01's user-confirmed Joy-Con result does not prove Pro compatibility or correct physical-disconnection metadata.
 
 ## M07 — Complete controllers and controller-only interaction
 
@@ -275,6 +284,9 @@ Branch: `milestone/m09-ui-saves` <!-- M09 -->
 - [ ] M09-08 Verify settings/menu close/reopen during gameplay, cutscene transitions and suspend without leaking input or GL state.
 - [ ] M09-09 Verify trainer/dev commands use guest scheduler-safe hooks and cannot invalidate normal release save tests silently.
 - [ ] M09-10 Document player controls/SD layout/troubleshooting and reproduce a full controller-only start-to-save-to-reload session.
+- [ ] M09-11 Implement optional custom textures from `sdmc:/switch/gtavcs_nx/gamefolder/mods/textures/` through the VFS and RHI; document stable texture identifiers, supported formats and precedence, preserve original assets and fall back to original textures when replacements are absent or invalid.
+- [ ] M09-12 Add controller-accessible dev-menu controls to enable/disable and safely reload custom textures; show actionable load errors and bounded memory use, release replaced GPU resources safely and persist the setting under userdata.
+- [ ] M09-13 Validate custom textures on Switch in handheld/docked gameplay: known replacements, original-texture fallback, corrupt/oversized files, rejected absolute/traversing paths, repeated reload, world streaming and suspend/resume; record visual comparison and memory/resource-lifetime evidence.
 
 ## M10 — Stability, lifecycle and measured performance
 
