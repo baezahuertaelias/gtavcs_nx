@@ -1,0 +1,59 @@
+{
+  "schema": 1,
+  "upstream_commit": "ecf150e53f87e4656dfe81eacd922839d952b282",
+  "scope": "Tracked VCS source + PS2Recomp runtime/IOP/recompiler, supplied function maps, ISO9660 directory metadata",
+  "limitations": [
+    "Syntactic parsing is not a preprocessed compiler index or call graph",
+    "Macro-generated, assembly, indirect and dynamically discovered functions may be absent",
+    "Parser gap sites require targeted inspection in the owning implementation milestone",
+    "Archive members and runtime behavior require later asset/runtime validation",
+    "No game assets, executable bytes or generated game C++ are emitted"
+  ],
+  "source_files": 348,
+  "source_function_definitions": 4687,
+  "function_declarators_including_definition_nodes": 7488,
+  "parser_gap_nodes": 667,
+  "portability_candidates": {
+    "desktop_os": 80,
+    "thread_time": 263,
+    "file_io": 650,
+    "x86_simd": 661,
+    "sdl3": 152,
+    "incomplete_candidate": 25
+  },
+  "include_sites": 2315,
+  "build_declaration_starts": 304,
+  "guest_map_rows": 11216,
+  "guest_unique_entry_addresses": 10383,
+  "vu_upload_records": 23,
+  "runtime_macro_call_entries": 667,
+  "disc_files": 341,
+  "disc_directories": 28,
+  "asset_extensions": {
+    ".CNF": 1,
+    ".90": 1,
+    ".IRX": 8,
+    ".IMG": 6,
+    ".VB": 93,
+    ".RAW": 68,
+    ".SDT": 68,
+    ".BIN": 1,
+    ".PSP": 48,
+    ".ICO": 1,
+    ".PSS": 4,
+    ".DTZ": 1,
+    ".DIR": 1,
+    ".XTX": 30,
+    ".GXT": 6,
+    ".LVZ": 3,
+    ".SCM": 1
+  },
+  "disc_identity": {
+    "ok": true,
+    "code": "ok",
+    "boot": "SLUS_215.90",
+    "sha1": "d1832508caf0990c2291c0f255c96a889cce9f88",
+    "title": "GTA: Vice City Stories - SLUS-21590 (USA) v1.00",
+    "message": "GTA: Vice City Stories - SLUS-21590 (USA) v1.00"
+  }
+}

@@ -1,0 +1,3337 @@
+[
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "FlushCache",
+    "line": 8
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "iFlushCache",
+    "line": 9
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "ResetEE",
+    "line": 10
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "SetMemoryMode",
+    "line": 11
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "InitThread",
+    "line": 13
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "CreateThread",
+    "line": 14
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "DeleteThread",
+    "line": 15
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "StartThread",
+    "line": 16
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "ExitThread",
+    "line": 17
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "ExitDeleteThread",
+    "line": 18
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "TerminateThread",
+    "line": 19
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "SuspendThread",
+    "line": 20
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "ResumeThread",
+    "line": 21
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "GetThreadId",
+    "line": 22
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "ReferThreadStatus",
+    "line": 23
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "iReferThreadStatus",
+    "line": 24
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "SleepThread",
+    "line": 25
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "WakeupThread",
+    "line": 26
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "iWakeupThread",
+    "line": 27
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "CancelWakeupThread",
+    "line": 28
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "iCancelWakeupThread",
+    "line": 29
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "ChangeThreadPriority",
+    "line": 30
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "iChangeThreadPriority",
+    "line": 31
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "RotateThreadReadyQueue",
+    "line": 32
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "iRotateThreadReadyQueue",
+    "line": 33
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "ReleaseWaitThread",
+    "line": 34
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "iReleaseWaitThread",
+    "line": 35
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "CreateSema",
+    "line": 37
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "DeleteSema",
+    "line": 38
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "SignalSema",
+    "line": 39
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "iSignalSema",
+    "line": 40
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "WaitSema",
+    "line": 41
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "PollSema",
+    "line": 42
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "iPollSema",
+    "line": 43
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "ReferSemaStatus",
+    "line": 44
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "iReferSemaStatus",
+    "line": 45
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "CreateEventFlag",
+    "line": 47
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "DeleteEventFlag",
+    "line": 48
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "SetEventFlag",
+    "line": 49
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "iSetEventFlag",
+    "line": 50
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "ClearEventFlag",
+    "line": 51
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "iClearEventFlag",
+    "line": 52
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "WaitEventFlag",
+    "line": 53
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "PollEventFlag",
+    "line": 54
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "iPollEventFlag",
+    "line": 55
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "ReferEventFlagStatus",
+    "line": 56
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "iReferEventFlagStatus",
+    "line": 57
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "InitAlarm",
+    "line": 59
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "SetAlarm",
+    "line": 60
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "iSetAlarm",
+    "line": 61
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "CancelAlarm",
+    "line": 62
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "iCancelAlarm",
+    "line": 63
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "ReleaseAlarm",
+    "line": 64
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "iReleaseAlarm",
+    "line": 65
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "AddIntcHandler",
+    "line": 67
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "AddIntcHandler2",
+    "line": 68
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "RemoveIntcHandler",
+    "line": 69
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "AddDmacHandler",
+    "line": 70
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "AddDmacHandler2",
+    "line": 71
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "RemoveDmacHandler",
+    "line": 72
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "EnableIntc",
+    "line": 73
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "iEnableIntc",
+    "line": 74
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "DisableIntc",
+    "line": 75
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "iDisableIntc",
+    "line": 76
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "EnableDmac",
+    "line": 77
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "iEnableDmac",
+    "line": 78
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "DisableDmac",
+    "line": 79
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "iDisableDmac",
+    "line": 80
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "SifStopModule",
+    "line": 82
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "SifLoadModule",
+    "line": 83
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "SifInitRpc",
+    "line": 84
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "SifBindRpc",
+    "line": 85
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "SifCallRpc",
+    "line": 86
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "SifRegisterRpc",
+    "line": 87
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "SifCheckStatRpc",
+    "line": 88
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "SifSetRpcQueue",
+    "line": 89
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "SifRemoveRpcQueue",
+    "line": 90
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "SifRemoveRpc",
+    "line": 91
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "sceSifCallRpc",
+    "line": 92
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "sceSifSendCmd",
+    "line": 93
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "sceRpcGetPacket",
+    "line": 94
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "fioOpen",
+    "line": 96
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "fioClose",
+    "line": 97
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "fioRead",
+    "line": 98
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "fioWrite",
+    "line": 99
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "fioLseek",
+    "line": 100
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "fioMkdir",
+    "line": 101
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "fioChdir",
+    "line": 102
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "fioRmdir",
+    "line": 103
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "fioGetstat",
+    "line": 104
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "fioRemove",
+    "line": 105
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "SetGsCrt",
+    "line": 107
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "GsSetCrt",
+    "line": 108
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "GsGetIMR",
+    "line": 109
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "iGsGetIMR",
+    "line": 110
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "GsPutIMR",
+    "line": 111
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "iGsPutIMR",
+    "line": 112
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "SetVSyncFlag",
+    "line": 113
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "SetSyscall",
+    "line": 114
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "GsSetVideoMode",
+    "line": 115
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "GetOsdConfigParam",
+    "line": 117
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "SetOsdConfigParam",
+    "line": 118
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "GetOsdConfigParam2",
+    "line": 119
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "SetOsdConfigParam2",
+    "line": 120
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "EnableCache",
+    "line": 121
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "DisableCache",
+    "line": 122
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "SifLoadElfPart",
+    "line": 123
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "sceSifLoadElf",
+    "line": 124
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "sceSifLoadElfPart",
+    "line": 125
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "sceSifLoadModule",
+    "line": 126
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "sceSifLoadModuleBuffer",
+    "line": 127
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "SetupThread",
+    "line": 129
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "EndOfHeap",
+    "line": 130
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "GetMemorySize",
+    "line": 131
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "InitTLB",
+    "line": 132
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "Deci2Call",
+    "line": 133
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "QueryBootMode",
+    "line": 134
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "GetThreadTLS",
+    "line": 135
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "Copy",
+    "line": 136
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "GetEntryAddress",
+    "line": 137
+  },
+  {
+    "macro": "PS2_SYSCALL_LIST",
+    "name": "RegisterExitHandler",
+    "line": 138
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "ret0",
+    "line": 143
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "ret1",
+    "line": 144
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "reta0",
+    "line": 145
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "calloc_r",
+    "line": 146
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "free_r",
+    "line": 147
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "realloc_r",
+    "line": 148
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "memalign_r",
+    "line": 149
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "malloc_r",
+    "line": 150
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "malloc_extend_top",
+    "line": 151
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "malloc_trim_r",
+    "line": 152
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "mbtowc_r",
+    "line": 153
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "printf_r",
+    "line": 154
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "__malloc_lock",
+    "line": 155
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "__malloc_unlock",
+    "line": 156
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "abs",
+    "line": 157
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "__ieee754_rem_pio2f",
+    "line": 158
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "__kernel_cosf",
+    "line": 159
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "__kernel_sinf",
+    "line": 160
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "atan",
+    "line": 161
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "atan2",
+    "line": 162
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "calloc",
+    "line": 163
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "ceil",
+    "line": 164
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "close",
+    "line": 165
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "cos",
+    "line": 166
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "exit",
+    "line": 167
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "exp",
+    "line": 168
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "fabs",
+    "line": 169
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "fclose",
+    "line": 170
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "fflush",
+    "line": 171
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "floor",
+    "line": 172
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "fopen",
+    "line": 173
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "fprintf",
+    "line": 174
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "fread",
+    "line": 175
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "free",
+    "line": 176
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "fseek",
+    "line": 177
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "fstat",
+    "line": 178
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "ftell",
+    "line": 179
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "fwrite",
+    "line": 180
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "getpid",
+    "line": 181
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "log",
+    "line": 182
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "log10",
+    "line": 183
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "lseek",
+    "line": 184
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "malloc",
+    "line": 185
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "memalign",
+    "line": 186
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "memclr",
+    "line": 187
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "memchr",
+    "line": 188
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "memcmp",
+    "line": 189
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "memcpy",
+    "line": 190
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "memmove",
+    "line": 191
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "memset",
+    "line": 192
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "open",
+    "line": 193
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "pow",
+    "line": 194
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "printf",
+    "line": 195
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "puts",
+    "line": 196
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "rand",
+    "line": 197
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "read",
+    "line": 198
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "realloc",
+    "line": 199
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sin",
+    "line": 200
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "snprintf",
+    "line": 201
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sprintf",
+    "line": 202
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sqrt",
+    "line": 203
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "srand",
+    "line": 204
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "stat",
+    "line": 205
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "strcasecmp",
+    "line": 206
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "strcat",
+    "line": 207
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "strchr",
+    "line": 208
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "strcmp",
+    "line": 209
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "strcpy",
+    "line": 210
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "strlen",
+    "line": 211
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "strncat",
+    "line": 212
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "strncmp",
+    "line": 213
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "strncpy",
+    "line": 214
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "strrchr",
+    "line": 215
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "strstr",
+    "line": 216
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "tan",
+    "line": 217
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "vfprintf",
+    "line": 218
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "vsprintf",
+    "line": 219
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "write",
+    "line": 220
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "__divdi3",
+    "line": 221
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "DmaAddr",
+    "line": 223
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "builtin_set_imask",
+    "line": 224
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceCdRI",
+    "line": 225
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceCdRM",
+    "line": 226
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceDevVif0Reset",
+    "line": 227
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceDevVu0Reset",
+    "line": 228
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceFsDbChk",
+    "line": 229
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceFsIntrSigSema",
+    "line": 230
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceFsSemExit",
+    "line": 231
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceFsSemInit",
+    "line": 232
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceFsSigSema",
+    "line": 233
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceIDC",
+    "line": 234
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceMpegFlush",
+    "line": 235
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceRpcFreePacket",
+    "line": 236
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceRpcGetFPacket",
+    "line": 237
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceRpcGetFPacket2",
+    "line": 238
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSDC",
+    "line": 239
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSifCmdIntrHdlr",
+    "line": 240
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSifLoadElfPart",
+    "line": 241
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSifLoadModule",
+    "line": 242
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSifSendCmd",
+    "line": 243
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceVu0ecossin",
+    "line": 244
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "mcCallMessageTypeSe",
+    "line": 245
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "mcCheckReadStartConfigFile",
+    "line": 246
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "mcCheckReadStartSaveFile",
+    "line": 247
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "mcCheckWriteStartConfigFile",
+    "line": 248
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "mcCheckWriteStartSaveFile",
+    "line": 249
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "mcCreateConfigInit",
+    "line": 250
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "mcCreateFileSelectWindow",
+    "line": 251
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "mcCreateIconInit",
+    "line": 252
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "mcCreateSaveFileInit",
+    "line": 253
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "mcDispFileName",
+    "line": 254
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "mcDispFileNumber",
+    "line": 255
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "mcDispWindowCurSol",
+    "line": 256
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "mcDispWindowFoundtion",
+    "line": 257
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "mcDisplayFileSelectWindow",
+    "line": 258
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "mcDisplaySelectFileInfo",
+    "line": 259
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "mcDisplaySelectFileInfoMesCount",
+    "line": 260
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "mcGetConfigCapacitySize",
+    "line": 261
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "mcGetFileSelectWindowCursol",
+    "line": 262
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "mcGetFreeCapacitySize",
+    "line": 263
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "mcGetIconCapacitySize",
+    "line": 264
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "mcGetIconFileCapacitySize",
+    "line": 265
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "mcGetPortSelectDirInfo",
+    "line": 266
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "mcGetSaveFileCapacitySize",
+    "line": 267
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "mcGetStringEnd",
+    "line": 268
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "mcMoveFileSelectWindowCursor",
+    "line": 269
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "mcNewCreateConfigFile",
+    "line": 270
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "mcNewCreateIcon",
+    "line": 271
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "mcNewCreateSaveFile",
+    "line": 272
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "mcReadIconData",
+    "line": 273
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "mcReadStartConfigFile",
+    "line": 274
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "mcReadStartSaveFile",
+    "line": 275
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "mcSelectFileInfoInit",
+    "line": 276
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "mcSelectSaveFileCheck",
+    "line": 277
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "mcSetFileSelectWindowCursol",
+    "line": 278
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "mcSetFileSelectWindowCursolInit",
+    "line": 279
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "mcSetStringSaveFile",
+    "line": 280
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "mcSetTyepWriteMode",
+    "line": 281
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "mcWriteIconData",
+    "line": 282
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "mcWriteStartConfigFile",
+    "line": 283
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "mcWriteStartSaveFile",
+    "line": 284
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "mceGetInfoApdx",
+    "line": 285
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "mceIntrReadFixAlign",
+    "line": 286
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "mceStorePwd",
+    "line": 287
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceCdApplyNCmd",
+    "line": 288
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceCdBreak",
+    "line": 289
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceCdCallback",
+    "line": 290
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceCdChangeThreadPriority",
+    "line": 291
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceCdDelayThread",
+    "line": 292
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceCdDiskReady",
+    "line": 293
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceCdGetDiskType",
+    "line": 294
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceCdGetError",
+    "line": 295
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceCdGetReadPos",
+    "line": 296
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceCdGetToc",
+    "line": 297
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceCdInit",
+    "line": 298
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceCdInitEeCB",
+    "line": 299
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceCdIntToPos",
+    "line": 300
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceCdMmode",
+    "line": 301
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceCdNcmdDiskReady",
+    "line": 302
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceCdPause",
+    "line": 303
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceCdPosToInt",
+    "line": 304
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceCdRead",
+    "line": 305
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceCdReadChain",
+    "line": 306
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceCdReadClock",
+    "line": 307
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceCdReadIOPm",
+    "line": 308
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceCdSearchFile",
+    "line": 309
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceCdSeek",
+    "line": 310
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceCdStInit",
+    "line": 311
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceCdStPause",
+    "line": 312
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceCdStRead",
+    "line": 313
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceCdStResume",
+    "line": 314
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceCdStSeek",
+    "line": 315
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceCdStSeekF",
+    "line": 316
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceCdStStart",
+    "line": 317
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceCdStStat",
+    "line": 318
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceCdStStop",
+    "line": 319
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceCdStandby",
+    "line": 320
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceCdStatus",
+    "line": 321
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceCdStop",
+    "line": 322
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceCdStream",
+    "line": 323
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceCdSync",
+    "line": 324
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceCdSyncS",
+    "line": 325
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceCdTrayReq",
+    "line": 326
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceClose",
+    "line": 327
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceDeci2Close",
+    "line": 328
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceDeci2ExLock",
+    "line": 329
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceDeci2ExRecv",
+    "line": 330
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceDeci2ExReqSend",
+    "line": 331
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceDeci2ExSend",
+    "line": 332
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceDeci2ExUnLock",
+    "line": 333
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceDeci2Open",
+    "line": 334
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceDeci2Poll",
+    "line": 335
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceDeci2ReqSend",
+    "line": 336
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceDmaCallback",
+    "line": 337
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceDmaDebug",
+    "line": 338
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceDmaGetChan",
+    "line": 339
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceDmaGetEnv",
+    "line": 340
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceDmaLastSyncTime",
+    "line": 341
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceDmaPause",
+    "line": 342
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceDmaPutEnv",
+    "line": 343
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceDmaPutStallAddr",
+    "line": 344
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceDmaRecv",
+    "line": 345
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceDmaRecvI",
+    "line": 346
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceDmaRecvN",
+    "line": 347
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceDmaReset",
+    "line": 348
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceDmaRestart",
+    "line": 349
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceDmaSend",
+    "line": 350
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceDmaSendI",
+    "line": 351
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceDmaSendM",
+    "line": 352
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceDmaSendN",
+    "line": 353
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceDmaSync",
+    "line": 354
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceDmaSyncN",
+    "line": 355
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceDmaWatch",
+    "line": 356
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceFsInit",
+    "line": 357
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceFsReset",
+    "line": 358
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceGifPkAddGsAD",
+    "line": 359
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceGifPkAddGsData",
+    "line": 360
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceGifPkCloseGifTag",
+    "line": 361
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceGifPkCnt",
+    "line": 362
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceGifPkEnd",
+    "line": 363
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceGifPkInit",
+    "line": 364
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceGifPkOpenGifTag",
+    "line": 365
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceGifPkRef",
+    "line": 366
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceGifPkRefLoadImage",
+    "line": 367
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceGifPkReset",
+    "line": 368
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceGifPkReserve",
+    "line": 369
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceGifPkTerminate",
+    "line": 370
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceGsExecLoadImage",
+    "line": 371
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceGsExecStoreImage",
+    "line": 372
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceGsGetGParam",
+    "line": 373
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceGsPutDispEnv",
+    "line": 374
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceGsPutDrawEnv",
+    "line": 375
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceGsResetGraph",
+    "line": 376
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceGsResetPath",
+    "line": 377
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceGsSetDefClear",
+    "line": 378
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceGsSetDefDBuffDc",
+    "line": 379
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceGsSetDefDBuff",
+    "line": 380
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceGsSetDefDispEnv",
+    "line": 381
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceGsSetDefDrawEnv",
+    "line": 382
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceGsSetDefDrawEnv2",
+    "line": 383
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceGsSetDefLoadImage",
+    "line": 384
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceGsSetDefStoreImage",
+    "line": 385
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceGsSwapDBuffDc",
+    "line": 386
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceGsSwapDBuff",
+    "line": 387
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceGsSyncPath",
+    "line": 388
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceGsSyncV",
+    "line": 389
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceGsSyncVCallback",
+    "line": 390
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceGszbufaddr",
+    "line": 391
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceVif1PkAddGsAD",
+    "line": 392
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceVif1PkAlign",
+    "line": 393
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceVif1PkCall",
+    "line": 394
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceVif1PkCloseDirectCode",
+    "line": 395
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceVif1PkCloseGifTag",
+    "line": 396
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceVif1PkCnt",
+    "line": 397
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceVif1PkEnd",
+    "line": 398
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceVif1PkInit",
+    "line": 399
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceVif1PkOpenDirectCode",
+    "line": 400
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceVif1PkOpenGifTag",
+    "line": 401
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceVif1PkReset",
+    "line": 402
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceVif1PkReserve",
+    "line": 403
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceVif1PkTerminate",
+    "line": 404
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceeFontInit",
+    "line": 405
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceeFontLoadFont",
+    "line": 406
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceeFontPrintfAt",
+    "line": 407
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceeFontPrintfAt2",
+    "line": 408
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceeFontGenerateString",
+    "line": 409
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceeFontClose",
+    "line": 410
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceeFontSetColour",
+    "line": 411
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceeFontSetMode",
+    "line": 412
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceeFontSetFont",
+    "line": 413
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceeFontSetScale",
+    "line": 414
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceIoctl",
+    "line": 415
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceIpuInit",
+    "line": 416
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceIpuRestartDMA",
+    "line": 417
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceIpuStopDMA",
+    "line": 418
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceIpuSync",
+    "line": 419
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceLseek",
+    "line": 420
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceMcChangeThreadPriority",
+    "line": 421
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceMcChdir",
+    "line": 422
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceMcClose",
+    "line": 423
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceMcDelete",
+    "line": 424
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceMcEnd",
+    "line": 425
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceMcFlush",
+    "line": 426
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceMcFormat",
+    "line": 427
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceMcGetDir",
+    "line": 428
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceMcGetEntSpace",
+    "line": 429
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceMcGetInfo",
+    "line": 430
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceMcGetSlotMax",
+    "line": 431
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceMcInit",
+    "line": 432
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceMcMkdir",
+    "line": 433
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceMcOpen",
+    "line": 434
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceMcRead",
+    "line": 435
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceMcRename",
+    "line": 436
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceMcSeek",
+    "line": 437
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceMcSetFileInfo",
+    "line": 438
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceMcSync",
+    "line": 439
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceMcUnformat",
+    "line": 440
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceMcWrite",
+    "line": 441
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceMpegAddBs",
+    "line": 442
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceMpegAddCallback",
+    "line": 443
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceMpegAddStrCallback",
+    "line": 444
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceMpegClearRefBuff",
+    "line": 445
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceMpegCreate",
+    "line": 446
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceMpegDelete",
+    "line": 447
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceMpegDemuxPss",
+    "line": 448
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceMpegDemuxPssRing",
+    "line": 449
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceMpegDispCenterOffX",
+    "line": 450
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceMpegDispCenterOffY",
+    "line": 451
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceMpegDispHeight",
+    "line": 452
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceMpegDispWidth",
+    "line": 453
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceMpegGetDecodeMode",
+    "line": 454
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceMpegGetPicture",
+    "line": 455
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceMpegGetPictureRAW8",
+    "line": 456
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceMpegGetPictureRAW8xy",
+    "line": 457
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceMpegInit",
+    "line": 458
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceMpegIsEnd",
+    "line": 459
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceMpegIsRefBuffEmpty",
+    "line": 460
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceMpegReset",
+    "line": 461
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceMpegResetDefaultPtsGap",
+    "line": 462
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceMpegSetDecodeMode",
+    "line": 463
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceMpegSetDefaultPtsGap",
+    "line": 464
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceMpegSetImageBuff",
+    "line": 465
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceOpen",
+    "line": 466
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceDopen",
+    "line": 467
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceDread",
+    "line": 468
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceDclose",
+    "line": 469
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "scePadEnd",
+    "line": 470
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "scePadEnterPressMode",
+    "line": 471
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "scePadExitPressMode",
+    "line": 472
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "scePadGetButtonMask",
+    "line": 473
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "scePadGetDmaStr",
+    "line": 474
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "scePadGetFrameCount",
+    "line": 475
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "scePadGetModVersion",
+    "line": 476
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "scePadGetPortMax",
+    "line": 477
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "scePadGetReqState",
+    "line": 478
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "scePadGetSlotMax",
+    "line": 479
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "scePadGetState",
+    "line": 480
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "scePadInfoAct",
+    "line": 481
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "scePadInfoComb",
+    "line": 482
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "scePadInfoMode",
+    "line": 483
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "scePadInfoPressMode",
+    "line": 484
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "scePadInit",
+    "line": 485
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "scePadInit2",
+    "line": 486
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "scePadPortClose",
+    "line": 487
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "scePadPortOpen",
+    "line": 488
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "scePadRead",
+    "line": 489
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "scePadReqIntToStr",
+    "line": 490
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "scePadSetActAlign",
+    "line": 491
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "scePadSetActDirect",
+    "line": 492
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "scePadSetButtonInfo",
+    "line": 493
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "scePadSetMainMode",
+    "line": 494
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "scePadSetReqState",
+    "line": 495
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "scePadSetVrefParam",
+    "line": 496
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "scePadSetWarningLevel",
+    "line": 497
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "scePadStateIntToStr",
+    "line": 498
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "scePrintf",
+    "line": 499
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceRead",
+    "line": 500
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceResetttyinit",
+    "line": 501
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSSyn_BreakAtick",
+    "line": 502
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSSyn_ClearBreakAtick",
+    "line": 503
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSSyn_SendExcMsg",
+    "line": 504
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSSyn_SendNrpnMsg",
+    "line": 505
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSSyn_SendRpnMsg",
+    "line": 506
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSSyn_SendShortMsg",
+    "line": 507
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSSyn_SetChPriority",
+    "line": 508
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSSyn_SetMasterVolume",
+    "line": 509
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSSyn_SetOutPortVolume",
+    "line": 510
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSSyn_SetOutputAssign",
+    "line": 511
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSSyn_SetOutputMode",
+    "line": 512
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSSyn_SetPortMaxPoly",
+    "line": 513
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSSyn_SetPortVolume",
+    "line": 514
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSSyn_SetTvaEnvMode",
+    "line": 515
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSdCallBack",
+    "line": 516
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSdRemote",
+    "line": 517
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSdRemoteInit",
+    "line": 518
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSdTransToIOP",
+    "line": 519
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSetBrokenLink",
+    "line": 520
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSetPtm",
+    "line": 521
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSifAddCmdHandler",
+    "line": 522
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSifAllocIopHeap",
+    "line": 523
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSifAllocSysMemory",
+    "line": 524
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSifBindRpc",
+    "line": 525
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSifCheckStatRpc",
+    "line": 526
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSifDmaStat",
+    "line": 527
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSifExecRequest",
+    "line": 528
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSifExitCmd",
+    "line": 529
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSifExitRpc",
+    "line": 530
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSifFreeIopHeap",
+    "line": 531
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSifFreeSysMemory",
+    "line": 532
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSifGetDataTable",
+    "line": 533
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSifGetIopAddr",
+    "line": 534
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSifGetNextRequest",
+    "line": 535
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSifGetOtherData",
+    "line": 536
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSifGetReg",
+    "line": 537
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSifGetSreg",
+    "line": 538
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSifInitCmd",
+    "line": 539
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSifInitIopHeap",
+    "line": 540
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSifInitRpc",
+    "line": 541
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSifIsAliveIop",
+    "line": 542
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSifLoadElf",
+    "line": 543
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSifLoadElfPart",
+    "line": 544
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSifLoadFileReset",
+    "line": 545
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSifLoadIopHeap",
+    "line": 546
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSifLoadModuleBuffer",
+    "line": 547
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSifRebootIop",
+    "line": 548
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSifRegisterRpc",
+    "line": 549
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSifRemoveCmdHandler",
+    "line": 550
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSifRemoveRpc",
+    "line": 551
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSifRemoveRpcQueue",
+    "line": 552
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSifResetIop",
+    "line": 553
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSifRpcLoop",
+    "line": 554
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSifSetCmdBuffer",
+    "line": 555
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSifSetDChain",
+    "line": 556
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSifSetDma",
+    "line": 557
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "isceSifSetDChain",
+    "line": 558
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "isceSifSetDma",
+    "line": 559
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSifSetIopAddr",
+    "line": 560
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSifSetReg",
+    "line": 561
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSifSetRpcQueue",
+    "line": 562
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSifSetSreg",
+    "line": 563
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSifSetSysCmdBuffer",
+    "line": 564
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSifStopDma",
+    "line": 565
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSifSyncIop",
+    "line": 566
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSifWriteBackDCache",
+    "line": 567
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSynthSizerLfoTriangle",
+    "line": 568
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSynthesizerAmpProcI",
+    "line": 569
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSynthesizerAmpProcNI",
+    "line": 570
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSynthesizerAssignAllNoteOff",
+    "line": 571
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSynthesizerAssignAllSoundOff",
+    "line": 572
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSynthesizerAssignHoldChange",
+    "line": 573
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSynthesizerAssignNoteOff",
+    "line": 574
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSynthesizerAssignNoteOn",
+    "line": 575
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSynthesizerCalcEnv",
+    "line": 576
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSynthesizerCalcPortamentPitch",
+    "line": 577
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSynthesizerCalcTvfCoefAll",
+    "line": 578
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSynthesizerCalcTvfCoefF0",
+    "line": 579
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSynthesizerCent2PhaseInc",
+    "line": 580
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSynthesizerChangeEffectSend",
+    "line": 581
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSynthesizerChangeHsPanpot",
+    "line": 582
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSynthesizerChangeNrpnCutOff",
+    "line": 583
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSynthesizerChangeNrpnLfoDepth",
+    "line": 584
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSynthesizerChangeNrpnLfoRate",
+    "line": 585
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSynthesizerChangeOutAttrib",
+    "line": 586
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSynthesizerChangeOutVol",
+    "line": 587
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSynthesizerChangePanpot",
+    "line": 588
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSynthesizerChangePartBendSens",
+    "line": 589
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSynthesizerChangePartExpression",
+    "line": 590
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSynthesizerChangePartHsExpression",
+    "line": 591
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSynthesizerChangePartHsPitchBend",
+    "line": 592
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSynthesizerChangePartModuration",
+    "line": 593
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSynthesizerChangePartPitchBend",
+    "line": 594
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSynthesizerChangePartVolume",
+    "line": 595
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSynthesizerChangePortamento",
+    "line": 596
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSynthesizerChangePortamentoTime",
+    "line": 597
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSynthesizerClearKeyMap",
+    "line": 598
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSynthesizerClearSpr",
+    "line": 599
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSynthesizerCopyOutput",
+    "line": 600
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSynthesizerDmaFromSPR",
+    "line": 601
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSynthesizerDmaSpr",
+    "line": 602
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSynthesizerDmaToSPR",
+    "line": 603
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSynthesizerGetPartOutLevel",
+    "line": 604
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSynthesizerGetPartial",
+    "line": 605
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSynthesizerGetSampleParam",
+    "line": 606
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSynthesizerHsMessage",
+    "line": 607
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSynthesizerLfoNone",
+    "line": 608
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSynthesizerLfoProc",
+    "line": 609
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSynthesizerLfoSawDown",
+    "line": 610
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSynthesizerLfoSawUp",
+    "line": 611
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSynthesizerLfoSquare",
+    "line": 612
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSynthesizerReadNoise",
+    "line": 613
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSynthesizerReadNoiseAdd",
+    "line": 614
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSynthesizerReadSample16",
+    "line": 615
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSynthesizerReadSample16Add",
+    "line": 616
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSynthesizerReadSample8",
+    "line": 617
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSynthesizerReadSample8Add",
+    "line": 618
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSynthesizerResetPart",
+    "line": 619
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSynthesizerRestorDma",
+    "line": 620
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSynthesizerSelectPatch",
+    "line": 621
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSynthesizerSendShortMessage",
+    "line": 622
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSynthesizerSetMasterVolume",
+    "line": 623
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSynthesizerSetRVoice",
+    "line": 624
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSynthesizerSetupDma",
+    "line": 625
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSynthesizerSetupLfo",
+    "line": 626
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSynthesizerSetupMidiModuration",
+    "line": 627
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSynthesizerSetupMidiPanpot",
+    "line": 628
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSynthesizerSetupNewNoise",
+    "line": 629
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSynthesizerSetupReleaseEnv",
+    "line": 630
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSynthesizerSetupTruncateTvaEnv",
+    "line": 631
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSynthesizerSetupTruncateTvfPitchEnv",
+    "line": 632
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSynthesizerSetuptEnv",
+    "line": 633
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSynthesizerTonegenerator",
+    "line": 634
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSynthesizerTransposeMatrix",
+    "line": 635
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSynthesizerTvfProcI",
+    "line": 636
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSynthesizerTvfProcNI",
+    "line": 637
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSynthesizerWaitDmaFromSPR",
+    "line": 638
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSynthesizerWaitDmaToSPR",
+    "line": 639
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSynthsizerGetDrumPatch",
+    "line": 640
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSynthsizerGetMeloPatch",
+    "line": 641
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceSynthsizerLfoNoise",
+    "line": 642
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceTtyHandler",
+    "line": 643
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceTtyInit",
+    "line": 644
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceTtyRead",
+    "line": 645
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceTtyWrite",
+    "line": 646
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceVpu0Reset",
+    "line": 647
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceVu0AddVector",
+    "line": 648
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceVu0ApplyMatrix",
+    "line": 649
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceVu0CameraMatrix",
+    "line": 650
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceVu0ClampVector",
+    "line": 651
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceVu0ClipAll",
+    "line": 652
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceVu0ClipScreen",
+    "line": 653
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceVu0ClipScreen3",
+    "line": 654
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceVu0CopyMatrix",
+    "line": 655
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceVu0CopyVector",
+    "line": 656
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceVu0CopyVectorXYZ",
+    "line": 657
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceVu0DivVector",
+    "line": 658
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceVu0DivVectorXYZ",
+    "line": 659
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceVu0DropShadowMatrix",
+    "line": 660
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceVu0FTOI0Vector",
+    "line": 661
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceVu0FTOI4Vector",
+    "line": 662
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceVu0ITOF0Vector",
+    "line": 663
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceVu0ITOF12Vector",
+    "line": 664
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceVu0ITOF4Vector",
+    "line": 665
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceVu0InnerProduct",
+    "line": 666
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceVu0InterVector",
+    "line": 667
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceVu0InterVectorXYZ",
+    "line": 668
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceVu0InversMatrix",
+    "line": 669
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceVu0LightColorMatrix",
+    "line": 670
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceVu0MulMatrix",
+    "line": 671
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceVu0MulVector",
+    "line": 672
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceVu0NormalLightMatrix",
+    "line": 673
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceVu0Normalize",
+    "line": 674
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceVu0OuterProduct",
+    "line": 675
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceVu0RotMatrix",
+    "line": 676
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceVu0RotMatrixX",
+    "line": 677
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceVu0RotMatrixY",
+    "line": 678
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceVu0RotMatrixZ",
+    "line": 679
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceVu0RotTransPers",
+    "line": 680
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceVu0RotTransPersN",
+    "line": 681
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceVu0ScaleVector",
+    "line": 682
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceVu0ScaleVectorXYZ",
+    "line": 683
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceVu0SubVector",
+    "line": 684
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceVu0TransMatrix",
+    "line": 685
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceVu0TransposeMatrix",
+    "line": 686
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceVu0UnitMatrix",
+    "line": 687
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceVu0ViewScreenMatrix",
+    "line": 688
+  },
+  {
+    "macro": "PS2_STUB_LIST",
+    "name": "sceWrite",
+    "line": 689
+  }
+]

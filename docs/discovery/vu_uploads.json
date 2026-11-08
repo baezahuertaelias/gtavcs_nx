@@ -1,0 +1,117 @@
+[
+  {
+    "elf_address": "0x00178a40",
+    "vu_byte_address": "0x07f0",
+    "instruction_pairs": 84
+  },
+  {
+    "elf_address": "0x00178ce0",
+    "vu_byte_address": "0x0c38",
+    "instruction_pairs": 88
+  },
+  {
+    "elf_address": "0x00178fa0",
+    "vu_byte_address": "0x1440",
+    "instruction_pairs": 38
+  },
+  {
+    "elf_address": "0x0025e890",
+    "vu_byte_address": "0x2700",
+    "instruction_pairs": 54
+  },
+  {
+    "elf_address": "0x00289360",
+    "vu_byte_address": "0x07f0",
+    "instruction_pairs": 124
+  },
+  {
+    "elf_address": "0x00289740",
+    "vu_byte_address": "0x0c38",
+    "instruction_pairs": 118
+  },
+  {
+    "elf_address": "0x00289af0",
+    "vu_byte_address": "0x1440",
+    "instruction_pairs": 38
+  },
+  {
+    "elf_address": "0x002ac130",
+    "vu_byte_address": "0x0000",
+    "instruction_pairs": 256
+  },
+  {
+    "elf_address": "0x002ac930",
+    "vu_byte_address": "0x0800",
+    "instruction_pairs": 256
+  },
+  {
+    "elf_address": "0x002ad130",
+    "vu_byte_address": "0x1000",
+    "instruction_pairs": 256
+  },
+  {
+    "elf_address": "0x002ad930",
+    "vu_byte_address": "0x1800",
+    "instruction_pairs": 256
+  },
+  {
+    "elf_address": "0x002ae130",
+    "vu_byte_address": "0x2000",
+    "instruction_pairs": 224
+  },
+  {
+    "elf_address": "0x002d08f0",
+    "vu_byte_address": "0x2bf0",
+    "instruction_pairs": 112
+  },
+  {
+    "elf_address": "0x002d0c70",
+    "vu_byte_address": "0x2700",
+    "instruction_pairs": 102
+  },
+  {
+    "elf_address": "0x002f13d0",
+    "vu_byte_address": "0x2700",
+    "instruction_pairs": 158
+  },
+  {
+    "elf_address": "0x002f18c0",
+    "vu_byte_address": "0x2700",
+    "instruction_pairs": 138
+  },
+  {
+    "elf_address": "0x002f4f10",
+    "vu_byte_address": "0x2700",
+    "instruction_pairs": 18
+  },
+  {
+    "elf_address": "0x00368730",
+    "vu_byte_address": "0x07f0",
+    "instruction_pairs": 134
+  },
+  {
+    "elf_address": "0x00368b60",
+    "vu_byte_address": "0x0c38",
+    "instruction_pairs": 128
+  },
+  {
+    "elf_address": "0x00368f60",
+    "vu_byte_address": "0x1440",
+    "instruction_pairs": 42
+  },
+  {
+    "elf_address": "0x00370c70",
+    "vu_byte_address": "0x2a30",
+    "instruction_pairs": 30
+  },
+  {
+    "elf_address": "0x003abaa0",
+    "vu_byte_address": "0x2b50",
+    "instruction_pairs": 256
+  },
+  {
+    "elf_address": "0x003ac2a0",
+    "vu_byte_address": "0x3350",
+    "instruction_pairs": 122
+  }
+]

@@ -1,0 +1,1522 @@
+[
+  {
+    "file": "CMakeLists.txt",
+    "line": 4,
+    "statement_start": "set(CMAKE_CXX_STANDARD 20)"
+  },
+  {
+    "file": "CMakeLists.txt",
+    "line": 5,
+    "statement_start": "set(CMAKE_CXX_STANDARD_REQUIRED ON)"
+  },
+  {
+    "file": "CMakeLists.txt",
+    "line": 8,
+    "statement_start": "set(VCS_GENERATED_DIR \"${CMAKE_SOURCE_DIR}/generated/ee\" CACHE PATH \"Recompiled EE code\")"
+  },
+  {
+    "file": "CMakeLists.txt",
+    "line": 10,
+    "statement_start": "set(PS2X_LTO \"THIN\" CACHE STRING \"Link-time optimisation for the game: THIN (default, the game to play), OFF (quick dev builds), FULL\")"
+  },
+  {
+    "file": "CMakeLists.txt",
+    "line": 11,
+    "statement_start": "set(PS2X_PGO \"\" CACHE STRING \"Profile-guided optimisation: empty (off), GEN (instrumented), or a .profdata path (tools/build.py --opt)\")"
+  },
+  {
+    "file": "CMakeLists.txt",
+    "line": 12,
+    "statement_start": "set(PS2X_CPU \"AVX2\" CACHE STRING \"The CPU the build runs on: AVX2 (Haswell / Zen and newer, the default), AVX (Sandy / Ivy Bridge, Bulldozer) or SSE4 (no AVX); tools/build.py picks it from this PC\")"
+  },
+  {
+    "file": "CMakeLists.txt",
+    "line": 16,
+    "statement_start": "set(PS2X_BUILD_RECOMP ${VCS_BUILD_TOOLS} CACHE BOOL \"\" FORCE)"
+  },
+  {
+    "file": "CMakeLists.txt",
+    "line": 17,
+    "statement_start": "set(PS2X_BUILD_ANALYZER ${VCS_BUILD_TOOLS} CACHE BOOL \"\" FORCE)"
+  },
+  {
+    "file": "CMakeLists.txt",
+    "line": 18,
+    "statement_start": "set(PS2X_BUILD_TEST OFF CACHE BOOL \"\" FORCE)"
+  },
+  {
+    "file": "CMakeLists.txt",
+    "line": 19,
+    "statement_start": "set(PS2X_BUILD_STUDIO OFF CACHE BOOL \"\" FORCE)"
+  },
+  {
+    "file": "CMakeLists.txt",
+    "line": 42,
+    "statement_start": "set(_vcs_jobs 1)"
+  },
+  {
+    "file": "CMakeLists.txt",
+    "line": 45,
+    "statement_start": "set(_vcs_jobs ${_vcs_cores})"
+  },
+  {
+    "file": "CMakeLists.txt",
+    "line": 47,
+    "statement_start": "set(VCS_COMPILE_JOBS ${_vcs_jobs} CACHE STRING \"Parallel compile jobs (default: one per 2 GB of memory, at most one per core)\")"
+  },
+  {
+    "file": "CMakeLists.txt",
+    "line": 48,
+    "statement_start": "set(PS2X_LTO_JOBS ${_vcs_jobs} CACHE STRING \"Parallel ThinLTO backend jobs at the game's link\")"
+  },
+  {
+    "file": "CMakeLists.txt",
+    "line": 50,
+    "statement_start": "set(CMAKE_JOB_POOL_COMPILE vcs_compile)"
+  },
+  {
+    "file": "CMakeLists.txt",
+    "line": 54,
+    "statement_start": "set(VCS_HAVE_GENERATED OFF)"
+  },
+  {
+    "file": "CMakeLists.txt",
+    "line": 56,
+    "statement_start": "set(VCS_HAVE_GENERATED ON)"
+  },
+  {
+    "file": "CMakeLists.txt",
+    "line": 58,
+    "statement_start": "set(PS2X_BUILD_RUNTIME ${VCS_HAVE_GENERATED} CACHE BOOL \"\" FORCE)"
+  },
+  {
+    "file": "CMakeLists.txt",
+    "line": 71,
+    "statement_start": "set(PS2X_RUNNER_SOURCE_DIR \"${VCS_GENERATED_DIR}\" CACHE PATH \"\" FORCE)"
+  },
+  {
+    "file": "CMakeLists.txt",
+    "line": 72,
+    "statement_start": "set(PS2X_RUNNER_EXTRA_SOURCES \"${VCS_SOURCES}\" CACHE STRING \"\" FORCE)"
+  },
+  {
+    "file": "CMakeLists.txt",
+    "line": 73,
+    "statement_start": "set(PS2X_RUNNER_MAIN \"${CMAKE_SOURCE_DIR}/src/main.cpp\" CACHE FILEPATH \"\" FORCE)"
+  },
+  {
+    "file": "CMakeLists.txt",
+    "line": 75,
+    "statement_start": "set(PS2X_PARALLEL_GS_DIR \"${CMAKE_SOURCE_DIR}/third_party/parallel-gs\" CACHE PATH \"\" FORCE)"
+  },
+  {
+    "file": "CMakeLists.txt",
+    "line": 77,
+    "statement_start": "add_subdirectory(src/platform)"
+  },
+  {
+    "file": "CMakeLists.txt",
+    "line": 78,
+    "statement_start": "add_subdirectory(src/rhi)"
+  },
+  {
+    "file": "CMakeLists.txt",
+    "line": 79,
+    "statement_start": "add_subdirectory(src/render)"
+  },
+  {
+    "file": "CMakeLists.txt",
+    "line": 80,
+    "statement_start": "add_library(vcs_host INTERFACE)"
+  },
+  {
+    "file": "CMakeLists.txt",
+    "line": 81,
+    "statement_start": "target_link_libraries(vcs_host INTERFACE vcs_platform vcs_render)"
+  },
+  {
+    "file": "CMakeLists.txt",
+    "line": 82,
+    "statement_start": "set(PS2X_HOST_PLATFORM_TARGET vcs_host CACHE STRING \"\" FORCE)"
+  },
+  {
+    "file": "CMakeLists.txt",
+    "line": 84,
+    "statement_start": "add_subdirectory(third_party/PS2Recomp)"
+  },
+  {
+    "file": "CMakeLists.txt",
+    "line": 91,
+    "statement_start": "set(VCS_GAME_DIR \"\" CACHE PATH \"Where vcs.exe, its DLLs and vcs.ini go (empty: build/ for build/release)\")"
+  },
+  {
+    "file": "CMakeLists.txt",
+    "line": 100,
+    "statement_start": "target_link_libraries(ps2EntryRunner PRIVATE vcs_host) # main.cpp: settings menu (Dear ImGui), presenter aspect"
+  },
+  {
+    "file": "CMakeLists.txt",
+    "line": 124,
+    "statement_start": "target_compile_options(${t} PRIVATE /Z7)"
+  },
+  {
+    "file": "CMakeLists.txt",
+    "line": 131,
+    "statement_start": "target_link_libraries(ps2EntryRunner PRIVATE dbghelp)"
+  },
+  {
+    "file": "CMakeLists.txt",
+    "line": 138,
+    "statement_start": "target_compile_options(${t} PRIVATE -g -gcodeview)"
+  },
+  {
+    "file": "CMakeLists.txt",
+    "line": 145,
+    "statement_start": "target_link_libraries(ps2EntryRunner PRIVATE dbghelp)"
+  },
+  {
+    "file": "CMakeLists.txt",
+    "line": 152,
+    "statement_start": "target_compile_options(${t} PRIVATE -gline-tables-only -fno-omit-frame-pointer)"
+  },
+  {
+    "file": "launcher/CMakeLists.txt",
+    "line": 11,
+    "statement_start": "set(CMAKE_CXX_STANDARD 20)"
+  },
+  {
+    "file": "launcher/CMakeLists.txt",
+    "line": 12,
+    "statement_start": "set(CMAKE_CXX_STANDARD_REQUIRED ON)"
+  },
+  {
+    "file": "launcher/CMakeLists.txt",
+    "line": 13,
+    "statement_start": "set(VCS_ROOT \"${CMAKE_CURRENT_SOURCE_DIR}/..\")"
+  },
+  {
+    "file": "launcher/CMakeLists.txt",
+    "line": 14,
+    "statement_start": "set(VCS_LAUNCHER_SHADERS \"${CMAKE_CURRENT_BINARY_DIR}/shaders\")"
+  },
+  {
+    "file": "launcher/CMakeLists.txt",
+    "line": 16,
+    "statement_start": "set(VCS_UI_HLSL \"${CMAKE_CURRENT_SOURCE_DIR}/render/d3d11/ui.hlsl\")"
+  },
+  {
+    "file": "launcher/CMakeLists.txt",
+    "line": 18,
+    "statement_start": "set(VCS_LAUNCHER_COMMON"
+  },
+  {
+    "file": "launcher/CMakeLists.txt",
+    "line": 45,
+    "statement_start": "find_package(Python3 REQUIRED COMPONENTS Interpreter)"
+  },
+  {
+    "file": "launcher/CMakeLists.txt",
+    "line": 56,
+    "statement_start": "add_executable(VCSLauncher WIN32"
+  },
+  {
+    "file": "launcher/CMakeLists.txt",
+    "line": 69,
+    "statement_start": "target_link_libraries(VCSLauncher PRIVATE d3d11 dxgi dwrite dwmapi ole32 shell32 uuid winmm advapi32)"
+  },
+  {
+    "file": "launcher/CMakeLists.txt",
+    "line": 78,
+    "statement_start": "find_package(PkgConfig REQUIRED)"
+  },
+  {
+    "file": "launcher/CMakeLists.txt",
+    "line": 79,
+    "statement_start": "find_package(Python3 REQUIRED COMPONENTS Interpreter)"
+  },
+  {
+    "file": "launcher/CMakeLists.txt",
+    "line": 84,
+    "statement_start": "set(VCS_WAYLAND_PROTOCOLS_DIR \"\" CACHE PATH \"wayland-protocols' XML folder (empty: the system's)\")"
+  },
+  {
+    "file": "launcher/CMakeLists.txt",
+    "line": 104,
+    "statement_start": "set(_glsl_stage vert)"
+  },
+  {
+    "file": "launcher/CMakeLists.txt",
+    "line": 106,
+    "statement_start": "set(_glsl_stage frag)"
+  },
+  {
+    "file": "launcher/CMakeLists.txt",
+    "line": 128,
+    "statement_start": "set(VCS_PROTOCOL_DIR \"${CMAKE_CURRENT_BINARY_DIR}/protocols\")"
+  },
+  {
+    "file": "launcher/CMakeLists.txt",
+    "line": 130,
+    "statement_start": "set(VCS_PROTOCOL_SOURCES)"
+  },
+  {
+    "file": "launcher/CMakeLists.txt",
+    "line": 140,
+    "statement_start": "set(_optional FALSE)"
+  },
+  {
+    "file": "launcher/CMakeLists.txt",
+    "line": 142,
+    "statement_start": "set(_optional TRUE)"
+  },
+  {
+    "file": "launcher/CMakeLists.txt",
+    "line": 149,
+    "statement_start": "set(_xml \"\")"
+  },
+  {
+    "file": "launcher/CMakeLists.txt",
+    "line": 152,
+    "statement_start": "set(_xml \"${VCS_WAYLAND_PROTOCOLS_DIR}/${_candidate}\")"
+  },
+  {
+    "file": "launcher/CMakeLists.txt",
+    "line": 163,
+    "statement_start": "set(VCS_HAVE_TOPLEVEL_ICON ON)"
+  },
+  {
+    "file": "launcher/CMakeLists.txt",
+    "line": 175,
+    "statement_start": "add_executable(VCSLauncher"
+  },
+  {
+    "file": "launcher/CMakeLists.txt",
+    "line": 194,
+    "statement_start": "target_link_libraries(VCSLauncher PRIVATE PkgConfig::VCS_LAUNCHER_LIBS ${CMAKE_DL_LIBS})"
+  },
+  {
+    "file": "launcher/CMakeLists.txt",
+    "line": 195,
+    "statement_start": "target_compile_options(VCSLauncher PRIVATE -Wall -Wextra -Wno-missing-field-initializers -fvisibility=hidden)"
+  },
+  {
+    "file": "launcher/CMakeLists.txt",
+    "line": 221,
+    "statement_start": "target_compile_options(VCSLauncher PRIVATE /W3 /utf-8)"
+  },
+  {
+    "file": "launcher/CMakeLists.txt",
+    "line": 225,
+    "statement_start": "target_compile_options(VCSLauncher PRIVATE -Wall -Wno-missing-field-initializers -Wno-unknown-pragmas)"
+  },
+  {
+    "file": "src/platform/CMakeLists.txt",
+    "line": 5,
+    "statement_start": "set(SDL_SHARED OFF CACHE BOOL \"\" FORCE)"
+  },
+  {
+    "file": "src/platform/CMakeLists.txt",
+    "line": 6,
+    "statement_start": "set(SDL_STATIC ON CACHE BOOL \"\" FORCE)"
+  },
+  {
+    "file": "src/platform/CMakeLists.txt",
+    "line": 7,
+    "statement_start": "set(SDL_TEST_LIBRARY OFF CACHE BOOL \"\" FORCE)"
+  },
+  {
+    "file": "src/platform/CMakeLists.txt",
+    "line": 8,
+    "statement_start": "set(SDL_TESTS OFF CACHE BOOL \"\" FORCE)"
+  },
+  {
+    "file": "src/platform/CMakeLists.txt",
+    "line": 9,
+    "statement_start": "set(SDL_EXAMPLES OFF CACHE BOOL \"\" FORCE)"
+  },
+  {
+    "file": "src/platform/CMakeLists.txt",
+    "line": 10,
+    "statement_start": "set(SDL_INSTALL OFF CACHE BOOL \"\" FORCE)"
+  },
+  {
+    "file": "src/platform/CMakeLists.txt",
+    "line": 13,
+    "statement_start": "set(SDL_X11_XTEST OFF CACHE BOOL \"\" FORCE)"
+  },
+  {
+    "file": "src/platform/CMakeLists.txt",
+    "line": 14,
+    "statement_start": "FetchContent_Declare("
+  },
+  {
+    "file": "src/platform/CMakeLists.txt",
+    "line": 24,
+    "statement_start": "FetchContent_Declare("
+  },
+  {
+    "file": "src/platform/CMakeLists.txt",
+    "line": 31,
+    "statement_start": "add_library(imgui STATIC"
+  },
+  {
+    "file": "src/platform/CMakeLists.txt",
+    "line": 39,
+    "statement_start": "set(VCS_IMGUI_BACKENDS_DIR \"${imgui_SOURCE_DIR}/backends\" CACHE INTERNAL \"\")"
+  },
+  {
+    "file": "src/platform/CMakeLists.txt",
+    "line": 42,
+    "statement_start": "set(ZLIB_BUILD_EXAMPLES OFF CACHE BOOL \"\" FORCE)"
+  },
+  {
+    "file": "src/platform/CMakeLists.txt",
+    "line": 43,
+    "statement_start": "FetchContent_Declare("
+  },
+  {
+    "file": "src/platform/CMakeLists.txt",
+    "line": 51,
+    "statement_start": "add_library(vcs_platform STATIC"
+  },
+  {
+    "file": "src/platform/CMakeLists.txt",
+    "line": 57,
+    "statement_start": "target_link_libraries(vcs_platform PUBLIC imgui PRIVATE SDL3::SDL3-static zlibstatic)"
+  },
+  {
+    "file": "src/render/CMakeLists.txt",
+    "line": 5,
+    "statement_start": "set(VCS_SHADER_OUT \"${CMAKE_CURRENT_BINARY_DIR}/shaders\")"
+  },
+  {
+    "file": "src/render/CMakeLists.txt",
+    "line": 8,
+    "statement_start": "find_package(Python3 REQUIRED COMPONENTS Interpreter)"
+  },
+  {
+    "file": "src/render/CMakeLists.txt",
+    "line": 12,
+    "statement_start": "set(VCS_DXBC_CHECK_FXC \"\" CACHE FILEPATH \"fxc.exe to compare tools/hlsl_dxbc.py's DXBC with (empty: no check)\")"
+  },
+  {
+    "file": "src/render/CMakeLists.txt",
+    "line": 21,
+    "statement_start": "set(VCS_SHADER_HEADERS \"\")"
+  },
+  {
+    "file": "src/render/CMakeLists.txt",
+    "line": 24,
+    "statement_start": "set(src \"${CMAKE_CURRENT_SOURCE_DIR}/${source}\")"
+  },
+  {
+    "file": "src/render/CMakeLists.txt",
+    "line": 26,
+    "statement_start": "set(out \"${VCS_SHADER_OUT}/dxbc/${header}\")"
+  },
+  {
+    "file": "src/render/CMakeLists.txt",
+    "line": 27,
+    "statement_start": "set(defines \"\")"
+  },
+  {
+    "file": "src/render/CMakeLists.txt",
+    "line": 31,
+    "statement_start": "set(check \"\")"
+  },
+  {
+    "file": "src/render/CMakeLists.txt",
+    "line": 33,
+    "statement_start": "set(check --check-fxc \"${VCS_DXBC_CHECK_FXC}\")"
+  },
+  {
+    "file": "src/render/CMakeLists.txt",
+    "line": 45,
+    "statement_start": "set(out \"${VCS_SHADER_OUT}/spirv/${header}\")"
+  },
+  {
+    "file": "src/render/CMakeLists.txt",
+    "line": 48,
+    "statement_start": "set(stage vert)"
+  },
+  {
+    "file": "src/render/CMakeLists.txt",
+    "line": 50,
+    "statement_start": "set(stage frag)"
+  },
+  {
+    "file": "src/render/CMakeLists.txt",
+    "line": 52,
+    "statement_start": "set(defines \"\")"
+  },
+  {
+    "file": "src/render/CMakeLists.txt",
+    "line": 65,
+    "statement_start": "set(VCS_SHADER_HEADERS ${VCS_SHADER_HEADERS} PARENT_SCOPE)"
+  },
+  {
+    "file": "src/render/CMakeLists.txt",
+    "line": 87,
+    "statement_start": "add_library(vcs_render STATIC"
+  },
+  {
+    "file": "src/render/CMakeLists.txt",
+    "line": 94,
+    "statement_start": "target_link_libraries(vcs_render PUBLIC vcs_rhi vcs_platform imgui)"
+  },
+  {
+    "file": "src/rhi/CMakeLists.txt",
+    "line": 7,
+    "statement_start": "set(_vcs_vulkan_default OFF)"
+  },
+  {
+    "file": "src/rhi/CMakeLists.txt",
+    "line": 9,
+    "statement_start": "set(_vcs_vulkan_default ON)"
+  },
+  {
+    "file": "src/rhi/CMakeLists.txt",
+    "line": 12,
+    "statement_start": "set(VCS_RHI_D3D11 ${WIN32} CACHE INTERNAL \"\")"
+  },
+  {
+    "file": "src/rhi/CMakeLists.txt",
+    "line": 14,
+    "statement_start": "add_library(vcs_rhi STATIC rhi.cpp null/rhi_null.cpp)"
+  },
+  {
+    "file": "src/rhi/CMakeLists.txt",
+    "line": 16,
+    "statement_start": "target_link_libraries(vcs_rhi PUBLIC imgui)"
+  },
+  {
+    "file": "src/rhi/CMakeLists.txt",
+    "line": 21,
+    "statement_start": "target_link_libraries(vcs_rhi PRIVATE d3d11 dxgi d3dcompiler dxguid)"
+  },
+  {
+    "file": "src/rhi/CMakeLists.txt",
+    "line": 26,
+    "statement_start": "FetchContent_Declare("
+  },
+  {
+    "file": "src/rhi/CMakeLists.txt",
+    "line": 32,
+    "statement_start": "FetchContent_Declare("
+  },
+  {
+    "file": "src/rhi/CMakeLists.txt",
+    "line": 39,
+    "statement_start": "FetchContent_Declare("
+  },
+  {
+    "file": "src/rhi/CMakeLists.txt",
+    "line": 53,
+    "statement_start": "target_link_libraries(vcs_rhi PRIVATE Vulkan::Headers ${CMAKE_DL_LIBS})"
+  },
+  {
+    "file": "third_party/PS2Recomp/CMakeLists.txt",
+    "line": 4,
+    "statement_start": "set(PS2X_VITA_TOOLCHAIN_FILE \"$ENV{VITASDK}/share/vita.toolchain.cmake\")"
+  },
+  {
+    "file": "third_party/PS2Recomp/CMakeLists.txt",
+    "line": 6,
+    "statement_start": "set(CMAKE_TOOLCHAIN_FILE \"${PS2X_VITA_TOOLCHAIN_FILE}\" CACHE PATH"
+  },
+  {
+    "file": "third_party/PS2Recomp/CMakeLists.txt",
+    "line": 14,
+    "statement_start": "# [gta-recomp] subprojects use this instead of CMAKE_SOURCE_DIR so the tree can be add_subdirectory()d"
+  },
+  {
+    "file": "third_party/PS2Recomp/CMakeLists.txt",
+    "line": 15,
+    "statement_start": "set(PS2X_ROOT_DIR \"${CMAKE_CURRENT_SOURCE_DIR}\")"
+  },
+  {
+    "file": "third_party/PS2Recomp/CMakeLists.txt",
+    "line": 17,
+    "statement_start": "set(CMAKE_EXPORT_COMPILE_COMMANDS ON)"
+  },
+  {
+    "file": "third_party/PS2Recomp/CMakeLists.txt",
+    "line": 27,
+    "statement_start": "set(PS2X_BUILD_RECOMP OFF)"
+  },
+  {
+    "file": "third_party/PS2Recomp/CMakeLists.txt",
+    "line": 28,
+    "statement_start": "set(PS2X_BUILD_ANALYZER OFF)"
+  },
+  {
+    "file": "third_party/PS2Recomp/CMakeLists.txt",
+    "line": 29,
+    "statement_start": "set(PS2X_BUILD_TEST OFF)"
+  },
+  {
+    "file": "third_party/PS2Recomp/CMakeLists.txt",
+    "line": 30,
+    "statement_start": "set(PS2X_BUILD_STUDIO OFF)"
+  },
+  {
+    "file": "third_party/PS2Recomp/CMakeLists.txt",
+    "line": 33,
+    "statement_start": "set(PS2X_IS_ARM_TARGET OFF)"
+  },
+  {
+    "file": "third_party/PS2Recomp/CMakeLists.txt",
+    "line": 34,
+    "statement_start": "set(PS2X_IS_AARCH64_TARGET OFF)"
+  },
+  {
+    "file": "third_party/PS2Recomp/CMakeLists.txt",
+    "line": 36,
+    "statement_start": "set(PS2X_IS_ARM_TARGET ON)"
+  },
+  {
+    "file": "third_party/PS2Recomp/CMakeLists.txt",
+    "line": 37,
+    "statement_start": "set(PS2X_IS_AARCH64_TARGET ON)"
+  },
+  {
+    "file": "third_party/PS2Recomp/CMakeLists.txt",
+    "line": 39,
+    "statement_start": "set(PS2X_IS_ARM_TARGET ON)"
+  },
+  {
+    "file": "third_party/PS2Recomp/CMakeLists.txt",
+    "line": 44,
+    "statement_start": "set(PS2X_IS_ARM_TARGET ON)"
+  },
+  {
+    "file": "third_party/PS2Recomp/CMakeLists.txt",
+    "line": 51,
+    "statement_start": "FetchContent_Declare("
+  },
+  {
+    "file": "third_party/PS2Recomp/CMakeLists.txt",
+    "line": 71,
+    "statement_start": "add_compile_options(-march=armv8-a+fp+simd)"
+  },
+  {
+    "file": "third_party/PS2Recomp/CMakeLists.txt",
+    "line": 77,
+    "statement_start": "set(CMAKE_CXX_FLAGS \"${CMAKE_CXX_FLAGS} -march=armv8-a+fp+simd+crypto+crc\")"
+  },
+  {
+    "file": "third_party/PS2Recomp/CMakeLists.txt",
+    "line": 80,
+    "statement_start": "add_compile_options(-march=armv8-a+fp+simd)"
+  },
+  {
+    "file": "third_party/PS2Recomp/CMakeLists.txt",
+    "line": 86,
+    "statement_start": "add_subdirectory(\"ps2xRecomp\")"
+  },
+  {
+    "file": "third_party/PS2Recomp/CMakeLists.txt",
+    "line": 90,
+    "statement_start": "add_subdirectory(\"ps2xIOP\")"
+  },
+  {
+    "file": "third_party/PS2Recomp/CMakeLists.txt",
+    "line": 91,
+    "statement_start": "add_subdirectory(\"ps2xRuntime\")"
+  },
+  {
+    "file": "third_party/PS2Recomp/CMakeLists.txt",
+    "line": 95,
+    "statement_start": "add_subdirectory(\"ps2xAnalyzer\")"
+  },
+  {
+    "file": "third_party/PS2Recomp/CMakeLists.txt",
+    "line": 99,
+    "statement_start": "add_subdirectory(\"ps2xTest\")"
+  },
+  {
+    "file": "third_party/PS2Recomp/CMakeLists.txt",
+    "line": 103,
+    "statement_start": "add_subdirectory(\"ps2xStudio\")"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xAnalyzer/CMakeLists.txt",
+    "line": 4,
+    "statement_start": "set(CMAKE_CXX_STANDARD 20)"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xAnalyzer/CMakeLists.txt",
+    "line": 5,
+    "statement_start": "set(CMAKE_CXX_STANDARD_REQUIRED ON)"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xAnalyzer/CMakeLists.txt",
+    "line": 9,
+    "statement_start": "FetchContent_Declare("
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xAnalyzer/CMakeLists.txt",
+    "line": 17,
+    "statement_start": "set(PS2ANALYZER_LIB_SOURCES"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xAnalyzer/CMakeLists.txt",
+    "line": 26,
+    "statement_start": "add_library(ps2_analyzer_lib STATIC ${PS2ANALYZER_LIB_SOURCES})"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xAnalyzer/CMakeLists.txt",
+    "line": 34,
+    "statement_start": "target_link_libraries(ps2_analyzer_lib PUBLIC"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xAnalyzer/CMakeLists.txt",
+    "line": 39,
+    "statement_start": "add_executable(ps2_analyzer"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xAnalyzer/CMakeLists.txt",
+    "line": 43,
+    "statement_start": "target_link_libraries(ps2_analyzer PRIVATE"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xIOP/CMakeLists.txt",
+    "line": 7,
+    "statement_start": "add_library(ps2_iop STATIC"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xIOP/CMakeLists.txt",
+    "line": 44,
+    "statement_start": "add_library(ps2x::iop ALIAS ps2_iop)"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xIOP/CMakeLists.txt",
+    "line": 48,
+    "statement_start": "add_executable(ps2_iop_emulator_tests tests/iop_emulator_tests.cpp)"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xIOP/CMakeLists.txt",
+    "line": 49,
+    "statement_start": "target_link_libraries(ps2_iop_emulator_tests PRIVATE ps2_iop)"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xIOP/CMakeLists.txt",
+    "line": 52,
+    "statement_start": "add_executable(ps2_iop_import_tests tests/iop_import_tests.cpp)"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xIOP/CMakeLists.txt",
+    "line": 53,
+    "statement_start": "target_link_libraries(ps2_iop_import_tests PRIVATE ps2_iop)"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xIOP/CMakeLists.txt",
+    "line": 57,
+    "statement_start": "add_executable(ps2_iop_compatibility_tests tests/iop_compatibility_tests.cpp)"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xIOP/CMakeLists.txt",
+    "line": 58,
+    "statement_start": "target_link_libraries(ps2_iop_compatibility_tests PRIVATE ps2_iop)"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xIOP/CMakeLists.txt",
+    "line": 61,
+    "statement_start": "add_executable(ps2_iop_import_version_tests tests/iop_import_version_tests.cpp)"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xIOP/CMakeLists.txt",
+    "line": 62,
+    "statement_start": "target_link_libraries(ps2_iop_import_version_tests PRIVATE ps2_iop)"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xIOP/CMakeLists.txt",
+    "line": 67,
+    "statement_start": "add_executable(ps2_iop_spu2_tests tests/iop_spu2_tests.cpp)"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xIOP/CMakeLists.txt",
+    "line": 68,
+    "statement_start": "target_link_libraries(ps2_iop_spu2_tests PRIVATE ps2_iop)"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRecomp/CMakeLists.txt",
+    "line": 5,
+    "statement_start": "set(CMAKE_CXX_STANDARD 20)"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRecomp/CMakeLists.txt",
+    "line": 6,
+    "statement_start": "set(CMAKE_CXX_STANDARD_REQUIRED ON)"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRecomp/CMakeLists.txt",
+    "line": 7,
+    "statement_start": "set(CMAKE_C_STANDARD 99)"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRecomp/CMakeLists.txt",
+    "line": 8,
+    "statement_start": "set(CMAKE_C_STANDARD_REQUIRED ON)"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRecomp/CMakeLists.txt",
+    "line": 12,
+    "statement_start": "FetchContent_Declare("
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRecomp/CMakeLists.txt",
+    "line": 20,
+    "statement_start": "FetchContent_Declare("
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRecomp/CMakeLists.txt",
+    "line": 29,
+    "statement_start": "FetchContent_Declare("
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRecomp/CMakeLists.txt",
+    "line": 37,
+    "statement_start": "FetchContent_Declare("
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRecomp/CMakeLists.txt",
+    "line": 44,
+    "statement_start": "set(BUILD_DWARFDUMP    OFF CACHE BOOL \"\" FORCE)"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRecomp/CMakeLists.txt",
+    "line": 45,
+    "statement_start": "set(BUILD_DWARFEXAMPLE OFF CACHE BOOL \"\" FORCE)"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRecomp/CMakeLists.txt",
+    "line": 46,
+    "statement_start": "set(BUILD_DWARFGEN     OFF CACHE BOOL \"\" FORCE)"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRecomp/CMakeLists.txt",
+    "line": 48,
+    "statement_start": "set(BUILD_SHARED   OFF CACHE BOOL \"\" FORCE)"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRecomp/CMakeLists.txt",
+    "line": 49,
+    "statement_start": "set(BUILD_NON_SHARED ON CACHE BOOL \"\" FORCE)"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRecomp/CMakeLists.txt",
+    "line": 53,
+    "statement_start": "set(LIBDWARF_INCLUDE_DIR \"${libdwarf_SOURCE_DIR}/src/lib/libdwarf\")"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRecomp/CMakeLists.txt",
+    "line": 55,
+    "statement_start": "FetchContent_Declare("
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRecomp/CMakeLists.txt",
+    "line": 71,
+    "statement_start": "add_library(rabbitizer STATIC ${RABBITIZER_SOURCES})"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRecomp/CMakeLists.txt",
+    "line": 89,
+    "statement_start": "add_library(ps2_recomp_lib STATIC ${PS2RECOMP_LIB_SOURCES} ${PS2RECOMP_HEADERS})"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRecomp/CMakeLists.txt",
+    "line": 108,
+    "statement_start": "target_link_libraries(ps2_recomp_lib"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRecomp/CMakeLists.txt",
+    "line": 120,
+    "statement_start": "add_executable(ps2_recomp ${PS2RECOMP_EXE_SOURCES})"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRecomp/CMakeLists.txt",
+    "line": 122,
+    "statement_start": "target_link_libraries(ps2_recomp"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRuntime/CMakeLists.txt",
+    "line": 5,
+    "statement_start": "set(CMAKE_CXX_STANDARD 20)"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRuntime/CMakeLists.txt",
+    "line": 6,
+    "statement_start": "set(CMAKE_CXX_STANDARD_REQUIRED ON)"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRuntime/CMakeLists.txt",
+    "line": 9,
+    "statement_start": "set(PS2X_RUNNER_UNITY_BUILD_BATCH_SIZE 32 CACHE STRING \"Unity build batch size for ps2EntryRunner\")"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRuntime/CMakeLists.txt",
+    "line": 25,
+    "statement_start": "set(CMAKE_C_COMPILER_LAUNCHER \"${PS2X_SCCACHE_PROGRAM}\")"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRuntime/CMakeLists.txt",
+    "line": 28,
+    "statement_start": "set(CMAKE_CXX_COMPILER_LAUNCHER \"${PS2X_SCCACHE_PROGRAM}\")"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRuntime/CMakeLists.txt",
+    "line": 37,
+    "statement_start": "set(PS2X_IS_VITA OFF)"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRuntime/CMakeLists.txt",
+    "line": 41,
+    "statement_start": "set(PS2X_IS_VITA ON)"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRuntime/CMakeLists.txt",
+    "line": 44,
+    "statement_start": "set(PS2X_IS_ANDROID OFF)"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRuntime/CMakeLists.txt",
+    "line": 47,
+    "statement_start": "set(PS2X_IS_ANDROID ON)"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRuntime/CMakeLists.txt",
+    "line": 51,
+    "statement_start": "set(PS2X_VITA_APP_NAME \"PS2 Retro X\" CACHE STRING \"Display name for the Vita bubble\")"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRuntime/CMakeLists.txt",
+    "line": 52,
+    "statement_start": "set(PS2X_VITA_TITLEID \"RANJ00001\" CACHE STRING \"9-character Vita title id\")"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRuntime/CMakeLists.txt",
+    "line": 53,
+    "statement_start": "set(PS2X_VITA_VERSION \"01.00\" CACHE STRING \"Vita app version\")"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRuntime/CMakeLists.txt",
+    "line": 54,
+    "statement_start": "set(PS2X_DEFAULT_BOOT_ELF \"\" CACHE STRING \"Guest ELF path passed directly to main() when argv is unavailable\")"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRuntime/CMakeLists.txt",
+    "line": 61,
+    "statement_start": "set(PS2X_VITASDK \"$ENV{VITASDK}\")"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRuntime/CMakeLists.txt",
+    "line": 70,
+    "statement_start": "set(FETCHCONTENT_QUIET FALSE)"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRuntime/CMakeLists.txt",
+    "line": 71,
+    "statement_start": "set(BUILD_EXAMPLES OFF CACHE BOOL \"\" FORCE)"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRuntime/CMakeLists.txt",
+    "line": 72,
+    "statement_start": "set(BUILD_GAMES OFF CACHE BOOL \"\" FORCE)"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRuntime/CMakeLists.txt",
+    "line": 75,
+    "statement_start": "set(PLATFORM \"Android\" CACHE STRING \"\" FORCE)"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRuntime/CMakeLists.txt",
+    "line": 85,
+    "statement_start": "add_library(ps2_host_backend INTERFACE)"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRuntime/CMakeLists.txt",
+    "line": 87,
+    "statement_start": "set(PS2X_DEFAULT_BOOT_ELF_DEFINE \"\")"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRuntime/CMakeLists.txt",
+    "line": 90,
+    "statement_start": "set(PS2X_DEFAULT_BOOT_ELF_DEFINE \"${PS2X_DEFAULT_BOOT_ELF}\")"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRuntime/CMakeLists.txt",
+    "line": 96,
+    "statement_start": "set(PS2X_VITA_PREFIX \"${PS2X_VITASDK}/arm-vita-eabi\")"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRuntime/CMakeLists.txt",
+    "line": 97,
+    "statement_start": "set(PS2X_VITA_EXTRA_INCLUDE_DIRS \"\" CACHE STRING \"Extra include directories for Vita host dependencies\")"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRuntime/CMakeLists.txt",
+    "line": 98,
+    "statement_start": "set(PS2X_VITA_LIBRARY_DIR \"${PS2X_VITA_PREFIX}/lib\")"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRuntime/CMakeLists.txt",
+    "line": 99,
+    "statement_start": "set(PS2X_VITA_REQUIRED_LIBRARY_NAMES"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRuntime/CMakeLists.txt",
+    "line": 130,
+    "statement_start": "set(PS2X_VITA_INCLUDE_DIRS"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRuntime/CMakeLists.txt",
+    "line": 158,
+    "statement_start": "set(cache_var \"PS2X_VITA_LIB_${library_id}\")"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRuntime/CMakeLists.txt",
+    "line": 160,
+    "statement_start": "find_library(${cache_var}"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRuntime/CMakeLists.txt",
+    "line": 172,
+    "statement_start": "set(${out_var} \"${${cache_var}}\" PARENT_SCOPE)"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRuntime/CMakeLists.txt",
+    "line": 175,
+    "statement_start": "set(PS2X_VITA_RESOLVED_LIBRARIES \"\")"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRuntime/CMakeLists.txt",
+    "line": 184,
+    "statement_start": "target_link_libraries(ps2_host_backend INTERFACE"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRuntime/CMakeLists.txt",
+    "line": 194,
+    "statement_start": "target_link_libraries(ps2_host_backend INTERFACE ${PS2X_HOST_PLATFORM_TARGET})"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRuntime/CMakeLists.txt",
+    "line": 197,
+    "statement_start": "target_link_libraries(ps2_host_backend INTERFACE log android)"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRuntime/CMakeLists.txt",
+    "line": 202,
+    "statement_start": "set(PS2X_ENABLE_FFMPEG_DEFAULT OFF)"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRuntime/CMakeLists.txt",
+    "line": 204,
+    "statement_start": "set(PS2X_ENABLE_FFMPEG_DEFAULT ON)"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRuntime/CMakeLists.txt",
+    "line": 211,
+    "statement_start": "add_library(ffmpeg INTERFACE)"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRuntime/CMakeLists.txt",
+    "line": 215,
+    "statement_start": "set(FFMPEG_PREBUILT_TAG \"n7.1-241205\")"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRuntime/CMakeLists.txt",
+    "line": 218,
+    "statement_start": "set(FFMPEG_PREBUILT_URL"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRuntime/CMakeLists.txt",
+    "line": 222,
+    "statement_start": "set(FFMPEG_PREFIX_DIR \"${CMAKE_BINARY_DIR}/ThirdParty/ffmpeg-prefix\")"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRuntime/CMakeLists.txt",
+    "line": 223,
+    "statement_start": "set(FFMPEG_SOURCE_DIR \"${FFMPEG_PREFIX_DIR}/src/ffmpeg_external\")"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRuntime/CMakeLists.txt",
+    "line": 224,
+    "statement_start": "set(FFMPEG_INCLUDE_DIR \"${FFMPEG_SOURCE_DIR}/include\")"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRuntime/CMakeLists.txt",
+    "line": 225,
+    "statement_start": "set(FFMPEG_LIB_DIR \"${FFMPEG_SOURCE_DIR}/bin\")"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRuntime/CMakeLists.txt",
+    "line": 226,
+    "statement_start": "set(FFMPEG_BIN_DIR \"${FFMPEG_SOURCE_DIR}/bin\")"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRuntime/CMakeLists.txt",
+    "line": 244,
+    "statement_start": "add_library(ffmpeg_avcodec STATIC IMPORTED GLOBAL)"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRuntime/CMakeLists.txt",
+    "line": 251,
+    "statement_start": "add_library(ffmpeg_avformat STATIC IMPORTED GLOBAL)"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRuntime/CMakeLists.txt",
+    "line": 258,
+    "statement_start": "add_library(ffmpeg_avutil STATIC IMPORTED GLOBAL)"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRuntime/CMakeLists.txt",
+    "line": 265,
+    "statement_start": "add_library(ffmpeg_swresample STATIC IMPORTED GLOBAL)"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRuntime/CMakeLists.txt",
+    "line": 272,
+    "statement_start": "add_library(ffmpeg_swscale STATIC IMPORTED GLOBAL)"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRuntime/CMakeLists.txt",
+    "line": 279,
+    "statement_start": "add_library(ffmpeg INTERFACE)"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRuntime/CMakeLists.txt",
+    "line": 280,
+    "statement_start": "target_link_libraries(ffmpeg INTERFACE"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRuntime/CMakeLists.txt",
+    "line": 295,
+    "statement_start": "set(PS2X_FFMPEG_BIN_DIR \"${FFMPEG_BIN_DIR}\" CACHE INTERNAL \"Directory containing FFmpeg runtime DLLs\")"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRuntime/CMakeLists.txt",
+    "line": 296,
+    "statement_start": "set(PS2X_COPY_FFMPEG_DLLS_SCRIPT"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRuntime/CMakeLists.txt",
+    "line": 301,
+    "statement_start": "find_package(PkgConfig REQUIRED)"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRuntime/CMakeLists.txt",
+    "line": 310,
+    "statement_start": "add_library(ffmpeg INTERFACE)"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRuntime/CMakeLists.txt",
+    "line": 311,
+    "statement_start": "target_link_libraries(ffmpeg INTERFACE PkgConfig::FFMPEG)"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRuntime/CMakeLists.txt",
+    "line": 337,
+    "statement_start": "add_library(ps2_runtime STATIC"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRuntime/CMakeLists.txt",
+    "line": 370,
+    "statement_start": "set(PS2X_PARALLEL_GS_DIR \"\" CACHE PATH \"paraLLEl-GS source tree (optional Vulkan GS renderer)\")"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRuntime/CMakeLists.txt",
+    "line": 374,
+    "statement_start": "set(CMAKE_MSVC_RUNTIME_LIBRARY \"MultiThreaded$<$<CONFIG:Debug>:Debug>DLL\")"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRuntime/CMakeLists.txt",
+    "line": 375,
+    "statement_start": "set(PARALLEL_GS_STANDALONE ON CACHE BOOL \"\" FORCE)"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRuntime/CMakeLists.txt",
+    "line": 376,
+    "statement_start": "add_subdirectory(\"${PS2X_PARALLEL_GS_DIR}\" \"${CMAKE_BINARY_DIR}/parallel-gs\" EXCLUDE_FROM_ALL)"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRuntime/CMakeLists.txt",
+    "line": 380,
+    "statement_start": "target_link_libraries(ps2_runtime PRIVATE parallel-gs)"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRuntime/CMakeLists.txt",
+    "line": 422,
+    "statement_start": "target_link_libraries(ps2_runtime PRIVATE ws2_32)"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRuntime/CMakeLists.txt",
+    "line": 435,
+    "statement_start": "set(PS2X_RUNNER_SOURCE_DIR \"${CMAKE_CURRENT_SOURCE_DIR}/src/runner\" CACHE PATH \"Directory with generated runner sources\")"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRuntime/CMakeLists.txt",
+    "line": 436,
+    "statement_start": "set(PS2X_RUNNER_EXTRA_SOURCES \"\" CACHE STRING \"Extra sources compiled into ps2EntryRunner\")"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRuntime/CMakeLists.txt",
+    "line": 437,
+    "statement_start": "set(PS2X_RUNNER_MAIN \"\" CACHE FILEPATH \"Replacement main() source for ps2EntryRunner\")"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRuntime/CMakeLists.txt",
+    "line": 444,
+    "statement_start": "set(RUNNER_MAIN_CPP \"${PS2X_RUNNER_SOURCE_DIR}/main.cpp\")"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRuntime/CMakeLists.txt",
+    "line": 445,
+    "statement_start": "set(ROOT_MAIN_CPP \"${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp\")"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRuntime/CMakeLists.txt",
+    "line": 456,
+    "statement_start": "add_library(ps2EntryRunner SHARED"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRuntime/CMakeLists.txt",
+    "line": 462,
+    "statement_start": "add_executable(ps2EntryRunner"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRuntime/CMakeLists.txt",
+    "line": 475,
+    "statement_start": "set(PS2X_RUNNER_PCH_HEADERS"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRuntime/CMakeLists.txt",
+    "line": 505,
+    "statement_start": "target_compile_options(ps2EntryRunner PRIVATE /FS)"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRuntime/CMakeLists.txt",
+    "line": 513,
+    "statement_start": "target_link_libraries(ps2_runtime PUBLIC ps2_host_backend ffmpeg ps2_iop)"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRuntime/CMakeLists.txt",
+    "line": 514,
+    "statement_start": "target_link_libraries(ps2EntryRunner"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRuntime/CMakeLists.txt",
+    "line": 524,
+    "statement_start": "target_link_libraries(ps2EntryRunner PRIVATE imgui)"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRuntime/CMakeLists.txt",
+    "line": 538,
+    "statement_start": "set(VITA_MKSFOEX_FLAGS \"${VITA_MKSFOEX_FLAGS} -d PARENTAL_LEVEL=1\")"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRuntime/CMakeLists.txt",
+    "line": 539,
+    "statement_start": "set(VITA_MKSFOEX_FLAGS \"${VITA_MKSFOEX_FLAGS} -d ATTRIBUTE2=12\")"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRuntime/CMakeLists.txt",
+    "line": 542,
+    "statement_start": "set(PS2X_VITA_VPK_FILES \"\")"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRuntime/CMakeLists.txt",
+    "line": 550,
+    "statement_start": "set(PS2X_VITA_MODULE_PATH \"${CMAKE_CURRENT_SOURCE_DIR}/vita/module/${PS2X_VITA_MODULE}\")"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRuntime/cmake/ReleaseMode.cmake",
+    "line": 10,
+    "statement_start": "set(PS2X_CPU \"AVX2\")"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRuntime/cmake/ReleaseMode.cmake",
+    "line": 14,
+    "statement_start": "set(_ps2x_arch_msvc \"/arch:AVX2\")"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRuntime/cmake/ReleaseMode.cmake",
+    "line": 15,
+    "statement_start": "set(_ps2x_arch_clang \"-march=x86-64-v3\")"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRuntime/cmake/ReleaseMode.cmake",
+    "line": 17,
+    "statement_start": "set(_ps2x_arch_msvc \"/arch:AVX\")"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRuntime/cmake/ReleaseMode.cmake",
+    "line": 18,
+    "statement_start": "set(_ps2x_arch_clang \"-march=sandybridge\")  # the same CPU as clang-cl's /arch:AVX"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRuntime/cmake/ReleaseMode.cmake",
+    "line": 20,
+    "statement_start": "set(_ps2x_arch_msvc \"/clang:-march=x86-64-v2\")  # SSE4.2, SSSE3, POPCNT (clang-cl's /arch has no SSE4 level)"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRuntime/cmake/ReleaseMode.cmake",
+    "line": 21,
+    "statement_start": "set(_ps2x_arch_clang \"-march=x86-64-v2\")"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRuntime/cmake/ReleaseMode.cmake",
+    "line": 35,
+    "statement_start": "target_compile_options(${TargetName} PRIVATE"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRuntime/cmake/ReleaseMode.cmake",
+    "line": 39,
+    "statement_start": "target_compile_options(${TargetName} PRIVATE $<$<CONFIG:Release>:-flto=thin>)"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRuntime/cmake/ReleaseMode.cmake",
+    "line": 50,
+    "statement_start": "target_compile_options(${TargetName} PRIVATE $<$<CONFIG:Release>:-fprofile-instr-generate>)"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRuntime/cmake/ReleaseMode.cmake",
+    "line": 59,
+    "statement_start": "target_compile_options(${TargetName} PRIVATE $<$<CONFIG:Release>:-fprofile-instr-use=${PS2X_PGO}"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRuntime/cmake/ReleaseMode.cmake",
+    "line": 70,
+    "statement_start": "target_compile_options(${TargetName} PRIVATE"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRuntime/cmake/ReleaseMode.cmake",
+    "line": 76,
+    "statement_start": "target_compile_options(${TargetName} PRIVATE $<$<CONFIG:Release>:-flto=thin>)"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRuntime/cmake/ReleaseMode.cmake",
+    "line": 90,
+    "statement_start": "target_compile_options(${TargetName} PRIVATE $<$<CONFIG:Release>:-fprofile-instr-generate>)"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRuntime/cmake/ReleaseMode.cmake",
+    "line": 96,
+    "statement_start": "target_compile_options(${TargetName} PRIVATE $<$<CONFIG:Release>:-fprofile-instr-use=${PS2X_PGO}"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xRuntime/cmake/ReleaseMode.cmake",
+    "line": 103,
+    "statement_start": "target_compile_options(${TargetName} PRIVATE"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xStudio/CMakeLists.txt",
+    "line": 6,
+    "statement_start": "set(CMAKE_CXX_STANDARD 20)"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xStudio/CMakeLists.txt",
+    "line": 7,
+    "statement_start": "set(CMAKE_CXX_STANDARD_REQUIRED ON)"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xStudio/CMakeLists.txt",
+    "line": 11,
+    "statement_start": "FetchContent_Declare("
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xStudio/CMakeLists.txt",
+    "line": 18,
+    "statement_start": "FetchContent_Declare("
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xStudio/CMakeLists.txt",
+    "line": 25,
+    "statement_start": "FetchContent_Declare("
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xStudio/CMakeLists.txt",
+    "line": 32,
+    "statement_start": "FetchContent_Declare("
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xStudio/CMakeLists.txt",
+    "line": 39,
+    "statement_start": "set(SDL_TEST OFF CACHE BOOL \"\" FORCE)"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xStudio/CMakeLists.txt",
+    "line": 40,
+    "statement_start": "set(SDL_TESTS OFF CACHE BOOL \"\" FORCE)"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xStudio/CMakeLists.txt",
+    "line": 41,
+    "statement_start": "set(SDL_SHARED OFF CACHE BOOL \"\" FORCE)"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xStudio/CMakeLists.txt",
+    "line": 42,
+    "statement_start": "set(SDL_STATIC ON CACHE BOOL \"\" FORCE)"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xStudio/CMakeLists.txt",
+    "line": 44,
+    "statement_start": "FetchContent_Declare("
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xStudio/CMakeLists.txt",
+    "line": 51,
+    "statement_start": "set(SDL_SHARED ON  CACHE BOOL \"\" FORCE)"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xStudio/CMakeLists.txt",
+    "line": 52,
+    "statement_start": "set(SDL_STATIC OFF CACHE BOOL \"\" FORCE)"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xStudio/CMakeLists.txt",
+    "line": 61,
+    "statement_start": "find_package(OpenGL REQUIRED)"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xStudio/CMakeLists.txt",
+    "line": 63,
+    "statement_start": "set(IMGUI_SOURCES"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xStudio/CMakeLists.txt",
+    "line": 73,
+    "statement_start": "add_library(imgui_lib STATIC ${IMGUI_SOURCES})"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xStudio/CMakeLists.txt",
+    "line": 80,
+    "statement_start": "target_link_libraries(imgui_lib PUBLIC SDL2::SDL2 OpenGL::GL)"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xStudio/CMakeLists.txt",
+    "line": 82,
+    "statement_start": "add_library(imgui_colortextedit_lib STATIC"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xStudio/CMakeLists.txt",
+    "line": 88,
+    "statement_start": "target_link_libraries(imgui_colortextedit_lib PUBLIC imgui_lib)"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xStudio/CMakeLists.txt",
+    "line": 90,
+    "statement_start": "add_library(imgui_memory_editor_lib INTERFACE)"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xStudio/CMakeLists.txt",
+    "line": 96,
+    "statement_start": "target_link_libraries(imgui_memory_editor_lib INTERFACE imgui_lib)"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xStudio/CMakeLists.txt",
+    "line": 98,
+    "statement_start": "add_library(imgui_filedialog_lib STATIC"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xStudio/CMakeLists.txt",
+    "line": 107,
+    "statement_start": "target_link_libraries(imgui_filedialog_lib PUBLIC imgui_lib)"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xStudio/CMakeLists.txt",
+    "line": 112,
+    "statement_start": "add_executable(ps2xStudio ${STUDIO_SOURCES} ${STUDIO_HEADERS})"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xStudio/CMakeLists.txt",
+    "line": 125,
+    "statement_start": "target_link_libraries(ps2xStudio PRIVATE"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xStudio/CMakeLists.txt",
+    "line": 138,
+    "statement_start": "target_link_libraries(ps2xStudio PRIVATE SDL2::SDL2main)"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xTest/CMakeLists.txt",
+    "line": 5,
+    "statement_start": "set(CMAKE_CXX_STANDARD 20)"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xTest/CMakeLists.txt",
+    "line": 6,
+    "statement_start": "set(CMAKE_CXX_STANDARD_REQUIRED ON)"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xTest/CMakeLists.txt",
+    "line": 10,
+    "statement_start": "add_subdirectory(gs_cache)"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xTest/CMakeLists.txt",
+    "line": 14,
+    "statement_start": "add_library(ps2_test_function_table OBJECT"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xTest/CMakeLists.txt",
+    "line": 23,
+    "statement_start": "add_library(ps2_test_lib STATIC"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xTest/CMakeLists.txt",
+    "line": 51,
+    "statement_start": "target_link_libraries(ps2_test_lib PRIVATE"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xTest/CMakeLists.txt",
+    "line": 59,
+    "statement_start": "target_link_libraries(ps2_test_lib PRIVATE ${CMAKE_DL_LIBS})"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xTest/CMakeLists.txt",
+    "line": 62,
+    "statement_start": "add_executable(ps2x_tests"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xTest/CMakeLists.txt",
+    "line": 81,
+    "statement_start": "target_link_libraries(ps2x_tests PRIVATE"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xTest/gs_cache/CMakeLists.txt",
+    "line": 9,
+    "statement_start": "set(PS2_GS_RUNTIME_DIR \"${PS2_GS_DEFAULT_RUNTIME_DIR}\" CACHE PATH \"Runtime source to test\")"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xTest/gs_cache/CMakeLists.txt",
+    "line": 13,
+    "statement_start": "find_package(Threads REQUIRED)"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xTest/gs_cache/CMakeLists.txt",
+    "line": 14,
+    "statement_start": "add_library(ps2_gs_cache_backend_under_test STATIC"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xTest/gs_cache/CMakeLists.txt",
+    "line": 22,
+    "statement_start": "target_link_libraries(ps2_gs_cache_backend_under_test PUBLIC Threads::Threads)"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xTest/gs_cache/CMakeLists.txt",
+    "line": 29,
+    "statement_start": "target_compile_options(ps2_gs_cache_backend_under_test PUBLIC"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xTest/gs_cache/CMakeLists.txt",
+    "line": 35,
+    "statement_start": "add_executable(${target} \"${source}\")"
+  },
+  {
+    "file": "third_party/PS2Recomp/ps2xTest/gs_cache/CMakeLists.txt",
+    "line": 36,
+    "statement_start": "target_link_libraries(${target} PRIVATE ps2_gs_cache_backend_under_test)"
+  }
+]
