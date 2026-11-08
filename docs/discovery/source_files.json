@@ -1,0 +1,2090 @@
+[
+  {
+    "path": "src/debug/crash.cpp",
+    "bytes": 11055,
+    "sha256": "53619b01debf2a84b1df5e699a236b91f10ffb120e41c787de7a32077e8021a0",
+    "parse_has_error": true
+  },
+  {
+    "path": "src/debug/crash.h",
+    "bytes": 153,
+    "sha256": "0c66c0716b8346769eb843859c0a97453f5be0e12a2667979d5403adedf5250a",
+    "parse_has_error": false
+  },
+  {
+    "path": "src/debug/game_info.cpp",
+    "bytes": 16343,
+    "sha256": "04245c1552129b21de975ad2bcc7ad63402a3f14283db603c4263b6fd8986496",
+    "parse_has_error": false
+  },
+  {
+    "path": "src/debug/game_info.h",
+    "bytes": 808,
+    "sha256": "8c1324b9b62b3a0bfd61799cb75f33ba00560c5ac94d91b392ceab6e5ca3f112",
+    "parse_has_error": false
+  },
+  {
+    "path": "src/debug/profiler.cpp",
+    "bytes": 43697,
+    "sha256": "3344bb7eb3f6c7c63026e9229f0b38e719499c595f08262a7f50badab8dc6e06",
+    "parse_has_error": true
+  },
+  {
+    "path": "src/debug/profiler.h",
+    "bytes": 831,
+    "sha256": "febf1d178d6230d909924302cd7c3a503e05f73bfb1154e0990f1dfa97ff8aa3",
+    "parse_has_error": false
+  },
+  {
+    "path": "src/debug/rig.cpp",
+    "bytes": 33341,
+    "sha256": "b9a65267df6e0532e70103d16cede9ee7098eada6e96afc200a5a88e935fc4e7",
+    "parse_has_error": true
+  },
+  {
+    "path": "src/debug/rig.h",
+    "bytes": 2647,
+    "sha256": "776ef65d23756afd752074a219129917d9d04a2dc858d5c637d97302e1c968dc",
+    "parse_has_error": true
+  },
+  {
+    "path": "src/debug/rsl_shadow.cpp",
+    "bytes": 29357,
+    "sha256": "f1ca864d90a9ce8d0b09d6cb6c47c3870ee0b56cd23233a8c287eafef88425ae",
+    "parse_has_error": true
+  },
+  {
+    "path": "src/debug/rsl_shadow.h",
+    "bytes": 1566,
+    "sha256": "d822e3f1d8d4e2815b737b16f45c437ee45fb9bca19fac3542e6a6fe6a668ead",
+    "parse_has_error": false
+  },
+  {
+    "path": "src/debug/rsl_trace.cpp",
+    "bytes": 5765,
+    "sha256": "d92400beb7e9de90a312c1e0f1358e1dd0d8a0845ca7ce382344deea7a382f2e",
+    "parse_has_error": true
+  },
+  {
+    "path": "src/debug/rsl_trace.h",
+    "bytes": 922,
+    "sha256": "a0ba8c8fa49661a00533ddac89e75d76aa824837a206e69bcca847b426b85739",
+    "parse_has_error": false
+  },
+  {
+    "path": "src/debug/selftest.cpp",
+    "bytes": 5921,
+    "sha256": "f827746249d530d29dfcaee22bac301732a02c4bb55baebe2b7486e1429d01f9",
+    "parse_has_error": false
+  },
+  {
+    "path": "src/debug/selftest.h",
+    "bytes": 176,
+    "sha256": "038df693515ca516f9547df777e776fc01e925d7f4dc9342712a2e657c99ce90",
+    "parse_has_error": false
+  },
+  {
+    "path": "src/debug/watch.cpp",
+    "bytes": 5971,
+    "sha256": "0b6e9e946fa5032e58b9b96188dde2db37623159dc31feaf26b0022dd20c075f",
+    "parse_has_error": false
+  },
+  {
+    "path": "src/debug/watchdog.cpp",
+    "bytes": 2414,
+    "sha256": "859acfeedd0909ff2737c8d56bbab61d7ca3dad72080a01ac9af007f382ef001",
+    "parse_has_error": false
+  },
+  {
+    "path": "src/debug/watchdog.h",
+    "bytes": 244,
+    "sha256": "63e2bc9576f2f61e282ca3dc413670999984357ca8f7a07e7f0d5ef74d0947d2",
+    "parse_has_error": false
+  },
+  {
+    "path": "src/debug/win_symbols.h",
+    "bytes": 2468,
+    "sha256": "74bd4cca01841d6e63e3f8d6cc663059a2d95544576dd93f0166e91852d5b5c1",
+    "parse_has_error": false
+  },
+  {
+    "path": "src/disc/iso_image.cpp",
+    "bytes": 7469,
+    "sha256": "1a608515c2d9fb554cad3ae7a64df856b4a57e21d11eed5af22247515c00eff4",
+    "parse_has_error": false
+  },
+  {
+    "path": "src/disc/iso_image.h",
+    "bytes": 2723,
+    "sha256": "aeb9b3f2daba6bba291ac55562d7aa36419c125327edd5f2c5b8bc6dd796124c",
+    "parse_has_error": false
+  },
+  {
+    "path": "src/disc/vcs_disc_id.h",
+    "bytes": 2418,
+    "sha256": "44a85620342ecce2ecddc2810025ba8e15cea98e4c5fcec53527cc3ba4c7d9cf",
+    "parse_has_error": false
+  },
+  {
+    "path": "src/game/vcs_aim.cpp",
+    "bytes": 29399,
+    "sha256": "2eb55386697489491c624e8bb74397ad7ea1dc87cda24a144b42d09eae0e4486",
+    "parse_has_error": true
+  },
+  {
+    "path": "src/game/vcs_aim.h",
+    "bytes": 3522,
+    "sha256": "7b848d8df994971bc3b5360abd94109764e99a5e11200fbbf3c4977b53cd34be",
+    "parse_has_error": false
+  },
+  {
+    "path": "src/game/vcs_carcam.cpp",
+    "bytes": 13753,
+    "sha256": "89c9b59caf223dd0abb327ceff52bff2a2e817dda4962d756fbb1ae8359c7345",
+    "parse_has_error": true
+  },
+  {
+    "path": "src/game/vcs_carcam.h",
+    "bytes": 1390,
+    "sha256": "e67c827e7a01ed245a692c47b4a12b2072c4c0ae971fa7c9f3f001affc1963d3",
+    "parse_has_error": false
+  },
+  {
+    "path": "src/game/vcs_display.cpp",
+    "bytes": 12175,
+    "sha256": "5f87ce5492e59832c5ec51482ed60fa4c0fdb4f30e9ede81f044b7bec008ddfd",
+    "parse_has_error": true
+  },
+  {
+    "path": "src/game/vcs_display.h",
+    "bytes": 1564,
+    "sha256": "0631550d2d0ee3a020eef10ce4a94b6ca8095ffc36c30f2c9c5f569c964a1139",
+    "parse_has_error": false
+  },
+  {
+    "path": "src/game/vcs_framerate.cpp",
+    "bytes": 20923,
+    "sha256": "b76305f77e6c9ce8119b3094595749e13e09fd4f0303939519932d5b5a42ee1e",
+    "parse_has_error": true
+  },
+  {
+    "path": "src/game/vcs_framerate.h",
+    "bytes": 1114,
+    "sha256": "7d59fe4ea4982fb7fc23e1d89319b9c6b05e1561c5626e750462dc68672aa604",
+    "parse_has_error": false
+  },
+  {
+    "path": "src/game/vcs_freecam.cpp",
+    "bytes": 6906,
+    "sha256": "670ecefcafb4805bd8ff6ee8a2ede8fab92e8404a0ec8906fd19a17aaac1bca0",
+    "parse_has_error": true
+  },
+  {
+    "path": "src/game/vcs_freecam.h",
+    "bytes": 1542,
+    "sha256": "c3ff010483fad81c66f2004707ffcb070e0257f6d2a0cd570cc193735a4eaffa",
+    "parse_has_error": false
+  },
+  {
+    "path": "src/game/vcs_frontend.cpp",
+    "bytes": 48488,
+    "sha256": "3a7e69a18438cc570dbfdf4df59806b065ff9b688f3939d70a1103cb840b80ba",
+    "parse_has_error": true
+  },
+  {
+    "path": "src/game/vcs_frontend.h",
+    "bytes": 2175,
+    "sha256": "4ed2c9563ca8d666926f5e1bbc70f8833523430ef88ebd3eac1f300c5dab10b8",
+    "parse_has_error": false
+  },
+  {
+    "path": "src/game/vcs_hle_world.cpp",
+    "bytes": 136409,
+    "sha256": "8c2c1b246b18b9c3abd3f61f51f9639fa45abb3dc92f7114a53f6bfae003f7e9",
+    "parse_has_error": false
+  },
+  {
+    "path": "src/game/vcs_hle_world.h",
+    "bytes": 896,
+    "sha256": "507b5d8bc706f9e99551d22224ce9db144a9053682a62b326439ca824b856024",
+    "parse_has_error": false
+  },
+  {
+    "path": "src/game/vcs_hud.cpp",
+    "bytes": 31898,
+    "sha256": "6e7f1bdf3401d740f4007c079eca6a4aae06965b1e451822b24bc7690f5c94da",
+    "parse_has_error": true
+  },
+  {
+    "path": "src/game/vcs_hud.h",
+    "bytes": 660,
+    "sha256": "316368b320e08a435aecfc7b2230e079280dc3ede6a51059212b7b555a3c5506",
+    "parse_has_error": false
+  },
+  {
+    "path": "src/game/vcs_inflate.cpp",
+    "bytes": 25240,
+    "sha256": "51fe9cc72fef4afe926ab9418f3abeb1c97d224c6062a3fcf994840f7d21b853",
+    "parse_has_error": true
+  },
+  {
+    "path": "src/game/vcs_inflate.h",
+    "bytes": 878,
+    "sha256": "5af6cd30122b0d1c711baac3414badc1878bd341b97b6980c314b58abf5a27e5",
+    "parse_has_error": false
+  },
+  {
+    "path": "src/game/vcs_input.cpp",
+    "bytes": 58699,
+    "sha256": "0133c6a51802e8dd6b5a278f5d9d588454b887071e503c6cafee48c64e8cc4cc",
+    "parse_has_error": false
+  },
+  {
+    "path": "src/game/vcs_input.h",
+    "bytes": 2077,
+    "sha256": "08060c9a0089da867198c983a40bdd589096a40df9019524b9c9e53ea8aaacbc",
+    "parse_has_error": false
+  },
+  {
+    "path": "src/game/vcs_movie.cpp",
+    "bytes": 17555,
+    "sha256": "6976f1dcf8cd6b83b11539c0107824b0e15dd06f1bea89565faa472e2b7718f4",
+    "parse_has_error": true
+  },
+  {
+    "path": "src/game/vcs_movie.h",
+    "bytes": 644,
+    "sha256": "b44f72fe16eb2c9f786292899c914d234a4d012b4243cb49477fc90067ac196b",
+    "parse_has_error": false
+  },
+  {
+    "path": "src/game/vcs_overrides.cpp",
+    "bytes": 64308,
+    "sha256": "363277eb96bddec7aa111f2bcfa54a25da2ea3a40bca726191f6cad8891b4951",
+    "parse_has_error": true
+  },
+  {
+    "path": "src/game/vcs_physics_timing.cpp",
+    "bytes": 10923,
+    "sha256": "36b51c44ecb3c09af23a82511129b895b1a80d777b687561bfe30e577993c0eb",
+    "parse_has_error": true
+  },
+  {
+    "path": "src/game/vcs_physics_timing.h",
+    "bytes": 993,
+    "sha256": "f96ab1b33bef6f7cbab717690dc05506db923aedf774b8680b57b9e39b90cdec",
+    "parse_has_error": false
+  },
+  {
+    "path": "src/game/vcs_rsl_native.cpp",
+    "bytes": 21343,
+    "sha256": "9116a2d8299e1ded2c337bd0b29b3b3ef641aadf9ab0a47202ce6326a9b5daa5",
+    "parse_has_error": true
+  },
+  {
+    "path": "src/game/vcs_rsl_native.h",
+    "bytes": 2624,
+    "sha256": "448ff0ccfdb3e527b758da6d0719f09e3a64010c08bb1591bf411f1ca2953430",
+    "parse_has_error": false
+  },
+  {
+    "path": "src/game/vcs_rsl_world.cpp",
+    "bytes": 151996,
+    "sha256": "44eebcc283b6b07b6d25477ee8973539bc33bf94c14a4673439893d3339a31c2",
+    "parse_has_error": true
+  },
+  {
+    "path": "src/game/vcs_rsl_world.h",
+    "bytes": 6970,
+    "sha256": "6548e49a33339442a7218623be8fa3c313704bed6997dd7a609b968f67a5e2f3",
+    "parse_has_error": false
+  },
+  {
+    "path": "src/game/vcs_script_timing.cpp",
+    "bytes": 20801,
+    "sha256": "922157714e04cb4d5540a28b205052f1e3b9bdd1b99fe9602466f94aeca1422a",
+    "parse_has_error": true
+  },
+  {
+    "path": "src/game/vcs_script_timing.h",
+    "bytes": 740,
+    "sha256": "9972775cf95b96dfcf0eb616b2bab261455481ec21e563e88a47278c72a0d88d",
+    "parse_has_error": false
+  },
+  {
+    "path": "src/game/vcs_sound.cpp",
+    "bytes": 70791,
+    "sha256": "4e67c149765e571e69c10c46f36489c9df510710974de4751ea69fee6fbeb340",
+    "parse_has_error": false
+  },
+  {
+    "path": "src/game/vcs_sound.h",
+    "bytes": 574,
+    "sha256": "51b94d4bc06e6bacd1391743b7f2d3b04514e22ca96d262a4803696388b71a8d",
+    "parse_has_error": false
+  },
+  {
+    "path": "src/game/vcs_stream.cpp",
+    "bytes": 8490,
+    "sha256": "462bdefe88b5faf24e07bc004defb2682d056da87b5e20ee84a314a0ed8d3657",
+    "parse_has_error": true
+  },
+  {
+    "path": "src/game/vcs_stream.h",
+    "bytes": 727,
+    "sha256": "8d91914a6e8dedab845e94faeb80005e82708dc27b62aec3e29c35828346e112",
+    "parse_has_error": false
+  },
+  {
+    "path": "src/game/vcs_trainer.cpp",
+    "bytes": 66021,
+    "sha256": "3e81d8d4f5fbb0aae63dd0e4cba90906cfb50434cd2fe87c39dd06318acac122",
+    "parse_has_error": true
+  },
+  {
+    "path": "src/game/vcs_trainer.h",
+    "bytes": 4862,
+    "sha256": "2d053c6e094fa706da34595d7b4ef945fedb103c1e9bbb70a3cad1161d6d7156",
+    "parse_has_error": false
+  },
+  {
+    "path": "src/game/vcs_volume.cpp",
+    "bytes": 7607,
+    "sha256": "95cf070413071ac9b82ef80350268949812accb6b40f3ef64d2acc7c48c64ac1",
+    "parse_has_error": true
+  },
+  {
+    "path": "src/game/vcs_volume.h",
+    "bytes": 782,
+    "sha256": "0fd394a1c5449a1f6d422b31e8914e9ef75a22ca4fafa4ee46658d3760272615",
+    "parse_has_error": false
+  },
+  {
+    "path": "src/game/vcs_vu0_native.cpp",
+    "bytes": 42414,
+    "sha256": "410d16923430c25b3689242b5e695d7c22a599e2da6bb9f166caf07da93810e2",
+    "parse_has_error": false
+  },
+  {
+    "path": "src/game/vcs_vu_clipper.cpp",
+    "bytes": 12883,
+    "sha256": "4c6a3ccc3e15623e528b1dba4da204234e941e8a8659e267fabbda4a0e61ba43",
+    "parse_has_error": false
+  },
+  {
+    "path": "src/game/vcs_vu_clipper.h",
+    "bytes": 1509,
+    "sha256": "26283b8e024c9fa14a2f2ac4f31c07130b7d521d5580575e8a533033eccba43b",
+    "parse_has_error": false
+  },
+  {
+    "path": "src/game/vcs_vu_math.h",
+    "bytes": 5123,
+    "sha256": "0e5b4cacc1f3533fb381b995364c46cb0bad452eddd53a0b8c31035a7b94ecf0",
+    "parse_has_error": false
+  },
+  {
+    "path": "src/main.cpp",
+    "bytes": 41557,
+    "sha256": "ee953a3c906c40c2a8aeddfb69b1a9838028b5b85018853c98bc01e101dba8fd",
+    "parse_has_error": false
+  },
+  {
+    "path": "src/platform/platform.h",
+    "bytes": 10320,
+    "sha256": "e1cba74f3d1f6b07d08fd2bb13902cc71b2d6f7af59bfc318446a54e0d03b6b5",
+    "parse_has_error": false
+  },
+  {
+    "path": "src/platform/platform_sdl3.cpp",
+    "bytes": 38488,
+    "sha256": "9842633df33e161038f01e83eeb96c8c8f14c615d3a54644d2032a7ca5cd7539",
+    "parse_has_error": true
+  },
+  {
+    "path": "src/render/gs_shaders.cpp",
+    "bytes": 7635,
+    "sha256": "7fe067cb50e0910f356a0f1de083ea25a9cb7411e7db3c0e56b7b0369a7708c1",
+    "parse_has_error": false
+  },
+  {
+    "path": "src/render/gs_shaders.h",
+    "bytes": 1407,
+    "sha256": "16a7c7ca99cc8e89aaee3fd7fd7aa7a4c8e60ea085dbaa722c526d47ae32ec4e",
+    "parse_has_error": false
+  },
+  {
+    "path": "src/render/presenter.cpp",
+    "bytes": 13287,
+    "sha256": "240cb0ef48c98d883057bad73103a0aaa566f0e14f95e145e257ecf7df1329ae",
+    "parse_has_error": false
+  },
+  {
+    "path": "src/render/presenter.h",
+    "bytes": 3689,
+    "sha256": "3bef3d88254cd867d634c9480cabb8d80ab60182b09730a65c09c205cb88e71b",
+    "parse_has_error": false
+  },
+  {
+    "path": "src/render/ui_renderer.cpp",
+    "bytes": 10245,
+    "sha256": "62dabd5ddc0f35cc1f1ef4681b1cb085a553fd8f0bb1f98e2eda111aca4ea097",
+    "parse_has_error": false
+  },
+  {
+    "path": "src/render/ui_renderer.h",
+    "bytes": 1256,
+    "sha256": "4db2bec8f40a83f648c88f9a9a47b33b52a58b01f47f33fdc9e9bff006afaf6e",
+    "parse_has_error": false
+  },
+  {
+    "path": "src/rhi/d3d11/rhi_d3d11.cpp",
+    "bytes": 45532,
+    "sha256": "84390f69afd0f12307704d420c798e698a3a3733e75edd4b01e198da56ba3242",
+    "parse_has_error": false
+  },
+  {
+    "path": "src/rhi/null/rhi_null.cpp",
+    "bytes": 6073,
+    "sha256": "e5777a9e17dc6d41d1ec456733c31ecf77eab1be37897df2f3932c56d17f1ef7",
+    "parse_has_error": false
+  },
+  {
+    "path": "src/rhi/rhi.cpp",
+    "bytes": 2108,
+    "sha256": "cd89d8cba25eea1f6f1fd6111ad0282cbc9d810726675b977a3ea22a7c500d4c",
+    "parse_has_error": false
+  },
+  {
+    "path": "src/rhi/rhi.h",
+    "bytes": 12910,
+    "sha256": "8690c8b6ae9939590723196af5cb60ea943b05e58a030318521b9f7c85c6d6ad",
+    "parse_has_error": false
+  },
+  {
+    "path": "src/rhi/vulkan/rhi_vulkan.cpp",
+    "bytes": 160055,
+    "sha256": "edee36a36270bfcd95d8f814c6c1ab04870a96fa91a1f414b2a911c7c0276e57",
+    "parse_has_error": true
+  },
+  {
+    "path": "src/settings/settings.cpp",
+    "bytes": 8745,
+    "sha256": "fbe32ad269210b92acfd649be025591d1028a6f7a855f5f92494133cfb66e8fc",
+    "parse_has_error": false
+  },
+  {
+    "path": "src/settings/settings.h",
+    "bytes": 4712,
+    "sha256": "ae69fe42f1f43e4055add8437569e36648c22dac76814751ae98e66b7077fb3a",
+    "parse_has_error": false
+  },
+  {
+    "path": "src/sound/libsd.cpp",
+    "bytes": 14449,
+    "sha256": "b3a52dd0be2eff5c7c178cb4e8268e9743c1c7566b2f4599169369ae789f7d9c",
+    "parse_has_error": false
+  },
+  {
+    "path": "src/sound/libsd.h",
+    "bytes": 4374,
+    "sha256": "22bc9090c989585de940369c8dba37ddde53c20ee867ce693d790573903fcf91",
+    "parse_has_error": false
+  },
+  {
+    "path": "src/ui/settings_menu.cpp",
+    "bytes": 26905,
+    "sha256": "49197f24ce860212b91a13feb48dee8ed76c05fb6b2ca25755a0012aef7f3ba9",
+    "parse_has_error": false
+  },
+  {
+    "path": "src/ui/settings_menu.h",
+    "bytes": 1155,
+    "sha256": "9b2e2fbbab0ff3c74b44261ddbedbcb7d3782d213bd3ea59a747d85217b4f252",
+    "parse_has_error": false
+  },
+  {
+    "path": "src/ui/trainer_menu.cpp",
+    "bytes": 30385,
+    "sha256": "c8a1c5c7c08a0de6f16666b8d90cd225cfbf4a4363c32e1675dea2272e048eb1",
+    "parse_has_error": false
+  },
+  {
+    "path": "src/ui/trainer_menu.h",
+    "bytes": 1040,
+    "sha256": "577c75b6284c2ae744d3a7191f560c6c59250d28fd4a6dfc275b58b5148fd062",
+    "parse_has_error": false
+  },
+  {
+    "path": "src/util/sha1.h",
+    "bytes": 2441,
+    "sha256": "3508d5f354c7f793cb57a87e4ab62355039e934c3428a20354fc53c2e4456806",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xIOP/include/ps2x/iop/iop_host.h",
+    "bytes": 5097,
+    "sha256": "4100422f96456b73fb86a3dec0a22a6cfb7b192886b83b5509d3ffc15daa47aa",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xIOP/include/ps2x/iop/iop_spu2.h",
+    "bytes": 6214,
+    "sha256": "76c0085fd5fd383cad5326667d17998f7d93f5ae2f6a710bad88bb65049c762b",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xIOP/include/ps2x/iop/iop_subsystem.h",
+    "bytes": 1963,
+    "sha256": "74eb35a63fb7e3af98ba3d24088a5a47e7f6fe8a5f9a50b51d057a5fe08fc608",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xIOP/include/ps2x/iop/iop_types.h",
+    "bytes": 3426,
+    "sha256": "ba8d3b6d012b88cd6b809475dc1582aa87fd4f243926c604618f5193cb5f26c8",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xIOP/include/ps2x/iop/ps2_path.h",
+    "bytes": 802,
+    "sha256": "92a27fac689ea9c8678b65220725383051941cc9832267d8cc5d4ac3f32b6b6b",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xIOP/src/emulator/core/iop_cpu.cpp",
+    "bytes": 17187,
+    "sha256": "c9742864bee0bb3c29f1d18b5a25b73fa376bd3c066a8ca850c65db2bfa83dae",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xIOP/src/emulator/core/iop_cpu.h",
+    "bytes": 1193,
+    "sha256": "eaf4ea244cb1650eaf0bb82f6c5c3f2895ee88e6d09a38d91f74f9dceb93291c",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xIOP/src/emulator/core/iop_kernel.cpp",
+    "bytes": 26183,
+    "sha256": "2a6897e1989dd1c74f5be03cae4b00b61c2c87baa9694c4b034e302dd4e1248a",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xIOP/src/emulator/core/iop_kernel.h",
+    "bytes": 3459,
+    "sha256": "96f45400321ad6df2428dc19477de20e9154c9bba2dec9fdc423ed722de7eea8",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xIOP/src/emulator/core/iop_memory.cpp",
+    "bytes": 15738,
+    "sha256": "c4d4391b2fd2085c2c676fd52158658edb5ff2a7ffe5bf2079a9e921cdcf38c7",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xIOP/src/emulator/core/iop_memory.h",
+    "bytes": 4103,
+    "sha256": "635bbf64e527c4e74ec2be5f3260e9361d0adc64c703b9592db99974f6bb3db2",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xIOP/src/emulator/core/iop_spu2.cpp",
+    "bytes": 37942,
+    "sha256": "a60574b90031f850455402252a400dfbb7640ba93bbd69745d3fea3b706abe2b",
+    "parse_has_error": true
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xIOP/src/emulator/core/iop_spu2.h",
+    "bytes": 153,
+    "sha256": "973b6b800695101ebfc3d1d145f1b57841ba9808b31a62993565aaa73dad91e9",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xIOP/src/emulator/imports/iop_cdvd.cpp",
+    "bytes": 29461,
+    "sha256": "aba21460bb69501b387458a9162b40ec92d6ac20a0a6ec1ad92329c31f080c48",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xIOP/src/emulator/imports/iop_cdvd.h",
+    "bytes": 876,
+    "sha256": "fa3db79f996265461bae4456b70d68dab74209de45746dfeeffe1c3a1bdb2ffc",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xIOP/src/emulator/imports/iop_heaplib.cpp",
+    "bytes": 1374,
+    "sha256": "5b672220c479c6618104606b4a0c363c2df2951ebd5160bba8b17fe3fe1c5006",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xIOP/src/emulator/imports/iop_heaplib.h",
+    "bytes": 338,
+    "sha256": "4adede5f009c11b3a5e714df89486b4fc4b998844461574b145e79ad133c9eb5",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xIOP/src/emulator/imports/iop_imports.cpp",
+    "bytes": 6712,
+    "sha256": "e724e0bbfa64fa639aa6d72519edcf3c2ac94d0d1430d13160378869ad73924b",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xIOP/src/emulator/imports/iop_imports.h",
+    "bytes": 1506,
+    "sha256": "056894c369e6e8e8f8efcaae910c95414e7c7935658723fc7ff6af9b3fb6fd16",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xIOP/src/emulator/imports/iop_intrman.cpp",
+    "bytes": 3974,
+    "sha256": "1bc55f0c46708e83ca6385f91fa200cae6456f1313afff1c005c9c8346b6c25f",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xIOP/src/emulator/imports/iop_intrman.h",
+    "bytes": 749,
+    "sha256": "d371f31ccbdc0d7868394da54edba1092658f546f76d524cfb393c8562650984",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xIOP/src/emulator/imports/iop_ioman.cpp",
+    "bytes": 2681,
+    "sha256": "3f82fdc5c4103e3c6be602d4d29feef9f593ed0eb885786622fbb1386df4690a",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xIOP/src/emulator/imports/iop_ioman.h",
+    "bytes": 626,
+    "sha256": "d0ab9492561992e67b8fdcee7242e1fcc2871ba474b507889f64c05e5fa178a7",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xIOP/src/emulator/imports/iop_loadcore.cpp",
+    "bytes": 1827,
+    "sha256": "cb123a70c368e9a057b431691d77c4edeeb6543bae8588e4c9fc8087de21af80",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xIOP/src/emulator/imports/iop_loadcore.h",
+    "bytes": 426,
+    "sha256": "9113fc4b2c01494f3cdeeb8d9de30e07a8b9f8de1452dbbbd1c1d48b25f41346",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xIOP/src/emulator/imports/iop_stdio.cpp",
+    "bytes": 1910,
+    "sha256": "89bc5d2ef9196aadafe7c4728e2fdc6814a9169e25b282631a53976735c86f47",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xIOP/src/emulator/imports/iop_stdio.h",
+    "bytes": 409,
+    "sha256": "4bd26cab65e0d4b5a1757ed39e692ba7929ed5668ef7fc1b0c0c880d6d893db8",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xIOP/src/emulator/imports/iop_sysclib.cpp",
+    "bytes": 18725,
+    "sha256": "9ffcc5db538b21edcfaf6b3ffa34ae0a52e5e6ebdad6bbcc9de950d7993ed508",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xIOP/src/emulator/imports/iop_sysclib.h",
+    "bytes": 503,
+    "sha256": "f8aa4a2a1cb31caa66d905854237322a8c461d034f3f16272990652e212c5f74",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xIOP/src/emulator/imports/iop_sysmem.cpp",
+    "bytes": 2781,
+    "sha256": "59aabc2a9aab76b039c18b1fdf8ce4e33ef7b47ea1521781d9b94dcd28cfccd2",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xIOP/src/emulator/imports/iop_sysmem.h",
+    "bytes": 411,
+    "sha256": "77c4479bb5dc21f29a18355c67dffd6e647448a1bede4b4c153631e315bfbcbe",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xIOP/src/emulator/imports/iop_timrman.cpp",
+    "bytes": 16724,
+    "sha256": "51c943c13685ddb4a4357425c36af6d1e3f5ad5bfed9b1aced79eb47f11fae27",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xIOP/src/emulator/imports/iop_timrman.h",
+    "bytes": 2189,
+    "sha256": "7e3cd9dd52ffe3ec31a29bf1e1b2d7970789244fdbc7a02982b192d24a9e2315",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xIOP/src/emulator/imports/iop_vblank.cpp",
+    "bytes": 1300,
+    "sha256": "4e5b52109ac28f4facf5479616344fb0dbcc16434dc4496e3a15861ea2e05ab6",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xIOP/src/emulator/imports/iop_vblank.h",
+    "bytes": 359,
+    "sha256": "d5ab675655a3f79098cc3786239b43039562b08eae65136050ed448cf7a366da",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xIOP/src/emulator/iop_emulator.cpp",
+    "bytes": 35136,
+    "sha256": "4d6654552e6ee3ecfce3742626947d1f38440fd384fb230d397f9c82058fadea",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xIOP/src/emulator/iop_emulator.h",
+    "bytes": 1985,
+    "sha256": "28ab6f3c9fe8bf4718b92ee6cf396cee56a97f709863657ea56e27364788ed37",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xIOP/src/emulator/iop_emulator_const.h",
+    "bytes": 749,
+    "sha256": "d5528cbb02d0b1f16957174a8aacf6367d6148bb46d24e47f56d4f7155797ed4",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xIOP/src/emulator/services/iop_module_loader.cpp",
+    "bytes": 23314,
+    "sha256": "1506c9ed61743aee46c74483d23ed1717f3a1c4952d87b8fe9dc57695e17883e",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xIOP/src/emulator/services/iop_module_loader.h",
+    "bytes": 1187,
+    "sha256": "42f3d8f292bd7fd08b97151478c4bfb8472022735ff6885d24bc000c6997ad9d",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xIOP/src/emulator/services/iop_rpc.cpp",
+    "bytes": 12825,
+    "sha256": "62680a58200046de70babc31273535c51fa43a1979e0ffde5c307481dc83c969",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xIOP/src/emulator/services/iop_rpc.h",
+    "bytes": 2743,
+    "sha256": "bddd5dbe9cebfcb4214b0b5f09fff210e8399a5710105b3f2d4600c5bc38fae1",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xIOP/src/iop_module_manager.cpp",
+    "bytes": 5224,
+    "sha256": "7b5b403dda41d8b5822e6c40cd1c16bcd68d22fffea167134190a3fd14860bf3",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xIOP/src/iop_module_manager.h",
+    "bytes": 1424,
+    "sha256": "d9a9d6b9c1c632d73bdb08fb311ae178c39d27fd4a86606726176f2f5d5093d5",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xIOP/src/iop_service.h",
+    "bytes": 1247,
+    "sha256": "118641032e0d1d31e019576eda1df0f39a34225a878ef98d710dbc7cae2b0df2",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xIOP/src/iop_subsystem.cpp",
+    "bytes": 9171,
+    "sha256": "17869b7a3f4e27ffd20001554478103b0b961cf2ac57619346669a9d16768acd",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xIOP/src/module_factories.h",
+    "bytes": 275,
+    "sha256": "c70c2d77faec63098ad2cf3a05b3eaaf0e362d3a36f3c65f2ba221e0cb3a4aaf",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xIOP/src/modules/dbcman.cpp",
+    "bytes": 4977,
+    "sha256": "388b90b04408225105798266ea5f084d94f1a8e06f961cc1940f76402543593e",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xIOP/src/modules/libsd.cpp",
+    "bytes": 1810,
+    "sha256": "88ea5cdbe194b0eaf63a696563e882fea3109d5fd954bf97545184390fa9d95c",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xIOP/src/modules/mcserv.cpp",
+    "bytes": 15889,
+    "sha256": "2f9ea2deb074336f8757f5c479fc438405b6a86ad016a738be383dcbdcf801dc",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xIOP/src/ps2_path.cpp",
+    "bytes": 4028,
+    "sha256": "e865984e64d9b7e708852db06818438c594e8778670161cc193a5b336d6e975a",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xIOP/src/rpc_reply.h",
+    "bytes": 680,
+    "sha256": "73facde7f77f265b395242dbdc3a448193d7615aa29cc3ed1eb0aa65f5cfb890",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xIOP/tests/iop_compat_test_support.h",
+    "bytes": 8376,
+    "sha256": "552526e84003bbfe9315b7616699db3d16d498dd09757970970549e4b0c31554",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xIOP/tests/iop_compatibility_tests.cpp",
+    "bytes": 14736,
+    "sha256": "476888ccfb9391d4d5d89708ab9e02c51d76b4a4006f5798d50c8104420bbd16",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xIOP/tests/iop_emulator_tests.cpp",
+    "bytes": 53105,
+    "sha256": "a41aec531119daeefc777793de8a1fdae68c1eefe297c17574798b2c668935a6",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xIOP/tests/iop_import_tests.cpp",
+    "bytes": 13666,
+    "sha256": "2e47c802843dd9f0cbf2cc471a741021ab912a6d498fc802682366e09098dbc5",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xIOP/tests/iop_import_version_tests.cpp",
+    "bytes": 7643,
+    "sha256": "8efb429768accfddfd88ecfff5bffe76e7b3dbceb52e7f783e5a42396372d65d",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xIOP/tests/iop_spu2_tests.cpp",
+    "bytes": 10223,
+    "sha256": "abd252c5e1944d8213d5eba62629eb289a4eeec446b7bb8e2cb48e1f51273580",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRecomp/include/ps2recomp/Emitters/control_flow_emitter.h",
+    "bytes": 3286,
+    "sha256": "8e335abac441df3cfbeea65fa488ac53e32037e17b6cf73f2412cdc8169f44fb",
+    "parse_has_error": true
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRecomp/include/ps2recomp/Emitters/function_emitter.h",
+    "bytes": 532,
+    "sha256": "363124865e2fd1e331fe0f81912c86cfc912ad2d59891f2120c39375590a592e",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRecomp/include/ps2recomp/Emitters/function_table_emitter.h",
+    "bytes": 567,
+    "sha256": "8e7e2673fc46cc8ce6cc7a32bb983b97271396fdf7ee5d3a177399beac546d77",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRecomp/include/ps2recomp/Translators/cop0_translator.h",
+    "bytes": 428,
+    "sha256": "ce1c1b5cd356ddc8f736797ab6d3af2f1dfd1f26c8ad5eaae0c63ce860e6dcd2",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRecomp/include/ps2recomp/Translators/fpu_translator.h",
+    "bytes": 423,
+    "sha256": "238b4bb5d0ce1bbf334ef05edd01e15c6c08eb26f3fe605c32a2a2bb90884b69",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRecomp/include/ps2recomp/Translators/instruction_translator.h",
+    "bytes": 1245,
+    "sha256": "ac74eaa48a93291263a6fbac1af02edf41393a0eff5fc00474f735da6e42c5b1",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRecomp/include/ps2recomp/Translators/mmi_translator.h",
+    "bytes": 423,
+    "sha256": "8f6941dde1617ac6764876dda7e3d1c994d4bc572ad2bdf1799472f89cf56b26",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRecomp/include/ps2recomp/Translators/regimm_translator.h",
+    "bytes": 438,
+    "sha256": "73d1d58e20361ffd1c214edc1d2670fafaabe68bb95ed0a99a8c2ad1ad88f77f",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRecomp/include/ps2recomp/Translators/special_translator.h",
+    "bytes": 443,
+    "sha256": "6a0bc777529f122e5ef21f8c0dcf594ec7dfbabc5d39bf0e47e9f2164ede794c",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRecomp/include/ps2recomp/Translators/vu_translator.h",
+    "bytes": 418,
+    "sha256": "826b5831789f0dd84d2090019fe51772e4d5b85be3d829fb37f7645047f8a23f",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRecomp/include/ps2recomp/code_generator.h",
+    "bytes": 11365,
+    "sha256": "73392713b01642c3f758cbf33082e9c59e49f40efb05ccdb36d49c58efc22693",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRecomp/include/ps2recomp/codegen_helpers.h",
+    "bytes": 994,
+    "sha256": "11547e4298b60d64756441967e81eba855778fd9768b7062eda8aa015921c076",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRecomp/include/ps2recomp/config_manager.h",
+    "bytes": 613,
+    "sha256": "cdd19a574efa0f446e3a8ede556987a899a27ef474f696141f5583546f02f7ca",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRecomp/include/ps2recomp/control_flow_analyzer.h",
+    "bytes": 1474,
+    "sha256": "6af75a6e9ac1b1bb9f7248ebf9c00fc6176ff5ac4a47107d5e2cc3b1dc91a956",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRecomp/include/ps2recomp/control_flow_utils.h",
+    "bytes": 955,
+    "sha256": "a8394883085dc4189538589fbe12a4157b1af4db6e449876017d9c9bb1f59c75",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRecomp/include/ps2recomp/elf_parser.h",
+    "bytes": 2329,
+    "sha256": "79d2caa9b13b96c383f9b6190ab9c3ed979c3a584a124de57e412dc3c79e8674",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRecomp/include/ps2recomp/gif_dma_kick_analyzer.h",
+    "bytes": 2123,
+    "sha256": "7867440f70e01a52966699576de1de96a46947dd5b3d668ede61bfc4924b01dc",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRecomp/include/ps2recomp/instructions.h",
+    "bytes": 32302,
+    "sha256": "f2679f70ca7c4c5b4805539e28f11ab4a8ac321ba0ded0feeb8deb7da6afa621",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRecomp/include/ps2recomp/pc_observation.h",
+    "bytes": 1549,
+    "sha256": "f0186a5a0d80d88b587cf33447c15aecd5d740034e2a1d0dc2a9c08a24e51f26",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRecomp/include/ps2recomp/ps2_recompiler.h",
+    "bytes": 3960,
+    "sha256": "a89ac276a0f4853dc8212affa401d3083f7a8c32566b27a656a1f679c31afb65",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRecomp/include/ps2recomp/r5900_decoder.h",
+    "bytes": 2062,
+    "sha256": "209969f53e88a9043495d2ee90d91729a74d000c3e83e18d7b7fae9526efca82",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRecomp/include/ps2recomp/recompiler_reporter.h",
+    "bytes": 3543,
+    "sha256": "3d09a96a02ac643fd8b79a8300dd75f2705b725b50523b7f8837e88014e7d040",
+    "parse_has_error": true
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRecomp/include/ps2recomp/types.h",
+    "bytes": 6041,
+    "sha256": "2f42f723235ed09b6040fcb248e501903f53d679b174f782e5b94475932dcaad",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRecomp/src/lib/code_generator.cpp",
+    "bytes": 10234,
+    "sha256": "cb0b4fccceddc1d0131917b992ebf687a3ddf6dbd7d6afe4b69fbf8bf507118d",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRecomp/src/lib/config_manager.cpp",
+    "bytes": 15476,
+    "sha256": "5367d142de74ec8172598ee6430b3c3e8d4482aa2921832f5fe2d3aa14d528d5",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRecomp/src/lib/control_flow_analyzer.cpp",
+    "bytes": 18212,
+    "sha256": "6c42f1bb4580d9c69d951354d5ee779c041840a321ddb5026f8ed35591316538",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRecomp/src/lib/control_flow_emitter.cpp",
+    "bytes": 23331,
+    "sha256": "ebf4547d03c2ef155dc3c5010a81ab4021a90dc8bf38ea38e6280a6aa65ed1e3",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRecomp/src/lib/cop0_translator.cpp",
+    "bytes": 8604,
+    "sha256": "5b8b537d079a0a16c24476ce4618dbda803748e532039111e72dc165e5a525bc",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRecomp/src/lib/elf_parser.cpp",
+    "bytes": 93234,
+    "sha256": "0867461f05f870191219d6a43d41c9bf75b2a956c97cf6662b32a2e25fff24be",
+    "parse_has_error": true
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRecomp/src/lib/fpu_translator.cpp",
+    "bytes": 9093,
+    "sha256": "e50cf6e886ca0c17fbb1e896032a2731a7d138d9a6762abd59f3d1a9d7b540f2",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRecomp/src/lib/function_emitter.cpp",
+    "bytes": 14405,
+    "sha256": "7baa9c6f4fb63426b215fe983bdfe0d2027a903f37a783d65f02c66fc53bc67e",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRecomp/src/lib/function_table_emitter.cpp",
+    "bytes": 6075,
+    "sha256": "256e875ee2b0820a9473cf06111ead34dd4bb1615c9860ad84a41633b4965dbb",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRecomp/src/lib/gif_dma_kick_analyzer.cpp",
+    "bytes": 11822,
+    "sha256": "2ad003aa4b974d9edd1a18826df8965b268f8630881b6baceb09684c5769b93f",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRecomp/src/lib/instruction_translator.cpp",
+    "bytes": 19510,
+    "sha256": "5459de1238c2f3594dbe8815cbdc42a90492405f2425f5f068e8e626305a2709",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRecomp/src/lib/jump_table_switch_emitter.cpp",
+    "bytes": 1287,
+    "sha256": "2fd25a989891383df3388fc72e637cdd6bc1f7af33ec3db797834cc72e9e1f62",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRecomp/src/lib/mmi_translation_helpers.cpp",
+    "bytes": 31575,
+    "sha256": "1402bdb9f81923a8c91c7fa790399a2563ebc5f7cd0c899b7c29cb7c6bafc5ee",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRecomp/src/lib/mmi_translator.cpp",
+    "bytes": 9799,
+    "sha256": "24deb4f0bc0004c42674e0340d80e50e6e676b326f11d6a2df3dd0b60319249f",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRecomp/src/lib/ps2_recompiler.cpp",
+    "bytes": 93072,
+    "sha256": "ff374dfad77571030cf3e42f452ee5f0f0051025aec5c4e23634748307a9af14",
+    "parse_has_error": true
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRecomp/src/lib/r5900_decoder.cpp",
+    "bytes": 33181,
+    "sha256": "3c7c8bed57c59911de9b893cee658db56a8992dc31ae3cebda81a317a7ab6de2",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRecomp/src/lib/recompiler_reporter.cpp",
+    "bytes": 9202,
+    "sha256": "fd822255b38aba5a71b6fd272bc1b6b9d6c5917dab417384f016f2b4564b4dc6",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRecomp/src/lib/regimm_translator.cpp",
+    "bytes": 2614,
+    "sha256": "1984ad0848a81d80cd8e5a58e5ddba2793cccd76e069be5c54a79a3c5d53e865",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRecomp/src/lib/special_translator.cpp",
+    "bytes": 11744,
+    "sha256": "98adc0305effdd57ca34ea029070f117379bd7e78c9f8944a8e9276c8c7bd3cd",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRecomp/src/lib/vu_translation_helpers.cpp",
+    "bytes": 46897,
+    "sha256": "cc1888e7409243cd9dcd9d2245731ca02acef337debf06bf95cc5fda90864481",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRecomp/src/lib/vu_translator.cpp",
+    "bytes": 19091,
+    "sha256": "8b6a0240bbf63f294af745867c27bd928cf41007b2d22bf77cf21b9e4cb82783",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRecomp/src/runner/main.cpp",
+    "bytes": 1177,
+    "sha256": "65d0813aeb47b2181237904c976d3dc9e21877795947af6b2ebe6831bf4e9998",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/include/ThreadNaming.h",
+    "bytes": 1360,
+    "sha256": "e7cacf90424ef8c4758600b1be0a3712855313d5f3e9de691863db65cf5ac68c",
+    "parse_has_error": true
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/include/game_overrides.h",
+    "bytes": 2468,
+    "sha256": "3fdb49aa62685abf52652fefbe3e253f554801266e163f299aa2b88b36f7b150",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/include/games_database.h",
+    "bytes": 83,
+    "sha256": "28fc9ffff9eecf7595d15f1bbc50a47d429f1595fbcbf5f4a0996766da1241f4",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+    "bytes": 31116,
+    "sha256": "743017de1df76af02a0c32b62299cd7f5fc38331887338160cc4b43310729a70",
+    "parse_has_error": true
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/include/ps2_debug_panel.h",
+    "bytes": 567,
+    "sha256": "fbef31062d34ab84cde128bac87f4d30242bd238d563381544759e0b9d2cc3eb",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/include/ps2_guest_cc.h",
+    "bytes": 954,
+    "sha256": "1089783b0ba615e71d3e557576bed7800ed5b7373337f67963e14cbb521a9ed1",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/include/ps2_host_backend.h",
+    "bytes": 231,
+    "sha256": "4259cd5534e0ced134035307e48e5332331893c2099ad688766cb7e83a124f8c",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/include/ps2_log.h",
+    "bytes": 6830,
+    "sha256": "d36762ac3597f072bc7a16ea58414371cb161fba5e6e09956d5ce5f46274cd44",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/include/ps2_runtime.h",
+    "bytes": 32160,
+    "sha256": "8a7a6e151fdab2a53b47caf75ccd036e02748fcfb92bfb0f677622879b74fa15",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/include/ps2_runtime_calls.h",
+    "bytes": 2303,
+    "sha256": "a0361924fae024ec4ff900aeff78c60dd163d9b4178a8499a7becf6e3f8ddb26",
+    "parse_has_error": true
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/include/ps2_runtime_macros.h",
+    "bytes": 43002,
+    "sha256": "0ad6d90ffd79759f3737edce812d45b5677543cec5b2c83e37f394d323ca038f",
+    "parse_has_error": true
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/include/ps2_stubs.h",
+    "bytes": 376,
+    "sha256": "bf3b313d5d59ea96372ea2a804c7879dbe7dd6ac1d4c1e7021cd3645d6539b65",
+    "parse_has_error": true
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/include/ps2_syscalls.h",
+    "bytes": 1419,
+    "sha256": "266e6ac6ade1f42b120cd7d1fb06c48c9c090f4bd9dbd3cbfd30d35df61feb4e",
+    "parse_has_error": true
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/include/runtime/ee_fast_clock.h",
+    "bytes": 1987,
+    "sha256": "1308339124005ed55e156b60874e7eb569d10e5815672c325cb8d68c7fb0353f",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/include/runtime/ee_scheduler.h",
+    "bytes": 15675,
+    "sha256": "7936e237a05e8f91a709fb8ba6afe135d41e9fd1e033832682b8589e56fcfd89",
+    "parse_has_error": true
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/include/runtime/gs/gs_backend.h",
+    "bytes": 3506,
+    "sha256": "d835930ad785ddf17fac9756012de7515a70cc5b17f2e506dcdfd5ac94fd4f93",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/include/runtime/gs/gs_cpu_backend.h",
+    "bytes": 5736,
+    "sha256": "2cc1de939dd5f8a938e82df698bd9351b3a7dbc49ace34b35e33d60ccedaae48",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/include/runtime/gs/gs_draw_source.h",
+    "bytes": 1284,
+    "sha256": "3c42a7c8bdd680c2b41a7d432c68aa7c5e8b6ab617f459c54bed57999ae24e10",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/include/runtime/gs/gs_frontend.h",
+    "bytes": 9703,
+    "sha256": "78150b7bc44e1c6a029f7e3e80fba820e2114d7a7629342d722c92c96801339d",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/include/runtime/gs/gs_gpu.h",
+    "bytes": 8227,
+    "sha256": "7436690be7db4bb1fd3082ada937ff3c7780d7bf58e7046daf3133b336abbc4e",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/include/runtime/gs/gs_hw.h",
+    "bytes": 8301,
+    "sha256": "5ec4ee2b3979ab068de1546ec1948f076adc38d65ccd3ac305d985ee65c6589d",
+    "parse_has_error": true
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/include/runtime/gs/gs_texture_page_cache.h",
+    "bytes": 995,
+    "sha256": "51bef021981a9834cc7bcadc9a4527d3588b058c481212353499e7936d12a3e6",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/include/runtime/gs/gs_types.h",
+    "bytes": 5888,
+    "sha256": "ec42ebfb1d1f20f748ba46510fa6a857fb5cd917405dcf338711a465feb40937",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/include/runtime/gs/ps2_gif_arbiter.h",
+    "bytes": 997,
+    "sha256": "f97c7d8c17e244f49533b90cf8bed7f595d26a5372558a81a7a4b65f70710d53",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/include/runtime/gs/ps2_gs_common.h",
+    "bytes": 1116,
+    "sha256": "19ccd6c42dba59c829dd1fae3da21057bc92eb99df0b6e457542206af027aed2",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/include/runtime/gs/ps2_gs_memory.h",
+    "bytes": 15930,
+    "sha256": "caa2ee8142856416bccdd10f6b87aac36d3db75a20f1d3954801142f5454959d",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/include/runtime/gs/ps2_gs_psmct16.h",
+    "bytes": 2878,
+    "sha256": "a9a637692da997bc28a750cbf015f517805964bcf25a4ab547ac5929257d484c",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/include/runtime/gs/ps2_gs_psmct32.h",
+    "bytes": 1310,
+    "sha256": "9635a40e11bae56189b64d1d9660fb68d0375444d355db43246973adb95e71f7",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/include/runtime/gs/ps2_gs_psmt4.h",
+    "bytes": 3596,
+    "sha256": "fe284803477252f88aad6d40516a5ef5415d7aa42de382e4c6138433e83d6b89",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/include/runtime/gs/ps2_gs_psmt8.h",
+    "bytes": 2277,
+    "sha256": "b6e5a69a8d6d361f05653140454e17d0d348f312cec43fc08ec094f8ed74d282",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_address.h",
+    "bytes": 1986,
+    "sha256": "b88400ac392d7cf5b729d085143a8d57591191604f77a8576c81b52701ef700b",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_audio.h",
+    "bytes": 1437,
+    "sha256": "1c587b41853d76c5cb10c52571049412f4bfb1a89a7e426928f70fc6e1bc5e27",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_audio_out.h",
+    "bytes": 1461,
+    "sha256": "01f11151ef60d284e2e8d4f25e4dc99193d3b130bcf63ed4b4b76256de6f2fcf",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_chain_observer.h",
+    "bytes": 5961,
+    "sha256": "04c81c308909bb4076cc68045e794cfa5275c07a4b02993e59861dc31fc4f3f6",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_control.h",
+    "bytes": 3603,
+    "sha256": "4eb831d3efde44005b43222b52d79e94f6f1ed1cf9f6caa6746e7de48741273b",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_disc_image.h",
+    "bytes": 1216,
+    "sha256": "4d9808558c1c5f9a5b9a6f033f3a980327b0829fae1189dd2b3aefe8d978d2a8",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_hle_survey.h",
+    "bytes": 2916,
+    "sha256": "daa4dbe876748329c8fafbe5048d2ff0afad35be746b46154665c653d80fece5",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_host_profile.h",
+    "bytes": 11326,
+    "sha256": "1da1f52859b873885b91d0bbe07c225be64f5643cd2dc6ba188e30ac4cc42ed0",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_host_std.h",
+    "bytes": 5102,
+    "sha256": "08e888419ff713060b000808fb0836f8047fd78a61293a8d2c5c8d8ad4dc7aea",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_iop_native.h",
+    "bytes": 2959,
+    "sha256": "e5cb7b8ebe80f591197d2d391d261407b6190631a591731bda8bd996d4f04214",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_memory.h",
+    "bytes": 18218,
+    "sha256": "9ee8ce82233c823b075c9d49da29d9094e3b630f76eb08bc7adba4c388ea73fb",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_pad.h",
+    "bytes": 1198,
+    "sha256": "e844f8586db53e1f5b8ab234f25191e9376510a53550915e7a74c4c3a3338d04",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_perf.h",
+    "bytes": 5161,
+    "sha256": "5919019bbdbd2b8484ea75f1a4238cd8f415656175e2a778e6b549b78c1b3913",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_present.h",
+    "bytes": 2559,
+    "sha256": "720d309015479f52dda5f6c95fb631f932a3c3af63526752bcde3bcd865b0241",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_render_worker.h",
+    "bytes": 4487,
+    "sha256": "dfc13e79c44a52b2e0c4bf1462a3f70c8b6c98fb4744eb67bcfcd7a4b7a2d79e",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_rom_device.h",
+    "bytes": 1329,
+    "sha256": "ffa5b981e818b2735c6ae9c9288083b728884a26c9a21c196b32e3a3c8ab322c",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_vfs.h",
+    "bytes": 2192,
+    "sha256": "79566d77ca7322756fc21091cdf892981e601ab61c9ae1213b665ccc79b953a0",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_vu0_native.h",
+    "bytes": 1439,
+    "sha256": "84ad7b495046a5fb9b92ae3aee3b60c66c66a7223277cb20614b8f1799a11300",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_vu1.h",
+    "bytes": 16919,
+    "sha256": "e112ceb94c7a487c51a3b835b334a960f6e579435a40c56a5d92f0c56d88d6db",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_vu1_compiled.h",
+    "bytes": 25361,
+    "sha256": "7bb57fa95fe439c7d3aed65bbdf8584dab0ed13d9e7550c0de0136b4d2aa5e43",
+    "parse_has_error": true
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_vu1_tap.h",
+    "bytes": 708,
+    "sha256": "931d68f2d30a89bd7a82fdada1f2f0dd403250a66f58b11ebbbd40adea249e61",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_vu_code_log.h",
+    "bytes": 927,
+    "sha256": "5741cff59dc26fb0c215e566b38b98a5656e1ae14852efc9661b85162021b26f",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_write_watch.h",
+    "bytes": 2058,
+    "sha256": "c53d896bc2d565a1fefdf72929a44b49ab4ee1758fc60f0dba84e23439604ba6",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/include/types.h",
+    "bytes": 365,
+    "sha256": "082ad3c6a0ef1be5017fbdb8912e35cfd4ae2b66259d0bc357e06b3436dbd32e",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/src/lib/Kernel/EeScheduler.cpp",
+    "bytes": 70297,
+    "sha256": "7964769e2dc8649ace0277847abdae1d1e42dea7b61ec7adfb5063ee80d2fbfe",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/src/lib/Kernel/Stubs/Audio.cpp",
+    "bytes": 23835,
+    "sha256": "55319bf8804a70178b44a4428acace30e5041081a9fbf860605d904eb3b7de75",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/src/lib/Kernel/Stubs/Audio.h",
+    "bytes": 8693,
+    "sha256": "0cd88369d021b35d0de8b98faeb71708798c00e3a5bcb9fa1f5d152e2cef56fb",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/src/lib/Kernel/Stubs/CD.cpp",
+    "bytes": 36088,
+    "sha256": "dec5ced2dda5ff4eb2fd1e9581043cf37fa2f268b4b6f03a1f563defa6744c37",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/src/lib/Kernel/Stubs/CD.h",
+    "bytes": 4268,
+    "sha256": "89768bce0e010f8477ce97afef99021be1589cf0e579a55e1791efebf1b6d405",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/src/lib/Kernel/Stubs/Common.h",
+    "bytes": 576,
+    "sha256": "b28942c5bc9c94036bcc59fbed8ee70ecab6a4182406af193a9bb03214f42d95",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/src/lib/Kernel/Stubs/Compatibility.cpp",
+    "bytes": 5114,
+    "sha256": "af3073ab1b73873e55dceeb61afc4bf96567bd2ad69d77df52e767c7278e96bb",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/src/lib/Kernel/Stubs/Compatibility.h",
+    "bytes": 1128,
+    "sha256": "a9bdbe5ef8b6fac0fbb0266bedc2bae5ef7df901980086dc35b77df6c9851ec9",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/src/lib/Kernel/Stubs/DMA.cpp",
+    "bytes": 7352,
+    "sha256": "8238ec20e2d2b4c62a495b205d3201d8cad454e513f91b21fe517e62b0a89107",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/src/lib/Kernel/Stubs/DMA.h",
+    "bytes": 1716,
+    "sha256": "6d4e2b0f3654df47b08eb364ef838ed9e1f03f98c69ffb412157102c1198cdec",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/src/lib/Kernel/Stubs/Deci2.cpp",
+    "bytes": 1433,
+    "sha256": "0728d2d361d9310bb44e280d85be714047b1b7d247d85529124c31a26f0a004d",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/src/lib/Kernel/Stubs/Deci2.h",
+    "bytes": 792,
+    "sha256": "056f9cf04863ccd15fe23041e4b2e48b136b06a1bf78b7498f8d84d11d748901",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/src/lib/Kernel/Stubs/Dir.cpp",
+    "bytes": 3644,
+    "sha256": "af345bdcbdeba8f27aec7377080f24451ff6d030b091636607de079c2b129c5d",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/src/lib/Kernel/Stubs/FileIO.cpp",
+    "bytes": 4191,
+    "sha256": "a77e0e297f2f9ea03f011a1bec81c38d99b13aa83cfae863290205a4c7ca7554",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/src/lib/Kernel/Stubs/FileIO.h",
+    "bytes": 1641,
+    "sha256": "a2b808ab4e912e11b13ac65ff788b16226bde9f86a75b97925314e75ee8db88b",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/src/lib/Kernel/Stubs/Font.cpp",
+    "bytes": 29172,
+    "sha256": "1671bddd97f2d0b2627c99435f2e5cdba48126d7c2e23ab4cac3fabfda288c1c",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/src/lib/Kernel/Stubs/Font.h",
+    "bytes": 891,
+    "sha256": "a21f5b66664b021fc0775173585cfc54a03d3f206b4a4138f2cb00e3c1476f98",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/src/lib/Kernel/Stubs/GS.cpp",
+    "bytes": 59452,
+    "sha256": "54dc9d528b7e9f1c664ad09da4392f5e3dd391636cbfb1d9be641ed9d8f18c4a",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/src/lib/Kernel/Stubs/GS.h",
+    "bytes": 3956,
+    "sha256": "6727ea6b7a371c879c26ad90b91d081cd20c83bb47522a9fb9130896ecf4ca0f",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/src/lib/Kernel/Stubs/Helpers/Support.h",
+    "bytes": 62199,
+    "sha256": "b32cb0bf2ca5a84fcf17452bd3a7634e7f57453c507a9cd1c32117fe8dfe40bd",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/src/lib/Kernel/Stubs/IPU.cpp",
+    "bytes": 3481,
+    "sha256": "0afff5b6cc37a3aafc1cef9158043d575a65a743617d292be4cfaad9eda0f4e1",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/src/lib/Kernel/Stubs/IPU.h",
+    "bytes": 379,
+    "sha256": "bb9b197dcb232a40cedd481ec4e7ccdbcc0323b0b202a91160aa6f52478bafef",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/src/lib/Kernel/Stubs/LibC.cpp",
+    "bytes": 42742,
+    "sha256": "4835c83bde15c3dbc59655272e70a2e3133c295b52c23bd687cd0ffe9e2610f5",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/src/lib/Kernel/Stubs/LibC.h",
+    "bytes": 4156,
+    "sha256": "29aa4c9b91d3215c0e5d361c615a39389c9d62bea28528edeab0e65156c0173b",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/src/lib/Kernel/Stubs/MPEG.cpp",
+    "bytes": 99536,
+    "sha256": "add74172d55a5c00ec4a5bdd1a45e0768fb8b72588f2fce853b6081ca5c3bd9f",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/src/lib/Kernel/Stubs/MPEG.h",
+    "bytes": 2479,
+    "sha256": "d414d295f3bf9756ae5d91a7554fc1a36ac2a00ebab9b95d2dc95da45b135b25",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/src/lib/Kernel/Stubs/MemoryCard.cpp",
+    "bytes": 85984,
+    "sha256": "f92562792395a4a52d664f38aee14ec6c11539432bfdff3cb174782279d7c8a9",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/src/lib/Kernel/Stubs/MemoryCard.h",
+    "bytes": 6241,
+    "sha256": "dde639e8679ea9fed3d3dda117b83b6f4de692246e1d24bddfc9b15993034f32",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/src/lib/Kernel/Stubs/Pad.cpp",
+    "bytes": 32969,
+    "sha256": "7da405e3301a4b0e4fe97d35e41a9a8eddddab836489df4f6a1e99ad9018b9c7",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/src/lib/Kernel/Stubs/Pad.h",
+    "bytes": 3931,
+    "sha256": "1d4ac37ad782a2c622c1dbf19d1a3f90f95847928ad8fee632012d5b4f7959dc",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/src/lib/Kernel/Stubs/RPC.cpp",
+    "bytes": 531,
+    "sha256": "a54a60213a7f02b75fb983c0586521cfbc9f9915ca3510273d7f777648fddb9b",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/src/lib/Kernel/Stubs/RPC.h",
+    "bytes": 312,
+    "sha256": "4768baa9f2768a23fdb0ff43538506a26f9af0b2264038d03977af2e54e208dd",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/src/lib/Kernel/Stubs/SIF.cpp",
+    "bytes": 28700,
+    "sha256": "35244dec8738ab81bcd6eadd8212f39c940881750a140260c8004b017005f505",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/src/lib/Kernel/Stubs/SIF.h",
+    "bytes": 4291,
+    "sha256": "35a3b2d0916e20b0842f71eaea3bddc1fa36c700e0129059e572f0f46edb5a5a",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/src/lib/Kernel/Stubs/System.cpp",
+    "bytes": 1429,
+    "sha256": "52f3a6aef87cf42868584507a13a8bd745a556af004d6c449e67b49a66842452",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/src/lib/Kernel/Stubs/System.h",
+    "bytes": 758,
+    "sha256": "3c5354c0345d08672cccf68b1452ce0d7ee62237ae76c8509d399a30a2d2d388",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/src/lib/Kernel/Stubs/TTY.cpp",
+    "bytes": 1919,
+    "sha256": "5b80f30996df3550ea7bb5b576bc24d0b2860396c3bcc5f29e3fb6edc06e079f",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/src/lib/Kernel/Stubs/TTY.h",
+    "bytes": 532,
+    "sha256": "f644990d990800d7dc4707b8a9c0369757ce00760439f953d204909801cb6902",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/src/lib/Kernel/Stubs/Unimplemented.cpp",
+    "bytes": 1819,
+    "sha256": "1fffb5a0ca62ee136f28cf1229c36f9709901fdbb97a5fc02229fec9dbcd810f",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/src/lib/Kernel/Stubs/Unimplemented.h",
+    "bytes": 228,
+    "sha256": "2ef04e6fb8c08b9c27ca32d6a0002412f759b451a47bd67f558ee28c3d6f45af",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/src/lib/Kernel/Stubs/VU.cpp",
+    "bytes": 39446,
+    "sha256": "5f2499c5faacefe9f5183d8caed9e5b1847138084bfaaf990049f74e70d7f983",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/src/lib/Kernel/Stubs/VU.h",
+    "bytes": 3682,
+    "sha256": "8f6e3d87f2a444db31b2d2750e218eb2c6d272d711c68dabe034d523f189bbec",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/src/lib/Kernel/Syscalls/Common.h",
+    "bytes": 2157,
+    "sha256": "c56a42b760688e4dfb1fc5b596a905c7642fa8816d1290ce73fbf45dee87d4f3",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/src/lib/Kernel/Syscalls/Deci2.cpp",
+    "bytes": 7292,
+    "sha256": "5a10acc1937d03a5a1fbed1f76599df84939aa8de22e7a913cc6d06d7127cdac",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/src/lib/Kernel/Syscalls/Dispatcher.cpp",
+    "bytes": 11400,
+    "sha256": "0c610a9dbc17751bd8d813dbd4c8eb101bd0de14560a362286e0c59a96c98fd8",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/src/lib/Kernel/Syscalls/Dispatcher.h",
+    "bytes": 181,
+    "sha256": "feff387586f7e84d357db810dd4e44e2579b203c1109a45b6ffe08894cb6b3d7",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/src/lib/Kernel/Syscalls/FileIO.cpp",
+    "bytes": 14823,
+    "sha256": "c1a78dfb5ae3896e926a0240f4b1a409bc1d6cc84dba008a66dbd52d0e323231",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/src/lib/Kernel/Syscalls/FileIO.h",
+    "bytes": 819,
+    "sha256": "bc879bb675d85c2e389f5d29eb561e35eb7b73ea1949437e8f26bb84e1d4adf6",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/src/lib/Kernel/Syscalls/Helpers/Loader.h",
+    "bytes": 14541,
+    "sha256": "ed08ac1902c525537e5c745ce2826990f16c9edfed4e7ce648930d9becd0c7b3",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/src/lib/Kernel/Syscalls/Helpers/Path.h",
+    "bytes": 2828,
+    "sha256": "7e1beec043d0cd00d3d5d901eef655c5d1d855cc3235080233901ed32da5a41e",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/src/lib/Kernel/Syscalls/Helpers/Runtime.h",
+    "bytes": 12404,
+    "sha256": "f40f6b8748ccf8817aab3cf23cc8710a4c25bca69945e789b122e642e3218824",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/src/lib/Kernel/Syscalls/Helpers/State.h",
+    "bytes": 10083,
+    "sha256": "88a8a4b4991b87fe052a4d3555facbb355207dd8572eaa1ff978c1fc712bf6c4",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/src/lib/Kernel/Syscalls/Interrupt.cpp",
+    "bytes": 6208,
+    "sha256": "8a6ab5f46b707a9544ecd13e448ef5af7428200c941b0b69709b6919e8a4cece",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/src/lib/Kernel/Syscalls/Interrupt.h",
+    "bytes": 1847,
+    "sha256": "ab677894c0536a3a510bfb6266f2cede22776fdb0a7f8277253a1b159c8b1836",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/src/lib/Kernel/Syscalls/RPC.cpp",
+    "bytes": 37852,
+    "sha256": "b3835940e601af431480645add260bba36eb7068a87bc17b68af5fb243d1f12d",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/src/lib/Kernel/Syscalls/RPC.h",
+    "bytes": 1108,
+    "sha256": "f5759b2c8c27ea06067a3db202ccae6bd125d4e05321550b2565b7be1b29358d",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/src/lib/Kernel/Syscalls/Sync.cpp",
+    "bytes": 12405,
+    "sha256": "afd87fb611ed9e5fac1fa6c70e0912fbed63925c7eb5f2dbedcd01352e154eaf",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/src/lib/Kernel/Syscalls/Sync.h",
+    "bytes": 2291,
+    "sha256": "8293cc1ff346ccd69d562d4f35aeaaef5f89387551b6e31492ed4bb29a32c9c4",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/src/lib/Kernel/Syscalls/System.cpp",
+    "bytes": 34502,
+    "sha256": "9d30538bd6d34577bd55946b537ec0d57524c20e660e8f1e7edb1f2eca1f3034",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/src/lib/Kernel/Syscalls/System.h",
+    "bytes": 2655,
+    "sha256": "aa6d011dc16307304fad9b67f17a8172ef9defecf587ffbe93cfa6cfd4c66c4b",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/src/lib/Kernel/Syscalls/Thread.cpp",
+    "bytes": 14723,
+    "sha256": "e73d7f0a46d07fc0f70d5b49b6453ed64271b3ad19ffd62a6a872095491bcdf4",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/src/lib/Kernel/Syscalls/Thread.h",
+    "bytes": 2426,
+    "sha256": "f106e47a06e59c4de4d319f47bece17395866ac9a5065cce2af057a2879d9a66",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/src/lib/game_overrides.cpp",
+    "bytes": 5532,
+    "sha256": "6c8a5a259b53293ee27a72fe89fcee8be601fb5df049361b6fb3a443264c6863",
+    "parse_has_error": true
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/src/lib/games_database.cpp",
+    "bytes": 46987,
+    "sha256": "a9ef9b647d0f4164fe966d6c1ad77e87249a934ad4e3187b445b5e1398e51a01",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/src/lib/gs/gs_cpu_backend.cpp",
+    "bytes": 84536,
+    "sha256": "511a7c5b7149323d876294e969cf5497ca380004e4bad63ce16657f12c67e3e4",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/src/lib/gs/gs_frontend.cpp",
+    "bytes": 82057,
+    "sha256": "910065fb372f3bf7dbc87b620bc599272d13758b09526bcaeba97bf3b83e6f39",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/src/lib/gs/gs_gpu.cpp",
+    "bytes": 4653,
+    "sha256": "279a5235a2b36bd089ef34b1f2cb7e8aa2656929b3dfe850331590cb9d7a9416",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/src/lib/gs/gs_gpu_none.cpp",
+    "bytes": 325,
+    "sha256": "9951b1f675c70762b8cd30db0320e84e59765b596fdbaf34bcc6100edcc426a9",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/src/lib/gs/gs_gpu_parallel.cpp",
+    "bytes": 63630,
+    "sha256": "125fa87a3791cebda0b7f6d24987a1077928f8b5be633216856f6a15fc23bb81",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/src/lib/gs/gs_hw.cpp",
+    "bytes": 278047,
+    "sha256": "01690d7218cd8089321c432faa567f1a560e19eb39d4eab2ccf70d44cb6637dd",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/src/lib/gs/gs_stats.h",
+    "bytes": 3366,
+    "sha256": "a918eb236f9a58ad6523f1117d00ec47424c4e3c9c9dd52a22c5134f7254e3b1",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/src/lib/gs/gs_vulkan_present.h",
+    "bytes": 2399,
+    "sha256": "6aa826189dc2dda0102cc9702da29a4b680632d842c03bc39bf01477f44b8110",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/src/lib/gs/gs_vulkan_shared.h",
+    "bytes": 992,
+    "sha256": "1790eabf7f87a01a1c5a78700f806c14e58a33daeb1d7d19f548f81b6ee08b96",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/src/lib/gs/ps2_gif_arbiter.cpp",
+    "bytes": 2894,
+    "sha256": "bb1899d565bdaee953a9d152a719d625bd98678149ae3062a52a2a8e2a117383",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/src/lib/gs/ps2_gs_memory.cpp",
+    "bytes": 33071,
+    "sha256": "c2eb49c7495221855d0dc432b09a0bdfc9bf9221dc10ce3b6c7c26d1b94a05ad",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_android_runtime.cpp",
+    "bytes": 99,
+    "sha256": "8783cb5f690e03679dbcbf9004335fc8ab05f0f8524e8744c4b635a1a9325a7a",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_audio.cpp",
+    "bytes": 5901,
+    "sha256": "b5d7a1ae85955596eab3b35f6df706f6248024a725188529fae0ad4164f5f2d2",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_audio_out.cpp",
+    "bytes": 11519,
+    "sha256": "b3675c9e9e04983d1d2028a7e051adc3cf375496e941280ab0472a78ff0160ca",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_audio_vag.cpp",
+    "bytes": 4063,
+    "sha256": "e541656ff7aa7e3f208e278d18fe7cc1ebe90b0192a11b0407817a6e044a1d44",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_control.cpp",
+    "bytes": 15105,
+    "sha256": "aab68dfbac87ab612237a818a751e8f06f6c6d2b152e06b2f854e7f672fcb216",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_debug_panel.cpp",
+    "bytes": 93060,
+    "sha256": "594ec47d441f9c0bc2556f60b1586f88b7aaa30b5905346a80875f927f4cfc11",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_disc_image.cpp",
+    "bytes": 407,
+    "sha256": "7e72a85759f8c7c4f6f5e9a2a199132bab065a94e0e3bc284eede2eb93c8a728",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_hle_survey.cpp",
+    "bytes": 10697,
+    "sha256": "9983c919feec2b2362215bba61b59b6c8c5c2a9bc0a59a7f2c9ec7ea34ce21c2",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_host_std.cpp",
+    "bytes": 1813,
+    "sha256": "ed94c0d9c59ebce85ec750dd385ddd5425beaaf4d3c2727b774f232a75ab07f9",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_iop_host.cpp",
+    "bytes": 18190,
+    "sha256": "39cf05836cd8d69d39e026e0343c3faa55390b5f40f78bbb79a144652d3bf3dd",
+    "parse_has_error": true
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_iop_host.h",
+    "bytes": 4476,
+    "sha256": "3572e4154c9a3d7b2e516baba3007059c9d1d95dc614a05711d820b80af25a22",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_iop_native.cpp",
+    "bytes": 5659,
+    "sha256": "9117648e37172a2c93abb161c9c3e145d11307bf16d4faa0c4a59fb293c938e3",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_iop_transport.h",
+    "bytes": 1286,
+    "sha256": "8c5e29466927af2c8f64406a6dd49c5766a51e4cf8ad248b406abb57aa5d93d7",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_memory.cpp",
+    "bytes": 122037,
+    "sha256": "7e0dd80135a4376ee23bddf8269c69a2abf91a7c7311cb7124ce2944bf9823f7",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_pad.cpp",
+    "bytes": 6818,
+    "sha256": "becde58efa38d67c3139bfc5512d488d7eee4a47cc5510ff362ac8c4e86fd7bf",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_perf.cpp",
+    "bytes": 34181,
+    "sha256": "d5372510b4de2fe203fa71619b3f2f58174dc75c04075b155d8467bef8725f03",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_render_worker.cpp",
+    "bytes": 21447,
+    "sha256": "47336d71c5f4c16ea46d8adaa513268ad7b1a800c958d1358a0f87063537c3d0",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_rom_device.cpp",
+    "bytes": 4893,
+    "sha256": "588bee3fb1201c071d1e8a7e51639321255080f5ac742cda496d4b8d9ac71b4d",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_runtime.cpp",
+    "bytes": 129899,
+    "sha256": "b1b7dfe3a4f0f23cb8a5bb0f7799549abb6ab070d75b2e9bc4f5e0e3d078581f",
+    "parse_has_error": true
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_vfs.cpp",
+    "bytes": 12923,
+    "sha256": "cf3c758416f6bea5d1a4da240d3b6beef48d74d4d4bc08f38493aa6ac1ee7ca0",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_vif1_interpreter.cpp",
+    "bytes": 45037,
+    "sha256": "2638bcbe1fff8b5bd2b5f116b08031241356905a98b87368e0970224e1e06d73",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_vita_runtime.cpp",
+    "bytes": 1373,
+    "sha256": "16eed98859875d6f65eb0f39353b5f6fc9faeafd3984fac2af1269ffdc8b555b",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_write_watch.cpp",
+    "bytes": 11748,
+    "sha256": "e556cdcd6203543d2910a309d09a4dacfe4be87ec20eb1c3d0df3b3269ae2b1b",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/src/lib/vu/ps2_vu1_core.cpp",
+    "bytes": 108450,
+    "sha256": "21802a21e3bf2c3f98f7a773d085ec1247564dcac13a77168cb9411fa7aa2162",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/src/lib/vu/ps2_vu1_detail.h",
+    "bytes": 1300,
+    "sha256": "f158a7c0fa1a557c7304c9b9742fef74b86502ff9560d07339f764e052c0441e",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/src/lib/vu/ps2_vu1_lower.cpp",
+    "bytes": 28872,
+    "sha256": "60082d4b4f290076220214afb077550821bb8ac9f36b157605ac00b155400f26",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/src/lib/vu/ps2_vu1_upper.cpp",
+    "bytes": 23661,
+    "sha256": "57744da41103d256614ad30b9c98a84fd3541ee6d3dae1ca838be7dcb55da846",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/src/lib/vu/ps2_vu_code_log.cpp",
+    "bytes": 2305,
+    "sha256": "82bd6b05414d01cf6743813d90fe6c0600e1beb8df6bc365197ee1f94a60c0cb",
+    "parse_has_error": false
+  },
+  {
+    "path": "third_party/PS2Recomp/ps2xRuntime/src/main.cpp",
+    "bytes": 8001,
+    "sha256": "8c6ea571a988b3ff631be11cec06e08495b544667c14c6b675e6b26d3708a976",
+    "parse_has_error": true
+  }
+]
