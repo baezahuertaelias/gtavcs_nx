@@ -41,7 +41,7 @@ Do not check a task until observations satisfy it.
 | M01-07 | Actual Switch, application mode, GL >=3.3 core, visible blue clear | Passed: V2/Atmosphere, applet=0, GL 4.3 core/NV120; user confirmed blue |
 | M01-08 | Paired Joy-Cons and Pro: initial open, buttons/sticks, disconnect neutral, hotplug/reconnect, Plus orderly exit | Joy-Con test working per user confirmation; Pro unavailable; SDL connection-status follow-up deferred |
 | M01-09 | audren SDL device, exact S16 stereo 48 kHz, bounded queue <=12288 bytes, clean device/stream close | Passed after stdio fix: full Plus exit, user confirmation and no new crash report |
-| M01-10 | Repeated dock/undock, 1280x720 and 1920x1080 drawable/viewport, clear presentation, one context | Pending hardware |
+| M01-10 | Record approved docking deferral; original hardware acceptance retained in M06-13 | Deferred by user until real game/main menu loads; no docking pass claimed |
 | M01-11 | HOME/focus, sleep/resume, no stale queued audio/input, no busy loop or invalid resources; startup failure cleanup | Passed: confirmed 2.77s/13.23s suspensions clear/refill queue; frames resume, Plus exits, no new crash report |
 | M01-12 | Required hardware logs retained and every observed failure closed | Pending hardware |
 

@@ -4,9 +4,12 @@ M01 is in progress on `milestone/m01-platform-smoke`, based on reviewed main
 `22f418a5d495c5c48b8f0d8890bde1eb21607667`. No reviewer has been created, and
 hardware tasks remain open. This target links `src/core_stub.c`, not game code.
 
-Current checkpoint: **9/12 tasks complete**. Remaining: M01-08 (full paired
-wireless/Pro controller hotplug and disconnect-neutral matrix), M01-10 (repeated
-docking/1080p) and M01-12 (complete hardware evidence and closure of all failures).
+Current checkpoint: **9 verified tasks plus 1 approved deferral record** (10/12
+ledger entries closed). Remaining: M01-08 (full paired wireless/Pro controller
+hotplug and disconnect-neutral matrix) and M01-12 (complete required M01 hardware
+evidence and closure of all failures). Docking is untested and retained as M06-13,
+triggered by the first real game boot that loads the main menu; see
+[the explicit scope decision](SCOPE_DECISIONS.md).
 The user has no Pro Controller or dock/TV available now. No waiver, independent
 review, merge or next-milestone advancement has occurred. Earlier provisional
 claims and failures below are retained as investigation history; the task ledger
@@ -313,5 +316,7 @@ The user said this was the only additional test available now and requested no
 more testing, with any remaining problems to be resolved later. No further
 hardware tests or controller changes were performed. M01-08 remains unchecked
 because its required Pro Controller matrix is unavailable and complete formal
-connection-state proof is outstanding. M01-10 and M01-12 remain unchecked too.
+connection-state proof is outstanding. At that earlier checkpoint M01-10 and
+M01-12 remained unchecked too; the later user-approved docking deferral is
+recorded in SCOPE_DECISIONS.md and the current checkpoint above.
 No independent reviewer was created and the draft PR remains unmerged.

@@ -92,7 +92,9 @@ CI run and repository settings report. No target build required for this milesto
 Branch: `milestone/m01-platform-smoke` <!-- M01 -->
 
 Entry: reviewed M00 main. Exit: clean-machine reproducible platform NRO and actual
-Switch clear-screen/input/audio-device/docking/shutdown proof; no game claim.
+Switch clear-screen/input/audio-device/shutdown proof; no game claim. By explicit
+user decision on 2026-11-08, docking acceptance is deferred to the first real
+game boot that loads the main menu (M06-13); no M01 docking pass is claimed.
 
 - [x] M01-01 Restore usable WSL Ubuntu/Docker Linux engine and record host versions/resources without changing unrelated projects.
 - [x] M01-02 Pin devkitA64 image digest and package versions, official Switch CMake, libnx, SDL2, Mesa and cross pkg-config; save lock manifest.
@@ -103,13 +105,14 @@ Switch clear-screen/input/audio-device/docking/shutdown proof; no game claim.
 - [x] M01-07 Boot on an actual Switch with full application memory; capture firmware/libnx/driver versions and GL 3.3 context/clear screen.
 - [ ] M01-08 Verify paired Joy-Cons and Pro controller initial open, hotplug, disconnect-neutral, reconnect and orderly smoke exit.
 - [x] M01-09 Verify SDL2 opens audren-backed audio, streams bounded silence and closes it cleanly; record buffer/queue behavior.
-- [ ] M01-10 Dock/undock repeatedly; verify drawable pixels, viewport, 720p/1080p output and correct ownership of one context/surface.
+- [x] M01-10 Record the user-approved deferral of docking acceptance to first real game boot/main-menu loading, preserve the unchecked hardware requirement as M06-13 and revise M01 exit/evidence without claiming a docking pass.
 - [x] M01-11 Exercise HOME/focus/suspend/resume and failure cleanup; eliminate invalid stream/context use and runaway loops.
 - [ ] M01-12 Add source-only cross-build CI/artifact retention with game data excluded; retain reproducible hardware logs and close every M01 failure.
 
 Proof: cross-build logs, package lock, ELF/NRO inspection, console logs/video,
-controller/device matrix, docking/suspend observations. Emulator-only results are
-supplementary and cannot close hardware tasks.
+controller/device matrix and suspend observations. Docking proof is deferred to
+M06-13 by the recorded user scope decision. Emulator-only results are
+supplementary and cannot close required hardware tasks.
 
 ## M02 — Host generator and ARM64 EE/VU foundation
 
@@ -226,6 +229,7 @@ interior and streaming scenes, with faithful HUD and menu/camera behavior.
 - [ ] M06-10 Exercise mission start/progress, pause/map/shop/interior entry and return to gameplay; distinguish menu boot from real game simulation.
 - [ ] M06-11 Capture provisional timing/memory breakdown at fixed stock clocks for later optimization; no 25 FPS claim yet.
 - [ ] M06-12 Verify exit/load/restart with active streaming and eliminate world resource leaks or hangs.
+- [ ] M06-13 At the first real game boot that loads the main menu, perform the user-deferred M01 docking check: dock/undock repeatedly and verify drawable pixels, viewport, 1280x720 handheld/1920x1080 docked output and ownership of one SDL GL context/surface. Record actual hardware observations before subsequent gameplay acceptance; this is not passed by the scaffold or a null-renderer boot.
 
 ## M07 — Complete controllers and controller-only interaction
 

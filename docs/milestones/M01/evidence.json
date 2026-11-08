@@ -55,8 +55,8 @@
   ],
   "M01-10": [
     {
-      "path": "docs/milestones/M01/VERIFICATION.md",
-      "result": "Incomplete: see required hardware observations and open failures"
+      "path": "docs/milestones/M01/SCOPE_DECISIONS.md",
+      "result": "User explicitly deferred docking testing until the real game loads its main menu; scheduling decision recorded, M01 exit revised, original unchecked acceptance retained as M06-13; no hardware pass claimed"
     }
   ],
   "M01-11": [
