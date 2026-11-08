@@ -4,6 +4,14 @@ M01 is in progress on `milestone/m01-platform-smoke`, based on reviewed main
 `22f418a5d495c5c48b8f0d8890bde1eb21607667`. No reviewer has been created, and
 hardware tasks remain open. This target links `src/core_stub.c`, not game code.
 
+Current checkpoint: **9/12 tasks complete**. Remaining: M01-08 (full paired
+wireless/Pro controller hotplug and disconnect-neutral matrix), M01-10 (repeated
+docking/1080p) and M01-12 (complete hardware evidence and closure of all failures).
+The user has no Pro Controller or dock/TV available now. No waiver, independent
+review, merge or next-milestone advancement has occurred. Earlier provisional
+claims and failures below are retained as investigation history; the task ledger
+and this checkpoint describe the current acceptance state.
+
 ## Host and toolchain (M01-01 through M01-03)
 
 Observed `docker version`, `docker info`, `wsl --list --verbose` and a disposable
@@ -248,9 +256,38 @@ and [foundation CI](https://github.com/baezahuertaelias/gtavcs_nx/actions/runs/4
 passed; downloaded ELF/map/NACP/NRO hashes exactly matched local `/work` output.
 The PR milestone-review job correctly failed because tasks/review are incomplete.
 
-Still required: visible error confirmation, paired Joy-Con and Pro
-mapping/hotplug/disconnect-neutral/reconnect, repeated dock/undock with 1080p,
-complete HOME/focus/sleep/resume logs and failure cleanup. Record exact
-CFW/Sphaira versions. See HARDWARE.md for the matrix.
+Still required at the current checkpoint: paired wireless Joy-Con and Pro
+mapping/hotplug/disconnect-neutral/reconnect and repeated dock/undock with 1080p.
+Exact CFW/Sphaira versions are not supplied; preserve this environment limit.
+See HARDWARE.md for the matrix.
 M01-12 remains open despite passing cross-build CI because complete hardware logs
 and closure of every failure are also required. No game/audio-playback claim.
+
+## Suspension-clock regression and current candidate
+
+Source candidate `59260b7c594fac7ab0dd7756b3a714855120cfac`, `/work` NRO
+SHA-256 `9016948231523724acb129c068be11bdcf55b8d0d12b7e1fc9014aba616e8c69`:
+the hardware log enables suspension_clock=1, renders 302 frames, then records
+confirmed suspension_ns=2769383802 followed by resume=1 and audio pause/clear.
+After refilling the bounded queue and reaching frame 438, it records a second
+confirmed suspension_ns=13229718177, then another pause/clear/refill, frame 536,
+Start/Plus and orderly cleanup. Queue high water remains 12288 bytes; empty
+observations advance from 2 to 3 to 4 because each reset refills from empty.
+This closes the remaining observed lifecycle-reset gap in M01-11.
+
+Retrieved `hardware/suspension-clock.log` SHA-256:
+`8ecd247ec686c199b1e9be0b1124171af04f5b5baf4eb342dc7fd5b3a155deb1`.
+The result metadata `hardware/suspension-clock-result.json` records no new
+Atmosphere crash-report files against the original baseline. FTP streamed back
+the SD NRO into SHA-256; its hash exactly matches the local NRO above, tying
+the deployed payload to the candidate. Existing user confirmations establish
+blue-screen recovery and Plus behavior; the new log specifically proves the
+previously missing per-suspension reset.
+
+Fresh clone/submodule, incremental no-op, intentional failed-build rejection and
+identical clean rebuild passed for 59260b7. Temporary-path NRO SHA-256:
+`cf65f3927aa8553bb614c52ebc535cc1130c5e22a036ee2177100b3578de1ece`.
+Foundation validation passed locally. [Cross-build CI](https://github.com/baezahuertaelias/gtavcs_nx/actions/runs/42516513906)
+and [foundation CI](https://github.com/baezahuertaelias/gtavcs_nx/actions/runs/42516513904)
+passed for this candidate. The controller matrix and docking remain open; silent
+platform-loop progress is not game performance or audible-game validation.

@@ -42,7 +42,7 @@ Do not check a task until observations satisfy it.
 | M01-08 | Paired Joy-Cons and Pro: initial open, buttons/sticks, disconnect neutral, hotplug/reconnect, Plus orderly exit | Pending hardware |
 | M01-09 | audren SDL device, exact S16 stereo 48 kHz, bounded queue <=12288 bytes, clean device/stream close | Passed after stdio fix: full Plus exit, user confirmation and no new crash report |
 | M01-10 | Repeated dock/undock, 1280x720 and 1920x1080 drawable/viewport, clear presentation, one context | Pending hardware |
-| M01-11 | HOME/focus, sleep/resume, no stale queued audio/input, no busy loop or invalid resources; startup failure cleanup | Pending hardware |
+| M01-11 | HOME/focus, sleep/resume, no stale queued audio/input, no busy loop or invalid resources; startup failure cleanup | Passed: confirmed 2.77s/13.23s suspensions clear/refill queue; frames resume, Plus exits, no new crash report |
 | M01-12 | Required hardware logs retained and every observed failure closed | Pending hardware |
 
 Audio `empty_observations` is a count of empty queues observed by the main

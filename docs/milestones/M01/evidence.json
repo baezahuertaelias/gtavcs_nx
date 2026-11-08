@@ -62,7 +62,7 @@
   "M01-11": [
     {
       "path": "docs/milestones/M01/VERIFICATION.md",
-      "result": "Incomplete: see required hardware observations and open failures"
+      "result": "Confirmed 2.77s and 13.23s process suspensions trigger main-thread queue clearing/refill and clock reset; resume frame progress, Plus process exit and error cleanup pass without new crash reports"
     }
   ],
   "M01-12": [
