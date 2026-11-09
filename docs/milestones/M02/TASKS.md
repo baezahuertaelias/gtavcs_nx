@@ -52,7 +52,7 @@ belong to the open tasks below.
 - [x] Complete the full generated EE+VU archive build with all functions retained, O2 and strict numeric flags.
 - [x] Verify the separated registration/VU compilation units finish and retain the cancelled original-unit evidence accurately.
 - [x] Inspect every archive member's target architecture and all compiler/include paths.
-- [ ] Audit remaining generated compiler extensions, conversions, aliasing and unsupported constructs.
+- [x] Audit remaining generated compiler extensions, conversions, aliasing and unsupported constructs.
 - [ ] Decide and document the GCC-compatible configuration from full build/numeric/ABI proof; do not merely remove upstream's Clang gate.
 
 ## M02-05 — SIMD inventory and guest layout
@@ -77,8 +77,8 @@ The index is an audit worklist, not a numeric-conformance result.
 - [x] Validate variable shifts, even-lane packing and QFSRV's actual generator-side SA mask.
 - [x] Validate the first 173,066 integer/memory vector comparisons on the actual Switch.
 - [x] Verify the SD payload hash and retain the target PASS log with no new crash report.
-- [ ] Extend/check coverage for all core-relevant shuffle/interleave/extract/insert and HI/LO operations in the source inventory.
-- [ ] Cover remaining immediate-shift boundaries, lane masks, conversions and guest-specific packed-operation edge cases.
+- [x] Extend/check coverage for all core-relevant shuffle/interleave/extract/insert and HI/LO operations in the source inventory.
+- [x] Cover remaining immediate-shift boundaries, lane masks, conversions and guest-specific packed-operation edge cases.
 - [ ] Compare the completed native and ARM suites; retain and fix every unexplained difference at its owning layer.
 
 The current suite is meaningful partial coverage; it does not establish all
@@ -87,20 +87,20 @@ packed guest instructions or all SIMD sites by itself.
 ## M02-07 — FPU/VU numerics and compiled programs
 
 - [x] Reuse the existing public PS2 hardware-vector corpus and distinguish exact rows from the upstream's documented known differences.
-- [ ] Check signed zero, exponent-255 PS2 values, exceptional conversions, underflow/denormals, saturation and division/square root.
+- [x] Check signed zero, exponent-255 PS2 values, exceptional conversions, underflow/denormals, saturation and division/square root.
 - [ ] Compare scalar and vector helpers on native x86 and ARM64, including NaN/min/max compatibility where the host SIMD boundary requires it.
 - [ ] Verify FE_TOWARDZERO/FPCR behavior and save/restore of the rounding environment on ARM.
 - [x] Preserve -ffp-contract=off in the current generated and CPU-test build commands.
 - [ ] Prove multiply/add results are not fused in compiled EE/VU execution and preserve guest timing/numeric rules.
-- [ ] Build/run existing relevant VU tests with the real interpreter and compare compiled VU paths.
-- [ ] Cover Q/P pipelines, clip/status/MAC flags, branches/delay slots, hazards/stalls, XGKICK and cycle budgets.
-- [ ] Verify uploaded-code identity checks and interpreter fallback selection instead of assuming compiled VU always applies.
+- [x] Build/run existing relevant VU tests with the real interpreter and compare compiled VU paths.
+- [x] Cover Q/P pipelines, clip/status/MAC flags, branches/delay slots, hazards/stalls, XGKICK and cycle budgets.
+- [x] Verify uploaded-code identity checks and interpreter fallback selection instead of assuming compiled VU always applies.
 - [x] Record any inherited reference limitations explicitly; do not describe skipped/known-different rows as exact hardware matches.
 
 ## M02-08 — Calling convention and scheduler boundaries
 
 - [x] Inspect ps2_guest_cc.h and record its existing non-x86 platform-ABI fallback.
-- [ ] Compile-check consistent declarations and function-pointer types across generated entries, wrappers and hooks.
+- [x] Compile-check consistent declarations and function-pointer types across generated entries, wrappers and hooks.
 - [ ] Link and inspect the complete generated registration table, aliases, slot bounds and resumable entries.
 - [ ] Verify stack alignment and argument/register integrity at real host/guest boundaries on ARM.
 - [ ] Exercise call, tail-call, yield and resume transitions without assuming a generated guest call returns to its wrapper.
@@ -124,7 +124,7 @@ packed guest instructions or all SIMD sites by itself.
 - [x] Pin SSE2NEON commit/header hash/license; avoid a rolling target dependency.
 - [x] Keep host tools and target compilation separate.
 - [x] Build the real runtime/IOP libraries with target flags and required portable adaptations.
-- [ ] Adapt x86-specific ReleaseMode assumptions without changing the desktop reference configuration.
+- [x] Adapt x86-specific ReleaseMode assumptions without changing the desktop reference configuration.
 - [x] Provide the CPU/null-renderer host boundary required by the runtime; distinguish it from the synthetic test NRO.
 - [x] Explicitly disable unsupported optional desktop/debug/JIT/backends rather than silently using incorrect substitutes.
 - [x] Link the full private generated core into the null harness with no Linux/Windows SDL3, graphics, audio or FFmpeg libraries.
@@ -136,7 +136,7 @@ packed guest instructions or all SIMD sites by itself.
 - [x] Preserve the original parser-gap and macro inventory limits instead of claiming a complete semantic index.
 - [x] Preprocess/compile the actual core paths and resolve relevant macro/parser gaps with compiler evidence.
 - [x] Catalogue generated SDK/syscall registrations and compare native/target prototypes and counts.
-- [ ] Classify the 561 unhandled-instruction events and all indirect-fallback owner functions using section/map/runtime evidence.
+- [x] Classify the 561 unhandled-instruction events and all indirect-fallback owner functions using section/map/runtime evidence.
 - [ ] Resolve any diagnostic that blocks the required core workloads; distinguish data/unreached metadata from executed code with evidence.
 - [ ] Verify no required guest registration or resume target is missing or silently redirected.
 
@@ -148,7 +148,7 @@ packed guest instructions or all SIMD sites by itself.
 - [ ] Run corresponding ARM suites with the same recorded data, flags and explicit expected results.
 - [ ] Run FP/VU and completed operation-family differential tests on both architectures.
 - [ ] Retain failing outputs as well as fixes and final passing results; do not mask errors to close a checkbox.
-- [ ] Add source-only CI for eligible public CPU-test code without putting private ELF/generated game code in Actions artifacts.
+- [x] Add source-only CI for eligible public CPU-test code without putting private ELF/generated game code in Actions artifacts.
 
 ## M02-13 — Target harness and resource budgets
 
@@ -183,11 +183,13 @@ that as-yet unwritten runtime patches were tested.
 
 ## Next hardware session
 
-At the user's request, prepare all remaining implementation and consolidate the
-automatic CPU/runtime workloads before requesting the Switch again. The updated
-heap-limit and floating-point NRO builds, but has not run on the device. The real
-runtime test harness is being linked separately. Compilation/native execution
-must not close target-execution checkboxes. Retain the existing M01 deferrals.
+Remaining unchecked implementation steps need results from the real Switch; the
+user asked that hardware be the only test target for them. The procedure and
+required observations are in [HARDWARE.md](HARDWARE.md). Both payloads are built
+and hashed by the session's candidate. Compilation/native execution must not close
+target-execution checkboxes. Retain the existing M01 deferrals. Compiler decision,
+ReleaseMode handling and pre-run budgets are in
+[TOOLCHAIN_DECISION.md](TOOLCHAIN_DECISION.md).
 
 ## Closure workflow — only after all implementation proof
 

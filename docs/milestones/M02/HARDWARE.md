@@ -66,7 +66,7 @@ These harnesses use SD stdout, so no nxlink stdout server or `-s` is needed.
 - Private core: table bounds hold and 236,304 slots are assigned before synthetic
   probes; probes restore their empty slots and finish without executing game
   owner bodies. Later game boot still owns unresolved game reachability checks.
-- Resources: record HOS/applet mode, actual stack region, 128 MiB allocator
+- Resources: record HOS/applet mode, actual stack region, 256 MiB allocator
   limit/arena, rejection of an oversized allocation, allocator observations and
   worker budget. Kernel-mapped loader reservation is not live allocation usage.
   The public suite uses an explicit 8 MiB worker stack; temporary test threads

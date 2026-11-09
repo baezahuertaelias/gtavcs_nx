@@ -6,7 +6,8 @@
 extern "C" {
     extern char *fake_heap_start;
     extern char *fake_heap_end;
-    size_t nx_cpu_heap_budget = 128u * 1024u * 1024u;
+    // The runtime suites peak near 190 MiB of process commit on the native build.
+    size_t nx_cpu_heap_budget = 256u * 1024u * 1024u;
 
     void __libnx_initheap(void)
     {
