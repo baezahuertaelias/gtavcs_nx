@@ -16,7 +16,7 @@ function(nx_cpu_options target)
         "${VCS_UPSTREAM_DIR}/third_party/PS2Recomp/ps2xRuntime/src/lib/Kernel"
         "${VCS_UPSTREAM_DIR}/third_party/PS2Recomp/ps2xIOP/include"
         "${SSE2NEON_INCLUDE_DIR}" "${PORT_ROOT}/src")
-    target_compile_definitions(${target} PRIVATE USE_SSE2NEON
+    target_compile_definitions(${target} PRIVATE USE_SSE2NEON NX_PMFHL_ARCHITECTURAL
         SSE2NEON_PRECISE_MINMAX=1 SSE2NEON_PRECISE_DIV=1
         SSE2NEON_PRECISE_SQRT=1 SSE2NEON_PRECISE_DP=1)
     target_compile_options(${target} PRIVATE

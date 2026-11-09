@@ -1,4 +1,25 @@
 {
   "base_commit": "ecf150e53f87e4656dfe81eacd922839d952b282",
-  "patches": []
+  "patches": [
+    {
+      "path": "0001-switch-cpu-host-boundaries.patch",
+      "sha256": "f96ff30277c5ad0bd26cc2120aca0e64aa99cac860d3722a595a32d7d6936a52"
+    },
+    {
+      "path": "0002-packed-architectural-semantics.patch",
+      "sha256": "079e214444a2908867f941e81dde8757fda8c02d1968bec0cbb1bae10f9b1839"
+    },
+    {
+      "path": "0003-vu-compiled-numeric-parity.patch",
+      "sha256": "304d5810dde7960671dae5b2245ce52ae296ed5376b288a1bd2ed4552afe2910"
+    },
+    {
+      "path": "0004-iop-directory-bounds.patch",
+      "sha256": "a11a52a8cfa0099e523da7761cdb7ea223aa5f075cc31ce70f2043722e7354cc"
+    },
+    {
+      "path": "0005-unavailable-cpu-timing.patch",
+      "sha256": "9f8ac84017fff14203bd0191e0a4c3dfb8dc08564a28448f82c6759fc5f53699"
+    }
+  ]
 }

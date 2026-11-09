@@ -1,0 +1,39 @@
+name: Public Switch CPU foundation
+on:
+  push:
+    branches: [main, 'milestone/**']
+  pull_request:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  public-cpu-runtime:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Build public CPU and runtime test NROs offline
+        run: python tools/build_core_tests.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: public-cpu-tests-${{ github.sha }}
+          retention-days: 14
+          if-no-files-found: error
+          path: |
+            build/m02/test-bundle/gtavcs_cpu_tests.nro
+            build/m02/test-bundle/gtavcs_runtime_tests.nro
+            build/m02/test-bundle/manifest.json
+            build/m02/test-bundle/LICENSE.SSE2NEON.txt
+            build/m02/test-bundle/LICENSE.UPSTREAM.txt
+            build/m02/test-bundle/LICENSE.PS2RECOMP.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: public-cpu-build-logs-${{ github.sha }}
+          retention-days: 14
+          if-no-files-found: ignore
+          path: build/evidence/M02/public-build/*.log

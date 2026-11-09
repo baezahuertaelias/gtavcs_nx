@@ -16,9 +16,13 @@ add_executable(gtavcs_cpu_tests
     "${PORT_ROOT}/src/core_tests/main.cpp"
     "${PORT_ROOT}/src/core_tests/heap.cpp"
     "${PORT_ROOT}/tests/core/switch_alloc_tests.cpp"
-    "${PORT_ROOT}/tests/core/packed_integer_tests.cpp")
+    "${PORT_ROOT}/tests/core/packed_integer_tests.cpp"
+    "${PORT_ROOT}/tests/core/host_boundary_tests.cpp"
+    "${PORT_ROOT}/tests/core/float_tests.cpp")
 set_target_properties(gtavcs_cpu_tests PROPERTIES SUFFIX ".elf")
 nx_cpu_options(gtavcs_cpu_tests)
+target_include_directories(gtavcs_cpu_tests PRIVATE
+    "${VCS_UPSTREAM_DIR}/third_party/PS2Recomp/ps2xTest/src")
 target_compile_definitions(gtavcs_cpu_tests PRIVATE NX_CORE_TEST_SUITE)
 target_link_options(gtavcs_cpu_tests PRIVATE
     "-Wl,-Map,${CMAKE_CURRENT_BINARY_DIR}/gtavcs_cpu_tests.map" -Wl,--gc-sections)

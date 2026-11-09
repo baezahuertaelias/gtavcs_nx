@@ -49,20 +49,20 @@ belong to the open tasks below.
 - [x] Create a separate compile-only generated-code project using the official toolchain and pinned SSE2NEON content.
 - [x] Identify and retain the missing Kernel/Stubs include failure; use the owning upstream CMake include path.
 - [x] Identify the oversized final unity unit from actual compiler CPU/memory/process evidence.
-- [ ] Complete the full generated EE+VU archive build with all functions retained, O2 and strict numeric flags.
-- [ ] Verify the separated registration/VU compilation units finish and retain the cancelled original-unit evidence accurately.
-- [ ] Inspect every archive member's target architecture and all compiler/include paths.
+- [x] Complete the full generated EE+VU archive build with all functions retained, O2 and strict numeric flags.
+- [x] Verify the separated registration/VU compilation units finish and retain the cancelled original-unit evidence accurately.
+- [x] Inspect every archive member's target architecture and all compiler/include paths.
 - [ ] Audit remaining generated compiler extensions, conversions, aliasing and unsupported constructs.
 - [ ] Decide and document the GCC-compatible configuration from full build/numeric/ABI proof; do not merely remove upstream's Clang gate.
 
 ## M02-05 — SIMD inventory and guest layout
 
 - [x] Read all scoped discovery inventories and index all 661 original lexical SIMD sites by file/function/operation family.
-- [ ] Resolve manual operation families and parser-uncertain owners relevant to the compiled core.
-- [ ] Assign every site to the core port, host generator, optional backend, or a named later milestone; do not silently omit sites.
+- [x] Resolve manual operation families and parser-uncertain owners relevant to the compiled core.
+- [x] Assign every site to the core port, host generator, optional backend, or a named later milestone; do not silently omit sites.
 - [x] Compile-check 16-byte vector size/alignment on ARM64.
 - [x] Exercise unaligned and wrapping 128-bit RDRAM accesses against a scalar byte model on host and Switch.
-- [ ] Compare full R5900Context/VU/guest-register sizes, alignments and critical offsets across the native and ARM layouts.
+- [x] Compare full R5900Context/VU/guest-register sizes, alignments and critical offsets across the native and ARM layouts.
 - [ ] Verify 64/128-bit bit casts, sign extension, endian lane order and memory aliases beyond the current fast-RDRAM cases.
 - [ ] Run the relevant existing full memory/scratchpad/MMIO tests with the real runtime linked.
 
@@ -86,7 +86,7 @@ packed guest instructions or all SIMD sites by itself.
 
 ## M02-07 — FPU/VU numerics and compiled programs
 
-- [ ] Reuse the existing public PS2 hardware-vector corpus and distinguish exact rows from the upstream's documented known differences.
+- [x] Reuse the existing public PS2 hardware-vector corpus and distinguish exact rows from the upstream's documented known differences.
 - [ ] Check signed zero, exponent-255 PS2 values, exceptional conversions, underflow/denormals, saturation and division/square root.
 - [ ] Compare scalar and vector helpers on native x86 and ARM64, including NaN/min/max compatibility where the host SIMD boundary requires it.
 - [ ] Verify FE_TOWARDZERO/FPCR behavior and save/restore of the rounding environment on ARM.
@@ -95,7 +95,7 @@ packed guest instructions or all SIMD sites by itself.
 - [ ] Build/run existing relevant VU tests with the real interpreter and compare compiled VU paths.
 - [ ] Cover Q/P pipelines, clip/status/MAC flags, branches/delay slots, hazards/stalls, XGKICK and cycle budgets.
 - [ ] Verify uploaded-code identity checks and interpreter fallback selection instead of assuming compiled VU always applies.
-- [ ] Record any inherited reference limitations explicitly; do not describe skipped/known-different rows as exact hardware matches.
+- [x] Record any inherited reference limitations explicitly; do not describe skipped/known-different rows as exact hardware matches.
 
 ## M02-08 — Calling convention and scheduler boundaries
 
@@ -123,19 +123,19 @@ packed guest instructions or all SIMD sites by itself.
 
 - [x] Pin SSE2NEON commit/header hash/license; avoid a rolling target dependency.
 - [x] Keep host tools and target compilation separate.
-- [ ] Build the real runtime/IOP libraries with target flags and required portable adaptations.
+- [x] Build the real runtime/IOP libraries with target flags and required portable adaptations.
 - [ ] Adapt x86-specific ReleaseMode assumptions without changing the desktop reference configuration.
-- [ ] Provide the CPU/null-renderer host boundary required by the runtime; distinguish it from the synthetic test NRO.
-- [ ] Explicitly disable unsupported optional desktop/debug/JIT/backends rather than silently using incorrect substitutes.
-- [ ] Link the full private generated core into the null harness with no Linux/Windows SDL3, graphics, audio or FFmpeg libraries.
-- [ ] Inspect ELF/NRO relocations, map, PIE and section permissions; fix read-only relocation problems at the source/compile layer.
-- [ ] Record runtime edits with required markers/documentation in maintained overlay patches.
+- [x] Provide the CPU/null-renderer host boundary required by the runtime; distinguish it from the synthetic test NRO.
+- [x] Explicitly disable unsupported optional desktop/debug/JIT/backends rather than silently using incorrect substitutes.
+- [x] Link the full private generated core into the null harness with no Linux/Windows SDL3, graphics, audio or FFmpeg libraries.
+- [x] Inspect ELF/NRO relocations, map, PIE and section permissions; fix read-only relocation problems at the source/compile layer.
+- [x] Record runtime edits with required markers/documentation in maintained overlay patches.
 
 ## M02-11 — Parser gaps, registrations and unresolved diagnostics
 
 - [x] Preserve the original parser-gap and macro inventory limits instead of claiming a complete semantic index.
-- [ ] Preprocess/compile the actual core paths and resolve relevant macro/parser gaps with compiler evidence.
-- [ ] Catalogue generated SDK/syscall registrations and compare native/target prototypes and counts.
+- [x] Preprocess/compile the actual core paths and resolve relevant macro/parser gaps with compiler evidence.
+- [x] Catalogue generated SDK/syscall registrations and compare native/target prototypes and counts.
 - [ ] Classify the 561 unhandled-instruction events and all indirect-fallback owner functions using section/map/runtime evidence.
 - [ ] Resolve any diagnostic that blocks the required core workloads; distinguish data/unreached metadata from executed code with evidence.
 - [ ] Verify no required guest registration or resume target is missing or silently redirected.
@@ -144,7 +144,7 @@ packed guest instructions or all SIMD sites by itself.
 
 - [x] Add public-source synthetic allocation and packed-integer checks, separate from private game generation.
 - [x] Run their first native and Switch cases; retain successful log/payload hashes.
-- [ ] Run relevant existing EE, VU, memory, interrupt and kernel/scheduler suites on the native reference.
+- [x] Run relevant existing EE, VU, memory, interrupt and kernel/scheduler suites on the native reference.
 - [ ] Run corresponding ARM suites with the same recorded data, flags and explicit expected results.
 - [ ] Run FP/VU and completed operation-family differential tests on both architectures.
 - [ ] Retain failing outputs as well as fixes and final passing results; do not mask errors to close a checkbox.
@@ -156,7 +156,7 @@ packed guest instructions or all SIMD sites by itself.
 - [x] Observe application mode and a 1 MiB stack region on the real Switch.
 - [x] Record zero additional workers and the initial mapped-memory readings for that synthetic harness.
 - [ ] Re-run with the corrected bounded allocator and record actual arena/stack/reservation limits accurately.
-- [ ] Build the full real-core null-renderer harness, not only the current synthetic checks.
+- [x] Build the full real-core null-renderer harness, not only the current synthetic checks.
 - [ ] Establish budgets/headroom for guest memory, runtime state, generated tables, stacks and workers under application mode.
 - [ ] Verify no desktop dependencies, unbounded workers/queues or hidden runtime ISO requirement in the CPU-only harness.
 
@@ -180,6 +180,14 @@ packed guest instructions or all SIMD sites by itself.
 When real port patches are added, their full non-empty-series round trip is also
 required by M02-10's implementation validation; the fixture result does not claim
 that as-yet unwritten runtime patches were tested.
+
+## Next hardware session
+
+At the user's request, prepare all remaining implementation and consolidate the
+automatic CPU/runtime workloads before requesting the Switch again. The updated
+heap-limit and floating-point NRO builds, but has not run on the device. The real
+runtime test harness is being linked separately. Compilation/native execution
+must not close target-execution checkboxes. Retain the existing M01 deferrals.
 
 ## Closure workflow — only after all implementation proof
 

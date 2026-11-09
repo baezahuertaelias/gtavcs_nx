@@ -1,0 +1,20 @@
+{
+  "scope": "Metadata only; no game function bodies or bytes",
+  "upstream_commit": "ecf150e53f87e4656dfe81eacd922839d952b282",
+  "ee_files_compared": 10386,
+  "ee_files_changed": [],
+  "stamp": {
+    "inputs": "9dc29d7be8e8d692ca2192c0c2c8bd530c60541a",
+    "source": {
+      "version": "0.2.3",
+      "commit": "ecf150e53f87e4656dfe81eacd922839d952b282"
+    },
+    "time": 1794236635
+  },
+  "overlay_manifest_sha256": "000438c7cc6fc876381a0540cd9482c5886dbfa2737f3f89babf217936ea5a32",
+  "effective_vu_generator_sha256": "fea83a1165ce07a00a30de806f1ee80497a0fb6318cd085d44f7cbeac637de31",
+  "vu_programs": 50,
+  "vu_pairs": 3032,
+  "vu_lines": 110463,
+  "limitation": "Generator update selects strict compiled registration on Switch; target runtime execution still pending"
+}

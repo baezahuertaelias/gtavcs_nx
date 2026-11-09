@@ -11,6 +11,8 @@ extern "C" {
 }
 int runSwitchAllocTests();
 int runPackedIntegerTests();
+int runFloatTests();
+int runHostBoundaryTests();
 
 static void memoryReport(const char *stage)
 {
@@ -40,7 +42,7 @@ int main()
         u32 page = 0;
         char stack_probe;
         const Result rc = svcQueryMemory(&stack,&page,reinterpret_cast<u64>(&stack_probe));
-        std::printf("[cpu-tests] char_signed=%d vector_bytes=16 stack_region_bytes=%llu result=%08x workers=0\n",
+        std::printf("[cpu-tests] char_signed=%d vector_bytes=16 stack_region_bytes=%llu result=%08x temporary_workers_peak=2 joined_before_exit\n",
             char(-1) < 0,static_cast<unsigned long long>(stack.size),rc);
         memoryReport("before");
         void *oversized = std::malloc(nx_cpu_heap_budget + 1);
@@ -51,10 +53,12 @@ int main()
         const u64 start = armGetSystemTick();
         const int allocation = heap_bounded ? runSwitchAllocTests() : -1;
         const int integers = allocation == 0 ? runPackedIntegerTests() : -1;
+        const int floating = integers == 0 ? runFloatTests() : -1;
+        const int boundary = floating == 0 ? runHostBoundaryTests() : -1;
         memoryReport("after");
-        result = allocation == 0 && integers == 0 ? EXIT_SUCCESS : EXIT_FAILURE;
-        std::printf("[cpu-tests] %s allocation=%d packed_integer=%d elapsed_ns=%llu\n",
-            result == EXIT_SUCCESS ? "PASS" : "FAIL",allocation,integers,
+        result = allocation == 0 && integers == 0 && floating == 0 && boundary == 0 ? EXIT_SUCCESS : EXIT_FAILURE;
+        std::printf("[cpu-tests] %s allocation=%d packed_integer=%d floating=%d boundary=%d elapsed_ns=%llu\n",
+            result == EXIT_SUCCESS ? "PASS" : "FAIL",allocation,integers,floating,boundary,
             static_cast<unsigned long long>(armTicksToNs(armGetSystemTick()-start)));
     }
     std::printf("[cpu-tests] closing log before process exit result=%d\n",result);

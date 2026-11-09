@@ -1,0 +1,56 @@
+diff --git a/docs/PS2RECOMP_PATCHES.md b/docs/PS2RECOMP_PATCHES.md
+index 4547166..4d658cd 100644
+--- a/docs/PS2RECOMP_PATCHES.md
++++ b/docs/PS2RECOMP_PATCHES.md
+@@ -304,3 +304,28 @@ not an imported emulator source file. No game-generated source is included.
+ The pinned user-game generation has no calls to these named helpers; the tests
+ therefore exercise synthetic operands explicitly. Compilation/native results
+ do not establish target execution; the consolidated Switch run remains required.
++
++
++## Switch compiled VU strict policy (M02, 2026-11-09)
++
++[gta-recomp] `tools/vu1_recomp.py` generated registration selects the full
++bookkeeping/exact-range variant when `__SWITCH__` or
++`PS2X_VU1_COMPILED_PRECISE` is defined. Desktop defaults remain unchanged.
++The runtime still uses its fast interpreter mode, so compiled selection remains
++eligible; this does not select the cycle-exact interpreter or bypass shape/code
++identity checks.
++
++The public synthetic differential test exposed two differences in the old
++throughput `_t` variant: MADD with FLT_MAX * 2 and ACC=-1 produced 0x7f7ffffe
++while the interpreter's exact-range rule clamps to 0x7f7fffff; an arithmetic
++program took 10 cycles compiled versus 15 in the same fast interpreter. The
++throughput emission deliberately omits VF/VI/ACC readiness and uses plain
++MADD/MSUB. Selecting the existing full variant preserves all MADD/MSUB forms
++(including ACC destinations) and their numeric range checks, as well as the
++existing stall/ready/settle model. No numerical test input or cycle comparison
++is relaxed. This is a correctness baseline; no target performance is claimed.
++
++Generated private game VU code must be regenerated after this change so its
++registration contains the policy. Public fixture generation records both the
++pristine generator pin/hash and this effective overlaid generator identity.
++The root port retains the failing and passing synthetic traces.
+diff --git a/tools/vu1_recomp.py b/tools/vu1_recomp.py
+index 0f6e78e..8ce8a37 100644
+--- a/tools/vu1_recomp.py
++++ b/tools/vu1_recomp.py
+@@ -1035,11 +1035,18 @@ def main():
+     lines.append('{')
+     lines += ['    Vu1CompiledRegistrar()',
+               '    {',
++              '        // [gta-recomp] Strict Switch CPU baseline: retain the exact-range MADD/MSUB',
++              '        // checks and all VF/VI/ACC stall/ready/settle bookkeeping. The throughput',
++              '        // variant can change overflow results and finish earlier than the fast interpreter.',
++              '#if defined(__SWITCH__) || defined(PS2X_VU1_COMPILED_PRECISE)',
++              '        vu1RegisterCompiledPieces(vu1c_pieces, sizeof(vu1c_pieces) / sizeof(vu1c_pieces[0]));',
++              '#else',
+               '        const char *fast = std::getenv("PS2X_VU1_FAST"); // throughput variant: no stall/ready bookkeeping, plain MADD',
+               "        if (!(fast && fast[0] == '0')) // default on; PS2X_VU1_FAST=0 = the cycle-exact variant",
+               '            vu1RegisterCompiledPieces(vu1c_pieces_t, sizeof(vu1c_pieces_t) / sizeof(vu1c_pieces_t[0]));',
+               '        else',
+               '            vu1RegisterCompiledPieces(vu1c_pieces, sizeof(vu1c_pieces) / sizeof(vu1c_pieces[0]));',
++              '#endif',
+               '    }']
+     lines.append('} vu1c_registrar;')
+     lines.append('}')

@@ -1,0 +1,511 @@
+diff --git a/docs/PS2RECOMP_PATCHES.md b/docs/PS2RECOMP_PATCHES.md
+index 96b3bc5..304afea 100644
+--- a/docs/PS2RECOMP_PATCHES.md
++++ b/docs/PS2RECOMP_PATCHES.md
+@@ -242,3 +242,44 @@ source with a `[gta-recomp]` comment and listed here.
+ | `ps2xRuntime/src/lib/ps2_control.cpp` | The control channel's key name `start` is Escape (was Enter): Start's default key since the pause menu took Enter for Cross (`src/game/vcs_frontend.cpp`, DECISIONS.md 2026-11-05) | `press start` keeps meaning the PS2's Start |
+ | `ps2xRuntime/src/lib/gs/gs_hw.cpp` | **Fix:** the scissor above 640x448: its edges at `scx0 - o` / `scx1 + 1 - o` in GS units (o = the pixel-centre offset), so a GS pixel stands for the target pixels nearest its sample - the same pixels as before at 1x | They were half a GS pixel to the right / bottom: at 1440p the pause menu's "stats" lost the left edge of its first letter (the label is scissored to its own text, whose first glyph starts half a pixel left of it; game-internals.md 6f) |
+ | `ps2xRuntime/src/lib/gs/gs_hw.cpp`, `include/runtime/gs/gs_hw.h`; `src/render/shaders/gs_draw.hlsl` | `gsHwSetTargetFilter(fbp, fbw, mode)`: a minifying, axis-aligned copy of another render target into that target is marked (`HwState::rtFull` 2 with its footprint and extent, `markFiltered`) and, when the mode says so (1 always, 2 with the source above 1x by height), read through a tent over each target pixel's footprint at the source's resolution (`atstArefAfailRt.w` 3, `sampleRtFiltered`, the full shader only; new constants `filterSize` / `filterDest`). Only the target pixels a texel read takes are filtered. Mode 0 draws as before. `nativeFrameCopy` tests `rtFull == 1` now | VCS's car reflections: the reflection map's four taps per ~5 x 3.5 frame pixels make car panels flicker as the camera moves, plainer above 1x (game-internals.md 6g, "Car reflections: Smooth") |
++
++
++## Switch CPU foundation overlay (M02, 2026-11-08)
++
++The root Switch port keeps these changes in a maintained patch against the
++pinned checkout. The desktop defaults remain active unless stated otherwise.
++
++- `ps2_render_worker.cpp`: select the existing USE_SSE2NEON boundary rather
++  than unconditionally including x86 headers; preserve CSR transfer and waits.
++- `ps2_control.cpp`: parse the same 127.0.0.1 listener address with inet_pton
++  because libnx/newlib does not define INADDR_LOOPBACK; fail closed on error.
++- `ps2_runtime.cpp`: optional spike diagnostics report -1 when the host has
++  no CLOCK_THREAD_CPUTIME_ID, matching the existing unavailable Windows case.
++  Wall-clock values are never reported as thread CPU time.
++- `ps2_perf.cpp`: PS2X_HEADLESS excludes only ImGui drawing and overlay key
++  handling; counters, sampling, CSV and summaries remain compiled. This is a
++  CPU-test configuration, not an implementation of the game's UI.
++
++The Switch build also requests POSIX.1-2008 declarations for newlib fseeko;
++libc symbol inspection confirms that implementation exists. No dummy seek
++implementation or narrowed offset was added. Numeric/runtime execution proof
++remains required independently of compilation.
++
++The headless null RHI explicitly rejects UI initialization and never calls ImGui.
++The public test fixtures were reconciled with six already-documented runtime
++contracts: async stacks in 0x80000-0x100000, IOP heap from 0x80000, batched IOP
++progress, DIRECTHL-framed IMAGE continuations, and JR reading current VI. The
++pristine pin and initial overlay both failed the same six cases in accurate VU
++mode; original failures remain in root M02 evidence. No guest runtime arithmetic
++or control flow was changed to satisfy these fixture updates. JR source check:
++https://github.com/PCSX2/pcsx2/blob/master/pcsx2/VUops.cpp (_vuJR/_vuJALR).
++The JR fixture distinguishes old/new target and checks a single delay slot.
++
++M02 packed-accumulator audit additionally found that the inherited two-argument
++PMFHL helpers and PMTHL emission ignored hi1/lo1. The overlay now passes all four
++64-bit halves, selects words/halfwords explicitly, clamps SLW/SH at the correct
++signed widths, and preserves unaffected upper words on PMTHL. Scalar regression
++models distinguish both banks. Architectural cross-check: PCSX2 MMI.cpp PMFHL
++and PMTHL (https://github.com/PCSX2/pcsx2/blob/master/pcsx2/MMI.cpp). The original
++private generated EE contains zero uses of these helper calls; this is a CPU
++foundation correctness fix, not observed game behavior or a performance claim.
+diff --git a/docs/game-internals.md b/docs/game-internals.md
+index d88f480..2d29632 100644
+--- a/docs/game-internals.md
++++ b/docs/game-internals.md
+@@ -2360,3 +2360,12 @@ hidden run (rig `peek` / `poke`, snapshots diffed).
+ - HUD / font / sprite call sites (CHud, CFont, CSprite2d, CSprite) - milestone 3 (2D at the RW level).
+ - Sound driver command protocol in full (section 9) - milestone 6.
+ - Threads and their priorities.
++
++
++### Switch M02 CPU-only build scope (2026-11-08)
++
++The root Switch overlay adds host portability and an explicit headless perf
++configuration only. It establishes no new guest address or game behavior. The
++separate synthetic CPU tests and compile-only generated archive do not boot
++the game, load its main menu or establish scheduler/VU equivalence. See the
++root port's M02 evidence before drawing target-runtime conclusions.
+diff --git a/src/rhi/null/rhi_null.cpp b/src/rhi/null/rhi_null.cpp
+index 8442e16..6727728 100644
+--- a/src/rhi/null/rhi_null.cpp
++++ b/src/rhi/null/rhi_null.cpp
+@@ -3,7 +3,10 @@
+ // one, and renderer bugs stay apart from the rest (docs/LINUX.md).
+ #include "rhi/rhi.h"
+ 
++// [gta-recomp] CPU-only hosts have no Dear ImGui context or renderer.
++#if !defined(PS2X_HEADLESS)
+ #include "imgui.h"
++#endif
+ 
+ #include <cstring>
+ 
+@@ -102,14 +105,19 @@ namespace rhi
+             // Dear ImGui 1.92 asks the renderer to create / update / destroy its textures (the font atlas): taken as done.
+             bool uiInit() override
+             {
++#if !defined(PS2X_HEADLESS)
+                 ImGuiIO &io = ImGui::GetIO();
+                 io.BackendRendererName = "vcs_rhi_null";
+                 io.BackendFlags |= ImGuiBackendFlags_RendererHasTextures | ImGuiBackendFlags_RendererHasVtxOffset;
+                 return true;
++#else
++                return false; // explicitly unavailable in the CPU harness
++#endif
+             }
+             void uiNewFrame() override {}
+             void uiRender(void *imDrawData) override
+             {
++#if !defined(PS2X_HEADLESS)
+                 const ImDrawData *data = static_cast<const ImDrawData *>(imDrawData);
+                 if (!data || !data->Textures)
+                     return;
+@@ -126,6 +134,9 @@ namespace rhi
+                         t->SetStatus(ImTextureStatus_Destroyed);
+                     }
+                 }
++#else
++                (void)imDrawData;
++#endif
+             }
+             void uiShutdown() override {}
+ 
+diff --git a/third_party/PS2Recomp/ps2xRecomp/src/lib/mmi_translation_helpers.cpp b/third_party/PS2Recomp/ps2xRecomp/src/lib/mmi_translation_helpers.cpp
+index a2bcb77..2ef2e71 100644
+--- a/third_party/PS2Recomp/ps2xRecomp/src/lib/mmi_translation_helpers.cpp
++++ b/third_party/PS2Recomp/ps2xRecomp/src/lib/mmi_translation_helpers.cpp
+@@ -228,15 +228,15 @@ namespace ps2recomp
+         switch (subfunc)
+         {
+         case PMFHL_LW:
+-            return fmt::format("SET_GPR_VEC(ctx, {}, PS2_PMFHL_LW(ctx->hi, ctx->lo));", inst.rd);
++            return fmt::format("SET_GPR_VEC(ctx, {}, PS2_PMFHL_LW(ctx->hi, ctx->lo, ctx->hi1, ctx->lo1));", inst.rd);
+         case PMFHL_UW:
+-            return fmt::format("SET_GPR_VEC(ctx, {}, PS2_PMFHL_UW(ctx->hi, ctx->lo));", inst.rd);
++            return fmt::format("SET_GPR_VEC(ctx, {}, PS2_PMFHL_UW(ctx->hi, ctx->lo, ctx->hi1, ctx->lo1));", inst.rd);
+         case PMFHL_SLW:
+-            return fmt::format("SET_GPR_VEC(ctx, {}, PS2_PMFHL_SLW(ctx->hi, ctx->lo));", inst.rd);
++            return fmt::format("SET_GPR_VEC(ctx, {}, PS2_PMFHL_SLW(ctx->hi, ctx->lo, ctx->hi1, ctx->lo1));", inst.rd);
+         case PMFHL_LH:
+-            return fmt::format("SET_GPR_VEC(ctx, {}, PS2_PMFHL_LH(ctx->hi, ctx->lo));", inst.rd);
++            return fmt::format("SET_GPR_VEC(ctx, {}, PS2_PMFHL_LH(ctx->hi, ctx->lo, ctx->hi1, ctx->lo1));", inst.rd);
+         case PMFHL_SH:
+-            return fmt::format("SET_GPR_VEC(ctx, {}, PS2_PMFHL_SH(ctx->hi, ctx->lo));", inst.rd);
++            return fmt::format("SET_GPR_VEC(ctx, {}, PS2_PMFHL_SH(ctx->hi, ctx->lo, ctx->hi1, ctx->lo1));", inst.rd);
+         default:
+             return emitUnhandledInstruction(inst, fmt::format("Unhandled PMFHL instruction: function 0x{:X}", subfunc));
+         }
+@@ -249,7 +249,8 @@ namespace ps2recomp
+         switch (subfunc)
+         {
+         case PMFHL_LW:
+-            return fmt::format("{{ __m128i val = GPR_VEC(ctx, {}); ctx->lo = _mm_extract_epi32(val, 0); ctx->hi = _mm_extract_epi32(val, 1); }}", inst.rs);
++            // [gta-recomp] Write all four low words, preserving the unused upper words.
++            return fmt::format("ps2_pmthl_lw(ctx, GPR_VEC(ctx, {}));", inst.rs);
+         default:
+             return emitUnhandledInstruction(inst, fmt::format("Unhandled PMTHL instruction: function 0x{:X}", subfunc));
+         }
+diff --git a/third_party/PS2Recomp/ps2xRuntime/include/ps2_runtime_macros.h b/third_party/PS2Recomp/ps2xRuntime/include/ps2_runtime_macros.h
+index 9f124f4..887eadd 100644
+--- a/third_party/PS2Recomp/ps2xRuntime/include/ps2_runtime_macros.h
++++ b/third_party/PS2Recomp/ps2xRuntime/include/ps2_runtime_macros.h
+@@ -844,11 +844,62 @@ inline __m128i ps2_u64_to_epi64_pair(uint64_t value)
+     return _mm_set1_epi64x(static_cast<long long>(value));
+ }
+ 
+-#define PS2_PMFHL_LW(hi, lo) _mm_unpacklo_epi64(ps2_u64_to_epi64_pair(lo), ps2_u64_to_epi64_pair(hi))
+-#define PS2_PMFHL_UW(hi, lo) _mm_unpackhi_epi64(ps2_u64_to_epi64_pair(lo), ps2_u64_to_epi64_pair(hi))
+-#define PS2_PMFHL_SLW(hi, lo) _mm_packs_epi32(ps2_u64_to_epi64_pair(lo), ps2_u64_to_epi64_pair(hi))
+-#define PS2_PMFHL_LH(hi, lo) _mm_shuffle_epi32(_mm_packs_epi32(ps2_u64_to_epi64_pair(lo), ps2_u64_to_epi64_pair(hi)), _MM_SHUFFLE(3, 1, 2, 0))
+-#define PS2_PMFHL_SH(hi, lo) _mm_shufflehi_epi16(_mm_shufflelo_epi16(_mm_packs_epi32(ps2_u64_to_epi64_pair(lo), ps2_u64_to_epi64_pair(hi)), _MM_SHUFFLE(3, 1, 2, 0)), _MM_SHUFFLE(3, 1, 2, 0))
++// [gta-recomp] Packed HI/LO instructions read both 64-bit halves of the
++// physical 128-bit accumulators. Keep numeric conversions and lane order
++// explicit; the independent port tests use scalar architectural models.
++inline __m128i ps2_pmfhl_lw(uint64_t hi, uint64_t lo, uint64_t hi1, uint64_t lo1)
++{
++    return _mm_set_epi32(std::bit_cast<int32_t>(uint32_t(hi1)),
++        std::bit_cast<int32_t>(uint32_t(lo1)), std::bit_cast<int32_t>(uint32_t(hi)),
++        std::bit_cast<int32_t>(uint32_t(lo)));
++}
++inline __m128i ps2_pmfhl_uw(uint64_t hi, uint64_t lo, uint64_t hi1, uint64_t lo1)
++{
++    return _mm_set_epi32(std::bit_cast<int32_t>(uint32_t(hi1 >> 32)),
++        std::bit_cast<int32_t>(uint32_t(lo1 >> 32)), std::bit_cast<int32_t>(uint32_t(hi >> 32)),
++        std::bit_cast<int32_t>(uint32_t(lo >> 32)));
++}
++inline int64_t ps2_pmfhl_slw_lane(uint64_t hi, uint64_t lo)
++{
++    const uint64_t raw = (uint64_t(uint32_t(hi)) << 32) | uint32_t(lo);
++    const int64_t value = std::bit_cast<int64_t>(raw);
++    return value > INT32_MAX ? INT32_MAX : value < INT32_MIN ? INT32_MIN : value;
++}
++inline __m128i ps2_pmfhl_slw(uint64_t hi, uint64_t lo, uint64_t hi1, uint64_t lo1)
++{
++    return _mm_set_epi64x(ps2_pmfhl_slw_lane(hi1,lo1), ps2_pmfhl_slw_lane(hi,lo));
++}
++inline __m128i ps2_pmfhl_halfwords(uint64_t hi, uint64_t lo, uint64_t hi1, uint64_t lo1, bool saturate)
++{
++    const uint32_t words[8] = {uint32_t(lo),uint32_t(lo >> 32),uint32_t(hi),uint32_t(hi >> 32),
++        uint32_t(lo1),uint32_t(lo1 >> 32),uint32_t(hi1),uint32_t(hi1 >> 32)};
++    uint16_t halves[8];
++    for (unsigned i=0;i<8;++i) {
++        const int32_t signedWord = std::bit_cast<int32_t>(words[i]);
++        halves[i] = saturate ? static_cast<uint16_t>(signedWord > INT16_MAX ? INT16_MAX :
++            signedWord < INT16_MIN ? INT16_MIN : signedWord) : uint16_t(words[i]);
++    }
++    __m128i result;
++    std::memcpy(&result,halves,sizeof(result));
++    return result;
++}
++inline __m128i ps2_pmfhl_lh(uint64_t hi, uint64_t lo, uint64_t hi1, uint64_t lo1)
++{ return ps2_pmfhl_halfwords(hi,lo,hi1,lo1,false); }
++inline __m128i ps2_pmfhl_sh(uint64_t hi, uint64_t lo, uint64_t hi1, uint64_t lo1)
++{ return ps2_pmfhl_halfwords(hi,lo,hi1,lo1,true); }
++inline void ps2_pmthl_lw(R5900Context *ctx, __m128i value)
++{
++    uint32_t words[4]; std::memcpy(words,&value,sizeof(value));
++    ctx->lo = (ctx->lo & 0xffffffff00000000ull) | words[0];
++    ctx->hi = (ctx->hi & 0xffffffff00000000ull) | words[1];
++    ctx->lo1 = (ctx->lo1 & 0xffffffff00000000ull) | words[2];
++    ctx->hi1 = (ctx->hi1 & 0xffffffff00000000ull) | words[3];
++}
++#define PS2_PMFHL_LW(hi,lo,hi1,lo1) ps2_pmfhl_lw(hi,lo,hi1,lo1)
++#define PS2_PMFHL_UW(hi,lo,hi1,lo1) ps2_pmfhl_uw(hi,lo,hi1,lo1)
++#define PS2_PMFHL_SLW(hi,lo,hi1,lo1) ps2_pmfhl_slw(hi,lo,hi1,lo1)
++#define PS2_PMFHL_LH(hi,lo,hi1,lo1) ps2_pmfhl_lh(hi,lo,hi1,lo1)
++#define PS2_PMFHL_SH(hi,lo,hi1,lo1) ps2_pmfhl_sh(hi,lo,hi1,lo1)
+ 
+ // FPU (COP1) operations
+ #define FPU_SET_ACC(ctx, res) (ctx->f_acc = res)
+diff --git a/third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_control.cpp b/third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_control.cpp
+index b307db6..21397b5 100644
+--- a/third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_control.cpp
++++ b/third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_control.cpp
+@@ -318,7 +318,14 @@ namespace ps2control
+         sockaddr_in addr{};
+         addr.sin_family = AF_INET;
+         addr.sin_port = htons(static_cast<uint16_t>(port));
+-        addr.sin_addr.s_addr = htonl(INADDR_LOOPBACK); // this machine only
++        // [gta-recomp] newlib/libnx does not define INADDR_LOOPBACK. Parse the
++        // same IPv4 loopback address without broadening the listener binding.
++        if (inet_pton(AF_INET, "127.0.0.1", &addr.sin_addr) != 1)
++        {
++            closeSocket(g_listen);
++            g_listen = kNoSocket;
++            return;
++        }
+         if (bind(g_listen, reinterpret_cast<sockaddr *>(&addr), sizeof(addr)) != 0 || listen(g_listen, 4) != 0)
+         {
+             std::fprintf(stderr, "[control] cannot listen on 127.0.0.1:%d (another game running?)\n", port);
+diff --git a/third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_perf.cpp b/third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_perf.cpp
+index a5c408f..3773543 100644
+--- a/third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_perf.cpp
++++ b/third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_perf.cpp
+@@ -5,7 +5,10 @@
+ 
+ #include "platform/platform.h"
+ 
++// [gta-recomp] CPU harness retains counters/CSV without a UI context/backend.
++#if !defined(PS2X_HEADLESS)
+ #include "imgui.h"
++#endif
+ 
+ #include <algorithm>
+ #include <cfloat>
+@@ -292,8 +295,21 @@ namespace ps2perf
+             }
+         }
+ 
++        std::string fmt(const char *f, ...)
++        {
++            char buf[256];
++            va_list ap;
++            va_start(ap, f);
++            std::vsnprintf(buf, sizeof(buf), f, ap);
++            va_end(ap);
++            return buf;
++        }
++
++        InfoProvider g_infoProvider; // main thread
++
+         // ---- overlay (main thread): Dear ImGui background draw list ---------------------------------------------
+         // [gta-recomp] background, not foreground: over the game picture but under windows (the settings menu)
++#if !defined(PS2X_HEADLESS)
+         using Color = ImU32;
+         constexpr Color rgba(int r, int g, int b, int a) { return IM_COL32(r, g, b, a); }
+         int screenWidth() { return static_cast<int>(ImGui::GetIO().DisplaySize.x); }
+@@ -319,16 +335,6 @@ namespace ps2perf
+             rgba(120, 120, 130, 150), // wait
+         };
+ 
+-        std::string fmt(const char *f, ...)
+-        {
+-            char buf[256];
+-            va_list ap;
+-            va_start(ap, f);
+-            std::vsnprintf(buf, sizeof(buf), f, ap);
+-            va_end(ap);
+-            return buf;
+-        }
+-
+         // [gta-recomp] Panels sized to their text: a line never runs past the panel (the font shrinks when the screen is
+         // too narrow for the widest line, and a line still too long is cut with "..."), and nothing is drawn outside it.
+         struct Line
+@@ -512,7 +518,6 @@ namespace ps2perf
+ 
+         // [gta-recomp] The game-state panel (setInfoProvider): under the perf panel, or beside it when the screen has no
+         // room below; at the perf panel's font size, narrower only to fit the screen.
+-        InfoProvider g_infoProvider; // main thread
+ 
+         void drawInfoPanel(const PanelRect &perf)
+         {
+@@ -561,6 +566,7 @@ namespace ps2perf
+             drawLines(lines, x, ty, w, m);
+             dl->PopClipRect();
+         }
++#endif
+     }
+ 
+     void add(Counter counter, uint64_t amount)
+@@ -625,6 +631,7 @@ namespace ps2perf
+ 
+     void drawOverlay(bool handleKeys)
+     {
++#if !defined(PS2X_HEADLESS)
+         if (handleKeys && ps2control::keyPressed(platform::KEY_F3))
+             g_overlay = !g_overlay;
+         bool recording;
+@@ -653,6 +660,9 @@ namespace ps2perf
+         }
+         else if (recording)
+             text("REC", 10, 10, std::max(10, screenHeight() / 46), rgba(245, 90, 90, 255));
++#else
++        (void)handleKeys;
++#endif
+     }
+ 
+     namespace
+diff --git a/third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_render_worker.cpp b/third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_render_worker.cpp
+index be17d96..6349111 100644
+--- a/third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_render_worker.cpp
++++ b/third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_render_worker.cpp
+@@ -10,12 +10,17 @@
+ #include <cstdio>
+ #include <cstdlib>
+ #include <deque>
++// [gta-recomp] Reuse the runtime's selected intrinsic boundary on ARM.
++#if defined(USE_SSE2NEON)
++#include "sse2neon.h"
++#else
+ #include <immintrin.h>
++#include <xmmintrin.h>
++#endif
+ #include <new>
+ #include <exception>
+ #include <mutex>
+ #include <thread>
+-#include <xmmintrin.h>
+ #include <cstring>  // [gta-recomp] libstdc++ (Linux) does not bring it in
+ #include "runtime/ps2_host_std.h"
+ 
+diff --git a/third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_runtime.cpp b/third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_runtime.cpp
+index f65093f..f86db78 100644
+--- a/third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_runtime.cpp
++++ b/third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_runtime.cpp
+@@ -3216,10 +3216,14 @@ void PS2Runtime::run()
+         const auto threadCpuMs = []() -> double { // the main thread's own CPU time: wall minus this = blocked or preempted
+ #if defined(_WIN32)
+             return -1.0; // not on Windows yet (windows.h stays out of this file)
+-#else
++#elif defined(CLOCK_THREAD_CPUTIME_ID)
+             timespec ts{};
+             clock_gettime(CLOCK_THREAD_CPUTIME_ID, &ts);
+             return ts.tv_sec * 1e3 + ts.tv_nsec / 1e6;
++#else
++            // [gta-recomp] Optional spike diagnostics: no thread CPU clock on
++            // this host. Report unavailable, never substitute elapsed time.
++            return -1.0;
+ #endif
+         };
+         const double spikeCpu0 = spikeMs > 0.0 ? threadCpuMs() : 0.0;
+diff --git a/third_party/PS2Recomp/ps2xTest/src/ps2_gs_tests.cpp b/third_party/PS2Recomp/ps2xTest/src/ps2_gs_tests.cpp
+index 0458a8c..10cad82 100644
+--- a/third_party/PS2Recomp/ps2xTest/src/ps2_gs_tests.cpp
++++ b/third_party/PS2Recomp/ps2xTest/src/ps2_gs_tests.cpp
+@@ -4139,7 +4139,9 @@ void register_ps2_gs_tests()
+                      "VSync callback should receive a positive tick value");
+             t.Equals(g_gsSyncCallbackGp.load(std::memory_order_acquire), kGsCallbackGp,
+                      "callback invocation should preserve the registered GP");
+-            t.IsTrue(g_gsSyncCallbackSp.load(std::memory_order_acquire) >= 0x01F00000u,
++            t.IsTrue(g_gsSyncCallbackSp.load(std::memory_order_acquire) >= 0x00080000u &&
++                     g_gsSyncCallbackSp.load(std::memory_order_acquire) < 0x00100000u &&
++                     (g_gsSyncCallbackSp.load(std::memory_order_acquire) & 15u) == 0u,
+                      "callback invocation should use the reserved async stack pool");
+             t.IsTrue(g_gsSyncCallbackSp.load(std::memory_order_acquire) != kGsCallbackCallerSp,
+                      "callback invocation must not reuse the caller stack");
+diff --git a/third_party/PS2Recomp/ps2xTest/src/ps2_memory_tests.cpp b/third_party/PS2Recomp/ps2xTest/src/ps2_memory_tests.cpp
+index 0b22fe0..73d77a4 100644
+--- a/third_party/PS2Recomp/ps2xTest/src/ps2_memory_tests.cpp
++++ b/third_party/PS2Recomp/ps2xTest/src/ps2_memory_tests.cpp
+@@ -2141,6 +2141,9 @@ void register_ps2_memory_tests()
+             appendU32(packet, makeVifCmd(0x50u, 0u, 1u)); // DIRECT 1 QW payload: GIF IMAGE tag only.
+             appendU64(packet, makeGifTag(1u, GIF_FMT_IMAGE, 0u, true));
+             appendU64(packet, 0ull);
++            // [gta-recomp] The next DIRECT carries image bytes; raw VIF words
++            // outside a DIRECT payload are commands, not an IMAGE continuation.
++            appendU32(packet, makeVifCmd(0x51u, 0u, 1u));
+             for (uint32_t i = 0; i < 16u; ++i)
+             {
+                 packet.push_back(static_cast<uint8_t>(0xA0u + i));
+@@ -2162,7 +2165,7 @@ void register_ps2_memory_tests()
+                     }
+                 }
+             }
+-            t.IsTrue(imageOk, "raw qwords after a DIRECT image tag should continue the PATH2 image upload");
++            t.IsTrue(imageOk, "DIRECTHL data after the IMAGE tag should continue the PATH2 upload");
+         });
+ 
+         tc.Run("VIF1 DIRECT finds an image continuation after packed setup", [](TestCase &t)
+@@ -2194,6 +2197,9 @@ void register_ps2_memory_tests()
+             appendU64(packet, GS_REG_TEXA);
+             appendU64(packet, makeGifTag(1u, GIF_FMT_IMAGE, 0u, true));
+             appendU64(packet, 0ull);
++            // [gta-recomp] The next DIRECT carries image bytes; raw VIF words
++            // outside a DIRECT payload are commands, not an IMAGE continuation.
++            appendU32(packet, makeVifCmd(0x51u, 0u, 1u));
+             for (uint32_t i = 0; i < 16u; ++i)
+                 packet.push_back(static_cast<uint8_t>(0xC0u + i));
+ 
+@@ -2213,7 +2219,7 @@ void register_ps2_memory_tests()
+                     }
+                 }
+             }
+-            t.IsTrue(imageOk, "raw image continuation after packed setup should not be decoded as VIF/GIF registers");
++            t.IsTrue(imageOk, "DIRECTHL image data after packed setup should not be decoded as VIF/GIF registers");
+         });
+ 
+         tc.Run("unaligned accesses throw", [](TestCase &t)
+diff --git a/third_party/PS2Recomp/ps2xTest/src/ps2_sif_dma_tests.cpp b/third_party/PS2Recomp/ps2xTest/src/ps2_sif_dma_tests.cpp
+index aace83c..a216f74 100644
+--- a/third_party/PS2Recomp/ps2xTest/src/ps2_sif_dma_tests.cpp
++++ b/third_party/PS2Recomp/ps2xTest/src/ps2_sif_dma_tests.cpp
+@@ -200,7 +200,7 @@ void register_ps2_sif_dma_tests()
+             setRegU32(env.ctx, 4, kIopBlockSize);
+             ps2_stubs::sceSifAllocIopHeap(env.rdram.data(), &env.ctx, &env.runtime);
+             const uint32_t iopAddress = ::getRegU32(&env.ctx, 2);
+-            t.IsTrue(iopAddress >= 0x00120000u && iopAddress < 0x00200000u,
++            t.IsTrue(iopAddress >= 0x00080000u && iopAddress < 0x00200000u,
+                      "sceSifAllocIopHeap should return an address in physical IOP RAM");
+             std::memset(env.rdram.data() + iopAddress, 0x5Au, payload.size());
+ 
+diff --git a/third_party/PS2Recomp/ps2xTest/src/ps2_sif_rpc_tests.cpp b/third_party/PS2Recomp/ps2xTest/src/ps2_sif_rpc_tests.cpp
+index 7242e65..1ec8f32 100644
+--- a/third_party/PS2Recomp/ps2xTest/src/ps2_sif_rpc_tests.cpp
++++ b/third_party/PS2Recomp/ps2xTest/src/ps2_sif_rpc_tests.cpp
+@@ -193,7 +193,11 @@ void register_ps2_sif_rpc_tests()
+         {
+             TestEnv env;
+ 
++            // [gta-recomp] Runtime feeds the IOP in 4096-EE-cycle batches.
+             env.runtime.eeScheduler().accountCycles(80u);
++            t.Equals(env.runtime.iopDebugSnapshot().emulatorCycles, uint64_t{0},
++                     "a partial IOP batch must remain pending");
++            env.runtime.eeScheduler().accountCycles(4096u);
+             const uint64_t cyclesBeforeInit = env.runtime.iopDebugSnapshot().emulatorCycles;
+             t.IsTrue(cyclesBeforeInit != 0u, "IOP cycle counter should advance before RPC initialization");
+ 
+diff --git a/third_party/PS2Recomp/ps2xTest/src/ps2_vu1_tests.cpp b/third_party/PS2Recomp/ps2xTest/src/ps2_vu1_tests.cpp
+index 0754b69..4633de5 100644
+--- a/third_party/PS2Recomp/ps2xTest/src/ps2_vu1_tests.cpp
++++ b/third_party/PS2Recomp/ps2xTest/src/ps2_vu1_tests.cpp
+@@ -1053,19 +1053,19 @@ void register_ps2_vu1_tests()
+                      "the flag-driven branch should arrive at its target");
+         });
+ 
+-        tc.Run("JR shares the one-instruction VI branch visibility rule", [](TestCase &t)
++        tc.Run("JR reads the current VI and executes one delay slot", [](TestCase &t)
+         {
+             Vu1Fixture fx;
+             t.IsTrue(fx.initialize(), "VU1 fixture should initialize");
+ 
+             writeVuInstructionPair(
+-                fx.code, 0u, makeVuIaddiu(1u, 0u, 2),
++                fx.code, 0u, makeVuIaddiu(1u, 0u, 3),
+                 kVuUpperNop);
+             writeVuInstructionPair(
+                 fx.code, 8u, makeVuJr(1u),
+                 kVuUpperNop);
+             writeVuInstructionPair(
+-                fx.code, 16u, makeVuIaddiu(2u, 0u, 2),
++                fx.code, 16u, makeVuIaddiu(2u, 2u, 1),
+                 kVuUpperNop);
+             writeVuInstructionPair(
+                 fx.code, 24u, makeVuIaddiu(3u, 0u, 3),
+@@ -1074,20 +1074,22 @@ void register_ps2_vu1_tests()
+                 fx.code, 32u, makeVuIaddiu(4u, 0u, 4),
+                 kVuUpperNop);
+ 
++            // [gta-recomp] JR/JALR use current VI; the backup rule applies
++            // to conditional branches (PCSX2 VUops _vuJR/_vuJALR).
+             VU1Interpreter vu1;
+             vu1.state().vi[1] = 4;
+             vu1.execute(fx.code, PS2_VU1_CODE_SIZE,
+                         fx.data, PS2_VU1_DATA_SIZE, fx.gs, &fx.mem,
+                         0u, 0u, 0u, 4u);
+ 
+-            t.Equals(vu1.state().vi[1], 2,
++            t.Equals(vu1.state().vi[1], 3,
+                      "the pending IALU write should still commit normally");
+-            t.Equals(vu1.state().vi[2], 2,
++            t.Equals(vu1.state().vi[2], 1,
+                      "JR should execute exactly one delay-slot pair");
+-            t.Equals(vu1.state().vi[3], 0,
+-                     "JR should skip the sequential instruction after its delay slot");
+-            t.Equals(vu1.state().vi[4], 4,
+-                     "JR immediately after a VI write should branch using the previous VI value");
++            t.Equals(vu1.state().vi[3], 3,
++                     "JR should reach the new VI target after its delay slot");
++            t.Equals(vu1.state().vi[4], 0,
++                     "JR must not reach the stale VI target");
+         });
+ 
+         tc.Run("MPG upload invalidates cached VU1 decode before MSCAL", [](TestCase &t)

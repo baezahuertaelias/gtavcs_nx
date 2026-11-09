@@ -179,5 +179,98 @@ The revised build keeps registration and VU as separate O2 translation units,
 matching upstream's existing separation of VU from EE unity batches, and omits
 unused DWARF only on those two large sources. No functions, operations or numeric
 checks were removed and no FP flags relaxed. It reuses unaffected objects and
-continues in the project-specific Linux Docker volume. Full archive completion
-and subsequent runtime linking remain open until observed.
+completed in the project-specific Linux Docker volume. The archive contains all
+327 AArch64 members, is 1,769,713,766 bytes and has SHA-256
+`7549019d95a5fb2c0ee488867fcc62efaaf4e7f8b11a3995b0f961d79648d74a`.
+`generated-arm64-build.log`, `generated-arm64-archive-headers.log` and
+`generated-arm64-members.txt` retain completion/member proof. This establishes
+strict C++20 GCC compilation of the full generated source, not runtime/numeric
+or guest-ABI equivalence. M02-04 stays open for those remaining checks.
+
+## Floating-point test preparation and consolidated hardware session
+
+The new public CPU suite uses all 174 upstream hardware-vector rows and compares
+every result with an explicitly emitted x86 Clang23 reference. The native run
+passed: 163 rows match hardware exactly, 10 retain upstream's one-ULP differences
+and one retains its denormal limitation. The latter 11 rows are not claimed as
+hardware-exact. Fifteen exceptional/truncating conversions, rounding-mode changes,
+non-fused multiply/add and four vector lanes are also checked. These checks do
+not replace compiled VU/interpreter pipeline and scheduler tests.
+
+The combined allocation/integer/FP NRO builds successfully. The corrected heap
+arena and floating-point results remain untested on Switch. The user will make
+the Switch available after all M02 implementation is ready for a consolidated
+test session; do not request repeated intermediate device launches.
+
+## Real runtime compilation — partial M02-10 evidence
+
+The separate `cmake/runtime` project inventories the pinned real runtime sources
+and all kernel files, plus the existing IOP library. It disables FFmpeg and the
+desktop debug/graphics backends, preserves precise SSE2NEON and strict FP flags,
+and leaves the desktop project's Clang gate unchanged.
+
+The initial compile exposed undeclared fseeko, missing INADDR_LOOPBACK and missing
+CLOCK_THREAD_CPUTIME_ID. Newlib libc contains fseeko; requesting POSIX.1-2008
+declarations fixes that boundary without narrowing offsets. The maintained
+overlay parses the same loopback address with inet_pton, reports unavailable
+optional CPU-spike timing where no thread clock exists, uses the existing
+USE_SSE2NEON render-worker boundary, and provides explicit PS2X_HEADLESS UI
+exclusion while preserving perf counters/CSV. Both actual runtime and IOP static
+libraries then compiled for ARM64 (`runtime-arm64-portability-v2.log`).
+
+The patch is kept under `patches/upstream`, includes upstream-required markers
+and documentation, and was applied/reversed/reapplied in the disposable pinned
+checkout. The registered submodule remains pristine. Compilation emitted an IOP
+virtual-ISO directory-record warning that remains to be investigated; no runtime
+PASS is inferred from the archive. The linked public runtime suites now pass on
+the native host; the target run remains open as detailed below.
+
+## Native runtime, guest dispatch and numeric matrix
+
+The original public runtime suites were first compiled with the native Clang
+and the documented platform guest-ABI configuration. Their unannotated test
+callbacks do not type-check with preserve_none; mismatched function-pointer
+casts were not added. Both the pristine pin and initial overlay failed the same
+six cases with accurate VU timing: their fixtures still expected the old async
+stack pool, old IOP heap floor, immediate rather than batched IOP progress,
+unframed VIF IMAGE continuation, and old JR visibility behavior. Existing source
+and PS2RECOMP_PATCHES documentation establish the changed contracts. The revised
+fixtures retain their substantive data/stack/control assertions and all 300
+cases pass. Original failures and pristine comparison remain in private logs.
+
+The consolidated native run additionally passes three deterministic
+sleep/wake/resume/stop repetitions (trace 326, 24 cycles, result 0x1e38b878),
+dispatcher failure/unwind/reset, four direct/indirect/tail/return/alias cases,
+273,039 packed scalar-reference groups, 174 FP vectors and 15 conversions,
+42 layout values, 4,096 correctly typed guest calls, and 20,000 threaded
+release/acquire handoffs plus TLS/unwind/aligned allocation/timed waits.
+`runtime-native-complete.log` records the integrated PASS. This is native CPU
+proof, not a Switch or game-loading result. Dedicated boundary compilations also
+passed the original Clang preserve_none configuration.
+
+Details: [PACKED_COVERAGE.md](PACKED_COVERAGE.md),
+[GUEST_DISPATCH.md](GUEST_DISPATCH.md),
+[HOST_BOUNDARIES.md](HOST_BOUNDARIES.md) and
+[CORE_AUDIT.md](CORE_AUDIT.md). The full source audit accounts for every original
+SIMD/parser site and expanded SDK declaration; reserved diagnostic selectors are
+not relabeled as proven unreachable game code.
+
+## Compiled VU correctness policy and generation refresh
+
+The real generator-produced public fixture found two inherited throughput
+differences: an overflow result and early completion relative to the fast
+interpreter. The Switch now selects the already-emitted strict compiled variant
+with exact-range MADD/MSUB handling and full ready/stall/settle bookkeeping.
+Desktop default selection is preserved. Six public synthetic programs and 20
+cases pass native compiled/interpreter comparisons with 19 actual generated
+entries and 124 generated pairs. They compare cycles, flags, data/GIF output,
+rounding, branches, Q/P and budget resumptions; changed uploaded bytes fall back
+without a generated call, and restoring bytes reselects compiled execution.
+No user-game microcode is present in the public fixture.
+
+[COMPILED_VU.md](COMPILED_VU.md) records the failures, strict-policy fix and exact
+reproduction command. The overlaid host recompiler was rebuilt and the private
+EE/VU output refreshed. All 10,386 EE files are byte-identical to the original
+reference; the VU registrar gained the strict selection. Metadata only is kept in
+[overlay_generation_update.json](overlay_generation_update.json). The updated
+private ARM archive and NRO are being rebuilt; target execution remains pending.
