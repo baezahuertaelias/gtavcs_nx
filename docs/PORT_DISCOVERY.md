@@ -80,9 +80,9 @@ creating two platform contexts, or advancing guest execution from audio pulls.
 | Game sound | vcs_sound.cpp, libsd.cpp, vcs_volume.cpp, ps2_audio_out.cpp | Preserve SPU2/native timing and real PCM; M08 |
 | GPU interface | rhi::createDevice, Device virtuals, null/Vulkan/D3D11 backends | Implement new OpenGL backend instead of API renaming; M05 |
 | Native scene | vcs_hle_world.cpp, vcs_rsl_world.cpp, GS/VIF/VU code | Resource upload/render submission/streaming and numeric equivalence; M02/M06 |
-| Presentation | presenter.cpp, vcs_display.cpp, vcs_hud.cpp | Render scale vs output, aspect/culling, HUD/text/menus; M06 |
+| Presentation | presenter.cpp, vcs_display.cpp, vcs_hud.cpp | Render scale vs output, aspect/culling, HUD/text/menus; M06, widescreen M12 |
 | Movies | vcs_movie.cpp, decoder dependencies | Target decoder, PSS video/audio synchronization and lifecycle; M08 |
-| Settings/saves | settings.cpp, runtime mc/file I/O, upstream backups | gamefolder-relative persistence, safe replacement/backup/order; M03/M09 |
+| Settings/saves | settings.cpp, runtime mc/file I/O, upstream backups | gamefolder-relative persistence, safe replacement/backup/order; M03/M09/M15 |
 
 Every detected function has a file and source span in the inventory. This table
 assigns ownership families, not blanket instructions to rewrite thousands of

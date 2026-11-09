@@ -192,9 +192,9 @@ that as-yet unwritten runtime patches were tested.
 
 ## Already scheduled outside M02
 
-- M06-13: docking/output acceptance when the real game first loads its main menu.
+- M06-13: docking/output acceptance when the real game first reaches its opening flyover (the game has no title menu on an empty card).
 - M06-14: Pro Controller/formal physical connection-state acceptance at that same trigger.
-- M09-11 through M09-13: folder-based custom textures and dev-menu enable/reload/error handling and hardware proof.
+- M13-03 and M13-05 through M13-07: folder-based custom textures and dev-menu enable/reload/error handling and hardware proof (moved from M09-11 through M09-13 by the 2026-11-09 re-plan).
 
 Those user-requested items stay tracked in the main ledger. The M01 deferrals
 do not automatically defer M02's CPU/runtime execution requirements.

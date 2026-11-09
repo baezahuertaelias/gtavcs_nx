@@ -121,11 +121,13 @@ git switch -c milestone/m01-platform-smoke
 git push -u origin milestone/m01-platform-smoke
 ```
 
-Use the corresponding next branch from MILESTONES.md. Run commands sequentially,
+Use the next branch in MILESTONES.md's execution order, which differs from
+numeric order after M06 (see BETA_ROADMAP.md). Run commands sequentially,
 stop on failure and verify the PR merge SHA/remote main before creating the next
 branch. Do not use admin bypass/force push or merge a failing PR. The user has
 authorized this milestone flow; routine successful merges need no repeated
-permission request. No tag/release before M11's review gate and release checks.
+permission request. A private beta tag requires M06's review gate and merge. No
+other tag/release before M11's review gate and release checks.
 
 ## CI and repository controls
 
