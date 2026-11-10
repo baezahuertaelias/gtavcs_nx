@@ -1,4 +1,6 @@
-# M02 consolidated Switch acceptance — pending
+# M02 consolidated Switch acceptance
+
+Completed 2026-11-09. Results: [HARDWARE_RESULTS.md](HARDWARE_RESULTS.md).
 
 Complete implementation, native comparisons and source/build checks first.
 The user will provide the Switch again at that point. Do not repeatedly request
@@ -27,7 +29,7 @@ already includes those same suites. A third redundant launch is unnecessary.
 Both require the existing checked `gamefolder` root and full application memory.
 No game function or game/menu boot is attempted. A black/unchanged display while
 CPU checks run is expected; they log to SD and return automatically. Runtime
-file fixtures use only the dedicated `test-work-M02/tmp` tree, separate from
+file fixtures use only the dedicated `test-work-M02` tree, separate from
 actual game assets and saves. Do not rename or remove the user's asset tree.
 
 ## Session sequence

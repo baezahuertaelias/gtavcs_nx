@@ -145,17 +145,17 @@ CPU/scheduler workloads on ARM64, with guest semantics preserved.
 - [x] M02-01 Capture a desktop reference baseline from the verified disc, isolated saves and recorded source/flags; preserve upstream's reference path.
 - [x] M02-02 Build recompiler/analyzer as host tools separately from target code; prove generator does not try to execute AArch64 utilities on the host.
 - [x] M02-03 Run upstream recompile.py on the exact supported ELF; record stamp, generated registration count and all missing/unresolved functions.
-- [ ] M02-04 Audit generated constructs and compiler compatibility; decide documented GCC-compatible adaptation or compatible Clang cross setup without masking errors.
-- [ ] M02-05 Classify every x86 SIMD candidate by operation/owner; port guest 128-bit memory/register representation and unaligned accesses.
-- [ ] M02-06 Port packed EE arithmetic, saturation, shifts, shuffles, comparisons and bit casts with edge-case/reference differential evidence.
-- [ ] M02-07 Port VU interpreter/compiled operations, rounding, exceptional floats and conversion semantics; retain FP contraction prohibition.
-- [ ] M02-08 Verify PS2_GUEST_CC declarations, function tables, hook wrappers, stack alignment, tail/yield/resume behavior and guest return-address integrity.
-- [ ] M02-09 Verify ARM char signedness, endian/layout, aliasing, atomics, TLS, allocation alignment and exceptions/unwind assumptions.
-- [ ] M02-10 Adapt runtime build flags and disable unsupported x86 JIT/desktop backends explicitly; never silently use incorrect fallback math.
-- [ ] M02-11 Resolve parser gaps affecting compiled core with compiler/preprocessed evidence; catalogue macro-generated SDK call registrations.
-- [ ] M02-12 Run relevant existing EE/VU/memory/kernel tests plus differential suites on host and ARM64; retain failures and final passing outputs.
-- [ ] M02-13 Establish memory/stack/worker budgets under full application mode and compile a null-renderer core harness with no desktop dependencies.
-- [ ] M02-14 Demonstrate deterministic scheduler/guest execution progress and clean stop on target; keep generated code/ELF entirely out of Git/CI.
+- [x] M02-04 Audit generated constructs and compiler compatibility; decide documented GCC-compatible adaptation or compatible Clang cross setup without masking errors.
+- [x] M02-05 Classify every x86 SIMD candidate by operation/owner; port guest 128-bit memory/register representation and unaligned accesses.
+- [x] M02-06 Port packed EE arithmetic, saturation, shifts, shuffles, comparisons and bit casts with edge-case/reference differential evidence.
+- [x] M02-07 Port VU interpreter/compiled operations, rounding, exceptional floats and conversion semantics; retain FP contraction prohibition.
+- [x] M02-08 Verify PS2_GUEST_CC declarations, function tables, hook wrappers, stack alignment, tail/yield/resume behavior and guest return-address integrity.
+- [x] M02-09 Verify ARM char signedness, endian/layout, aliasing, atomics, TLS, allocation alignment and exceptions/unwind assumptions.
+- [x] M02-10 Adapt runtime build flags and disable unsupported x86 JIT/desktop backends explicitly; never silently use incorrect fallback math.
+- [x] M02-11 Resolve parser gaps affecting compiled core with compiler/preprocessed evidence; catalogue macro-generated SDK call registrations.
+- [x] M02-12 Run relevant existing EE/VU/memory/kernel tests plus differential suites on host and ARM64; retain failures and final passing outputs.
+- [x] M02-13 Establish memory/stack/worker budgets under full application mode and compile a null-renderer core harness with no desktop dependencies.
+- [x] M02-14 Demonstrate deterministic scheduler/guest execution progress and clean stop on target; keep generated code/ELF entirely out of Git/CI.
 - [x] M02-15 Establish the required root-owned ordered patch application/reversal tool against the pinned upstream, using disposable build checkouts; prove new-file round trips, idempotence and refusal to overwrite unowned edits or accept altered patches.
 
 Proof: per-operation comparison, toolchain decision, generated identity/register

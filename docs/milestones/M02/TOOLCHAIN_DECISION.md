@@ -44,8 +44,9 @@ full generated core, the real runtime and the IOP library. No function was dropp
 Upstream's Clang 19+ gate is not removed. Switch uses the separate `cmake/core` and
 `cmake/runtime` projects, so the desktop project keeps the gate and its compiler.
 
-**Status: selected, not yet proven.** M02-04 requires numeric and ABI proof on ARM,
-so it stays open until the consolidated Switch run passes.
+**Status: decided and proven on hardware, 2026-11-09.** The GCC build ran the float,
+packed, compiled-VU, ABI and scheduler suites on a real Switch with results identical
+to the x86 reference. See [HARDWARE_RESULTS.md](HARDWARE_RESULTS.md).
 
 ## ReleaseMode
 
@@ -63,7 +64,7 @@ assumptions apply there:
 
 The desktop configuration is unchanged.
 
-## Budgets known before the hardware run
+## Budgets
 
 | Item | Value | Source |
 |---|---:|---|
@@ -73,9 +74,12 @@ The desktop configuration is unchanged.
 | Suite worker stack | 8 MiB | `runtime_main.cpp` |
 | Native peak commit, full runtime suites | 188.8 MiB | `runtime-native-peak-memory.log`, sampled Windows x86 |
 | Test allocator arena | 256 MiB | `src/core_tests/heap.cpp` |
+| Switch allocator obtained, runtime suites | 98.1 MiB | `[resources]` log, end of run |
+| Switch allocator obtained, private core | 39.6 MiB | `[resources]` log, end of run |
+| Temporary workers, declared by the harness | 3 | `runtime_main.cpp`; the host-boundary suite measured `workers_peak=2` |
 
 The arena was 128 MiB until the native peak was measured on 2026-11-09. At that size
 the suites would have been expected to run out of memory on the console. The
-native peak includes a 6 MiB image and differs from the Switch allocator, so the
-actual Switch values must come from the `[resources]` log lines. M02-13 stays open
-until they exist.
+native peak includes a 6 MiB image and differs from the Switch allocator. The Switch
+rows come from the `[resources]` log lines. These budgets cover the CPU harness only;
+M04 must measure the running game.

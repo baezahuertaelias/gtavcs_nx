@@ -23,6 +23,8 @@ inline bool reportCpuResources(const char *stage,unsigned temporaryWorkers) {
         stage,static_cast<unsigned long long>(total),static_cast<unsigned long long>(used),
         nx_cpu_heap_budget,arena,allocation.uordblks,allocation.arena,
         static_cast<unsigned long long>(stack.size),temporaryWorkers,rejected,a,b,c);
-    return arena==nx_cpu_heap_budget && rejected && R_SUCCEEDED(a) && R_SUCCEEDED(b) && R_SUCCEEDED(c);
+    // libnx's argvSetup carves 0x9000 bytes from the heap start when given an argv.
+    const bool arenaExpected=arena==nx_cpu_heap_budget || (envHasArgv() && arena==nx_cpu_heap_budget-0x9000);
+    return arenaExpected && rejected && R_SUCCEEDED(a) && R_SUCCEEDED(b) && R_SUCCEEDED(c);
 }
 #endif

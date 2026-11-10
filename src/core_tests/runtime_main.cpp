@@ -102,8 +102,14 @@ int main() {
             std::fclose(stderr); std::fclose(stdout); return EXIT_FAILURE;
         }
     }
-    if(setenv("TMPDIR",temporary,1) || setenv("VCS_DATA_DIR","sdmc:/switch/gtavcs_nx/test-work-M02/userdata",1)) {
+    // std::filesystem sees a "sdmc:" prefix as relative; a rooted path stays on the chdir device.
+    if(setenv("TMPDIR","/switch/gtavcs_nx/test-work-M02/tmp",1) || setenv("VCS_DATA_DIR","/switch/gtavcs_nx/test-work-M02/userdata",1)) {
         std::puts("FAIL runtime fixture environment");
+        std::fclose(stderr); std::fclose(stdout); return EXIT_FAILURE;
+    }
+    // Memory-card tests default their roots to the cwd; keep them out of the asset tree.
+    if(chdir(work)!=0) {
+        std::puts("FAIL runtime fixture working directory");
         std::fclose(stderr); std::fclose(stdout); return EXIT_FAILURE;
     }
     // Loader main-stack size cannot be changed by an arbitrary weak symbol.

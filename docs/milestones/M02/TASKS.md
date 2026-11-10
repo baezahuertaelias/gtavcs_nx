@@ -53,7 +53,7 @@ belong to the open tasks below.
 - [x] Verify the separated registration/VU compilation units finish and retain the cancelled original-unit evidence accurately.
 - [x] Inspect every archive member's target architecture and all compiler/include paths.
 - [x] Audit remaining generated compiler extensions, conversions, aliasing and unsupported constructs.
-- [ ] Decide and document the GCC-compatible configuration from full build/numeric/ABI proof; do not merely remove upstream's Clang gate.
+- [x] Decide and document the GCC-compatible configuration from full build/numeric/ABI proof; do not merely remove upstream's Clang gate.
 
 ## M02-05 — SIMD inventory and guest layout
 
@@ -63,8 +63,8 @@ belong to the open tasks below.
 - [x] Compile-check 16-byte vector size/alignment on ARM64.
 - [x] Exercise unaligned and wrapping 128-bit RDRAM accesses against a scalar byte model on host and Switch.
 - [x] Compare full R5900Context/VU/guest-register sizes, alignments and critical offsets across the native and ARM layouts.
-- [ ] Verify 64/128-bit bit casts, sign extension, endian lane order and memory aliases beyond the current fast-RDRAM cases.
-- [ ] Run the relevant existing full memory/scratchpad/MMIO tests with the real runtime linked.
+- [x] Verify 64/128-bit bit casts, sign extension, endian lane order and memory aliases beyond the current fast-RDRAM cases.
+- [x] Run the relevant existing full memory/scratchpad/MMIO tests with the real runtime linked.
 
 Per-site source metadata: [simd_candidates.json](simd_candidates.json).
 The index is an audit worklist, not a numeric-conformance result.
@@ -79,7 +79,7 @@ The index is an audit worklist, not a numeric-conformance result.
 - [x] Verify the SD payload hash and retain the target PASS log with no new crash report.
 - [x] Extend/check coverage for all core-relevant shuffle/interleave/extract/insert and HI/LO operations in the source inventory.
 - [x] Cover remaining immediate-shift boundaries, lane masks, conversions and guest-specific packed-operation edge cases.
-- [ ] Compare the completed native and ARM suites; retain and fix every unexplained difference at its owning layer.
+- [x] Compare the completed native and ARM suites; retain and fix every unexplained difference at its owning layer.
 
 The current suite is meaningful partial coverage; it does not establish all
 packed guest instructions or all SIMD sites by itself.
@@ -88,10 +88,10 @@ packed guest instructions or all SIMD sites by itself.
 
 - [x] Reuse the existing public PS2 hardware-vector corpus and distinguish exact rows from the upstream's documented known differences.
 - [x] Check signed zero, exponent-255 PS2 values, exceptional conversions, underflow/denormals, saturation and division/square root.
-- [ ] Compare scalar and vector helpers on native x86 and ARM64, including NaN/min/max compatibility where the host SIMD boundary requires it.
-- [ ] Verify FE_TOWARDZERO/FPCR behavior and save/restore of the rounding environment on ARM.
+- [x] Compare scalar and vector helpers on native x86 and ARM64, including NaN/min/max compatibility where the host SIMD boundary requires it.
+- [x] Verify FE_TOWARDZERO/FPCR behavior and save/restore of the rounding environment on ARM.
 - [x] Preserve -ffp-contract=off in the current generated and CPU-test build commands.
-- [ ] Prove multiply/add results are not fused in compiled EE/VU execution and preserve guest timing/numeric rules.
+- [x] Prove multiply/add results are not fused in compiled EE/VU execution and preserve guest timing/numeric rules.
 - [x] Build/run existing relevant VU tests with the real interpreter and compare compiled VU paths.
 - [x] Cover Q/P pipelines, clip/status/MAC flags, branches/delay slots, hazards/stalls, XGKICK and cycle budgets.
 - [x] Verify uploaded-code identity checks and interpreter fallback selection instead of assuming compiled VU always applies.
@@ -101,11 +101,11 @@ packed guest instructions or all SIMD sites by itself.
 
 - [x] Inspect ps2_guest_cc.h and record its existing non-x86 platform-ABI fallback.
 - [x] Compile-check consistent declarations and function-pointer types across generated entries, wrappers and hooks.
-- [ ] Link and inspect the complete generated registration table, aliases, slot bounds and resumable entries.
-- [ ] Verify stack alignment and argument/register integrity at real host/guest boundaries on ARM.
-- [ ] Exercise call, tail-call, yield and resume transitions without assuming a generated guest call returns to its wrapper.
-- [ ] Verify guest return-address preservation and repeated scheduler stop/restart behavior.
-- [ ] Compare deterministic scheduler traces/results with the native reference path.
+- [x] Link and inspect the complete generated registration table, aliases, slot bounds and resumable entries.
+- [x] Verify stack alignment and argument/register integrity at real host/guest boundaries on ARM.
+- [x] Exercise call, tail-call, yield and resume transitions without assuming a generated guest call returns to its wrapper.
+- [x] Verify guest return-address preservation and repeated scheduler stop/restart behavior.
+- [x] Compare deterministic scheduler traces/results with the native reference path.
 
 ## M02-09 — ABI, allocation, threads and host assumptions
 
@@ -113,11 +113,11 @@ packed guest instructions or all SIMD sites by itself.
 - [x] Preserve native signed-char behavior in the CPU foundation flags; verify char_signed=1 on Switch.
 - [x] Validate 16 allocation/alignment cases on host and Switch, including invalid alignment and null/zero-size handling.
 - [x] Observe that the NRO loader heap override bypasses the requested weak heap-size setting.
-- [ ] Validate the custom libnx heap hook really bounds the allocator, including rejection of an over-budget allocation.
-- [ ] Keep kernel-mapped reservation separate from usable allocator arena/live allocation accounting in reports.
-- [ ] Test atomics and memory ordering with real producer/consumer synchronization on ARM.
-- [ ] Test TLS, exceptions/unwind assumptions, aligned allocation, host waits and condition-variable behavior.
-- [ ] Audit applicable newlib/POSIX API differences; replace only unsupported owning paths and prove the replacement.
+- [x] Validate the custom libnx heap hook really bounds the allocator, including rejection of an over-budget allocation.
+- [x] Keep kernel-mapped reservation separate from usable allocator arena/live allocation accounting in reports.
+- [x] Test atomics and memory ordering with real producer/consumer synchronization on ARM.
+- [x] Test TLS, exceptions/unwind assumptions, aligned allocation, host waits and condition-variable behavior.
+- [x] Audit applicable newlib/POSIX API differences; replace only unsupported owning paths and prove the replacement.
 
 ## M02-10 — Real runtime build and null host boundary
 
@@ -137,17 +137,17 @@ packed guest instructions or all SIMD sites by itself.
 - [x] Preprocess/compile the actual core paths and resolve relevant macro/parser gaps with compiler evidence.
 - [x] Catalogue generated SDK/syscall registrations and compare native/target prototypes and counts.
 - [x] Classify the 561 unhandled-instruction events and all indirect-fallback owner functions using section/map/runtime evidence.
-- [ ] Resolve any diagnostic that blocks the required core workloads; distinguish data/unreached metadata from executed code with evidence.
-- [ ] Verify no required guest registration or resume target is missing or silently redirected.
+- [x] Resolve any diagnostic that blocks the required core workloads; distinguish data/unreached metadata from executed code with evidence.
+- [x] Verify no required guest registration or resume target is missing or silently redirected.
 
 ## M02-12 — Host and ARM validation matrix
 
 - [x] Add public-source synthetic allocation and packed-integer checks, separate from private game generation.
 - [x] Run their first native and Switch cases; retain successful log/payload hashes.
 - [x] Run relevant existing EE, VU, memory, interrupt and kernel/scheduler suites on the native reference.
-- [ ] Run corresponding ARM suites with the same recorded data, flags and explicit expected results.
-- [ ] Run FP/VU and completed operation-family differential tests on both architectures.
-- [ ] Retain failing outputs as well as fixes and final passing results; do not mask errors to close a checkbox.
+- [x] Run corresponding ARM suites with the same recorded data, flags and explicit expected results.
+- [x] Run FP/VU and completed operation-family differential tests on both architectures.
+- [x] Retain failing outputs as well as fixes and final passing results; do not mask errors to close a checkbox.
 - [x] Add source-only CI for eligible public CPU-test code without putting private ELF/generated game code in Actions artifacts.
 
 ## M02-13 — Target harness and resource budgets
@@ -155,18 +155,18 @@ packed guest instructions or all SIMD sites by itself.
 - [x] Build a separate automatic synthetic CPU-test NRO; it contains no game code/assets and does not replace the platform NRO.
 - [x] Observe application mode and a 1 MiB stack region on the real Switch.
 - [x] Record zero additional workers and the initial mapped-memory readings for that synthetic harness.
-- [ ] Re-run with the corrected bounded allocator and record actual arena/stack/reservation limits accurately.
+- [x] Re-run with the corrected bounded allocator and record actual arena/stack/reservation limits accurately.
 - [x] Build the full real-core null-renderer harness, not only the current synthetic checks.
-- [ ] Establish budgets/headroom for guest memory, runtime state, generated tables, stacks and workers under application mode.
-- [ ] Verify no desktop dependencies, unbounded workers/queues or hidden runtime ISO requirement in the CPU-only harness.
+- [x] Establish budgets/headroom for guest memory, runtime state, generated tables, stacks and workers under application mode.
+- [x] Verify no desktop dependencies, unbounded workers/queues or hidden runtime ISO requirement in the CPU-only harness.
 
 ## M02-14 — Deterministic target execution and stop
 
-- [ ] Execute validated scheduler/guest CPU workloads through the real runtime on ARM64.
-- [ ] Record deterministic progress/result/PC/yield counters and compare with the native workload.
-- [ ] Exercise clean stop, repeated run and failure cleanup without invalid guest-return or resource lifetime behavior.
-- [ ] Retain exact target binary/source/configuration identity and private execution logs.
-- [ ] Keep all user-disc ELF/generated code out of Git, CI and release artifacts.
+- [x] Execute validated scheduler/guest CPU workloads through the real runtime on ARM64.
+- [x] Record deterministic progress/result/PC/yield counters and compare with the native workload.
+- [x] Exercise clean stop, repeated run and failure cleanup without invalid guest-return or resource lifetime behavior.
+- [x] Retain exact target binary/source/configuration identity and private execution logs.
+- [x] Keep all user-disc ELF/generated code out of Git, CI and release artifacts.
 
 ## M02-15 — Reversible maintained patches
 
