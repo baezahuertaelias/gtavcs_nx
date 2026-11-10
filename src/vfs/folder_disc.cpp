@@ -272,6 +272,8 @@ bool FolderDisc::finishExtents(const std::string &root, std::string &error)
 {
     std::sort(m_extents.begin(), m_extents.end(), [](const Extent &a, const Extent &b) { return a.begin < b.begin; });
     uint64_t position = 0, rawBytes = 0;
+    struct stat modsInfo{};
+    const bool mods = stat((root + "/mods").c_str(), &modsInfo) == 0 && S_ISDIR(modsInfo.st_mode);
     for (const Extent &extent : m_extents)
     {
         if (extent.begin < position)
@@ -302,6 +304,24 @@ bool FolderDisc::finishExtents(const std::string &root, std::string &error)
             {
                 error = "wrong size for game file: " + path;
                 return false;
+            }
+            if (mods)
+            {
+                // A different size would move every later LBA the game expects, so it is refused.
+                const std::string modPath = root + "/mods/" + path.substr(root.size() + 1);
+                struct stat modInfo{};
+                if (stat(modPath.c_str(), &modInfo) == 0)
+                {
+                    if (S_ISREG(modInfo.st_mode) && modInfo.st_size == info.st_size)
+                    {
+                        m_files[extent.file].hostPath = modPath;
+                        ++m_modsApplied;
+                    }
+                    else
+                    {
+                        m_warnings.push_back("ignored mod, size differs from the disc file: " + modPath);
+                    }
+                }
             }
         }
     }
@@ -434,12 +454,16 @@ void FolderDisc::release(Slot *slot) const
 bool FolderDisc::readFile(uint32_t file, uint64_t offset, size_t count, uint8_t *destination) const
 {
     Slot *slot = acquire(file);
-    if (!slot)
+    const bool ok = slot && seekTo(slot->handle, offset) && std::fread(destination, 1, count, slot->handle) == count;
+    if (slot)
     {
-        return false;
+        release(slot);
     }
-    const bool ok = seekTo(slot->handle, offset) && std::fread(destination, 1, count, slot->handle) == count;
-    release(slot);
+    if (!ok)
+    {
+        std::fprintf(stderr, "[folder-disc] read failed: %s offset=%llu count=%zu\n", m_files[file].hostPath.c_str(),
+                     static_cast<unsigned long long>(offset), count);
+    }
     return ok;
 }
 

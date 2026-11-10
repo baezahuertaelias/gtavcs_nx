@@ -33,7 +33,7 @@ def build_iso(path, tail=b"", name_b="B.BIN;1", overlap=False):
     image[pvd + 40:pvd + 72] = b"TESTDISC".ljust(32)
     image[pvd + 156:pvd + 190] = record(ROOT_LBA, SECTOR, "\x00", True)[:34].ljust(34, b"\0")
     root = record(ROOT_LBA, SECTOR, "\x00", True) + record(ROOT_LBA, SECTOR, "\x01", True)
-    root += record(SUB_LBA, SECTOR, "SUB", True) + record(FILE_A, 3000, "A.BIN;1", False)
+    root += record(FILE_A, 3000, "A.BIN;1", False) + record(SUB_LBA, SECTOR, "SUB", True)
     image[ROOT_LBA * SECTOR:ROOT_LBA * SECTOR + len(root)] = root
     lba_b = FILE_A + 1 if overlap else FILE_B
     sub = record(SUB_LBA, SECTOR, "\x00", True) + record(ROOT_LBA, SECTOR, "\x01", True)
@@ -74,8 +74,8 @@ class ExtractDiscTests(unittest.TestCase):
         extract_disc.extract(self.iso, self.dest, identity=accept)
         lines = (self.dest / ".nxdisc/manifest.tsv").read_text(encoding="ascii").splitlines()
         records = [line.split("\t") for line in lines if line[:2] in ("D\t", "F\t")]
-        self.assertEqual([(r[0], r[1], r[4]) for r in records], [("D", "20", ""), ("D", "21", "SUB"),
-                                                                 ("F", "40", "SUB/B.BIN"), ("F", "30", "A.BIN")])
+        self.assertEqual([(r[0], r[1], r[4]) for r in records], [("D", "20", ""), ("F", "30", "A.BIN"),
+                                                                 ("D", "21", "SUB"), ("F", "40", "SUB/B.BIN")])
         self.assertTrue(any(line.startswith("R\t50\t1\t") for line in lines))
 
     def test_rejects_wrong_identity_before_writing(self):

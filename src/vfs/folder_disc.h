@@ -34,6 +34,10 @@ public:
     // could escape the disc tree or are otherwise not a disc path.
     static bool normalize(std::string_view ps2Path, std::string &out);
 
+    // Files replaced from root/mods/<disc path>, and the replacements refused at load.
+    size_t modsApplied() const { return m_modsApplied; }
+    const std::vector<std::string> &warnings() const { return m_warnings; }
+
 private:
     struct Entry
     {
@@ -75,6 +79,8 @@ private:
     std::vector<File> m_files;
     std::vector<Extent> m_extents; // sorted by begin, non-overlapping
     std::vector<uint8_t> m_raw;
+    size_t m_modsApplied = 0;
+    std::vector<std::string> m_warnings;
 
     mutable std::mutex m_mutex;
     mutable std::condition_variable m_released;

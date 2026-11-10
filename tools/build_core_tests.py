@@ -20,7 +20,7 @@ ROOT = Path(__file__).resolve().parents[1]
 VOLUME = "gtavcs-nx-m02-core"
 LOGS = ROOT / "build/evidence/M02/public-build"
 BUNDLE = ROOT / "build/m02/test-bundle"
-PUBLIC_NROS = ("gtavcs_cpu_tests", "gtavcs_runtime_tests")
+PUBLIC_NROS = ("gtavcs_cpu_tests", "gtavcs_runtime_tests", "gtavcs_disc_tests")
 BUNDLE_NAMES = {name + ".nro" for name in PUBLIC_NROS} | {
     "manifest.json", "LICENSE.SSE2NEON.txt", "LICENSE.UPSTREAM.txt", "LICENSE.PS2RECOMP.txt"}
 UPSTREAM_PATHS = (
@@ -166,7 +166,8 @@ def inside(manifest_path, log):
     snapshot({"sse2neon.h": manifest["dependency"]["header_sha256"]}, dep_source, deps)
     inspections = {}
     for project, stem, title in (("core-tests", PUBLIC_NROS[0], "GTA VCS NX - CPU tests"),
-                                 ("runtime", PUBLIC_NROS[1], "GTA VCS NX - Runtime tests")):
+                                 ("runtime", PUBLIC_NROS[1], "GTA VCS NX - Runtime tests"),
+                                 ("runtime", PUBLIC_NROS[2], "GTA VCS NX - Disc tests")):
         build = cache / project
         options = ["-DCMAKE_TOOLCHAIN_FILE=/opt/devkitpro/cmake/Switch.cmake", "-DCMAKE_BUILD_TYPE=Release",
                    f"-DVCS_UPSTREAM_DIR={upstream}", f"-DSSE2NEON_INCLUDE_DIR={deps}"]

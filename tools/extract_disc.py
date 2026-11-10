@@ -39,24 +39,28 @@ def require_safe(path):
 
 
 def layout(image):
-    """Return directories and files in on-disc order, refusing ambiguous discs."""
-    dirs, files = [], []
+    """Return directories, files, and both in one list in on-disc walk order."""
+    dirs, files, ordered = [], [], []
 
     def walk(record, prefix):
-        dirs.append({"lba": record["lba"], "size": record["size"], "path": prefix.rstrip("/")})
+        entry = {"lba": record["lba"], "size": record["size"], "path": prefix.rstrip("/"), "directory": True}
+        dirs.append(entry)
+        ordered.append(entry)
         for child in image.list_dir(record):
             path = prefix + child["name"]
             require_safe(path)
             if child["dir"]:
                 walk(child, path + "/")
             else:
-                files.append({"lba": child["lba"], "size": child["size"], "path": path})
+                entry = {"lba": child["lba"], "size": child["size"], "path": path, "directory": False}
+                files.append(entry)
+                ordered.append(entry)
 
     walk(image.root, "")
     names = [entry["path"].upper() for entry in dirs + files]
     if len(names) != len(set(names)):
         raise DiscError("Disc holds paths that differ only by case")
-    return dirs, files
+    return dirs, files, ordered
 
 
 def file_extents(files, total):
@@ -132,7 +136,7 @@ def extract(iso, dest, replace=False, identity=check):
     total = bytes_total // SECTOR
     image = IsoImage(str(iso))
     try:
-        dirs, files = layout(image)
+        dirs, files, ordered = layout(image)
     finally:
         image.f.close()
     file_extents(files, total)
@@ -158,8 +162,9 @@ def extract(iso, dest, replace=False, identity=check):
             whole.update(chunk)
     lines = [FORMAT, f"sectors\t{total}", f"volume\t{image.volume_id}", f"elf_sha1\t{result['sha1']}",
              f"iso_sha256\t{whole.hexdigest()}", f"raw_sha256\t{raw_sha256}"]
-    lines += [f"D\t{d['lba']}\t{d['size']}\t-\t{d['path']}" for d in dirs]
-    lines += [f"F\t{f['lba']}\t{f['size']}\t{f['sha256']}\t{f['path']}" for f in files]
+    # One list: FolderDisc takes each directory's listing order from this order.
+    lines += [f"D\t{e['lba']}\t{e['size']}\t-\t{e['path']}" if e["directory"]
+              else f"F\t{e['lba']}\t{e['size']}\t{e['sha256']}\t{e['path']}" for e in ordered]
     offset = 0
     for lba, count in spans:
         lines.append(f"R\t{lba}\t{count}\t{offset}")

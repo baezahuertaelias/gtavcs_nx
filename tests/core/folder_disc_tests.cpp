@@ -1,9 +1,11 @@
 // Folder-backed disc checks against an in-memory reference; synthetic data only.
 #include "../../src/vfs/folder_disc.h"
+#include "../../src/vfs/game_paths.h"
 
 #include <atomic>
 #include <cstdio>
 #include <cstring>
+#include <filesystem>
 #include <random>
 #include <string>
 #include <sys/stat.h>
@@ -134,6 +136,60 @@ void checkConcurrent(const FolderDisc &disc,const Fixture &fixture) {
     expect(wrong.load()==0,"concurrent random reads across more files than handles");
 }
 
+void checkMods(const Fixture &fixture) {
+    namespace fs=std::filesystem;
+    makeDirectory(fixture.root+"/mods"); makeDirectory(fixture.root+"/mods/SUB");
+    std::vector<uint8_t> replacement(kSector);
+    fillPattern(replacement.data(),replacement.size(),0xee);
+    expect(writeFile(fixture.root+"/mods/F0.BIN",replacement.data(),replacement.size()),"write mod");
+    expect(writeFile(fixture.root+"/mods/SUB/F1.BIN",replacement.data(),17),"write wrong-size mod");
+    std::string error;
+    auto disc=FolderDisc::load(fixture.root,error);
+    if(!disc) { expect(false,"load with mods"); return; }
+    expect(disc->modsApplied()==1,"one mod applied");
+    expect(disc->warnings().size()==1 && disc->warnings()[0].find("mods/SUB/F1.BIN")!=std::string::npos,"wrong-size mod refused by name");
+    std::vector<uint8_t> got(kSector);
+    expect(disc->readBytes(8*kSector,kSector,got.data()) && got==replacement,"mod replaces the disc file");
+    uint32_t lsn=0,size=0; bool directory=false;
+    expect(disc->findFile("SUB/F1.BIN",lsn,size,directory),"refused mod leaves the disc file");
+    expect(disc->readBytes(uint64_t(lsn)*kSector,size,got.data()) &&
+        std::memcmp(got.data(),fixture.image.data()+uint64_t(lsn)*kSector,size)==0,"disc file still served");
+    disc.reset();
+    std::error_code ignored;
+    fs::remove_all(fixture.root+"/mods",ignored);
+}
+
+void checkCorruption(const Fixture &fixture) {
+    std::string error;
+    auto disc=FolderDisc::load(fixture.root,error);
+    uint32_t lsn=0,size=0; bool directory=false;
+    if(!disc || !disc->findFile("F2.BIN",lsn,size,directory)) { expect(false,"load for corruption"); return; }
+    const uint8_t *original=fixture.image.data()+uint64_t(lsn)*kSector;
+    expect(writeFile(fixture.root+"/F2.BIN",original,size/2),"shorten file after load");
+    std::vector<uint8_t> got(size,0xaa);
+    expect(!disc->readBytes(uint64_t(lsn)*kSector,size,got.data()),"short file read fails");
+    expect(got[0]==0 && got[size-1]==0,"failed read is zero filled");
+    disc.reset();
+    expect(writeFile(fixture.root+"/F2.BIN",original,size),"restore file");
+}
+
+void checkGamePaths(const Fixture &fixture) {
+    std::string out;
+    expect(rootedGamePath("sdmc:/switch/gtavcs_nx/gamefolder",out) && out=="/switch/gtavcs_nx/gamefolder","device stripped");
+    expect(rootedGamePath("/switch/x/",out) && out=="/switch/x","rooted path kept");
+    expect(rootedGamePath("game/data",out) && out=="game/data","relative path kept");
+    for(const char *bad : {"","sdmc:x","sdmc:","romfs:/x","C:/x","/a/../b","a\\b","../x"})
+        expect(!rootedGamePath(bad,out),bad);
+    GamePaths paths; std::string error;
+    expect(!resolveGamePaths(fixture.root+"-missing",paths,error) && error.find("does not exist")!=std::string::npos,"missing game folder is fatal");
+    expect(resolveGamePaths(fixture.root,paths,error),"resolve game folder");
+    expect(paths.userdata==fixture.root+"/userdata" && paths.mc0==fixture.root+"/userdata/mc0" &&
+        paths.settings==fixture.root+"/userdata/vcs.ini" && paths.elf==fixture.root+"/SLUS_215.90","layout");
+    struct stat info{};
+    expect(stat(paths.mc1.c_str(),&info)==0 && S_ISDIR(info.st_mode) && stat(paths.cache.c_str(),&info)==0,"userdata folders created");
+    expect(resolveGamePaths(fixture.root,paths,error),"resolve is repeatable");
+}
+
 bool loadFails(const std::string &root,const char *expected) {
     std::string error;
     const auto disc=FolderDisc::load(root,error);
@@ -183,8 +239,9 @@ int runFolderDiscTests() {
     auto disc=FolderDisc::load(fixture.root,error);
     if(!disc) { std::printf("FAIL folder disc: load: %s\n",error.c_str()); return 1; }
     checkPaths(*disc); checkReads(*disc,fixture); checkConcurrent(*disc,fixture);
-    disc.reset(); // releases open handles so the rejection cases can change files
+    disc.reset(); // releases open handles so the later cases can change files
+    checkMods(fixture); checkCorruption(fixture); checkGamePaths(fixture);
     checkRejections(fixture);
-    if(!failures) std::puts("PASS folder disc: paths, listing, whole-image and unaligned reads, end of disc, 4 readers over 12 files, 13 rejected layouts");
+    if(!failures) std::puts("PASS folder disc: paths, listing, whole-image and unaligned reads, end of disc, 4 readers over 12 files, mods, corrupted file, game paths, 13 rejected layouts");
     return failures;
 }
