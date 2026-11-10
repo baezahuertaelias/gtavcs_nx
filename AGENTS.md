@@ -95,6 +95,7 @@ gtavcs_nx/
   docs/
     PORTING_CHECKLIST.md         exact upstream files and integration order
     SWITCH_REFERENCES.md         inspected public Switch port references
+    BETA_ROADMAP.md              beta definition, execution order, step-by-step route
     MILESTONES.md                complete task/branch/review/merge contract
     PORT_DISCOVERY.md            function/asset/subsystem discovery dossier
     AUTOMATED_EXECUTION.md       resume, validation, review and handoff runbook
@@ -240,12 +241,21 @@ Switch build command. See the checklist before attempting ARM64 core compilation
 
 ## Acceptance direction
 
-The authoritative M00–M11 sequence and individual tasks live in MILESTONES.md.
-Its acceptance includes a controllable ingame route with audible music/effects,
-   stable saves and docking, 30-minute soak, 720p/1080p output and adjustable
-   internal scale. Target 25+ FPS: <=40 ms frame budget on a repeatable busy route.
-   Record median/p95 frame time, audio underruns, memory and CPU/GPU timing at
-   stock clocks in both modes. Intro/title FPS is not gameplay proof.
+The authoritative M00–M15 tasks and their execution order live in MILESTONES.md;
+docs/BETA_ROADMAP.md explains the route. Milestone numbers are stable identifiers,
+not the order.
+
+Beta (M06, user decision 2026-11-09): the real game opens on a real Switch, goes
+ingame and loads the first scene, Fort Baxter gameplay, with the world and HUD
+visible and the player controllable for 5 minutes, then exits cleanly. Timing is
+measured, with no FPS target. After beta, in order: dev menu on L3+R3, widescreen,
+custom textures, real sound and custom audio.
+
+Final acceptance (M10/M11) includes a controllable ingame route with audible
+   music/effects, stable saves and docking, 30-minute soak, 720p/1080p output and
+   adjustable internal scale. Target 25+ FPS: <=40 ms frame budget on a repeatable
+   busy route. Record median/p95 frame time, audio underruns, memory and CPU/GPU
+   timing at stock clocks in both modes. Intro/title FPS is not gameplay proof.
 
 Current verification status (2026-11-08): Docker's Linux engine works; only
 `docker-desktop` is installed in WSL and no local `C:/devkitPro` is required by

@@ -1,0 +1,10 @@
+{
+  "sse2neon": {
+    "repository": "https://github.com/DLTcollab/sse2neon.git",
+    "commit": "92f6de174717aef09033ad21568d5bb9e5470404",
+    "tag": "v1.9.1",
+    "license": "MIT",
+    "use": "Candidate ARM intrinsic compatibility layer; numeric equivalence requires M02 differential tests",
+    "header_sha256": "78632498a57bf7e080e84cb8d74c47ce93b204cece77eab79de2908eb8bc92ed"
+  }
+}

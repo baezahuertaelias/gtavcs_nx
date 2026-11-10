@@ -1,0 +1,61 @@
+diff --git a/docs/PS2RECOMP_PATCHES.md b/docs/PS2RECOMP_PATCHES.md
+index d5df051..58b4b05 100644
+--- a/docs/PS2RECOMP_PATCHES.md
++++ b/docs/PS2RECOMP_PATCHES.md
+@@ -352,3 +352,12 @@ Public port regression tests call these same production helpers, including the
+ 4 GiB boundary without a large allocation. The root M02 report retains failing
+ ASan output, old/new valid-record comparison, normal IOP suites and ARM warning
+ checks; target execution remains separately required. No warning is suppressed.
++
++
++## Unavailable optional CPU timing (M02, 2026-11-09)
++
++[gta-recomp] Host-spike diagnostics preserve the -1 unavailable-clock sentinel
++when calculating deltas, and check clock_gettime failure. Subtracting two
++sentinels previously printed zero CPU time on hosts without a thread CPU clock.
++No elapsed-time substitute or performance claim is introduced; supported clocks
++retain their existing subtraction. This affects diagnostics, not guest timing.
+diff --git a/third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_runtime.cpp b/third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_runtime.cpp
+index f86db78..0dcd5a6 100644
+--- a/third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_runtime.cpp
++++ b/third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_runtime.cpp
+@@ -3218,7 +3218,7 @@ void PS2Runtime::run()
+             return -1.0; // not on Windows yet (windows.h stays out of this file)
+ #elif defined(CLOCK_THREAD_CPUTIME_ID)
+             timespec ts{};
+-            clock_gettime(CLOCK_THREAD_CPUTIME_ID, &ts);
++            if (clock_gettime(CLOCK_THREAD_CPUTIME_ID, &ts) != 0) return -1.0;
+             return ts.tv_sec * 1e3 + ts.tv_nsec / 1e6;
+ #else
+             // [gta-recomp] Optional spike diagnostics: no thread CPU clock on
+@@ -3226,6 +3226,12 @@ void PS2Runtime::run()
+             return -1.0;
+ #endif
+         };
++        // [gta-recomp] Keep unavailable CPU clocks unavailable in the printed
++        // deltas too; subtracting two -1 sentinels incorrectly reports zero work.
++        const auto cpuSince = [&threadCpuMs](double start) {
++            const double now = threadCpuMs();
++            return start < 0.0 || now < 0.0 ? -1.0 : now - start;
++        };
+         const double spikeCpu0 = spikeMs > 0.0 ? threadCpuMs() : 0.0;
+         double spikeCpuFrames = 0.0;
+         SpikeClock::time_point spikeT[6];
+@@ -3246,7 +3252,7 @@ void PS2Runtime::run()
+         UploadFrame(frameTex, shownTex, this, presentWidth, presentHeight);
+         spikeT[2] = SpikeClock::now();
+         if (spikeMs > 0.0)
+-            spikeCpuFrames = threadCpuMs() - spikeCpu1;
++            spikeCpuFrames = cpuSince(spikeCpu1);
+         ps2perf::hostFrame(std::chrono::duration<double, std::milli>(ps2x::hostNow() - uploadStart).count()); // [gta-recomp]
+ 
+         // [gta-recomp] display aspect: 4:3 (the PS2's TV), the widescreen ratio for 3D frames (render/presenter.h)
+@@ -3400,7 +3406,7 @@ void PS2Runtime::run()
+                 std::fprintf(stderr,
+                              "[host-spike] t=%.3f work %.1f ms (cpu %.1f): events+tick %.1f, begin %.1f, frames %.1f (cpu %.1f), ui %.1f, "
+                              "window %.1f, present %.1f (lead %d, frames taken %u)\n",
+-                             std::chrono::duration<double>(spikeT0.time_since_epoch()).count(), work, threadCpuMs() - spikeCpu0,
++                             std::chrono::duration<double>(spikeT0.time_since_epoch()).count(), work, cpuSince(spikeCpu0),
+                              ms(spikeT0, spikeT[0]), ms(spikeT[0], spikeT[1]), ms(spikeT[1], spikeT[2]), spikeCpuFrames,
+                              ms(spikeT[2], spikeT[3]), ms(spikeT[3], spikeT[4]), ms(spikeT[4], spikeT[5]), spikeLead ? 1 : 0,
+                              ps2LastFramesTaken());

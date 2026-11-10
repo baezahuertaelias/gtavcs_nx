@@ -1,0 +1,147 @@
+diff --git a/docs/PS2RECOMP_PATCHES.md b/docs/PS2RECOMP_PATCHES.md
+index 304afea..4547166 100644
+--- a/docs/PS2RECOMP_PATCHES.md
++++ b/docs/PS2RECOMP_PATCHES.md
+@@ -283,3 +283,24 @@ models distinguish both banks. Architectural cross-check: PCSX2 MMI.cpp PMFHL
+ and PMTHL (https://github.com/PCSX2/pcsx2/blob/master/pcsx2/MMI.cpp). The original
+ private generated EE contains zero uses of these helper calls; this is a CPU
+ foundation correctness fix, not observed game behavior or a performance claim.
++
++
++## Switch packed EE boundary correction (M02, 2026-11-08)
++
++[gta-recomp] Maintained root overlay `0002-packed-architectural-semantics.patch`
++fixes architectural lane selection in PINTH, PINTEH, PEXEH, PEXEW and PROT3W.
++PSLLVW/PSRLVW/PSRAVW use rs counts and rt even data words, with independent
++sign extension to each 64-bit destination. Generic four-word intrinsic helpers
++remain separate. The PEXEH/PROT3W generator paths now call the verified macros
++instead of duplicating stale inline shuffles. Existing generator rs/rt order
++is preserved. Numeric and architectural tests belong to the root port.
++
++Reference inspected: PCSX2 MMI interpreter at
++https://github.com/PCSX2/pcsx2/blob/4223d03c58f8fd1787da7af28fe80c2140e1a22a/pcsx2/MMI.cpp
++(PSLLVW/PSRLVW, PINTH, PEXEH/PEXEW/PROT3W, PSRAVW, PINTEH). The new code
++is a scalar/portable implementation of those documented operation contracts,
++not an imported emulator source file. No game-generated source is included.
++
++The pinned user-game generation has no calls to these named helpers; the tests
++therefore exercise synthetic operands explicitly. Compilation/native results
++do not establish target execution; the consolidated Switch run remains required.
+diff --git a/docs/game-internals.md b/docs/game-internals.md
+index 2d29632..e037871 100644
+--- a/docs/game-internals.md
++++ b/docs/game-internals.md
+@@ -2369,3 +2369,15 @@ configuration only. It establishes no new guest address or game behavior. The
+ separate synthetic CPU tests and compile-only generated archive do not boot
+ the game, load its main menu or establish scheduler/VU equivalence. See the
+ root port's M02 evidence before drawing target-runtime conclusions.
++
++
++### Switch M02 packed-instruction coverage (2026-11-08)
++
++Synthetic CPU validation exposed inherited lane/operand-selection defects in
++several packed helper/generator paths. The maintained root overlay records the
++corrections and independent scalar tests. A metadata-only scan of the supported
++SLUS-21590 private generation found zero calls to the affected named packed
++helpers (PMFHL, PINTH/PINTEH, PEXEH/PEXEW/PROT3W and variable word shifts).
++This is compile-output coverage, not a claim about every guest instruction
++that a future dynamically reached program could execute. No new game address
++or gameplay conclusion is established.
+diff --git a/third_party/PS2Recomp/ps2xRecomp/src/lib/mmi_translation_helpers.cpp b/third_party/PS2Recomp/ps2xRecomp/src/lib/mmi_translation_helpers.cpp
+index 2ef2e71..c5e88ad 100644
+--- a/third_party/PS2Recomp/ps2xRecomp/src/lib/mmi_translation_helpers.cpp
++++ b/third_party/PS2Recomp/ps2xRecomp/src/lib/mmi_translation_helpers.cpp
+@@ -455,8 +455,8 @@ namespace ps2recomp
+ 
+     std::string CodeGenerator::translatePEXEH(const Instruction &inst)
+     {
+-        // Swaps halfwords 1<->3 and 5<->7 within the 128-bit register
+-        return fmt::format("SET_GPR_VEC(ctx, {}, _mm_shufflelo_epi16(_mm_shufflehi_epi16(GPR_VEC(ctx, {}), _MM_SHUFFLE(2,3,0,1)), _MM_SHUFFLE(2,3,0,1)));",
++        // [gta-recomp] Use the runtime's verified architectural even-lane exchange.
++        return fmt::format("SET_GPR_VEC(ctx, {}, PS2_PEXEH(GPR_VEC(ctx, {})));",
+                            inst.rd, inst.rt);
+     }
+ 
+@@ -521,8 +521,8 @@ namespace ps2recomp
+ 
+     std::string CodeGenerator::translatePROT3W(const Instruction &inst)
+     {
+-        // Rotates words left by 3: [d,c,b,a] -> [a,d,c,b]
+-        return fmt::format("SET_GPR_VEC(ctx, {}, _mm_shuffle_epi32(GPR_VEC(ctx, {}), _MM_SHUFFLE(0,3,2,1)));",
++        // [gta-recomp] Rotate words0..2 and preserve word3.
++        return fmt::format("SET_GPR_VEC(ctx, {}, PS2_PROT3W(GPR_VEC(ctx, {})));",
+                            inst.rd, inst.rt);
+     }
+ 
+diff --git a/third_party/PS2Recomp/ps2xRuntime/include/ps2_runtime_macros.h b/third_party/PS2Recomp/ps2xRuntime/include/ps2_runtime_macros.h
+index 887eadd..8d60326 100644
+--- a/third_party/PS2Recomp/ps2xRuntime/include/ps2_runtime_macros.h
++++ b/third_party/PS2Recomp/ps2xRuntime/include/ps2_runtime_macros.h
+@@ -784,16 +784,48 @@ inline __m128i ps2_ppacb(__m128i rs, __m128i rt)
+ #define PS2_PPACB(a, b) ps2_ppacb((__m128i)(a), (__m128i)(b))
+ 
+ // Packed Interleave (PINT)
+-#define PS2_PINTH(a, b) _mm_unpacklo_epi16(_mm_shuffle_epi32((__m128i)(b), _MM_SHUFFLE(3, 2, 1, 0)), _mm_shuffle_epi32((__m128i)(a), _MM_SHUFFLE(3, 2, 1, 0)))
+-#define PS2_PINTEH(a, b) _mm_unpackhi_epi16(_mm_shuffle_epi32((__m128i)(b), _MM_SHUFFLE(3, 2, 1, 0)), _mm_shuffle_epi32((__m128i)(a), _MM_SHUFFLE(3, 2, 1, 0)))
++// [gta-recomp] Architectural halfword lanes, with rs/rt evaluated once.
++inline __m128i ps2_pinth(__m128i rs, __m128i rt)
++{
++    uint16_t a[8], b[8], out[8];
++    std::memcpy(a, &rs, sizeof(a)); std::memcpy(b, &rt, sizeof(b));
++    for (unsigned i = 0; i < 4; ++i) { out[2*i] = b[i]; out[2*i+1] = a[i+4]; }
++    __m128i result; std::memcpy(&result, out, sizeof(result)); return result;
++}
++inline __m128i ps2_pinteh(__m128i rs, __m128i rt)
++{
++    uint16_t a[8], b[8], out[8];
++    std::memcpy(a, &rs, sizeof(a)); std::memcpy(b, &rt, sizeof(b));
++    for (unsigned i = 0; i < 4; ++i) { out[2*i] = b[2*i]; out[2*i+1] = a[2*i]; }
++    __m128i result; std::memcpy(&result, out, sizeof(result)); return result;
++}
++#define PS2_PINTH(rs, rt) ps2_pinth((__m128i)(rs), (__m128i)(rt))
++#define PS2_PINTEH(rs, rt) ps2_pinteh((__m128i)(rs), (__m128i)(rt))
+ 
+ // Packed Multiply-Add (PMADD)
+ #define PS2_PMADDW(a, b) _mm_add_epi32(_mm_mullo_epi32(_mm_shuffle_epi32((__m128i)(a), _MM_SHUFFLE(1, 0, 3, 2)), _mm_shuffle_epi32((__m128i)(b), _MM_SHUFFLE(1, 0, 3, 2))), _mm_mullo_epi32(_mm_shuffle_epi32((__m128i)(a), _MM_SHUFFLE(3, 2, 1, 0)), _mm_shuffle_epi32((__m128i)(b), _MM_SHUFFLE(3, 2, 1, 0))))
+ 
+ // Packed Variable Shifts
+-#define PS2_PSLLVW(a, b) _mm_custom_sllv_epi32((__m128i)(a), (__m128i)(b))
+-#define PS2_PSRLVW(a, b) _mm_custom_srlv_epi32((__m128i)(a), (__m128i)(b))
+-#define PS2_PSRAVW(a, b) _mm_custom_srav_epi32((__m128i)(a), (__m128i)(b))
++// [gta-recomp] EE packed variable shifts consume rs word0/2 as counts and rt
++// word0/2 as data, then sign-extend each shifted word into a 64-bit lane.
++enum class Ps2PackedWordShift { Left, LogicalRight, ArithmeticRight };
++inline __m128i ps2_shift_even_words(__m128i rs, __m128i rt, Ps2PackedWordShift mode)
++{
++    uint32_t counts[4], data[4]; uint64_t out[2];
++    std::memcpy(counts, &rs, sizeof(counts)); std::memcpy(data, &rt, sizeof(data));
++    for (unsigned i = 0; i < 2; ++i) {
++        const unsigned shift = counts[2*i] & 31u;
++        const uint32_t source = data[2*i];
++        uint32_t value = mode == Ps2PackedWordShift::Left ? source << shift : source >> shift;
++        if (mode == Ps2PackedWordShift::ArithmeticRight && shift && (source & 0x80000000u))
++            value |= UINT32_MAX << (32u - shift);
++        out[i] = static_cast<uint64_t>(static_cast<int64_t>(std::bit_cast<int32_t>(value)));
++    }
++    __m128i result; std::memcpy(&result, out, sizeof(result)); return result;
++}
++#define PS2_PSLLVW(rs, rt) ps2_shift_even_words((__m128i)(rs), (__m128i)(rt), Ps2PackedWordShift::Left)
++#define PS2_PSRLVW(rs, rt) ps2_shift_even_words((__m128i)(rs), (__m128i)(rt), Ps2PackedWordShift::LogicalRight)
++#define PS2_PSRAVW(rs, rt) ps2_shift_even_words((__m128i)(rs), (__m128i)(rt), Ps2PackedWordShift::ArithmeticRight)
+ 
+ inline __m128i _mm_custom_sllv_epi32(__m128i a, __m128i count)
+ {
+@@ -1037,9 +1069,10 @@ inline __m128i ps2_qfsrv(__m128i rs, __m128i rt, uint32_t sa)
+ }
+ #define PS2_QFSRV(rs, rt, sa) ps2_qfsrv((__m128i)(rs), (__m128i)(rt), (uint32_t)(sa))
+ #define PS2_PCPYLD(rs, rt) _mm_unpacklo_epi64(rt, rs)
+-#define PS2_PEXEH(rs) _mm_shufflelo_epi16(_mm_shufflehi_epi16(rs, _MM_SHUFFLE(2, 3, 0, 1)), _MM_SHUFFLE(2, 3, 0, 1))
+-#define PS2_PEXEW(rs) _mm_shuffle_epi32(rs, _MM_SHUFFLE(2, 3, 0, 1))
+-#define PS2_PROT3W(rs) _mm_shuffle_epi32(rs, _MM_SHUFFLE(0, 3, 2, 1))
++// [gta-recomp] PEXE swaps even lanes; PROT3W rotates only the low three words.
++#define PS2_PEXEH(rs) _mm_shufflelo_epi16(_mm_shufflehi_epi16(rs, _MM_SHUFFLE(3, 0, 1, 2)), _MM_SHUFFLE(3, 0, 1, 2))
++#define PS2_PEXEW(rs) _mm_shuffle_epi32(rs, _MM_SHUFFLE(3, 0, 1, 2))
++#define PS2_PROT3W(rs) _mm_shuffle_epi32(rs, _MM_SHUFFLE(3, 0, 2, 1))
+ 
+ // Additional VU0 operations
+ #define PS2_VSQRT(x) sqrtf(x)

@@ -105,3 +105,20 @@ Its 2D renderer is not a VCS world-renderer reference.
 No external port source was copied into the runtime in this pass. Review licenses
 and preserve attribution before any later reuse. None of these references proves
 that VCS reaches gameplay or 25 FPS on Switch.
+
+## Focused M02 follow-up (2026-11-08)
+
+The user asked whether this list helps the ARM64 milestone. Rechecked source:
+Jak's toolchain at observed branch commit
+`e331185682aee0c51a58fcf9a877d942b71f531d` documents signed-char sentinels,
+CRC flags and PIE relocation hygiene; RampageRE's build script at observed
+`115ae7a0c6e967f4ce41a5685b08757774083c6e` also explicitly uses signed char
+and ARMv8/PIE flags. These are concrete audit prompts for M02-04/M02-09, not
+proof that VCS has the same bugs. Our pinned devkitA64 preprocessing independently
+confirmed unsigned default char, 64-bit pointers/long and little endian.
+
+The compile-only CPU foundation preserves the reference's signed-char behavior
+and uses the official Switch toolchain/PIE flags, rather than replacing it with
+another project's toolchain. Rampage's script explicitly builds its native
+viewer, not its PS2Recomp reference, so it cannot substitute for VCS EE/VU
+numeric/ABI tests. No outside runtime implementation was copied for this step.

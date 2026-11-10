@@ -1,0 +1,4684 @@
+{
+  "source": "ecf150e53f87e4656dfe81eacd922839d952b282",
+  "count": 667,
+  "counts": {
+    "later_milestone": 115,
+    "optional_backend": 3,
+    "target_core_source": 7,
+    "host_generator": 6,
+    "target_core_header": 535,
+    "excluded_desktop_runner": 1
+  },
+  "limitation": "A successful compiler handles these constructs; the original syntactic index still is not a semantic call graph",
+  "records": [
+    {
+      "file": "src/debug/crash.cpp",
+      "line": 73,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-07 desktop facilities; M09 UI where applicable"
+    },
+    {
+      "file": "src/debug/crash.cpp",
+      "line": 102,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-07 desktop facilities; M09 UI where applicable"
+    },
+    {
+      "file": "src/debug/profiler.cpp",
+      "line": 608,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-07 desktop facilities; M09 UI where applicable"
+    },
+    {
+      "file": "src/debug/profiler.cpp",
+      "line": 608,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-07 desktop facilities; M09 UI where applicable"
+    },
+    {
+      "file": "src/debug/rig.cpp",
+      "line": 693,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-07 desktop facilities; M09 UI where applicable"
+    },
+    {
+      "file": "src/debug/rig.h",
+      "line": 23,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-07 desktop facilities; M09 UI where applicable"
+    },
+    {
+      "file": "src/debug/rsl_shadow.cpp",
+      "line": 155,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-07 desktop facilities; M09 UI where applicable"
+    },
+    {
+      "file": "src/debug/rsl_trace.cpp",
+      "line": 85,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-07 desktop facilities; M09 UI where applicable"
+    },
+    {
+      "file": "src/game/vcs_aim.cpp",
+      "line": 209,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-02/M06-01/M09-01 game integration, world and UI"
+    },
+    {
+      "file": "src/game/vcs_aim.cpp",
+      "line": 223,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-02/M06-01/M09-01 game integration, world and UI"
+    },
+    {
+      "file": "src/game/vcs_aim.cpp",
+      "line": 243,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-02/M06-01/M09-01 game integration, world and UI"
+    },
+    {
+      "file": "src/game/vcs_aim.cpp",
+      "line": 258,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-02/M06-01/M09-01 game integration, world and UI"
+    },
+    {
+      "file": "src/game/vcs_carcam.cpp",
+      "line": 266,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-02/M06-01/M09-01 game integration, world and UI"
+    },
+    {
+      "file": "src/game/vcs_display.cpp",
+      "line": 75,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-02/M06-01/M09-01 game integration, world and UI"
+    },
+    {
+      "file": "src/game/vcs_display.cpp",
+      "line": 144,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-02/M06-01/M09-01 game integration, world and UI"
+    },
+    {
+      "file": "src/game/vcs_display.cpp",
+      "line": 152,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-02/M06-01/M09-01 game integration, world and UI"
+    },
+    {
+      "file": "src/game/vcs_display.cpp",
+      "line": 169,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-02/M06-01/M09-01 game integration, world and UI"
+    },
+    {
+      "file": "src/game/vcs_framerate.cpp",
+      "line": 135,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-02/M06-01/M09-01 game integration, world and UI"
+    },
+    {
+      "file": "src/game/vcs_framerate.cpp",
+      "line": 144,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-02/M06-01/M09-01 game integration, world and UI"
+    },
+    {
+      "file": "src/game/vcs_framerate.cpp",
+      "line": 178,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-02/M06-01/M09-01 game integration, world and UI"
+    },
+    {
+      "file": "src/game/vcs_framerate.cpp",
+      "line": 204,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-02/M06-01/M09-01 game integration, world and UI"
+    },
+    {
+      "file": "src/game/vcs_framerate.cpp",
+      "line": 277,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-02/M06-01/M09-01 game integration, world and UI"
+    },
+    {
+      "file": "src/game/vcs_framerate.cpp",
+      "line": 293,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-02/M06-01/M09-01 game integration, world and UI"
+    },
+    {
+      "file": "src/game/vcs_framerate.cpp",
+      "line": 304,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-02/M06-01/M09-01 game integration, world and UI"
+    },
+    {
+      "file": "src/game/vcs_freecam.cpp",
+      "line": 127,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-02/M06-01/M09-01 game integration, world and UI"
+    },
+    {
+      "file": "src/game/vcs_frontend.cpp",
+      "line": 260,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-02/M06-01/M09-01 game integration, world and UI"
+    },
+    {
+      "file": "src/game/vcs_frontend.cpp",
+      "line": 304,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-02/M06-01/M09-01 game integration, world and UI"
+    },
+    {
+      "file": "src/game/vcs_frontend.cpp",
+      "line": 316,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-02/M06-01/M09-01 game integration, world and UI"
+    },
+    {
+      "file": "src/game/vcs_frontend.cpp",
+      "line": 329,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-02/M06-01/M09-01 game integration, world and UI"
+    },
+    {
+      "file": "src/game/vcs_frontend.cpp",
+      "line": 366,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-02/M06-01/M09-01 game integration, world and UI"
+    },
+    {
+      "file": "src/game/vcs_frontend.cpp",
+      "line": 371,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-02/M06-01/M09-01 game integration, world and UI"
+    },
+    {
+      "file": "src/game/vcs_hud.cpp",
+      "line": 157,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-02/M06-01/M09-01 game integration, world and UI"
+    },
+    {
+      "file": "src/game/vcs_hud.cpp",
+      "line": 361,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-02/M06-01/M09-01 game integration, world and UI"
+    },
+    {
+      "file": "src/game/vcs_hud.cpp",
+      "line": 369,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-02/M06-01/M09-01 game integration, world and UI"
+    },
+    {
+      "file": "src/game/vcs_hud.cpp",
+      "line": 377,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-02/M06-01/M09-01 game integration, world and UI"
+    },
+    {
+      "file": "src/game/vcs_hud.cpp",
+      "line": 384,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-02/M06-01/M09-01 game integration, world and UI"
+    },
+    {
+      "file": "src/game/vcs_hud.cpp",
+      "line": 401,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-02/M06-01/M09-01 game integration, world and UI"
+    },
+    {
+      "file": "src/game/vcs_hud.cpp",
+      "line": 408,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-02/M06-01/M09-01 game integration, world and UI"
+    },
+    {
+      "file": "src/game/vcs_hud.cpp",
+      "line": 419,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-02/M06-01/M09-01 game integration, world and UI"
+    },
+    {
+      "file": "src/game/vcs_hud.cpp",
+      "line": 452,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-02/M06-01/M09-01 game integration, world and UI"
+    },
+    {
+      "file": "src/game/vcs_hud.cpp",
+      "line": 478,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-02/M06-01/M09-01 game integration, world and UI"
+    },
+    {
+      "file": "src/game/vcs_hud.cpp",
+      "line": 486,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-02/M06-01/M09-01 game integration, world and UI"
+    },
+    {
+      "file": "src/game/vcs_inflate.cpp",
+      "line": 456,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-02/M06-01/M09-01 game integration, world and UI"
+    },
+    {
+      "file": "src/game/vcs_movie.cpp",
+      "line": 31,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-02/M06-01/M09-01 game integration, world and UI"
+    },
+    {
+      "file": "src/game/vcs_movie.cpp",
+      "line": 31,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-02/M06-01/M09-01 game integration, world and UI"
+    },
+    {
+      "file": "src/game/vcs_movie.cpp",
+      "line": 31,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-02/M06-01/M09-01 game integration, world and UI"
+    },
+    {
+      "file": "src/game/vcs_movie.cpp",
+      "line": 359,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-02/M06-01/M09-01 game integration, world and UI"
+    },
+    {
+      "file": "src/game/vcs_overrides.cpp",
+      "line": 81,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-02/M06-01/M09-01 game integration, world and UI"
+    },
+    {
+      "file": "src/game/vcs_overrides.cpp",
+      "line": 105,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-02/M06-01/M09-01 game integration, world and UI"
+    },
+    {
+      "file": "src/game/vcs_overrides.cpp",
+      "line": 121,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-02/M06-01/M09-01 game integration, world and UI"
+    },
+    {
+      "file": "src/game/vcs_overrides.cpp",
+      "line": 135,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-02/M06-01/M09-01 game integration, world and UI"
+    },
+    {
+      "file": "src/game/vcs_overrides.cpp",
+      "line": 155,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-02/M06-01/M09-01 game integration, world and UI"
+    },
+    {
+      "file": "src/game/vcs_overrides.cpp",
+      "line": 178,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-02/M06-01/M09-01 game integration, world and UI"
+    },
+    {
+      "file": "src/game/vcs_overrides.cpp",
+      "line": 188,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-02/M06-01/M09-01 game integration, world and UI"
+    },
+    {
+      "file": "src/game/vcs_overrides.cpp",
+      "line": 216,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-02/M06-01/M09-01 game integration, world and UI"
+    },
+    {
+      "file": "src/game/vcs_overrides.cpp",
+      "line": 230,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-02/M06-01/M09-01 game integration, world and UI"
+    },
+    {
+      "file": "src/game/vcs_overrides.cpp",
+      "line": 237,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-02/M06-01/M09-01 game integration, world and UI"
+    },
+    {
+      "file": "src/game/vcs_overrides.cpp",
+      "line": 252,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-02/M06-01/M09-01 game integration, world and UI"
+    },
+    {
+      "file": "src/game/vcs_overrides.cpp",
+      "line": 261,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-02/M06-01/M09-01 game integration, world and UI"
+    },
+    {
+      "file": "src/game/vcs_overrides.cpp",
+      "line": 279,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-02/M06-01/M09-01 game integration, world and UI"
+    },
+    {
+      "file": "src/game/vcs_overrides.cpp",
+      "line": 335,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-02/M06-01/M09-01 game integration, world and UI"
+    },
+    {
+      "file": "src/game/vcs_overrides.cpp",
+      "line": 358,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-02/M06-01/M09-01 game integration, world and UI"
+    },
+    {
+      "file": "src/game/vcs_overrides.cpp",
+      "line": 607,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-02/M06-01/M09-01 game integration, world and UI"
+    },
+    {
+      "file": "src/game/vcs_overrides.cpp",
+      "line": 684,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-02/M06-01/M09-01 game integration, world and UI"
+    },
+    {
+      "file": "src/game/vcs_overrides.cpp",
+      "line": 715,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-02/M06-01/M09-01 game integration, world and UI"
+    },
+    {
+      "file": "src/game/vcs_overrides.cpp",
+      "line": 739,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-02/M06-01/M09-01 game integration, world and UI"
+    },
+    {
+      "file": "src/game/vcs_overrides.cpp",
+      "line": 776,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-02/M06-01/M09-01 game integration, world and UI"
+    },
+    {
+      "file": "src/game/vcs_overrides.cpp",
+      "line": 851,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-02/M06-01/M09-01 game integration, world and UI"
+    },
+    {
+      "file": "src/game/vcs_overrides.cpp",
+      "line": 905,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-02/M06-01/M09-01 game integration, world and UI"
+    },
+    {
+      "file": "src/game/vcs_overrides.cpp",
+      "line": 911,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-02/M06-01/M09-01 game integration, world and UI"
+    },
+    {
+      "file": "src/game/vcs_overrides.cpp",
+      "line": 965,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-02/M06-01/M09-01 game integration, world and UI"
+    },
+    {
+      "file": "src/game/vcs_overrides.cpp",
+      "line": 970,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-02/M06-01/M09-01 game integration, world and UI"
+    },
+    {
+      "file": "src/game/vcs_overrides.cpp",
+      "line": 977,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-02/M06-01/M09-01 game integration, world and UI"
+    },
+    {
+      "file": "src/game/vcs_overrides.cpp",
+      "line": 1022,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-02/M06-01/M09-01 game integration, world and UI"
+    },
+    {
+      "file": "src/game/vcs_overrides.cpp",
+      "line": 1055,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-02/M06-01/M09-01 game integration, world and UI"
+    },
+    {
+      "file": "src/game/vcs_overrides.cpp",
+      "line": 1068,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-02/M06-01/M09-01 game integration, world and UI"
+    },
+    {
+      "file": "src/game/vcs_overrides.cpp",
+      "line": 1094,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-02/M06-01/M09-01 game integration, world and UI"
+    },
+    {
+      "file": "src/game/vcs_overrides.cpp",
+      "line": 1115,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-02/M06-01/M09-01 game integration, world and UI"
+    },
+    {
+      "file": "src/game/vcs_overrides.cpp",
+      "line": 1140,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-02/M06-01/M09-01 game integration, world and UI"
+    },
+    {
+      "file": "src/game/vcs_overrides.cpp",
+      "line": 1154,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-02/M06-01/M09-01 game integration, world and UI"
+    },
+    {
+      "file": "src/game/vcs_overrides.cpp",
+      "line": 1251,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-02/M06-01/M09-01 game integration, world and UI"
+    },
+    {
+      "file": "src/game/vcs_overrides.cpp",
+      "line": 1306,
+      "kind": ";",
+      "scope": "later_milestone",
+      "proof": "M04-02/M06-01/M09-01 game integration, world and UI"
+    },
+    {
+      "file": "src/game/vcs_physics_timing.cpp",
+      "line": 124,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-02/M06-01/M09-01 game integration, world and UI"
+    },
+    {
+      "file": "src/game/vcs_physics_timing.cpp",
+      "line": 151,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-02/M06-01/M09-01 game integration, world and UI"
+    },
+    {
+      "file": "src/game/vcs_rsl_native.cpp",
+      "line": 372,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-02/M06-01/M09-01 game integration, world and UI"
+    },
+    {
+      "file": "src/game/vcs_rsl_world.cpp",
+      "line": 2138,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-02/M06-01/M09-01 game integration, world and UI"
+    },
+    {
+      "file": "src/game/vcs_rsl_world.cpp",
+      "line": 2220,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-02/M06-01/M09-01 game integration, world and UI"
+    },
+    {
+      "file": "src/game/vcs_rsl_world.cpp",
+      "line": 2225,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-02/M06-01/M09-01 game integration, world and UI"
+    },
+    {
+      "file": "src/game/vcs_rsl_world.cpp",
+      "line": 2231,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-02/M06-01/M09-01 game integration, world and UI"
+    },
+    {
+      "file": "src/game/vcs_rsl_world.cpp",
+      "line": 2280,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-02/M06-01/M09-01 game integration, world and UI"
+    },
+    {
+      "file": "src/game/vcs_rsl_world.cpp",
+      "line": 2318,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-02/M06-01/M09-01 game integration, world and UI"
+    },
+    {
+      "file": "src/game/vcs_rsl_world.cpp",
+      "line": 2338,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-02/M06-01/M09-01 game integration, world and UI"
+    },
+    {
+      "file": "src/game/vcs_rsl_world.cpp",
+      "line": 2347,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-02/M06-01/M09-01 game integration, world and UI"
+    },
+    {
+      "file": "src/game/vcs_rsl_world.cpp",
+      "line": 2374,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-02/M06-01/M09-01 game integration, world and UI"
+    },
+    {
+      "file": "src/game/vcs_rsl_world.cpp",
+      "line": 2389,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-02/M06-01/M09-01 game integration, world and UI"
+    },
+    {
+      "file": "src/game/vcs_rsl_world.cpp",
+      "line": 2404,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-02/M06-01/M09-01 game integration, world and UI"
+    },
+    {
+      "file": "src/game/vcs_script_timing.cpp",
+      "line": 372,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-02/M06-01/M09-01 game integration, world and UI"
+    },
+    {
+      "file": "src/game/vcs_stream.cpp",
+      "line": 109,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-02/M06-01/M09-01 game integration, world and UI"
+    },
+    {
+      "file": "src/game/vcs_stream.cpp",
+      "line": 134,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-02/M06-01/M09-01 game integration, world and UI"
+    },
+    {
+      "file": "src/game/vcs_stream.cpp",
+      "line": 150,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-02/M06-01/M09-01 game integration, world and UI"
+    },
+    {
+      "file": "src/game/vcs_trainer.cpp",
+      "line": 56,
+      "kind": "type_identifier",
+      "scope": "later_milestone",
+      "proof": "M04-02/M06-01/M09-01 game integration, world and UI"
+    },
+    {
+      "file": "src/game/vcs_trainer.cpp",
+      "line": 362,
+      "kind": "type_identifier",
+      "scope": "later_milestone",
+      "proof": "M04-02/M06-01/M09-01 game integration, world and UI"
+    },
+    {
+      "file": "src/game/vcs_trainer.cpp",
+      "line": 363,
+      "kind": "type_identifier",
+      "scope": "later_milestone",
+      "proof": "M04-02/M06-01/M09-01 game integration, world and UI"
+    },
+    {
+      "file": "src/game/vcs_trainer.cpp",
+      "line": 662,
+      "kind": "type_identifier",
+      "scope": "later_milestone",
+      "proof": "M04-02/M06-01/M09-01 game integration, world and UI"
+    },
+    {
+      "file": "src/game/vcs_trainer.cpp",
+      "line": 1046,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-02/M06-01/M09-01 game integration, world and UI"
+    },
+    {
+      "file": "src/game/vcs_trainer.cpp",
+      "line": 1092,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-02/M06-01/M09-01 game integration, world and UI"
+    },
+    {
+      "file": "src/game/vcs_trainer.cpp",
+      "line": 1156,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-02/M06-01/M09-01 game integration, world and UI"
+    },
+    {
+      "file": "src/game/vcs_trainer.cpp",
+      "line": 1232,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-02/M06-01/M09-01 game integration, world and UI"
+    },
+    {
+      "file": "src/game/vcs_trainer.cpp",
+      "line": 1246,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-02/M06-01/M09-01 game integration, world and UI"
+    },
+    {
+      "file": "src/game/vcs_trainer.cpp",
+      "line": 1388,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-02/M06-01/M09-01 game integration, world and UI"
+    },
+    {
+      "file": "src/game/vcs_trainer.cpp",
+      "line": 1390,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-02/M06-01/M09-01 game integration, world and UI"
+    },
+    {
+      "file": "src/game/vcs_volume.cpp",
+      "line": 67,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-02/M06-01/M09-01 game integration, world and UI"
+    },
+    {
+      "file": "src/platform/platform_sdl3.cpp",
+      "line": 267,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-01 SDL2 platform adapter; desktop SDL3 is excluded"
+    },
+    {
+      "file": "src/platform/platform_sdl3.cpp",
+      "line": 761,
+      "kind": ")",
+      "scope": "later_milestone",
+      "proof": "M04-01 SDL2 platform adapter; desktop SDL3 is excluded"
+    },
+    {
+      "file": "src/platform/platform_sdl3.cpp",
+      "line": 761,
+      "kind": "ERROR",
+      "scope": "later_milestone",
+      "proof": "M04-01 SDL2 platform adapter; desktop SDL3 is excluded"
+    },
+    {
+      "file": "src/rhi/vulkan/rhi_vulkan.cpp",
+      "line": 79,
+      "kind": "ERROR",
+      "scope": "optional_backend",
+      "proof": "M05 preserves desktop D3D/Vulkan references; Switch uses a separate OpenGL adapter"
+    },
+    {
+      "file": "src/rhi/vulkan/rhi_vulkan.cpp",
+      "line": 88,
+      "kind": "ERROR",
+      "scope": "optional_backend",
+      "proof": "M05 preserves desktop D3D/Vulkan references; Switch uses a separate OpenGL adapter"
+    },
+    {
+      "file": "src/rhi/vulkan/rhi_vulkan.cpp",
+      "line": 459,
+      "kind": "ERROR",
+      "scope": "optional_backend",
+      "proof": "M05 preserves desktop D3D/Vulkan references; Switch uses a separate OpenGL adapter"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xIOP/src/emulator/core/iop_spu2.cpp",
+      "line": 30,
+      "kind": "ERROR",
+      "scope": "target_core_source",
+      "proof": "M02 runtime-arm64-portability-v2.log full runtime/IOP compilation; not execution proof"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRecomp/include/ps2recomp/Emitters/control_flow_emitter.h",
+      "line": 23,
+      "kind": "type_identifier",
+      "scope": "host_generator",
+      "proof": "M02-02 native recompiler/analyzer build"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRecomp/include/ps2recomp/recompiler_reporter.h",
+      "line": 87,
+      "kind": "type_identifier",
+      "scope": "host_generator",
+      "proof": "M02-02 native recompiler/analyzer build"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRecomp/src/lib/elf_parser.cpp",
+      "line": 227,
+      "kind": "ERROR",
+      "scope": "host_generator",
+      "proof": "M02-02 native recompiler/analyzer build"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRecomp/src/lib/elf_parser.cpp",
+      "line": 229,
+      "kind": "ERROR",
+      "scope": "host_generator",
+      "proof": "M02-02 native recompiler/analyzer build"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRecomp/src/lib/elf_parser.cpp",
+      "line": 232,
+      "kind": "ERROR",
+      "scope": "host_generator",
+      "proof": "M02-02 native recompiler/analyzer build"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRecomp/src/lib/ps2_recompiler.cpp",
+      "line": 292,
+      "kind": "type_identifier",
+      "scope": "host_generator",
+      "proof": "M02-02 native recompiler/analyzer build"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ThreadNaming.h",
+      "line": 21,
+      "kind": "ERROR",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ThreadNaming.h",
+      "line": 22,
+      "kind": "ERROR",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ThreadNaming.h",
+      "line": 23,
+      "kind": "ERROR",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 223,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 224,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 225,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 226,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 227,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 228,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 229,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 230,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 231,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 232,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 233,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 234,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 235,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 236,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 237,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 238,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 239,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 240,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 241,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 242,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 243,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 244,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 245,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 246,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 247,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 248,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 249,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 250,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 251,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 252,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 253,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 254,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 255,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 256,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 257,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 258,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 259,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 260,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 261,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 262,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 263,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 264,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 265,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 266,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 267,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 268,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 269,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 270,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 271,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 272,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 273,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 274,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 275,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 276,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 277,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 278,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 279,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 280,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 281,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 282,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 283,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 284,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 285,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 286,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 287,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 288,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 289,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 290,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 291,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 292,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 293,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 294,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 295,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 296,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 297,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 298,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 299,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 300,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 301,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 302,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 303,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 304,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 305,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 306,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 307,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 308,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 309,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 310,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 311,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 312,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 313,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 314,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 315,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 316,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 317,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 318,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 319,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 320,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 321,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 322,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 323,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 324,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 325,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 326,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 327,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 328,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 329,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 330,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 331,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 332,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 333,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 334,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 335,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 336,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 337,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 338,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 339,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 340,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 341,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 342,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 343,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 344,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 345,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 346,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 347,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 348,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 349,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 350,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 351,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 352,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 353,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 354,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 355,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 356,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 357,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 358,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 359,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 360,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 361,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 362,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 363,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 364,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 365,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 366,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 367,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 368,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 369,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 370,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 371,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 372,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 373,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 374,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 375,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 376,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 377,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 378,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 379,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 380,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 381,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 382,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 383,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 384,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 385,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 386,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 387,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 388,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 389,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 390,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 391,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 392,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 393,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 394,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 395,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 396,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 397,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 398,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 399,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 400,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 401,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 402,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 403,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 404,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 405,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 406,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 407,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 408,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 409,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 410,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 411,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 412,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 413,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 414,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 415,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 416,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 417,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 418,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 419,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 420,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 421,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 422,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 423,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 424,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 425,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 426,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 427,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 428,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 429,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 430,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 431,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 432,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 433,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 434,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 435,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 436,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 437,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 438,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 439,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 440,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 441,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 442,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 443,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 444,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 445,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 446,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 447,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 448,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 449,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 450,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 451,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 452,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 453,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 454,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 455,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 456,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 457,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 458,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 459,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 460,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 461,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 462,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 463,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 464,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 465,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 466,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 467,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 468,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 469,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 470,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 471,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 472,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 473,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 474,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 475,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 476,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 477,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 478,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 479,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 480,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 481,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 482,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 483,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 484,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 485,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 486,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 487,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 488,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 489,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 490,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 491,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 492,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 493,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 494,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 495,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 496,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 497,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 498,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 499,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 500,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 501,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 502,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 503,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 504,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 505,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 506,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 507,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 508,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 509,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 510,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 511,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 512,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 513,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 514,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 515,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 516,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 517,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 518,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 519,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 520,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 521,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 522,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 523,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 524,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 525,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 526,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 527,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 528,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 529,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 530,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 531,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 532,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 533,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 534,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 535,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 536,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 537,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 538,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 539,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 540,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 541,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 542,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 543,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 544,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 545,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 546,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 547,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 548,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 549,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 550,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 551,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 552,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 553,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 554,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 555,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 556,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 557,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 558,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 559,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 560,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 561,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 562,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 563,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 564,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 565,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 566,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 567,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 568,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 569,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 570,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 571,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 572,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 573,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 574,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 575,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 576,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 577,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 578,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 579,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 580,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 581,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 582,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 583,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 584,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 585,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 586,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 587,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 588,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 589,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 590,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 591,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 592,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 593,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 594,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 595,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 596,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 597,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 598,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 599,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 600,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 601,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 602,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 603,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 604,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 605,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 606,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 607,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 608,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 609,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 610,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 611,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 612,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 613,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 614,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 615,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 616,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 617,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 618,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 619,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 620,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 621,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 622,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 623,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 624,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 625,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 626,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 627,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 628,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 629,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 630,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 631,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 632,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 633,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 634,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 635,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 636,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 637,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 638,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 639,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 640,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 641,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 642,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 643,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 644,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 645,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 646,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 647,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 648,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 649,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 650,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 651,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 652,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 653,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 654,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 655,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 656,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 657,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 658,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 659,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 660,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 661,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 662,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 663,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 664,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 665,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 666,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 667,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 668,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 669,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 670,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 671,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 672,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 673,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 674,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 675,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 676,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 677,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 678,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 679,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 680,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 681,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 682,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 683,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 684,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 685,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 686,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 687,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 688,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_call_list.h",
+      "line": 692,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_runtime_calls.h",
+      "line": 11,
+      "kind": "ERROR",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_runtime_calls.h",
+      "line": 11,
+      "kind": "ERROR",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_runtime_calls.h",
+      "line": 13,
+      "kind": "ERROR",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_runtime_calls.h",
+      "line": 17,
+      "kind": "ERROR",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_runtime_calls.h",
+      "line": 17,
+      "kind": "ERROR",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_runtime_calls.h",
+      "line": 19,
+      "kind": "ERROR",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_runtime_macros.h",
+      "line": 201,
+      "kind": "ERROR",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_runtime_macros.h",
+      "line": 210,
+      "kind": "ERROR",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_runtime_macros.h",
+      "line": 219,
+      "kind": "ERROR",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_runtime_macros.h",
+      "line": 229,
+      "kind": "ERROR",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_runtime_macros.h",
+      "line": 242,
+      "kind": "ERROR",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_runtime_macros.h",
+      "line": 250,
+      "kind": "ERROR",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_runtime_macros.h",
+      "line": 324,
+      "kind": "ERROR",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_stubs.h",
+      "line": 14,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_syscalls.h",
+      "line": 17,
+      "kind": ";",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/runtime/ee_scheduler.h",
+      "line": 350,
+      "kind": "type_identifier",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/runtime/ee_scheduler.h",
+      "line": 353,
+      "kind": "type_identifier",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/runtime/gs/gs_hw.h",
+      "line": 68,
+      "kind": "type_identifier",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_vu1_compiled.h",
+      "line": 79,
+      "kind": "ERROR",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_vu1_compiled.h",
+      "line": 95,
+      "kind": "ERROR",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_vu1_compiled.h",
+      "line": 102,
+      "kind": "ERROR",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_vu1_compiled.h",
+      "line": 120,
+      "kind": "ERROR",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_vu1_compiled.h",
+      "line": 133,
+      "kind": "ERROR",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_vu1_compiled.h",
+      "line": 140,
+      "kind": "ERROR",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_vu1_compiled.h",
+      "line": 173,
+      "kind": "ERROR",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_vu1_compiled.h",
+      "line": 196,
+      "kind": "ERROR",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_vu1_compiled.h",
+      "line": 239,
+      "kind": "ERROR",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_vu1_compiled.h",
+      "line": 240,
+      "kind": "ERROR",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_vu1_compiled.h",
+      "line": 241,
+      "kind": "ERROR",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_vu1_compiled.h",
+      "line": 242,
+      "kind": "ERROR",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_vu1_compiled.h",
+      "line": 243,
+      "kind": "ERROR",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_vu1_compiled.h",
+      "line": 244,
+      "kind": "ERROR",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_vu1_compiled.h",
+      "line": 247,
+      "kind": "ERROR",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_vu1_compiled.h",
+      "line": 248,
+      "kind": "ERROR",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_vu1_compiled.h",
+      "line": 251,
+      "kind": "ERROR",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_vu1_compiled.h",
+      "line": 262,
+      "kind": "ERROR",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_vu1_compiled.h",
+      "line": 273,
+      "kind": "ERROR",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_vu1_compiled.h",
+      "line": 313,
+      "kind": "ERROR",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_vu1_compiled.h",
+      "line": 322,
+      "kind": "ERROR",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_vu1_compiled.h",
+      "line": 323,
+      "kind": "ERROR",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_vu1_compiled.h",
+      "line": 326,
+      "kind": "ERROR",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_vu1_compiled.h",
+      "line": 328,
+      "kind": "ERROR",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_vu1_compiled.h",
+      "line": 329,
+      "kind": "ERROR",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_vu1_compiled.h",
+      "line": 331,
+      "kind": "ERROR",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_vu1_compiled.h",
+      "line": 334,
+      "kind": "ERROR",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_vu1_compiled.h",
+      "line": 347,
+      "kind": "ERROR",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_vu1_compiled.h",
+      "line": 348,
+      "kind": "ERROR",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_vu1_compiled.h",
+      "line": 349,
+      "kind": "ERROR",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_vu1_compiled.h",
+      "line": 351,
+      "kind": "ERROR",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_vu1_compiled.h",
+      "line": 352,
+      "kind": "ERROR",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_vu1_compiled.h",
+      "line": 353,
+      "kind": "ERROR",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_vu1_compiled.h",
+      "line": 354,
+      "kind": "ERROR",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_vu1_compiled.h",
+      "line": 355,
+      "kind": "ERROR",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_vu1_compiled.h",
+      "line": 356,
+      "kind": "ERROR",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_vu1_compiled.h",
+      "line": 357,
+      "kind": "ERROR",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_vu1_compiled.h",
+      "line": 358,
+      "kind": "ERROR",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_vu1_compiled.h",
+      "line": 361,
+      "kind": "ERROR",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_vu1_compiled.h",
+      "line": 373,
+      "kind": "ERROR",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_vu1_compiled.h",
+      "line": 384,
+      "kind": "ERROR",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_vu1_compiled.h",
+      "line": 396,
+      "kind": "ERROR",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_vu1_compiled.h",
+      "line": 404,
+      "kind": "ERROR",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_vu1_compiled.h",
+      "line": 405,
+      "kind": "ERROR",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_vu1_compiled.h",
+      "line": 406,
+      "kind": "ERROR",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_vu1_compiled.h",
+      "line": 407,
+      "kind": "ERROR",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_vu1_compiled.h",
+      "line": 410,
+      "kind": "ERROR",
+      "scope": "target_core_header",
+      "proof": "SDK/native and ARM compiler probes include all relevant gap-bearing runtime headers"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/game_overrides.cpp",
+      "line": 63,
+      "kind": "ERROR",
+      "scope": "target_core_source",
+      "proof": "M02 runtime-arm64-portability-v2.log full runtime/IOP compilation; not execution proof"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/game_overrides.cpp",
+      "line": 78,
+      "kind": ";",
+      "scope": "target_core_source",
+      "proof": "M02 runtime-arm64-portability-v2.log full runtime/IOP compilation; not execution proof"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/game_overrides.cpp",
+      "line": 90,
+      "kind": ";",
+      "scope": "target_core_source",
+      "proof": "M02 runtime-arm64-portability-v2.log full runtime/IOP compilation; not execution proof"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_iop_host.cpp",
+      "line": 422,
+      "kind": "ERROR",
+      "scope": "target_core_source",
+      "proof": "M02 runtime-arm64-portability-v2.log full runtime/IOP compilation; not execution proof"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_iop_host.cpp",
+      "line": 424,
+      "kind": ";",
+      "scope": "target_core_source",
+      "proof": "M02 runtime-arm64-portability-v2.log full runtime/IOP compilation; not execution proof"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_runtime.cpp",
+      "line": 1718,
+      "kind": "ERROR",
+      "scope": "target_core_source",
+      "proof": "M02 runtime-arm64-portability-v2.log full runtime/IOP compilation; not execution proof"
+    },
+    {
+      "file": "third_party/PS2Recomp/ps2xRuntime/src/main.cpp",
+      "line": 190,
+      "kind": "ERROR",
+      "scope": "excluded_desktop_runner",
+      "proof": "M02 supplies its own entry; revisit M04-02"
+    }
+  ]
+}

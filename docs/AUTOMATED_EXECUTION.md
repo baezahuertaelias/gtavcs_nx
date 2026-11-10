@@ -65,8 +65,34 @@ NRO-only staging. It removes the staged NRO before attempting a build and on
 failure. The image cache retains immutable dependencies; `build/switch` retains
 incremental objects until `--clean`. No assets are copied into the Docker build
 context. See `docs/milestones/M01/HARDWARE.md` for the hardware/nxlink procedure.
-Host generation, private asset preparation and deterministic gameplay route
-execution remain future work; this build links the platform stub only.
+This build links the platform stub only. M02 now provides separate CPU projects
+and a public-source build pipeline; private asset preparation and deterministic
+gameplay-route execution remain later work.
+
+## M02 CPU foundation builds and test order
+
+`python tools/build_core_tests.py` prepares the checksummed overlay and public
+dependency, verifies the synthetic VU fixture reproduces, then builds the public
+CPU/runtime NROs offline in the locked container. It inspects ELF permissions,
+relocations, dependencies and NRO/NACP contents before staging only the named
+public NROs, licenses and provenance in `build/m02/test-bundle`. Source CI uses
+this path with the private generated archive explicitly disabled. It needs no
+disc, game ELF, game assets or generated game code.
+
+The separate `cmake/core` project compiles private generated EE/VU code. The
+`cmake/runtime` project accepts that archive only through the explicit
+`NX_PRIVATE_GENERATED_ARCHIVE` input, producing a private null-host linkage and
+synthetic-dispatch harness. Never upload that NRO/ELF/map through the public
+workflow or add it to the public bundle whitelist. Original and overlaid host
+generation use separate ignored build/source directories and retained stamps.
+
+At the user's request, finish all M02 implementation and native/source/build
+proof before requesting the Switch again. Then execute one consolidated
+hardware session with the final public runtime suite and private core harness.
+No Pro Controller, docking or manual input sequence is part of these CPU checks.
+Only after the required target logs/results, committed evidence and milestone
+gate pass may the fresh independent reviewer be created. Parallel implementation
+subagents were explicitly authorized by the user; they are not that reviewer.
 
 ## Review creation gate (available now)
 
@@ -121,11 +147,13 @@ git switch -c milestone/m01-platform-smoke
 git push -u origin milestone/m01-platform-smoke
 ```
 
-Use the corresponding next branch from MILESTONES.md. Run commands sequentially,
+Use the next branch in MILESTONES.md's execution order, which differs from
+numeric order after M06 (see BETA_ROADMAP.md). Run commands sequentially,
 stop on failure and verify the PR merge SHA/remote main before creating the next
 branch. Do not use admin bypass/force push or merge a failing PR. The user has
 authorized this milestone flow; routine successful merges need no repeated
-permission request. No tag/release before M11's review gate and release checks.
+permission request. A private beta tag requires M06's review gate and merge. No
+other tag/release before M11's review gate and release checks.
 
 ## CI and repository controls
 

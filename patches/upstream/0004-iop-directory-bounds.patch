@@ -1,0 +1,297 @@
+diff --git a/docs/PS2RECOMP_PATCHES.md b/docs/PS2RECOMP_PATCHES.md
+index 4d658cd..d5df051 100644
+--- a/docs/PS2RECOMP_PATCHES.md
++++ b/docs/PS2RECOMP_PATCHES.md
+@@ -329,3 +329,26 @@ Generated private game VU code must be regenerated after this change so its
+ registration contains the policy. Public fixture generation records both the
+ pristine generator pin/hash and this effective overlaid generator identity.
+ The root port retains the failing and passing synthetic traces.
++
++
++## Switch IOP directory bounds (M02, 2026-11-09)
++
++[gta-recomp] `ps2xIOP/src/emulator/imports/iop_cdvd.cpp` now uses checked layout
++helpers in `include/ps2x/iop/detail/cdvd_directory.h`. The original directory
++sector-to-byte multiplication was uint32: a 4 GiB rounded directory wrapped
++to a 2048-byte allocation, while record appends had no capacity guard. A
++synthetic size-list plus the actual old writer reproduces a heap overrun under
++AddressSanitizer; no disc or large filesystem tree is required.
++
++Directory sizing now rejects unrepresentable padded metadata with wide checked
++arithmetic. Record append checks remaining capacity before pointer arithmetic
++and the shared writer checks it again. Failures propagate from self/parent/child
++records and the volume descriptor. Record identifiers must fit their encoded
++length; file sizes and aggregate sector advances reject overflow instead of
++truncating or wrapping. The original filename normalization/order and valid
++record bytes, padding, sector numbering and metadata layout remain unchanged.
++
++Public port regression tests call these same production helpers, including the
++4 GiB boundary without a large allocation. The root M02 report retains failing
++ASan output, old/new valid-record comparison, normal IOP suites and ARM warning
++checks; target execution remains separately required. No warning is suppressed.
+diff --git a/docs/game-internals.md b/docs/game-internals.md
+index e037871..6bb7afa 100644
+--- a/docs/game-internals.md
++++ b/docs/game-internals.md
+@@ -2381,3 +2381,14 @@ helpers (PMFHL, PINTH/PINTEH, PEXEH/PEXEW/PROT3W and variable word shifts).
+ This is compile-output coverage, not a claim about every guest instruction
+ that a future dynamically reached program could execute. No new game address
+ or gameplay conclusion is established.
++
++
++### Switch M02 virtual-CDVD metadata bounds (2026-11-09)
++
++The CPU-foundation audit found a uint32 directory-size wrap in the generic IOP
++virtual-ISO builder, reproduced with synthetic identifier sizes and its actual
++writer. The maintained root patch rejects unrepresentable extents and capacity
++violations. This does not establish a game-specific failure, new guest address,
++or Switch occurrence. Valid metadata is compared against the pinned writer.
++The synthetic virtual-ISO builder is still not the port's required manifest/LBA
++folder-disc adapter; the root M03 filesystem acceptance remains separate.
+diff --git a/third_party/PS2Recomp/ps2xIOP/include/ps2x/iop/detail/cdvd_directory.h b/third_party/PS2Recomp/ps2xIOP/include/ps2x/iop/detail/cdvd_directory.h
+new file mode 100644
+index 0000000..ecd1cae
+--- /dev/null
++++ b/third_party/PS2Recomp/ps2xIOP/include/ps2x/iop/detail/cdvd_directory.h
+@@ -0,0 +1,68 @@
++// [gta-recomp] Checked directory layout shared by the virtual CDVD writer and
++// its public boundary tests. Reject unrepresentable metadata; never truncate.
++#pragma once
++#include <cstddef>
++#include <cstdint>
++#include <cstring>
++#include <limits>
++
++namespace ps2x::iop::detail::cdvd_directory {
++inline constexpr uint32_t SectorSize=2048u;
++inline constexpr uint64_t MaximumDirectoryBytes=
++    uint64_t(std::numeric_limits<uint32_t>::max()/SectorSize)*SectorSize;
++
++inline bool recordSize(size_t identifierSize,size_t &bytes) noexcept {
++    // The padded record length is stored in one byte. Production isoName()
++    // limits identifiers to 202 bytes; reject larger invalid direct inputs too.
++    if(identifierSize==0 || identifierSize>221u) return false;
++    const size_t unpadded=33u+identifierSize;
++    bytes=unpadded+(unpadded&1u);
++    return true;
++}
++inline bool advanceCursor(uint64_t &cursor,size_t identifierSize) noexcept {
++    size_t record=0;
++    if(!recordSize(identifierSize,record) || cursor>MaximumDirectoryBytes) return false;
++    const uint64_t inSector=cursor%SectorSize;
++    const uint64_t padding=inSector+record>SectorSize ? SectorSize-inSector : 0u;
++    if(padding>MaximumDirectoryBytes-cursor) return false;
++    const uint64_t begin=cursor+padding;
++    if(record>MaximumDirectoryBytes-begin) return false;
++    cursor=begin+record;
++    return true;
++}
++inline bool roundedBytes(uint64_t cursor,uint32_t &bytes) noexcept {
++    if(cursor>MaximumDirectoryBytes) return false;
++    const uint64_t rounded=(cursor+SectorSize-1u)/SectorSize*SectorSize;
++    bytes=static_cast<uint32_t>(rounded ? rounded : SectorSize);
++    return true;
++}
++inline bool advanceLsn(uint32_t &cursor,uint32_t sectors) noexcept {
++    if(sectors>std::numeric_limits<uint32_t>::max()-cursor) return false;
++    cursor+=sectors;
++    return true;
++}
++inline bool fileBytes(uint64_t size,uint32_t &bytes) noexcept {
++    if(size>std::numeric_limits<uint32_t>::max()) return false;
++    bytes=static_cast<uint32_t>(size);
++    return true;
++}
++inline size_t writeRecord(uint8_t *destination,size_t remaining,uint32_t lsn,
++                          uint32_t size,bool directory,const uint8_t *identifier,
++                          size_t identifierSize) noexcept {
++    size_t record=0;
++    if(!destination || !identifier || !recordSize(identifierSize,record) || record>remaining) return 0;
++    std::memset(destination,0,record);
++    destination[0]=static_cast<uint8_t>(record);
++    for(unsigned i=0;i<4;++i) {
++        destination[2u+i]=static_cast<uint8_t>(lsn>>(8u*i));
++        destination[6u+i]=static_cast<uint8_t>(lsn>>(8u*(3u-i)));
++        destination[10u+i]=static_cast<uint8_t>(size>>(8u*i));
++        destination[14u+i]=static_cast<uint8_t>(size>>(8u*(3u-i)));
++    }
++    destination[25]=directory?2u:0u;
++    destination[28]=1u; destination[31]=1u;
++    destination[32]=static_cast<uint8_t>(identifierSize);
++    std::memcpy(destination+33u,identifier,identifierSize);
++    return record;
++}
++}
+diff --git a/third_party/PS2Recomp/ps2xIOP/src/emulator/imports/iop_cdvd.cpp b/third_party/PS2Recomp/ps2xIOP/src/emulator/imports/iop_cdvd.cpp
+index 5bd6997..7e9fb00 100644
+--- a/third_party/PS2Recomp/ps2xIOP/src/emulator/imports/iop_cdvd.cpp
++++ b/third_party/PS2Recomp/ps2xIOP/src/emulator/imports/iop_cdvd.cpp
+@@ -5,6 +5,7 @@
+ #include "../core/iop_memory.h"
+ #include "ps2x/iop/iop_host.h"
+ #include "ps2x/iop/ps2_path.h"
++#include "ps2x/iop/detail/cdvd_directory.h" // [gta-recomp] checked metadata bounds
+ 
+ #include <algorithm>
+ #include <array>
+@@ -96,24 +97,15 @@ namespace ps2x::iop::detail
+             return name;
+         }
+ 
+-        size_t directoryRecordSize(size_t identifierSize)
+-        {
+-            const size_t unpadded = 33u + identifierSize;
+-            return unpadded + (unpadded & 1u);
+-        }
+-
+-        uint32_t directoryBytesFor(const std::vector<size_t> &identifierSizes)
++        bool directoryBytesFor(const std::vector<size_t> &identifierSizes, uint32_t &bytes)
+         {
++            // [gta-recomp] The old uint32 sector multiplication wrapped a 4 GiB
++            // directory to 2048 bytes, then appendRecord wrote past the vector.
+             uint64_t cursor = 0u;
+             for (const size_t identifierSize : identifierSizes)
+-            {
+-                const uint64_t recordSize = directoryRecordSize(identifierSize);
+-                const uint64_t sectorOffset = cursor % kSectorSize;
+-                if (sectorOffset + recordSize > kSectorSize)
+-                    cursor += kSectorSize - sectorOffset;
+-                cursor += recordSize;
+-            }
+-            return static_cast<uint32_t>(std::max<uint64_t>(kSectorSize, alignSectors(cursor) * kSectorSize));
++                if (!cdvd_directory::advanceCursor(cursor, identifierSize))
++                    return false;
++            return cdvd_directory::roundedBytes(cursor, bytes);
+         }
+ 
+         std::string normalizedIsoComponent(std::string_view value)
+@@ -133,24 +125,6 @@ namespace ps2x::iop::detail
+             return result;
+         }
+ 
+-        size_t writeDirectoryRecord(uint8_t *destination,
+-                                    uint32_t lsn,
+-                                    uint32_t size,
+-                                    bool directory,
+-                                    const uint8_t *identifier,
+-                                    size_t identifierSize)
+-        {
+-            const size_t recordSize = directoryRecordSize(identifierSize);
+-            std::memset(destination, 0, recordSize);
+-            destination[0] = static_cast<uint8_t>(recordSize);
+-            writeBoth32(destination + 2u, lsn);
+-            writeBoth32(destination + 10u, size);
+-            destination[25] = directory ? 2u : 0u;
+-            writeBoth16(destination + 28u, 1u);
+-            destination[32] = static_cast<uint8_t>(identifierSize);
+-            std::memcpy(destination + 33u, identifier, identifierSize);
+-            return recordSize;
+-        }
+     }
+ 
+     class IopCdvd::Impl
+@@ -443,7 +417,10 @@ namespace ps2x::iop::detail
+                     const uint64_t fileSize = entry.file_size(error);
+                     if (error)
+                         continue;
+-                    node.size = static_cast<uint32_t>(std::min<uint64_t>(fileSize, std::numeric_limits<uint32_t>::max()));
++                    // [gta-recomp] Reject an unencodable extent, never advertise
++                    // a silently truncated file in the virtual directory.
++                    if (!cdvd_directory::fileBytes(fileSize, node.size))
++                        return false;
+                 }
+                 const size_t index = nodes.size();
+                 nodes.push_back(std::move(node));
+@@ -486,7 +463,8 @@ namespace ps2x::iop::detail
+                 identifierSizes.reserve(node.children.size() + 2u);
+                 for (const size_t child : node.children)
+                     identifierSizes.push_back(nodes[child].identifier.size());
+-                node.size = directoryBytesFor(identifierSizes);
++                if (!directoryBytesFor(identifierSizes, node.size))
++                    return false;
+                 node.sectors = node.size / kSectorSize;
+             }
+ 
+@@ -496,7 +474,8 @@ namespace ps2x::iop::detail
+                 if (!node.directory)
+                     continue;
+                 node.lsn = cursor;
+-                cursor += node.sectors;
++                if (!cdvd_directory::advanceLsn(cursor, node.sectors))
++                    return false;
+             }
+             for (IsoNode &node : nodes)
+             {
+@@ -504,7 +483,8 @@ namespace ps2x::iop::detail
+                     continue;
+                 node.lsn = cursor;
+                 node.sectors = alignSectors(node.size);
+-                cursor += node.sectors;
++                if (!cdvd_directory::advanceLsn(cursor, node.sectors))
++                    return false;
+             }
+             volumeSectors = std::max<uint32_t>(cursor, 32u);
+ 
+@@ -521,7 +501,9 @@ namespace ps2x::iop::detail
+             writeBoth16(primary.data() + 124u, 1u);
+             writeBoth16(primary.data() + 128u, static_cast<uint16_t>(kSectorSize));
+             const uint8_t rootIdentifier = 0u;
+-            (void)writeDirectoryRecord(primary.data() + 156u, nodes[0].lsn, nodes[0].size, true, &rootIdentifier, 1u);
++            if (!cdvd_directory::writeRecord(primary.data() + 156u, primary.size() - 156u,
++                                             nodes[0].lsn, nodes[0].size, true, &rootIdentifier, 1u))
++                return false;
+             primary[881] = 1u;
+             metadataSectors[kPrimaryVolumeDescriptorLsn] = primary;
+ 
+@@ -537,28 +519,36 @@ namespace ps2x::iop::detail
+                 if (!node.directory)
+                     continue;
+                 std::vector<uint8_t> bytes(node.size, 0u);
+-                size_t offset = 0u;
+-                const auto appendRecord = [&](const IsoNode &entry, const uint8_t *identifier, size_t identifierSize)
++                uint64_t offset = 0u;
++                const auto appendRecord = [&](const IsoNode &entry, const uint8_t *identifier, size_t identifierSize) -> bool
+                 {
+-                    const size_t recordSize = directoryRecordSize(identifierSize);
+-                    const size_t sectorOffset = offset % kSectorSize;
+-                    if (sectorOffset + recordSize > kSectorSize)
+-                        offset += kSectorSize - sectorOffset;
+-                    offset += writeDirectoryRecord(bytes.data() + offset,
+-                                                   entry.lsn,
+-                                                   entry.size,
+-                                                   entry.directory,
+-                                                   identifier,
+-                                                   identifierSize);
++                    // [gta-recomp] Check capacity before pointer arithmetic and
++                    // again at the shared writer; propagate every failed bound.
++                    size_t recordSize = 0u;
++                    uint64_t next = offset;
++                    if (!cdvd_directory::recordSize(identifierSize, recordSize) ||
++                        !cdvd_directory::advanceCursor(next, identifierSize))
++                        return false;
++                    const uint64_t begin = next - recordSize;
++                    if (begin > bytes.size() || recordSize > bytes.size() - static_cast<size_t>(begin))
++                        return false;
++                    if (cdvd_directory::writeRecord(bytes.data() + static_cast<size_t>(begin),
++                            bytes.size() - static_cast<size_t>(begin), entry.lsn, entry.size,
++                            entry.directory, identifier, identifierSize) != recordSize)
++                        return false;
++                    offset = next;
++                    return true;
+                 };
+                 const uint8_t selfIdentifier = 0u;
+                 const uint8_t parentIdentifier = 1u;
+-                appendRecord(node, &selfIdentifier, 1u);
+-                appendRecord(nodes[node.parent], &parentIdentifier, 1u);
++                if (!appendRecord(node, &selfIdentifier, 1u) ||
++                    !appendRecord(nodes[node.parent], &parentIdentifier, 1u))
++                    return false;
+                 for (const size_t childIndex : node.children)
+                 {
+                     const IsoNode &child = nodes[childIndex];
+-                    appendRecord(child, reinterpret_cast<const uint8_t *>(child.identifier.data()), child.identifier.size());
++                    if (!appendRecord(child, reinterpret_cast<const uint8_t *>(child.identifier.data()), child.identifier.size()))
++                        return false;
+                 }
+                 for (uint32_t sector = 0u; sector < node.sectors; ++sector)
+                 {

@@ -1,0 +1,87 @@
+diff --git a/docs/PS2RECOMP_PATCHES.md b/docs/PS2RECOMP_PATCHES.md
+index 58b4b05..c4edb10 100644
+--- a/docs/PS2RECOMP_PATCHES.md
++++ b/docs/PS2RECOMP_PATCHES.md
+@@ -361,3 +361,11 @@ when calculating deltas, and check clock_gettime failure. Subtracting two
+ sentinels previously printed zero CPU time on hosts without a thread CPU clock.
+ No elapsed-time substitute or performance claim is introduced; supported clocks
+ retain their existing subtraction. This affects diagnostics, not guest timing.
++
++
++## Target runner without the generator (M02, 2026-11-09)
++
++[gta-recomp] Three test cases assert text emitted by the host CodeGenerator. They are
++wrapped in NX_NO_GENERATOR_TESTS so the Switch runtime runner can build the other
++expansion and float-semantics cases without linking a host tool into the target.
++Upstream's own test target does not define it and is unchanged.
+diff --git a/third_party/PS2Recomp/ps2xTest/src/ps2_float_semantics_tests.cpp b/third_party/PS2Recomp/ps2xTest/src/ps2_float_semantics_tests.cpp
+index 2866d2b..bb0394b 100644
+--- a/third_party/PS2Recomp/ps2xTest/src/ps2_float_semantics_tests.cpp
++++ b/third_party/PS2Recomp/ps2xTest/src/ps2_float_semantics_tests.cpp
+@@ -1,5 +1,7 @@
+ #include "MiniTest.h"
++#ifndef NX_NO_GENERATOR_TESTS
+ #include "ps2recomp/code_generator.h"
++#endif
+ #include "ps2recomp/instructions.h"
+ #include "ps2recomp/types.h"
+ #include "ps2_runtime_macros.h"
+@@ -210,6 +212,7 @@ void register_ps2_float_semantics_tests()
+             t.Equals(laneBits(flushed, 3), bitsOf(0.5f), "lane 3: 1 * 0.5 should be 0.5");
+         });
+ 
++#ifndef NX_NO_GENERATOR_TESTS
+         tc.Run("DIV.S and RSQRT.S translate to the PS2 semantics helpers", [](TestCase &t)
+         {
+             CodeGenerator gen({}, {});
+@@ -224,5 +227,6 @@ void register_ps2_float_semantics_tests()
+             t.IsTrue(rsqrt.find("ctx->f[2] = FPU_RSQRT_S(ctx->f[3], ctx->f[4])") != std::string::npos,
+                      "RSQRT.S should compute fs / sqrt(ft) but got: " + rsqrt);
+         });
++#endif
+     });
+ }
+diff --git a/third_party/PS2Recomp/ps2xTest/src/ps2_runtime_expansion_tests.cpp b/third_party/PS2Recomp/ps2xTest/src/ps2_runtime_expansion_tests.cpp
+index 4772f3f..a9cdb79 100644
+--- a/third_party/PS2Recomp/ps2xTest/src/ps2_runtime_expansion_tests.cpp
++++ b/third_party/PS2Recomp/ps2xTest/src/ps2_runtime_expansion_tests.cpp
+@@ -1,5 +1,7 @@
+ #include "MiniTest.h"
++#ifndef NX_NO_GENERATOR_TESTS
+ #include "ps2recomp/code_generator.h"
++#endif
+ #include "ps2recomp/instructions.h"
+ #include "ps2recomp/r5900_decoder.h"
+ #include "ps2recomp/types.h"
+@@ -315,6 +317,7 @@ void register_ps2_runtime_expansion_tests()
+ {
+     MiniTest::Case("PS2RuntimeExpansion", [](TestCase &tc)
+     {
++#ifndef NX_NO_GENERATOR_TESTS
+         tc.Run("differential decoder/codegen gpr-write contract for MULT and DIV families", [](TestCase &t)
+         {
+             R5900Decoder decoder;
+@@ -344,6 +347,7 @@ void register_ps2_runtime_expansion_tests()
+                          std::string("HI/LO control side-effect missing for ") + cases[i].name);
+             }
+         });
++#endif
+ 
+         tc.Run("lookupFunction rejects internal resume PCs without exact registration", [](TestCase &t)
+         {
+@@ -994,6 +998,7 @@ void register_ps2_runtime_expansion_tests()
+                      "sprintf should return the rendered length");
+         });
+ 
++#ifndef NX_NO_GENERATOR_TESTS
+         tc.Run("multiply-add matrix writes rd only when R5900 requires it", [](TestCase &t)
+         {
+             R5900Decoder decoder;
+@@ -1025,6 +1030,7 @@ void register_ps2_runtime_expansion_tests()
+                          std::string("codegen rd-write mismatch for ") + cases[i].name);
+             }
+         });
++#endif
+ 
+         tc.Run("SignalException marks EPC and BD for delay-slot exceptions", [](TestCase &t)
+         {

@@ -1,0 +1,120 @@
+{
+  "M02-01": [
+    {
+      "path": "docs/milestones/M02/VERIFICATION.md",
+      "result": "Isolated unchanged desktop reference built with Clang23.1.4/AVX2/LTO-off; 30-second hidden disc boot/movie baseline captured with separate userdata"
+    }
+  ],
+  "M02-02": [
+    {
+      "path": "docs/milestones/M02/VERIFICATION.md",
+      "result": "Native AMD64 recompiler and analyzer built separately from the AArch64 target project; native PE identities/hashes validated"
+    }
+  ],
+  "M02-03": [
+    {
+      "path": "docs/milestones/M02/VERIFICATION.md",
+      "result": "Supported ELF privately recompiled; stamp, 236304 assignments/10383 owners and every 1196-warning/561-error owner retained as metadata without claiming diagnostics resolved"
+    }
+  ],
+  "M02-04": [
+    {
+      "path": "docs/milestones/M02/TOOLCHAIN_DECISION.md",
+      "result": "10388 generated files audited; devkitA64 GCC 15.2.0 configuration chosen; numeric and ABI suites passed on real Switch"
+    }
+  ],
+  "M02-05": [
+    {
+      "path": "docs/milestones/M02/CORE_AUDIT.md",
+      "result": "SIMD sites classified by owner; guest 128-bit layout audited"
+    },
+    {
+      "path": "docs/milestones/M02/HARDWARE_RESULTS.md",
+      "result": "packed, layout and memory suites passed on real Switch"
+    }
+  ],
+  "M02-06": [
+    {
+      "path": "docs/milestones/M02/PACKED_COVERAGE.md",
+      "result": "Operation coverage and reference differential recorded"
+    },
+    {
+      "path": "docs/milestones/M02/HARDWARE_RESULTS.md",
+      "result": "273039 packed checks passed on real Switch"
+    }
+  ],
+  "M02-07": [
+    {
+      "path": "docs/milestones/M02/COMPILED_VU.md",
+      "result": "Interpreter and compiled VU comparison, rounding and fallback recorded"
+    },
+    {
+      "path": "docs/milestones/M02/HARDWARE_RESULTS.md",
+      "result": "Float suite and 20 compiled VU cases passed on real Switch; 11 inherited float limits identified"
+    }
+  ],
+  "M02-08": [
+    {
+      "path": "docs/milestones/M02/GUEST_DISPATCH.md",
+      "result": "Dispatch, tail, yield and return contract recorded"
+    },
+    {
+      "path": "docs/milestones/M02/HARDWARE_RESULTS.md",
+      "result": "Guest dispatch, scheduler traces and frame-address alignment on real Switch from clean candidate; identical to x86 reference; synthetic guest callbacks only"
+    }
+  ],
+  "M02-09": [
+    {
+      "path": "docs/milestones/M02/HOST_BOUNDARIES.md",
+      "result": "Layout, TLS, unwind and allocation assumptions recorded; newlib/POSIX audit of runtime sources"
+    },
+    {
+      "path": "docs/milestones/M02/HARDWARE_RESULTS.md",
+      "result": "Host boundary and allocation suites passed on real Switch; two newlib differences found and handled, one carried to M03-13"
+    }
+  ],
+  "M02-10": [
+    {
+      "path": "docs/milestones/M02/TOOLCHAIN_DECISION.md",
+      "result": "ReleaseMode handling recorded; x86 and JIT backends excluded explicitly; desktop configuration unchanged"
+    }
+  ],
+  "M02-11": [
+    {
+      "path": "docs/milestones/M02/VERIFICATION.md",
+      "result": "Parser gaps, SDK registrations and diagnostics classified from section and map evidence"
+    },
+    {
+      "path": "docs/milestones/M02/HARDWARE_RESULTS.md",
+      "result": "All 236304 table slots resolved against generator assignments; console table digest ee732423aadfb7f6 equals expected; game reachability moved to M04-12"
+    }
+  ],
+  "M02-12": [
+    {
+      "path": "docs/milestones/M02/HARDWARE_RESULTS.md",
+      "result": "337 of 337 upstream cases and all port suites passed on real Switch; same results on x86 reference; six revised expectations and host-only exclusions stated; failed attempts retained"
+    }
+  ],
+  "M02-13": [
+    {
+      "path": "docs/milestones/M02/HARDWARE_RESULTS.md",
+      "result": "Application mode, 256 MiB allocator, oversized rejection, stacks and workers read on real Switch"
+    },
+    {
+      "path": "docs/milestones/M02/TOOLCHAIN_DECISION.md",
+      "result": "CPU harness budgets for guest memory, table, runtime state, stacks and workers recorded"
+    }
+  ],
+  "M02-14": [
+    {
+      "path": "docs/milestones/M02/HARDWARE_RESULTS.md",
+      "result": "Three deterministic scheduler runs, clean stop and failure unwind on real Switch from clean candidate with private input manifest; private binaries and logs kept out of Git"
+    }
+  ],
+  "M02-15": [
+    {
+      "path": "docs/milestones/M02/VERIFICATION.md",
+      "result": "Disposable pinned checkout overlay tool passed Git new-file/modified-file round trips, idempotence, checksum/path/user-edit refusal and actual pinned prepare/reverse/prepare"
+    }
+  ]
+}

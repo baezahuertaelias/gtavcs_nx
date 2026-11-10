@@ -4,6 +4,10 @@
 *.json text eol=lf
 *.yml text eol=lf
 *.c text eol=lf
+*.cpp text eol=lf
 *.h text eol=lf
+*.inc text eol=lf
+*.cmake text eol=lf
+*.patch text eol=lf
 *.txt text eol=lf
 *.iso -diff -text

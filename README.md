@@ -7,11 +7,13 @@ Graphics baseline: SDL2, OpenGL 3.3 core, GLAD, EGL/Mesa nouveau and libnx,
 built with devkitPro/devkitA64. Assets resolve beneath
 `sdmc:/switch/gtavcs_nx/gamefolder/`.
 
-**Status: unbuilt platform scaffold. No Switch gameplay or performance claim.**
-The current core stub clears a screen and streams silence; it is not the game.
-No game data or generated game code belongs in this repository.
+**Status: platform scaffold, tested on real Switch hardware. The game does not
+run on Switch yet. No gameplay or performance claim.** The current core stub
+clears a screen and streams silence; it is not the game. ARM64 core work is in
+progress. No game data or generated game code belongs in this repository.
 
-Read the [milestone/task plan](docs/MILESTONES.md),
+Start with the [roadmap to beta](docs/BETA_ROADMAP.md). Then read the
+[milestone/task plan](docs/MILESTONES.md),
 [discovery dossier](docs/PORT_DISCOVERY.md),
 [automated execution runbook](docs/AUTOMATED_EXECUTION.md) and
 [build/developer instructions](AGENTS.md).
