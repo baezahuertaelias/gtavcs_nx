@@ -9,6 +9,23 @@ int runSchedulerWorkload();
 int runGuestDispatchTests();
 int runIopDirectoryBoundsTests();
 
+// Position-independent reference for the table digest; audit_private_core.py finds it by name.
+extern "C" __attribute__((noinline,used)) void nx_table_digest_anchor() { __asm__(""); }
+
+static uint64_t tableDigest() {
+    const uintptr_t anchor=reinterpret_cast<uintptr_t>(&nx_table_digest_anchor);
+    uint64_t value=0xcbf29ce484222325ull;
+    const auto mix=[&value](uint64_t data,unsigned bytes) {
+        for(unsigned i=0;i<bytes;++i) value=(value^((data>>(i*8))&0xffu))*0x100000001b3ull;
+    };
+    for(uint32_t i=0;i<g_ps2RecompiledFunctionTableSlotCount;++i) {
+        if(!g_ps2RecompiledFunctionTable[i]) continue;
+        mix(i,4);
+        mix(reinterpret_cast<uintptr_t>(g_ps2RecompiledFunctionTable[i])-anchor,8);
+    }
+    return value;
+}
+
 int main() {
     FILE *log=freopen("sdmc:/switch/gtavcs_nx/private-core-M02.log","w",stdout);
     if(!log) return EXIT_FAILURE;
@@ -28,6 +45,7 @@ int main() {
         std::printf("[core-table] base=%08x end=%08x slots=%u assigned=%zu bounds=%d\n",
             g_ps2RecompiledFunctionTableBase,g_ps2RecompiledFunctionTableEnd,
             g_ps2RecompiledFunctionTableSlotCount,assigned,bounds);
+        std::printf("[core-table] digest=%016llx\n",static_cast<unsigned long long>(tableDigest()));
         result=resources && bounds && assigned==236304u ? EXIT_SUCCESS : EXIT_FAILURE;
         if(result==EXIT_SUCCESS) {
             try { result=runSchedulerWorkload(); if(!result) result=runGuestDispatchTests(); if(!result) result=runIopDirectoryBoundsTests(); }

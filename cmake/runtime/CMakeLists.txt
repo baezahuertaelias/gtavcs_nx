@@ -89,6 +89,7 @@ if(NX_RUNTIME_TESTS)
         ps2_runtime_kernel_tests.cpp ps2_runtime_interrupt_tests.cpp
         ps2_memory_tests.cpp ps2_vu1_tests.cpp ps2_vu_tests.cpp ps2_gs_tests.cpp
         ps2_iop_tests.cpp ps2_sif_rpc_tests.cpp ps2_sif_dma_tests.cpp
+        ps2_runtime_expansion_tests.cpp ps2_float_semantics_tests.cpp
         test_function_table.cpp)
     list(TRANSFORM test_sources PREPEND "${test_root}/src/")
     add_executable(gtavcs_runtime_tests ${test_sources}
@@ -99,7 +100,9 @@ if(NX_RUNTIME_TESTS)
         "${PORT_ROOT}/src/core_tests/runtime_main.cpp")
     runtime_cpu_options(gtavcs_runtime_tests)
     target_include_directories(gtavcs_runtime_tests PRIVATE "${test_root}/include"
-        "${runtime}/src/lib" "${test_root}/src")
+        "${runtime}/src/lib" "${test_root}/src"
+        "${VCS_UPSTREAM_DIR}/third_party/PS2Recomp/ps2xRecomp/include")
+    target_compile_definitions(gtavcs_runtime_tests PRIVATE NX_NO_GENERATOR_TESTS)
     option(NX_EXTENDED_CPU_TESTS "Include the port's scalar/differential boundary suites" ON)
     if(NX_EXTENDED_CPU_TESTS)
         target_sources(gtavcs_runtime_tests PRIVATE

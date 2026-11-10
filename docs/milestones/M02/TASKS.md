@@ -6,9 +6,9 @@ steps below have observed evidence. This checklist is manual; the milestone gate
 checks the parent ledger/evidence records, and the independent reviewer must
 also inspect these steps. No reviewer is created during partial implementation.
 
-Current parent tasks complete: **M02-01, M02-02, M02-03, M02-15**.
-All other M02 parent tasks remain open. See [VERIFICATION.md](VERIFICATION.md)
-and [evidence.json](evidence.json) for observations, commands and limitations.
+Parent task status lives in [docs/MILESTONES.md](../../MILESTONES.md). See
+[VERIFICATION.md](VERIFICATION.md) and [evidence.json](evidence.json) for
+observations, commands and limitations.
 
 ## M02-01 — Desktop reference baseline
 
@@ -81,8 +81,8 @@ The index is an audit worklist, not a numeric-conformance result.
 - [x] Cover remaining immediate-shift boundaries, lane masks, conversions and guest-specific packed-operation edge cases.
 - [x] Compare the completed native and ARM suites; retain and fix every unexplained difference at its owning layer.
 
-The current suite is meaningful partial coverage; it does not establish all
-packed guest instructions or all SIMD sites by itself.
+The suite covers the families listed in [PACKED_COVERAGE.md](PACKED_COVERAGE.md); it
+does not establish all packed guest instructions or all SIMD sites by itself.
 
 ## M02-07 — FPU/VU numerics and compiled programs
 
@@ -91,7 +91,7 @@ packed guest instructions or all SIMD sites by itself.
 - [x] Compare scalar and vector helpers on native x86 and ARM64, including NaN/min/max compatibility where the host SIMD boundary requires it.
 - [x] Verify FE_TOWARDZERO/FPCR behavior and save/restore of the rounding environment on ARM.
 - [x] Preserve -ffp-contract=off in the current generated and CPU-test build commands.
-- [x] Prove multiply/add results are not fused in compiled EE/VU execution and preserve guest timing/numeric rules.
+- [x] Prove multiply/add results are not fused on compiled paths: flags on every generated unit, a fused-instruction scan of the generated archive, and float and synthetic compiled-VU witnesses. Generated EE bodies first execute in M04.
 - [x] Build/run existing relevant VU tests with the real interpreter and compare compiled VU paths.
 - [x] Cover Q/P pipelines, clip/status/MAC flags, branches/delay slots, hazards/stalls, XGKICK and cycle budgets.
 - [x] Verify uploaded-code identity checks and interpreter fallback selection instead of assuming compiled VU always applies.
@@ -101,8 +101,8 @@ packed guest instructions or all SIMD sites by itself.
 
 - [x] Inspect ps2_guest_cc.h and record its existing non-x86 platform-ABI fallback.
 - [x] Compile-check consistent declarations and function-pointer types across generated entries, wrappers and hooks.
-- [x] Link and inspect the complete generated registration table, aliases, slot bounds and resumable entries.
-- [x] Verify stack alignment and argument/register integrity at real host/guest boundaries on ARM.
+- [ ] Link and inspect the complete generated registration table, aliases, slot bounds and resumable entries.
+- [ ] Verify stack alignment and argument/register integrity at real host/guest boundaries on ARM.
 - [x] Exercise call, tail-call, yield and resume transitions without assuming a generated guest call returns to its wrapper.
 - [x] Verify guest return-address preservation and repeated scheduler stop/restart behavior.
 - [x] Compare deterministic scheduler traces/results with the native reference path.
@@ -136,17 +136,17 @@ packed guest instructions or all SIMD sites by itself.
 - [x] Preserve the original parser-gap and macro inventory limits instead of claiming a complete semantic index.
 - [x] Preprocess/compile the actual core paths and resolve relevant macro/parser gaps with compiler evidence.
 - [x] Catalogue generated SDK/syscall registrations and compare native/target prototypes and counts.
-- [x] Classify the 561 unhandled-instruction events and all indirect-fallback owner functions using section/map/runtime evidence.
-- [x] Resolve any diagnostic that blocks the required core workloads; distinguish data/unreached metadata from executed code with evidence.
-- [x] Verify no required guest registration or resume target is missing or silently redirected.
+- [x] Classify the 561 unhandled-instruction events and all indirect-fallback owner functions using section/map evidence. Runtime reachability needs game execution and moves to M04-12.
+- [x] Confirm no diagnostic blocks the M02 synthetic workloads. Separating data or unreached metadata from executed game code needs game execution and moves to M04-12.
+- [ ] Verify no required guest registration or resume target is missing or silently redirected.
 
 ## M02-12 — Host and ARM validation matrix
 
 - [x] Add public-source synthetic allocation and packed-integer checks, separate from private game generation.
 - [x] Run their first native and Switch cases; retain successful log/payload hashes.
 - [x] Run relevant existing EE, VU, memory, interrupt and kernel/scheduler suites on the native reference.
-- [x] Run corresponding ARM suites with the same recorded data, flags and explicit expected results.
-- [x] Run FP/VU and completed operation-family differential tests on both architectures.
+- [ ] Run corresponding ARM suites with the same recorded data, flags and explicit expected results.
+- [ ] Run FP/VU and completed operation-family differential tests on both architectures.
 - [x] Retain failing outputs as well as fixes and final passing results; do not mask errors to close a checkbox.
 - [x] Add source-only CI for eligible public CPU-test code without putting private ELF/generated game code in Actions artifacts.
 
@@ -155,17 +155,17 @@ packed guest instructions or all SIMD sites by itself.
 - [x] Build a separate automatic synthetic CPU-test NRO; it contains no game code/assets and does not replace the platform NRO.
 - [x] Observe application mode and a 1 MiB stack region on the real Switch.
 - [x] Record zero additional workers and the initial mapped-memory readings for that synthetic harness.
-- [x] Re-run with the corrected bounded allocator and record actual arena/stack/reservation limits accurately.
+- [ ] Re-run with the corrected bounded allocator and record actual arena/stack/reservation limits accurately.
 - [x] Build the full real-core null-renderer harness, not only the current synthetic checks.
-- [x] Establish budgets/headroom for guest memory, runtime state, generated tables, stacks and workers under application mode.
+- [ ] Establish budgets/headroom for guest memory, runtime state, generated tables, stacks and workers under application mode.
 - [x] Verify no desktop dependencies, unbounded workers/queues or hidden runtime ISO requirement in the CPU-only harness.
 
 ## M02-14 — Deterministic target execution and stop
 
-- [x] Execute validated scheduler/guest CPU workloads through the real runtime on ARM64.
-- [x] Record deterministic progress/result/PC/yield counters and compare with the native workload.
-- [x] Exercise clean stop, repeated run and failure cleanup without invalid guest-return or resource lifetime behavior.
-- [x] Retain exact target binary/source/configuration identity and private execution logs.
+- [ ] Execute validated scheduler/guest CPU workloads through the real runtime on ARM64.
+- [ ] Record deterministic progress/result/PC/yield counters and compare with the native workload.
+- [ ] Exercise clean stop, repeated run and failure cleanup without invalid guest-return or resource lifetime behavior.
+- [ ] Retain exact target binary/source/configuration identity and private execution logs.
 - [x] Keep all user-disc ELF/generated code out of Git, CI and release artifacts.
 
 ## M02-15 — Reversible maintained patches
@@ -177,19 +177,16 @@ packed guest instructions or all SIMD sites by itself.
 - [x] Prove checksum/path escapes and unowned edits are rejected and preserved.
 - [x] Run actual pinned-checkout prepare/reverse/prepare with the initial empty series.
 
-When real port patches are added, their full non-empty-series round trip is also
-required by M02-10's implementation validation; the fixture result does not claim
-that as-yet unwritten runtime patches were tested.
+The real patch series has since passed reverse and re-apply on the disposable
+checkout. The fixture result alone does not claim that.
 
-## Next hardware session
+## Hardware sessions
 
-Remaining unchecked implementation steps need results from the real Switch; the
-user asked that hardware be the only test target for them. The procedure and
-required observations are in [HARDWARE.md](HARDWARE.md). Both payloads are built
-and hashed by the session's candidate. Compilation/native execution must not close
-target-execution checkboxes. Retain the existing M01 deferrals. Compiler decision,
-ReleaseMode handling and pre-run budgets are in
-[TOOLCHAIN_DECISION.md](TOOLCHAIN_DECISION.md).
+The procedure and required observations are in [HARDWARE.md](HARDWARE.md); results
+are in [HARDWARE_RESULTS.md](HARDWARE_RESULTS.md). The first independent review
+reopened the target steps above until a run from an exact candidate exists.
+Compilation or native execution does not close target-execution steps. The existing
+M01 deferrals remain.
 
 ## Closure workflow — only after all implementation proof
 

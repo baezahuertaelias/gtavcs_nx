@@ -119,9 +119,28 @@ followed by wait/close before log shutdown, is one supported way to provide the
 uses an explicitly allocated 8 MiB stack, waits for its owner, closes the thread
 and releases the stack before log shutdown. A failed join terminates the process
 without freeing a possibly live stack. Resource logging measures the actual
-stack region and separates allocator usage/limit from kernel reservation. This
-corrected path builds; its target measurement remains pending.
+stack region and separates allocator usage/limit from kernel reservation. Its
+target measurement is in HARDWARE_RESULTS.md.
 Header/spec evidence is retained in `build/evidence/M02/libnx-stack-boundary.log`.
 
-No device connection, deployment, hardware test, milestone closure, commit or
-review was performed by this subtask.
+## newlib/POSIX audit (M02-09)
+
+Scope: every use of the APIs below in the overlaid `ps2xRuntime` and `ps2xIOP` sources
+on the Switch build. Counts come from a source search of the overlaid checkout.
+
+| API | Sites | Switch status | Handling |
+|---|---:|---|---|
+| `mmap`, `munmap`, `userfaultfd` | 3 | Not compiled | Write-watch code is `__linux__` only; Switch takes the portable path |
+| `pthread_setname_np` | 2 | Not compiled | `__APPLE__` and `__linux__` only |
+| `socket` control server | 2 | Compiled, inactive | Runs only with `PS2X_CONTROL` or hidden mode. libnx sockets are not initialized, so M04 must leave it off or initialize them |
+| `clock_gettime(CLOCK_THREAD_CPUTIME_ID)` | 1 | Fails on Switch | Patch 0005 keeps the unavailable sentinel; diagnostics only |
+| `localtime_r` | 15 lines with `localtime` | Supported | Date only, no guest timing dependency tested here |
+| `std::filesystem` | 241 | Partly | Device-prefixed paths are treated as relative. Fixtures use rooted paths; production handling is M03-13 |
+| `std::thread`, `std::mutex`, `condition_variable` | 20 thread sites | Supported | Host-boundary and scheduler suites run them on the console |
+| `getenv` | 164 | Supported | Environment is empty unless the process sets it |
+| `fork`, `dlopen`, `sysconf`, `realpath`, `nanosleep`, `fsync`, `ftruncate` | 0 | Not used | None |
+
+Two differences were found by execution, not by this search: the `sdmc:` path behavior
+and libnx taking `0x9000` bytes of heap for argv. Both are recorded in
+[HARDWARE_RESULTS.md](HARDWARE_RESULTS.md). This audit does not cover the later SDL2,
+GL or audio layers.

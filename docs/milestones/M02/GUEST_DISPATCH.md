@@ -43,7 +43,7 @@ empty block on success, failure return or exception. Success also verifies the
 block is empty before printing PASS.
 
 This works with the public synthetic table and is designed for the private
-generated table. The private-table execution itself is still pending. The test
+generated table; see HARDWARE_RESULTS.md for the private-table run. The test
 also verifies that an unregistered neighboring slot and an unaligned address do
 not resolve, and that this low-address table does not silently accept a KSEG
 address alias. Those are exact function-registration contracts; memory address
@@ -77,8 +77,7 @@ call `runGuestDispatchTests()` after the existing scheduler workload. No new
 dependency or header search path is needed beyond those targets' existing runtime
 includes and CPU options.
 
-Required Switch proof remains open: execute these workloads with the real target
-runtime, retain the exact binary/source/configuration identities and full log,
-and verify the private generated table is restored. This suite does not execute
+Switch proof, identities and table restoration are recorded in
+[HARDWARE_RESULTS.md](HARDWARE_RESULTS.md). This suite does not execute
 game functions, prove every generated entrypoint, replace the existing sleep/
 wake/failure workload, or establish game/menu loading.

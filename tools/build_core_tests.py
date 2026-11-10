@@ -25,7 +25,8 @@ BUNDLE_NAMES = {name + ".nro" for name in PUBLIC_NROS} | {
     "manifest.json", "LICENSE.SSE2NEON.txt", "LICENSE.UPSTREAM.txt", "LICENSE.PS2RECOMP.txt"}
 UPSTREAM_PATHS = (
     "third_party/PS2Recomp/ps2xRuntime", "third_party/PS2Recomp/ps2xIOP",
-    "third_party/PS2Recomp/ps2xTest", "src/platform/platform.h", "src/rhi/rhi.h",
+    "third_party/PS2Recomp/ps2xTest", "third_party/PS2Recomp/ps2xRecomp/include",
+    "src/platform/platform.h", "src/rhi/rhi.h",
     "src/rhi/rhi.cpp", "src/rhi/null/rhi_null.cpp", "src/render/presenter.h",
     "src/render/gs_shaders.h", "src/debug/watch.cpp", "tools/vu1_recomp.py")
 PORT_PATHS = ("cmake/core-tests", "cmake/runtime", "cmake/CPUOptions.cmake",

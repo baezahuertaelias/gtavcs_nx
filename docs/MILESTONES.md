@@ -139,8 +139,10 @@ supplementary and cannot close required hardware tasks.
 
 Branch: `milestone/m02-arm64-core` <!-- M02 -->
 
-Exit: reproducible private generated EE/VU code compiles and executes validated
-CPU/scheduler workloads on ARM64, with guest semantics preserved.
+Exit: reproducible private generated EE/VU code compiles, links and registers on
+ARM64, and the real runtime executes validated CPU, scheduler and synthetic guest
+workloads there with guest semantics preserved. Generated game code first executes
+in M04.
 
 - [x] M02-01 Capture a desktop reference baseline from the verified disc, isolated saves and recorded source/flags; preserve upstream's reference path.
 - [x] M02-02 Build recompiler/analyzer as host tools separately from target code; prove generator does not try to execute AArch64 utilities on the host.
@@ -149,13 +151,13 @@ CPU/scheduler workloads on ARM64, with guest semantics preserved.
 - [x] M02-05 Classify every x86 SIMD candidate by operation/owner; port guest 128-bit memory/register representation and unaligned accesses.
 - [x] M02-06 Port packed EE arithmetic, saturation, shifts, shuffles, comparisons and bit casts with edge-case/reference differential evidence.
 - [x] M02-07 Port VU interpreter/compiled operations, rounding, exceptional floats and conversion semantics; retain FP contraction prohibition.
-- [x] M02-08 Verify PS2_GUEST_CC declarations, function tables, hook wrappers, stack alignment, tail/yield/resume behavior and guest return-address integrity.
+- [ ] M02-08 Verify PS2_GUEST_CC declarations, function tables, hook wrappers, stack alignment, tail/yield/resume behavior and guest return-address integrity.
 - [x] M02-09 Verify ARM char signedness, endian/layout, aliasing, atomics, TLS, allocation alignment and exceptions/unwind assumptions.
 - [x] M02-10 Adapt runtime build flags and disable unsupported x86 JIT/desktop backends explicitly; never silently use incorrect fallback math.
-- [x] M02-11 Resolve parser gaps affecting compiled core with compiler/preprocessed evidence; catalogue macro-generated SDK call registrations.
-- [x] M02-12 Run relevant existing EE/VU/memory/kernel tests plus differential suites on host and ARM64; retain failures and final passing outputs.
-- [x] M02-13 Establish memory/stack/worker budgets under full application mode and compile a null-renderer core harness with no desktop dependencies.
-- [x] M02-14 Demonstrate deterministic scheduler/guest execution progress and clean stop on target; keep generated code/ELF entirely out of Git/CI.
+- [ ] M02-11 Resolve parser gaps affecting compiled core with compiler/preprocessed evidence; catalogue macro-generated SDK call registrations.
+- [ ] M02-12 Run relevant existing EE/VU/memory/kernel tests plus differential suites on host and ARM64; retain failures and final passing outputs.
+- [ ] M02-13 Establish memory/stack/worker budgets under full application mode and compile a null-renderer core harness with no desktop dependencies.
+- [ ] M02-14 Demonstrate deterministic scheduler/guest execution progress and clean stop on target; keep generated code/ELF entirely out of Git/CI.
 - [x] M02-15 Establish the required root-owned ordered patch application/reversal tool against the pinned upstream, using disposable build checkouts; prove new-file round trips, idempotence and refusal to overwrite unowned edits or accept altered patches.
 
 Proof: per-operation comparison, toolchain decision, generated identity/register
@@ -182,6 +184,7 @@ mods, settings and saves resolve to the intended roots without a runtime ISO.
 - [ ] M03-10 Route configuration/cache/test saves separately under gamefolder/userdata; preserve memory-card directory/file metadata and backups.
 - [ ] M03-11 Define supported mod overlay precedence/root validation and verify missing/corrupt assets produce actionable logs with safe failure.
 - [ ] M03-12 Verify SD case/path behavior, bounded file-handle/cache use and clean shutdown during pending reads on hardware.
+- [ ] M03-13 Pass only rooted or cwd-relative paths into runtime std::filesystem code and test that a device-prefixed `sdmc:` value cannot produce a cwd-doubled path (M02 hardware finding).
 
 Proof: extractor validation, metadata coverage, sampled and recorded-trace byte
 comparisons, no-ISO runtime test, corrupt/missing asset and cancellation tests.
@@ -204,7 +207,7 @@ states with null rendering and diagnostic evidence; stub is no longer linked.
 - [ ] M04-09 Demonstrate asset reads, real game constructors, IOP/native sound initialization and front-end state progress using source-backed counters.
 - [ ] M04-10 Verify stop, startup failures, HOME/focus changes and repeated launches without leaked workers or corrupted saves.
 - [ ] M04-11 Expose bounded diagnostic/control commands for later scripted scenes, with user-save isolation and stable machine-readable errors.
-- [ ] M04-12 Compare null-path behavior to desktop reference and resolve every runtime exception/unlisted-resume/unsupported syscall blocking boot.
+- [ ] M04-12 Compare null-path behavior to desktop reference and resolve every runtime exception/unlisted-resume/unsupported syscall blocking boot; classify M02's 561 unhandled-instruction events and indirect-fallback owners against code that actually executes.
 
 Proof: candidate-linked map excludes stub, guest state logs, deterministic init
 milestones, state/trace comparison and lifecycle tests. A blue screen is insufficient.

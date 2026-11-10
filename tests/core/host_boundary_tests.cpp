@@ -89,7 +89,9 @@ __attribute__((noinline)) void PS2_GUEST_CC guestBoundary(
     uint8_t *ram,R5900Context *ctx,PS2Runtime *runtime)
 {
     alignas(16) volatile uint64_t stackGuard[2] = {0x123456789abcdef0ull,0xfedcba9876543210ull};
+    // The frame address reflects the stack pointer the caller delivered; alignas alone cannot fail.
     if(ram != callState.ram || ctx != callState.context || runtime != callState.runtime ||
+        (reinterpret_cast<uintptr_t>(__builtin_frame_address(0)) & 15u) != 0u ||
         (reinterpret_cast<uintptr_t>(&stackGuard) & 15u) != 0u) {
         callState.failure=true; return;
     }

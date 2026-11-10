@@ -111,9 +111,8 @@ PMTHL assignment shape. The direct PEXEH/PROT3W intrinsic shapes also do not
 appear in the recorded private intrinsic inventory. This limits the immediate
 generated-code impact; it does not waive the synthetic foundation checks.
 
-Required next proof: the consolidated Switch run must execute the corrected
-273,039-group suite and retain its source/configuration/payload identities and
-log. Full scheduler execution, compiled VU comparison, generator-registration
+The Switch run of the 273,039-group suite is recorded in HARDWARE_RESULTS.md. Full
+scheduler execution, compiled VU comparison, generator-registration
 admission and game loading belong to the other M02 tasks. This helper suite does
 not substitute for those tasks or prove all possible packed multiply/divide
 instruction behavior.

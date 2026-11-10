@@ -20,6 +20,10 @@
     {
       "path": "0005-unavailable-cpu-timing.patch",
       "sha256": "9f8ac84017fff14203bd0191e0a4c3dfb8dc08564a28448f82c6759fc5f53699"
+    },
+    {
+      "path": "0006-target-runner-without-generator.patch",
+      "sha256": "9e4132a1ede60db3a8a2697a4e1dc75eaa0adeb188c7b4c50155862a04ead9af"
     }
   ]
 }

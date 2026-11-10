@@ -124,8 +124,7 @@ Build output and the passing trace are retained in
 `compiled-vu-native-strict.log`. The test's object also compiles as ELF64
 little-endian AArch64 with devkitA64 GCC15.2.0, pinned SSE2NEON and the official
 target CPU/TLS/PIE/strict numeric options; see compiled-vu-arm64-build.log.
-Integrated target NRO linking and real Switch execution remain the root
-milestone's required validation. No hardware run was performed here.
+Target execution of this suite is recorded in [HARDWARE_RESULTS.md](HARDWARE_RESULTS.md).
 
 This checks the listed real generated fast-mode paths. Cycle-exact interpreter
 pipeline/hazard suites, private game uploads and ingame behavior remain distinct

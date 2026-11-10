@@ -1,4 +1,4 @@
-# M02 CPU foundation — in progress
+# M02 CPU foundation
 
 Branch `milestone/m02-arm64-core`, based on independently reviewed M01 merge
 `d8103d9f6477fa6c0c2cd9863e73483f2b9eeb64`. Upstream remains pinned and pristine
@@ -181,7 +181,8 @@ unused DWARF only on those two large sources. No functions, operations or numeri
 checks were removed and no FP flags relaxed. It reuses unaffected objects and
 completed in the project-specific Linux Docker volume. The archive contains all
 327 AArch64 members, is 1,769,713,766 bytes and has SHA-256
-`7549019d95a5fb2c0ee488867fcc62efaaf4e7f8b11a3995b0f961d79648d74a`.
+`7549019d95a5fb2c0ee488867fcc62efaaf4e7f8b11a3995b0f961d79648d74a` at this point.
+Later refreshes supersede it; the final identity is in HARDWARE_RESULTS.md.
 `generated-arm64-build.log`, `generated-arm64-archive-headers.log` and
 `generated-arm64-members.txt` retain completion/member proof. This establishes
 strict C++20 GCC compilation of the full generated source, not runtime/numeric
@@ -222,8 +223,8 @@ The patch is kept under `patches/upstream`, includes upstream-required markers
 and documentation, and was applied/reversed/reapplied in the disposable pinned
 checkout. The registered submodule remains pristine. Compilation emitted an IOP
 virtual-ISO directory-record warning that remains to be investigated; no runtime
-PASS is inferred from the archive. The linked public runtime suites now pass on
-the native host; the target run remains open as detailed below.
+PASS is inferred from the archive. The linked public runtime suites pass on the
+native host; target results are in [HARDWARE_RESULTS.md](HARDWARE_RESULTS.md).
 
 ## Native runtime, guest dispatch and numeric matrix
 
@@ -273,4 +274,4 @@ reproduction command. The overlaid host recompiler was rebuilt and the private
 EE/VU output refreshed. All 10,386 EE files are byte-identical to the original
 reference; the VU registrar gained the strict selection. Metadata only is kept in
 [overlay_generation_update.json](overlay_generation_update.json). The updated
-private ARM archive and NRO are being rebuilt; target execution remains pending.
+private ARM archive and NRO were rebuilt; see HARDWARE_RESULTS.md for the target run.

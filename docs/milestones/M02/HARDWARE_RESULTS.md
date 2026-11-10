@@ -8,10 +8,15 @@ These results cover the CPU core, runtime and synthetic workloads only. No game
 function ran. They say nothing about game boot, rendering, audio, controllers,
 docking or gameplay speed.
 
+> **Status:** this describes the first session, at commit 47c1eef. Independent
+> review found that the private payload was not built from the exact overlay and
+> that some observations have no retained record, so this is not final evidence. A
+> second session from an exact candidate replaces it.
+
 ## Payload identity
 
-The candidate commit that adds this file holds the sources of both final payloads.
-Each SD copy was read back over FTP and hashed after its run.
+The runtime payload was built from the sources in commit 47c1eef. The private
+payload linked a runtime library without overlay patch 0005.
 
 | Payload | SHA-256 | Bytes | SD copy matches |
 |---|---|---:|---|

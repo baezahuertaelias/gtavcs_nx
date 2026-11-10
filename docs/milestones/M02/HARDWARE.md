@@ -1,6 +1,6 @@
 # M02 consolidated Switch acceptance
 
-Completed 2026-11-09. Results: [HARDWARE_RESULTS.md](HARDWARE_RESULTS.md).
+First session 2026-11-09; rerun required by the first independent review. Results: [HARDWARE_RESULTS.md](HARDWARE_RESULTS.md).
 
 Complete implementation, native comparisons and source/build checks first.
 The user will provide the Switch again at that point. Do not repeatedly request
@@ -55,7 +55,8 @@ These harnesses use SD stdout, so no nxlink stdout server or `-s` is needed.
 
 ## Required observations
 
-- Public runtime: all 300 reconciled upstream cases pass; packed/FP/layout,
+- Public runtime: all 337 reconciled upstream cases pass (3 generator-text cases stay
+  host-only); packed/FP/layout,
   allocation/concurrency and compiled-VU suites pass with their stated counts.
   Expected upstream numeric limitations stay explicitly identified, not counted
   as exact PS2 hardware matches. Final aggregate and worker result must be zero.
@@ -75,6 +76,10 @@ These harnesses use SD stdout, so no nxlink stdout server or `-s` is needed.
   are joined before log shutdown. Record actual readings, not requested sizes.
 - Both launches return cleanly, logs close completely, SD payload hashes match,
   and no new crash report is produced.
+- Keep a transcript of every FTP read-back hash, nxlink send and `gamefolder` listing
+  taken before and after each launch.
+- Private core: the console `[core-table] digest` must equal `table.expected_digest`
+  from `tools/audit_private_core.py` for the exact payload.
 
 Keep every failed attempt and its source/payload identity alongside the fix and
 final passing run. These CPU results do not establish game/menu loading,
