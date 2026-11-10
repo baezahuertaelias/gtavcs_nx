@@ -12,10 +12,13 @@ docking or gameplay speed.
 
 Both final payloads were built from clean commit
 `b67ec6d2a25c3c09a6c6fd60c724d34ddbadfc52`. The public manifest records
-`root_dirty=false`. Later commits change only this ledger. Each SD copy was read back
+`root_dirty=false`. Later commits change only this ledger and the metadata audit tool,
+neither of which is in a payload. Each SD copy was read back
 over FTP and hashed after its run. Records are retained outside Git in
 `build/evidence/M02/hardware/session2/`; `transcript.txt` holds every read-back hash,
-nxlink send and listing digest in order.
+nxlink send and listing digest in order. The public hashes reproduce from the Windows
+working tree, whose `series.json` and `core-dependencies.json` use CRLF. A fresh LF
+clone gets a different cache path embedded and so different public NRO bytes.
 
 | Payload | SHA-256 | Bytes | SD read-back matches |
 |---|---|---:|---|
@@ -97,9 +100,32 @@ generated table. Synthetic probes restored their empty slots. No game owner body
 registration source and resolves its target in the linked ELF: 236,304 slots, 10,383
 distinct targets, 0 unresolved, 0 ambiguous, 0 index/address mismatches. It computes
 digest `ee732423aadfb7f6` over slot index and target offset. The console computed the
-same digest from its live table. So no aliased or resume slot is missing or redirected
-compared with the generator's list. Whether that list is complete for the running
-game is M04-12.
+same digest from its live table, so the live table equals the registration assignments.
+
+**Resume reconciliation.** The same tool compares every owner's emitted
+`switch (ctx->pc)` resume labels with the table (`private-manifest-resume.json`):
+
+| Measure | Count |
+|---|---:|
+| Resume targets, in 7,959 owners | 226,519 |
+| In the table under the same owner | 226,519 |
+| Absent from the table | 0 |
+| Redirected to another owner | 0 |
+| Owner starts in the table | 10,383 |
+| Owner starts that are also a resume target | 598 |
+| Slots that are neither | 0 |
+
+The counts close: 10,383 + 226,519 - 598 = 236,304.
+
+There are also 4,166 in-function `switch (jumpTarget)` labels. Of these, 3,550 are not
+resume targets and have no table slot. They are local `goto` targets inside their owner
+and are not reached through table lookup. The second review's count of 226,930 labels
+with 411 absent came from a lowercase-only search, which also picked up the jump labels
+whose addresses have no hex letters. Reproducing that search gives the same figures
+(226,930, 411, 7,963 owners, 99 owners).
+
+This compares the table with what the generator emitted. Whether the generator found
+every entry the running game needs is M04-12.
 
 ## Native comparison
 
@@ -108,8 +134,8 @@ patches and sources as the candidate by Clang 23.1.4 on x86-64. After removing c
 codes, stderr text sharing a `[Run]` line and unique temp names, both logs were sorted
 and compared. All 337 test names and results, every counter, and the scheduler and
 guest-dispatch lines are identical. The only remaining difference is the Switch-only
-allocation suite. Switch-only HOS and `[resources]` lines and stderr ordering were
-outside the comparison.
+allocation suite. Switch-only HOS, `[resources]` and `[runtime-tests] worker_stack_bytes`
+lines and stderr ordering were outside the comparison.
 
 ## Resources (actual Switch readings)
 
@@ -160,6 +186,6 @@ Retained in `build/evidence/M02/hardware/session-2026-11-09/`, at or before comm
 ## Carried into later milestones
 
 - `std::filesystem` does not understand `sdmc:` as a root: M03-13.
-- Reachability of unhandled-instruction events and indirect-fallback owners in code
-  that actually executes: M04-12.
+- Reachability of unhandled-instruction events and indirect-fallback owners, and
+  completeness of the generator's entry list, in code that actually executes: M04-12.
 - First execution of generated game code: M04.

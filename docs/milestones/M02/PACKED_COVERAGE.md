@@ -1,7 +1,7 @@
 # M02 packed CPU validation
 
 This is implementation evidence for M02-06, not milestone approval. The Switch
-run remains required. The test inputs and scalar models are public synthetic
+run is recorded in HARDWARE_RESULTS.md. The test inputs and scalar models are public synthetic
 data; this document contains no generated game code or disc payloads.
 
 ## Sources and ownership

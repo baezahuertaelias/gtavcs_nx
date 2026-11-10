@@ -16,5 +16,5 @@
   "vu_programs": 50,
   "vu_pairs": 3032,
   "vu_lines": 110463,
-  "limitation": "Generator update selects strict compiled registration on Switch; target runtime execution still pending"
+  "limitation": "Generator update selects strict compiled registration on Switch; target runtime execution is recorded in HARDWARE_RESULTS.md"
 }

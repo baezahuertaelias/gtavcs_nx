@@ -163,9 +163,9 @@ size symbol. Kernel-mapped reservation must not be reported as live allocations.
 The prepared correction uses the documented __libnx_initheap hook and bounds
 fake_heap_start/end to a 128 MiB arena within the loader-provided region. It also
 adds an over-budget allocation rejection check and labels mapped/allocator
-measurements separately. This source builds, but its second nxlink connection
-was refused; it has not yet been validated on hardware. The earlier integer/
-allocation PASS must not be used to claim the new arena limit passed.
+measurements separately. Its second nxlink connection was refused at this point.
+The arena limit was validated later; see HARDWARE_RESULTS.md. The earlier integer/
+allocation PASS does not establish it.
 
 The original private generated-code build reached 324/326 steps; the remaining
 unity unit combined the 236k-assignment registration constructor with the large
@@ -198,10 +198,8 @@ hardware-exact. Fifteen exceptional/truncating conversions, rounding-mode change
 non-fused multiply/add and four vector lanes are also checked. These checks do
 not replace compiled VU/interpreter pipeline and scheduler tests.
 
-The combined allocation/integer/FP NRO builds successfully. The corrected heap
-arena and floating-point results remain untested on Switch. The user will make
-the Switch available after all M02 implementation is ready for a consolidated
-test session; do not request repeated intermediate device launches.
+The combined allocation/integer/FP NRO builds successfully. Its heap arena and
+floating-point results on Switch are recorded in HARDWARE_RESULTS.md.
 
 ## Real runtime compilation — partial M02-10 evidence
 

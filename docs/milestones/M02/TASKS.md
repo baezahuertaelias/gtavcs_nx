@@ -138,7 +138,7 @@ does not establish all packed guest instructions or all SIMD sites by itself.
 - [x] Catalogue generated SDK/syscall registrations and compare native/target prototypes and counts.
 - [x] Classify the 561 unhandled-instruction events and all indirect-fallback owner functions using section/map evidence. Runtime reachability needs game execution and moves to M04-12.
 - [x] Confirm no diagnostic blocks the M02 synthetic workloads. Separating data or unreached metadata from executed game code needs game execution and moves to M04-12.
-- [x] Verify no required guest registration or resume target is missing or silently redirected.
+- [x] Verify no emitted registration or resume target is missing or silently redirected in the linked table. Completeness of the generator's entry list for the running game moves to M04-12.
 
 ## M02-12 — Host and ARM validation matrix
 

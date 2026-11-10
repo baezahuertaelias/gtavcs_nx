@@ -59,8 +59,8 @@ preserved upper GPR halves and immutable architectural register zero.
 The guest-call function has the exact `PS2_GUEST_CC`-annotated type required by
 `PS2Runtime::RecompiledFunction`; a static type equality check rejects mismatched
 function-pointer casts. A volatile function pointer makes 4096 real non-inlined
-host-to-guest-shaped calls, validating all three argument identities, a local
-16-byte stack alignment, written context/memory and the caller's result checks.
+host-to-guest-shaped calls, validating all three argument identities, the frame
+address's 16-byte alignment, written context/memory and the caller's result checks.
 The opaque runtime pointer is compared only, never dereferenced.
 
 Native execution passes both the original Clang `preserve_none` selection and
@@ -98,8 +98,8 @@ ARMv8/Cortex-A57, soft-thread-pointer, local-exec TLS, PIE, function/data sectio
 and strict CPU options, pinned SSE2NEON plus the scoped allocation adapter. Its
 object is ELF64 little-endian AArch64. The successful compile includes all 42
 layout and atomic lock-free assertions. See host-boundaries-arm64-build.log.
-The standalone object is compile proof only; integrated NRO linking and actual
-Switch execution remain required. No new target result is claimed.
+The standalone object is compile proof only. Integrated NRO linking and Switch
+execution are recorded in HARDWARE_RESULTS.md.
 
 ## Runtime-suite stack issue found
 
@@ -125,8 +125,9 @@ Header/spec evidence is retained in `build/evidence/M02/libnx-stack-boundary.log
 
 ## newlib/POSIX audit (M02-09)
 
-Scope: every use of the APIs below in the overlaid `ps2xRuntime` and `ps2xIOP` sources
-on the Switch build. Counts come from a source search of the overlaid checkout.
+Scope: every use of the APIs below in `ps2xRuntime/src`, `ps2xRuntime/include` and
+`ps2xIOP/src` of the overlaid checkout. Counts are matching source lines from that
+search, and wider directory scopes give somewhat higher counts.
 
 | API | Sites | Switch status | Handling |
 |---|---:|---|---|

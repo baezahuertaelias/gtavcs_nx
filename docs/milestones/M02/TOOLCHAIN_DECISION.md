@@ -88,5 +88,6 @@ The desktop configuration is unchanged.
 The arena was 128 MiB until the native peak was measured on 2026-11-09. At that size
 the suites would have been expected to run out of memory on the console. The
 native peak includes a 6 MiB image and differs from the Switch allocator. The Switch
-rows come from the `[resources]` log lines. These budgets cover the CPU harness only;
-M04 must measure the running game.
+rows come from the `[resources]` log lines. Headroom in the test arena is 157.6 MiB
+over the runtime suites and 216.4 MiB over the private core. These budgets cover the
+CPU harness only; M04 must measure the running game.
