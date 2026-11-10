@@ -60,17 +60,17 @@
     },
     {
       "path": "docs/milestones/M02/HARDWARE_RESULTS.md",
-      "result": "Guest dispatch and scheduler traces on real Switch identical to x86 reference"
+      "result": "Guest dispatch, scheduler traces and frame-address alignment on real Switch from clean candidate; identical to x86 reference; synthetic guest callbacks only"
     }
   ],
   "M02-09": [
     {
       "path": "docs/milestones/M02/HOST_BOUNDARIES.md",
-      "result": "Layout, TLS, unwind, allocation and newlib assumptions recorded"
+      "result": "Layout, TLS, unwind and allocation assumptions recorded; newlib/POSIX audit of runtime sources"
     },
     {
       "path": "docs/milestones/M02/HARDWARE_RESULTS.md",
-      "result": "Host boundary and allocation suites passed on real Switch; two newlib differences found and handled"
+      "result": "Host boundary and allocation suites passed on real Switch; two newlib differences found and handled, one carried to M03-13"
     }
   ],
   "M02-10": [
@@ -82,17 +82,17 @@
   "M02-11": [
     {
       "path": "docs/milestones/M02/VERIFICATION.md",
-      "result": "Parser gaps, SDK registrations and diagnostics classified"
+      "result": "Parser gaps, SDK registrations and diagnostics classified from section and map evidence"
     },
     {
       "path": "docs/milestones/M02/HARDWARE_RESULTS.md",
-      "result": "Full table linked with 236304 slots assigned and bounds verified on real Switch; game reachability remains M04 work"
+      "result": "All 236304 table slots resolved against generator assignments; console table digest ee732423aadfb7f6 equals expected; game reachability moved to M04-12"
     }
   ],
   "M02-12": [
     {
       "path": "docs/milestones/M02/HARDWARE_RESULTS.md",
-      "result": "300 of 300 upstream cases and all port suites passed on real Switch; compared with x86 reference; failed attempts retained"
+      "result": "337 of 337 upstream cases and all port suites passed on real Switch; same results on x86 reference; six revised expectations and host-only exclusions stated; failed attempts retained"
     }
   ],
   "M02-13": [
@@ -102,13 +102,13 @@
     },
     {
       "path": "docs/milestones/M02/TOOLCHAIN_DECISION.md",
-      "result": "CPU harness budgets recorded"
+      "result": "CPU harness budgets for guest memory, table, runtime state, stacks and workers recorded"
     }
   ],
   "M02-14": [
     {
       "path": "docs/milestones/M02/HARDWARE_RESULTS.md",
-      "result": "Three deterministic scheduler runs, clean stop and failure unwind on real Switch; private binaries and logs kept out of Git"
+      "result": "Three deterministic scheduler runs, clean stop and failure unwind on real Switch from clean candidate with private input manifest; private binaries and logs kept out of Git"
     }
   ],
   "M02-15": [

@@ -1,6 +1,6 @@
 # M02 consolidated Switch acceptance
 
-First session 2026-11-09; rerun required by the first independent review. Results: [HARDWARE_RESULTS.md](HARDWARE_RESULTS.md).
+Completed 2026-11-09, in a second session required by the first independent review. Results: [HARDWARE_RESULTS.md](HARDWARE_RESULTS.md).
 
 Complete implementation, native comparisons and source/build checks first.
 The user will provide the Switch again at that point. Do not repeatedly request

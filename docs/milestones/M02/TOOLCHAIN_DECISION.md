@@ -48,6 +48,10 @@ Upstream's Clang 19+ gate is not removed. Switch uses the separate `cmake/core` 
 packed, compiled-VU, ABI and scheduler suites on a real Switch with results identical
 to the x86 reference. See [HARDWARE_RESULTS.md](HARDWARE_RESULTS.md).
 
+**Fused-multiply scan.** A disassembly of the final linked private ELF holds 36
+`fmadd`, `fmsub`, `fnmadd`, `fnmsub`, `fmla` or `fmls` instructions, all in libc
+`cosf`, `sinf`, `_dtoa_r` and `_strtod_l`. None is in generated game code.
+
 ## ReleaseMode
 
 `ReleaseMode.cmake` is not included by either Switch project, so none of its x86
@@ -70,11 +74,14 @@ The desktop configuration is unchanged.
 |---|---:|---|
 | Guest RDRAM | 32 MiB | `PS2_RAM_SIZE` |
 | IOP RAM | 2 MiB | `ps2_memory.cpp` |
-| Private core NRO image | 47.2 MiB | Private artifact inspection |
+| Private core text and data | 43.8 MiB (45,942,078 bytes) | `size` on the final ELF |
+| Private core BSS, including the table | 9.8 MiB (10,317,608 bytes) | `size` on the final ELF |
+| Generated function table | 7.0 MiB (917,839 slots of 8 bytes) | `[core-table]` log |
+| Runtime test image BSS (runtime state and fixtures) | 66.8 MiB (70,086,232 bytes) | `size` on the final ELF |
 | Suite worker stack | 8 MiB | `runtime_main.cpp` |
 | Native peak commit, full runtime suites | 188.8 MiB | `runtime-native-peak-memory.log`, sampled Windows x86 |
 | Test allocator arena | 256 MiB | `src/core_tests/heap.cpp` |
-| Switch allocator obtained, runtime suites | 98.1 MiB | `[resources]` log, end of run |
+| Switch allocator obtained, runtime suites | 98.4 MiB | `[resources]` log, end of run |
 | Switch allocator obtained, private core | 39.6 MiB | `[resources]` log, end of run |
 | Temporary workers, declared by the harness | 3 | `runtime_main.cpp`; the host-boundary suite measured `workers_peak=2` |
 

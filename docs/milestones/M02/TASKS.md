@@ -101,8 +101,8 @@ does not establish all packed guest instructions or all SIMD sites by itself.
 
 - [x] Inspect ps2_guest_cc.h and record its existing non-x86 platform-ABI fallback.
 - [x] Compile-check consistent declarations and function-pointer types across generated entries, wrappers and hooks.
-- [ ] Link and inspect the complete generated registration table, aliases, slot bounds and resumable entries.
-- [ ] Verify stack alignment and argument/register integrity at real host/guest boundaries on ARM.
+- [x] Link and inspect the complete generated registration table, aliases, slot bounds and resumable entries.
+- [x] Verify stack alignment and argument/register integrity at real host/guest boundaries on ARM.
 - [x] Exercise call, tail-call, yield and resume transitions without assuming a generated guest call returns to its wrapper.
 - [x] Verify guest return-address preservation and repeated scheduler stop/restart behavior.
 - [x] Compare deterministic scheduler traces/results with the native reference path.
@@ -138,15 +138,15 @@ does not establish all packed guest instructions or all SIMD sites by itself.
 - [x] Catalogue generated SDK/syscall registrations and compare native/target prototypes and counts.
 - [x] Classify the 561 unhandled-instruction events and all indirect-fallback owner functions using section/map evidence. Runtime reachability needs game execution and moves to M04-12.
 - [x] Confirm no diagnostic blocks the M02 synthetic workloads. Separating data or unreached metadata from executed game code needs game execution and moves to M04-12.
-- [ ] Verify no required guest registration or resume target is missing or silently redirected.
+- [x] Verify no required guest registration or resume target is missing or silently redirected.
 
 ## M02-12 — Host and ARM validation matrix
 
 - [x] Add public-source synthetic allocation and packed-integer checks, separate from private game generation.
 - [x] Run their first native and Switch cases; retain successful log/payload hashes.
 - [x] Run relevant existing EE, VU, memory, interrupt and kernel/scheduler suites on the native reference.
-- [ ] Run corresponding ARM suites with the same recorded data, flags and explicit expected results.
-- [ ] Run FP/VU and completed operation-family differential tests on both architectures.
+- [x] Run corresponding ARM suites with the same recorded data, flags and explicit expected results.
+- [x] Run FP/VU and completed operation-family differential tests on both architectures.
 - [x] Retain failing outputs as well as fixes and final passing results; do not mask errors to close a checkbox.
 - [x] Add source-only CI for eligible public CPU-test code without putting private ELF/generated game code in Actions artifacts.
 
@@ -155,17 +155,17 @@ does not establish all packed guest instructions or all SIMD sites by itself.
 - [x] Build a separate automatic synthetic CPU-test NRO; it contains no game code/assets and does not replace the platform NRO.
 - [x] Observe application mode and a 1 MiB stack region on the real Switch.
 - [x] Record zero additional workers and the initial mapped-memory readings for that synthetic harness.
-- [ ] Re-run with the corrected bounded allocator and record actual arena/stack/reservation limits accurately.
+- [x] Re-run with the corrected bounded allocator and record actual arena/stack/reservation limits accurately.
 - [x] Build the full real-core null-renderer harness, not only the current synthetic checks.
-- [ ] Establish budgets/headroom for guest memory, runtime state, generated tables, stacks and workers under application mode.
+- [x] Establish budgets/headroom for guest memory, runtime state, generated tables, stacks and workers under application mode.
 - [x] Verify no desktop dependencies, unbounded workers/queues or hidden runtime ISO requirement in the CPU-only harness.
 
 ## M02-14 — Deterministic target execution and stop
 
-- [ ] Execute validated scheduler/guest CPU workloads through the real runtime on ARM64.
-- [ ] Record deterministic progress/result/PC/yield counters and compare with the native workload.
-- [ ] Exercise clean stop, repeated run and failure cleanup without invalid guest-return or resource lifetime behavior.
-- [ ] Retain exact target binary/source/configuration identity and private execution logs.
+- [x] Execute validated scheduler/guest CPU workloads through the real runtime on ARM64.
+- [x] Record deterministic progress/result/PC/yield counters and compare with the native workload.
+- [x] Exercise clean stop, repeated run and failure cleanup without invalid guest-return or resource lifetime behavior.
+- [x] Retain exact target binary/source/configuration identity and private execution logs.
 - [x] Keep all user-disc ELF/generated code out of Git, CI and release artifacts.
 
 ## M02-15 — Reversible maintained patches
@@ -184,8 +184,8 @@ checkout. The fixture result alone does not claim that.
 
 The procedure and required observations are in [HARDWARE.md](HARDWARE.md); results
 are in [HARDWARE_RESULTS.md](HARDWARE_RESULTS.md). The first independent review
-reopened the target steps above until a run from an exact candidate exists.
-Compilation or native execution does not close target-execution steps. The existing
+reopened target steps until a run from an exact candidate existed; the second
+session provided it. Compilation or native execution does not close target-execution steps. The existing
 M01 deferrals remain.
 
 ## Closure workflow — only after all implementation proof
