@@ -97,6 +97,8 @@ if(NX_RUNTIME_TESTS)
         "${PORT_ROOT}/tests/core/guest_dispatch_tests.cpp"
         "${PORT_ROOT}/tests/core/compiled_vu_tests.cpp"
         "${PORT_ROOT}/tests/core/iop_directory_bounds_tests.cpp"
+        "${PORT_ROOT}/tests/core/folder_disc_tests.cpp"
+        "${PORT_ROOT}/src/vfs/folder_disc.cpp"
         "${PORT_ROOT}/src/core_tests/runtime_main.cpp")
     runtime_cpu_options(gtavcs_runtime_tests)
     target_include_directories(gtavcs_runtime_tests PRIVATE "${test_root}/include"

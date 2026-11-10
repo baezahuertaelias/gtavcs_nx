@@ -30,7 +30,7 @@ UPSTREAM_PATHS = (
     "src/rhi/rhi.cpp", "src/rhi/null/rhi_null.cpp", "src/render/presenter.h",
     "src/render/gs_shaders.h", "src/debug/watch.cpp", "tools/vu1_recomp.py")
 PORT_PATHS = ("cmake/core-tests", "cmake/runtime", "cmake/CPUOptions.cmake",
-              "src/core_tests", "src/compat", "tests/core", "tools/core-dependencies.json")
+              "src/core_tests", "src/compat", "src/vfs", "tests/core", "tools/core-dependencies.json")
 TOOL_PATHS = ("tools/build_core_tests.py", "tools/build_switch.py", "tools/upstream_overlay.py",
               "tools/inspect_cpu.py", "tools/generate_vu_test_fixture.py", "Dockerfile.switch",
               "docs/milestones/M01/package-lock.txt", "patches/upstream")
