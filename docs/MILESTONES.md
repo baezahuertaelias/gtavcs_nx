@@ -53,9 +53,14 @@ tooling and evidence cite them):
 
 ```text
 BETA TRACK   M00 -> M01 -> M02 -> M03 -> M04 -> M05 -> M06 = BETA
-POST-BETA    M09 -> M12 -> M13 -> M08 -> M14
-HARDENING    M07 -> M15 -> M10 -> M11
+POST-BETA    M08 -> M09 -> M12 -> M10
+AFTER PERF   M13 -> M14 -> M07 -> M15 -> M11
 ```
+
+Order by the user's decision of 2026-11-11, replacing the 2026-11-09 post-beta
+order: (1) picture through a new game = beta, (2) sound, (3) dev menu then
+widescreen, (4) performance; every other milestone follows performance.
+See BETA_ROADMAP.md, "Scope decision (user, 2026-11-11)".
 
 Each milestone also reruns relevant proof from earlier milestones. A discovered
 prerequisite belongs in the active milestone before review, with a new unique ID.

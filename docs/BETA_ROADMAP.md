@@ -6,7 +6,29 @@ the workflow rules (branches, evidence, review, merge) stay in
 [AUTOMATED_EXECUTION.md](AUTOMATED_EXECUTION.md). This page gives the order, the
 reasoning and what to check at each step.
 
+## Scope decision (user, 2026-11-11)
+
+The user set four goals, in this order, replacing the post-beta order below:
+
+1. **Graphics through a new game** = the beta (M03, M04, M05, M06). On an empty
+   card a new game is S1 to S4; there is no title menu.
+2. **Sound**: real game sound and movies (M08).
+3. **Developer menu on L3+R3, then widescreen** (M09, then M12, two branches).
+4. **Performance**: 25+ FPS baseline (M10).
+
+All other milestones come after performance: custom textures (M13), custom audio
+(M14), full controllers (M07), whole world and saves (M15), final release (M11).
+Nothing was deleted or waived.
+
+GL thread ownership (M05-09) is decided by measurement. The user asked for the
+best option: prototype both record-on-worker/replay-on-main and a worker-owned
+GL context, and adopt the one that is correct and faster on hardware. If the
+worker-owned context wins, update AGENTS.md runtime ownership in that milestone.
+
 ## Scope decision (user, 2026-11-09)
+
+Superseded for post-beta order by the 2026-11-11 decision above; the beta
+definition still stands.
 
 The previous plan defined beta as full gameplay with audio, saves, a dev menu
 and 25+ FPS. The user replaced that definition:
@@ -55,14 +77,13 @@ clocks, with evidence (`M06-18`):
 Beta does not claim audible sound, movies, saves, a dev menu, widescreen, whole-map
 coverage or mission playability.
 
-## Current state (2026-11-09)
+## Current state (2026-11-11)
 
 | Milestone | State |
 |---|---|
-| M00 discovery, M01 platform smoke | Reviewed and merged |
-| M02 ARM64 core | Active on `milestone/m02-arm64-core`, parents M02-01/02/03/15 closed, large uncommitted work in the tree |
+| M00 discovery, M01 platform smoke, M02 ARM64 core | Reviewed and merged; M02's CPU suites passed 337/337 on a real Switch |
+| M03 folder disc | Active on `milestone/m03-folder-vfs`. Desktop proof done; M03-12 hardware session, hardware part of M03-13 and live BEACH/MALL loads open |
 | Root build | Still the M01 platform stub: blue screen and silence. No game code runs in the NRO |
-| Private generated core | Links into a null-renderer harness. Target execution is not yet proven |
 
 ## Execution order
 
@@ -70,15 +91,24 @@ Milestone numbers are stable identifiers, not the order. M02 tooling and evidenc
 cite them, so they were not renumbered.
 
 ```text
-BETA TRACK   M02 -> M03 -> M04 -> M05 -> M06 = BETA
-POST-BETA    M09 dev menu -> M12 widescreen -> M13 custom textures
-             -> M08 game sound and movies -> M14 custom audio
-HARDENING    M07 full controllers -> M15 whole world and saves
-             -> M10 stability and 25+ FPS -> M11 final release
+BETA TRACK   M02 -> M03 -> M04 -> M05 -> M06 = BETA          goal 1
+POST-BETA    M08 game sound and movies                       goal 2
+             -> M09 dev menu -> M12 widescreen               goal 3
+             -> M10 stability and 25+ FPS                    goal 4
+AFTER PERF   M13 custom textures -> M14 custom audio
+             -> M07 full controllers -> M15 whole world and saves
+             -> M11 final release
 ```
 
-M08 sits before M14 because custom audio cannot be heard or checked until the
+M08 still precedes M14 because custom audio cannot be heard or checked until the
 game's own sound reaches the speakers.
+
+**Known dependency gap.** M10 now runs before M07 and M15. Some M10 tasks touch
+their ground: M10-01 needs a repeatable busy route (M15-04 is the scripted one),
+M10-07 includes missions and interiors, M10-08 controller loss, M10-09 save
+interruptions. M10 must build what it needs for those tasks itself, as new M10
+task IDs, or ask the user before reducing them. M11-06 repeats the soak and
+performance acceptance on the final candidate.
 
 ## How to follow it
 
@@ -119,10 +149,19 @@ merge before starting the next one.
 
 - **Do:** implement every `rhi::Device` method and GLSL equivalents of the four HLSL
   families.
-- **Decide early:** upstream records and executes GPU work on a render worker,
-  while a GL context belongs to one thread and this project reserves GL for the
-  main thread. Trace which thread issues RHI calls and fix the ownership design
-  first (`M05-09`, `M05-10`).
+- **Decide early:** upstream records and executes GPU work on a render worker
+  (`ps2_render_worker.cpp`), while a GL context belongs to one thread. Prototype
+  both record-on-worker/replay-on-main and a worker-owned context, measure on
+  hardware, and adopt the correct, faster one (user decision 2026-11-11,
+  `M05-09`, `M05-10`).
+- **First picture early:** the runtime's default GS is the software one
+  (`PS2X_GS=cpu`), and the presenter shows CPU-made pictures. Texture upload,
+  the present shader and swap are enough to see S1/S2 before the rest of the
+  backend. Then complete `gs_hw.cpp` and the native world path through the RHI.
+  `gs_gpu_parallel.cpp` (Vulkan paraLLEl-GS) stays out of the Switch build.
+- **Watch:** `gs_draw.hlsl` uses dual-source blending (GL 3.3 core, check the
+  nouveau limit); D3D 0..1 depth against GL -1..1 needs `ARB_clip_control` (not in
+  the current GLAD) or a shader remap. Use `rhi_d3d11.cpp` as the closer model.
 - **Done when:** every method and shader variant passes offscreen comparison with
   the desktop backend on real hardware.
 
@@ -146,7 +185,15 @@ that on hardware.
 Compare each stage with the same stage on the desktop reference build. When
 something diverges, compare traces before changing game logic.
 
-### Step 6 — M09: developer menu on L3+R3
+### Step 6 — M08: real sound and movies (goal 2)
+
+Connect `ps2_audio_out.cpp`/`libsd.cpp` output to a bounded producer ring and an
+SDL2 audio device consumer. SPU2 output is already 48 kHz. SDL keeps audren. Count
+queue depth, latency and underruns; mute and flush across HOME and suspend. Movies
+(`.PSS`, MPEG-2) need a Switch-built decoder pinned in the toolchain lock; check
+its license obligations before release. Close only with audible hardware playback.
+
+### Step 7 — M09: developer menu on L3+R3 (goal 3)
 
 Upstream already has what the menu needs: a settings registry and menu
 (`src/ui/settings_menu.cpp`), a trainer (`src/ui/trainer_menu.cpp`) and a
@@ -158,32 +205,37 @@ one frame (`upstream/docs/SETTINGS_MENU_WIDESCREEN.md`). So hold back stick clic
 from the game for a short window until it is clear whether a chord is happening,
 and measure that this does not break free aim.
 
-### Step 7 — M12: widescreen
+### Step 8 — M12: widescreen (goal 3)
 
 Upstream's Hor+ widescreen is complete on desktop, so this is port-and-verify:
 camera wrapper, entity culling, HUD squeeze and anchoring, 4:3 for 2D-only frames.
 Leave the game's own PS2 widescreen option off, as upstream does. Check cost: the
 16:9 render target is wider than 4:3.
 
-### Step 8 — M13: custom textures
+### Step 9 — M10: stability and 25+ FPS (goal 4)
 
-No replacement system exists upstream, so this is new design. Textures come from
-the GS backend's cache as PSMT4/T8 plus CLUT. The first task is to choose an
-identity (hash) that stays stable across streaming, palette changes and render
-targets. Then dump, load through the VFS from `gamefolder/mods/textures/`, fall back
-to the original, and control it from the dev menu.
+Measure first: game thread, render worker, GS stage, GPU, memory and underruns on
+a repeatable busy route at stock clocks. Then change one owning layer at a time
+with before/after evidence, for example thread placement on the three application
+cores, wider native-renderer coverage, GCC PGO/LTO, bit-exact NEON fast paths for
+hot operations, fewer GL state changes and a warmed Mesa shader cache. deko3d
+behind the RHI only if measurements show GL driver cost dominates. No guest-time
+changes and no overclock. See the dependency gap under "Execution order".
 
-### Step 9 — M08 then M14: real sound, then custom audio
+### Step 10 — After performance
 
-M08 connects the game's sound to the speakers and adds movies. M14 then replaces
-music streams (`.VB`, one stereo stream at a time) first, because that is the
-simpler unit, then effect banks (`.RAW` + `.SDT`, 68 banks in SPU2 RAM, which limits
-size). Keep streaming work off the audio callback and preserve loop and seek behavior.
+M13 custom textures, M14 custom audio, M07 full controllers, M15 whole world and
+saves, then M11 final release.
 
-### Step 10 — Hardening
+M13: no replacement system exists upstream, so this is new design. Textures come
+from the GS backend's cache as PSMT4/T8 plus CLUT. Choose an identity that stays
+stable across streaming, palette changes and render targets, then dump, load
+through the VFS from `gamefolder/mods/textures/`, fall back to the original and
+control it from the dev menu.
 
-M07, M15, M10 and M11 in that order. The 25+ FPS target and the 30-minute soak
-live in M10.
+M14 replaces music streams (`.VB`, one stereo stream at a time) first, then effect
+banks (`.RAW` + `.SDT`, 68 banks in SPU2 RAM, which limits size). Keep streaming
+work off the audio callback and preserve loop and seek behavior.
 
 ## Hardware sessions needed from you
 
@@ -191,12 +243,11 @@ Agents cannot run the console, so these need you with the Switch:
 
 | When | What |
 |---|---|
-| End of M02 | Run the CPU suites and core harness |
 | M03 | SD read and cancellation behavior |
 | M04 | Real boot, HOME, repeated launch |
 | M05 | RHI conformance scenes |
 | M06 | S1–S4 bring-up, docking, Pro Controller, acceptance run |
-| M09 onward | Each feature on real hardware; M08 and M14 need your ears |
+| M08 onward | Each feature on real hardware; M08 and M14 need your ears |
 
 ## Main risks
 

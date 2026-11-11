@@ -248,8 +248,9 @@ not the order.
 Beta (M06, user decision 2026-11-09): the real game opens on a real Switch, goes
 ingame and loads the first scene, Fort Baxter gameplay, with the world and HUD
 visible and the player controllable for 5 minutes, then exits cleanly. Timing is
-measured, with no FPS target. After beta, in order: dev menu on L3+R3, widescreen,
-custom textures, real sound and custom audio.
+measured, with no FPS target. After beta, in order (user decision 2026-11-11):
+real sound and movies, dev menu on L3+R3, widescreen, then performance (M10);
+custom textures, custom audio, full controllers, saves and release follow M10.
 
 Final acceptance (M10/M11) includes a controllable ingame route with audible
    music/effects, stable saves and docking, 30-minute soak, 720p/1080p output and
