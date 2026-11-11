@@ -48,13 +48,30 @@ scope changes require the user's explicit decision and a revised plan.
 
 ## Dependency map and acceptance budgets
 
-Execution order (milestone numbers are stable identifiers, not the order; M02
-tooling and evidence cite them):
+Milestone numbers follow the execution order. They were renumbered on 2026-11-11
+by user decision. Records written before then (M00-M03 evidence, M02 audit JSON,
+`tools/audit_core_coverage.py`) keep the old IDs; translate them with this table:
+
+| Old ID | New ID | Milestone |
+|---|---|---|
+| M08 | M07 | Real sound, music and movies |
+| M09 | M08 | Developer menu on L3+R3 |
+| M12 | M09 | Widescreen |
+| M10 | M10 | Stability and performance |
+| M13 | M11 | Custom textures |
+| M14 | M12 | Custom audio |
+| M07 | M13 | Complete controllers |
+| M15 | M14 | Whole world and saves |
+| M11 | M15 | Final release |
+
+M00-M06 kept their numbers. Task numbers inside a milestone did not change.
+
+Execution order:
 
 ```text
 BETA TRACK   M00 -> M01 -> M02 -> M03 -> M04 -> M05 -> M06 = BETA
-POST-BETA    M08 -> M09 -> M12 -> M10
-AFTER PERF   M13 -> M14 -> M07 -> M15 -> M11
+POST-BETA    M07 -> M08 -> M09 -> M10
+AFTER PERF   M11 -> M12 -> M13 -> M14 -> M15
 ```
 
 Order by the user's decision of 2026-11-11, replacing the 2026-11-09 post-beta
@@ -254,8 +271,8 @@ time and compare each with the desktop reference.
 - [ ] M06-01 Connect presenter/GS/VIF/VU/native-world submission to OpenGL and ensure the authentic/reference path remains selectable.
 - [ ] M06-02 Validate GAME.DTZ, common models/textures and the LVZ/IMG streaming and relocation that S1-S4 actually use.
 - [ ] M06-03 Verify opaque/alpha-tested/transparent geometry, lighting, fog, texture palettes/mips and draw ordering in S2-S4.
-- [ ] M06-04 Verify the skinned characters, animation, shadows and transient effects that appear in S2-S4; wider coverage is M15-01.
-- [ ] M06-05 Verify camera, culling, HUD, radar and subtitles at the authentic 4:3 picture in S2-S4, pillarboxed without stretch or crop; widescreen is M12.
+- [ ] M06-04 Verify the skinned characters, animation, shadows and transient effects that appear in S2-S4; wider coverage is M14-01.
+- [ ] M06-05 Verify camera, culling, HUD, radar and subtitles at the authentic 4:3 picture in S2-S4, pillarboxed without stretch or crop; widescreen is M09.
 - [ ] M06-06 Render at a fixed recorded internal scale independent of output dimensions; recreate targets and camera state on docking.
 - [ ] M06-07 Establish a repeatable procedure from cold boot with an empty test card to S4, with state/position evidence and input timestamps.
 - [ ] M06-09 Compare S1-S4 screenshots and key guest state with the desktop reference; resolve every unexplained material mismatch.
@@ -272,56 +289,55 @@ time and compare each with the desktop reference.
 Proof: S1-S4 screenshots and guest-state comparison, timing report, hardware
 logs and video. Tag the beta only after independent review and merge.
 
-## M07 — Complete controllers and controller-only interaction
+## M07 — Real sound, music, movies and synchronized streaming
 
-Branch: `milestone/m07-controllers` <!-- M07 -->
+Branch: `milestone/m07-audio-movies` <!-- M07 -->
 
-- [ ] M07-01 Confirm SDL physical-position mapping on paired Joy-Cons, handheld controls and Pro Controller with logged button identity.
-- [ ] M07-02 Map every supported PS2 action, both sticks, ZL/ZR, Plus/Minus, d-pad and stick clicks through existing binding/report layers.
-- [ ] M07-03 Verify active-low DualShock report, pressure/trigger expectations, signed extremes, dead zones and neutral disconnected state.
-- [ ] M07-04 Preserve on-foot aim/camera, vehicle controls, lock-on, weapon cycling, swimming and contextual mission inputs.
-- [ ] M07-05 Make all game front-end/pause/map/text/save menus usable without keyboard/mouse; implement required text-entry flow.
-- [ ] M07-06 Verify rumble amplitude/duration/stop and reconnection without stale handles or blocking frame loops.
-- [ ] M07-07 Test disconnect/reconnect and controller reassignment during gameplay, menus, HOME and resume.
-- [ ] M07-08 Preserve configurable bindings/presets and safe persistence; prevent overlay/game simultaneous input.
-- [ ] M07-09 Replay complete controller-only gameplay/menu route on each supported controller configuration and document unsupported layouts explicitly.
-- [ ] M07-10 Re-verify, after M06-16 removed smoke Plus-to-exit, ordinary Start/Select semantics and safe deliberate application exit.
+- [ ] M07-01 Connect native libsd/SPU2 output to bounded PCM producer ring and SDL2 AudioStream/device consumer; remove silence stub.
+- [ ] M07-02 Preserve sample rate, interpolation, stereo channel order, clipping/saturation and game volume settings against desktop reference.
+- [ ] M07-03 Keep consumer timing independent of rendering; measure queue depth, latency, underruns and recovery from deliberate frame stalls.
+- [ ] M07-04 Verify effects/voice/mission banks, ambient sounds, positional balance and simultaneous channels across representative scenes.
+- [ ] M07-05 Verify radio/music/mission streams, seeking/looping and world transitions using AUDIO lookup/SDT/VB/RAW metadata correctly.
+- [ ] M07-06 Add pinned target movie decoder dependencies or equivalent validated implementation; host FFmpeg libraries are forbidden.
+- [ ] M07-07 Decode/render INTRO/STINGS PSS and gameplay cutscenes with audio/video sync, correct colors/aspect and bounded memory.
+- [ ] M07-08 Validate skip/pause/seek/stop and cancellation with pending I/O/audio; no stale buffers replay after transitions.
+- [ ] M07-09 Verify HOME/suspend/resume/device shutdown and error recovery without double audren ownership or callback I/O.
+- [ ] M07-10 Record audible hardware playback plus PCM comparison and long streaming route; silence/nonzero PCM alone cannot close this milestone.
+- [ ] M07-11 Verify no audio drift or cutscene desynchronization across variable frame rates and both output modes.
 
-Exit proof: hardware controller matrix and action-by-action route, not only device
-enumeration. Single sideways Joy-Con is not implicitly supported; decide via scope.
+## M08 — Developer menu on L3+R3 and settings
 
-## M08 — Real sound, music, movies and synchronized streaming
-
-Branch: `milestone/m08-audio-movies` <!-- M08 -->
-
-- [ ] M08-01 Connect native libsd/SPU2 output to bounded PCM producer ring and SDL2 AudioStream/device consumer; remove silence stub.
-- [ ] M08-02 Preserve sample rate, interpolation, stereo channel order, clipping/saturation and game volume settings against desktop reference.
-- [ ] M08-03 Keep consumer timing independent of rendering; measure queue depth, latency, underruns and recovery from deliberate frame stalls.
-- [ ] M08-04 Verify effects/voice/mission banks, ambient sounds, positional balance and simultaneous channels across representative scenes.
-- [ ] M08-05 Verify radio/music/mission streams, seeking/looping and world transitions using AUDIO lookup/SDT/VB/RAW metadata correctly.
-- [ ] M08-06 Add pinned target movie decoder dependencies or equivalent validated implementation; host FFmpeg libraries are forbidden.
-- [ ] M08-07 Decode/render INTRO/STINGS PSS and gameplay cutscenes with audio/video sync, correct colors/aspect and bounded memory.
-- [ ] M08-08 Validate skip/pause/seek/stop and cancellation with pending I/O/audio; no stale buffers replay after transitions.
-- [ ] M08-09 Verify HOME/suspend/resume/device shutdown and error recovery without double audren ownership or callback I/O.
-- [ ] M08-10 Record audible hardware playback plus PCM comparison and long streaming route; silence/nonzero PCM alone cannot close this milestone.
-- [ ] M08-11 Verify no audio drift or cutscene desynchronization across variable frame rates and both output modes.
-
-## M09 — Developer menu on L3+R3 and settings
-
-Branch: `milestone/m09-dev-menu` <!-- M09 -->
+Branch: `milestone/m08-dev-menu` <!-- M08 -->
 
 Exit: on real Switch, pressing L3+R3 opens and closes one developer menu with
 controller-only navigation, and the chord does not reach the game.
 
-- [ ] M09-01 Integrate upstream's ImGui core with SDL2 input backend and existing RHI UI renderer, one context and correct frame order.
-- [ ] M09-02 Open and close the menu with L3+R3 on Switch, replacing the desktop Back+Start chord only for this target; add gamepad navigation, focus/input capture and readable 720p handheld and 1080p docked layout.
-- [ ] M09-03 Expose renderer scale, timing, audio, controller settings and diagnostics through the upstream settings registry, without clutter in ordinary game menus.
-- [ ] M09-04 Persist settings beneath gamefolder and verify defaults/reset/relaunch; recover from malformed config safely.
-- [ ] M09-08 Verify settings/menu close/reopen during gameplay, cutscene transitions and suspend without leaking input or GL state.
-- [ ] M09-09 Verify trainer/dev commands use guest scheduler-safe hooks and cannot invalidate normal release save tests silently.
-- [ ] M09-14 Prevent chord leakage: withhold L3/R3 from the guest for a short recorded window until a chord is ruled in or out, so no L3/R3 edge reaches the game on open or close; prove R1-then-L3 free aim still works and report the added input latency.
-- [ ] M09-15 Reach the existing trainer, free camera, performance overlay and frame-time recording from the controller through the menu, with no keyboard or F-key dependency on Switch.
-- [ ] M09-16 Hardware acceptance on paired Joy-Cons, handheld and Pro Controller: repeated L3+R3 open/close in S2, S3, S4 and across suspend, with logged proof that no chord input reached the guest.
+- [ ] M08-01 Integrate upstream's ImGui core with SDL2 input backend and existing RHI UI renderer, one context and correct frame order.
+- [ ] M08-02 Open and close the menu with L3+R3 on Switch, replacing the desktop Back+Start chord only for this target; add gamepad navigation, focus/input capture and readable 720p handheld and 1080p docked layout.
+- [ ] M08-03 Expose renderer scale, timing, audio, controller settings and diagnostics through the upstream settings registry, without clutter in ordinary game menus.
+- [ ] M08-04 Persist settings beneath gamefolder and verify defaults/reset/relaunch; recover from malformed config safely.
+- [ ] M08-08 Verify settings/menu close/reopen during gameplay, cutscene transitions and suspend without leaking input or GL state.
+- [ ] M08-09 Verify trainer/dev commands use guest scheduler-safe hooks and cannot invalidate normal release save tests silently.
+- [ ] M08-14 Prevent chord leakage: withhold L3/R3 from the guest for a short recorded window until a chord is ruled in or out, so no L3/R3 edge reaches the game on open or close; prove R1-then-L3 free aim still works and report the added input latency.
+- [ ] M08-15 Reach the existing trainer, free camera, performance overlay and frame-time recording from the controller through the menu, with no keyboard or F-key dependency on Switch.
+- [ ] M08-16 Hardware acceptance on paired Joy-Cons, handheld and Pro Controller: repeated L3+R3 open/close in S2, S3, S4 and across suspend, with logged proof that no chord input reached the guest.
+
+## M09 — Widescreen
+
+Branch: `milestone/m09-widescreen` <!-- M09 -->
+
+Exit: 16:9 Hor+ picture on Switch with correct HUD, culling and 2D frames, selectable
+from the dev menu; 4:3 remains available. Upstream's design and limits:
+`upstream/docs/SETTINGS_MENU_WIDESCREEN.md`.
+
+- [ ] M09-01 Wire the upstream `display.aspect` chain (presenter display aspect, Hor+ widening, GS widening, HUD squeeze) through the OpenGL path; make 16:9 the Switch default once accepted and keep 4:3 selectable, both persisted through the dev menu.
+- [ ] M09-02 Verify the Hor+ view-window wrapper and entity-culling plane widening on ARM64 under guest-hook rules, numerically against the desktop reference.
+- [ ] M09-03 Verify HUD modes (keep 4:3, screen edges, stretch), HUD classification and scissor squeeze on GL, including radar and centred text.
+- [ ] M09-04 Verify 2D-only frames (loading, pause map) stay 4:3 inside the frame, and each presented frame's shape matches its picture at transitions.
+- [ ] M09-05 Keep the game's own PS2 widescreen option off and its menu row hidden; verify the cutscene-bars setting and the scope/camera mask.
+- [ ] M09-06 Size internal render targets for 16:9 and record memory and GPU cost against 4:3 at the same scale in both modes.
+- [ ] M09-07 Verify no missing geometry or unstreamed cells at the frame edges in S2-S4 and a driven route.
+- [ ] M09-08 Hardware acceptance in handheld and docked: reference-scene comparison with desktop at 16:9, and live 4:3/16:9 switching without corruption.
 
 ## M10 — Stability, lifecycle and measured performance
 
@@ -345,86 +361,88 @@ the standard route with p95 frame time <=40 ms after stated warmup. Loading scre
 are reported separately, never silently removed. Any scope/budget change needs the
 user's decision; reviewers cannot waive a missed target.
 
-## M11 — Final packaging, clean deployment and acceptance
+## M11 — Custom textures
 
-Branch: `milestone/m11-final-release` <!-- M11 -->
+Branch: `milestone/m11-custom-textures` <!-- M11 -->
 
-- [ ] M11-01 Rebuild from clean pinned source/toolchain on a second clean environment; verify expected reproducibility or explain deterministic build differences.
-- [ ] M11-02 Generate final source/version/build-info, NRO metadata, checksums and license notices without including game/generated assets.
-- [ ] M11-03 Package exact switch/gtavcs_nx/gtavcs.nro layout plus separate user-disc preparation instructions/tooling.
-- [ ] M11-04 Audit Git history, submodule/patch completeness and release artifacts for game bytes, secrets and accidental test saves.
-- [ ] M11-05 Deploy onto a clean test SD layout and reproduce first boot, controller-only game route, audio, overlay, save/reload, dock/resume and exit.
-- [ ] M11-06 Repeat final visual/audio/performance/soak acceptance on exact release candidate with 720p handheld/1080p docked output and recorded internal scale.
-- [ ] M11-07 Validate mod-folder behavior, failed extraction/wrong-disc diagnostics, storage limits and upgrade preservation of existing saves/settings.
-- [ ] M11-08 Write honest release notes, known supported configurations, measured limits, troubleshooting and recovery instructions.
+Exit: optional folder-based texture replacement on Switch, with safe fallback. No
+replacement system was found upstream, so identity and injection are new design.
+
+- [ ] M11-01 Choose and document a stable texture identity from the GS texture cache/native world path (indexed data plus CLUT), proving it stays stable across streaming and palette changes; exclude or handle render targets and animated palettes explicitly.
+- [ ] M11-02 Add a controller-triggered dump mode writing identified textures to a local mods folder; dumps are user-local and never committed.
+- [ ] M11-03 Load replacements through the VFS from `gamefolder/mods/textures/`; choose and pin the decoder and supported formats, document naming and precedence, and support higher-resolution replacements with correct UV behavior.
+- [ ] M11-04 Enforce GPU/CPU memory budgets, bounded upload per frame and no streaming stalls; measure against the same scene without replacements.
+- [ ] M11-05 Fall back to the original texture when a replacement is absent or invalid; preserve original assets and reject absolute or traversing paths.
+- [ ] M11-06 Add dev-menu controls to enable/disable and safely reload custom textures; show actionable load errors and bounded memory use, release replaced GPU resources safely and persist the setting under userdata.
+- [ ] M11-07 Validate on Switch in handheld/docked gameplay: known replacements, fallback, corrupt/oversized files, rejected paths, repeated reload, world streaming and suspend/resume; record visual comparison and memory/resource-lifetime evidence.
+
+## M12 — Custom audio
+
+Branch: `milestone/m12-custom-audio` <!-- M12 -->
+
+Entry: M07 accepted, because replacements cannot be heard or compared without real
+game sound. Exit: optional folder-based music and effect replacement on Switch.
+
+- [ ] M12-01 Identify replaceable units and stable IDs: `.VB` music/cutscene streams through M_LOOKUP.BIN, and `.RAW`/`.SDT` effect banks; document which are supported and why.
+- [ ] M12-02 Provide a metadata listing of those IDs for mod authors, with no game audio committed or distributed.
+- [ ] M12-03 Define `gamefolder/mods/audio/` layout, naming, precedence and formats; pin any decoder, with uncompressed PCM as the baseline.
+- [ ] M12-04 Inject music/stream replacements at the native sound layer, preserving looping, seeking, duration-dependent cutscene sync and stop/cancel; no file I/O on the audio callback.
+- [ ] M12-05 Inject effect-bank replacements within SPU2 RAM limits, with rate and loop handling; reject replacements that do not fit, with a clear error.
+- [ ] M12-06 Add dev-menu enable/disable, reload rules, load errors and persisted settings; fall back to original audio when a replacement is absent or invalid, and reject absolute or traversing paths.
+- [ ] M12-07 Validate on Switch with audible human confirmation: known replacements, fallback, corrupt/oversized files, cutscene sync, long streaming route and suspend/resume, with underrun and memory evidence.
+
+## M13 — Complete controllers and controller-only interaction
+
+Branch: `milestone/m13-controllers` <!-- M13 -->
+
+- [ ] M13-01 Confirm SDL physical-position mapping on paired Joy-Cons, handheld controls and Pro Controller with logged button identity.
+- [ ] M13-02 Map every supported PS2 action, both sticks, ZL/ZR, Plus/Minus, d-pad and stick clicks through existing binding/report layers.
+- [ ] M13-03 Verify active-low DualShock report, pressure/trigger expectations, signed extremes, dead zones and neutral disconnected state.
+- [ ] M13-04 Preserve on-foot aim/camera, vehicle controls, lock-on, weapon cycling, swimming and contextual mission inputs.
+- [ ] M13-05 Make all game front-end/pause/map/text/save menus usable without keyboard/mouse; implement required text-entry flow.
+- [ ] M13-06 Verify rumble amplitude/duration/stop and reconnection without stale handles or blocking frame loops.
+- [ ] M13-07 Test disconnect/reconnect and controller reassignment during gameplay, menus, HOME and resume.
+- [ ] M13-08 Preserve configurable bindings/presets and safe persistence; prevent overlay/game simultaneous input.
+- [ ] M13-09 Replay complete controller-only gameplay/menu route on each supported controller configuration and document unsupported layouts explicitly.
+- [ ] M13-10 Re-verify, after M06-16 removed smoke Plus-to-exit, ordinary Start/Select semantics and safe deliberate application exit.
+
+Exit proof: hardware controller matrix and action-by-action route, not only device
+enumeration. Single sideways Joy-Con is not implicitly supported; decide via scope.
+
+## M14 — Whole world and safe saves
+
+Branch: `milestone/m14-world-saves` <!-- M14 -->
+
+Exit: representative outdoor, interior and streaming play across the map, with
+reliable saves.
+
+- [ ] M14-01 Verify skinned characters/animations, vehicles, water, particles, shadows, cutouts and transient effects beyond the first scene.
+- [ ] M14-02 Traverse BEACH, MAINLA and MALL/interior boundaries and verify no missing terrain, corrupt textures or stalls.
+- [ ] M14-03 Exercise mission start/progress, pause/map/shop/interior entry and return to gameplay; distinguish menu boot from real game simulation.
+- [ ] M14-04 Establish a scripted reproducible on-foot and driving route with state/position evidence and input replay timestamps.
+- [ ] M14-05 Verify memory-card file layout, directory order, metadata and capacity behavior match game expectations.
+- [ ] M14-06 Implement/verify save backups and atomic replacement/recovery; tests operate on disposable copies, never live user saves.
+- [ ] M14-07 Complete create/save/load/overwrite/delete/full-card/error flows through controller menus and verify mission/player state restored.
+- [ ] M14-08 Document player controls/SD layout/troubleshooting and reproduce a full controller-only start-to-save-to-reload session.
+
+## M15 — Final packaging, clean deployment and acceptance
+
+Branch: `milestone/m15-final-release` <!-- M15 -->
+
+- [ ] M15-01 Rebuild from clean pinned source/toolchain on a second clean environment; verify expected reproducibility or explain deterministic build differences.
+- [ ] M15-02 Generate final source/version/build-info, NRO metadata, checksums and license notices without including game/generated assets.
+- [ ] M15-03 Package exact switch/gtavcs_nx/gtavcs.nro layout plus separate user-disc preparation instructions/tooling.
+- [ ] M15-04 Audit Git history, submodule/patch completeness and release artifacts for game bytes, secrets and accidental test saves.
+- [ ] M15-05 Deploy onto a clean test SD layout and reproduce first boot, controller-only game route, audio, overlay, save/reload, dock/resume and exit.
+- [ ] M15-06 Repeat final visual/audio/performance/soak acceptance on exact release candidate with 720p handheld/1080p docked output and recorded internal scale.
+- [ ] M15-07 Validate mod-folder behavior, failed extraction/wrong-disc diagnostics, storage limits and upgrade preservation of existing saves/settings.
+- [ ] M15-08 Write honest release notes, known supported configurations, measured limits, troubleshooting and recovery instructions.
 
 After all eight tasks: independent review, resolve/re-review findings, merge and
 tag accepted source, then attach only reviewed allowed artifacts to a private
 release. Verify release visibility/checksums/download layout and record those
 post-review publication actions separately. Review/merge/publication are workflow
-gates, not pre-review tasks; this avoids circular review eligibility. M11 is
+gates, not pre-review tasks; this avoids circular review eligibility. M15 is
 last in execution order; after it, do not invent a new branch/milestone without a
 new user objective.
 
-## M12 — Widescreen
-
-Branch: `milestone/m12-widescreen` <!-- M12 -->
-
-Exit: 16:9 Hor+ picture on Switch with correct HUD, culling and 2D frames, selectable
-from the dev menu; 4:3 remains available. Upstream's design and limits:
-`upstream/docs/SETTINGS_MENU_WIDESCREEN.md`.
-
-- [ ] M12-01 Wire the upstream `display.aspect` chain (presenter display aspect, Hor+ widening, GS widening, HUD squeeze) through the OpenGL path; make 16:9 the Switch default once accepted and keep 4:3 selectable, both persisted through the dev menu.
-- [ ] M12-02 Verify the Hor+ view-window wrapper and entity-culling plane widening on ARM64 under guest-hook rules, numerically against the desktop reference.
-- [ ] M12-03 Verify HUD modes (keep 4:3, screen edges, stretch), HUD classification and scissor squeeze on GL, including radar and centred text.
-- [ ] M12-04 Verify 2D-only frames (loading, pause map) stay 4:3 inside the frame, and each presented frame's shape matches its picture at transitions.
-- [ ] M12-05 Keep the game's own PS2 widescreen option off and its menu row hidden; verify the cutscene-bars setting and the scope/camera mask.
-- [ ] M12-06 Size internal render targets for 16:9 and record memory and GPU cost against 4:3 at the same scale in both modes.
-- [ ] M12-07 Verify no missing geometry or unstreamed cells at the frame edges in S2-S4 and a driven route.
-- [ ] M12-08 Hardware acceptance in handheld and docked: reference-scene comparison with desktop at 16:9, and live 4:3/16:9 switching without corruption.
-
-## M13 — Custom textures
-
-Branch: `milestone/m13-custom-textures` <!-- M13 -->
-
-Exit: optional folder-based texture replacement on Switch, with safe fallback. No
-replacement system was found upstream, so identity and injection are new design.
-
-- [ ] M13-01 Choose and document a stable texture identity from the GS texture cache/native world path (indexed data plus CLUT), proving it stays stable across streaming and palette changes; exclude or handle render targets and animated palettes explicitly.
-- [ ] M13-02 Add a controller-triggered dump mode writing identified textures to a local mods folder; dumps are user-local and never committed.
-- [ ] M13-03 Load replacements through the VFS from `gamefolder/mods/textures/`; choose and pin the decoder and supported formats, document naming and precedence, and support higher-resolution replacements with correct UV behavior.
-- [ ] M13-04 Enforce GPU/CPU memory budgets, bounded upload per frame and no streaming stalls; measure against the same scene without replacements.
-- [ ] M13-05 Fall back to the original texture when a replacement is absent or invalid; preserve original assets and reject absolute or traversing paths.
-- [ ] M13-06 Add dev-menu controls to enable/disable and safely reload custom textures; show actionable load errors and bounded memory use, release replaced GPU resources safely and persist the setting under userdata.
-- [ ] M13-07 Validate on Switch in handheld/docked gameplay: known replacements, fallback, corrupt/oversized files, rejected paths, repeated reload, world streaming and suspend/resume; record visual comparison and memory/resource-lifetime evidence.
-
-## M14 — Custom audio
-
-Branch: `milestone/m14-custom-audio` <!-- M14 -->
-
-Entry: M08 accepted, because replacements cannot be heard or compared without real
-game sound. Exit: optional folder-based music and effect replacement on Switch.
-
-- [ ] M14-01 Identify replaceable units and stable IDs: `.VB` music/cutscene streams through M_LOOKUP.BIN, and `.RAW`/`.SDT` effect banks; document which are supported and why.
-- [ ] M14-02 Provide a metadata listing of those IDs for mod authors, with no game audio committed or distributed.
-- [ ] M14-03 Define `gamefolder/mods/audio/` layout, naming, precedence and formats; pin any decoder, with uncompressed PCM as the baseline.
-- [ ] M14-04 Inject music/stream replacements at the native sound layer, preserving looping, seeking, duration-dependent cutscene sync and stop/cancel; no file I/O on the audio callback.
-- [ ] M14-05 Inject effect-bank replacements within SPU2 RAM limits, with rate and loop handling; reject replacements that do not fit, with a clear error.
-- [ ] M14-06 Add dev-menu enable/disable, reload rules, load errors and persisted settings; fall back to original audio when a replacement is absent or invalid, and reject absolute or traversing paths.
-- [ ] M14-07 Validate on Switch with audible human confirmation: known replacements, fallback, corrupt/oversized files, cutscene sync, long streaming route and suspend/resume, with underrun and memory evidence.
-
-## M15 — Whole world and safe saves
-
-Branch: `milestone/m15-world-saves` <!-- M15 -->
-
-Exit: representative outdoor, interior and streaming play across the map, with
-reliable saves.
-
-- [ ] M15-01 Verify skinned characters/animations, vehicles, water, particles, shadows, cutouts and transient effects beyond the first scene.
-- [ ] M15-02 Traverse BEACH, MAINLA and MALL/interior boundaries and verify no missing terrain, corrupt textures or stalls.
-- [ ] M15-03 Exercise mission start/progress, pause/map/shop/interior entry and return to gameplay; distinguish menu boot from real game simulation.
-- [ ] M15-04 Establish a scripted reproducible on-foot and driving route with state/position evidence and input replay timestamps.
-- [ ] M15-05 Verify memory-card file layout, directory order, metadata and capacity behavior match game expectations.
-- [ ] M15-06 Implement/verify save backups and atomic replacement/recovery; tests operate on disposable copies, never live user saves.
-- [ ] M15-07 Complete create/save/load/overwrite/delete/full-card/error flows through controller menus and verify mission/player state restored.
-- [ ] M15-08 Document player controls/SD layout/troubleshooting and reproduce a full controller-only start-to-save-to-reload session.

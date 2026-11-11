@@ -242,8 +242,8 @@ Switch build command. See the checklist before attempting ARM64 core compilation
 ## Acceptance direction
 
 The authoritative M00–M15 tasks and their execution order live in MILESTONES.md;
-docs/BETA_ROADMAP.md explains the route. Milestone numbers are stable identifiers,
-not the order.
+docs/BETA_ROADMAP.md explains the route. Milestone numbers follow the execution
+order since the 2026-11-11 renumbering; MILESTONES.md maps older record IDs.
 
 Beta (M06, user decision 2026-11-09): the real game opens on a real Switch, goes
 ingame and loads the first scene, Fort Baxter gameplay, with the world and HUD
@@ -252,7 +252,7 @@ measured, with no FPS target. After beta, in order (user decision 2026-11-11):
 real sound and movies, dev menu on L3+R3, widescreen, then performance (M10);
 custom textures, custom audio, full controllers, saves and release follow M10.
 
-Final acceptance (M10/M11) includes a controllable ingame route with audible
+Final acceptance (M10/M15) includes a controllable ingame route with audible
    music/effects, stable saves and docking, 30-minute soak, 720p/1080p output and
    adjustable internal scale. Target 25+ FPS: <=40 ms frame budget on a repeatable
    busy route. Record median/p95 frame time, audio underruns, memory and CPU/GPU

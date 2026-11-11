@@ -26,7 +26,7 @@ as having no structural check.
 
 - **No archive is unpacked.** The port serves the original bytes at the original LBAs.
   The guest's own parsers read these formats, so no member-level loader is needed for
-  boot. Member-level parsing belongs to the post-beta mod work (M13, M14).
+  boot. Member-level parsing belongs to the post-beta mod work (M11, M12).
 - **Boot-critical gaps: none found in the file set.** Every file the boot path reads
   exists, and the live comparison in [VERIFICATION.md](VERIFICATION.md) saw every read
   match the disc. `IOPRP300.IMG` is never read by the current upstream paths.
@@ -34,4 +34,4 @@ as having no structural check.
   whole-file SHA-256 in the private manifest. A check here would only restate what the
   guest parser or sound driver already does.
 - `IMG` and `VB` interiors are not enumerated. Only the guest or sound driver knows
-  their layout, and which members are used is for M06 and M08 to prove in play.
+  their layout, and which members are used is for M06 and M07 to prove in play.

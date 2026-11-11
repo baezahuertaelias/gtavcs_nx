@@ -12,12 +12,12 @@ The user set four goals, in this order, replacing the post-beta order below:
 
 1. **Graphics through a new game** = the beta (M03, M04, M05, M06). On an empty
    card a new game is S1 to S4; there is no title menu.
-2. **Sound**: real game sound and movies (M08).
-3. **Developer menu on L3+R3, then widescreen** (M09, then M12, two branches).
+2. **Sound**: real game sound and movies (M07).
+3. **Developer menu on L3+R3, then widescreen** (M08, then M09, two branches).
 4. **Performance**: 25+ FPS baseline (M10).
 
-All other milestones come after performance: custom textures (M13), custom audio
-(M14), full controllers (M07), whole world and saves (M15), final release (M11).
+All other milestones come after performance: custom textures (M11), custom audio
+(M12), full controllers (M13), whole world and saves (M14), final release (M15).
 Nothing was deleted or waived.
 
 GL thread ownership (M05-09) is decided by measurement. The user asked for the
@@ -87,27 +87,27 @@ coverage or mission playability.
 
 ## Execution order
 
-Milestone numbers are stable identifiers, not the order. M02 tooling and evidence
-cite them, so they were not renumbered.
+Milestone numbers follow this order since the 2026-11-11 renumbering. Older
+records keep the old IDs; MILESTONES.md has the old-to-new table.
 
 ```text
 BETA TRACK   M02 -> M03 -> M04 -> M05 -> M06 = BETA          goal 1
-POST-BETA    M08 game sound and movies                       goal 2
-             -> M09 dev menu -> M12 widescreen               goal 3
+POST-BETA    M07 game sound and movies                       goal 2
+             -> M08 dev menu -> M09 widescreen               goal 3
              -> M10 stability and 25+ FPS                    goal 4
-AFTER PERF   M13 custom textures -> M14 custom audio
-             -> M07 full controllers -> M15 whole world and saves
-             -> M11 final release
+AFTER PERF   M11 custom textures -> M12 custom audio
+             -> M13 full controllers -> M14 whole world and saves
+             -> M15 final release
 ```
 
-M08 still precedes M14 because custom audio cannot be heard or checked until the
+M07 still precedes M12 because custom audio cannot be heard or checked until the
 game's own sound reaches the speakers.
 
-**Known dependency gap.** M10 now runs before M07 and M15. Some M10 tasks touch
-their ground: M10-01 needs a repeatable busy route (M15-04 is the scripted one),
+**Known dependency gap.** M10 now runs before M13 and M14. Some M10 tasks touch
+their ground: M10-01 needs a repeatable busy route (M14-04 is the scripted one),
 M10-07 includes missions and interiors, M10-08 controller loss, M10-09 save
 interruptions. M10 must build what it needs for those tasks itself, as new M10
-task IDs, or ask the user before reducing them. M11-06 repeats the soak and
+task IDs, or ask the user before reducing them. M15-06 repeats the soak and
 performance acceptance on the final candidate.
 
 ## How to follow it
@@ -185,7 +185,7 @@ that on hardware.
 Compare each stage with the same stage on the desktop reference build. When
 something diverges, compare traces before changing game logic.
 
-### Step 6 — M08: real sound and movies (goal 2)
+### Step 6 — M07: real sound and movies (goal 2)
 
 Connect `ps2_audio_out.cpp`/`libsd.cpp` output to a bounded producer ring and an
 SDL2 audio device consumer. SPU2 output is already 48 kHz. SDL keeps audren. Count
@@ -193,7 +193,7 @@ queue depth, latency and underruns; mute and flush across HOME and suspend. Movi
 (`.PSS`, MPEG-2) need a Switch-built decoder pinned in the toolchain lock; check
 its license obligations before release. Close only with audible hardware playback.
 
-### Step 7 — M09: developer menu on L3+R3 (goal 3)
+### Step 7 — M08: developer menu on L3+R3 (goal 3)
 
 Upstream already has what the menu needs: a settings registry and menu
 (`src/ui/settings_menu.cpp`), a trainer (`src/ui/trainer_menu.cpp`) and a
@@ -205,7 +205,7 @@ one frame (`upstream/docs/SETTINGS_MENU_WIDESCREEN.md`). So hold back stick clic
 from the game for a short window until it is clear whether a chord is happening,
 and measure that this does not break free aim.
 
-### Step 8 — M12: widescreen (goal 3)
+### Step 8 — M09: widescreen (goal 3)
 
 Upstream's Hor+ widescreen is complete on desktop, so this is port-and-verify:
 camera wrapper, entity culling, HUD squeeze and anchoring, 4:3 for 2D-only frames.
@@ -224,16 +224,16 @@ changes and no overclock. See the dependency gap under "Execution order".
 
 ### Step 10 — After performance
 
-M13 custom textures, M14 custom audio, M07 full controllers, M15 whole world and
-saves, then M11 final release.
+M11 custom textures, M12 custom audio, M13 full controllers, M14 whole world and
+saves, then M15 final release.
 
-M13: no replacement system exists upstream, so this is new design. Textures come
+M11: no replacement system exists upstream, so this is new design. Textures come
 from the GS backend's cache as PSMT4/T8 plus CLUT. Choose an identity that stays
 stable across streaming, palette changes and render targets, then dump, load
 through the VFS from `gamefolder/mods/textures/`, fall back to the original and
 control it from the dev menu.
 
-M14 replaces music streams (`.VB`, one stereo stream at a time) first, then effect
+M12 replaces music streams (`.VB`, one stereo stream at a time) first, then effect
 banks (`.RAW` + `.SDT`, 68 banks in SPU2 RAM, which limits size). Keep streaming
 work off the audio callback and preserve loop and seek behavior.
 
@@ -247,7 +247,7 @@ Agents cannot run the console, so these need you with the Switch:
 | M04 | Real boot, HOME, repeated launch |
 | M05 | RHI conformance scenes |
 | M06 | S1–S4 bring-up, docking, Pro Controller, acceptance run |
-| M08 onward | Each feature on real hardware; M08 and M14 need your ears |
+| M07 onward | Each feature on real hardware; M07 and M12 need your ears |
 
 ## Main risks
 
@@ -266,15 +266,15 @@ too slow to enjoy. M06-11 reports the real number.
 
 ## Where old tasks went
 
-| Old task | New home |
+| Old task (pre-2026-11-09 ID) | New home (current ID) |
 |---|---|
-| M06-04 (beyond the first scene) | M15-01 |
-| M06-05 widescreen portion | M12 |
-| M06-07 on-foot and driving route | M15-04 |
-| M06-08 map traversal | M15-02 |
-| M06-10 missions, pause, shops | M15-03 |
-| M09-05, 06, 07, 10 saves and player docs | M15-05 to M15-08 |
-| M09-11, 12, 13 custom textures | M13-03 and M13-05, M13-06, M13-07 |
+| M06-04 (beyond the first scene) | M14-01 |
+| M06-05 widescreen portion | M09 |
+| M06-07 on-foot and driving route | M14-04 |
+| M06-08 map traversal | M14-02 |
+| M06-10 missions, pause, shops | M14-03 |
+| M09-05, 06, 07, 10 saves and player docs | M14-05 to M14-08 |
+| M09-11, 12, 13 custom textures | M11-03 and M11-05, M11-06, M11-07 |
 
 `M06-13` and `M06-14` keep their IDs. Their "main menu" trigger, set in M01 before
 the boot path was checked, now means reaching S2, the first real game picture.
