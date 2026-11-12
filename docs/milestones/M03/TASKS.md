@@ -47,7 +47,7 @@ They are private disc data and stay in `gamefolder/.nxdisc/raw.bin`.
 
 - [x] Bounded pool of 8 open files, no shared seek state; concurrent readers on the native build.
 - [x] Upstream's stream reader never cancels a request, recorded in VERIFICATION.md.
-- [x] Shutdown with reads pending on real hardware (M03-12): 21.3 ms join and close.
+- [x] Shutdown with reads pending on real hardware (M03-12): 23.2 ms join and close.
 
 ## M03-08 — Differential comparison
 
@@ -80,6 +80,6 @@ They are private disc data and stay in `gamefolder/.nxdisc/raw.bin`.
 - [x] SD case behaviour, concurrent reads, handle bound.
 - [x] Clean shutdown during pending reads.
 
-Results: [HARDWARE_RESULTS.md](HARDWARE_RESULTS.md), 2026-11-12, 0 failures.
+Results: [HARDWARE_RESULTS.md](HARDWARE_RESULTS.md), final session 2026-11-12 with payloads from `1dced20`, 0 failures.
 The harness is `src/core_tests/disc_main.cpp`; `tools/switch_m03_session.py` copies the
 tree and runs it.

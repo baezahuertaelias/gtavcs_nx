@@ -2,11 +2,11 @@
   "M03-01": [
     {
       "path": "docs/milestones/M03/VERIFICATION.md",
-      "result": "tools/extract_disc.py refuses discs failing the identity check, keeps names/order/LBAs in .nxdisc/manifest.tsv, and rebuilds the user's image to SHA-256 981259b8...8a7740"
+      "result": "Extractor tests (python -m unittest tools.test_extract_disc, 9 OK at 1dced20): wrong identity refused before the destination exists; original LBAs and walk order kept in manifest.tsv; padding, overlap, traversal and case-only name collisions refused; changed bytes detected; unrelated files kept"
     },
     {
-      "path": "docs/milestones/M03/TASKS.md",
-      "result": "Extractor refusal and preservation rules checked; tests in tools/test_extract_disc.py"
+      "path": "docs/milestones/M03/VERIFICATION.md",
+      "result": "extract_disc.py verify --iso rebuilds the user's image to SHA-256 981259b8...8a7740"
     }
   ],
   "M03-02": [
@@ -16,7 +16,7 @@
     },
     {
       "path": "docs/milestones/M03/format_coverage.json",
-      "result": "Metadata-only per-format counts and verdicts"
+      "result": "Metadata-only per-format counts and verdicts, reproduced identically by the reviewer"
     }
   ],
   "M03-03": [
@@ -32,17 +32,21 @@
   "M03-04": [
     {
       "path": "docs/milestones/M03/VERIFICATION.md",
-      "result": "FolderDisc findFile/readBytes/totalSectors/listDirectory compared with vcs::IsoImage: 341 files, 23,449 comparisons, 12.6 GB, 0 failures; listing in on-disc order"
+      "result": "FolderDisc findFile/readBytes/totalSectors/listDirectory against vcs::IsoImage: 341 files, 23,449 comparisons, 12.6 GB, 0 failures; listing in on-disc order"
+    },
+    {
+      "path": "docs/milestones/M03/VERIFICATION.md",
+      "result": "Synthetic suite at a6655af under ASan/UBSan and -O2: paths, listing, whole-image and unaligned reads, end of disc, PASS"
     }
   ],
   "M03-05": [
     {
-      "path": "docs/milestones/M03/TASKS.md",
-      "result": "cdrom0 prefix, separators, case and ;N versions normalized; traversal, stray devices, bad versions, unsafe/duplicate paths and wrong sizes rejected with named errors"
+      "path": "docs/milestones/M03/VERIFICATION.md",
+      "result": "Synthetic suite at a6655af, sanitized and -O2, logs hashed: 15 rejected layouts including extents wrapping past 2^64, traversal, lower case, overlap, duplicates, wrong sizes, missing files; zero-length files in either manifest order; PASS"
     },
     {
-      "path": "docs/milestones/M03/VERIFICATION.md",
-      "result": "Path lookups by cdrom0:\\...;1 and every directory listing equal the ISO"
+      "path": "docs/milestones/M03/HARDWARE_RESULTS.md",
+      "result": "Same suite in the runtime payload from 1dced20 on a real Switch: PASS, 337/337 runtime cases, failures=0"
     }
   ],
   "M03-06": [
@@ -53,18 +57,22 @@
   ],
   "M03-07": [
     {
-      "path": "docs/milestones/M03/TASKS.md",
-      "result": "Bounded 8-slot handle pool with no shared seek state; upstream stream reader never cancels, so cancellation reduces to shutdown with reads pending"
+      "path": "docs/milestones/M03/VERIFICATION.md",
+      "result": "Synthetic suite: four readers over twelve files, more than the eight handle slots, consistent; upstream's stream reader never cancels, so cancellation reduces to shutdown with reads pending"
     },
     {
       "path": "docs/milestones/M03/HARDWARE_RESULTS.md",
-      "result": "Real Switch: 4 concurrent readers, 4,800 random 64 KiB reads consistent; readers stopped and disc closed during pending reads in 21.3 ms"
+      "result": "Real Switch, payload from 1dced20: 4 readers, 4,800 random 64 KiB reads consistent; stop flag set during reads, readers finish their read, join and close in 23.2 ms"
     }
   ],
   "M03-08": [
     {
       "path": "docs/milestones/M03/VERIFICATION.md",
-      "result": "Live tee during boot, flyover, cutscene, gameplay, teleports and AI drive: 416 reads, 69.7 MB, 601 lookups, 0 mismatches; all 341 files byte-compared, 0 failures"
+      "result": "Live tee from an empty card through boot, movies, cutscene, Fort Baxter and two effective teleports, with radio: 416 reads, 69.7 MB, 601 lookups, 0 mismatches; first two teleports and the AI drive had no effect, as recorded; all 341 files byte-compared, 0 failures"
+    },
+    {
+      "path": "docs/milestones/M03/VERIFICATION.md",
+      "result": "Clean level probe 2026-11-12: zone level stayed MAINLA, only MAINLA level files read, 0 mismatches"
     },
     {
       "path": "docs/milestones/M03/SCOPE_DECISIONS.md",
@@ -83,34 +91,38 @@
   ],
   "M03-10": [
     {
-      "path": "docs/milestones/M03/TASKS.md",
-      "result": "resolveGamePaths puts settings, cache and memory cards under gamefolder/userdata and requires an existing asset root"
+      "path": "docs/milestones/M03/VERIFICATION.md",
+      "result": "Synthetic suite: settings, cache, both cards and card backups under gamefolder/userdata; a test profile isolates all of them under userdata/tests/<name>; unsafe profile names refused; PASS on host and on the Switch"
     },
     {
-      "path": "docs/milestones/M03/HARDWARE_RESULTS.md",
-      "result": "Device-prefixed root resolved to /switch/gtavcs_nx/gamefolder on a real Switch"
+      "path": "docs/milestones/M03/SCOPE_DECISIONS.md",
+      "result": "Runtime routing through GamePaths with Switch proof moved to M04-13 by explicit user decision 2026-11-12; card order and metadata stay inside each card folder via upstream's card layer"
     }
   ],
   "M03-11": [
     {
-      "path": "docs/milestones/M03/TASKS.md",
-      "result": "Same-size mods/<disc path> overrides apply; other sizes refused with named warning; missing, wrong-size and shortened assets fail with the file named"
+      "path": "docs/milestones/M03/VERIFICATION.md",
+      "result": "Synthetic suite: same-size mod replaces the disc file; wrong-size mod and a directory in a mod's place refused with warnings naming path and reason; missing and wrong-size files fail at load by name; a file shortened after load fails its read, logged and zero-filled"
+    },
+    {
+      "path": "docs/milestones/M03/HARDWARE_RESULTS.md",
+      "result": "Same suite passes on the Switch SD card in the runtime payload from 1dced20"
     }
   ],
   "M03-12": [
     {
       "path": "docs/milestones/M03/HARDWARE_RESULTS.md",
-      "result": "Real Switch, HOS 22.5.0 application mode: whole 2,183,856,128-byte disc through FolderDisc on SD hashes to the source image SHA-256 at 67.4 MiB/s; lowercase open found; 8-slot handle bound held over all 341 files; clean shutdown during pending reads; 0 failures, no crash report"
+      "result": "Real Switch, HOS 22.5.0 application mode, payload from clean 1dced20: whole 2,183,856,128-byte disc through FolderDisc on SD hashes to the source image at 68.1 MiB/s; lowercase open found; 8-slot handle bound; concurrent reads; shutdown with reads pending; failures=0, no new crash report"
     }
   ],
   "M03-13": [
     {
       "path": "docs/milestones/M03/HARDWARE_RESULTS.md",
-      "result": "Real Switch: rooted path absolute to std::filesystem, same file reached via sdmc: and rooted path, no cwd-doubled sdmc: folder created"
+      "result": "Real Switch: rooted path absolute to std::filesystem, same file reached via sdmc: and rooted path, no cwd-doubled sdmc: folder; a relative-path remove_all failure seen in the test suite on the Switch is recorded"
     },
     {
-      "path": "docs/milestones/M03/TASKS.md",
-      "result": "rootedGamePath strips sdmc:, keeps rooted and relative paths, refuses other devices and .."
+      "path": "docs/milestones/M03/VERIFICATION.md",
+      "result": "Synthetic suite: rootedGamePath strips sdmc:, keeps rooted and relative paths, refuses other devices and .."
     }
   ]
 }

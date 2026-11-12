@@ -13,7 +13,7 @@ source image. This covers files, padding, gaps and non-file sectors.
 ## Extractor tests
 
 `python -m unittest tools.test_extract_disc` builds synthetic ISO images; no game data.
-Result at commit `c5903d1`: 9 tests, OK. They cover, in this order of the M03-01 claims:
+Result at commit `1dced20`: 9 tests, OK. They cover, in this order of the M03-01 claims:
 
 - `test_rejects_wrong_identity_before_writing`: a failed identity check raises before the
   destination folder exists.
@@ -34,15 +34,18 @@ On the real disc, `extract_disc.py verify --iso` is the whole-disc identity abov
 
 `python tools/run_folder_disc_tests.py build/evidence/M03/synthetic` compiles `src/vfs`
 and `tests/core/folder_disc_tests.cpp` with the locked container's host g++ 12.2.0 and
-runs them twice. The fixture is generated; no game data.
+runs them twice, with address randomization off (`setarch -R`, which needs the container
+started with `seccomp=unconfined`): under the container kernel's high-entropy randomization
+AddressSanitizer printed `DEADLYSIGNAL` forever. The fixture is generated; no game data.
 
 | Run | Flags | Result | Log SHA-256 |
 |---|---|---|---|
-| Sanitized | `-O1 -g -fsanitize=address,undefined -fno-sanitize-recover=all` | PASS, exit 0 | `bf164198f8026015d4badda0e139918c287b9a44b5bef77344ae68b7a0183612` |
-| Optimized | `-O2` | PASS, exit 0 | `fecf44247fb461c9f79cc693b6fd6644e65baf9b3203d4e16ef56011864a669a` |
+| Sanitized | `-O1 -g -fsanitize=address,undefined -fno-sanitize-recover=all` | PASS, exit 0 | `6c1d130368cbf2988adf5f0b0cf7bb8afc3f71c349734af98428e255b5e9e884` |
+| Optimized | `-O2` | PASS, exit 0 | `f765439c9cac6d9b71ee312989b458e405cb8e1f506571772f741cb3ec0534d7` |
 
-Both logs record source commit `c5903d1ef8c7f4373c3167f8a54c63d8a51ce94e` with
-`sources_dirty=False`, and the full command. The one `read failed` line in each log is the
+Both logs record source commit `a6655afbf45e4030fc4fb10c671d7272b2a61731` with
+`sources_dirty=False`, and the full command. The same suite also runs on the Switch inside
+the runtime payload (HARDWARE_RESULTS.md). The one `read failed` line in each log is the
 intended shortened-file case.
 
 What the suite checks:
@@ -66,6 +69,11 @@ What the suite checks:
 **Review finding fixed here.** The suite at the earlier candidate read a 3,396-byte file
 into a 2,048-byte buffer. AddressSanitizer reports that heap overflow, and plain builds
 crashed. The test now reads into a buffer of the file's size.
+
+**Found on the Switch.** At `c5903d1` the suite passed on the host but failed twice on the
+Switch, because `std::filesystem::remove_all` on the relative fixture path left `mods/` in
+place there (HARDWARE_RESULTS.md, "Earlier sessions"). The mods are now removed with checked
+POSIX calls, and the suite passes on both.
 
 ## C++ reader against the real image
 
