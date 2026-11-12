@@ -73,10 +73,12 @@ They are private disc data and stay in `gamefolder/.nxdisc/raw.bin`.
 
 - [x] Same-size file at `mods/<disc path>` replaces the disc file; other sizes, and anything that is not a regular file, are refused with a warning naming the path and reason.
 - [x] Missing and wrong-size assets fail at load with the file named; a shortened file fails its read, logged and zero-filled.
+- [ ] Same-size corrupt files are detected: an explicit check hashes every disc file and `raw.bin` against the manifest SHA-256 and names each bad file (third review, medium finding; user chose verify mode 2026-11-12).
 
 ## M03-12 — Hardware
 
 - [x] Whole-disc digest through `FolderDisc` on the SD card.
+- [ ] Verify mode run over the whole tree on the SD card with no problem reported, on payloads that include it.
 - [x] SD case behaviour, concurrent reads, handle bound.
 - [x] Clean shutdown during pending reads.
 
