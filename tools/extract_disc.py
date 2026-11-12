@@ -33,10 +33,11 @@ def sectors_of(size):
 
 
 def require_safe(path):
-    """Refuse what FolderDisc::load refuses: escapes, separators, lower case and control bytes."""
+    """Refuse what FolderDisc::load refuses (escapes, separators, lower case, control bytes) and
+    anything outside printable ASCII, which the ASCII manifest could not hold."""
     parts = path.split("/")
     if not path or any(p in ("", ".", "..") or set(p) & set('\\:;') for p in parts) or \
-            any(ord(c) < 0x20 or "a" <= c <= "z" for c in path):
+            any(ord(c) < 0x20 or ord(c) > 0x7e or "a" <= c <= "z" for c in path):
         raise DiscError(f"Unsafe disc path: {path!r}")
 
 

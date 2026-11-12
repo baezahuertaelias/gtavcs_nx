@@ -132,6 +132,7 @@ def record(session, path, name):
 
 def wait_log(session, limit):
     start, last, stable = time.time(), None, 0
+    reachable = seen = False
     time.sleep(5)
     while time.time() - start < limit:
         try:
@@ -140,6 +141,14 @@ def wait_log(session, limit):
             ftp.quit()
         except ftplib.all_errors:
             current = None
+        else:
+            # Tells a payload still running from Sphaira's FTP not being back yet.
+            if not reachable:
+                reachable = True
+                session.say(f"ftp reachable after {int(time.time() - start)}s log size={current}")
+        if current is not None and not seen:
+            seen = True
+            session.say(f"log present after {int(time.time() - start)}s size={current}")
         stable = stable + 1 if current is not None and current == last else 0
         last = current
         if stable >= 2:

@@ -13,7 +13,7 @@ ROOT_LBA, SUB_LBA, FILE_A, FILE_B = 20, 21, 30, 40
 
 
 def record(lba, size, name, directory):
-    raw = name.encode("ascii")
+    raw = name if isinstance(name, bytes) else name.encode("ascii")
     length = 33 + len(raw) + (0 if len(raw) % 2 else 1)
     data = bytearray(length)
     data[0] = length
@@ -119,7 +119,8 @@ class ExtractDiscTests(unittest.TestCase):
     def test_rejects_names_the_loader_refuses(self):
         # Lower case (which also covers names differing only by case) and control bytes:
         # FolderDisc::load refuses both, so the extractor must not write such a tree.
-        for name in ("a.bin;1", "A\x01.BIN;1"):
+        # Non-ASCII bytes decode to U+FFFD and would only fail at the ASCII manifest, after writing.
+        for name in ("a.bin;1", "A\x01.BIN;1", b"A\xe9.BIN;1"):
             with self.subTest(name=name):
                 build_iso(self.iso, root_extra=record(FILE_A, 3000, name, False))
                 with self.assertRaisesRegex(extract_disc.DiscError, "Unsafe"):
@@ -129,7 +130,7 @@ class ExtractDiscTests(unittest.TestCase):
     def test_safe_names_match_the_loader(self):
         for path in ("SYSTEM.CNF", "AUDIO/MUSIC_1.VB", "A B-~!.BIN"):
             extract_disc.require_safe(path)
-        for path in ("a.bin", "DIR/x", "A\x1f", "A\tB", "A:B", "A;1", "../A", "A\\B"):
+        for path in ("a.bin", "DIR/x", "A\x1f", "A\x7f", "Aé", "A�", "A\tB", "A:B", "A;1", "../A", "A\\B"):
             with self.assertRaises(extract_disc.DiscError):
                 extract_disc.require_safe(path)
 
