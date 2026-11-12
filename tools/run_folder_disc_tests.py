@@ -2,7 +2,8 @@
 
     python tools/run_folder_disc_tests.py <evidence-dir>
 
-Compiles src/vfs and tests/core/folder_disc_tests.cpp with the container's host g++ twice:
+Compiles src/vfs and tests/core/folder_disc_tests.cpp with the container's host g++ twice, and runs each
+build with address randomization off (ASan loops on high-entropy ASLR) and a 600 s limit:
 once with AddressSanitizer and UndefinedBehaviorSanitizer, once at -O2 without them. Both
 logs, the commands and the source commit go to <evidence-dir>. Synthetic data only.
 """
@@ -36,7 +37,7 @@ def main():
             f"printf '%s' '{DRIVER}' > driver.cpp && g++ --version | head -1 && "
             f"g++ -std=c++20 -Wall -Wextra {flags} -I/src/src -I/src/src/vfs -I/src/upstream/third_party/PS2Recomp/ps2xRuntime/include "
             + " ".join(f"/src/{source}" for source in SOURCES)
-            + " driver.cpp -o suite && ./suite"
+            + " driver.cpp -o suite && timeout 600 setarch \"$(uname -m)\" -R ./suite"
         )
         command = ["docker", "run", "--rm", "--mount", f"type=bind,source={ROOT.as_posix()},target=/src,readonly",
                    IMAGE, "bash", "-c", script]
