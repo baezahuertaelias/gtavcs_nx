@@ -35,11 +35,13 @@ authorize general implementation delegation or additional user-owned chats.
 GitHub plan limitations on private branch protection must be recorded honestly;
 they do not relax these operating rules.
 
-**Current deliverable is a platform scaffold, not an integrated game port.**
-The root build compiles `src/main.c` and `src/core_stub.c`: a GL clear, controller
-hotplug and bounded silent audio streaming. It neither generates nor links game
-code. The C ABI in `src/core.h` is new port-owned glue, not an upstream API.
-Do not describe a successful scaffold build as ingame validation.
+**Current deliverable (M04, pending hardware proof) boots the real runtime.**
+`python tools/build_game.py` links the private generated EE/VU archive, the
+overlaid upstream runtime/game layer, `src/core/core.cpp` behind the C ABI in
+`src/core.h` and the SDL2 platform adapter. Rendering is the null RHI until M05:
+the screen stays black. `--public` (CI) compiles every public library and links
+no game code. The C ABI is port-owned glue, not an upstream API. Do not describe
+a successful build as ingame validation.
 
 ## Corrected graphics architecture
 
@@ -81,7 +83,9 @@ gtavcs_nx/
   src/
     main.c                       process, cwd, SDL2/GL/audio/input lifetime
     core.h                       C ABI to a future C++ runtime adapter
-    core_stub.c                  explicitly labelled platform-only stub
+    core/                        C++ core adapter (boot/frame/shutdown, nxrun.cfg)
+    platform/                    SDL2 implementation of upstream's platform.h
+    switch/                      libnx link wraps (thread stacks, open audit)
   third_party/glad/              generated GLAD 2.0.8, GL 3.3 core, no extensions
     include/{glad,KHR}/
     src/gl.c

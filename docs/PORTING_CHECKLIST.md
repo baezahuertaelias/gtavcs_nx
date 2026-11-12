@@ -35,6 +35,8 @@ compile these files. Items are unchecked until implementation and proof exist.
   directories, process/debug setup and blocking loop with the port's lifecycle.
   Wire a C++ adapter implementing `src/core.h` in the root port; replace
   `src/core_stub.c` in the target once the real adapter exists. Never link both.
+  M04: `src/core/core.cpp` replaces the stub (deleted); launcher steps exposed by
+  overlay 0007. Box stays open until hardware proof.
 - [ ] `src/disc/iso_image.{h,cpp}` and `src/disc/vcs_disc_id.h`: retain build identity
   validation; add extracted-file support, not a different regional executable.
   Local ISO executable check passed as the supported USA build.

@@ -59,15 +59,14 @@ review. Do not replace old behavioral evidence merely by regenerating metadata.
 6. Run earlier relevant regression proof after any owning-layer change. Capture
    failures and fixes; never erase failing proof to make a task appear complete.
 
-M01 provides `python tools/build_switch.py [--clean]`: noninteractive Docker
-cross-build, immutable base and package-lock validation, ELF/NRO inspection and
-NRO-only staging. It removes the staged NRO before attempting a build and on
-failure. The image cache retains immutable dependencies; `build/switch` retains
-incremental objects until `--clean`. No assets are copied into the Docker build
-context. See `docs/milestones/M01/HARDWARE.md` for the hardware/nxlink procedure.
-This build links the platform stub only. M02 now provides separate CPU projects
-and a public-source build pipeline; private asset preparation and deterministic
-gameplay-route execution remain later work.
+M04 replaced M01's `tools/build_switch.py` (now only the image/lock constants)
+with `python tools/build_game.py [--public]`: offline Docker cross-build with
+package-lock validation, the locked sse2neon and Dear ImGui sources and the
+overlaid upstream checkout. Private mode links the generated archive from the
+`gtavcs-nx-m02-core` volume and writes the NRO, ELF and map to the ignored
+`build/m04/private`; `--public` (CI) links no game code. No assets enter the
+Docker build context. See `docs/milestones/M04/HARDWARE.md` for the hardware
+session (`tools/switch_m04_session.py`).
 
 ## M02 CPU foundation builds and test order
 
