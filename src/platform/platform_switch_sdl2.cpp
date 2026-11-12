@@ -597,10 +597,9 @@ namespace platform_switch
         g_focused = focused;
         if (g_audio)
         {
-            // HOME / sleep: stop pulling; the producer ring drops what it cannot hold (upstream counts it)
+            // HOME / sleep: the callback device stops pulling; the producer ring drops what it cannot hold (upstream
+            // counts it) and nothing stale is queued on the SDL side (a callback device has no queue)
             SDL_PauseAudioDevice(g_audio, focused ? 0 : 1);
-            if (!focused)
-                SDL_ClearQueuedAudio(g_audio);
         }
         g_nextFrameNs = 0; // no catch-up burst after a suspension
         std::fprintf(stderr, "[platform] focus %s: audio %s, pad %s\n", focused ? "back" : "lost",

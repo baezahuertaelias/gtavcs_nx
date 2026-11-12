@@ -49,6 +49,13 @@
 #include <string>
 #include <vector>
 
+// src/switch/thread_stack.c and open_audit.c (linked into the NRO with --wrap)
+extern "C" unsigned gtavcs_threads_created(void);
+extern "C" size_t gtavcs_default_thread_stack(void);
+extern "C" unsigned gtavcs_open_count(void);
+extern "C" unsigned gtavcs_iso_open_count(void);
+extern "C" const char *gtavcs_first_iso_open(void);
+
 namespace
 {
     using Clock = std::chrono::steady_clock;
@@ -135,9 +142,18 @@ namespace
         svcGetInfo(&total, InfoType_TotalMemorySize, CUR_PROCESS_HANDLE, 0);
         svcGetInfo(&used, InfoType_UsedMemorySize, CUR_PROCESS_HANDLE, 0);
         const struct mallinfo m = mallinfo();
-        std::fprintf(stderr, "[resources] %s mapped_total=%llu mapped_used=%llu heap_in_use=%zu heap_obtained=%zu\n", stage,
-                     static_cast<unsigned long long>(total), static_cast<unsigned long long>(used),
-                     static_cast<size_t>(m.uordblks), static_cast<size_t>(m.arena));
+        // live threads of this process (the kernel's list): boot and shutdown compare to show no worker outlived the
+        // core
+        s32 live = -1;
+        u64 ids[256];
+        const Result listed = svcGetThreadList(&live, ids, 256, CUR_PROCESS_HANDLE);
+        std::fprintf(stderr, "[resources] %s live_threads=%d (svc %08x)\n", stage, R_SUCCEEDED(listed) ? live : -1, listed);
+        std::fprintf(stderr,
+                     "[resources] %s mapped_total=%llu mapped_used=%llu heap_in_use=%zu heap_obtained=%zu "
+                     "threads_created=%u default_thread_stack=%zu file_opens=%u iso_opens=%u\n",
+                     stage, static_cast<unsigned long long>(total), static_cast<unsigned long long>(used),
+                     static_cast<size_t>(m.uordblks), static_cast<size_t>(m.arena), gtavcs_threads_created(),
+                     gtavcs_default_thread_stack(), gtavcs_open_count(), gtavcs_iso_open_count());
     }
 
     void report(Core &core)
@@ -233,12 +249,17 @@ namespace
             core.disc.reset();
             std::fprintf(stderr, "[core] folder disc closed\n");
         }
+        // after every worker has stopped: no file can be opened behind this line's back
+        result(core, "audit", "file_opens=" + std::to_string(gtavcs_open_count()) +
+                                  " iso_opens=" + std::to_string(gtavcs_iso_open_count()) +
+                                  " first_iso=" + quote(gtavcs_first_iso_open()) +
+                                  " threads_created=" + std::to_string(gtavcs_threads_created()));
+        logResources("shutdown");
         if (core.results)
         {
             std::fclose(core.results);
             core.results = nullptr;
         }
-        logResources("shutdown");
     }
 
     int boot(Core &core, const char *assetRoot)

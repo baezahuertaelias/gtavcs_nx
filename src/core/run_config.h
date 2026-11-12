@@ -8,6 +8,7 @@
 //   seconds <n>             stop in an orderly way after n seconds of frames (1..86400)
 //   report <n>              progress counters to the log every n seconds (1..3600; default 5)
 //   at <seconds> <command>  a control-channel command (runtime/ps2_control.h) at that time; answers are logged
+//   every <period> <from> <to> <command>   the command at from, from + period, ... up to to (inclusive)
 //   verify-files            hash every disc file against the manifest before booting (FolderDisc::verifyFiles)
 // Errors name the line ("nxrun.cfg:3: ..."); a bad file stops the boot instead of running something else.
 #pragma once
@@ -35,7 +36,7 @@ struct RunConfig
 
     static constexpr size_t kMaxLines = 128;
     static constexpr size_t kMaxLineBytes = 256;
-    static constexpr size_t kMaxCommands = 64;
+    static constexpr size_t kMaxCommands = 512;
     static constexpr size_t kMaxEnv = 32;
 };
 

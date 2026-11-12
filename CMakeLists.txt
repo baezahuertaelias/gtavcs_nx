@@ -142,7 +142,7 @@ target_compile_definitions(nx_game_private PRIVATE PS2X_HAS_FFMPEG=0 PS2X_ENABLE
     _POSIX_C_SOURCE=200809L)
 target_link_libraries(nx_game_private PUBLIC nx_core)
 
-add_executable(gtavcs src/main.c src/switch/thread_stack.c)
+add_executable(gtavcs src/main.c src/switch/thread_stack.c src/switch/open_audit.c)
 set_target_properties(gtavcs PROPERTIES SUFFIX ".elf" LINKER_LANGUAGE CXX)
 target_include_directories(gtavcs PRIVATE src
     ${NX_SDL2_INCLUDE_DIRS} ${NX_GL_INCLUDE_DIRS} ${NX_EGL_INCLUDE_DIRS})
@@ -152,7 +152,7 @@ target_compile_options(gtavcs PRIVATE -Wall -Wextra -Wpedantic
     ${NX_SDL2_CFLAGS_OTHER} ${NX_GL_CFLAGS_OTHER} ${NX_EGL_CFLAGS_OTHER})
 target_link_directories(gtavcs PRIVATE "${SWITCH_PORTLIBS}/lib")
 target_link_options(gtavcs PRIVATE
-    "-Wl,-Map,${CMAKE_CURRENT_BINARY_DIR}/gtavcs.map" -Wl,--wrap=__syscall_thread_create
+    "-Wl,-Map,${CMAKE_CURRENT_BINARY_DIR}/gtavcs.map" -Wl,--wrap=__syscall_thread_create -Wl,--wrap=_open_r
     ${NX_SDL2_STATIC_LDFLAGS_OTHER} ${NX_GL_STATIC_LDFLAGS_OTHER} ${NX_EGL_STATIC_LDFLAGS_OTHER})
 # The generated archive is whole-archive: its registration constructor references every function. Portlibs are
 # static; grouping resolves Mesa/SDL dependencies without depending on incidental archive ordering.

@@ -118,6 +118,30 @@ bool parseRunConfig(std::string_view text, RunConfig &out, std::string &error)
                 return fail("more than " + std::to_string(RunConfig::kMaxCommands) + " commands");
             out.commands.push_back(std::move(command));
         }
+        else if (verb == "every")
+        {
+            // every <period> <from> <to> <command>
+            double period = 0.0, from = 0.0, to = 0.0;
+            std::string_view args = rest;
+            std::string_view fields[3];
+            for (std::string_view &field : fields)
+            {
+                const size_t gap = args.find(' ');
+                if (gap == std::string_view::npos)
+                    return fail("every needs <period> <from> <to> <command>");
+                field = args.substr(0, gap);
+                args = trim(args.substr(gap + 1));
+            }
+            if (!number(fields[0], 0.1, 86400.0, period) || !number(fields[1], 0.0, 86400.0, from) ||
+                !number(fields[2], 0.0, 86400.0, to) || to < from || args.empty())
+                return fail("every needs <period 0.1..> <from> <to >= from> <command>");
+            for (double at = from; at <= to + 1e-9; at += period)
+            {
+                if (out.commands.size() >= RunConfig::kMaxCommands)
+                    return fail("more than " + std::to_string(RunConfig::kMaxCommands) + " commands");
+                out.commands.push_back({at, std::string(args)});
+            }
+        }
         else if (verb == "verify-files")
         {
             if (!rest.empty())
