@@ -37,6 +37,11 @@ namespace
     {
         if (!(name.rfind("VCS_", 0) == 0 || name.rfind("PS2X_", 0) == 0) || name.size() > 64)
             return false;
+        // the socket control channel and hidden mode are desktop test facilities: the Switch has no socket service
+        // started for them and runs its schedule in process (ps2control::submit); a data folder is GamePaths' job
+        for (std::string_view refused : {"PS2X_CONTROL", "PS2X_CONTROL_PORT", "PS2X_HIDDEN", "VCS_DATA_DIR"})
+            if (name == refused)
+                return false;
         return std::all_of(name.begin(), name.end(), [](char c) { return (c >= 'A' && c <= 'Z') || (c >= '0' && c <= '9') || c == '_'; });
     }
 

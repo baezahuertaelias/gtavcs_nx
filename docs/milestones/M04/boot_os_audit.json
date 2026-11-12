@@ -1,0 +1,3491 @@
+{
+ "summary": {
+  "candidates": 343,
+  "compiled": 275,
+  "not_compiled": 68,
+  "compiled_files": [
+   "src/debug/crash.cpp",
+   "src/debug/game_info.cpp",
+   "src/debug/profiler.cpp",
+   "src/debug/rsl_shadow.cpp",
+   "src/debug/rsl_trace.cpp",
+   "src/debug/watchdog.cpp",
+   "src/game/vcs_freecam.cpp",
+   "src/game/vcs_hle_world.cpp",
+   "src/game/vcs_inflate.cpp",
+   "src/game/vcs_input.cpp",
+   "src/game/vcs_rsl_native.cpp",
+   "src/game/vcs_rsl_world.cpp",
+   "src/game/vcs_stream.cpp",
+   "src/game/vcs_trainer.cpp",
+   "src/game/vcs_vu_clipper.cpp",
+   "src/main.cpp",
+   "src/platform/platform.h",
+   "src/rhi/rhi.h",
+   "third_party/PS2Recomp/ps2xRuntime/include/ThreadNaming.h",
+   "third_party/PS2Recomp/ps2xRuntime/include/ps2_log.h",
+   "third_party/PS2Recomp/ps2xRuntime/include/runtime/ee_scheduler.h",
+   "third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_host_profile.h",
+   "third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_host_std.h",
+   "third_party/PS2Recomp/ps2xRuntime/src/lib/Kernel/EeScheduler.cpp",
+   "third_party/PS2Recomp/ps2xRuntime/src/lib/Kernel/Stubs/CD.cpp",
+   "third_party/PS2Recomp/ps2xRuntime/src/lib/Kernel/Stubs/MemoryCard.cpp",
+   "third_party/PS2Recomp/ps2xRuntime/src/lib/Kernel/Syscalls/Common.h",
+   "third_party/PS2Recomp/ps2xRuntime/src/lib/Kernel/Syscalls/Helpers/Runtime.h",
+   "third_party/PS2Recomp/ps2xRuntime/src/lib/gs/gs_cpu_backend.cpp",
+   "third_party/PS2Recomp/ps2xRuntime/src/lib/gs/gs_frontend.cpp",
+   "third_party/PS2Recomp/ps2xRuntime/src/lib/gs/gs_hw.cpp",
+   "third_party/PS2Recomp/ps2xRuntime/src/lib/gs/gs_stats.h",
+   "third_party/PS2Recomp/ps2xRuntime/src/lib/gs/ps2_gif_arbiter.cpp",
+   "third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_control.cpp",
+   "third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_hle_survey.cpp",
+   "third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_host_std.cpp",
+   "third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_iop_host.cpp",
+   "third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_memory.cpp",
+   "third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_perf.cpp",
+   "third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_render_worker.cpp",
+   "third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_runtime.cpp",
+   "third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_vif1_interpreter.cpp",
+   "third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_write_watch.cpp",
+   "third_party/PS2Recomp/ps2xRuntime/src/lib/vu/ps2_vu1_core.cpp"
+  ],
+  "unresolved": 0,
+  "std_thread_sites_compiled": 20
+ },
+ "candidates": [
+  {
+   "file": "src/debug/crash.cpp",
+   "line": 14,
+   "category": "desktop_os",
+   "tokens": [
+    "_WIN32"
+   ],
+   "compiled": true,
+   "ruling": "_WIN32: desktop branch; the Switch build compiles the other branch of this conditional (built with __SWITCH__, neither _WIN32 nor __linux__)"
+  },
+  {
+   "file": "src/debug/crash.cpp",
+   "line": 17,
+   "category": "desktop_os",
+   "tokens": [
+    "windows.h"
+   ],
+   "compiled": true,
+   "ruling": "windows.h: desktop branch; the Switch build compiles the other branch of this conditional (built with __SWITCH__, neither _WIN32 nor __linux__)"
+  },
+  {
+   "file": "src/debug/crash.cpp",
+   "line": 20,
+   "category": "desktop_os",
+   "tokens": [
+    "__linux__"
+   ],
+   "compiled": true,
+   "ruling": "__linux__: desktop branch; the Switch build compiles the other branch of this conditional (built with __SWITCH__, neither _WIN32 nor __linux__)"
+  },
+  {
+   "file": "src/debug/crash.cpp",
+   "line": 32,
+   "category": "desktop_os",
+   "tokens": [
+    "_WIN32"
+   ],
+   "compiled": true,
+   "ruling": "_WIN32: desktop branch; the Switch build compiles the other branch of this conditional (built with __SWITCH__, neither _WIN32 nor __linux__)"
+  },
+  {
+   "file": "src/debug/crash.cpp",
+   "line": 109,
+   "category": "desktop_os",
+   "tokens": [
+    "__linux__"
+   ],
+   "compiled": true,
+   "ruling": "__linux__: desktop branch; the Switch build compiles the other branch of this conditional (built with __SWITCH__, neither _WIN32 nor __linux__)"
+  },
+  {
+   "file": "src/debug/crash.cpp",
+   "line": 202,
+   "category": "desktop_os",
+   "tokens": [
+    "_WIN32",
+    "__linux__"
+   ],
+   "compiled": true,
+   "ruling": "_WIN32: desktop branch; the Switch build compiles the other branch of this conditional (built with __SWITCH__, neither _WIN32 nor __linux__); __linux__: desktop branch; the Switch build compiles the other branch of this conditional (built with __SWITCH__, neither _WIN32 nor __linux__)"
+  },
+  {
+   "file": "src/debug/crash.cpp",
+   "line": 211,
+   "category": "desktop_os",
+   "tokens": [
+    "_WIN32",
+    "__linux__"
+   ],
+   "compiled": true,
+   "ruling": "_WIN32: desktop branch; the Switch build compiles the other branch of this conditional (built with __SWITCH__, neither _WIN32 nor __linux__); __linux__: desktop branch; the Switch build compiles the other branch of this conditional (built with __SWITCH__, neither _WIN32 nor __linux__)"
+  },
+  {
+   "file": "src/debug/crash.cpp",
+   "line": 222,
+   "category": "desktop_os",
+   "tokens": [
+    "_WIN32"
+   ],
+   "compiled": true,
+   "ruling": "_WIN32: desktop branch; the Switch build compiles the other branch of this conditional (built with __SWITCH__, neither _WIN32 nor __linux__)"
+  },
+  {
+   "file": "src/debug/crash.cpp",
+   "line": 228,
+   "category": "desktop_os",
+   "tokens": [
+    "__linux__"
+   ],
+   "compiled": true,
+   "ruling": "__linux__: desktop branch; the Switch build compiles the other branch of this conditional (built with __SWITCH__, neither _WIN32 nor __linux__)"
+  },
+  {
+   "file": "src/debug/game_info.cpp",
+   "line": 59,
+   "category": "thread_time",
+   "tokens": [
+    "steady_clock"
+   ],
+   "compiled": true,
+   "ruling": "steady_clock: std::chrono::steady_clock: newlib clock_gettime(CLOCK_MONOTONIC) on the libnx system tick; portable, monotonic (pacing, timeouts, statistics)"
+  },
+  {
+   "file": "src/debug/game_info.cpp",
+   "line": 60,
+   "category": "thread_time",
+   "tokens": [
+    "steady_clock"
+   ],
+   "compiled": true,
+   "ruling": "steady_clock: std::chrono::steady_clock: newlib clock_gettime(CLOCK_MONOTONIC) on the libnx system tick; portable, monotonic (pacing, timeouts, statistics)"
+  },
+  {
+   "file": "src/debug/game_info.cpp",
+   "line": 62,
+   "category": "thread_time",
+   "tokens": [
+    "steady_clock"
+   ],
+   "compiled": true,
+   "ruling": "steady_clock: std::chrono::steady_clock: newlib clock_gettime(CLOCK_MONOTONIC) on the libnx system tick; portable, monotonic (pacing, timeouts, statistics)"
+  },
+  {
+   "file": "src/debug/game_info.cpp",
+   "line": 300,
+   "category": "thread_time",
+   "tokens": [
+    "steady_clock"
+   ],
+   "compiled": true,
+   "ruling": "steady_clock: std::chrono::steady_clock: newlib clock_gettime(CLOCK_MONOTONIC) on the libnx system tick; portable, monotonic (pacing, timeouts, statistics)"
+  },
+  {
+   "file": "src/debug/game_info.cpp",
+   "line": 302,
+   "category": "thread_time",
+   "tokens": [
+    "steady_clock"
+   ],
+   "compiled": true,
+   "ruling": "steady_clock: std::chrono::steady_clock: newlib clock_gettime(CLOCK_MONOTONIC) on the libnx system tick; portable, monotonic (pacing, timeouts, statistics)"
+  },
+  {
+   "file": "src/debug/game_info.cpp",
+   "line": 311,
+   "category": "thread_time",
+   "tokens": [
+    "steady_clock"
+   ],
+   "compiled": true,
+   "ruling": "steady_clock: std::chrono::steady_clock: newlib clock_gettime(CLOCK_MONOTONIC) on the libnx system tick; portable, monotonic (pacing, timeouts, statistics)"
+  },
+  {
+   "file": "src/debug/game_info.cpp",
+   "line": 334,
+   "category": "thread_time",
+   "tokens": [
+    "steady_clock"
+   ],
+   "compiled": true,
+   "ruling": "steady_clock: std::chrono::steady_clock: newlib clock_gettime(CLOCK_MONOTONIC) on the libnx system tick; portable, monotonic (pacing, timeouts, statistics)"
+  },
+  {
+   "file": "src/debug/profiler.cpp",
+   "line": 17,
+   "category": "desktop_os",
+   "tokens": [
+    "_WIN32"
+   ],
+   "compiled": true,
+   "ruling": "_WIN32: desktop branch; the Switch build compiles the other branch of this conditional (built with __SWITCH__, neither _WIN32 nor __linux__)"
+  },
+  {
+   "file": "src/debug/profiler.cpp",
+   "line": 20,
+   "category": "desktop_os",
+   "tokens": [
+    "windows.h"
+   ],
+   "compiled": true,
+   "ruling": "windows.h: desktop branch; the Switch build compiles the other branch of this conditional (built with __SWITCH__, neither _WIN32 nor __linux__)"
+  },
+  {
+   "file": "src/debug/profiler.cpp",
+   "line": 25,
+   "category": "desktop_os",
+   "tokens": [
+    "__linux__"
+   ],
+   "compiled": true,
+   "ruling": "__linux__: desktop branch; the Switch build compiles the other branch of this conditional (built with __SWITCH__, neither _WIN32 nor __linux__)"
+  },
+  {
+   "file": "src/debug/profiler.cpp",
+   "line": 38,
+   "category": "desktop_os",
+   "tokens": [
+    "_WIN32"
+   ],
+   "compiled": true,
+   "ruling": "_WIN32: desktop branch; the Switch build compiles the other branch of this conditional (built with __SWITCH__, neither _WIN32 nor __linux__)"
+  },
+  {
+   "file": "src/debug/profiler.cpp",
+   "line": 47,
+   "category": "thread_time",
+   "tokens": [
+    "steady_clock"
+   ],
+   "compiled": true,
+   "ruling": "steady_clock: std::chrono::steady_clock: newlib clock_gettime(CLOCK_MONOTONIC) on the libnx system tick; portable, monotonic (pacing, timeouts, statistics)"
+  },
+  {
+   "file": "src/debug/profiler.cpp",
+   "line": 182,
+   "category": "thread_time",
+   "tokens": [
+    "std::thread"
+   ],
+   "compiled": true,
+   "ruling": "std::thread: std::thread on libnx pthread; default-size threads get 8 MiB (src/switch/thread_stack.c); lifetime: sampling profiler: Windows/Linux only (#else: no-op), and not started by the core"
+  },
+  {
+   "file": "src/debug/profiler.cpp",
+   "line": 242,
+   "category": "thread_time",
+   "tokens": [
+    "steady_clock"
+   ],
+   "compiled": true,
+   "ruling": "steady_clock: std::chrono::steady_clock: newlib clock_gettime(CLOCK_MONOTONIC) on the libnx system tick; portable, monotonic (pacing, timeouts, statistics)"
+  },
+  {
+   "file": "src/debug/profiler.cpp",
+   "line": 266,
+   "category": "thread_time",
+   "tokens": [
+    "steady_clock"
+   ],
+   "compiled": true,
+   "ruling": "steady_clock: std::chrono::steady_clock: newlib clock_gettime(CLOCK_MONOTONIC) on the libnx system tick; portable, monotonic (pacing, timeouts, statistics)"
+  },
+  {
+   "file": "src/debug/profiler.cpp",
+   "line": 267,
+   "category": "thread_time",
+   "tokens": [
+    "steady_clock"
+   ],
+   "compiled": true,
+   "ruling": "steady_clock: std::chrono::steady_clock: newlib clock_gettime(CLOCK_MONOTONIC) on the libnx system tick; portable, monotonic (pacing, timeouts, statistics)"
+  },
+  {
+   "file": "src/debug/profiler.cpp",
+   "line": 269,
+   "category": "thread_time",
+   "tokens": [
+    "steady_clock"
+   ],
+   "compiled": true,
+   "ruling": "steady_clock: std::chrono::steady_clock: newlib clock_gettime(CLOCK_MONOTONIC) on the libnx system tick; portable, monotonic (pacing, timeouts, statistics)"
+  },
+  {
+   "file": "src/debug/profiler.cpp",
+   "line": 388,
+   "category": "thread_time",
+   "tokens": [
+    "steady_clock"
+   ],
+   "compiled": true,
+   "ruling": "steady_clock: std::chrono::steady_clock: newlib clock_gettime(CLOCK_MONOTONIC) on the libnx system tick; portable, monotonic (pacing, timeouts, statistics)"
+  },
+  {
+   "file": "src/debug/profiler.cpp",
+   "line": 404,
+   "category": "thread_time",
+   "tokens": [
+    "steady_clock"
+   ],
+   "compiled": true,
+   "ruling": "steady_clock: std::chrono::steady_clock: newlib clock_gettime(CLOCK_MONOTONIC) on the libnx system tick; portable, monotonic (pacing, timeouts, statistics)"
+  },
+  {
+   "file": "src/debug/profiler.cpp",
+   "line": 514,
+   "category": "desktop_os",
+   "tokens": [
+    "__linux__"
+   ],
+   "compiled": true,
+   "ruling": "__linux__: desktop branch; the Switch build compiles the other branch of this conditional (built with __SWITCH__, neither _WIN32 nor __linux__)"
+  },
+  {
+   "file": "src/debug/profiler.cpp",
+   "line": 527,
+   "category": "thread_time",
+   "tokens": [
+    "steady_clock"
+   ],
+   "compiled": true,
+   "ruling": "steady_clock: std::chrono::steady_clock: newlib clock_gettime(CLOCK_MONOTONIC) on the libnx system tick; portable, monotonic (pacing, timeouts, statistics)"
+  },
+  {
+   "file": "src/debug/profiler.cpp",
+   "line": 640,
+   "category": "thread_time",
+   "tokens": [
+    "std::thread"
+   ],
+   "compiled": true,
+   "ruling": "std::thread: std::thread on libnx pthread; default-size threads get 8 MiB (src/switch/thread_stack.c); lifetime: sampling profiler: Windows/Linux only (#else: no-op), and not started by the core"
+  },
+  {
+   "file": "src/debug/profiler.cpp",
+   "line": 685,
+   "category": "thread_time",
+   "tokens": [
+    "steady_clock"
+   ],
+   "compiled": true,
+   "ruling": "steady_clock: std::chrono::steady_clock: newlib clock_gettime(CLOCK_MONOTONIC) on the libnx system tick; portable, monotonic (pacing, timeouts, statistics)"
+  },
+  {
+   "file": "src/debug/profiler.cpp",
+   "line": 701,
+   "category": "thread_time",
+   "tokens": [
+    "steady_clock"
+   ],
+   "compiled": true,
+   "ruling": "steady_clock: std::chrono::steady_clock: newlib clock_gettime(CLOCK_MONOTONIC) on the libnx system tick; portable, monotonic (pacing, timeouts, statistics)"
+  },
+  {
+   "file": "src/debug/profiler.cpp",
+   "line": 703,
+   "category": "thread_time",
+   "tokens": [
+    "steady_clock"
+   ],
+   "compiled": true,
+   "ruling": "steady_clock: std::chrono::steady_clock: newlib clock_gettime(CLOCK_MONOTONIC) on the libnx system tick; portable, monotonic (pacing, timeouts, statistics)"
+  },
+  {
+   "file": "src/debug/profiler.cpp",
+   "line": 762,
+   "category": "thread_time",
+   "tokens": [
+    "steady_clock"
+   ],
+   "compiled": true,
+   "ruling": "steady_clock: std::chrono::steady_clock: newlib clock_gettime(CLOCK_MONOTONIC) on the libnx system tick; portable, monotonic (pacing, timeouts, statistics)"
+  },
+  {
+   "file": "src/debug/profiler.cpp",
+   "line": 776,
+   "category": "thread_time",
+   "tokens": [
+    "steady_clock"
+   ],
+   "compiled": true,
+   "ruling": "steady_clock: std::chrono::steady_clock: newlib clock_gettime(CLOCK_MONOTONIC) on the libnx system tick; portable, monotonic (pacing, timeouts, statistics)"
+  },
+  {
+   "file": "src/debug/rsl_shadow.cpp",
+   "line": 95,
+   "category": "thread_time",
+   "tokens": [
+    "thread_local"
+   ],
+   "compiled": true,
+   "ruling": "thread_local: TLS: devkitA64/libnx thread pointer (M02-09 measured TLS on hardware)"
+  },
+  {
+   "file": "src/debug/rsl_shadow.cpp",
+   "line": 96,
+   "category": "thread_time",
+   "tokens": [
+    "thread_local"
+   ],
+   "compiled": true,
+   "ruling": "thread_local: TLS: devkitA64/libnx thread pointer (M02-09 measured TLS on hardware)"
+  },
+  {
+   "file": "src/debug/rsl_shadow.cpp",
+   "line": 145,
+   "category": "thread_time",
+   "tokens": [
+    "steady_clock"
+   ],
+   "compiled": true,
+   "ruling": "steady_clock: std::chrono::steady_clock: newlib clock_gettime(CLOCK_MONOTONIC) on the libnx system tick; portable, monotonic (pacing, timeouts, statistics)"
+  },
+  {
+   "file": "src/debug/rsl_shadow.cpp",
+   "line": 452,
+   "category": "thread_time",
+   "tokens": [
+    "thread_local"
+   ],
+   "compiled": true,
+   "ruling": "thread_local: TLS: devkitA64/libnx thread pointer (M02-09 measured TLS on hardware)"
+  },
+  {
+   "file": "src/debug/rsl_shadow.cpp",
+   "line": 453,
+   "category": "thread_time",
+   "tokens": [
+    "thread_local"
+   ],
+   "compiled": true,
+   "ruling": "thread_local: TLS: devkitA64/libnx thread pointer (M02-09 measured TLS on hardware)"
+  },
+  {
+   "file": "src/debug/rsl_shadow.cpp",
+   "line": 569,
+   "category": "thread_time",
+   "tokens": [
+    "steady_clock"
+   ],
+   "compiled": true,
+   "ruling": "steady_clock: std::chrono::steady_clock: newlib clock_gettime(CLOCK_MONOTONIC) on the libnx system tick; portable, monotonic (pacing, timeouts, statistics)"
+  },
+  {
+   "file": "src/debug/rsl_trace.cpp",
+   "line": 44,
+   "category": "thread_time",
+   "tokens": [
+    "steady_clock"
+   ],
+   "compiled": true,
+   "ruling": "steady_clock: std::chrono::steady_clock: newlib clock_gettime(CLOCK_MONOTONIC) on the libnx system tick; portable, monotonic (pacing, timeouts, statistics)"
+  },
+  {
+   "file": "src/debug/rsl_trace.cpp",
+   "line": 142,
+   "category": "thread_time",
+   "tokens": [
+    "steady_clock"
+   ],
+   "compiled": true,
+   "ruling": "steady_clock: std::chrono::steady_clock: newlib clock_gettime(CLOCK_MONOTONIC) on the libnx system tick; portable, monotonic (pacing, timeouts, statistics)"
+  },
+  {
+   "file": "src/debug/watchdog.cpp",
+   "line": 20,
+   "category": "thread_time",
+   "tokens": [
+    "std::thread"
+   ],
+   "compiled": true,
+   "ruling": "std::thread: std::thread on libnx pthread; default-size threads get 8 MiB (src/switch/thread_stack.c); lifetime: watchdog: detached thread, not started by the core (progress lines replace it)"
+  },
+  {
+   "file": "src/debug/win_symbols.h",
+   "line": 8,
+   "category": "desktop_os",
+   "tokens": [
+    "_WIN32"
+   ],
+   "compiled": false,
+   "ruling": "Windows symbol helper, included under _WIN32 only"
+  },
+  {
+   "file": "src/debug/win_symbols.h",
+   "line": 9,
+   "category": "desktop_os",
+   "tokens": [
+    "windows.h"
+   ],
+   "compiled": false,
+   "ruling": "Windows symbol helper, included under _WIN32 only"
+  },
+  {
+   "file": "src/disc/iso_image.cpp",
+   "line": 5,
+   "category": "desktop_os",
+   "tokens": [
+    "_WIN32"
+   ],
+   "compiled": false,
+   "ruling": "desktop ISO reader: not built (the folder disc replaces it)"
+  },
+  {
+   "file": "src/disc/iso_image.cpp",
+   "line": 8,
+   "category": "desktop_os",
+   "tokens": [
+    "windows.h"
+   ],
+   "compiled": false,
+   "ruling": "desktop ISO reader: not built (the folder disc replaces it)"
+  },
+  {
+   "file": "src/disc/iso_image.cpp",
+   "line": 69,
+   "category": "desktop_os",
+   "tokens": [
+    "_WIN32"
+   ],
+   "compiled": false,
+   "ruling": "desktop ISO reader: not built (the folder disc replaces it)"
+  },
+  {
+   "file": "src/disc/iso_image.cpp",
+   "line": 107,
+   "category": "desktop_os",
+   "tokens": [
+    "mmap"
+   ],
+   "compiled": false,
+   "ruling": "desktop ISO reader: not built (the folder disc replaces it)"
+  },
+  {
+   "file": "src/disc/iso_image.cpp",
+   "line": 186,
+   "category": "desktop_os",
+   "tokens": [
+    "_WIN32"
+   ],
+   "compiled": false,
+   "ruling": "desktop ISO reader: not built (the folder disc replaces it)"
+  },
+  {
+   "file": "src/game/vcs_freecam.cpp",
+   "line": 43,
+   "category": "thread_time",
+   "tokens": [
+    "steady_clock"
+   ],
+   "compiled": true,
+   "ruling": "steady_clock: std::chrono::steady_clock: newlib clock_gettime(CLOCK_MONOTONIC) on the libnx system tick; portable, monotonic (pacing, timeouts, statistics)"
+  },
+  {
+   "file": "src/game/vcs_hle_world.cpp",
+   "line": 37,
+   "category": "thread_time",
+   "tokens": [
+    "fesetround"
+   ],
+   "compiled": true,
+   "ruling": "fesetround: FPCR rounding mode per thread on AArch64 (FE_TOWARDZERO exists); VU rounding verified in M02-07"
+  },
+  {
+   "file": "src/game/vcs_hle_world.cpp",
+   "line": 867,
+   "category": "thread_time",
+   "tokens": [
+    "thread_local"
+   ],
+   "compiled": true,
+   "ruling": "thread_local: TLS: devkitA64/libnx thread pointer (M02-09 measured TLS on hardware)"
+  },
+  {
+   "file": "src/game/vcs_hle_world.cpp",
+   "line": 957,
+   "category": "thread_time",
+   "tokens": [
+    "thread_local"
+   ],
+   "compiled": true,
+   "ruling": "thread_local: TLS: devkitA64/libnx thread pointer (M02-09 measured TLS on hardware)"
+  },
+  {
+   "file": "src/game/vcs_hle_world.cpp",
+   "line": 1217,
+   "category": "thread_time",
+   "tokens": [
+    "thread_local"
+   ],
+   "compiled": true,
+   "ruling": "thread_local: TLS: devkitA64/libnx thread pointer (M02-09 measured TLS on hardware)"
+  },
+  {
+   "file": "src/game/vcs_hle_world.cpp",
+   "line": 1384,
+   "category": "thread_time",
+   "tokens": [
+    "thread_local"
+   ],
+   "compiled": true,
+   "ruling": "thread_local: TLS: devkitA64/libnx thread pointer (M02-09 measured TLS on hardware)"
+  },
+  {
+   "file": "src/game/vcs_hle_world.cpp",
+   "line": 1446,
+   "category": "thread_time",
+   "tokens": [
+    "thread_local"
+   ],
+   "compiled": true,
+   "ruling": "thread_local: TLS: devkitA64/libnx thread pointer (M02-09 measured TLS on hardware)"
+  },
+  {
+   "file": "src/game/vcs_hle_world.cpp",
+   "line": 1532,
+   "category": "thread_time",
+   "tokens": [
+    "thread_local"
+   ],
+   "compiled": true,
+   "ruling": "thread_local: TLS: devkitA64/libnx thread pointer (M02-09 measured TLS on hardware)"
+  },
+  {
+   "file": "src/game/vcs_hle_world.cpp",
+   "line": 1942,
+   "category": "thread_time",
+   "tokens": [
+    "thread_local"
+   ],
+   "compiled": true,
+   "ruling": "thread_local: TLS: devkitA64/libnx thread pointer (M02-09 measured TLS on hardware)"
+  },
+  {
+   "file": "src/game/vcs_hle_world.cpp",
+   "line": 1943,
+   "category": "thread_time",
+   "tokens": [
+    "thread_local"
+   ],
+   "compiled": true,
+   "ruling": "thread_local: TLS: devkitA64/libnx thread pointer (M02-09 measured TLS on hardware)"
+  },
+  {
+   "file": "src/game/vcs_hle_world.cpp",
+   "line": 2025,
+   "category": "thread_time",
+   "tokens": [
+    "thread_local"
+   ],
+   "compiled": true,
+   "ruling": "thread_local: TLS: devkitA64/libnx thread pointer (M02-09 measured TLS on hardware)"
+  },
+  {
+   "file": "src/game/vcs_hle_world.cpp",
+   "line": 2065,
+   "category": "thread_time",
+   "tokens": [
+    "thread_local"
+   ],
+   "compiled": true,
+   "ruling": "thread_local: TLS: devkitA64/libnx thread pointer (M02-09 measured TLS on hardware)"
+  },
+  {
+   "file": "src/game/vcs_hle_world.cpp",
+   "line": 2194,
+   "category": "thread_time",
+   "tokens": [
+    "thread_local"
+   ],
+   "compiled": true,
+   "ruling": "thread_local: TLS: devkitA64/libnx thread pointer (M02-09 measured TLS on hardware)"
+  },
+  {
+   "file": "src/game/vcs_hle_world.cpp",
+   "line": 2277,
+   "category": "thread_time",
+   "tokens": [
+    "thread_local"
+   ],
+   "compiled": true,
+   "ruling": "thread_local: TLS: devkitA64/libnx thread pointer (M02-09 measured TLS on hardware)"
+  },
+  {
+   "file": "src/game/vcs_hle_world.cpp",
+   "line": 2351,
+   "category": "thread_time",
+   "tokens": [
+    "thread_local"
+   ],
+   "compiled": true,
+   "ruling": "thread_local: TLS: devkitA64/libnx thread pointer (M02-09 measured TLS on hardware)"
+  },
+  {
+   "file": "src/game/vcs_hle_world.cpp",
+   "line": 2355,
+   "category": "thread_time",
+   "tokens": [
+    "thread_local"
+   ],
+   "compiled": true,
+   "ruling": "thread_local: TLS: devkitA64/libnx thread pointer (M02-09 measured TLS on hardware)"
+  },
+  {
+   "file": "src/game/vcs_hle_world.cpp",
+   "line": 2413,
+   "category": "thread_time",
+   "tokens": [
+    "thread_local"
+   ],
+   "compiled": true,
+   "ruling": "thread_local: TLS: devkitA64/libnx thread pointer (M02-09 measured TLS on hardware)"
+  },
+  {
+   "file": "src/game/vcs_hle_world.cpp",
+   "line": 2414,
+   "category": "thread_time",
+   "tokens": [
+    "thread_local"
+   ],
+   "compiled": true,
+   "ruling": "thread_local: TLS: devkitA64/libnx thread pointer (M02-09 measured TLS on hardware)"
+  },
+  {
+   "file": "src/game/vcs_hle_world.cpp",
+   "line": 2438,
+   "category": "thread_time",
+   "tokens": [
+    "thread_local"
+   ],
+   "compiled": true,
+   "ruling": "thread_local: TLS: devkitA64/libnx thread pointer (M02-09 measured TLS on hardware)"
+  },
+  {
+   "file": "src/game/vcs_hle_world.cpp",
+   "line": 2439,
+   "category": "thread_time",
+   "tokens": [
+    "thread_local"
+   ],
+   "compiled": true,
+   "ruling": "thread_local: TLS: devkitA64/libnx thread pointer (M02-09 measured TLS on hardware)"
+  },
+  {
+   "file": "src/game/vcs_hle_world.cpp",
+   "line": 2649,
+   "category": "thread_time",
+   "tokens": [
+    "thread_local"
+   ],
+   "compiled": true,
+   "ruling": "thread_local: TLS: devkitA64/libnx thread pointer (M02-09 measured TLS on hardware)"
+  },
+  {
+   "file": "src/game/vcs_hle_world.cpp",
+   "line": 2660,
+   "category": "thread_time",
+   "tokens": [
+    "thread_local"
+   ],
+   "compiled": true,
+   "ruling": "thread_local: TLS: devkitA64/libnx thread pointer (M02-09 measured TLS on hardware)"
+  },
+  {
+   "file": "src/game/vcs_hle_world.cpp",
+   "line": 2879,
+   "category": "thread_time",
+   "tokens": [
+    "thread_local"
+   ],
+   "compiled": true,
+   "ruling": "thread_local: TLS: devkitA64/libnx thread pointer (M02-09 measured TLS on hardware)"
+  },
+  {
+   "file": "src/game/vcs_hle_world.cpp",
+   "line": 2880,
+   "category": "thread_time",
+   "tokens": [
+    "thread_local"
+   ],
+   "compiled": true,
+   "ruling": "thread_local: TLS: devkitA64/libnx thread pointer (M02-09 measured TLS on hardware)"
+  },
+  {
+   "file": "src/game/vcs_inflate.cpp",
+   "line": 487,
+   "category": "thread_time",
+   "tokens": [
+    "thread_local"
+   ],
+   "compiled": true,
+   "ruling": "thread_local: TLS: devkitA64/libnx thread pointer (M02-09 measured TLS on hardware)"
+  },
+  {
+   "file": "src/game/vcs_inflate.cpp",
+   "line": 504,
+   "category": "thread_time",
+   "tokens": [
+    "thread_local"
+   ],
+   "compiled": true,
+   "ruling": "thread_local: TLS: devkitA64/libnx thread pointer (M02-09 measured TLS on hardware)"
+  },
+  {
+   "file": "src/game/vcs_input.cpp",
+   "line": 309,
+   "category": "thread_time",
+   "tokens": [
+    "steady_clock"
+   ],
+   "compiled": true,
+   "ruling": "steady_clock: std::chrono::steady_clock: newlib clock_gettime(CLOCK_MONOTONIC) on the libnx system tick; portable, monotonic (pacing, timeouts, statistics)"
+  },
+  {
+   "file": "src/game/vcs_input.cpp",
+   "line": 313,
+   "category": "thread_time",
+   "tokens": [
+    "steady_clock"
+   ],
+   "compiled": true,
+   "ruling": "steady_clock: std::chrono::steady_clock: newlib clock_gettime(CLOCK_MONOTONIC) on the libnx system tick; portable, monotonic (pacing, timeouts, statistics)"
+  },
+  {
+   "file": "src/game/vcs_rsl_native.cpp",
+   "line": 377,
+   "category": "thread_time",
+   "tokens": [
+    "thread_local"
+   ],
+   "compiled": true,
+   "ruling": "thread_local: TLS: devkitA64/libnx thread pointer (M02-09 measured TLS on hardware)"
+  },
+  {
+   "file": "src/game/vcs_rsl_world.cpp",
+   "line": 134,
+   "category": "thread_time",
+   "tokens": [
+    "thread_local"
+   ],
+   "compiled": true,
+   "ruling": "thread_local: TLS: devkitA64/libnx thread pointer (M02-09 measured TLS on hardware)"
+  },
+  {
+   "file": "src/game/vcs_rsl_world.cpp",
+   "line": 142,
+   "category": "thread_time",
+   "tokens": [
+    "thread_local"
+   ],
+   "compiled": true,
+   "ruling": "thread_local: TLS: devkitA64/libnx thread pointer (M02-09 measured TLS on hardware)"
+  },
+  {
+   "file": "src/game/vcs_rsl_world.cpp",
+   "line": 143,
+   "category": "thread_time",
+   "tokens": [
+    "thread_local"
+   ],
+   "compiled": true,
+   "ruling": "thread_local: TLS: devkitA64/libnx thread pointer (M02-09 measured TLS on hardware)"
+  },
+  {
+   "file": "src/game/vcs_rsl_world.cpp",
+   "line": 145,
+   "category": "thread_time",
+   "tokens": [
+    "thread_local"
+   ],
+   "compiled": true,
+   "ruling": "thread_local: TLS: devkitA64/libnx thread pointer (M02-09 measured TLS on hardware)"
+  },
+  {
+   "file": "src/game/vcs_rsl_world.cpp",
+   "line": 146,
+   "category": "thread_time",
+   "tokens": [
+    "thread_local"
+   ],
+   "compiled": true,
+   "ruling": "thread_local: TLS: devkitA64/libnx thread pointer (M02-09 measured TLS on hardware)"
+  },
+  {
+   "file": "src/game/vcs_rsl_world.cpp",
+   "line": 147,
+   "category": "thread_time",
+   "tokens": [
+    "thread_local"
+   ],
+   "compiled": true,
+   "ruling": "thread_local: TLS: devkitA64/libnx thread pointer (M02-09 measured TLS on hardware)"
+  },
+  {
+   "file": "src/game/vcs_rsl_world.cpp",
+   "line": 148,
+   "category": "thread_time",
+   "tokens": [
+    "thread_local"
+   ],
+   "compiled": true,
+   "ruling": "thread_local: TLS: devkitA64/libnx thread pointer (M02-09 measured TLS on hardware)"
+  },
+  {
+   "file": "src/game/vcs_rsl_world.cpp",
+   "line": 154,
+   "category": "thread_time",
+   "tokens": [
+    "thread_local"
+   ],
+   "compiled": true,
+   "ruling": "thread_local: TLS: devkitA64/libnx thread pointer (M02-09 measured TLS on hardware)"
+  },
+  {
+   "file": "src/game/vcs_rsl_world.cpp",
+   "line": 167,
+   "category": "thread_time",
+   "tokens": [
+    "thread_local"
+   ],
+   "compiled": true,
+   "ruling": "thread_local: TLS: devkitA64/libnx thread pointer (M02-09 measured TLS on hardware)"
+  },
+  {
+   "file": "src/game/vcs_rsl_world.cpp",
+   "line": 641,
+   "category": "thread_time",
+   "tokens": [
+    "thread_local"
+   ],
+   "compiled": true,
+   "ruling": "thread_local: TLS: devkitA64/libnx thread pointer (M02-09 measured TLS on hardware)"
+  },
+  {
+   "file": "src/game/vcs_rsl_world.cpp",
+   "line": 699,
+   "category": "thread_time",
+   "tokens": [
+    "thread_local"
+   ],
+   "compiled": true,
+   "ruling": "thread_local: TLS: devkitA64/libnx thread pointer (M02-09 measured TLS on hardware)"
+  },
+  {
+   "file": "src/game/vcs_rsl_world.cpp",
+   "line": 1573,
+   "category": "thread_time",
+   "tokens": [
+    "thread_local"
+   ],
+   "compiled": true,
+   "ruling": "thread_local: TLS: devkitA64/libnx thread pointer (M02-09 measured TLS on hardware)"
+  },
+  {
+   "file": "src/game/vcs_rsl_world.cpp",
+   "line": 1584,
+   "category": "thread_time",
+   "tokens": [
+    "thread_local"
+   ],
+   "compiled": true,
+   "ruling": "thread_local: TLS: devkitA64/libnx thread pointer (M02-09 measured TLS on hardware)"
+  },
+  {
+   "file": "src/game/vcs_rsl_world.cpp",
+   "line": 1823,
+   "category": "thread_time",
+   "tokens": [
+    "thread_local"
+   ],
+   "compiled": true,
+   "ruling": "thread_local: TLS: devkitA64/libnx thread pointer (M02-09 measured TLS on hardware)"
+  },
+  {
+   "file": "src/game/vcs_rsl_world.cpp",
+   "line": 1831,
+   "category": "thread_time",
+   "tokens": [
+    "thread_local"
+   ],
+   "compiled": true,
+   "ruling": "thread_local: TLS: devkitA64/libnx thread pointer (M02-09 measured TLS on hardware)"
+  },
+  {
+   "file": "src/game/vcs_rsl_world.cpp",
+   "line": 1922,
+   "category": "thread_time",
+   "tokens": [
+    "thread_local"
+   ],
+   "compiled": true,
+   "ruling": "thread_local: TLS: devkitA64/libnx thread pointer (M02-09 measured TLS on hardware)"
+  },
+  {
+   "file": "src/game/vcs_rsl_world.cpp",
+   "line": 1930,
+   "category": "thread_time",
+   "tokens": [
+    "thread_local"
+   ],
+   "compiled": true,
+   "ruling": "thread_local: TLS: devkitA64/libnx thread pointer (M02-09 measured TLS on hardware)"
+  },
+  {
+   "file": "src/game/vcs_rsl_world.cpp",
+   "line": 1957,
+   "category": "thread_time",
+   "tokens": [
+    "thread_local"
+   ],
+   "compiled": true,
+   "ruling": "thread_local: TLS: devkitA64/libnx thread pointer (M02-09 measured TLS on hardware)"
+  },
+  {
+   "file": "src/game/vcs_rsl_world.cpp",
+   "line": 2052,
+   "category": "thread_time",
+   "tokens": [
+    "thread_local"
+   ],
+   "compiled": true,
+   "ruling": "thread_local: TLS: devkitA64/libnx thread pointer (M02-09 measured TLS on hardware)"
+  },
+  {
+   "file": "src/game/vcs_rsl_world.cpp",
+   "line": 2053,
+   "category": "thread_time",
+   "tokens": [
+    "thread_local"
+   ],
+   "compiled": true,
+   "ruling": "thread_local: TLS: devkitA64/libnx thread pointer (M02-09 measured TLS on hardware)"
+  },
+  {
+   "file": "src/game/vcs_rsl_world.cpp",
+   "line": 2069,
+   "category": "thread_time",
+   "tokens": [
+    "steady_clock"
+   ],
+   "compiled": true,
+   "ruling": "steady_clock: std::chrono::steady_clock: newlib clock_gettime(CLOCK_MONOTONIC) on the libnx system tick; portable, monotonic (pacing, timeouts, statistics)"
+  },
+  {
+   "file": "src/game/vcs_rsl_world.cpp",
+   "line": 2152,
+   "category": "thread_time",
+   "tokens": [
+    "thread_local"
+   ],
+   "compiled": true,
+   "ruling": "thread_local: TLS: devkitA64/libnx thread pointer (M02-09 measured TLS on hardware)"
+  },
+  {
+   "file": "src/game/vcs_rsl_world.cpp",
+   "line": 2169,
+   "category": "thread_time",
+   "tokens": [
+    "thread_local"
+   ],
+   "compiled": true,
+   "ruling": "thread_local: TLS: devkitA64/libnx thread pointer (M02-09 measured TLS on hardware)"
+  },
+  {
+   "file": "src/game/vcs_rsl_world.cpp",
+   "line": 2176,
+   "category": "thread_time",
+   "tokens": [
+    "thread_local"
+   ],
+   "compiled": true,
+   "ruling": "thread_local: TLS: devkitA64/libnx thread pointer (M02-09 measured TLS on hardware)"
+  },
+  {
+   "file": "src/game/vcs_rsl_world.cpp",
+   "line": 2680,
+   "category": "thread_time",
+   "tokens": [
+    "thread_local"
+   ],
+   "compiled": true,
+   "ruling": "thread_local: TLS: devkitA64/libnx thread pointer (M02-09 measured TLS on hardware)"
+  },
+  {
+   "file": "src/game/vcs_rsl_world.cpp",
+   "line": 2681,
+   "category": "thread_time",
+   "tokens": [
+    "thread_local"
+   ],
+   "compiled": true,
+   "ruling": "thread_local: TLS: devkitA64/libnx thread pointer (M02-09 measured TLS on hardware)"
+  },
+  {
+   "file": "src/game/vcs_rsl_world.cpp",
+   "line": 2714,
+   "category": "thread_time",
+   "tokens": [
+    "steady_clock"
+   ],
+   "compiled": true,
+   "ruling": "steady_clock: std::chrono::steady_clock: newlib clock_gettime(CLOCK_MONOTONIC) on the libnx system tick; portable, monotonic (pacing, timeouts, statistics)"
+  },
+  {
+   "file": "src/game/vcs_rsl_world.cpp",
+   "line": 2735,
+   "category": "thread_time",
+   "tokens": [
+    "steady_clock",
+    "thread_local"
+   ],
+   "compiled": true,
+   "ruling": "steady_clock: std::chrono::steady_clock: newlib clock_gettime(CLOCK_MONOTONIC) on the libnx system tick; portable, monotonic (pacing, timeouts, statistics); thread_local: TLS: devkitA64/libnx thread pointer (M02-09 measured TLS on hardware)"
+  },
+  {
+   "file": "src/game/vcs_rsl_world.cpp",
+   "line": 2865,
+   "category": "thread_time",
+   "tokens": [
+    "thread_local"
+   ],
+   "compiled": true,
+   "ruling": "thread_local: TLS: devkitA64/libnx thread pointer (M02-09 measured TLS on hardware)"
+  },
+  {
+   "file": "src/game/vcs_stream.cpp",
+   "line": 21,
+   "category": "thread_time",
+   "tokens": [
+    "condition_variable"
+   ],
+   "compiled": true,
+   "ruling": "condition_variable: std::condition_variable on libnx condvars; waits are bounded or woken at shutdown (see the std::thread sites)"
+  },
+  {
+   "file": "src/game/vcs_stream.cpp",
+   "line": 48,
+   "category": "thread_time",
+   "tokens": [
+    "condition_variable"
+   ],
+   "compiled": true,
+   "ruling": "condition_variable: std::condition_variable on libnx condvars; waits are bounded or woken at shutdown (see the std::thread sites)"
+  },
+  {
+   "file": "src/game/vcs_stream.cpp",
+   "line": 49,
+   "category": "thread_time",
+   "tokens": [
+    "condition_variable"
+   ],
+   "compiled": true,
+   "ruling": "condition_variable: std::condition_variable on libnx condvars; waits are bounded or woken at shutdown (see the std::thread sites)"
+  },
+  {
+   "file": "src/game/vcs_stream.cpp",
+   "line": 121,
+   "category": "thread_time",
+   "tokens": [
+    "std::thread"
+   ],
+   "compiled": true,
+   "ruling": "std::thread: std::thread on libnx pthread; default-size threads get 8 MiB (src/switch/thread_stack.c); lifetime: stream reader: was detached; overlay 0007 keeps it and core teardown joins it (stopStreamReader) before the folder disc is unmapped"
+  },
+  {
+   "file": "src/game/vcs_trainer.cpp",
+   "line": 935,
+   "category": "thread_time",
+   "tokens": [
+    "steady_clock"
+   ],
+   "compiled": true,
+   "ruling": "steady_clock: std::chrono::steady_clock: newlib clock_gettime(CLOCK_MONOTONIC) on the libnx system tick; portable, monotonic (pacing, timeouts, statistics)"
+  },
+  {
+   "file": "src/game/vcs_vu_clipper.cpp",
+   "line": 170,
+   "category": "thread_time",
+   "tokens": [
+    "thread_local"
+   ],
+   "compiled": true,
+   "ruling": "thread_local: TLS: devkitA64/libnx thread pointer (M02-09 measured TLS on hardware)"
+  },
+  {
+   "file": "src/game/vcs_vu_clipper.cpp",
+   "line": 171,
+   "category": "thread_time",
+   "tokens": [
+    "thread_local"
+   ],
+   "compiled": true,
+   "ruling": "thread_local: TLS: devkitA64/libnx thread pointer (M02-09 measured TLS on hardware)"
+  },
+  {
+   "file": "src/game/vcs_vu_clipper.cpp",
+   "line": 283,
+   "category": "thread_time",
+   "tokens": [
+    "thread_local"
+   ],
+   "compiled": true,
+   "ruling": "thread_local: TLS: devkitA64/libnx thread pointer (M02-09 measured TLS on hardware)"
+  },
+  {
+   "file": "src/game/vcs_vu_clipper.cpp",
+   "line": 284,
+   "category": "thread_time",
+   "tokens": [
+    "thread_local"
+   ],
+   "compiled": true,
+   "ruling": "thread_local: TLS: devkitA64/libnx thread pointer (M02-09 measured TLS on hardware)"
+  },
+  {
+   "file": "src/main.cpp",
+   "line": 55,
+   "category": "desktop_os",
+   "tokens": [
+    "_WIN32"
+   ],
+   "compiled": true,
+   "ruling": "_WIN32: desktop branch; the Switch build compiles the other branch of this conditional (built with __SWITCH__, neither _WIN32 nor __linux__)"
+  },
+  {
+   "file": "src/main.cpp",
+   "line": 58,
+   "category": "desktop_os",
+   "tokens": [
+    "windows.h"
+   ],
+   "compiled": true,
+   "ruling": "windows.h: desktop branch; the Switch build compiles the other branch of this conditional (built with __SWITCH__, neither _WIN32 nor __linux__)"
+  },
+  {
+   "file": "src/main.cpp",
+   "line": 118,
+   "category": "desktop_os",
+   "tokens": [
+    "_WIN32"
+   ],
+   "compiled": true,
+   "ruling": "_WIN32: desktop branch; the Switch build compiles the other branch of this conditional (built with __SWITCH__, neither _WIN32 nor __linux__)"
+  },
+  {
+   "file": "src/main.cpp",
+   "line": 123,
+   "category": "desktop_os",
+   "tokens": [
+    "__linux__"
+   ],
+   "compiled": true,
+   "ruling": "__linux__: desktop branch; the Switch build compiles the other branch of this conditional (built with __SWITCH__, neither _WIN32 nor __linux__)"
+  },
+  {
+   "file": "src/main.cpp",
+   "line": 137,
+   "category": "desktop_os",
+   "tokens": [
+    "_WIN32"
+   ],
+   "compiled": true,
+   "ruling": "_WIN32: desktop branch; the Switch build compiles the other branch of this conditional (built with __SWITCH__, neither _WIN32 nor __linux__)"
+  },
+  {
+   "file": "src/main.cpp",
+   "line": 141,
+   "category": "desktop_os",
+   "tokens": [
+    "XDG_DATA_HOME"
+   ],
+   "compiled": true,
+   "ruling": "XDG_DATA_HOME: desktop branch; the Switch build compiles the other branch of this conditional (built with __SWITCH__, neither _WIN32 nor __linux__)"
+  },
+  {
+   "file": "src/main.cpp",
+   "line": 169,
+   "category": "desktop_os",
+   "tokens": [
+    "_WIN32"
+   ],
+   "compiled": true,
+   "ruling": "_WIN32: desktop branch; the Switch build compiles the other branch of this conditional (built with __SWITCH__, neither _WIN32 nor __linux__)"
+  },
+  {
+   "file": "src/main.cpp",
+   "line": 271,
+   "category": "desktop_os",
+   "tokens": [
+    "_WIN32"
+   ],
+   "compiled": true,
+   "ruling": "_WIN32: desktop branch; the Switch build compiles the other branch of this conditional (built with __SWITCH__, neither _WIN32 nor __linux__)"
+  },
+  {
+   "file": "src/main.cpp",
+   "line": 281,
+   "category": "thread_time",
+   "tokens": [
+    "steady_clock"
+   ],
+   "compiled": true,
+   "ruling": "steady_clock: std::chrono::steady_clock: newlib clock_gettime(CLOCK_MONOTONIC) on the libnx system tick; portable, monotonic (pacing, timeouts, statistics)"
+  },
+  {
+   "file": "src/main.cpp",
+   "line": 290,
+   "category": "thread_time",
+   "tokens": [
+    "steady_clock"
+   ],
+   "compiled": true,
+   "ruling": "steady_clock: std::chrono::steady_clock: newlib clock_gettime(CLOCK_MONOTONIC) on the libnx system tick; portable, monotonic (pacing, timeouts, statistics)"
+  },
+  {
+   "file": "src/main.cpp",
+   "line": 346,
+   "category": "thread_time",
+   "tokens": [
+    "steady_clock"
+   ],
+   "compiled": true,
+   "ruling": "steady_clock: std::chrono::steady_clock: newlib clock_gettime(CLOCK_MONOTONIC) on the libnx system tick; portable, monotonic (pacing, timeouts, statistics)"
+  },
+  {
+   "file": "src/main.cpp",
+   "line": 349,
+   "category": "thread_time",
+   "tokens": [
+    "steady_clock"
+   ],
+   "compiled": true,
+   "ruling": "steady_clock: std::chrono::steady_clock: newlib clock_gettime(CLOCK_MONOTONIC) on the libnx system tick; portable, monotonic (pacing, timeouts, statistics)"
+  },
+  {
+   "file": "src/platform/platform.h",
+   "line": 3,
+   "category": "desktop_os",
+   "tokens": [
+    "windows.h"
+   ],
+   "compiled": true,
+   "ruling": "windows.h: desktop branch; the Switch build compiles the other branch of this conditional (built with __SWITCH__, neither _WIN32 nor __linux__)"
+  },
+  {
+   "file": "src/platform/platform.h",
+   "line": 172,
+   "category": "thread_time",
+   "tokens": [
+    "steady_clock"
+   ],
+   "compiled": true,
+   "ruling": "steady_clock: std::chrono::steady_clock: newlib clock_gettime(CLOCK_MONOTONIC) on the libnx system tick; portable, monotonic (pacing, timeouts, statistics)"
+  },
+  {
+   "file": "src/platform/platform_sdl3.cpp",
+   "line": 420,
+   "category": "desktop_os",
+   "tokens": [
+    "_WIN32"
+   ],
+   "compiled": false,
+   "ruling": "SDL3 platform: replaced by src/platform/platform_switch_sdl2.cpp"
+  },
+  {
+   "file": "src/platform/platform_sdl3.cpp",
+   "line": 621,
+   "category": "thread_time",
+   "tokens": [
+    "steady_clock"
+   ],
+   "compiled": false,
+   "ruling": "SDL3 platform: replaced by src/platform/platform_switch_sdl2.cpp"
+  },
+  {
+   "file": "src/platform/platform_sdl3.cpp",
+   "line": 759,
+   "category": "thread_time",
+   "tokens": [
+    "thread_local"
+   ],
+   "compiled": false,
+   "ruling": "SDL3 platform: replaced by src/platform/platform_switch_sdl2.cpp"
+  },
+  {
+   "file": "src/rhi/d3d11/rhi_d3d11.cpp",
+   "line": 10,
+   "category": "desktop_os",
+   "tokens": [
+    "windows.h"
+   ],
+   "compiled": false,
+   "ruling": "D3D11 backend: Windows only, not built"
+  },
+  {
+   "file": "src/rhi/d3d11/rhi_d3d11.cpp",
+   "line": 827,
+   "category": "thread_time",
+   "tokens": [
+    "steady_clock"
+   ],
+   "compiled": false,
+   "ruling": "D3D11 backend: Windows only, not built"
+  },
+  {
+   "file": "src/rhi/d3d11/rhi_d3d11.cpp",
+   "line": 901,
+   "category": "thread_time",
+   "tokens": [
+    "steady_clock"
+   ],
+   "compiled": false,
+   "ruling": "D3D11 backend: Windows only, not built"
+  },
+  {
+   "file": "src/rhi/d3d11/rhi_d3d11.cpp",
+   "line": 903,
+   "category": "thread_time",
+   "tokens": [
+    "steady_clock"
+   ],
+   "compiled": false,
+   "ruling": "D3D11 backend: Windows only, not built"
+  },
+  {
+   "file": "src/rhi/rhi.h",
+   "line": 323,
+   "category": "thread_time",
+   "tokens": [
+    "steady_clock"
+   ],
+   "compiled": true,
+   "ruling": "steady_clock: std::chrono::steady_clock: newlib clock_gettime(CLOCK_MONOTONIC) on the libnx system tick; portable, monotonic (pacing, timeouts, statistics)"
+  },
+  {
+   "file": "src/rhi/vulkan/rhi_vulkan.cpp",
+   "line": 78,
+   "category": "thread_time",
+   "tokens": [
+    "steady_clock"
+   ],
+   "compiled": false,
+   "ruling": "Vulkan backend: not built (no Vulkan on the Switch baseline)"
+  },
+  {
+   "file": "src/rhi/vulkan/rhi_vulkan.cpp",
+   "line": 99,
+   "category": "thread_time",
+   "tokens": [
+    "steady_clock"
+   ],
+   "compiled": false,
+   "ruling": "Vulkan backend: not built (no Vulkan on the Switch baseline)"
+  },
+  {
+   "file": "src/rhi/vulkan/rhi_vulkan.cpp",
+   "line": 265,
+   "category": "thread_time",
+   "tokens": [
+    "std::thread"
+   ],
+   "compiled": false,
+   "ruling": "Vulkan backend: not built (no Vulkan on the Switch baseline)"
+  },
+  {
+   "file": "src/rhi/vulkan/rhi_vulkan.cpp",
+   "line": 1157,
+   "category": "thread_time",
+   "tokens": [
+    "steady_clock"
+   ],
+   "compiled": false,
+   "ruling": "Vulkan backend: not built (no Vulkan on the Switch baseline)"
+  },
+  {
+   "file": "src/rhi/vulkan/rhi_vulkan.cpp",
+   "line": 1174,
+   "category": "thread_time",
+   "tokens": [
+    "steady_clock"
+   ],
+   "compiled": false,
+   "ruling": "Vulkan backend: not built (no Vulkan on the Switch baseline)"
+  },
+  {
+   "file": "src/rhi/vulkan/rhi_vulkan.cpp",
+   "line": 1205,
+   "category": "thread_time",
+   "tokens": [
+    "steady_clock"
+   ],
+   "compiled": false,
+   "ruling": "Vulkan backend: not built (no Vulkan on the Switch baseline)"
+  },
+  {
+   "file": "src/rhi/vulkan/rhi_vulkan.cpp",
+   "line": 1435,
+   "category": "thread_time",
+   "tokens": [
+    "steady_clock"
+   ],
+   "compiled": false,
+   "ruling": "Vulkan backend: not built (no Vulkan on the Switch baseline)"
+  },
+  {
+   "file": "src/rhi/vulkan/rhi_vulkan.cpp",
+   "line": 1735,
+   "category": "thread_time",
+   "tokens": [
+    "steady_clock"
+   ],
+   "compiled": false,
+   "ruling": "Vulkan backend: not built (no Vulkan on the Switch baseline)"
+  },
+  {
+   "file": "src/rhi/vulkan/rhi_vulkan.cpp",
+   "line": 1811,
+   "category": "thread_time",
+   "tokens": [
+    "steady_clock"
+   ],
+   "compiled": false,
+   "ruling": "Vulkan backend: not built (no Vulkan on the Switch baseline)"
+  },
+  {
+   "file": "src/rhi/vulkan/rhi_vulkan.cpp",
+   "line": 1871,
+   "category": "thread_time",
+   "tokens": [
+    "steady_clock"
+   ],
+   "compiled": false,
+   "ruling": "Vulkan backend: not built (no Vulkan on the Switch baseline)"
+  },
+  {
+   "file": "src/rhi/vulkan/rhi_vulkan.cpp",
+   "line": 2417,
+   "category": "thread_time",
+   "tokens": [
+    "steady_clock"
+   ],
+   "compiled": false,
+   "ruling": "Vulkan backend: not built (no Vulkan on the Switch baseline)"
+  },
+  {
+   "file": "src/rhi/vulkan/rhi_vulkan.cpp",
+   "line": 2428,
+   "category": "thread_time",
+   "tokens": [
+    "steady_clock"
+   ],
+   "compiled": false,
+   "ruling": "Vulkan backend: not built (no Vulkan on the Switch baseline)"
+  },
+  {
+   "file": "src/rhi/vulkan/rhi_vulkan.cpp",
+   "line": 2696,
+   "category": "thread_time",
+   "tokens": [
+    "steady_clock"
+   ],
+   "compiled": false,
+   "ruling": "Vulkan backend: not built (no Vulkan on the Switch baseline)"
+  },
+  {
+   "file": "src/rhi/vulkan/rhi_vulkan.cpp",
+   "line": 2698,
+   "category": "thread_time",
+   "tokens": [
+    "steady_clock"
+   ],
+   "compiled": false,
+   "ruling": "Vulkan backend: not built (no Vulkan on the Switch baseline)"
+  },
+  {
+   "file": "src/rhi/vulkan/rhi_vulkan.cpp",
+   "line": 2776,
+   "category": "thread_time",
+   "tokens": [
+    "steady_clock"
+   ],
+   "compiled": false,
+   "ruling": "Vulkan backend: not built (no Vulkan on the Switch baseline)"
+  },
+  {
+   "file": "src/rhi/vulkan/rhi_vulkan.cpp",
+   "line": 2778,
+   "category": "thread_time",
+   "tokens": [
+    "steady_clock"
+   ],
+   "compiled": false,
+   "ruling": "Vulkan backend: not built (no Vulkan on the Switch baseline)"
+  },
+  {
+   "file": "src/rhi/vulkan/rhi_vulkan.cpp",
+   "line": 2808,
+   "category": "thread_time",
+   "tokens": [
+    "steady_clock"
+   ],
+   "compiled": false,
+   "ruling": "Vulkan backend: not built (no Vulkan on the Switch baseline)"
+  },
+  {
+   "file": "src/rhi/vulkan/rhi_vulkan.cpp",
+   "line": 2812,
+   "category": "thread_time",
+   "tokens": [
+    "steady_clock"
+   ],
+   "compiled": false,
+   "ruling": "Vulkan backend: not built (no Vulkan on the Switch baseline)"
+  },
+  {
+   "file": "src/rhi/vulkan/rhi_vulkan.cpp",
+   "line": 2818,
+   "category": "thread_time",
+   "tokens": [
+    "steady_clock"
+   ],
+   "compiled": false,
+   "ruling": "Vulkan backend: not built (no Vulkan on the Switch baseline)"
+  },
+  {
+   "file": "src/rhi/vulkan/rhi_vulkan.cpp",
+   "line": 2827,
+   "category": "thread_time",
+   "tokens": [
+    "steady_clock"
+   ],
+   "compiled": false,
+   "ruling": "Vulkan backend: not built (no Vulkan on the Switch baseline)"
+  },
+  {
+   "file": "src/rhi/vulkan/rhi_vulkan.cpp",
+   "line": 2857,
+   "category": "thread_time",
+   "tokens": [
+    "steady_clock"
+   ],
+   "compiled": false,
+   "ruling": "Vulkan backend: not built (no Vulkan on the Switch baseline)"
+  },
+  {
+   "file": "src/rhi/vulkan/rhi_vulkan.cpp",
+   "line": 3012,
+   "category": "thread_time",
+   "tokens": [
+    "steady_clock"
+   ],
+   "compiled": false,
+   "ruling": "Vulkan backend: not built (no Vulkan on the Switch baseline)"
+  },
+  {
+   "file": "src/rhi/vulkan/rhi_vulkan.cpp",
+   "line": 3013,
+   "category": "thread_time",
+   "tokens": [
+    "steady_clock"
+   ],
+   "compiled": false,
+   "ruling": "Vulkan backend: not built (no Vulkan on the Switch baseline)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xIOP/tests/iop_emulator_tests.cpp",
+   "line": 1091,
+   "category": "thread_time",
+   "tokens": [
+    "steady_clock"
+   ],
+   "compiled": false,
+   "ruling": "IOP unit tests: not in the game"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xIOP/tests/iop_import_tests.cpp",
+   "line": 235,
+   "category": "thread_time",
+   "tokens": [
+    "steady_clock"
+   ],
+   "compiled": false,
+   "ruling": "IOP unit tests: not in the game"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRecomp/src/lib/code_generator.cpp",
+   "line": 45,
+   "category": "thread_time",
+   "tokens": [
+    "thread_local"
+   ],
+   "compiled": false,
+   "ruling": "host recompiler: a host tool, never in the target"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRecomp/src/lib/config_manager.cpp",
+   "line": 52,
+   "category": "thread_time",
+   "tokens": [
+    "std::thread"
+   ],
+   "compiled": false,
+   "ruling": "host recompiler: a host tool, never in the target"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRecomp/src/lib/elf_parser.cpp",
+   "line": 12,
+   "category": "desktop_os",
+   "tokens": [
+    "_WIN32"
+   ],
+   "compiled": false,
+   "ruling": "host recompiler: a host tool, never in the target"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRecomp/src/lib/elf_parser.cpp",
+   "line": 15,
+   "category": "desktop_os",
+   "tokens": [
+    "windows.h"
+   ],
+   "compiled": false,
+   "ruling": "host recompiler: a host tool, never in the target"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRecomp/src/lib/elf_parser.cpp",
+   "line": 2509,
+   "category": "desktop_os",
+   "tokens": [
+    "_WIN32"
+   ],
+   "compiled": false,
+   "ruling": "host recompiler: a host tool, never in the target"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRecomp/src/lib/elf_parser.cpp",
+   "line": 2566,
+   "category": "desktop_os",
+   "tokens": [
+    "_WIN32"
+   ],
+   "compiled": false,
+   "ruling": "host recompiler: a host tool, never in the target"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRecomp/src/lib/ps2_recompiler.cpp",
+   "line": 14,
+   "category": "thread_time",
+   "tokens": [
+    "condition_variable"
+   ],
+   "compiled": false,
+   "ruling": "host recompiler: a host tool, never in the target"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRecomp/src/lib/ps2_recompiler.cpp",
+   "line": 93,
+   "category": "thread_time",
+   "tokens": [
+    "std::thread"
+   ],
+   "compiled": false,
+   "ruling": "host recompiler: a host tool, never in the target"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRecomp/src/lib/ps2_recompiler.cpp",
+   "line": 1402,
+   "category": "thread_time",
+   "tokens": [
+    "condition_variable"
+   ],
+   "compiled": false,
+   "ruling": "host recompiler: a host tool, never in the target"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRecomp/src/lib/ps2_recompiler.cpp",
+   "line": 1403,
+   "category": "thread_time",
+   "tokens": [
+    "condition_variable"
+   ],
+   "compiled": false,
+   "ruling": "host recompiler: a host tool, never in the target"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRecomp/src/lib/ps2_recompiler.cpp",
+   "line": 1461,
+   "category": "thread_time",
+   "tokens": [
+    "std::thread"
+   ],
+   "compiled": false,
+   "ruling": "host recompiler: a host tool, never in the target"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRecomp/src/lib/ps2_recompiler.cpp",
+   "line": 1475,
+   "category": "thread_time",
+   "tokens": [
+    "std::thread"
+   ],
+   "compiled": false,
+   "ruling": "host recompiler: a host tool, never in the target"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRecomp/src/lib/ps2_recompiler.cpp",
+   "line": 1626,
+   "category": "thread_time",
+   "tokens": [
+    "condition_variable"
+   ],
+   "compiled": false,
+   "ruling": "host recompiler: a host tool, never in the target"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRecomp/src/lib/ps2_recompiler.cpp",
+   "line": 1627,
+   "category": "thread_time",
+   "tokens": [
+    "condition_variable"
+   ],
+   "compiled": false,
+   "ruling": "host recompiler: a host tool, never in the target"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRecomp/src/lib/ps2_recompiler.cpp",
+   "line": 1683,
+   "category": "thread_time",
+   "tokens": [
+    "std::thread"
+   ],
+   "compiled": false,
+   "ruling": "host recompiler: a host tool, never in the target"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRecomp/src/lib/ps2_recompiler.cpp",
+   "line": 1697,
+   "category": "thread_time",
+   "tokens": [
+    "std::thread"
+   ],
+   "compiled": false,
+   "ruling": "host recompiler: a host tool, never in the target"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/include/ThreadNaming.h",
+   "line": 6,
+   "category": "desktop_os",
+   "tokens": [
+    "_WIN32"
+   ],
+   "compiled": true,
+   "ruling": "_WIN32: desktop branch; the Switch build compiles the other branch of this conditional (built with __SWITCH__, neither _WIN32 nor __linux__)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/include/ThreadNaming.h",
+   "line": 25,
+   "category": "desktop_os",
+   "tokens": [
+    "__linux__"
+   ],
+   "compiled": true,
+   "ruling": "__linux__: desktop branch; the Switch build compiles the other branch of this conditional (built with __SWITCH__, neither _WIN32 nor __linux__)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/include/ThreadNaming.h",
+   "line": 33,
+   "category": "desktop_os",
+   "tokens": [
+    "_WIN32"
+   ],
+   "compiled": true,
+   "ruling": "_WIN32: desktop branch; the Switch build compiles the other branch of this conditional (built with __SWITCH__, neither _WIN32 nor __linux__)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/include/ThreadNaming.h",
+   "line": 47,
+   "category": "thread_time",
+   "tokens": [
+    "pthread_setname_np"
+   ],
+   "compiled": true,
+   "ruling": "pthread_setname_np: desktop branch; the Switch build compiles the other branch of this conditional (built with __SWITCH__, neither _WIN32 nor __linux__)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/include/ThreadNaming.h",
+   "line": 49,
+   "category": "desktop_os",
+   "tokens": [
+    "__linux__"
+   ],
+   "compiled": true,
+   "ruling": "__linux__: desktop branch; the Switch build compiles the other branch of this conditional (built with __SWITCH__, neither _WIN32 nor __linux__)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/include/ThreadNaming.h",
+   "line": 50,
+   "category": "thread_time",
+   "tokens": [
+    "pthread_self",
+    "pthread_setname_np"
+   ],
+   "compiled": true,
+   "ruling": "pthread_self: desktop branch; the Switch build compiles the other branch of this conditional (built with __SWITCH__, neither _WIN32 nor __linux__); pthread_setname_np: desktop branch; the Switch build compiles the other branch of this conditional (built with __SWITCH__, neither _WIN32 nor __linux__)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/include/ps2_log.h",
+   "line": 160,
+   "category": "thread_time",
+   "tokens": [
+    "thread_local"
+   ],
+   "compiled": true,
+   "ruling": "thread_local: TLS: devkitA64/libnx thread pointer (M02-09 measured TLS on hardware)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/include/runtime/ee_scheduler.h",
+   "line": 9,
+   "category": "thread_time",
+   "tokens": [
+    "condition_variable"
+   ],
+   "compiled": true,
+   "ruling": "condition_variable: std::condition_variable on libnx condvars; waits are bounded or woken at shutdown (see the std::thread sites)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/include/runtime/ee_scheduler.h",
+   "line": 378,
+   "category": "thread_time",
+   "tokens": [
+    "steady_clock"
+   ],
+   "compiled": true,
+   "ruling": "steady_clock: std::chrono::steady_clock: newlib clock_gettime(CLOCK_MONOTONIC) on the libnx system tick; portable, monotonic (pacing, timeouts, statistics)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/include/runtime/ee_scheduler.h",
+   "line": 405,
+   "category": "thread_time",
+   "tokens": [
+    "steady_clock"
+   ],
+   "compiled": true,
+   "ruling": "steady_clock: std::chrono::steady_clock: newlib clock_gettime(CLOCK_MONOTONIC) on the libnx system tick; portable, monotonic (pacing, timeouts, statistics)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/include/runtime/ee_scheduler.h",
+   "line": 441,
+   "category": "thread_time",
+   "tokens": [
+    "steady_clock"
+   ],
+   "compiled": true,
+   "ruling": "steady_clock: std::chrono::steady_clock: newlib clock_gettime(CLOCK_MONOTONIC) on the libnx system tick; portable, monotonic (pacing, timeouts, statistics)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/include/runtime/ee_scheduler.h",
+   "line": 444,
+   "category": "thread_time",
+   "tokens": [
+    "std::thread"
+   ],
+   "compiled": true,
+   "ruling": "std::thread: std::thread on libnx pthread; default-size threads get 8 MiB (src/switch/thread_stack.c); thread identity only (std::thread::id): no thread is created here"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/include/runtime/ee_scheduler.h",
+   "line": 452,
+   "category": "thread_time",
+   "tokens": [
+    "condition_variable"
+   ],
+   "compiled": true,
+   "ruling": "condition_variable: std::condition_variable on libnx condvars; waits are bounded or woken at shutdown (see the std::thread sites)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_host_profile.h",
+   "line": 45,
+   "category": "thread_time",
+   "tokens": [
+    "thread_local"
+   ],
+   "compiled": true,
+   "ruling": "thread_local: TLS: devkitA64/libnx thread pointer (M02-09 measured TLS on hardware)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_host_profile.h",
+   "line": 47,
+   "category": "thread_time",
+   "tokens": [
+    "thread_local"
+   ],
+   "compiled": true,
+   "ruling": "thread_local: TLS: devkitA64/libnx thread pointer (M02-09 measured TLS on hardware)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_host_std.h",
+   "line": 2,
+   "category": "thread_time",
+   "tokens": [
+    "steady_clock"
+   ],
+   "compiled": true,
+   "ruling": "steady_clock: std::chrono::steady_clock: newlib clock_gettime(CLOCK_MONOTONIC) on the libnx system tick; portable, monotonic (pacing, timeouts, statistics)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_host_std.h",
+   "line": 6,
+   "category": "thread_time",
+   "tokens": [
+    "steady_clock"
+   ],
+   "compiled": true,
+   "ruling": "steady_clock: std::chrono::steady_clock: newlib clock_gettime(CLOCK_MONOTONIC) on the libnx system tick; portable, monotonic (pacing, timeouts, statistics)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_host_std.h",
+   "line": 7,
+   "category": "thread_time",
+   "tokens": [
+    "condition_variable"
+   ],
+   "compiled": true,
+   "ruling": "condition_variable: std::condition_variable on libnx condvars; waits are bounded or woken at shutdown (see the std::thread sites)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_host_std.h",
+   "line": 14,
+   "category": "thread_time",
+   "tokens": [
+    "condition_variable"
+   ],
+   "compiled": true,
+   "ruling": "condition_variable: std::condition_variable on libnx condvars; waits are bounded or woken at shutdown (see the std::thread sites)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_host_std.h",
+   "line": 19,
+   "category": "desktop_os",
+   "tokens": [
+    "_WIN32"
+   ],
+   "compiled": true,
+   "ruling": "_WIN32: desktop branch; the Switch build compiles the other branch of this conditional (built with __SWITCH__, neither _WIN32 nor __linux__)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_host_std.h",
+   "line": 26,
+   "category": "thread_time",
+   "tokens": [
+    "steady_clock"
+   ],
+   "compiled": true,
+   "ruling": "steady_clock: std::chrono::steady_clock: newlib clock_gettime(CLOCK_MONOTONIC) on the libnx system tick; portable, monotonic (pacing, timeouts, statistics)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_host_std.h",
+   "line": 28,
+   "category": "thread_time",
+   "tokens": [
+    "condition_variable"
+   ],
+   "compiled": true,
+   "ruling": "condition_variable: std::condition_variable on libnx condvars; waits are bounded or woken at shutdown (see the std::thread sites)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_host_std.h",
+   "line": 30,
+   "category": "thread_time",
+   "tokens": [
+    "steady_clock"
+   ],
+   "compiled": true,
+   "ruling": "steady_clock: std::chrono::steady_clock: newlib clock_gettime(CLOCK_MONOTONIC) on the libnx system tick; portable, monotonic (pacing, timeouts, statistics)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_host_std.h",
+   "line": 34,
+   "category": "thread_time",
+   "tokens": [
+    "condition_variable"
+   ],
+   "compiled": true,
+   "ruling": "condition_variable: std::condition_variable on libnx condvars; waits are bounded or woken at shutdown (see the std::thread sites)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_host_std.h",
+   "line": 38,
+   "category": "thread_time",
+   "tokens": [
+    "steady_clock"
+   ],
+   "compiled": true,
+   "ruling": "steady_clock: std::chrono::steady_clock: newlib clock_gettime(CLOCK_MONOTONIC) on the libnx system tick; portable, monotonic (pacing, timeouts, statistics)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_host_std.h",
+   "line": 51,
+   "category": "thread_time",
+   "tokens": [
+    "condition_variable"
+   ],
+   "compiled": true,
+   "ruling": "condition_variable: std::condition_variable on libnx condvars; waits are bounded or woken at shutdown (see the std::thread sites)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_host_std.h",
+   "line": 65,
+   "category": "thread_time",
+   "tokens": [
+    "condition_variable"
+   ],
+   "compiled": true,
+   "ruling": "condition_variable: std::condition_variable on libnx condvars; waits are bounded or woken at shutdown (see the std::thread sites)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_host_std.h",
+   "line": 69,
+   "category": "thread_time",
+   "tokens": [
+    "steady_clock"
+   ],
+   "compiled": true,
+   "ruling": "steady_clock: std::chrono::steady_clock: newlib clock_gettime(CLOCK_MONOTONIC) on the libnx system tick; portable, monotonic (pacing, timeouts, statistics)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_host_std.h",
+   "line": 76,
+   "category": "thread_time",
+   "tokens": [
+    "condition_variable"
+   ],
+   "compiled": true,
+   "ruling": "condition_variable: std::condition_variable on libnx condvars; waits are bounded or woken at shutdown (see the std::thread sites)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_host_std.h",
+   "line": 80,
+   "category": "thread_time",
+   "tokens": [
+    "steady_clock"
+   ],
+   "compiled": true,
+   "ruling": "steady_clock: std::chrono::steady_clock: newlib clock_gettime(CLOCK_MONOTONIC) on the libnx system tick; portable, monotonic (pacing, timeouts, statistics)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_host_std.h",
+   "line": 92,
+   "category": "thread_time",
+   "tokens": [
+    "std::thread"
+   ],
+   "compiled": true,
+   "ruling": "std::thread: std::thread on libnx pthread; default-size threads get 8 MiB (src/switch/thread_stack.c); thread identity only (std::thread::id): no thread is created here"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_host_std.h",
+   "line": 104,
+   "category": "thread_time",
+   "tokens": [
+    "std::thread"
+   ],
+   "compiled": true,
+   "ruling": "std::thread: std::thread on libnx pthread; default-size threads get 8 MiB (src/switch/thread_stack.c); thread identity only (std::thread::id): no thread is created here"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_host_std.h",
+   "line": 120,
+   "category": "thread_time",
+   "tokens": [
+    "std::thread"
+   ],
+   "compiled": true,
+   "ruling": "std::thread: std::thread on libnx pthread; default-size threads get 8 MiB (src/switch/thread_stack.c); thread identity only (std::thread::id): no thread is created here"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_host_std.h",
+   "line": 126,
+   "category": "thread_time",
+   "tokens": [
+    "std::thread"
+   ],
+   "compiled": true,
+   "ruling": "std::thread: std::thread on libnx pthread; default-size threads get 8 MiB (src/switch/thread_stack.c); thread identity only (std::thread::id): no thread is created here"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/Kernel/EeScheduler.cpp",
+   "line": 433,
+   "category": "thread_time",
+   "tokens": [
+    "steady_clock"
+   ],
+   "compiled": true,
+   "ruling": "steady_clock: std::chrono::steady_clock: newlib clock_gettime(CLOCK_MONOTONIC) on the libnx system tick; portable, monotonic (pacing, timeouts, statistics)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/Kernel/EeScheduler.cpp",
+   "line": 1507,
+   "category": "thread_time",
+   "tokens": [
+    "std::thread"
+   ],
+   "compiled": true,
+   "ruling": "std::thread: std::thread on libnx pthread; default-size threads get 8 MiB (src/switch/thread_stack.c); thread identity only (std::thread::id): no thread is created here"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/Kernel/EeScheduler.cpp",
+   "line": 1838,
+   "category": "thread_time",
+   "tokens": [
+    "steady_clock"
+   ],
+   "compiled": true,
+   "ruling": "steady_clock: std::chrono::steady_clock: newlib clock_gettime(CLOCK_MONOTONIC) on the libnx system tick; portable, monotonic (pacing, timeouts, statistics)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/Kernel/EeScheduler.cpp",
+   "line": 1845,
+   "category": "thread_time",
+   "tokens": [
+    "steady_clock"
+   ],
+   "compiled": true,
+   "ruling": "steady_clock: std::chrono::steady_clock: newlib clock_gettime(CLOCK_MONOTONIC) on the libnx system tick; portable, monotonic (pacing, timeouts, statistics)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/Kernel/EeScheduler.cpp",
+   "line": 1852,
+   "category": "thread_time",
+   "tokens": [
+    "steady_clock"
+   ],
+   "compiled": true,
+   "ruling": "steady_clock: std::chrono::steady_clock: newlib clock_gettime(CLOCK_MONOTONIC) on the libnx system tick; portable, monotonic (pacing, timeouts, statistics)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/Kernel/EeScheduler.cpp",
+   "line": 2112,
+   "category": "thread_time",
+   "tokens": [
+    "steady_clock"
+   ],
+   "compiled": true,
+   "ruling": "steady_clock: std::chrono::steady_clock: newlib clock_gettime(CLOCK_MONOTONIC) on the libnx system tick; portable, monotonic (pacing, timeouts, statistics)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/Kernel/EeScheduler.cpp",
+   "line": 2139,
+   "category": "thread_time",
+   "tokens": [
+    "steady_clock"
+   ],
+   "compiled": true,
+   "ruling": "steady_clock: std::chrono::steady_clock: newlib clock_gettime(CLOCK_MONOTONIC) on the libnx system tick; portable, monotonic (pacing, timeouts, statistics)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/Kernel/EeScheduler.cpp",
+   "line": 2183,
+   "category": "thread_time",
+   "tokens": [
+    "steady_clock"
+   ],
+   "compiled": true,
+   "ruling": "steady_clock: std::chrono::steady_clock: newlib clock_gettime(CLOCK_MONOTONIC) on the libnx system tick; portable, monotonic (pacing, timeouts, statistics)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/Kernel/Stubs/CD.cpp",
+   "line": 522,
+   "category": "desktop_os",
+   "tokens": [
+    "_WIN32"
+   ],
+   "compiled": true,
+   "ruling": "_WIN32: desktop branch; the Switch build compiles the other branch of this conditional (built with __SWITCH__, neither _WIN32 nor __linux__)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/Kernel/Stubs/MemoryCard.cpp",
+   "line": 9,
+   "category": "desktop_os",
+   "tokens": [
+    "_WIN32"
+   ],
+   "compiled": true,
+   "ruling": "_WIN32: desktop branch; the Switch build compiles the other branch of this conditional (built with __SWITCH__, neither _WIN32 nor __linux__)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/Kernel/Stubs/MemoryCard.cpp",
+   "line": 16,
+   "category": "desktop_os",
+   "tokens": [
+    "windows.h"
+   ],
+   "compiled": true,
+   "ruling": "windows.h: desktop branch; the Switch build compiles the other branch of this conditional (built with __SWITCH__, neither _WIN32 nor __linux__)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/Kernel/Stubs/MemoryCard.cpp",
+   "line": 17,
+   "category": "desktop_os",
+   "tokens": [
+    "__linux__"
+   ],
+   "compiled": true,
+   "ruling": "__linux__: desktop branch; the Switch build compiles the other branch of this conditional (built with __SWITCH__, neither _WIN32 nor __linux__)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/Kernel/Stubs/MemoryCard.cpp",
+   "line": 330,
+   "category": "desktop_os",
+   "tokens": [
+    "_WIN32"
+   ],
+   "compiled": true,
+   "ruling": "_WIN32: desktop branch; the Switch build compiles the other branch of this conditional (built with __SWITCH__, neither _WIN32 nor __linux__)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/Kernel/Stubs/MemoryCard.cpp",
+   "line": 386,
+   "category": "desktop_os",
+   "tokens": [
+    "_WIN32"
+   ],
+   "compiled": true,
+   "ruling": "_WIN32: desktop branch; the Switch build compiles the other branch of this conditional (built with __SWITCH__, neither _WIN32 nor __linux__)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/Kernel/Stubs/MemoryCard.cpp",
+   "line": 392,
+   "category": "desktop_os",
+   "tokens": [
+    "__linux__"
+   ],
+   "compiled": true,
+   "ruling": "__linux__: desktop branch; the Switch build compiles the other branch of this conditional (built with __SWITCH__, neither _WIN32 nor __linux__)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/Kernel/Stubs/MemoryCard.cpp",
+   "line": 404,
+   "category": "desktop_os",
+   "tokens": [
+    "_WIN32"
+   ],
+   "compiled": true,
+   "ruling": "_WIN32: desktop branch; the Switch build compiles the other branch of this conditional (built with __SWITCH__, neither _WIN32 nor __linux__)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/Kernel/Stubs/MemoryCard.cpp",
+   "line": 525,
+   "category": "desktop_os",
+   "tokens": [
+    "_WIN32"
+   ],
+   "compiled": true,
+   "ruling": "_WIN32: desktop branch; the Switch build compiles the other branch of this conditional (built with __SWITCH__, neither _WIN32 nor __linux__)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/Kernel/Stubs/MemoryCard.cpp",
+   "line": 652,
+   "category": "desktop_os",
+   "tokens": [
+    "_WIN32"
+   ],
+   "compiled": true,
+   "ruling": "_WIN32: desktop branch; the Switch build compiles the other branch of this conditional (built with __SWITCH__, neither _WIN32 nor __linux__)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/Kernel/Stubs/MemoryCard.cpp",
+   "line": 910,
+   "category": "desktop_os",
+   "tokens": [
+    "_WIN32"
+   ],
+   "compiled": true,
+   "ruling": "_WIN32: desktop branch; the Switch build compiles the other branch of this conditional (built with __SWITCH__, neither _WIN32 nor __linux__)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/Kernel/Stubs/MemoryCard.cpp",
+   "line": 921,
+   "category": "desktop_os",
+   "tokens": [
+    "__linux__"
+   ],
+   "compiled": true,
+   "ruling": "__linux__: desktop branch; the Switch build compiles the other branch of this conditional (built with __SWITCH__, neither _WIN32 nor __linux__)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/Kernel/Stubs/MemoryCard.cpp",
+   "line": 1041,
+   "category": "thread_time",
+   "tokens": [
+    "steady_clock"
+   ],
+   "compiled": true,
+   "ruling": "steady_clock: std::chrono::steady_clock: newlib clock_gettime(CLOCK_MONOTONIC) on the libnx system tick; portable, monotonic (pacing, timeouts, statistics)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/Kernel/Syscalls/Common.h",
+   "line": 26,
+   "category": "desktop_os",
+   "tokens": [
+    "_WIN32"
+   ],
+   "compiled": true,
+   "ruling": "_WIN32: desktop branch; the Switch build compiles the other branch of this conditional (built with __SWITCH__, neither _WIN32 nor __linux__)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/Kernel/Syscalls/Helpers/Runtime.h",
+   "line": 149,
+   "category": "desktop_os",
+   "tokens": [
+    "_WIN32"
+   ],
+   "compiled": true,
+   "ruling": "_WIN32: desktop branch; the Switch build compiles the other branch of this conditional (built with __SWITCH__, neither _WIN32 nor __linux__)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/Kernel/Syscalls/Helpers/Runtime.h",
+   "line": 185,
+   "category": "desktop_os",
+   "tokens": [
+    "_WIN32"
+   ],
+   "compiled": true,
+   "ruling": "_WIN32: desktop branch; the Switch build compiles the other branch of this conditional (built with __SWITCH__, neither _WIN32 nor __linux__)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/gs/gs_cpu_backend.cpp",
+   "line": 2075,
+   "category": "thread_time",
+   "tokens": [
+    "thread_local"
+   ],
+   "compiled": true,
+   "ruling": "thread_local: TLS: devkitA64/libnx thread pointer (M02-09 measured TLS on hardware)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/gs/gs_cpu_backend.cpp",
+   "line": 2080,
+   "category": "thread_time",
+   "tokens": [
+    "thread_local"
+   ],
+   "compiled": true,
+   "ruling": "thread_local: TLS: devkitA64/libnx thread pointer (M02-09 measured TLS on hardware)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/gs/gs_frontend.cpp",
+   "line": 120,
+   "category": "thread_time",
+   "tokens": [
+    "thread_local"
+   ],
+   "compiled": true,
+   "ruling": "thread_local: TLS: devkitA64/libnx thread pointer (M02-09 measured TLS on hardware)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/gs/gs_frontend.cpp",
+   "line": 132,
+   "category": "thread_time",
+   "tokens": [
+    "thread_local"
+   ],
+   "compiled": true,
+   "ruling": "thread_local: TLS: devkitA64/libnx thread pointer (M02-09 measured TLS on hardware)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/gs/gs_frontend.cpp",
+   "line": 155,
+   "category": "thread_time",
+   "tokens": [
+    "thread_local"
+   ],
+   "compiled": true,
+   "ruling": "thread_local: TLS: devkitA64/libnx thread pointer (M02-09 measured TLS on hardware)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/gs/gs_frontend.cpp",
+   "line": 787,
+   "category": "thread_time",
+   "tokens": [
+    "thread_local"
+   ],
+   "compiled": true,
+   "ruling": "thread_local: TLS: devkitA64/libnx thread pointer (M02-09 measured TLS on hardware)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/gs/gs_frontend.cpp",
+   "line": 788,
+   "category": "thread_time",
+   "tokens": [
+    "thread_local"
+   ],
+   "compiled": true,
+   "ruling": "thread_local: TLS: devkitA64/libnx thread pointer (M02-09 measured TLS on hardware)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/gs/gs_frontend.cpp",
+   "line": 973,
+   "category": "thread_time",
+   "tokens": [
+    "thread_local"
+   ],
+   "compiled": true,
+   "ruling": "thread_local: TLS: devkitA64/libnx thread pointer (M02-09 measured TLS on hardware)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/gs/gs_frontend.cpp",
+   "line": 974,
+   "category": "thread_time",
+   "tokens": [
+    "thread_local"
+   ],
+   "compiled": true,
+   "ruling": "thread_local: TLS: devkitA64/libnx thread pointer (M02-09 measured TLS on hardware)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/gs/gs_gpu_parallel.cpp",
+   "line": 21,
+   "category": "desktop_os",
+   "tokens": [
+    "windows.h"
+   ],
+   "compiled": false,
+   "ruling": "paraLLEl-GS: not built (gs_gpu_none.cpp)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/gs/gs_gpu_parallel.cpp",
+   "line": 28,
+   "category": "thread_time",
+   "tokens": [
+    "condition_variable"
+   ],
+   "compiled": false,
+   "ruling": "paraLLEl-GS: not built (gs_gpu_none.cpp)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/gs/gs_gpu_parallel.cpp",
+   "line": 170,
+   "category": "thread_time",
+   "tokens": [
+    "steady_clock"
+   ],
+   "compiled": false,
+   "ruling": "paraLLEl-GS: not built (gs_gpu_none.cpp)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/gs/gs_gpu_parallel.cpp",
+   "line": 195,
+   "category": "thread_time",
+   "tokens": [
+    "std::thread"
+   ],
+   "compiled": false,
+   "ruling": "paraLLEl-GS: not built (gs_gpu_none.cpp)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/gs/gs_gpu_parallel.cpp",
+   "line": 473,
+   "category": "thread_time",
+   "tokens": [
+    "steady_clock"
+   ],
+   "compiled": false,
+   "ruling": "paraLLEl-GS: not built (gs_gpu_none.cpp)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/gs/gs_gpu_parallel.cpp",
+   "line": 474,
+   "category": "thread_time",
+   "tokens": [
+    "steady_clock"
+   ],
+   "compiled": false,
+   "ruling": "paraLLEl-GS: not built (gs_gpu_none.cpp)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/gs/gs_gpu_parallel.cpp",
+   "line": 486,
+   "category": "thread_time",
+   "tokens": [
+    "steady_clock"
+   ],
+   "compiled": false,
+   "ruling": "paraLLEl-GS: not built (gs_gpu_none.cpp)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/gs/gs_gpu_parallel.cpp",
+   "line": 656,
+   "category": "thread_time",
+   "tokens": [
+    "steady_clock"
+   ],
+   "compiled": false,
+   "ruling": "paraLLEl-GS: not built (gs_gpu_none.cpp)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/gs/gs_gpu_parallel.cpp",
+   "line": 658,
+   "category": "thread_time",
+   "tokens": [
+    "steady_clock"
+   ],
+   "compiled": false,
+   "ruling": "paraLLEl-GS: not built (gs_gpu_none.cpp)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/gs/gs_gpu_parallel.cpp",
+   "line": 1272,
+   "category": "thread_time",
+   "tokens": [
+    "std::thread"
+   ],
+   "compiled": false,
+   "ruling": "paraLLEl-GS: not built (gs_gpu_none.cpp)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/gs/gs_gpu_parallel.cpp",
+   "line": 1304,
+   "category": "thread_time",
+   "tokens": [
+    "condition_variable"
+   ],
+   "compiled": false,
+   "ruling": "paraLLEl-GS: not built (gs_gpu_none.cpp)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/gs/gs_hw.cpp",
+   "line": 21,
+   "category": "thread_time",
+   "tokens": [
+    "condition_variable"
+   ],
+   "compiled": true,
+   "ruling": "condition_variable: std::condition_variable on libnx condvars; waits are bounded or woken at shutdown (see the std::thread sites)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/gs/gs_hw.cpp",
+   "line": 90,
+   "category": "thread_time",
+   "tokens": [
+    "thread_local"
+   ],
+   "compiled": true,
+   "ruling": "thread_local: TLS: devkitA64/libnx thread pointer (M02-09 measured TLS on hardware)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/gs/gs_hw.cpp",
+   "line": 608,
+   "category": "thread_time",
+   "tokens": [
+    "steady_clock"
+   ],
+   "compiled": true,
+   "ruling": "steady_clock: std::chrono::steady_clock: newlib clock_gettime(CLOCK_MONOTONIC) on the libnx system tick; portable, monotonic (pacing, timeouts, statistics)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/gs/gs_hw.cpp",
+   "line": 2791,
+   "category": "thread_time",
+   "tokens": [
+    "thread_local"
+   ],
+   "compiled": true,
+   "ruling": "thread_local: TLS: devkitA64/libnx thread pointer (M02-09 measured TLS on hardware)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/gs/gs_hw.cpp",
+   "line": 2822,
+   "category": "thread_time",
+   "tokens": [
+    "thread_local"
+   ],
+   "compiled": true,
+   "ruling": "thread_local: TLS: devkitA64/libnx thread pointer (M02-09 measured TLS on hardware)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/gs/gs_hw.cpp",
+   "line": 3264,
+   "category": "thread_time",
+   "tokens": [
+    "thread_local"
+   ],
+   "compiled": true,
+   "ruling": "thread_local: TLS: devkitA64/libnx thread pointer (M02-09 measured TLS on hardware)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/gs/gs_hw.cpp",
+   "line": 3330,
+   "category": "thread_time",
+   "tokens": [
+    "thread_local"
+   ],
+   "compiled": true,
+   "ruling": "thread_local: TLS: devkitA64/libnx thread pointer (M02-09 measured TLS on hardware)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/gs/gs_hw.cpp",
+   "line": 4851,
+   "category": "thread_time",
+   "tokens": [
+    "std::thread"
+   ],
+   "compiled": true,
+   "ruling": "std::thread: std::thread on libnx pthread; default-size threads get 8 MiB (src/switch/thread_stack.c); lifetime: pipeline makers: joined by the HW renderer's destructor (shutdownGpuRenderer in runEnd)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/gs/gs_hw.cpp",
+   "line": 5146,
+   "category": "thread_time",
+   "tokens": [
+    "condition_variable"
+   ],
+   "compiled": true,
+   "ruling": "condition_variable: std::condition_variable on libnx condvars; waits are bounded or woken at shutdown (see the std::thread sites)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/gs/gs_hw.cpp",
+   "line": 5148,
+   "category": "thread_time",
+   "tokens": [
+    "std::thread"
+   ],
+   "compiled": true,
+   "ruling": "std::thread: std::thread on libnx pthread; default-size threads get 8 MiB (src/switch/thread_stack.c); lifetime: pipeline makers: joined by the HW renderer's destructor (shutdownGpuRenderer in runEnd)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/gs/gs_hw.cpp",
+   "line": 5225,
+   "category": "thread_time",
+   "tokens": [
+    "condition_variable"
+   ],
+   "compiled": true,
+   "ruling": "condition_variable: std::condition_variable on libnx condvars; waits are bounded or woken at shutdown (see the std::thread sites)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/gs/gs_stats.h",
+   "line": 81,
+   "category": "thread_time",
+   "tokens": [
+    "steady_clock"
+   ],
+   "compiled": true,
+   "ruling": "steady_clock: std::chrono::steady_clock: newlib clock_gettime(CLOCK_MONOTONIC) on the libnx system tick; portable, monotonic (pacing, timeouts, statistics)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/gs/ps2_gif_arbiter.cpp",
+   "line": 10,
+   "category": "thread_time",
+   "tokens": [
+    "thread_local"
+   ],
+   "compiled": true,
+   "ruling": "thread_local: TLS: devkitA64/libnx thread pointer (M02-09 measured TLS on hardware)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_control.cpp",
+   "line": 24,
+   "category": "desktop_os",
+   "tokens": [
+    "_WIN32"
+   ],
+   "compiled": true,
+   "ruling": "_WIN32: desktop branch; the Switch build compiles the other branch of this conditional (built with __SWITCH__, neither _WIN32 nor __linux__)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_control.cpp",
+   "line": 78,
+   "category": "thread_time",
+   "tokens": [
+    "steady_clock"
+   ],
+   "compiled": true,
+   "ruling": "steady_clock: std::chrono::steady_clock: newlib clock_gettime(CLOCK_MONOTONIC) on the libnx system tick; portable, monotonic (pacing, timeouts, statistics)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_control.cpp",
+   "line": 84,
+   "category": "thread_time",
+   "tokens": [
+    "std::thread"
+   ],
+   "compiled": true,
+   "ruling": "std::thread: std::thread on libnx pthread; default-size threads get 8 MiB (src/switch/thread_stack.c); lifetime: socket control server: never started on the Switch (PS2X_CONTROL / PS2X_HIDDEN refused by nxrun.cfg; commands run in process through ps2control::submit)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_control.cpp",
+   "line": 304,
+   "category": "desktop_os",
+   "tokens": [
+    "_WIN32"
+   ],
+   "compiled": true,
+   "ruling": "_WIN32: desktop branch; the Switch build compiles the other branch of this conditional (built with __SWITCH__, neither _WIN32 nor __linux__)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_control.cpp",
+   "line": 312,
+   "category": "desktop_os",
+   "tokens": [
+    "_WIN32"
+   ],
+   "compiled": true,
+   "ruling": "_WIN32: desktop branch; the Switch build compiles the other branch of this conditional (built with __SWITCH__, neither _WIN32 nor __linux__)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_control.cpp",
+   "line": 330,
+   "category": "thread_time",
+   "tokens": [
+    "std::thread"
+   ],
+   "compiled": true,
+   "ruling": "std::thread: std::thread on libnx pthread; default-size threads get 8 MiB (src/switch/thread_stack.c); lifetime: socket control server: never started on the Switch (PS2X_CONTROL / PS2X_HIDDEN refused by nxrun.cfg; commands run in process through ps2control::submit)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_hle_survey.cpp",
+   "line": 57,
+   "category": "thread_time",
+   "tokens": [
+    "steady_clock"
+   ],
+   "compiled": true,
+   "ruling": "steady_clock: std::chrono::steady_clock: newlib clock_gettime(CLOCK_MONOTONIC) on the libnx system tick; portable, monotonic (pacing, timeouts, statistics)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_host_std.cpp",
+   "line": 10,
+   "category": "desktop_os",
+   "tokens": [
+    "windows.h"
+   ],
+   "compiled": true,
+   "ruling": "windows.h: desktop branch; the Switch build compiles the other branch of this conditional (built with __SWITCH__, neither _WIN32 nor __linux__)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_host_std.cpp",
+   "line": 24,
+   "category": "thread_time",
+   "tokens": [
+    "steady_clock"
+   ],
+   "compiled": true,
+   "ruling": "steady_clock: std::chrono::steady_clock: newlib clock_gettime(CLOCK_MONOTONIC) on the libnx system tick; portable, monotonic (pacing, timeouts, statistics)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_host_std.cpp",
+   "line": 31,
+   "category": "thread_time",
+   "tokens": [
+    "steady_clock"
+   ],
+   "compiled": true,
+   "ruling": "steady_clock: std::chrono::steady_clock: newlib clock_gettime(CLOCK_MONOTONIC) on the libnx system tick; portable, monotonic (pacing, timeouts, statistics)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_host_std.cpp",
+   "line": 35,
+   "category": "thread_time",
+   "tokens": [
+    "steady_clock"
+   ],
+   "compiled": true,
+   "ruling": "steady_clock: std::chrono::steady_clock: newlib clock_gettime(CLOCK_MONOTONIC) on the libnx system tick; portable, monotonic (pacing, timeouts, statistics)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_host_std.cpp",
+   "line": 38,
+   "category": "thread_time",
+   "tokens": [
+    "condition_variable"
+   ],
+   "compiled": true,
+   "ruling": "condition_variable: std::condition_variable on libnx condvars; waits are bounded or woken at shutdown (see the std::thread sites)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_host_std.cpp",
+   "line": 40,
+   "category": "thread_time",
+   "tokens": [
+    "condition_variable"
+   ],
+   "compiled": true,
+   "ruling": "condition_variable: std::condition_variable on libnx condvars; waits are bounded or woken at shutdown (see the std::thread sites)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_iop_host.cpp",
+   "line": 20,
+   "category": "desktop_os",
+   "tokens": [
+    "_WIN32"
+   ],
+   "compiled": true,
+   "ruling": "_WIN32: desktop branch; the Switch build compiles the other branch of this conditional (built with __SWITCH__, neither _WIN32 nor __linux__)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_iop_host.cpp",
+   "line": 348,
+   "category": "desktop_os",
+   "tokens": [
+    "_WIN32"
+   ],
+   "compiled": true,
+   "ruling": "_WIN32: desktop branch; the Switch build compiles the other branch of this conditional (built with __SWITCH__, neither _WIN32 nor __linux__)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_iop_host.cpp",
+   "line": 419,
+   "category": "desktop_os",
+   "tokens": [
+    "_WIN32"
+   ],
+   "compiled": true,
+   "ruling": "_WIN32: desktop branch; the Switch build compiles the other branch of this conditional (built with __SWITCH__, neither _WIN32 nor __linux__)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_memory.cpp",
+   "line": 339,
+   "category": "thread_time",
+   "tokens": [
+    "thread_local"
+   ],
+   "compiled": true,
+   "ruling": "thread_local: TLS: devkitA64/libnx thread pointer (M02-09 measured TLS on hardware)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_memory.cpp",
+   "line": 378,
+   "category": "thread_time",
+   "tokens": [
+    "thread_local"
+   ],
+   "compiled": true,
+   "ruling": "thread_local: TLS: devkitA64/libnx thread pointer (M02-09 measured TLS on hardware)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_perf.cpp",
+   "line": 67,
+   "category": "thread_time",
+   "tokens": [
+    "thread_local"
+   ],
+   "compiled": true,
+   "ruling": "thread_local: TLS: devkitA64/libnx thread pointer (M02-09 measured TLS on hardware)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_perf.cpp",
+   "line": 119,
+   "category": "desktop_os",
+   "tokens": [
+    "_WIN32"
+   ],
+   "compiled": true,
+   "ruling": "_WIN32: desktop branch; the Switch build compiles the other branch of this conditional (built with __SWITCH__, neither _WIN32 nor __linux__)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_render_worker.cpp",
+   "line": 9,
+   "category": "thread_time",
+   "tokens": [
+    "condition_variable"
+   ],
+   "compiled": true,
+   "ruling": "condition_variable: std::condition_variable on libnx condvars; waits are bounded or woken at shutdown (see the std::thread sites)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_render_worker.cpp",
+   "line": 40,
+   "category": "thread_time",
+   "tokens": [
+    "condition_variable"
+   ],
+   "compiled": true,
+   "ruling": "condition_variable: std::condition_variable on libnx condvars; waits are bounded or woken at shutdown (see the std::thread sites)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_render_worker.cpp",
+   "line": 41,
+   "category": "thread_time",
+   "tokens": [
+    "condition_variable"
+   ],
+   "compiled": true,
+   "ruling": "condition_variable: std::condition_variable on libnx condvars; waits are bounded or woken at shutdown (see the std::thread sites)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_render_worker.cpp",
+   "line": 46,
+   "category": "thread_time",
+   "tokens": [
+    "std::thread"
+   ],
+   "compiled": true,
+   "ruling": "std::thread: std::thread on libnx pthread; default-size threads get 8 MiB (src/switch/thread_stack.c); lifetime: render worker and GS threads: ps2_render_worker::shutdown() in runEnd joins them"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_render_worker.cpp",
+   "line": 54,
+   "category": "thread_time",
+   "tokens": [
+    "steady_clock"
+   ],
+   "compiled": true,
+   "ruling": "steady_clock: std::chrono::steady_clock: newlib clock_gettime(CLOCK_MONOTONIC) on the libnx system tick; portable, monotonic (pacing, timeouts, statistics)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_render_worker.cpp",
+   "line": 65,
+   "category": "thread_time",
+   "tokens": [
+    "thread_local"
+   ],
+   "compiled": true,
+   "ruling": "thread_local: TLS: devkitA64/libnx thread pointer (M02-09 measured TLS on hardware)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_render_worker.cpp",
+   "line": 66,
+   "category": "thread_time",
+   "tokens": [
+    "thread_local"
+   ],
+   "compiled": true,
+   "ruling": "thread_local: TLS: devkitA64/libnx thread pointer (M02-09 measured TLS on hardware)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_render_worker.cpp",
+   "line": 104,
+   "category": "thread_time",
+   "tokens": [
+    "condition_variable"
+   ],
+   "compiled": true,
+   "ruling": "condition_variable: std::condition_variable on libnx condvars; waits are bounded or woken at shutdown (see the std::thread sites)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_render_worker.cpp",
+   "line": 106,
+   "category": "thread_time",
+   "tokens": [
+    "std::thread"
+   ],
+   "compiled": true,
+   "ruling": "std::thread: std::thread on libnx pthread; default-size threads get 8 MiB (src/switch/thread_stack.c); lifetime: render worker and GS threads: ps2_render_worker::shutdown() in runEnd joins them"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_render_worker.cpp",
+   "line": 118,
+   "category": "thread_time",
+   "tokens": [
+    "condition_variable"
+   ],
+   "compiled": true,
+   "ruling": "condition_variable: std::condition_variable on libnx condvars; waits are bounded or woken at shutdown (see the std::thread sites)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_render_worker.cpp",
+   "line": 224,
+   "category": "thread_time",
+   "tokens": [
+    "std::thread"
+   ],
+   "compiled": true,
+   "ruling": "std::thread: std::thread on libnx pthread; default-size threads get 8 MiB (src/switch/thread_stack.c); lifetime: render worker and GS threads: ps2_render_worker::shutdown() in runEnd joins them"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_render_worker.cpp",
+   "line": 334,
+   "category": "thread_time",
+   "tokens": [
+    "std::thread"
+   ],
+   "compiled": true,
+   "ruling": "std::thread: std::thread on libnx pthread; default-size threads get 8 MiB (src/switch/thread_stack.c); lifetime: render worker and GS threads: ps2_render_worker::shutdown() in runEnd joins them"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_runtime.cpp",
+   "line": 46,
+   "category": "thread_time",
+   "tokens": [
+    "condition_variable"
+   ],
+   "compiled": true,
+   "ruling": "condition_variable: std::condition_variable on libnx condvars; waits are bounded or woken at shutdown (see the std::thread sites)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_runtime.cpp",
+   "line": 132,
+   "category": "thread_time",
+   "tokens": [
+    "thread_local"
+   ],
+   "compiled": true,
+   "ruling": "thread_local: TLS: devkitA64/libnx thread pointer (M02-09 measured TLS on hardware)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_runtime.cpp",
+   "line": 537,
+   "category": "thread_time",
+   "tokens": [
+    "condition_variable"
+   ],
+   "compiled": true,
+   "ruling": "condition_variable: std::condition_variable on libnx condvars; waits are bounded or woken at shutdown (see the std::thread sites)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_runtime.cpp",
+   "line": 1026,
+   "category": "thread_time",
+   "tokens": [
+    "steady_clock"
+   ],
+   "compiled": true,
+   "ruling": "steady_clock: std::chrono::steady_clock: newlib clock_gettime(CLOCK_MONOTONIC) on the libnx system tick; portable, monotonic (pacing, timeouts, statistics)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_runtime.cpp",
+   "line": 2139,
+   "category": "thread_time",
+   "tokens": [
+    "steady_clock"
+   ],
+   "compiled": true,
+   "ruling": "steady_clock: std::chrono::steady_clock: newlib clock_gettime(CLOCK_MONOTONIC) on the libnx system tick; portable, monotonic (pacing, timeouts, statistics)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_runtime.cpp",
+   "line": 2160,
+   "category": "thread_time",
+   "tokens": [
+    "fesetround"
+   ],
+   "compiled": true,
+   "ruling": "fesetround: FPCR rounding mode per thread on AArch64 (FE_TOWARDZERO exists); VU rounding verified in M02-07"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_runtime.cpp",
+   "line": 2175,
+   "category": "thread_time",
+   "tokens": [
+    "fesetround"
+   ],
+   "compiled": true,
+   "ruling": "fesetround: FPCR rounding mode per thread on AArch64 (FE_TOWARDZERO exists); VU rounding verified in M02-07"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_runtime.cpp",
+   "line": 2177,
+   "category": "thread_time",
+   "tokens": [
+    "fesetround"
+   ],
+   "compiled": true,
+   "ruling": "fesetround: FPCR rounding mode per thread on AArch64 (FE_TOWARDZERO exists); VU rounding verified in M02-07"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_runtime.cpp",
+   "line": 3156,
+   "category": "thread_time",
+   "tokens": [
+    "std::thread"
+   ],
+   "compiled": true,
+   "ruling": "std::thread: std::thread on libnx pthread; default-size threads get 8 MiB (src/switch/thread_stack.c); lifetime: game thread: created by runBegin, joined by runEnd (overlay 0007); screenshot PNG writer: detached, only on a screenshot request (none on the Switch boot path: no keyboard, schedule sends none)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_runtime.cpp",
+   "line": 3214,
+   "category": "thread_time",
+   "tokens": [
+    "steady_clock"
+   ],
+   "compiled": true,
+   "ruling": "steady_clock: std::chrono::steady_clock: newlib clock_gettime(CLOCK_MONOTONIC) on the libnx system tick; portable, monotonic (pacing, timeouts, statistics)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_runtime.cpp",
+   "line": 3217,
+   "category": "desktop_os",
+   "tokens": [
+    "_WIN32"
+   ],
+   "compiled": true,
+   "ruling": "_WIN32: desktop branch; the Switch build compiles the other branch of this conditional (built with __SWITCH__, neither _WIN32 nor __linux__)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_runtime.cpp",
+   "line": 3218,
+   "category": "desktop_os",
+   "tokens": [
+    "windows.h"
+   ],
+   "compiled": true,
+   "ruling": "windows.h: desktop branch; the Switch build compiles the other branch of this conditional (built with __SWITCH__, neither _WIN32 nor __linux__)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_runtime.cpp",
+   "line": 3365,
+   "category": "thread_time",
+   "tokens": [
+    "std::thread"
+   ],
+   "compiled": true,
+   "ruling": "std::thread: std::thread on libnx pthread; default-size threads get 8 MiB (src/switch/thread_stack.c); lifetime: game thread: created by runBegin, joined by runEnd (overlay 0007); screenshot PNG writer: detached, only on a screenshot request (none on the Switch boot path: no keyboard, schedule sends none)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_vif1_interpreter.cpp",
+   "line": 348,
+   "category": "thread_time",
+   "tokens": [
+    "thread_local"
+   ],
+   "compiled": true,
+   "ruling": "thread_local: TLS: devkitA64/libnx thread pointer (M02-09 measured TLS on hardware)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_write_watch.cpp",
+   "line": 17,
+   "category": "desktop_os",
+   "tokens": [
+    "_WIN32"
+   ],
+   "compiled": true,
+   "ruling": "_WIN32: desktop branch; the Switch build compiles the other branch of this conditional (built with __SWITCH__, neither _WIN32 nor __linux__)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_write_watch.cpp",
+   "line": 20,
+   "category": "desktop_os",
+   "tokens": [
+    "windows.h"
+   ],
+   "compiled": true,
+   "ruling": "windows.h: desktop branch; the Switch build compiles the other branch of this conditional (built with __SWITCH__, neither _WIN32 nor __linux__)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_write_watch.cpp",
+   "line": 21,
+   "category": "desktop_os",
+   "tokens": [
+    "__linux__"
+   ],
+   "compiled": true,
+   "ruling": "__linux__: desktop branch; the Switch build compiles the other branch of this conditional (built with __SWITCH__, neither _WIN32 nor __linux__)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_write_watch.cpp",
+   "line": 50,
+   "category": "desktop_os",
+   "tokens": [
+    "mmap"
+   ],
+   "compiled": true,
+   "ruling": "mmap: desktop branch; the Switch build compiles the other branch of this conditional (built with __SWITCH__, neither _WIN32 nor __linux__)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_write_watch.cpp",
+   "line": 63,
+   "category": "desktop_os",
+   "tokens": [
+    "mmap"
+   ],
+   "compiled": true,
+   "ruling": "mmap: desktop branch; the Switch build compiles the other branch of this conditional (built with __SWITCH__, neither _WIN32 nor __linux__)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_write_watch.cpp",
+   "line": 66,
+   "category": "desktop_os",
+   "tokens": [
+    "mmap"
+   ],
+   "compiled": true,
+   "ruling": "mmap: desktop branch; the Switch build compiles the other branch of this conditional (built with __SWITCH__, neither _WIN32 nor __linux__)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_write_watch.cpp",
+   "line": 69,
+   "category": "desktop_os",
+   "tokens": [
+    "mmap"
+   ],
+   "compiled": true,
+   "ruling": "mmap: desktop branch; the Switch build compiles the other branch of this conditional (built with __SWITCH__, neither _WIN32 nor __linux__)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_write_watch.cpp",
+   "line": 145,
+   "category": "thread_time",
+   "tokens": [
+    "steady_clock"
+   ],
+   "compiled": true,
+   "ruling": "steady_clock: std::chrono::steady_clock: newlib clock_gettime(CLOCK_MONOTONIC) on the libnx system tick; portable, monotonic (pacing, timeouts, statistics)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_write_watch.cpp",
+   "line": 168,
+   "category": "desktop_os",
+   "tokens": [
+    "_WIN32"
+   ],
+   "compiled": true,
+   "ruling": "_WIN32: desktop branch; the Switch build compiles the other branch of this conditional (built with __SWITCH__, neither _WIN32 nor __linux__)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_write_watch.cpp",
+   "line": 181,
+   "category": "desktop_os",
+   "tokens": [
+    "_WIN32"
+   ],
+   "compiled": true,
+   "ruling": "_WIN32: desktop branch; the Switch build compiles the other branch of this conditional (built with __SWITCH__, neither _WIN32 nor __linux__)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_write_watch.cpp",
+   "line": 184,
+   "category": "desktop_os",
+   "tokens": [
+    "VirtualAlloc"
+   ],
+   "compiled": true,
+   "ruling": "VirtualAlloc: desktop branch; the Switch build compiles the other branch of this conditional (built with __SWITCH__, neither _WIN32 nor __linux__)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_write_watch.cpp",
+   "line": 195,
+   "category": "desktop_os",
+   "tokens": [
+    "VirtualAlloc"
+   ],
+   "compiled": true,
+   "ruling": "VirtualAlloc: desktop branch; the Switch build compiles the other branch of this conditional (built with __SWITCH__, neither _WIN32 nor __linux__)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_write_watch.cpp",
+   "line": 222,
+   "category": "desktop_os",
+   "tokens": [
+    "_WIN32"
+   ],
+   "compiled": true,
+   "ruling": "_WIN32: desktop branch; the Switch build compiles the other branch of this conditional (built with __SWITCH__, neither _WIN32 nor __linux__)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_write_watch.cpp",
+   "line": 252,
+   "category": "desktop_os",
+   "tokens": [
+    "_WIN32"
+   ],
+   "compiled": true,
+   "ruling": "_WIN32: desktop branch; the Switch build compiles the other branch of this conditional (built with __SWITCH__, neither _WIN32 nor __linux__)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/vu/ps2_vu1_core.cpp",
+   "line": 39,
+   "category": "thread_time",
+   "tokens": [
+    "thread_local"
+   ],
+   "compiled": true,
+   "ruling": "thread_local: TLS: devkitA64/libnx thread pointer (M02-09 measured TLS on hardware)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/vu/ps2_vu1_core.cpp",
+   "line": 40,
+   "category": "thread_time",
+   "tokens": [
+    "thread_local"
+   ],
+   "compiled": true,
+   "ruling": "thread_local: TLS: devkitA64/libnx thread pointer (M02-09 measured TLS on hardware)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/vu/ps2_vu1_core.cpp",
+   "line": 1186,
+   "category": "thread_time",
+   "tokens": [
+    "fesetround"
+   ],
+   "compiled": true,
+   "ruling": "fesetround: FPCR rounding mode per thread on AArch64 (FE_TOWARDZERO exists); VU rounding verified in M02-07"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/vu/ps2_vu1_core.cpp",
+   "line": 1194,
+   "category": "thread_time",
+   "tokens": [
+    "fesetround"
+   ],
+   "compiled": true,
+   "ruling": "fesetround: FPCR rounding mode per thread on AArch64 (FE_TOWARDZERO exists); VU rounding verified in M02-07"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/vu/ps2_vu1_core.cpp",
+   "line": 1923,
+   "category": "thread_time",
+   "tokens": [
+    "thread_local"
+   ],
+   "compiled": true,
+   "ruling": "thread_local: TLS: devkitA64/libnx thread pointer (M02-09 measured TLS on hardware)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/vu/ps2_vu1_core.cpp",
+   "line": 1924,
+   "category": "thread_time",
+   "tokens": [
+    "thread_local"
+   ],
+   "compiled": true,
+   "ruling": "thread_local: TLS: devkitA64/libnx thread pointer (M02-09 measured TLS on hardware)"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/vu/ps2_vu1_core.cpp",
+   "line": 2375,
+   "category": "thread_time",
+   "tokens": [
+    "fesetround"
+   ],
+   "compiled": true,
+   "ruling": "fesetround: FPCR rounding mode per thread on AArch64 (FE_TOWARDZERO exists); VU rounding verified in M02-07"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/lib/vu/ps2_vu1_core.cpp",
+   "line": 2795,
+   "category": "thread_time",
+   "tokens": [
+    "fesetround"
+   ],
+   "compiled": true,
+   "ruling": "fesetround: FPCR rounding mode per thread on AArch64 (FE_TOWARDZERO exists); VU rounding verified in M02-07"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/main.cpp",
+   "line": 30,
+   "category": "thread_time",
+   "tokens": [
+    "std::thread"
+   ],
+   "compiled": false,
+   "ruling": "the runtime's own runner main: not built"
+  },
+  {
+   "file": "third_party/PS2Recomp/ps2xRuntime/src/main.cpp",
+   "line": 61,
+   "category": "thread_time",
+   "tokens": [
+    "std::thread"
+   ],
+   "compiled": false,
+   "ruling": "the runtime's own runner main: not built"
+  }
+ ]
+}

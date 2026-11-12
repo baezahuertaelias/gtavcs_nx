@@ -62,6 +62,9 @@ int runRunConfigTests()
     check(rejects("profile ../x\n", "profile needs"), "unsafe profile");
     check(rejects("env HOME=/x\n", "env needs"), "env outside VCS_/PS2X_");
     check(rejects("env VCS_x=1\n", "env needs"), "lower-case env name");
+    check(rejects("env PS2X_CONTROL=1\n", "env needs"), "socket control channel refused");
+    check(rejects("env PS2X_HIDDEN=1\n", "env needs"), "hidden mode refused");
+    check(rejects("env VCS_DATA_DIR=/x\n", "env needs"), "data folder override refused");
     check(rejects("seconds 0\n", "seconds needs"), "seconds below range");
     check(rejects("seconds -5\n", "seconds needs"), "negative seconds");
     check(rejects("seconds 1e9\n", "seconds needs"), "exponent refused");

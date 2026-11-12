@@ -106,7 +106,7 @@ def inside(args, log):
         return
     out = Path("/work") / PRIVATE.relative_to(ROOT)
     out.mkdir(parents=True, exist_ok=True)
-    for name in ("gtavcs.nro", "gtavcs.map", "gtavcs.elf"):
+    for name in ("gtavcs.nro", "gtavcs.map", "gtavcs.elf", "compile_commands.json"):
         shutil.copyfile(build / name, out / name)
     linkmap = (build / "gtavcs.map").read_text(errors="replace")
     manifest = {

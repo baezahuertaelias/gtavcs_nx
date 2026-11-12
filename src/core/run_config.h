@@ -4,7 +4,8 @@
 // limit or control-channel queries puts them in this file; without it the game starts as a player's normal run.
 // One directive per line, '#' starts a comment:
 //   profile <name>          GamePaths test profile: settings, cache, cards and backups under userdata/tests/<name>
-//   env <NAME>=<value>      an environment override for this run (NAME starts with VCS_ or PS2X_)
+//   env <NAME>=<value>      an environment override for this run (NAME starts with VCS_ or PS2X_; not the desktop
+//                           control socket PS2X_CONTROL / _PORT, PS2X_HIDDEN or VCS_DATA_DIR)
 //   seconds <n>             stop in an orderly way after n seconds of frames (1..86400)
 //   report <n>              progress counters to the log every n seconds (1..3600; default 5)
 //   at <seconds> <command>  a control-channel command (runtime/ps2_control.h) at that time; answers are logged
