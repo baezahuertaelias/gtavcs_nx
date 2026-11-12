@@ -27,6 +27,7 @@ int runSchedulerWorkload();
 int runGuestDispatchTests();
 int runCompiledVuTests();
 int runIopDirectoryBoundsTests();
+int runFolderDiscTests();
 #ifdef NX_EXTENDED_CPU_TESTS
 int runPackedIntegerTests();
 int runFloatTests();
@@ -59,6 +60,7 @@ static int runSuites() {
     failures+=runGuestDispatchTests();
     failures+=runCompiledVuTests();
     failures+=runIopDirectoryBoundsTests();
+    failures+=runFolderDiscTests();
 #ifdef NX_EXTENDED_CPU_TESTS
     failures+=runPackedIntegerTests();
     failures+=runFloatTests();

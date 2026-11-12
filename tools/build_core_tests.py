@@ -20,7 +20,7 @@ ROOT = Path(__file__).resolve().parents[1]
 VOLUME = "gtavcs-nx-m02-core"
 LOGS = ROOT / "build/evidence/M02/public-build"
 BUNDLE = ROOT / "build/m02/test-bundle"
-PUBLIC_NROS = ("gtavcs_cpu_tests", "gtavcs_runtime_tests")
+PUBLIC_NROS = ("gtavcs_cpu_tests", "gtavcs_runtime_tests", "gtavcs_disc_tests")
 BUNDLE_NAMES = {name + ".nro" for name in PUBLIC_NROS} | {
     "manifest.json", "LICENSE.SSE2NEON.txt", "LICENSE.UPSTREAM.txt", "LICENSE.PS2RECOMP.txt"}
 UPSTREAM_PATHS = (
@@ -30,7 +30,7 @@ UPSTREAM_PATHS = (
     "src/rhi/rhi.cpp", "src/rhi/null/rhi_null.cpp", "src/render/presenter.h",
     "src/render/gs_shaders.h", "src/debug/watch.cpp", "tools/vu1_recomp.py")
 PORT_PATHS = ("cmake/core-tests", "cmake/runtime", "cmake/CPUOptions.cmake",
-              "src/core_tests", "src/compat", "tests/core", "tools/core-dependencies.json")
+              "src/core_tests", "src/compat", "src/vfs", "tests/core", "tools/core-dependencies.json")
 TOOL_PATHS = ("tools/build_core_tests.py", "tools/build_switch.py", "tools/upstream_overlay.py",
               "tools/inspect_cpu.py", "tools/generate_vu_test_fixture.py", "Dockerfile.switch",
               "docs/milestones/M01/package-lock.txt", "patches/upstream")
@@ -166,7 +166,8 @@ def inside(manifest_path, log):
     snapshot({"sse2neon.h": manifest["dependency"]["header_sha256"]}, dep_source, deps)
     inspections = {}
     for project, stem, title in (("core-tests", PUBLIC_NROS[0], "GTA VCS NX - CPU tests"),
-                                 ("runtime", PUBLIC_NROS[1], "GTA VCS NX - Runtime tests")):
+                                 ("runtime", PUBLIC_NROS[1], "GTA VCS NX - Runtime tests"),
+                                 ("runtime", PUBLIC_NROS[2], "GTA VCS NX - Disc tests")):
         build = cache / project
         options = ["-DCMAKE_TOOLCHAIN_FILE=/opt/devkitpro/cmake/Switch.cmake", "-DCMAKE_BUILD_TYPE=Release",
                    f"-DVCS_UPSTREAM_DIR={upstream}", f"-DSSE2NEON_INCLUDE_DIR={deps}"]

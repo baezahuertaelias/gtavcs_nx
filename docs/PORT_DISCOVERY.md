@@ -69,20 +69,20 @@ creating two platform contexts, or advancing guest execution from audio pulls.
 | SDL setup | platform::init/shutdown/ready/nativeWindow/windowHidden | New platform_switch_sdl2 implementation, one SDL/window/GL owner; M01/M04 |
 | Window placement | findDisplay/placeWindow/currentPlacement/notePlacement/reportPlacement/setFullscreen | Keep valid target semantics without X11/Win32 monitor persistence; M04 |
 | Vulkan window callbacks | vulkanInstanceExtensions/vulkanCreateSurface | Unused in Switch GL path, retain desktop interface behavior; M04/M05 |
-| Controller acquisition | openGamepad/snapshotGamepad/pumpEvents, gamepadConnected/Button/Axis/Name/Rumble | SDL2 GameController replacement plus synchronized snapshot; M04/M07 |
-| Keyboard/mouse | scanKeys/keyDown/keyPressed/mouseDown/mousePosition/setMouseCaptured/takeMouseMotion | Safe unsupported-device behavior and controller menu/camera alternatives; M07 |
-| UI frame | beginFrame/endUiFrame, settings/trainer draw callbacks | Existing ImGui context + SDL2 event backend + RHI renderer; M05/M09 |
+| Controller acquisition | openGamepad/snapshotGamepad/pumpEvents, gamepadConnected/Button/Axis/Name/Rumble | SDL2 GameController replacement plus synchronized snapshot; M04/M13 |
+| Keyboard/mouse | scanKeys/keyDown/keyPressed/mouseDown/mousePosition/setMouseCaptured/takeMouseMotion | Safe unsupported-device behavior and controller menu/camera alternatives; M13 |
+| UI frame | beginFrame/endUiFrame, settings/trainer draw callbacks | Existing ImGui context + SDL2 event backend + RHI renderer; M05/M08 |
 | Frame clock | setFrameRate/displayRefreshHz/delayPrecise/waitNextFrame/setFrameLead | SDL2 performance counters/libnx-compatible waits with guest timing intact; M04/M10 |
 | Dimensions/focus | windowSize/windowFocused | Drawable pixels, lifecycle state and resize notifications; M01/M04/M06 |
-| Audio device | audioAvailable/audioOpen/audioClose/audioCallback | SDL2 stream conversion + audren-owned SDL output, bounded worker/ring; M08 |
+| Audio device | audioAvailable/audioOpen/audioClose/audioCallback | SDL2 stream conversion + audren-owned SDL output, bounded worker/ring; M07 |
 | Diagnostics | writePng, debug crash/watchdog/profiler/rig | Preserve useful captures/timestamps/control, gate desktop facilities; M04/M10 |
-| Guest pad | vcs::input::install/registerSettings/onHostFrame, ps2_pad.cpp | Existing bindings/DS2 report preserved, physical Switch mapping; M07 |
-| Game sound | vcs_sound.cpp, libsd.cpp, vcs_volume.cpp, ps2_audio_out.cpp | Preserve SPU2/native timing and real PCM; M08 |
+| Guest pad | vcs::input::install/registerSettings/onHostFrame, ps2_pad.cpp | Existing bindings/DS2 report preserved, physical Switch mapping; M13 |
+| Game sound | vcs_sound.cpp, libsd.cpp, vcs_volume.cpp, ps2_audio_out.cpp | Preserve SPU2/native timing and real PCM; M07 |
 | GPU interface | rhi::createDevice, Device virtuals, null/Vulkan/D3D11 backends | Implement new OpenGL backend instead of API renaming; M05 |
 | Native scene | vcs_hle_world.cpp, vcs_rsl_world.cpp, GS/VIF/VU code | Resource upload/render submission/streaming and numeric equivalence; M02/M06 |
-| Presentation | presenter.cpp, vcs_display.cpp, vcs_hud.cpp | Render scale vs output, aspect/culling, HUD/text/menus; M06, widescreen M12 |
-| Movies | vcs_movie.cpp, decoder dependencies | Target decoder, PSS video/audio synchronization and lifecycle; M08 |
-| Settings/saves | settings.cpp, runtime mc/file I/O, upstream backups | gamefolder-relative persistence, safe replacement/backup/order; M03/M09/M15 |
+| Presentation | presenter.cpp, vcs_display.cpp, vcs_hud.cpp | Render scale vs output, aspect/culling, HUD/text/menus; M06, widescreen M09 |
+| Movies | vcs_movie.cpp, decoder dependencies | Target decoder, PSS video/audio synchronization and lifecycle; M07 |
+| Settings/saves | settings.cpp, runtime mc/file I/O, upstream backups | gamefolder-relative persistence, safe replacement/backup/order; M03/M08/M14 |
 
 Every detected function has a file and source span in the inventory. This table
 assigns ownership families, not blanket instructions to rewrite thousands of
@@ -167,7 +167,7 @@ Upstream source/docs identify DTZ as compressed GTAG memory image and LVZ as
 compressed WRLD images; most IMG content is streamed by the guest/native world
 code rather than a generic GTA3 VER2 archive reader. DO NOT guess an archive
 format from its extension. M03 must enumerate format-supported members/records,
-map relocation/streaming dependencies and private content hashes. M06/M08 then
+map relocation/streaming dependencies and private content hashes. M06/M07 then
 verify actual model/texture/animation/mission/audio use. This M00 pass inventories
 every ISO-directory entry, not every object hidden inside compressed archives.
 
@@ -177,7 +177,7 @@ Target: official devkitA64/Switch CMake + libnx + packaged SDL2 + Mesa GL/EGL/
 nouveau + GLAD. Root uses cross pkg-config/static archives. Do not link stock
 Vulkan/NVN or host Ubuntu SDL/FFmpeg. The game later needs target-compatible
 zlib, ImGui and movie decoding dependencies; exact closure/version/license lock
-is M01/M02/M08 work, not resolved by the scaffold.
+is M01/M02/M07 work, not resolved by the scaffold.
 
 Upstream SDL3/ImGui/zlib, Vulkan headers/volk/VMA and shader host tools are declared
 in platform/RHI/render CMake files. Preserve desktop dependencies on desktop.

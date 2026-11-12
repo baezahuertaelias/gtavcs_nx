@@ -1,0 +1,122 @@
+{
+  "failures": [],
+  "files": 341,
+  "formats": {
+    "90": {
+      "bytes": 3993368,
+      "checked": 1,
+      "files": 1,
+      "owner": "recompiled executable; identity checked by SHA-1"
+    },
+    "BIN": {
+      "bytes": 7008,
+      "checked": 0,
+      "files": 1,
+      "owner": "native sound driver lookup"
+    },
+    "CNF": {
+      "bytes": 57,
+      "checked": 0,
+      "files": 1,
+      "owner": "boot metadata"
+    },
+    "DIR": {
+      "bytes": 4704,
+      "checked": 1,
+      "files": 1,
+      "members": 147,
+      "owner": "guest code; index for its IMG"
+    },
+    "DTZ": {
+      "bytes": 2195056,
+      "checked": 1,
+      "files": 1,
+      "inflated_bytes": 6591952,
+      "owner": "guest code; upstream may inflate natively, the guest relocates the GTAG image"
+    },
+    "GXT": {
+      "bytes": 3783072,
+      "checked": 6,
+      "files": 6,
+      "owner": "guest code; text tables",
+      "tables": 522
+    },
+    "ICO": {
+      "bytes": 49990,
+      "checked": 0,
+      "files": 1,
+      "owner": "guest code; save icon written to the memory card"
+    },
+    "IMG": {
+      "bytes": 629851025,
+      "checked": 6,
+      "files": 6,
+      "header": {
+        "no self-describing header": 4,
+        "romfs": 1,
+        "xet raster": 1
+      },
+      "owner": "guest streaming through sector reads; no generic archive reader",
+      "sector_aligned": {
+        "False": 1,
+        "True": 5
+      }
+    },
+    "IRX": {
+      "bytes": 277439,
+      "checked": 8,
+      "files": 8,
+      "owner": "IOP HLE; modules are identified, not executed as guest IOP code"
+    },
+    "LVZ": {
+      "bytes": 7765405,
+      "checked": 3,
+      "files": 3,
+      "inflated_bytes": 15105796,
+      "owner": "guest code; level WRLD image, inflated as for DTZ"
+    },
+    "PSP": {
+      "bytes": 170153,
+      "checked": 48,
+      "files": 48,
+      "owner": "guest code; frontend layouts despite the name"
+    },
+    "PSS": {
+      "bytes": 76414992,
+      "checked": 4,
+      "files": 4,
+      "owner": "native movie player"
+    },
+    "RAW": {
+      "bytes": 85709696,
+      "checked": 0,
+      "files": 68,
+      "owner": "native sound driver bank"
+    },
+    "SCM": {
+      "bytes": 1876562,
+      "checked": 0,
+      "files": 1,
+      "owner": "guest code; mission script"
+    },
+    "SDT": {
+      "bytes": 92652,
+      "checked": 68,
+      "files": 68,
+      "owner": "native sound driver table",
+      "sounds": 7721
+    },
+    "VB": {
+      "bytes": 1343324160,
+      "checked": 93,
+      "files": 93,
+      "owner": "native sound driver stream"
+    },
+    "XTX": {
+      "bytes": 5631124,
+      "checked": 30,
+      "files": 30,
+      "owner": "guest code; rasters uploaded through the GS path"
+    }
+  }
+}

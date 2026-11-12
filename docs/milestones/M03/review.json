@@ -1,0 +1,48 @@
+{
+  "milestone": "M03",
+  "candidate_commit": "55abaca2e2cfbd4606cda5b26ff4e8ffc48b2af6",
+  "verdict": "APPROVE",
+  "reviewer_id": "session_01VDqa6VKVNeSD8c6udanqW3/m03_independent_review_7",
+  "independent": true,
+  "unresolved_findings": [],
+  "checks": [
+    "Earlier independent reviews of M03 requested changes; the seventh, fresh reviewer reviewed this candidate after M03-12 and M03-13 were reopened for the sixth review and completed again.",
+    "git rev-parse HEAD equals the candidate; git status --short empty before and after review.",
+    "Read AGENTS.md, upstream/AGENTS.md, the M03, M04-08, M04-13 and M14-02 tasks in MILESTONES.md and every docs/milestones/M03 file (TASKS, VERIFICATION, HARDWARE_RESULTS, SCOPE_DECISIONS, FORMATS, evidence.json, format_coverage.json).",
+    "git log main..55abaca lists 27 commits and git diff --stat main...55abaca lists 31 files; git diff --stat 4d597da 55abaca changes only M03 documents, MILESTONES.md and evidence.json, none of which is a payload input.",
+    "Full source review of src/vfs/folder_disc.{h,cpp}, src/vfs/game_paths.{h,cpp}, src/core_tests/disc_main.cpp and the checks in tests/core/folder_disc_tests.cpp.",
+    "FolderDisc compared with upstream vcs::IsoImage (normalizePath, indexDirectory, readBytes, totalSectors), the MappedDisc adapter in main.cpp and IPS2DiscImage callers (Support.h registerCdFile, ps2_vfs.cpp, ps2_iop_host.cpp, Dir.cpp sceDopen, vcs_sound.cpp).",
+    "LBA and size come from manifest records; gaps and file padding read as zeros; non-file data comes from raw.bin; a read starting at or past the end fails and zero-fills as IsoImage does; directory listings keep on-disc order with upper-case leaf names.",
+    "Path normalization: cdrom0: (any case), backslashes and repeated separators normalized and a ;N version stripped; . and .. components, other device prefixes, : and ; inside a component and control bytes rejected.",
+    "Concurrency: 8-slot least-recently-used pool, busy-slot wait on a condition variable, no shared seek position, no eviction of a busy slot; shutdown limited to harness-owned threads, with upstream stream-reader join carried into M04-08.",
+    "Manifest checks reviewed: extents past the end, wrap past 2^64, second sector count, overlaps, out-of-order raw data, wrong sizes, missing files, hash format, duplicate paths and parentless entries; mod rules accept same-size regular files only and verifyFiles hashes the disc copy.",
+    "SHA-256 checked against known answers in the suite and, on Switch, against libnx sha256CalculateHash in the hardware log.",
+    "rootedGamePath and resolveGamePaths: sdmc: stripped, only rooted paths accepted, .., other devices and backslashes refused, test profile name validated.",
+    "Upstream citations verified: MemoryCard.cpp:1035, :1784 (rename), :1372, :1936 (remove_all); settings.cpp:105 (rename); CD.cpp:351 (sceCdBreak), :689 (sceCdStop); iop_cdvd.cpp:289-292 no-op success.",
+    "MILESTONES.md carries every moved item: M04-13 remove_all/rename replacements, settings/card routing, ELF SHA-1 and verifyFiles as a user option; M04-08 stream reader stop order; M14-02 live BEACH/MALL loads.",
+    "Recomputed every hash in build/evidence/M03 and found it equal to the documents: disc log 1d223dc1, runtime log 0c06b23f, bundle manifest 1d4f5c65 (root_commit 4d597da, root_dirty false, NRO hashes 17e0c529 and 3caf464f), synthetic sanitized f6da013b and optimized 55044756 (commit 4d597da, sources_dirty=False, exit 0), disc-compare 12f1451b, host-verify 9a142ade, tee-steps 79808175, tee-reads 90030b28.",
+    "Both 4d597da transcripts: SD payload read-back matches the local file; crash-report listings before and after identical (130 entries); tests_pass=True and session end ok=True.",
+    "Disc log without [resources] lines is byte-identical to the log printed in HARDWARE_RESULTS.md; runtime log shows 337/337, the folder-disc PASS line and finished failures=0 exactly once.",
+    "disc-compare at 27274a3 still covers the current src/vfs: only a comment in game_paths.h changed there up to the candidate.",
+    "tools/switch_m03_session.py passes a run only if finished failures=0 appears exactly once, the payload read-back matches and the crash listing is unchanged.",
+    "Non-blocking notes: wait_log in tools/switch_m03_session.py:137-143 drops FTP polling errors silently and needs three equal readings, not the two HARDWARE_RESULTS.md describes; FolderDisc::normalize deliberately refuses an empty or non-numeric ; version that upstream IsoImage accepts (keep in mind for M04-13); desktop folder-only run still reads MAIN.SCM through the unopened IsoImage and sets paths.cdImage to (none), both M04-13 Switch boot work; the 8 (+1) handle bound holds by construction and was not counted on hardware."
+  ],
+  "limitations": [
+    "No Switch access in review; M03-12 and M03-13 hardware claims rest on retained transcripts, logs, bundle manifest and hashes in build/evidence/M03, which is outside Git, so document hashes are the only tie to the commits.",
+    "The synthetic FolderDisc/GamePaths suite (tools/run_folder_disc_tests.py) and disc_compare were not rebuilt or rerun: Docker Desktop's Linux engine was stopped and the Windows host has no C++ compiler; retained logs were checked by hash and content.",
+    "The desktop live tee and folder-only game runs were not repeated; their logs were inspected.",
+    "The claim that no image is opened on desktop rests on the code patch; no file-access trace was recorded.",
+    "The runtime log is byte-identical to earlier sessions' logs; its link to the 4d597da payload rests on the payload hash and the transcript's archive and delete of the old log before launch.",
+    "Switch boot from the folder, runtime use of the userdata paths, live BEACH/MALL loads, upstream remove_all/rename uses and stream-reader shutdown order are not proven by M03; under recorded user decisions they belong to M04-08, M04-13 and M14-02."
+  ],
+  "observed_test_results": [
+    "python tools/validate_project.py: PASS foundation: 179 unique tasks, 16 milestones, inventory consistency, source paths and tracked-artifact policy; exit 0.",
+    "python -m unittest discover -s tools -p test_*.py: Ran 28 tests, OK.",
+    "python -m unittest tools.test_extract_disc -v: 11 tests, all ok.",
+    "python tools/milestone_gate.py M03: PASS M03: eligible to request independent review.",
+    "python tools/disc_formats.py gamefolder: 341 files, 17 formats, 0 failures; output byte-identical to docs/milestones/M03/format_coverage.json.",
+    "python tools/extract_disc.py verify gamefolder --iso: PASS rebuilt disc sha256 981259b841fb2567b06d3c6e16deeb955a2c935526b9ce8d2862bc455d8a7740.",
+    "python upstream/tools/vcs_disc.py check: ok: GTA: Vice City Stories - SLUS-21590 (USA) v1.00.",
+    "gh pr checks 4 at 55abaca: foundation, cross-build, public-cpu-runtime and GitGuardian pass; milestone-review failed only because docs/milestones/M03/review.json was absent."
+  ]
+}

@@ -13,7 +13,9 @@ def main():
     plan = (ROOT / "docs/MILESTONES.md").read_text(encoding="utf-8")
     tasks = re.findall(r"^- \[[ xX]\] (M\d{2}-\d{2})\b", plan, re.M)
     if len(tasks) != len(set(tasks)): errors.append("Duplicate milestone task IDs")
-    for i in range(12):
+    milestones = sorted(set(re.findall(r"^## (M\d{2}) ", plan, re.M)))
+    if milestones != [f"M{i:02d}" for i in range(16)]: errors.append("Milestones must be exactly M00-M15")
+    for i in range(16):
         milestone = f"M{i:02d}"
         if not any(task.startswith(milestone + "-") for task in tasks): errors.append(f"No tasks for {milestone}")
         if len(re.findall(r"^Branch: `milestone/[^`]+` <!-- " + milestone + " -->$", plan, re.M)) != 1:
@@ -57,7 +59,7 @@ def main():
     if errors:
         print("FAIL\n" + "\n".join(errors))
         return 1
-    print(f"PASS foundation: {len(tasks)} unique tasks, 12 milestones, inventory consistency, source paths and tracked-artifact policy")
+    print(f"PASS foundation: {len(tasks)} unique tasks, 16 milestones, inventory consistency, source paths and tracked-artifact policy")
     return 0
 
 

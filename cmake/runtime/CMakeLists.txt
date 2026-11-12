@@ -97,6 +97,9 @@ if(NX_RUNTIME_TESTS)
         "${PORT_ROOT}/tests/core/guest_dispatch_tests.cpp"
         "${PORT_ROOT}/tests/core/compiled_vu_tests.cpp"
         "${PORT_ROOT}/tests/core/iop_directory_bounds_tests.cpp"
+        "${PORT_ROOT}/tests/core/folder_disc_tests.cpp"
+        "${PORT_ROOT}/src/vfs/folder_disc.cpp"
+        "${PORT_ROOT}/src/vfs/game_paths.cpp"
         "${PORT_ROOT}/src/core_tests/runtime_main.cpp")
     runtime_cpu_options(gtavcs_runtime_tests)
     target_include_directories(gtavcs_runtime_tests PRIVATE "${test_root}/include"
@@ -132,6 +135,22 @@ if(NX_RUNTIME_TESTS)
         target_link_libraries(nx_ps2_runtime PUBLIC ws2_32)
         target_link_options(gtavcs_runtime_tests PRIVATE -static -Wl,--stack,8388608)
     endif()
+endif()
+
+if(NX_RUNTIME_TESTS AND NINTENDO_SWITCH)
+    add_executable(gtavcs_disc_tests "${PORT_ROOT}/src/core_tests/disc_main.cpp"
+        "${PORT_ROOT}/src/vfs/folder_disc.cpp" "${PORT_ROOT}/src/vfs/game_paths.cpp"
+        "${PORT_ROOT}/src/core_tests/heap.cpp")
+    runtime_cpu_options(gtavcs_disc_tests)
+    target_include_directories(gtavcs_disc_tests PRIVATE "${runtime}/include")
+    target_link_libraries(gtavcs_disc_tests PRIVATE nx m)
+    target_link_options(gtavcs_disc_tests PRIVATE
+        "-Wl,-Map,${CMAKE_CURRENT_BINARY_DIR}/gtavcs_disc_tests.map")
+    set_target_properties(gtavcs_disc_tests PROPERTIES SUFFIX ".elf")
+    nx_generate_nacp(OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/gtavcs_disc_tests.nacp"
+        NAME "GTA VCS NX - Disc tests" AUTHOR "gtavcs_nx contributors" VERSION "0.3.0")
+    nx_create_nro(gtavcs_disc_tests OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/gtavcs_disc_tests.nro"
+        NACP "${CMAKE_CURRENT_BINARY_DIR}/gtavcs_disc_tests.nacp")
 endif()
 
 set(NX_PRIVATE_GENERATED_ARCHIVE "" CACHE FILEPATH "Private EE/VU archive; never used by source CI")
