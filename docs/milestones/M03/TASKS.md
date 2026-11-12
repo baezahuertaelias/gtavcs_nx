@@ -66,7 +66,8 @@ They are private disc data and stay in `gamefolder/.nxdisc/raw.bin`.
 - [x] `resolveGamePaths` puts settings, cache, cards and card backups under `gamefolder/userdata`, and needs an existing asset root.
 - [x] A test profile puts all of them under `userdata/tests/<name>`; unsafe profile names are refused.
 - [x] Runtime use of these paths moved to M04-13 (user decision 2026-11-12, [SCOPE_DECISIONS.md](SCOPE_DECISIONS.md)).
-- [x] `rootedGamePath` strips `sdmc:`, keeps rooted and relative paths, refuses other devices and `..`.
+- [ ] `rootedGamePath` strips `sdmc:` and accepts only rooted paths: cwd-relative ones are refused, since a relative `std::filesystem::remove_all` silently did nothing on the Switch (fifth review, medium finding).
+- [ ] Rooted `std::filesystem` create, list, `remove_all` and `exists` proven on hardware.
 - [x] `sdmc:` behaviour proven on hardware (M03-12).
 
 ## M03-11 — Mods and failures
@@ -78,6 +79,7 @@ They are private disc data and stay in `gamefolder/.nxdisc/raw.bin`.
 ## M03-12 — Hardware
 
 - [x] Whole-disc digest through `FolderDisc` on the SD card.
+- [ ] Final disc session rerun with FTP reachability logged, so the earlier 496 s settle is explained or bounded.
 - [x] Verify mode run over the whole tree on the SD card with no problem reported, on payloads that include it (`c8856a7`, 59.0 s).
 - [x] SD case behaviour, concurrent reads, handle bound.
 - [x] Clean shutdown during pending reads.

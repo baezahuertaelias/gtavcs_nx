@@ -205,8 +205,8 @@ mods, settings and saves resolve to the intended roots without a runtime ISO.
 - [x] M03-09 Remove runtime ISO discovery/staging dependency; resolve required ELF/data staging under gamefolder without shipping it in the NRO. Switch boot-path use moved to M04-13 by user decision 2026-11-12 (M03/SCOPE_DECISIONS.md).
 - [x] M03-10 Route configuration/cache/test saves separately under gamefolder/userdata; preserve memory-card directory/file metadata and backups. Runtime use of these paths with Switch proof moved to M04-13 by user decision 2026-11-12 (M03/SCOPE_DECISIONS.md).
 - [x] M03-11 Define supported mod overlay precedence/root validation and verify missing/corrupt assets produce actionable logs with safe failure.
-- [x] M03-12 Verify SD case/path behavior, bounded file-handle/cache use and clean shutdown during pending reads on hardware.
-- [x] M03-13 Pass only rooted or cwd-relative paths into runtime std::filesystem code and test that a device-prefixed `sdmc:` value cannot produce a cwd-doubled path (M02 hardware finding).
+- [ ] M03-12 Verify SD case/path behavior, bounded file-handle/cache use and clean shutdown during pending reads on hardware.
+- [ ] M03-13 Pass only rooted or cwd-relative paths into runtime std::filesystem code and test that a device-prefixed `sdmc:` value cannot produce a cwd-doubled path (M02 hardware finding).
 
 Proof: extractor validation, metadata coverage, sampled and recorded-trace byte
 comparisons, no-ISO runtime test, corrupt/missing asset and cancellation tests.
