@@ -61,6 +61,26 @@
       "result": "Real Switch: 4 concurrent readers, 4,800 random 64 KiB reads consistent; readers stopped and disc closed during pending reads in 21.3 ms"
     }
   ],
+  "M03-08": [
+    {
+      "path": "docs/milestones/M03/VERIFICATION.md",
+      "result": "Live tee during boot, flyover, cutscene, gameplay, teleports and AI drive: 416 reads, 69.7 MB, 601 lookups, 0 mismatches; all 341 files byte-compared, 0 failures"
+    },
+    {
+      "path": "docs/milestones/M03/SCOPE_DECISIONS.md",
+      "result": "Live BEACH/MALL level loads unreachable from an empty card; moved to M14-02 by explicit user decision 2026-11-12"
+    }
+  ],
+  "M03-09": [
+    {
+      "path": "docs/milestones/M03/VERIFICATION.md",
+      "result": "Desktop game reaches gameplay with VCS_FOLDER_ONLY: no image opened, ELF from the extracted tree, no staging or NRO embedding"
+    },
+    {
+      "path": "docs/milestones/M03/SCOPE_DECISIONS.md",
+      "result": "Switch boot-path use moved to new task M04-13 by explicit user decision 2026-11-12"
+    }
+  ],
   "M03-10": [
     {
       "path": "docs/milestones/M03/TASKS.md",

@@ -52,13 +52,13 @@ They are private disc data and stay in `gamefolder/.nxdisc/raw.bin`.
 
 - [x] Boot, movies, cutscene, mainland and common streaming, radio music: 0 live mismatches.
 - [x] All 341 files, boundaries, unaligned and random reads against the real image: 0 failures.
-- [ ] Live `BEACH` and `MALL` level loads. Not reached by the scenario; covered only by byte comparison. M06 play exercises them.
+- [x] Live `BEACH` and `MALL` level loads moved to M14-02 (user decision 2026-11-12, [SCOPE_DECISIONS.md](SCOPE_DECISIONS.md)). Byte comparison covers the files here.
 
 ## M03-09 — No ISO
 
 - [x] The game reaches gameplay on desktop with no image opened.
 - [x] ELF comes from the extracted tree; no staging or NRO embedding.
-- [ ] Switch boot path uses it. M04 owns that code.
+- [x] Switch boot path use moved to M04-13 (user decision 2026-11-12, [SCOPE_DECISIONS.md](SCOPE_DECISIONS.md)).
 
 ## M03-10, M03-13 — Paths
 

@@ -82,7 +82,7 @@ coverage or mission playability.
 | Milestone | State |
 |---|---|
 | M00 discovery, M01 platform smoke, M02 ARM64 core | Reviewed and merged; M02's CPU suites passed 337/337 on a real Switch |
-| M03 folder disc | Active on `milestone/m03-folder-vfs`. Desktop proof done; M03-12 hardware session, hardware part of M03-13 and live BEACH/MALL loads open |
+| M03 folder disc | All tasks done on `milestone/m03-folder-vfs`, including the Switch session of 2026-11-12; live BEACH/MALL loads moved to M14-02 and Switch boot from the folder to M04-13 by user decision |
 | Root build | Still the M01 platform stub: blue screen and silence. No game code runs in the NRO |
 
 ## Execution order
