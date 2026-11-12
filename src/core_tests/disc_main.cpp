@@ -58,32 +58,41 @@ void writeByte(const std::string &path) {
 
 // Which std::filesystem calls work on the SD card, one at a time. A relative remove_all did
 // nothing here (c5903d1) and a rooted one failed with EIO (27274a3), so each step is recorded.
-// Only what the port relies on is checked: create, list, file removal and rmdir.
+// Only create, list, file and empty-directory removal and rmdir are checked; rename onto an
+// existing file (upstream's settings and card writes) and remove_all are recorded for M04-13.
 void fsProbe(const std::string &base,const char *label,bool required) {
     namespace fs=std::filesystem;
-    const std::string tree=base+"/fs-probe",sub=tree+"/sub",file=sub+"/f.bin";
-    std::remove(file.c_str()); rmdir(sub.c_str()); rmdir(tree.c_str()); // leftovers of earlier runs
+    const std::string tree=base+"/fs-probe",sub=tree+"/sub",file=sub+"/f.bin",empty=tree+"/empty";
+    const std::string from=tree+"/from.tmp",to=tree+"/to.bin";
+    for(const std::string *path : {&file,&from,&to}) std::remove(path->c_str()); // leftovers of earlier runs
+    rmdir(sub.c_str()); rmdir(empty.c_str()); rmdir(tree.c_str());
     std::error_code code;
-    const bool made=fs::create_directories(sub,code);
+    const bool made=fs::create_directories(sub,code) && fs::create_directory(empty,code);
     writeByte(file);
     size_t listed=0;
     for(const auto &entry : fs::recursive_directory_iterator(tree,code)) { (void)entry; ++listed; }
-    std::error_code fileCode,dirCode,allCode;
+    std::error_code fileCode,dirCode,renameCode,allCode;
     const bool fileRemoved=fs::remove(file,fileCode);
     const bool dirRemoved=fs::remove(sub,dirCode);
-    const int rmdirResult=dirRemoved ? 0 : rmdir(sub.c_str());
+    const int rmdirResult=rmdir(empty.c_str());
     const int rmdirErrno=rmdirResult ? errno : 0;
+    writeByte(from); writeByte(to);
+    fs::rename(from,to,renameCode);
+    struct stat info{};
+    const bool renamed=!renameCode && stat(from.c_str(),&info)!=0 && stat(to.c_str(),&info)==0;
+    std::remove(from.c_str()); std::remove(to.c_str());
     fs::create_directories(sub,code);
     writeByte(file);
     const auto all=fs::remove_all(tree,allCode);
-    struct stat info{};
     const bool fileLeft=stat(file.c_str(),&info)==0,subLeft=stat(sub.c_str(),&info)==0,treeLeft=stat(tree.c_str(),&info)==0;
-    std::remove(file.c_str()); rmdir(sub.c_str()); rmdir(tree.c_str());
+    std::remove(file.c_str()); rmdir(sub.c_str()); rmdir(empty.c_str()); rmdir(tree.c_str());
     std::printf("[fs-probe] %s created=%d listed=%zu remove_file=%d/%d remove_empty_dir=%d/%d rmdir=%d/%d "
-        "remove_all=%lld/%d left=file:%d,sub:%d,tree:%d\n",label,made,listed,fileRemoved,fileCode.value(),dirRemoved,
-        dirCode.value(),rmdirResult,rmdirErrno,static_cast<long long>(all),allCode.value(),fileLeft,subLeft,treeLeft);
+        "rename_over_existing=%d/%d remove_all=%lld/%d left=file:%d,sub:%d,tree:%d\n",label,made,listed,fileRemoved,
+        fileCode.value(),dirRemoved,dirCode.value(),rmdirResult,rmdirErrno,renamed,renameCode.value(),
+        static_cast<long long>(all),allCode.value(),fileLeft,subLeft,treeLeft);
     if(required)
-        check(made && listed==2 && fileRemoved && rmdirResult==0,"rooted create, list, file remove and rmdir work");
+        check(made && listed==3 && fileRemoved && dirRemoved && rmdirResult==0,
+              "rooted create, list, file and empty-directory removal and rmdir work");
 }
 
 void checkPaths() {

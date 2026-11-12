@@ -35,8 +35,8 @@ void makeDirectory(const std::string &path) {
 #endif
 }
 
-// The mods checkMods creates, removed one by one: std::filesystem::remove_all on a relative path
-// silently left them in place on the Switch, so a stale mod changed later reads.
+// The mods checkMods creates, removed one by one: std::filesystem::remove_all fails on the Switch
+// whatever the path (EIO, M03 hardware probe), and once left a stale mod that changed later reads.
 bool removeMods(const std::string &root) {
     const std::string mods=root+"/mods";
     for(const char *file : {"/F0.BIN","/SUB/F1.BIN"}) std::remove((mods+file).c_str());
