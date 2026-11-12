@@ -278,6 +278,7 @@ void checkRejections(Fixture &fixture) {
     checkManifest(fixture,"raw offset","R\t2\t4\t0","R\t2\t4\t2048","out of order");
     checkManifest(fixture,"wrapping file extent","F\t8\t","F\t18446744073709551615\t","past the end");
     checkManifest(fixture,"wrapping raw extent","R\t2\t4\t0","R\t18446744073709551615\t4\t0","invalid raw extent");
+    checkManifest(fixture,"second sector count","R\t2\t4\t0","R\t2\t4\t0\nsectors\t10","duplicate sector count");
     expect(writeFile(fixture.root+"/.nxdisc/manifest.tsv",fixture.manifest.data(),fixture.manifest.size()),"restore manifest");
     expect(writeFile(fixture.root+"/.nxdisc/raw.bin",fixture.raw.data(),fixture.raw.size()-1),"truncate raw");
     expect(loadFails(fixture.root,"wrong size"),"truncated raw data");
@@ -301,6 +302,6 @@ int runFolderDiscTests() {
     disc.reset(); // releases open handles so the later cases can change files
     checkMods(fixture); checkCorruption(fixture); checkEmptyFiles(fixture); checkGamePaths(fixture);
     checkRejections(fixture);
-    if(!failures) std::puts("PASS folder disc: paths, listing, whole-image and unaligned reads, end of disc, 4 readers over 12 files, mods, corrupted file, empty files, game paths, 15 rejected layouts");
+    if(!failures) std::puts("PASS folder disc: paths, listing, whole-image and unaligned reads, end of disc, 4 readers over 12 files, mods, corrupted file, empty files, game paths, 16 rejected layouts");
     return failures;
 }

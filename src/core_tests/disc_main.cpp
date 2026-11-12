@@ -51,10 +51,12 @@ std::string manifestValue(const char *key) {
 
 void checkPaths() {
     GamePaths paths; std::string error;
-    const bool resolved=resolveGamePaths(kDeviceRoot,paths,error);
+    // A test profile: the harness never writes into the player's userdata.
+    const bool resolved=resolveGamePaths(kDeviceRoot,paths,error,"m03-disc");
     check(resolved,"resolve device-prefixed game folder");
     if(!resolved) { std::printf("  %s\n",error.c_str()); return; }
     check(paths.root=="/switch/gtavcs_nx/gamefolder","game folder rooted");
+    check(paths.cache=="/switch/gtavcs_nx/gamefolder/userdata/tests/m03-disc/cache","test profile keeps the player's userdata untouched");
     namespace fs=std::filesystem;
     check(fs::path(paths.mc0).is_absolute(),"rooted path is absolute to std::filesystem");
     check(!fs::path(kDeviceRoot).is_absolute(),"device path is the known relative case");
@@ -63,7 +65,7 @@ void checkPaths() {
     fs::remove(probe,code);
     { std::FILE *file=std::fopen(probe.c_str(),"w"); if(file) { std::fputs("x",file); std::fclose(file); } }
     check(fs::exists(fs::path(probe),code),"std::filesystem finds a rooted file");
-    std::FILE *viaDevice=std::fopen((std::string(kDeviceRoot)+"/userdata/cache/path-check.tmp").c_str(),"r");
+    std::FILE *viaDevice=std::fopen((std::string(kDeviceRoot)+"/userdata/tests/m03-disc/cache/path-check.tmp").c_str(),"r");
     check(viaDevice!=nullptr,"same file reached through the device path");
     if(viaDevice) std::fclose(viaDevice);
     fs::remove(probe,code);

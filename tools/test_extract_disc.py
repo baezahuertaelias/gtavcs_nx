@@ -25,7 +25,7 @@ def record(lba, size, name, directory):
     return bytes(data)
 
 
-def build_iso(path, tail=b"", name_b="B.BIN;1", overlap=False, root_extra=b""):
+def build_iso(path, tail=b"", name_b="B.BIN;1", overlap=False, root_extra=b"", root_first=False):
     image = bytearray(60 * SECTOR)
     pvd = 16 * SECTOR
     image[pvd] = 1
@@ -33,8 +33,11 @@ def build_iso(path, tail=b"", name_b="B.BIN;1", overlap=False, root_extra=b""):
     image[pvd + 40:pvd + 72] = b"TESTDISC".ljust(32)
     image[pvd + 156:pvd + 190] = record(ROOT_LBA, SECTOR, "\x00", True)[:34].ljust(34, b"\0")
     root = record(ROOT_LBA, SECTOR, "\x00", True) + record(ROOT_LBA, SECTOR, "\x01", True)
+    if root_first:
+        root += root_extra
     root += record(FILE_A, 3000, "A.BIN;1", False) + record(SUB_LBA, SECTOR, "SUB", True)
-    root += root_extra
+    if not root_first:
+        root += root_extra
     image[ROOT_LBA * SECTOR:ROOT_LBA * SECTOR + len(root)] = root
     lba_b = FILE_A + 1 if overlap else FILE_B
     sub = record(SUB_LBA, SECTOR, "\x00", True) + record(ROOT_LBA, SECTOR, "\x01", True)
@@ -90,6 +93,18 @@ class ExtractDiscTests(unittest.TestCase):
         build_iso(self.iso, tail=b"\x01")
         with self.assertRaisesRegex(extract_disc.DiscError, "Non-zero padding"):
             extract_disc.extract(self.iso, self.dest, identity=accept)
+        self.assertFalse(self.dest.exists())
+
+    def test_empty_files_hold_no_sectors_in_any_order(self):
+        # Zero-length files sharing A.BIN's first sector and inside its span, before and after it in the walk.
+        for extra in (record(FILE_A, 0, "Y.BIN;1", False), record(FILE_A + 1, 0, "Z.BIN;1", False)):
+            for first in (True, False):
+                with self.subTest(extra=extra[33:40], first=first):
+                    build_iso(self.iso, root_extra=extra, root_first=first)
+                    dest = self.root / f"out-{len(list(self.root.iterdir()))}"
+                    report = extract_disc.extract(self.iso, dest, identity=accept)
+                    self.assertEqual(report["files"], 3)
+                    self.assertEqual(extract_disc.verify(dest, self.iso), report["iso_sha256"])
 
     def test_rejects_overlapping_files(self):
         build_iso(self.iso, overlap=True)

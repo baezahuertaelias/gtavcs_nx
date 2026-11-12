@@ -64,8 +64,13 @@ def layout(image):
 
 
 def file_extents(files, total):
+    """A zero-length file holds no sectors, so it cannot overlap anything (as in FolderDisc)."""
     position = 0
     for entry in sorted(files, key=lambda item: item["lba"]):
+        if entry["size"] == 0:
+            if entry["lba"] > total:
+                raise DiscError(f"File extent past the end of the disc: {entry['path']}")
+            continue
         if entry["lba"] < position:
             raise DiscError(f"Overlapping file extent at {entry['path']}")
         position = entry["lba"] + sectors_of(entry["size"])
@@ -142,11 +147,14 @@ def extract(iso, dest, replace=False, identity=check):
     file_extents(files, total)
     dest = Path(dest)
     check_targets(dest, files, replace)
+    with open(iso, "rb") as handle:
+        # Every refusal happens before anything is written.
+        for entry in files:
+            tail_must_be_zero(handle, entry)
     meta = dest / META
     meta.mkdir(parents=True, exist_ok=True)
     with open(iso, "rb") as handle:
         for entry in files:
-            tail_must_be_zero(handle, entry)
             target = dest / entry["path"]
             target.parent.mkdir(parents=True, exist_ok=True)
             entry["sha256"] = write_atomic(target, read_range(handle, entry["lba"] * SECTOR, entry["size"]))
@@ -195,7 +203,13 @@ def parse_manifest(dest):
 def rebuilt_digest(dest, fields, files, raw):
     """Hash the whole disc as the folder form presents it."""
     dest = Path(dest)
-    spans = [(f["lba"], sectors_of(f["size"]), f) for f in files] + [(lba, count, offset) for lba, count, offset in raw]
+    for empty in (f for f in files if f["size"] == 0):
+        path = dest / empty["path"]
+        if not path.is_file() or path.stat().st_size or hashlib.sha256().hexdigest() != empty["sha256"]:
+            raise DiscError(f"File differs from the manifest: {empty['path']}")
+    # Zero-length files hold no sectors and take no part in the order, as in FolderDisc.
+    spans = [(f["lba"], sectors_of(f["size"]), f) for f in files if f["size"]]
+    spans += [(lba, count, offset) for lba, count, offset in raw]
     whole, position = hashlib.sha256(), 0
     zero = bytes(SECTOR)
     with open(dest / META / "raw.bin", "rb") as raw_handle:

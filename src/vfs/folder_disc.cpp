@@ -185,6 +185,11 @@ bool FolderDisc::parseManifest(const std::string &root, std::string &error)
             {
                 return fail("invalid sector count");
             }
+            if (m_totalSectors != 0)
+            {
+                // Earlier entries were checked against the first count.
+                return fail("duplicate sector count");
+            }
             m_totalSectors = static_cast<uint32_t>(sectors);
         }
         else if ((fields[0] == "D" || fields[0] == "F") && fields.size() == 5)

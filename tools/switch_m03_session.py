@@ -11,6 +11,7 @@ import argparse
 import ftplib
 import hashlib
 import os
+import re
 from pathlib import Path
 import subprocess
 import sys
@@ -177,13 +178,17 @@ def run(session):
         return False
     time.sleep(3)
     fetch(session, f"{SD}/{LOG}", session.evidence / LOG)
+    text = (session.evidence / LOG).read_text(encoding="utf-8", errors="replace")
+    finished = re.findall(r"finished failures=(\d+)", text)
+    passed = len(finished) == 1 and finished[0] == "0"
+    session.say(f"log finished failures={finished[0] if finished else 'missing'} tests_pass={passed}")
     actual = fetch(session, f"{SD}/{PAYLOAD}", session.evidence / "sd-readback.tmp")
     (session.evidence / "sd-readback.tmp").unlink()
     session.say(f"payload sd_matches_local={actual == expected}")
     crashes = record(session, "/atmosphere/crash_reports", "crash-after.txt")
     session.say(f"new_crash_entries={sorted(set(crashes) - set(baseline))}")
     record(session, SD + "/gamefolder", "gamefolder-after.txt")
-    return actual == expected and crashes == baseline
+    return passed and actual == expected and crashes == baseline
 
 
 def main():

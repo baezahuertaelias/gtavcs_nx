@@ -117,13 +117,9 @@ def blocks(path, _):
     return {}
 
 
-def raw_bank(path, _):
-    return {}
-
-
 CHECKS = {
     "DTZ": (inflated, b"GATG"), "LVZ": (inflated, b"DLRW"), "GXT": (gxt, None), "SDT": (sound_table, None),
-    "DIR": (mocap_index, None), "IMG": (img, None), "VB": (blocks, None), "RAW": (raw_bank, None),
+    "DIR": (mocap_index, None), "IMG": (img, None), "VB": (blocks, None),
     "PSS": (magic_check(b"\0\0\1\xba", "not an MPEG program stream"), None),
     "XTX": (magic_check(b"xet\0", "missing xet magic"), None),
     "IRX": (magic_check(b"\x7fELF", "not an ELF module"), None),
