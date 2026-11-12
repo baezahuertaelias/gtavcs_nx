@@ -25,7 +25,7 @@ def record(lba, size, name, directory):
     return bytes(data)
 
 
-def build_iso(path, tail=b"", name_b="B.BIN;1", overlap=False):
+def build_iso(path, tail=b"", name_b="B.BIN;1", overlap=False, root_extra=b""):
     image = bytearray(60 * SECTOR)
     pvd = 16 * SECTOR
     image[pvd] = 1
@@ -34,6 +34,7 @@ def build_iso(path, tail=b"", name_b="B.BIN;1", overlap=False):
     image[pvd + 156:pvd + 190] = record(ROOT_LBA, SECTOR, "\x00", True)[:34].ljust(34, b"\0")
     root = record(ROOT_LBA, SECTOR, "\x00", True) + record(ROOT_LBA, SECTOR, "\x01", True)
     root += record(FILE_A, 3000, "A.BIN;1", False) + record(SUB_LBA, SECTOR, "SUB", True)
+    root += root_extra
     image[ROOT_LBA * SECTOR:ROOT_LBA * SECTOR + len(root)] = root
     lba_b = FILE_A + 1 if overlap else FILE_B
     sub = record(SUB_LBA, SECTOR, "\x00", True) + record(ROOT_LBA, SECTOR, "\x01", True)
@@ -99,6 +100,12 @@ class ExtractDiscTests(unittest.TestCase):
         build_iso(self.iso, name_b="..;1")
         with self.assertRaisesRegex(extract_disc.DiscError, "Unsafe"):
             extract_disc.extract(self.iso, self.dest, identity=accept)
+
+    def test_rejects_names_differing_only_by_case(self):
+        build_iso(self.iso, root_extra=record(FILE_A, 3000, "a.bin;1", False))
+        with self.assertRaisesRegex(extract_disc.DiscError, "differ only by case"):
+            extract_disc.extract(self.iso, self.dest, identity=accept)
+        self.assertFalse(self.dest.exists())
 
     def test_detects_changed_file(self):
         build_iso(self.iso)

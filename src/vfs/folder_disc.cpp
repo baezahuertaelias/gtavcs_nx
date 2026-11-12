@@ -200,7 +200,7 @@ bool FolderDisc::parseManifest(const std::string &root, std::string &error)
                 return fail("invalid extent");
             }
             const uint64_t sectors = (size + kSectorSize - 1) / kSectorSize;
-            if (lba + sectors > m_totalSectors)
+            if (lba > m_totalSectors || sectors > m_totalSectors - lba)
             {
                 return fail("extent past the end of the disc");
             }
@@ -243,7 +243,7 @@ bool FolderDisc::parseManifest(const std::string &root, std::string &error)
         {
             uint64_t lba = 0, sectors = 0, offset = 0;
             if (!parseNumber(fields[1], lba) || !parseNumber(fields[2], sectors) || !parseNumber(fields[3], offset) ||
-                sectors == 0 || m_totalSectors == 0 || lba + sectors > m_totalSectors)
+                sectors == 0 || lba > m_totalSectors || sectors > m_totalSectors - lba)
             {
                 return fail("invalid raw extent");
             }
@@ -276,12 +276,16 @@ bool FolderDisc::finishExtents(const std::string &root, std::string &error)
     const bool mods = stat((root + "/mods").c_str(), &modsInfo) == 0 && S_ISDIR(modsInfo.st_mode);
     for (const Extent &extent : m_extents)
     {
-        if (extent.begin < position)
+        // A zero-length file holds no sectors, as in the extractor: it cannot overlap anything.
+        if (extent.end > extent.begin)
         {
-            error = "manifest extents overlap at sector " + std::to_string(extent.begin / kSectorSize);
-            return false;
+            if (extent.begin < position)
+            {
+                error = "manifest extents overlap at sector " + std::to_string(extent.begin / kSectorSize);
+                return false;
+            }
+            position = extent.end;
         }
-        position = extent.end;
         if (extent.file == kRawExtent)
         {
             if (extent.source != rawBytes)
@@ -317,6 +321,10 @@ bool FolderDisc::finishExtents(const std::string &root, std::string &error)
                         m_files[extent.file].hostPath = modPath;
                         ++m_modsApplied;
                     }
+                    else if (!S_ISREG(modInfo.st_mode))
+                    {
+                        m_warnings.push_back("ignored mod, not a regular file: " + modPath);
+                    }
                     else
                     {
                         m_warnings.push_back("ignored mod, size differs from the disc file: " + modPath);
@@ -325,6 +333,10 @@ bool FolderDisc::finishExtents(const std::string &root, std::string &error)
             }
         }
     }
+    // Reads find an extent by its start; empty extents would hide a file starting at the same sector.
+    m_extents.erase(std::remove_if(m_extents.begin(), m_extents.end(),
+                                   [](const Extent &extent) { return extent.end == extent.begin; }),
+                    m_extents.end());
     if (rawBytes > kMaxRawBytes)
     {
         error = "manifest raw extents are too large";

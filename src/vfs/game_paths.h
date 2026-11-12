@@ -10,8 +10,9 @@ struct GamePaths
     std::string userdata; // settings, cache and saves; never disc files
     std::string cache;
     std::string settings; // the settings file
-    std::string mc0;      // memory card roots
+    std::string mc0;      // memory card roots; the card layer keeps its order file and metadata inside
     std::string mc1;
+    std::string backups;  // the card layer's automatic card backups (upstream <data>/backups)
     std::string elf;      // the guest executable as extracted from the disc
 };
 
@@ -21,4 +22,6 @@ struct GamePaths
 bool rootedGamePath(std::string_view path, std::string &out);
 
 // Requires an existing asset root, and creates only the userdata folders inside it.
-bool resolveGamePaths(std::string_view root, GamePaths &out, std::string &error);
+// A non-empty testProfile (letters, digits, '-', '_') gives a test run its own settings, cache,
+// cards and backups under userdata/tests/<testProfile>, so tests never touch the player's saves.
+bool resolveGamePaths(std::string_view root, GamePaths &out, std::string &error, std::string_view testProfile = {});

@@ -143,17 +143,26 @@ void checkMods(const Fixture &fixture) {
     fillPattern(replacement.data(),replacement.size(),0xee);
     expect(writeFile(fixture.root+"/mods/F0.BIN",replacement.data(),replacement.size()),"write mod");
     expect(writeFile(fixture.root+"/mods/SUB/F1.BIN",replacement.data(),17),"write wrong-size mod");
+    makeDirectory(fixture.root+"/mods/F2.BIN");
     std::string error;
     auto disc=FolderDisc::load(fixture.root,error);
     if(!disc) { expect(false,"load with mods"); return; }
     expect(disc->modsApplied()==1,"one mod applied");
-    expect(disc->warnings().size()==1 && disc->warnings()[0].find("mods/SUB/F1.BIN")!=std::string::npos,"wrong-size mod refused by name");
+    const auto warned=[&](const char *text,const char *path) {
+        for(const std::string &warning : disc->warnings())
+            if(warning.find(text)!=std::string::npos && warning.find(path)!=std::string::npos) return true;
+        return false;
+    };
+    expect(disc->warnings().size()==2,"two mods refused");
+    expect(warned("size differs","mods/SUB/F1.BIN"),"wrong-size mod refused by name");
+    expect(warned("not a regular file","mods/F2.BIN"),"directory in place of a mod refused by name");
     std::vector<uint8_t> got(kSector);
     expect(disc->readBytes(8*kSector,kSector,got.data()) && got==replacement,"mod replaces the disc file");
     uint32_t lsn=0,size=0; bool directory=false;
     expect(disc->findFile("SUB/F1.BIN",lsn,size,directory),"refused mod leaves the disc file");
-    expect(disc->readBytes(uint64_t(lsn)*kSector,size,got.data()) &&
-        std::memcmp(got.data(),fixture.image.data()+uint64_t(lsn)*kSector,size)==0,"disc file still served");
+    std::vector<uint8_t> file(size);
+    expect(disc->readBytes(uint64_t(lsn)*kSector,size,file.data()) &&
+        std::memcmp(file.data(),fixture.image.data()+uint64_t(lsn)*kSector,size)==0,"disc file still served");
     disc.reset();
     std::error_code ignored;
     fs::remove_all(fixture.root+"/mods",ignored);
@@ -173,6 +182,29 @@ void checkCorruption(const Fixture &fixture) {
     expect(writeFile(fixture.root+"/F2.BIN",original,size),"restore file");
 }
 
+// Zero-length files hold no sectors: one inside the raw span and one sharing F0.BIN's sector, in either order.
+void checkEmptyFiles(const Fixture &fixture) {
+    expect(writeFile(fixture.root+"/EMPTY.BIN",nullptr,0) && writeFile(fixture.root+"/EMPTY2.BIN",nullptr,0),"write empty files");
+    const std::string first="D\t3\t2048\t-\tSUB\n";
+    const std::string empty="F\t4\t0\t-\tEMPTY.BIN\nF\t8\t0\t-\tEMPTY2.BIN\n";
+    for(int order=0;order<2;++order) {
+        std::string changed=fixture.manifest;
+        const size_t at=order ? changed.find("R\t") : changed.find(first)+first.size();
+        changed.insert(at,empty);
+        expect(writeFile(fixture.root+"/.nxdisc/manifest.tsv",changed.data(),changed.size()),"write manifest with empty files");
+        std::string error;
+        auto disc=FolderDisc::load(fixture.root,error);
+        if(!disc) { std::printf("FAIL folder disc: empty files order %d: %s\n",order,error.c_str()); ++failures; continue; }
+        uint32_t lsn=0,size=1; bool directory=true;
+        expect(disc->findFile("EMPTY2.BIN",lsn,size,directory) && lsn==8 && size==0 && !directory,"empty file found");
+        expect(rangeMatches(*disc,fixture,8*kSector,kSector) && rangeMatches(*disc,fixture,2*kSector,4*kSector),
+               "empty files hide no sectors");
+    }
+    expect(writeFile(fixture.root+"/.nxdisc/manifest.tsv",fixture.manifest.data(),fixture.manifest.size()),"restore manifest");
+    std::remove((fixture.root+"/EMPTY.BIN").c_str());
+    std::remove((fixture.root+"/EMPTY2.BIN").c_str());
+}
+
 void checkGamePaths(const Fixture &fixture) {
     std::string out;
     expect(rootedGamePath("sdmc:/switch/gtavcs_nx/gamefolder",out) && out=="/switch/gtavcs_nx/gamefolder","device stripped");
@@ -186,8 +218,17 @@ void checkGamePaths(const Fixture &fixture) {
     expect(paths.userdata==fixture.root+"/userdata" && paths.mc0==fixture.root+"/userdata/mc0" &&
         paths.settings==fixture.root+"/userdata/vcs.ini" && paths.elf==fixture.root+"/SLUS_215.90","layout");
     struct stat info{};
-    expect(stat(paths.mc1.c_str(),&info)==0 && S_ISDIR(info.st_mode) && stat(paths.cache.c_str(),&info)==0,"userdata folders created");
+    expect(stat(paths.mc1.c_str(),&info)==0 && S_ISDIR(info.st_mode) && stat(paths.cache.c_str(),&info)==0 &&
+        paths.backups==fixture.root+"/userdata/backups" && stat(paths.backups.c_str(),&info)==0,"userdata folders created");
     expect(resolveGamePaths(fixture.root,paths,error),"resolve is repeatable");
+    GamePaths test;
+    expect(resolveGamePaths(fixture.root,test,error,"m03-unit"),"resolve a test profile");
+    const std::string profile=fixture.root+"/userdata/tests/m03-unit";
+    expect(test.userdata==profile && test.mc0==profile+"/mc0" && test.mc1==profile+"/mc1" && test.cache==profile+"/cache" &&
+        test.settings==profile+"/vcs.ini" && test.backups==profile+"/backups" && test.elf==paths.elf,"test profile isolates every save path");
+    expect(stat(test.mc0.c_str(),&info)==0 && stat(test.backups.c_str(),&info)==0,"test profile folders created");
+    for(const char *bad : {"../x","a/b","a b","sdmc:x"})
+        expect(!resolveGamePaths(fixture.root,test,error,bad) && error.find("test profile")!=std::string::npos,bad);
 }
 
 bool loadFails(const std::string &root,const char *expected) {
@@ -222,6 +263,8 @@ void checkRejections(Fixture &fixture) {
     checkManifest(fixture,"duplicate","D\t3\t2048\t-\tSUB\n","D\t3\t2048\t-\tSUB\nD\t3\t2048\t-\tSUB\n","duplicate");
     checkManifest(fixture,"wrong size","F\t8\t2048\t","F\t8\t2047\t","wrong size");
     checkManifest(fixture,"raw offset","R\t2\t4\t0","R\t2\t4\t2048","out of order");
+    checkManifest(fixture,"wrapping file extent","F\t8\t","F\t18446744073709551615\t","past the end");
+    checkManifest(fixture,"wrapping raw extent","R\t2\t4\t0","R\t18446744073709551615\t4\t0","invalid raw extent");
     expect(writeFile(fixture.root+"/.nxdisc/manifest.tsv",fixture.manifest.data(),fixture.manifest.size()),"restore manifest");
     expect(writeFile(fixture.root+"/.nxdisc/raw.bin",fixture.raw.data(),fixture.raw.size()-1),"truncate raw");
     expect(loadFails(fixture.root,"wrong size"),"truncated raw data");
@@ -240,8 +283,8 @@ int runFolderDiscTests() {
     if(!disc) { std::printf("FAIL folder disc: load: %s\n",error.c_str()); return 1; }
     checkPaths(*disc); checkReads(*disc,fixture); checkConcurrent(*disc,fixture);
     disc.reset(); // releases open handles so the later cases can change files
-    checkMods(fixture); checkCorruption(fixture); checkGamePaths(fixture);
+    checkMods(fixture); checkCorruption(fixture); checkEmptyFiles(fixture); checkGamePaths(fixture);
     checkRejections(fixture);
-    if(!failures) std::puts("PASS folder disc: paths, listing, whole-image and unaligned reads, end of disc, 4 readers over 12 files, mods, corrupted file, game paths, 13 rejected layouts");
+    if(!failures) std::puts("PASS folder disc: paths, listing, whole-image and unaligned reads, end of disc, 4 readers over 12 files, mods, corrupted file, empty files, game paths, 15 rejected layouts");
     return failures;
 }

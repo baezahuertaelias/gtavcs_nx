@@ -60,8 +60,16 @@ bool rootedGamePath(std::string_view path, std::string &out)
     return true;
 }
 
-bool resolveGamePaths(std::string_view root, GamePaths &out, std::string &error)
+bool resolveGamePaths(std::string_view root, GamePaths &out, std::string &error, std::string_view testProfile)
 {
+    const bool profileOk = std::all_of(testProfile.begin(), testProfile.end(), [](char c)
+                                       { return (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || (c >= '0' && c <= '9') ||
+                                                c == '-' || c == '_'; });
+    if (!profileOk || testProfile.size() > 64)
+    {
+        error = "invalid test profile name: " + std::string(testProfile);
+        return false;
+    }
     std::string base;
     if (!rootedGamePath(root, base))
     {
@@ -75,12 +83,22 @@ bool resolveGamePaths(std::string_view root, GamePaths &out, std::string &error)
     }
     out.root = base;
     out.userdata = base + "/userdata";
+    if (!testProfile.empty())
+    {
+        if (!ensureDirectory(out.userdata) || !ensureDirectory(out.userdata + "/tests"))
+        {
+            error = "cannot create " + out.userdata + "/tests";
+            return false;
+        }
+        out.userdata += "/tests/" + std::string(testProfile);
+    }
     out.cache = out.userdata + "/cache";
     out.settings = out.userdata + "/vcs.ini";
     out.mc0 = out.userdata + "/mc0";
     out.mc1 = out.userdata + "/mc1";
+    out.backups = out.userdata + "/backups";
     out.elf = base + "/SLUS_215.90";
-    for (const std::string *path : {&out.userdata, &out.cache, &out.mc0, &out.mc1})
+    for (const std::string *path : {&out.userdata, &out.cache, &out.mc0, &out.mc1, &out.backups})
     {
         if (!ensureDirectory(*path))
         {
