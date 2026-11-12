@@ -64,6 +64,8 @@ int main(int argc,char **argv) {
         compare(iso,*folder,offset,static_cast<size_t>(std::min<uint64_t>(1u<<20,total-offset)),a,b);
     compare(iso,*folder,total-16,64,a,b);                                        // both must fail the same way
     compare(iso,*folder,total+4096,64,a,b);
+    for(const uint64_t offset : {uint64_t(10),total-1,total,total+4096})            // zero-length: only past the end fails
+        compare(iso,*folder,offset,0,a,b);
     std::printf("%s disc compare: files=%llu comparisons=%llu bytes=%llu failures=%llu\n",failures ? "FAIL" : "PASS",
         static_cast<unsigned long long>(files),static_cast<unsigned long long>(compared),static_cast<unsigned long long>(bytes),static_cast<unsigned long long>(failures));
     return failures ? 1 : 0;

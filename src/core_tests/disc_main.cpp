@@ -70,6 +70,18 @@ void checkPaths() {
     if(viaDevice) std::fclose(viaDevice);
     fs::remove(probe,code);
     check(!fs::exists(fs::path(kDeviceRoot)/"sdmc:",code),"no cwd-doubled device folder");
+    // The std::filesystem operations runtime code uses, on a rooted path: create, list,
+    // remove_all, exists. A cwd-relative remove_all silently did nothing here (c5903d1).
+    const fs::path tree=fs::path(paths.cache)/"fs-probe";
+    fs::remove_all(tree,code);
+    const bool made=fs::create_directories(tree/"sub",code);
+    { std::FILE *file=std::fopen((tree/"sub"/"f.bin").string().c_str(),"w"); if(file) { std::fputs("x",file); std::fclose(file); } }
+    size_t listed=0;
+    for(const auto &entry : fs::recursive_directory_iterator(tree,code)) { (void)entry; ++listed; }
+    const auto removed=fs::remove_all(tree,code);
+    std::printf("[fs-probe] created=%d listed=%zu removed=%llu error=%d exists_after=%d\n",made,listed,
+        static_cast<unsigned long long>(removed),code.value(),fs::exists(tree));
+    check(made && listed==2 && removed==3 && !fs::exists(tree),"rooted create, list, remove_all and exists work");
 }
 
 void checkCase(const FolderDisc &disc) {

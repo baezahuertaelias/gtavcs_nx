@@ -6,7 +6,7 @@
 
 struct GamePaths
 {
-    std::string root;     // the asset tree, rooted or cwd-relative
+    std::string root;     // the asset tree, rooted
     std::string userdata; // settings, cache and saves; never disc files
     std::string cache;
     std::string settings; // the settings file
@@ -17,8 +17,9 @@ struct GamePaths
 };
 
 // Paths handed to runtime std::filesystem code must not carry "sdmc:", which newlib's
-// std::filesystem treats as relative and joins onto the cwd. Strips that device, keeps
-// rooted and cwd-relative paths, and refuses other devices and ".." components.
+// std::filesystem treats as relative and joins onto the cwd. Strips that device and
+// accepts only rooted paths: a cwd-relative std::filesystem::remove_all silently did
+// nothing on the Switch (M03 hardware). Refuses other devices and ".." components.
 bool rootedGamePath(std::string_view path, std::string &out);
 
 // Requires an existing asset root, and creates only the userdata folders inside it.

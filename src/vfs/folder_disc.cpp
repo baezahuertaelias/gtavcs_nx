@@ -668,20 +668,24 @@ bool FolderDisc::readFile(uint32_t file, uint64_t offset, size_t count, uint8_t 
 
 bool FolderDisc::readBytes(uint64_t offset, size_t byteCount, void *destination) const
 {
-    if (byteCount == 0)
-    {
-        return true;
-    }
-    if (!destination)
+    if (byteCount != 0 && !destination)
     {
         return false;
     }
     uint8_t *out = static_cast<uint8_t *>(destination);
-    std::memset(out, 0, byteCount);
+    if (byteCount != 0)
+    {
+        std::memset(out, 0, byteCount);
+    }
+    // As vcs::IsoImage::readBytes: an offset at or past the end fails whatever the count.
     const uint64_t discBytes = uint64_t(m_totalSectors) * kSectorSize;
     if (offset >= discBytes)
     {
         return false;
+    }
+    if (byteCount == 0)
+    {
+        return true;
     }
     const bool complete = byteCount <= discBytes - offset;
     const uint64_t stop = complete ? offset + byteCount : discBytes;

@@ -133,7 +133,8 @@ void checkReads(const FolderDisc &disc,const Fixture &fixture) {
     std::memset(buffer,0xaa,sizeof(buffer));
     expect(!disc.readBytes(total,sizeof(buffer),buffer) && buffer[0]==0,"read at the end");
     expect(!disc.readBytes(~uint64_t(0)-4,sizeof(buffer),buffer),"offset overflow");
-    expect(disc.readBytes(total+10,0,buffer),"empty read");
+    expect(disc.readBytes(10,0,buffer) && disc.readBytes(total-1,0,nullptr),"empty read inside the disc");
+    expect(!disc.readBytes(total,0,buffer) && !disc.readBytes(total+10,0,buffer),"empty read at or past the end fails");
     expect(!disc.readBytes(0,4,nullptr),"null destination");
 }
 
@@ -292,26 +293,32 @@ void checkGamePaths(const Fixture &fixture) {
     std::string out;
     expect(rootedGamePath("sdmc:/switch/gtavcs_nx/gamefolder",out) && out=="/switch/gtavcs_nx/gamefolder","device stripped");
     expect(rootedGamePath("/switch/x/",out) && out=="/switch/x","rooted path kept");
-    expect(rootedGamePath("game/data",out) && out=="game/data","relative path kept");
-    for(const char *bad : {"","sdmc:x","sdmc:","romfs:/x","C:/x","/a/../b","a\\b","../x"})
+    for(const char *bad : {"","sdmc:x","sdmc:","romfs:/x","C:/x","/a/../b","a\\b","../x","game/data","./game","."})
         expect(!rootedGamePath(bad,out),bad);
     GamePaths paths; std::string error;
-    expect(!resolveGamePaths(fixture.root+"-missing",paths,error) && error.find("does not exist")!=std::string::npos,"missing game folder is fatal");
-    expect(resolveGamePaths(fixture.root,paths,error),"resolve game folder");
-    expect(paths.userdata==fixture.root+"/userdata" && paths.mc0==fixture.root+"/userdata/mc0" &&
-        paths.settings==fixture.root+"/userdata/vcs.ini" && paths.elf==fixture.root+"/SLUS_215.90","layout");
+    expect(!resolveGamePaths(fixture.root,paths,error) && error.find("invalid game folder")!=std::string::npos,"relative game folder refused");
+    // Rooted from the cwd; on the Switch getcwd gives "sdmc:/...", so this also strips the device.
+    char cwd[1024];
+    if(!getcwd(cwd,sizeof(cwd))) { expect(false,"getcwd"); return; }
+    const std::string root=std::string(cwd)+"/"+fixture.root;
+    std::string rooted;
+    expect(rootedGamePath(root,rooted) && rooted[0]=='/',"cwd-based root is rooted");
+    expect(!resolveGamePaths(root+"-missing",paths,error) && error.find("does not exist")!=std::string::npos,"missing game folder is fatal");
+    expect(resolveGamePaths(root,paths,error),"resolve game folder");
+    expect(paths.userdata==rooted+"/userdata" && paths.mc0==rooted+"/userdata/mc0" &&
+        paths.settings==rooted+"/userdata/vcs.ini" && paths.elf==rooted+"/SLUS_215.90","layout");
     struct stat info{};
     expect(stat(paths.mc1.c_str(),&info)==0 && S_ISDIR(info.st_mode) && stat(paths.cache.c_str(),&info)==0 &&
-        paths.backups==fixture.root+"/userdata/backups" && stat(paths.backups.c_str(),&info)==0,"userdata folders created");
-    expect(resolveGamePaths(fixture.root,paths,error),"resolve is repeatable");
+        paths.backups==rooted+"/userdata/backups" && stat(paths.backups.c_str(),&info)==0,"userdata folders created");
+    expect(resolveGamePaths(root,paths,error),"resolve is repeatable");
     GamePaths test;
-    expect(resolveGamePaths(fixture.root,test,error,"m03-unit"),"resolve a test profile");
-    const std::string profile=fixture.root+"/userdata/tests/m03-unit";
+    expect(resolveGamePaths(root,test,error,"m03-unit"),"resolve a test profile");
+    const std::string profile=rooted+"/userdata/tests/m03-unit";
     expect(test.userdata==profile && test.mc0==profile+"/mc0" && test.mc1==profile+"/mc1" && test.cache==profile+"/cache" &&
         test.settings==profile+"/vcs.ini" && test.backups==profile+"/backups" && test.elf==paths.elf,"test profile isolates every save path");
     expect(stat(test.mc0.c_str(),&info)==0 && stat(test.backups.c_str(),&info)==0,"test profile folders created");
     for(const char *bad : {"../x","a/b","a b","sdmc:x"})
-        expect(!resolveGamePaths(fixture.root,test,error,bad) && error.find("test profile")!=std::string::npos,bad);
+        expect(!resolveGamePaths(root,test,error,bad) && error.find("test profile")!=std::string::npos,bad);
 }
 
 bool loadFails(const std::string &root,const char *expected) {

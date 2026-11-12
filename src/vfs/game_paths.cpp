@@ -38,7 +38,8 @@ bool rootedGamePath(std::string_view path, std::string &out)
             return false;
         }
     }
-    if (path.empty() || path.find(':') != std::string_view::npos || path.find('\\') != std::string_view::npos)
+    if (path.empty() || path[0] != '/' || path.find(':') != std::string_view::npos ||
+        path.find('\\') != std::string_view::npos)
     {
         return false;
     }
