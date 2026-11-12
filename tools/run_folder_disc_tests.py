@@ -3,7 +3,8 @@
     python tools/run_folder_disc_tests.py <evidence-dir>
 
 Compiles src/vfs and tests/core/folder_disc_tests.cpp with the container's host g++ twice, and runs each
-build with address randomization off (ASan loops on high-entropy ASLR) and a 600 s limit:
+build with address randomization off (ASan loops on high-entropy ASLR; setarch -R needs
+the container started with seccomp=unconfined) and a 600 s limit:
 once with AddressSanitizer and UndefinedBehaviorSanitizer, once at -O2 without them. Both
 logs, the commands and the source commit go to <evidence-dir>. Synthetic data only.
 """
@@ -39,7 +40,7 @@ def main():
             + " ".join(f"/src/{source}" for source in SOURCES)
             + " driver.cpp -o suite && timeout 600 setarch \"$(uname -m)\" -R ./suite"
         )
-        command = ["docker", "run", "--rm", "--mount", f"type=bind,source={ROOT.as_posix()},target=/src,readonly",
+        command = ["docker", "run", "--rm", "--security-opt", "seccomp=unconfined", "--mount", f"type=bind,source={ROOT.as_posix()},target=/src,readonly",
                    IMAGE, "bash", "-c", script]
         result = subprocess.run(command, capture_output=True, text=True)
         log = evidence / f"folder-disc-{name}.log"
