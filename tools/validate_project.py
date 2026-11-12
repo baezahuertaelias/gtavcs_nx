@@ -20,13 +20,15 @@ def main():
         if not any(task.startswith(milestone + "-") for task in tasks): errors.append(f"No tasks for {milestone}")
         if len(re.findall(r"^Branch: `milestone/[^`]+` <!-- " + milestone + " -->$", plan, re.M)) != 1:
             errors.append(f"Missing/duplicate branch for {milestone}")
-    required = ["AGENTS.md", "CMakeLists.txt", "src/main.c", "src/core.h", "src/core_stub.c",
+    required = ["AGENTS.md", "CMakeLists.txt", "src/main.c", "src/core.h", "src/core/core.cpp",
+                "src/platform/platform_switch_sdl2.cpp", "src/switch/thread_stack.c",
                 "third_party/glad/src/gl.c", "third_party/glad/include/glad/gl.h",
                 "docs/PORT_DISCOVERY.md", "docs/AUTOMATED_EXECUTION.md"]
     for name in required:
         if not (ROOT / name).is_file(): errors.append(f"Missing {name}")
     cmake = (ROOT / "CMakeLists.txt").read_text()
-    for source in re.findall(r"(?:src|third_party/glad)/[A-Za-z0-9_/.]+\.(?:c|cpp)", cmake):
+    # port-owned sources only: "${upstream}/src/..." names files of the overlaid upstream checkout
+    for source in re.findall(r"(?<![}/\w])(?:src|third_party/glad)/[A-Za-z0-9_/.]+\.(?:cpp|c)\b", cmake):
         if not (ROOT / source).is_file(): errors.append(f"Missing CMake source {source}")
     data = ROOT / "docs/discovery"
     summary = json.loads((data / "summary.json").read_text())

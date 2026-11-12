@@ -1,4 +1,4 @@
-name: Switch platform smoke build
+name: Switch game core build
 on:
   push:
     branches: [main, 'milestone/**']
@@ -16,19 +16,13 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - run: python tools/build_switch.py --clean
-      - uses: actions/upload-artifact@v4
-        with:
-          name: platform-smoke-${{ github.sha }}
-          retention-days: 14
-          if-no-files-found: error
-          path: |
-            dist/switch/gtavcs_nx/gtavcs.nro
-            build/evidence/M01/checksums.json
-            build/evidence/M01/readelf.txt
+      # Public sources only: the runtime, game layer, SDL2 platform and core adapter compile in the locked container.
+      # The game NRO needs the user's generated code and is built privately (tools/build_game.py), never here.
+      - run: python tools/build_game.py --public
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: platform-build-logs-${{ github.sha }}
+          name: game-core-build-logs-${{ github.sha }}
           retention-days: 14
-          path: build/evidence/M01/*.log
+          if-no-files-found: ignore
+          path: build/evidence/M04/build/public*.log

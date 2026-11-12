@@ -1,0 +1,834 @@
+diff --git a/docs/PS2RECOMP_PATCHES.md b/docs/PS2RECOMP_PATCHES.md
+index c4edb10..0ba3c12 100644
+--- a/docs/PS2RECOMP_PATCHES.md
++++ b/docs/PS2RECOMP_PATCHES.md
+@@ -369,3 +369,17 @@ retain their existing subtraction. This affects diagnostics, not guest timing.
+ wrapped in NX_NO_GENERATOR_TESTS so the Switch runtime runner can build the other
+ expansion and float-semantics cases without linking a host tool into the target.
+ Upstream's own test target does not define it and is unchanged.
++
++
++## Switch runtime boot overlay (M04, 2026-11-12)
++
++The Switch port (root repository, milestone M04) drives the runtime from its own SDL2 main loop and C ABI. These
++changes keep desktop behaviour: `main()` and `run()` take the same steps as before.
++
++| Where | What | Why |
++|---|---|---|
++| `ps2xRuntime/src/lib/ps2_runtime.cpp`, `include/ps2_runtime.h` | `run()` split into `runBegin()` / `runFrame()` / `runEnd()`; `run()` calls them in a loop. The loop's locals live in a file-level `RunLoop`, not in `PS2Runtime` | A host that owns the main loop and the applet lifecycle (the Switch) runs one host frame at a time; `PS2Runtime`'s layout, which the generated code is compiled against, is unchanged |
++| `src/main.cpp`, new `src/launcher.h` | The settings registration, window placement, UI callbacks and post-`loadELF` hook installation are callable as `vcs::launcher::*`; `main()` calls them in the same order. `VCS_LAUNCHER_NO_MAIN` builds the file without `main()`. `setScreenshotDirectory` replaces the folder next to the exe | The Switch core runs upstream's launcher steps, not a copy of them |
++| `ps2xRuntime/include/runtime/ps2_host_fs.h` (new), `Kernel/Stubs/MemoryCard.cpp`, `src/settings/settings.cpp` | `ps2x::replaceFile` (rename onto an existing file) and `ps2x::removeTree` (`remove_all`). Elsewhere these are the `std::filesystem` calls; on `__SWITCH__` they move the old file aside / walk the tree, because the Switch SD card fails `rename` onto a file with EEXIST and `remove_all` with EIO (measured on hardware, Switch port M03). Used for vcs.ini, card backup zips, card renames and card format / unformat. A format whose old files cannot be removed now fails with a log line instead of reporting success | Settings could not be saved twice, and a card format left the old saves while reporting a formatted card |
++| `src/game/vcs_stream.cpp`, `vcs_stream.h` | The stream reader thread is kept (was detached) and `stopStreamReader()` finishes its queue and joins it; reads after the stop are refused with a log line | The Switch port releases the folder disc before the process ends; a detached reader could still copy from it |
++| `ps2xRuntime/src/lib/ps2_control.cpp`, `include/runtime/ps2_control.h` | `ps2control::submit(line)`: a command queued as if from the socket, answered through a future | Scripted Switch runs have no socket client |
+diff --git a/src/game/vcs_hle_world.cpp b/src/game/vcs_hle_world.cpp
+index 7112fac..46561a0 100644
+--- a/src/game/vcs_hle_world.cpp
++++ b/src/game/vcs_hle_world.cpp
+@@ -18,7 +18,12 @@
+ #include "game/vcs_hle_world.h"
+ 
+ #include <algorithm>
++// [gta-recomp] the runtime's intrinsic boundary on ARM (USE_SSE2NEON: sse2neon with its precise options)
++#if defined(USE_SSE2NEON)
++#include "sse2neon.h"
++#else
+ #include <immintrin.h>
++#endif
+ #include <chrono>
+ #include <cfenv>
+ #include <cmath>
+diff --git a/src/game/vcs_rsl_world.cpp b/src/game/vcs_rsl_world.cpp
+index f30e0a6..24c8d97 100644
+--- a/src/game/vcs_rsl_world.cpp
++++ b/src/game/vcs_rsl_world.cpp
+@@ -10,7 +10,12 @@
+ #include "runtime/ps2_write_watch.h"
+ 
+ #include <algorithm>
++// [gta-recomp] the runtime's intrinsic boundary on ARM (USE_SSE2NEON: sse2neon with its precise options)
++#if defined(USE_SSE2NEON)
++#include "sse2neon.h"
++#else
+ #include <immintrin.h>
++#endif
+ #include <atomic>
+ #include <chrono>
+ #include <cstdio>
+diff --git a/src/game/vcs_stream.cpp b/src/game/vcs_stream.cpp
+index 3ea874b..bcd2232 100644
+--- a/src/game/vcs_stream.cpp
++++ b/src/game/vcs_stream.cpp
+@@ -51,6 +51,8 @@ namespace vcs
+             std::atomic<uint32_t> pending[kChannels]{}; // reads queued or in flight per channel
+             uint8_t *rdram = nullptr;
+             bool started = false;
++            bool stopping = false; // [gta-recomp] stopStreamReader: finish the queue, then end
++            std::thread thread;    // [gta-recomp] joined by stopStreamReader (was detached)
+             // statistics
+             std::atomic<uint64_t> reads{0}, bytes{0}, nanoseconds{0};
+         };
+@@ -69,7 +71,9 @@ namespace vcs
+                 Request request;
+                 {
+                     std::unique_lock<std::mutex> lock(r.mutex);
+-                    r.cv.wait(lock, [&] { return !r.queue.empty(); });
++                    r.cv.wait(lock, [&] { return !r.queue.empty() || r.stopping; });
++                    if (r.queue.empty())
++                        return; // [gta-recomp] stopping, nothing left to read
+                     request = r.queue.front();
+                     r.queue.pop_front();
+                 }
+@@ -114,11 +118,18 @@ namespace vcs
+                             size < 0 ? static_cast<uint32_t>(-size) : static_cast<uint32_t>(size) * 2048u};
+             {
+                 std::lock_guard<std::mutex> lock(r.mutex);
++                if (r.stopping) // [gta-recomp] the host is shutting down: no new reads
++                {
++                    std::fprintf(stderr, "[stream] read refused after stop (channel %u)\n", request.channel);
++                    SET_GPR_U64(ctx, 2, 0);
++                    ctx->pc = GPR_U32(ctx, 31);
++                    return;
++                }
+                 if (!r.started)
+                 {
+                     r.rdram = rdram;
+                     r.started = true;
+-                    std::thread(run).detach();
++                    r.thread = std::thread(run);
+                 }
+                 r.pending[request.channel % kChannels].fetch_add(1, std::memory_order_relaxed);
+                 r.queue.push_back(request);
+@@ -154,6 +165,19 @@ namespace vcs
+         }
+     }
+ 
++    void stopStreamReader()
++    {
++        Reader &r = reader();
++        {
++            std::lock_guard<std::mutex> lock(r.mutex);
++            r.stopping = true;
++        }
++        r.cv.notify_all();
++        if (r.thread.joinable())
++            r.thread.join();
++        std::fprintf(stderr, "[stream] reader stopped\n");
++    }
++
+     bool installStreamHooks(PS2Runtime &runtime)
+     {
+         const char *v = std::getenv("VCS_NATIVE_STREAM");
+diff --git a/src/game/vcs_stream.h b/src/game/vcs_stream.h
+index 94b0666..4bf6897 100644
+--- a/src/game/vcs_stream.h
++++ b/src/game/vcs_stream.h
+@@ -13,4 +13,9 @@ namespace vcs
+     // Milestone 6 step 3: with streaming and sound both native the emulated IOP is switched off - no IRX module is
+     // loaded or run - unless PS2X_IOP=1; PS2X_IOP=0 switches it off regardless.
+     void retireIop(bool nativeComplete);
++
++    // [gta-recomp] Stops the stream reader thread once its queued reads are done and joins it, for a host that must
++    // release the disc image before the process ends (the Switch port). Call after the game thread has stopped (no
++    // new reads), before ps2_disc::setImage(nullptr). Reads queued later are refused with a log line.
++    void stopStreamReader();
+ }
+diff --git a/src/launcher.h b/src/launcher.h
+new file mode 100644
+index 0000000..4a04269
+--- /dev/null
++++ b/src/launcher.h
+@@ -0,0 +1,22 @@
++// [gta-recomp] The launcher's steps (main.cpp), callable by a host that owns its own start-up and main loop (the
++// Switch port's C ABI). main() calls them in this order; another host keeps the same order:
++//   registerSettings(), settings::load / applyAll, restoreWindowPlacement()
++//   setUiCallbacks(runtime)      before runtime.initialize() (initialize runs the UI init hook)
++//   runtime.initialize(), runtime.loadELF(), PS2Runtime::setIoPaths(...)
++//   installHooks(runtime)        after loadELF and the I/O paths: input, volume, trainer, rig, game info, commands
++// Building main.cpp with VCS_LAUNCHER_NO_MAIN leaves out main() and keeps these.
++#pragma once
++
++#include <filesystem>
++
++class PS2Runtime;
++
++namespace vcs::launcher
++{
++    void registerSettings();
++    void restoreWindowPlacement();
++    // Where the screenshot key saves (main(): screenshots next to vcs.exe, or VCS_SCREENSHOT_DIR).
++    void setScreenshotDirectory(const std::filesystem::path &dir);
++    void setUiCallbacks(PS2Runtime &runtime);
++    void installHooks(PS2Runtime &runtime);
++}
+diff --git a/src/main.cpp b/src/main.cpp
+index 0348cf6..c187a2c 100644
+--- a/src/main.cpp
++++ b/src/main.cpp
+@@ -37,6 +37,8 @@
+ #include "runtime/ps2_control.h"
+ #include "util/sha1.h"
+ 
++#include "launcher.h"
++
+ #include "imgui.h"
+ 
+ #include <algorithm>
+@@ -74,6 +76,7 @@ namespace
+     using vcs::disc::kElfName;
+     using vcs::disc::kElfSha1;
+ 
++#if !defined(VCS_LAUNCHER_NO_MAIN) // [gta-recomp] the ISO side, for main() only
+     class MappedDisc final : public IPS2DiscImage
+     {
+     public:
+@@ -113,6 +116,8 @@ namespace
+         const vcs::IsoImage &m_iso;
+     };
+ 
++#endif
++
+     fs::path exeDirectory()
+     {
+ #if defined(_WIN32)
+@@ -129,6 +134,7 @@ namespace
+         return fs::current_path();
+     }
+ 
++#if !defined(VCS_LAUNCHER_NO_MAIN) // [gta-recomp]
+     fs::path dataDirectory()
+     {
+         // VCS_DATA_DIR: another save / cache folder (scripted test runs start from an empty memory card)
+@@ -164,6 +170,8 @@ namespace
+         return {};
+     }
+ 
++#endif
++
+     void setEnv(const char *name, const std::string &value)
+     {
+ #if defined(_WIN32)
+@@ -252,6 +260,8 @@ namespace
+         std::fprintf(stderr, "[settings] Alt+Enter: %s\n", next ? "full screen" : "windowed");
+     }
+ 
++    fs::path g_screenshotDir; // [gta-recomp] vcs::launcher::setScreenshotDirectory; empty: next to vcs.exe
++
+     // Each host frame, before the menus draw: the screenshot key (Keyboard > Menus, F8) saves this frame's picture as
+     // shown - menus and overlays included, at the window's size - as screenshots/vcs_<date>_<time>.png next to vcs.exe
+     // (VCS_SCREENSHOT_DIR: another folder). The notices of earlier shots are left out of it; nothing while the settings
+@@ -263,7 +273,7 @@ namespace
+             return;
+         ui::hideScreenshotNotices();
+         const char *env = std::getenv("VCS_SCREENSHOT_DIR");
+-        const fs::path dir = env && *env ? fs::path(env) : exeDirectory() / "screenshots";
++        const fs::path dir = env && *env ? fs::path(env) : !g_screenshotDir.empty() ? g_screenshotDir : exeDirectory() / "screenshots";
+         std::error_code ec;
+         fs::create_directories(dir, ec);
+         const std::time_t t = std::time(nullptr);
+@@ -752,6 +762,7 @@ namespace
+         });
+     }
+ 
++#if !defined(VCS_LAUNCHER_NO_MAIN) // [gta-recomp]
+     fs::path firstIsoIn(const fs::path &dir)
+     {
+         std::error_code ec;
+@@ -808,8 +819,73 @@ namespace
+         }
+         return 0;
+     }
++#endif
+ }
+ 
++// [gta-recomp] The launcher's steps for a host with its own start-up and main loop (src/launcher.h); main() below
++// takes the same steps in the same order.
++namespace vcs::launcher
++{
++    void registerSettings() { ::registerSettings(); }
++    void restoreWindowPlacement() { ::restoreWindowPlacement(); }
++    void setScreenshotDirectory(const fs::path &dir) { g_screenshotDir = dir; }
++
++    void setUiCallbacks(PS2Runtime &runtime)
++    {
++        // the settings menu draws in the runtime's UI hook (registered before initialize(), which runs the init hook)
++        runtime.setDebugUiCallbacks([](PS2Runtime &, void *) {},
++                                    [](PS2Runtime &, void *) {
++                                        altEnter();
++                                        screenshotKey();
++                                        followWindowAspect();
++                                        ui::drawSettingsMenu();
++                                        ui::drawTrainerMenu();
++                                        ps2control::setGameInputBlocked(ui::settingsMenuBlocksInput() || ui::trainerMenuBlocksInput());
++                                        vcs::input::onHostFrame(ui::settingsMenuOpen() || ui::trainerMenuBlocksInput());
++                                        vcs::volume::onHostFrame();
++                                        drawFrameRateCounter();
++                                    },
++                                    nullptr, nullptr);
++    }
++
++    void installHooks(PS2Runtime &runtime)
++    {
++        vcs::rig::install(runtime); // control-channel automation commands (debug/rig.h)
++        vcs::trainer::install(runtime); // the trainer's control-channel command (game/vcs_trainer.h)
++        vcs::input::install(runtime);   // the player's bindings feed the pad (game/vcs_input.h)
++        vcs::volume::install(runtime);  // the game's music / effects levels follow the settings (game/vcs_volume.h)
++        vcs::gameinfo::install(runtime); // the F3 overlay's game-state panel, the `gameinfo` command (debug/game_info.h)
++        // setting <key> [value] -> ok <value>: a setting read or changed (a hidden run never writes vcs.ini)
++        ps2control::addCommand("setting", [](const std::string &args, ps2control::Reply reply) {
++            const size_t space = args.find(' ');
++            const std::string key = args.substr(0, space);
++            const auto spec = std::find_if(settings::all().begin(), settings::all().end(), [&](const settings::Spec &s) { return s.key == key; });
++            if (spec == settings::all().end())
++                return reply("error unknown setting " + key);
++            if (spec->type == settings::Type::Action) // a button: pressed (presets, reset)
++            {
++                spec->onChange(0);
++                return reply("ok pressed");
++            }
++            if (space != std::string::npos && !settings::set(key, std::atoi(args.c_str() + space + 1)))
++                return reply("error refused");
++            reply("ok " + std::to_string(settings::value(key)));
++        });
++        // menu <page>|close|scroll <0..1> -> ok: the settings menu opened on a page (screenshots of it in hidden runs)
++        ps2control::addCommand("menu", [](const std::string &args, ps2control::Reply reply) {
++            if (args == "close")
++                ui::closeSettingsMenu();
++            else if (args.rfind("scroll ", 0) == 0)
++                ui::scrollSettingsMenu(static_cast<float>(std::atof(args.c_str() + 7)));
++            else
++                ui::openSettingsMenu(args);
++            reply("ok");
++        });
++        vcs::configureWatch(runtime.memory().getRDRAM());
++    }
++}
++
++#if !defined(VCS_LAUNCHER_NO_MAIN)
+ int main(int argc, char *argv[])
+ {
+     vcs::installCrashHandlers();
+@@ -819,12 +895,12 @@ int main(int argc, char *argv[])
+         // (~5 fps), which only tools/run.py and the test tools used to override - vcs.exe started on its own got it
+         if (const char *gs = std::getenv("PS2X_GS"); !gs || !*gs)
+             setEnv("PS2X_GS", "hw");
+-        registerSettings();
++        vcs::launcher::registerSettings();
+         settings::load(exeDirectory() / "vcs.ini");
+         if (ps2control::hiddenMode())
+             settings::keepFile(); // a test run never changes the player's settings
+         settings::applyAll();
+-        restoreWindowPlacement();
++        vcs::launcher::restoreWindowPlacement();
+         const fs::path isoPath = locateIso(argc, argv);
+         if (isoPath.empty())
+         {
+@@ -874,20 +950,7 @@ int main(int argc, char *argv[])
+         }
+ 
+         PS2Runtime runtime;
+-        // the settings menu draws in the runtime's UI hook (registered before initialize(), which runs the init hook)
+-        runtime.setDebugUiCallbacks([](PS2Runtime &, void *) {},
+-                                    [](PS2Runtime &, void *) {
+-                                        altEnter();
+-                                        screenshotKey();
+-                                        followWindowAspect();
+-                                        ui::drawSettingsMenu();
+-                                        ui::drawTrainerMenu();
+-                                        ps2control::setGameInputBlocked(ui::settingsMenuBlocksInput() || ui::trainerMenuBlocksInput());
+-                                        vcs::input::onHostFrame(ui::settingsMenuOpen() || ui::trainerMenuBlocksInput());
+-                                        vcs::volume::onHostFrame();
+-                                        drawFrameRateCounter();
+-                                    },
+-                                    nullptr, nullptr);
++        vcs::launcher::setUiCallbacks(runtime);
+         if (!runtime.initialize("GTA: Vice City Stories"))
+         {
+             std::cerr << "Failed to initialize runtime" << std::endl;
+@@ -906,38 +969,7 @@ int main(int argc, char *argv[])
+         paths.mcRoot = data / "mc0";
+         PS2Runtime::setIoPaths(paths);
+ 
+-        vcs::rig::install(runtime); // control-channel automation commands (debug/rig.h)
+-        vcs::trainer::install(runtime); // the trainer's control-channel command (game/vcs_trainer.h)
+-        vcs::input::install(runtime);   // the player's bindings feed the pad (game/vcs_input.h)
+-        vcs::volume::install(runtime);  // the game's music / effects levels follow the settings (game/vcs_volume.h)
+-        vcs::gameinfo::install(runtime); // the F3 overlay's game-state panel, the `gameinfo` command (debug/game_info.h)
+-        // setting <key> [value] -> ok <value>: a setting read or changed (a hidden run never writes vcs.ini)
+-        ps2control::addCommand("setting", [](const std::string &args, ps2control::Reply reply) {
+-            const size_t space = args.find(' ');
+-            const std::string key = args.substr(0, space);
+-            const auto spec = std::find_if(settings::all().begin(), settings::all().end(), [&](const settings::Spec &s) { return s.key == key; });
+-            if (spec == settings::all().end())
+-                return reply("error unknown setting " + key);
+-            if (spec->type == settings::Type::Action) // a button: pressed (presets, reset)
+-            {
+-                spec->onChange(0);
+-                return reply("ok pressed");
+-            }
+-            if (space != std::string::npos && !settings::set(key, std::atoi(args.c_str() + space + 1)))
+-                return reply("error refused");
+-            reply("ok " + std::to_string(settings::value(key)));
+-        });
+-        // menu <page>|close|scroll <0..1> -> ok: the settings menu opened on a page (screenshots of it in hidden runs)
+-        ps2control::addCommand("menu", [](const std::string &args, ps2control::Reply reply) {
+-            if (args == "close")
+-                ui::closeSettingsMenu();
+-            else if (args.rfind("scroll ", 0) == 0)
+-                ui::scrollSettingsMenu(static_cast<float>(std::atof(args.c_str() + 7)));
+-            else
+-                ui::openSettingsMenu(args);
+-            reply("ok");
+-        });
+-        vcs::configureWatch(runtime.memory().getRDRAM());
++        vcs::launcher::installHooks(runtime);
+         vcs::runSelfTest(runtime);
+         vcs::startWatchdog(runtime);
+         vcs::startProfiler(runtime);
+@@ -957,3 +989,4 @@ int main(int argc, char *argv[])
+     std::cerr.flush();
+     std::_Exit(1);
+ }
++#endif
+diff --git a/src/settings/settings.cpp b/src/settings/settings.cpp
+index a7ad9ef..63db0ff 100644
+--- a/src/settings/settings.cpp
++++ b/src/settings/settings.cpp
+@@ -1,6 +1,8 @@
+ // See settings.h.
+ #include "settings/settings.h"
+ 
++#include "runtime/ps2_host_fs.h"
++
+ #include <algorithm>
+ #include <atomic>
+ #include <cstdio>
+@@ -102,7 +104,7 @@ namespace settings
+                     return;
+             }
+             std::error_code ec;
+-            std::filesystem::rename(tmp, g_ini, ec);
++            ps2x::replaceFile(tmp, g_ini, ec); // [gta-recomp] the Switch's SD card cannot rename onto a file
+             if (ec)
+                 std::fprintf(stderr, "[settings] could not write %s\n", g_ini.string().c_str());
+         }
+diff --git a/third_party/PS2Recomp/ps2xRuntime/include/ps2_runtime.h b/third_party/PS2Recomp/ps2xRuntime/include/ps2_runtime.h
+index 39684d5..61da3e1 100644
+--- a/third_party/PS2Recomp/ps2xRuntime/include/ps2_runtime.h
++++ b/third_party/PS2Recomp/ps2xRuntime/include/ps2_runtime.h
+@@ -357,6 +357,11 @@ public:
+     bool syncCoreSubsystems();
+     bool loadELF(const std::string &elfPath);
+     void run();
++    // [gta-recomp] run() in steps, for a host that owns the main loop: runBegin once, runFrame per host frame
++    // until it returns false, then runEnd (joins the game thread and shuts the host down, as run() does).
++    bool runBegin();
++    bool runFrame();
++    void runEnd();
+ 
+     [[nodiscard]] ps2x::iop::ModuleLoadResult loadIopModule(std::string_view path, const void *arguments = nullptr, uint32_t argumentSize = 0);
+     [[nodiscard]] ps2x::iop::ModuleLoadResult loadIopModuleBuffer(uint32_t guestAddress, const void *arguments = nullptr, uint32_t argumentSize = 0);
+diff --git a/third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_control.h b/third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_control.h
+index 7a51790..d4bebac 100644
+--- a/third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_control.h
++++ b/third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_control.h
+@@ -17,6 +17,7 @@
+ #pragma once
+ 
+ #include <functional>
++#include <future>
+ #include <string>
+ 
+ namespace ps2control
+@@ -52,4 +53,9 @@ namespace ps2control
+     void pump(const std::function<std::string(const std::string &path)> &capture,
+               const std::function<void(const std::string &path, Done done)> &shoot, const std::function<void()> &quit);
+     void stop();
++
++    // [gta-recomp] A command line queued as if it came over the socket, for a host with no client (the Switch port's
++    // scripted runs): the next pump() runs it on the main thread and the future gets its one-line answer. Needs no
++    // start(). A command still queued when the frames stop is never run: wait for the answer with a timeout.
++    std::future<std::string> submit(const std::string &line);
+ }
+diff --git a/third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_host_fs.h b/third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_host_fs.h
+new file mode 100644
+index 0000000..e225acd
+--- /dev/null
++++ b/third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_host_fs.h
+@@ -0,0 +1,94 @@
++// [gta-recomp] Host file operations whose std::filesystem form fails on the Nintendo Switch's SD card (newlib + the
++// libnx fsdev device), measured on hardware by the Switch port (M03 probe, docs/PS2RECOMP_PATCHES.md):
++//   std::filesystem::remove_all        fails with EIO on a folder holding files
++//   std::filesystem::rename onto a file that exists fails with EEXIST (POSIX and Windows replace it)
++// Elsewhere these are the std::filesystem calls themselves, so desktop behaviour does not change.
++#pragma once
++
++#include <filesystem>
++#include <string>
++#include <system_error>
++#include <vector>
++
++namespace ps2x
++{
++    // Replaces `target` with `source` (a finished temporary file), as std::filesystem::rename does on POSIX. On the
++    // Switch a target that exists is first moved aside to <target>.old and removed after the rename; when the rename
++    // fails the old file is moved back, so the target is never lost. ec is the first failure.
++    inline void replaceFile(const std::filesystem::path &source, const std::filesystem::path &target, std::error_code &ec)
++    {
++        ec.clear();
++#if defined(__SWITCH__)
++        std::error_code probe;
++        if (!std::filesystem::exists(target, probe))
++        {
++            std::filesystem::rename(source, target, ec);
++            return;
++        }
++        std::filesystem::path aside = target;
++        aside += ".old";
++        std::filesystem::remove(aside, probe); // a leftover from an interrupted replace
++        std::filesystem::rename(target, aside, ec);
++        if (ec)
++            return;
++        std::filesystem::rename(source, target, ec);
++        if (ec)
++        {
++            std::error_code restore;
++            std::filesystem::rename(aside, target, restore);
++            return;
++        }
++        std::filesystem::remove(aside, probe);
++#else
++        std::filesystem::rename(source, target, ec);
++#endif
++    }
++
++    // Removes `root` and everything under it, as std::filesystem::remove_all. On the Switch it walks the tree itself:
++    // files first, then each folder after its contents. ec is the first failure; nothing is skipped silently.
++    inline void removeTree(const std::filesystem::path &root, std::error_code &ec)
++    {
++        ec.clear();
++#if defined(__SWITCH__)
++        std::error_code probe;
++        const std::filesystem::file_status status = std::filesystem::symlink_status(root, probe);
++        if (probe || status.type() == std::filesystem::file_type::not_found)
++            return; // nothing there, as remove_all
++        if (status.type() != std::filesystem::file_type::directory)
++        {
++            std::filesystem::remove(root, ec);
++            return;
++        }
++        std::vector<std::filesystem::path> folders;
++        std::vector<std::filesystem::path> files;
++        for (std::filesystem::recursive_directory_iterator it(root, ec), end; !ec && it != end; it.increment(ec))
++        {
++            if (it->is_directory(probe) && !it->is_symlink(probe))
++                folders.push_back(it->path());
++            else
++                files.push_back(it->path());
++        }
++        if (ec)
++            return;
++        for (const std::filesystem::path &file : files)
++            if (!std::filesystem::remove(file, ec) || ec)
++            {
++                if (!ec)
++                    ec = std::make_error_code(std::errc::io_error);
++                return;
++            }
++        // deepest first: a folder is listed after its parent, so the reverse order empties children before parents
++        for (auto it = folders.rbegin(); it != folders.rend(); ++it)
++            if (!std::filesystem::remove(*it, ec) || ec)
++            {
++                if (!ec)
++                    ec = std::make_error_code(std::errc::io_error);
++                return;
++            }
++        if (!std::filesystem::remove(root, ec) && !ec)
++            ec = std::make_error_code(std::errc::io_error);
++#else
++        std::filesystem::remove_all(root, ec);
++#endif
++    }
++}
+diff --git a/third_party/PS2Recomp/ps2xRuntime/src/lib/Kernel/Stubs/MemoryCard.cpp b/third_party/PS2Recomp/ps2xRuntime/src/lib/Kernel/Stubs/MemoryCard.cpp
+index 36443cb..ea986d2 100644
+--- a/third_party/PS2Recomp/ps2xRuntime/src/lib/Kernel/Stubs/MemoryCard.cpp
++++ b/third_party/PS2Recomp/ps2xRuntime/src/lib/Kernel/Stubs/MemoryCard.cpp
+@@ -5,6 +5,7 @@
+ #include <fstream>
+ #include <iterator>
+ #include "runtime/ps2_host_std.h"
++#include "runtime/ps2_host_fs.h" // [gta-recomp] replaceFile / removeTree (the Switch SD card)
+ 
+ #if defined(_WIN32) // [gta-recomp] file creation times (card directory order)
+ #ifndef WIN32_LEAN_AND_MEAN
+@@ -1032,7 +1033,7 @@ namespace ps2_stubs
+                 }
+             }
+             std::error_code ec;
+-            std::filesystem::rename(tmp, out, ec);
++            ps2x::replaceFile(tmp, out, ec); // [gta-recomp]
+             return !ec;
+         }
+ 
+@@ -1369,10 +1370,13 @@ namespace ps2_stubs
+                 closeMcFilesForPortLocked(port);
+                 const std::filesystem::path root = getMcRootPath(port);
+                 std::error_code ec;
+-                std::filesystem::remove_all(root, ec);
++                ps2x::removeTree(root, ec); // [gta-recomp] remove_all fails with EIO on the Switch
++                const bool cleared = !ec;
++                if (!cleared) // [gta-recomp] checked: a card left with its old files is not reported formatted
++                    std::fprintf(stderr, "[MC] cannot clear card %s: %s\n", root.string().c_str(), ec.message().c_str());
+                 ec.clear();
+                 std::filesystem::create_directories(root, ec);
+-                if (!ec)
++                if (cleared && !ec)
+                 {
+                     McPortState &state = g_mcPorts[static_cast<size_t>(port)];
+                     state.currentDir = "/";
+@@ -1781,7 +1785,7 @@ namespace ps2_stubs
+                         std::filesystem::exists(newHostPath.parent_path(), ec) && !ec)
+                     {
+                         backupMcCardsLocked(); // [gta-recomp]
+-                        std::filesystem::rename(oldHostPath, newHostPath, ec);
++                        ps2x::replaceFile(oldHostPath, newHostPath, ec); // [gta-recomp] rename, also on the Switch
+                         result = ec ? kMcResultDeniedPermit : kMcResultSucceed;
+                         if (!ec) // [gta-recomp] card directory order
+                         {
+@@ -1933,10 +1937,13 @@ namespace ps2_stubs
+                 closeMcFilesForPortLocked(port);
+                 const std::filesystem::path root = getMcRootPath(port);
+                 std::error_code ec;
+-                std::filesystem::remove_all(root, ec);
++                ps2x::removeTree(root, ec); // [gta-recomp] remove_all fails with EIO on the Switch
++                const bool cleared = !ec;
++                if (!cleared) // [gta-recomp] checked: a card left with its old files is not reported formatted
++                    std::fprintf(stderr, "[MC] cannot clear card %s: %s\n", root.string().c_str(), ec.message().c_str());
+                 ec.clear();
+                 std::filesystem::create_directories(root, ec);
+-                if (!ec)
++                if (cleared && !ec)
+                 {
+                     McPortState &state = g_mcPorts[static_cast<size_t>(port)];
+                     state.currentDir = "/";
+diff --git a/third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_control.cpp b/third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_control.cpp
+index 21397b5..d517b8c 100644
+--- a/third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_control.cpp
++++ b/third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_control.cpp
+@@ -253,6 +253,16 @@ namespace ps2control
+ 
+     void addCommand(const std::string &verb, CommandHandler handler) { g_extraCommands[verb] = std::move(handler); }
+ 
++    std::future<std::string> submit(const std::string &line) // [gta-recomp]
++    {
++        auto command = std::make_shared<Command>();
++        command->line = line;
++        std::future<std::string> reply = command->reply.get_future();
++        std::lock_guard<std::mutex> lock(g_queueMutex);
++        g_queue.push_back(command);
++        return reply;
++    }
++
+     void requestScreenshot(const std::string &path, Done done)
+     {
+         g_screenshots.push_back({path, std::move(done)});
+diff --git a/third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_runtime.cpp b/third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_runtime.cpp
+index 0dcd5a6..39c9f56 100644
+--- a/third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_runtime.cpp
++++ b/third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_runtime.cpp
+@@ -3124,8 +3124,34 @@ void PS2Runtime::HandleIntegerOverflow(R5900Context *ctx)
+     raiseCop0Exception(ctx, EXCEPTION_INTEGER_OVERFLOW);
+ }
+ 
++namespace
++{
++    // [gta-recomp] run()'s state between runBegin / runFrame / runEnd (one runtime runs at a time). Kept out of
++    // PS2Runtime so its layout - which the generated code is compiled against - stays as it is.
++    struct RunLoop
++    {
++        present::Picture frameTex, shownTex;
++        std::atomic<bool> gameThreadFinished{false};
++        std::thread gameThread;
++        uint64_t tick = 0;
++        bool active = false;
++    };
++    RunLoop g_runLoop;
++}
++
+ void PS2Runtime::run()
+ {
++    if (!runBegin())
++        return;
++    while (runFrame())
++    {
++    }
++    runEnd();
++}
++
++bool PS2Runtime::runBegin()
++{
++    RunLoop &loop = g_runLoop;
+     m_stopRequested.store(false, std::memory_order_relaxed);
+     ps2_stubs::resetSifState();
+     resetIop();
+@@ -3144,16 +3170,16 @@ void PS2Runtime::run()
+     ThreadNaming::SetCurrentThreadName("MainThread"); // [gta-recomp] window, presenting, the HW backend's frames (VCS_PROFILE_THREAD)
+ 
+     // A blank image to use as a framebuffer
+-    present::Picture frameTex = present::createPicture(FB_WIDTH, FB_HEIGHT, false);
++    loop.frameTex = present::createPicture(FB_WIDTH, FB_HEIGHT, false);
+     {
+         const std::vector<uint32_t> blank(static_cast<size_t>(FB_WIDTH) * FB_HEIGHT, 0u);
+-        present::updatePicture(frameTex, blank.data());
++        present::updatePicture(loop.frameTex, blank.data());
+     }
+-    present::Picture shownTex = frameTex; // [gta-recomp] what the window shows (frameTex or another renderer's)
+-
+-    std::atomic<bool> gameThreadFinished{false};
++    loop.shownTex = loop.frameTex; // [gta-recomp] what the window shows (frameTex or another renderer's)
++    loop.tick = 0;
++    loop.gameThreadFinished.store(false, std::memory_order_relaxed);
+ 
+-    std::thread gameThread([&]()
++    loop.gameThread = std::thread([this, &loop]()
+                            {
+         ThreadNaming::SetCurrentThreadName("GameThread");
+         try
+@@ -3172,14 +3198,23 @@ void PS2Runtime::run()
+         {
+             std::cerr << "Error during program execution: unknown exception" << std::endl;
+         }
+-        gameThreadFinished.store(true, std::memory_order_release); });
++        loop.gameThreadFinished.store(true, std::memory_order_release); });
++    loop.active = true;
++    return true;
++}
+ 
+-    uint64_t tick = 0;
+-    while (!isStopRequested() && !gameThreadFinished.load(std::memory_order_acquire))
++// [gta-recomp] One host frame of run()'s loop; false once the runtime stops (requestStop, the game thread
++// returned, or the window closed). A host with its own main loop (the Switch port) calls runBegin, runFrame
++// until it returns false, then runEnd - the same steps run() takes.
++bool PS2Runtime::runFrame()
++{
++    RunLoop &loop = g_runLoop;
++    if (!loop.active || isStopRequested() || loop.gameThreadFinished.load(std::memory_order_acquire))
++        return false;
+     {
+         PS2_IF_AGRESSIVE_LOGS({
+-            tick++;
+-            if ((tick % 120) == 0)
++            loop.tick++;
++            if ((loop.tick % 120) == 0)
+             {
+                 uint64_t curDma = m_memory.dmaStartCount();
+                 uint64_t curGif = m_memory.gifCopyCount();
+@@ -3192,7 +3227,7 @@ void PS2Runtime::run()
+                 const uint32_t dbgGp = m_debugGp.load(std::memory_order_relaxed);
+                 const auto eeSnapshot = m_eeScheduler->snapshot();
+ 
+-                RUNTIME_LOG("[run:tick] tick=" << tick
++                RUNTIME_LOG("[run:tick] tick=" << loop.tick
+                                                << " pc=0x" << std::hex << dbgPc
+                                                << " ra=0x" << dbgRa
+                                                << " sp=0x" << dbgSp
+@@ -3249,7 +3284,7 @@ void PS2Runtime::run()
+         uint32_t presentWidth = FB_WIDTH;
+         uint32_t presentHeight = DEFAULT_DISPLAY_HEIGHT;
+         const auto uploadStart = ps2x::hostNow();
+-        UploadFrame(frameTex, shownTex, this, presentWidth, presentHeight);
++        UploadFrame(loop.frameTex, loop.shownTex, this, presentWidth, presentHeight);
+         spikeT[2] = SpikeClock::now();
+         if (spikeMs > 0.0)
+             spikeCpuFrames = cpuSince(spikeCpu1);
+@@ -3272,7 +3307,7 @@ void PS2Runtime::run()
+                     present::updatePicture(moviePicture, g_movieFrame.rgba.data());
+                     movieSequence = g_movieFrame.sequence;
+                 }
+-                shownTex = moviePicture;
++                loop.shownTex = moviePicture;
+                 presentWidth = static_cast<uint32_t>(g_movieFrame.width);
+                 presentHeight = static_cast<uint32_t>(g_movieFrame.height);
+                 aspect = g_movieFrame.aspect;
+@@ -3300,7 +3335,7 @@ void PS2Runtime::run()
+         {
+             static uint64_t hostFrame = 0;
+             float luma = 0.0f;
+-            if (present::frameLuma(shownTex, srcWidth, srcHeight, luma))
++            if (present::frameLuma(loop.shownTex, srcWidth, srcHeight, luma))
+             {
+                 const bool started = ps2perf::noteFrameLuma(luma, hostFrame);
+                 // PS2X_FRAME_DUMP_DIR: the picture going black or much darker than the scene (a dip) - save that
+@@ -3318,7 +3353,7 @@ void PS2Runtime::run()
+                     --dumpLeft;
+                     const std::string path = std::string(dumpDir) + "/black_" + std::to_string(hostFrame) + ".png";
+                     std::vector<uint8_t> rgb;
+-                    if (present::capture(shownTex, srcWidth, srcHeight, aspect, 640, 448, rgb, frameAspect))
++                    if (present::capture(loop.shownTex, srcWidth, srcHeight, aspect, 640, 448, rgb, frameAspect))
+                         platform::writePng(path.c_str(), rgb.data(), 640, 448);
+                     std::fprintf(stderr, "[frames] dump host frame %llu luma %.1f (before %.1f): %s\n",
+                                  static_cast<unsigned long long>(hostFrame), luma, prevLuma,
+@@ -3337,7 +3372,7 @@ void PS2Runtime::run()
+         int windowWidth = 0, windowHeight = 0;
+         platform::windowSize(windowWidth, windowHeight);
+         spikeT[3] = SpikeClock::now();
+-        present::drawWindow(shownTex, srcWidth, srcHeight, aspect, windowWidth, windowHeight, frameAspect);
++        present::drawWindow(loop.shownTex, srcWidth, srcHeight, aspect, windowWidth, windowHeight, frameAspect);
+         spikeT[4] = SpikeClock::now();
+ 
+         // [gta-recomp] control channel (runtime/ps2_control.h): screenshots render the same picture off-screen, so
+@@ -3355,7 +3390,7 @@ void PS2Runtime::run()
+                 if (fixedSize.first > 0 && fixedSize.second > 0)
+                     w = fixedSize.first, h = fixedSize.second;
+                 std::vector<uint8_t> rgb;
+-                if (!present::capture(shownTex, srcWidth, srcHeight, aspect, w, h, rgb, frameAspect) || !platform::writePng(path.c_str(), rgb.data(), w, h))
++                if (!present::capture(loop.shownTex, srcWidth, srcHeight, aspect, w, h, rgb, frameAspect) || !platform::writePng(path.c_str(), rgb.data(), w, h))
+                     return {};
+                 return std::to_string(w) + "x" + std::to_string(h);
+             };
+@@ -3366,7 +3401,7 @@ void PS2Runtime::run()
+             {
+                 const int w = windowWidth, h = windowHeight;
+                 auto rgb = std::make_shared<std::vector<uint8_t>>();
+-                if (w <= 0 || h <= 0 || !present::capture(shownTex, srcWidth, srcHeight, aspect, w, h, *rgb, frameAspect))
++                if (w <= 0 || h <= 0 || !present::capture(loop.shownTex, srcWidth, srcHeight, aspect, w, h, *rgb, frameAspect))
+                 {
+                     if (done)
+                         done({});
+@@ -3437,14 +3472,22 @@ void PS2Runtime::run()
+         {
+             RUNTIME_LOG("[run] window close requested, breaking out of loop");
+             requestStop();
+-            break;
++            return false;
+         }
+     }
++    return true;
++}
+ 
++void PS2Runtime::runEnd()
++{
++    RunLoop &loop = g_runLoop;
++    if (!loop.active)
++        return;
++    loop.active = false;
+     requestStop();
+-    if (gameThread.joinable())
++    if (loop.gameThread.joinable())
+     {
+-        gameThread.join();
++        loop.gameThread.join();
+     }
+     ps2_render_worker::shutdown(); // [gta-recomp] what the game posted runs, then the worker ends
+ 
+@@ -3456,8 +3499,8 @@ void PS2Runtime::run()
+     shutdownGpuRenderer(); // [gta-recomp]
+     ps2perf::shutdown();   // [gta-recomp]
+     ps2control::stop();    // [gta-recomp]
+-    frameTex = {};
+-    shownTex = {};
++    loop.frameTex = {};
++    loop.shownTex = {};
+     present::shutdown();
+     platform::shutdown();
+ 

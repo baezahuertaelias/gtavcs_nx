@@ -4,7 +4,7 @@ cmake_minimum_required(VERSION 3.24)
 if(NOT CMAKE_TOOLCHAIN_FILE)
     message(FATAL_ERROR "Configure with -DCMAKE_TOOLCHAIN_FILE=$DEVKITPRO/cmake/Switch.cmake")
 endif()
-project(gtavcs_nx VERSION 0.1.0 LANGUAGES C CXX)
+project(gtavcs_nx VERSION 0.4.0 LANGUAGES C CXX)
 
 if(NOT NINTENDO_SWITCH OR NOT COMMAND nx_create_nro)
     message(FATAL_ERROR "The official devkitPro Switch toolchain and switch-cmake package are required")
@@ -19,6 +19,28 @@ if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
     set(CMAKE_BUILD_TYPE Release CACHE STRING "Build type" FORCE)
 endif()
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+set(PORT_ROOT "${CMAKE_CURRENT_SOURCE_DIR}")
+
+# Inputs, all explicit (tools/build_game.py passes them): the overlaid pinned upstream checkout, the locked public
+# dependencies and - for the game NRO only - the private generated EE/VU archive built from the user's disc.
+set(VCS_UPSTREAM_DIR "" CACHE PATH "Overlaid pinned upstream checkout (tools/upstream_overlay.py)")
+set(SSE2NEON_INCLUDE_DIR "" CACHE PATH "Locked sse2neon (tools/core-dependencies.json)")
+set(NX_IMGUI_DIR "" CACHE PATH "Locked Dear ImGui (tools/core-dependencies.json)")
+set(NX_PRIVATE_GENERATED_ARCHIVE "" CACHE FILEPATH "Private EE/VU archive; never used by source CI")
+foreach(required VCS_UPSTREAM_DIR SSE2NEON_INCLUDE_DIR NX_IMGUI_DIR)
+    if(NOT IS_DIRECTORY "${${required}}")
+        message(FATAL_ERROR "Provide ${required} explicitly (tools/build_game.py)")
+    endif()
+endforeach()
+file(READ "${PORT_ROOT}/tools/core-dependencies.json" dependency_lock)
+string(JSON imgui_header GET "${dependency_lock}" imgui header_sha256)
+file(SHA256 "${NX_IMGUI_DIR}/imgui.h" imgui_actual)
+if(NOT imgui_actual STREQUAL imgui_header)
+    message(FATAL_ERROR "Dear ImGui content does not match the locked dependency")
+endif()
+file(READ "${PORT_ROOT}/patches/upstream/series.json" source_lock)
+string(JSON expected_commit GET "${source_lock}" base_commit)
+include("${PORT_ROOT}/cmake/CPUOptions.cmake")
 
 if(NOT DEVKITPRO)
     set(DEVKITPRO "$ENV{DEVKITPRO}")
@@ -34,36 +56,115 @@ pkg_check_modules(NX_SDL2 REQUIRED sdl2>=2.0.7)
 # Switch Mesa exposes desktop entry points through EGL + glapi; no gl.pc.
 pkg_check_modules(NX_GL REQUIRED glapi)
 pkg_check_modules(NX_EGL REQUIRED egl)
+pkg_check_modules(NX_ZLIB REQUIRED zlib)
 find_library(NX_LIBRARY NAMES nx PATHS "${DEVKITPRO}/libnx/lib" NO_DEFAULT_PATH REQUIRED)
+execute_process(COMMAND dkp-pacman -Q libnx OUTPUT_VARIABLE NX_PACKAGE
+    OUTPUT_STRIP_TRAILING_WHITESPACE COMMAND_ERROR_IS_FATAL ANY)
+
+set(upstream "${VCS_UPSTREAM_DIR}")
+set(runtime "${upstream}/third_party/PS2Recomp/ps2xRuntime")
 
 add_library(glad STATIC third_party/glad/src/gl.c)
 target_include_directories(glad PUBLIC third_party/glad/include)
 
-# This milestone deliberately builds only the platform smoke test. The upstream
-# root CMakeLists is x86/Clang/SDL3 specific and cannot yet be add_subdirectory'd.
-add_executable(gtavcs src/main.c src/core_stub.c)
+# Dear ImGui (upstream's pinned version) with its SDL2 input backend; the null RHI takes its draw data until M05.
+add_library(nx_imgui STATIC "${NX_IMGUI_DIR}/imgui.cpp" "${NX_IMGUI_DIR}/imgui_draw.cpp"
+    "${NX_IMGUI_DIR}/imgui_tables.cpp" "${NX_IMGUI_DIR}/imgui_widgets.cpp" "${NX_IMGUI_DIR}/imgui_demo.cpp"
+    "${NX_IMGUI_DIR}/backends/imgui_impl_sdl2.cpp")
+target_include_directories(nx_imgui PUBLIC "${NX_IMGUI_DIR}" "${NX_IMGUI_DIR}/backends"
+    PRIVATE ${NX_SDL2_INCLUDE_DIRS})
+target_compile_options(nx_imgui PRIVATE -O2 ${NX_SDL2_CFLAGS_OTHER})
+# no shell on the Switch (the default opens URLs with fork / exec)
+target_compile_definitions(nx_imgui PUBLIC IMGUI_DISABLE_DEFAULT_SHELL_FUNCTIONS)
+
+# Upstream's runtime library, the source list of its ps2xRuntime/CMakeLists.txt (the debug panel, paraLLEl-GS,
+# FFmpeg and the desktop runner main left out). Not headless: the game's UI and perf overlay use Dear ImGui.
+set(runtime_sources
+    game_overrides.cpp gs/ps2_gif_arbiter.cpp ps2_audio.cpp ps2_audio_vag.cpp
+    gs/ps2_gs_memory.cpp gs/gs_frontend.cpp gs/gs_cpu_backend.cpp
+    ps2_iop_host.cpp ps2_memory.cpp ps2_pad.cpp ps2_rom_device.cpp ps2_vfs.cpp
+    ps2_disc_image.cpp ps2_audio_out.cpp ps2_perf.cpp ps2_control.cpp
+    ps2_hle_survey.cpp ps2_runtime.cpp ps2_vif1_interpreter.cpp
+    ps2_render_worker.cpp ps2_write_watch.cpp ps2_host_std.cpp ps2_iop_native.cpp
+    vu/ps2_vu1_core.cpp vu/ps2_vu1_upper.cpp vu/ps2_vu1_lower.cpp
+    vu/ps2_vu_code_log.cpp games_database.cpp
+    gs/gs_gpu.cpp gs/gs_hw.cpp gs/gs_gpu_none.cpp)
+list(TRANSFORM runtime_sources PREPEND "${runtime}/src/lib/")
+file(GLOB_RECURSE kernel_sources CONFIGURE_DEPENDS "${runtime}/src/lib/Kernel/*.cpp")
+set(PS2X_IOP_BUILD_TESTS OFF CACHE BOOL "" FORCE)
+add_subdirectory("${upstream}/third_party/PS2Recomp/ps2xIOP" iop)
+nx_cpu_options(ps2_iop)
+
+# The game layer: every upstream src/ source except the desktop platform (SDL3), the D3D11 / Vulkan backends and
+# main(); main.cpp itself is built without main() for the launcher steps (src/launcher.h).
+file(GLOB_RECURSE game_sources CONFIGURE_DEPENDS "${upstream}/src/*.cpp")
+list(FILTER game_sources EXCLUDE REGEX "/src/(platform|rhi)/")
+list(FILTER game_sources EXCLUDE REGEX "/src/render/")
+# the desktop ISO reader (mmap); the Switch reads the extracted folder disc (src/vfs/folder_disc.cpp)
+list(FILTER game_sources EXCLUDE REGEX "/src/disc/iso_image.cpp$")
+# These include the generated function declarations (ps2_recompiled_functions.h, made from the user's ELF): built only
+# with the private generated tree, in nx_game_private below.
+set(private_game_sources "${upstream}/src/debug/selftest.cpp" "${upstream}/src/game/vcs_display.cpp"
+    "${upstream}/src/game/vcs_overrides.cpp")
+list(REMOVE_ITEM game_sources ${private_game_sources})
+add_library(nx_core STATIC ${runtime_sources} ${kernel_sources} ${game_sources}
+    "${upstream}/src/render/presenter.cpp" "${upstream}/src/render/gs_shaders.cpp"
+    "${upstream}/src/render/ui_renderer.cpp" "${upstream}/src/rhi/rhi.cpp" "${upstream}/src/rhi/null/rhi_null.cpp"
+    src/core/core.cpp src/core/run_config.cpp src/vfs/folder_disc.cpp src/vfs/game_paths.cpp)
+nx_cpu_options(nx_core)
+target_include_directories(nx_core PRIVATE "${upstream}/src" "${runtime}/src/lib")
+# Movies (FFmpeg) are M07: vcs_movie.cpp keys them on __has_include, so the portlibs' include folder (which holds
+# FFmpeg's headers) stays off this library; only the platform layer below sees SDL2 and zlib.
+target_compile_definitions(nx_core PRIVATE PS2X_HAS_FFMPEG=0 PS2X_ENABLE_IOP_RPC_TRACE=0 _POSIX_C_SOURCE=200809L
+    VCS_LAUNCHER_NO_MAIN)
+target_link_libraries(nx_core PUBLIC ps2_iop nx_imgui nx_platform)
+
+# upstream's platform.h on SDL2 (src/platform/platform_switch_sdl2.cpp)
+add_library(nx_platform STATIC src/platform/platform_switch_sdl2.cpp)
+target_include_directories(nx_platform PRIVATE "${upstream}/src" "${PORT_ROOT}/src"
+    ${NX_SDL2_INCLUDE_DIRS} ${NX_ZLIB_INCLUDE_DIRS})
+target_compile_options(nx_platform PRIVATE -O2 -fPIE ${NX_SDL2_CFLAGS_OTHER})
+target_link_libraries(nx_platform PUBLIC nx_imgui)
+
+if(NOT NX_PRIVATE_GENERATED_ARCHIVE)
+    # Source CI: every public piece compiles; without the user's generated code there is no game to link.
+    message(STATUS "No private generated archive: building the public core library only (no NRO)")
+    return()
+endif()
+set(NX_PRIVATE_GENERATED_DIR "" CACHE PATH "Private generated EE folder (ps2_recompiled_functions.h)")
+if(NOT EXISTS "${NX_PRIVATE_GENERATED_ARCHIVE}" OR NOT EXISTS "${NX_PRIVATE_GENERATED_DIR}/ps2_recompiled_functions.h")
+    message(FATAL_ERROR "NX_PRIVATE_GENERATED_ARCHIVE and NX_PRIVATE_GENERATED_DIR must name the private build")
+endif()
+add_library(nx_game_private STATIC ${private_game_sources})
+nx_cpu_options(nx_game_private)
+target_include_directories(nx_game_private PRIVATE "${upstream}/src" "${runtime}/src/lib" "${NX_PRIVATE_GENERATED_DIR}")
+target_compile_definitions(nx_game_private PRIVATE PS2X_HAS_FFMPEG=0 PS2X_ENABLE_IOP_RPC_TRACE=0
+    _POSIX_C_SOURCE=200809L)
+target_link_libraries(nx_game_private PUBLIC nx_core)
+
+add_executable(gtavcs src/main.c src/switch/thread_stack.c)
 set_target_properties(gtavcs PROPERTIES SUFFIX ".elf" LINKER_LANGUAGE CXX)
 target_include_directories(gtavcs PRIVATE src
     ${NX_SDL2_INCLUDE_DIRS} ${NX_GL_INCLUDE_DIRS} ${NX_EGL_INCLUDE_DIRS})
-target_compile_definitions(gtavcs PRIVATE SDL_MAIN_HANDLED)
-execute_process(COMMAND dkp-pacman -Q libnx OUTPUT_VARIABLE NX_PACKAGE
-    OUTPUT_STRIP_TRAILING_WHITESPACE COMMAND_ERROR_IS_FATAL ANY)
-target_compile_definitions(gtavcs PRIVATE GTAVCS_LIBNX_PACKAGE="${NX_PACKAGE}")
+target_compile_definitions(gtavcs PRIVATE SDL_MAIN_HANDLED GTAVCS_LIBNX_PACKAGE="${NX_PACKAGE}")
 target_compile_options(gtavcs PRIVATE -Wall -Wextra -Wpedantic
     -ffp-contract=off -fno-strict-aliasing
     ${NX_SDL2_CFLAGS_OTHER} ${NX_GL_CFLAGS_OTHER} ${NX_EGL_CFLAGS_OTHER})
 target_link_directories(gtavcs PRIVATE "${SWITCH_PORTLIBS}/lib")
 target_link_options(gtavcs PRIVATE
-    "-Wl,-Map,${CMAKE_CURRENT_BINARY_DIR}/gtavcs.map" -Wl,--gc-sections
+    "-Wl,-Map,${CMAKE_CURRENT_BINARY_DIR}/gtavcs.map" -Wl,--wrap=__syscall_thread_create
     ${NX_SDL2_STATIC_LDFLAGS_OTHER} ${NX_GL_STATIC_LDFLAGS_OTHER} ${NX_EGL_STATIC_LDFLAGS_OTHER})
-# Portlibs are static. Grouping resolves Mesa/SDL dependencies without depending
-# on incidental archive ordering. switch.specs/PIE/TLS flags come from Switch.cmake.
-target_link_libraries(gtavcs PRIVATE glad -Wl,--start-group
-    ${NX_SDL2_STATIC_LIBRARIES} ${NX_GL_STATIC_LIBRARIES} ${NX_EGL_STATIC_LIBRARIES}
+# The generated archive is whole-archive: its registration constructor references every function. Portlibs are
+# static; grouping resolves Mesa/SDL dependencies without depending on incidental archive ordering.
+# The game layer, runtime, IOP and platform reference each other both ways: one group.
+target_link_libraries(gtavcs PRIVATE glad
+    -Wl,--whole-archive "${NX_PRIVATE_GENERATED_ARCHIVE}" -Wl,--no-whole-archive
+    -Wl,--start-group nx_game_private nx_core nx_platform nx_imgui ps2_iop
+    ${NX_SDL2_STATIC_LIBRARIES} ${NX_GL_STATIC_LIBRARIES} ${NX_EGL_STATIC_LIBRARIES} ${NX_ZLIB_STATIC_LIBRARIES}
     "${NX_LIBRARY}" m -Wl,--end-group)
 
 nx_generate_nacp(OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/gtavcs.nacp"
-    NAME "GTA VCS NX - platform smoke" AUTHOR "gtavcs_nx contributors" VERSION "${PROJECT_VERSION}")
+    NAME "GTA VCS NX" AUTHOR "gtavcs_nx contributors" VERSION "${PROJECT_VERSION}")
 nx_create_nro(gtavcs OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/gtavcs.nro"
     NACP "${CMAKE_CURRENT_BINARY_DIR}/gtavcs.nacp")
 install(FILES "${CMAKE_CURRENT_BINARY_DIR}/gtavcs.nro" DESTINATION switch/gtavcs_nx)
