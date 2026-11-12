@@ -56,7 +56,7 @@ control, followed the same scripted route and exited its loop normally.
 
 ## What this does not establish
 
-- Nothing here ran on a Switch.
+- Nothing here ran on a Switch. The Switch results are in [HARDWARE_RESULTS.md](HARDWARE_RESULTS.md).
 - Upstream `src/main.cpp` still looks for an ISO. It is not built for the Switch; M04's
   boot code must use `FolderDisc` and `GamePaths` in its place.
 - Async stream cancellation is not exercised in play. Upstream's stream reader runs

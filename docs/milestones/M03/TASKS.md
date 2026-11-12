@@ -46,7 +46,7 @@ They are private disc data and stay in `gamefolder/.nxdisc/raw.bin`.
 
 - [x] Bounded pool of 8 open files, no shared seek state; concurrent readers on the native build.
 - [x] Upstream's stream reader never cancels a request, recorded in VERIFICATION.md.
-- [ ] Shutdown with reads pending on real hardware (M03-12).
+- [x] Shutdown with reads pending on real hardware (M03-12): 21.3 ms join and close.
 
 ## M03-08 — Differential comparison
 
@@ -64,7 +64,7 @@ They are private disc data and stay in `gamefolder/.nxdisc/raw.bin`.
 
 - [x] `resolveGamePaths` puts settings, cache and cards under `gamefolder/userdata`, and needs an existing asset root.
 - [x] `rootedGamePath` strips `sdmc:`, keeps rooted and relative paths, refuses other devices and `..`.
-- [ ] `sdmc:` behaviour proven on hardware (M03-12).
+- [x] `sdmc:` behaviour proven on hardware (M03-12).
 
 ## M03-11 — Mods and failures
 
@@ -73,9 +73,10 @@ They are private disc data and stay in `gamefolder/.nxdisc/raw.bin`.
 
 ## M03-12 — Hardware
 
-- [ ] Whole-disc digest through `FolderDisc` on the SD card.
-- [ ] SD case behaviour, concurrent reads, handle bound.
-- [ ] Clean shutdown during pending reads.
+- [x] Whole-disc digest through `FolderDisc` on the SD card.
+- [x] SD case behaviour, concurrent reads, handle bound.
+- [x] Clean shutdown during pending reads.
 
+Results: [HARDWARE_RESULTS.md](HARDWARE_RESULTS.md), 2026-11-12, 0 failures.
 The harness is `src/core_tests/disc_main.cpp`; `tools/switch_m03_session.py` copies the
 tree and runs it.

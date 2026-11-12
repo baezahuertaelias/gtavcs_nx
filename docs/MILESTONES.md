@@ -194,19 +194,19 @@ Branch: `milestone/m03-folder-vfs` <!-- M03 -->
 Exit: gamefolder-only runtime reads preserve required ISO semantics; assets,
 mods, settings and saves resolve to the intended roots without a runtime ISO.
 
-- [ ] M03-01 Build an explicit user-disc extraction tool that verifies identity and preserves original path names and extent metadata.
-- [ ] M03-02 Enumerate internal archive/directory formats (IMG/DIR, DTZ/GTAG, LVZ/WRLD, XTX, PSP frontend, SDT/VB/RAW, SCM, GXT, PSS); classify what remains guest-handled.
-- [ ] M03-03 Produce private content-hash manifest and metadata-only coverage map; document unsupported members and resolve each boot-critical format gap.
-- [ ] M03-04 Implement IPS2DiscImage folder backend for findFile, readBytes, totalSectors and listDirectory with deterministic directory metadata.
-- [ ] M03-05 Normalize cdrom0 prefixes, slash/case and ISO version suffixes; reject path escapes, ambiguous names and invalid sizes/offsets.
-- [ ] M03-06 Match original LBA mapping and reads crossing files/sectors; identify raw reads into padding/gaps and preserve actually consumed bytes privately.
-- [ ] M03-07 Implement thread-safe random access and async CDVD/IOP streaming completion/cancellation; avoid shared seek-pointer races.
+- [x] M03-01 Build an explicit user-disc extraction tool that verifies identity and preserves original path names and extent metadata.
+- [x] M03-02 Enumerate internal archive/directory formats (IMG/DIR, DTZ/GTAG, LVZ/WRLD, XTX, PSP frontend, SDT/VB/RAW, SCM, GXT, PSS); classify what remains guest-handled.
+- [x] M03-03 Produce private content-hash manifest and metadata-only coverage map; document unsupported members and resolve each boot-critical format gap.
+- [x] M03-04 Implement IPS2DiscImage folder backend for findFile, readBytes, totalSectors and listDirectory with deterministic directory metadata.
+- [x] M03-05 Normalize cdrom0 prefixes, slash/case and ISO version suffixes; reject path escapes, ambiguous names and invalid sizes/offsets.
+- [x] M03-06 Match original LBA mapping and reads crossing files/sectors; identify raw reads into padding/gaps and preserve actually consumed bytes privately.
+- [x] M03-07 Implement thread-safe random access and async CDVD/IOP streaming completion/cancellation; avoid shared seek-pointer races.
 - [ ] M03-08 Differentially compare boot, world streaming, radio, cutscene and unaligned boundary reads against source ISO.
 - [ ] M03-09 Remove runtime ISO discovery/staging dependency; resolve required ELF/data staging under gamefolder without shipping it in the NRO.
-- [ ] M03-10 Route configuration/cache/test saves separately under gamefolder/userdata; preserve memory-card directory/file metadata and backups.
-- [ ] M03-11 Define supported mod overlay precedence/root validation and verify missing/corrupt assets produce actionable logs with safe failure.
-- [ ] M03-12 Verify SD case/path behavior, bounded file-handle/cache use and clean shutdown during pending reads on hardware.
-- [ ] M03-13 Pass only rooted or cwd-relative paths into runtime std::filesystem code and test that a device-prefixed `sdmc:` value cannot produce a cwd-doubled path (M02 hardware finding).
+- [x] M03-10 Route configuration/cache/test saves separately under gamefolder/userdata; preserve memory-card directory/file metadata and backups.
+- [x] M03-11 Define supported mod overlay precedence/root validation and verify missing/corrupt assets produce actionable logs with safe failure.
+- [x] M03-12 Verify SD case/path behavior, bounded file-handle/cache use and clean shutdown during pending reads on hardware.
+- [x] M03-13 Pass only rooted or cwd-relative paths into runtime std::filesystem code and test that a device-prefixed `sdmc:` value cannot produce a cwd-doubled path (M02 hardware finding).
 
 Proof: extractor validation, metadata coverage, sampled and recorded-trace byte
 comparisons, no-ISO runtime test, corrupt/missing asset and cancellation tests.

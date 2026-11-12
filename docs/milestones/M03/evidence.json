@@ -1,0 +1,96 @@
+{
+  "M03-01": [
+    {
+      "path": "docs/milestones/M03/VERIFICATION.md",
+      "result": "tools/extract_disc.py refuses discs failing the identity check, keeps names/order/LBAs in .nxdisc/manifest.tsv, and rebuilds the user's image to SHA-256 981259b8...8a7740"
+    },
+    {
+      "path": "docs/milestones/M03/TASKS.md",
+      "result": "Extractor refusal and preservation rules checked; tests in tools/test_extract_disc.py"
+    }
+  ],
+  "M03-02": [
+    {
+      "path": "docs/milestones/M03/FORMATS.md",
+      "result": "All 341 disc files classified by format with run-time owner; 0 structural-check failures"
+    },
+    {
+      "path": "docs/milestones/M03/format_coverage.json",
+      "result": "Metadata-only per-format counts and verdicts"
+    }
+  ],
+  "M03-03": [
+    {
+      "path": "docs/milestones/M03/FORMATS.md",
+      "result": "Private per-file SHA-256 manifest; unsupported members documented; no boot-critical format gap found"
+    },
+    {
+      "path": "docs/milestones/M03/format_coverage.json",
+      "result": "Metadata-only coverage map with no game bytes"
+    }
+  ],
+  "M03-04": [
+    {
+      "path": "docs/milestones/M03/VERIFICATION.md",
+      "result": "FolderDisc findFile/readBytes/totalSectors/listDirectory compared with vcs::IsoImage: 341 files, 23,449 comparisons, 12.6 GB, 0 failures; listing in on-disc order"
+    }
+  ],
+  "M03-05": [
+    {
+      "path": "docs/milestones/M03/TASKS.md",
+      "result": "cdrom0 prefix, separators, case and ;N versions normalized; traversal, stray devices, bad versions, unsafe/duplicate paths and wrong sizes rejected with named errors"
+    },
+    {
+      "path": "docs/milestones/M03/VERIFICATION.md",
+      "result": "Path lookups by cdrom0:\\...;1 and every directory listing equal the ISO"
+    }
+  ],
+  "M03-06": [
+    {
+      "path": "docs/milestones/M03/VERIFICATION.md",
+      "result": "Reads across files, padding, gaps and raw sectors, unaligned boundaries and end-of-disc failure cases equal the real image; whole image rebuilt bit-exact"
+    }
+  ],
+  "M03-07": [
+    {
+      "path": "docs/milestones/M03/TASKS.md",
+      "result": "Bounded 8-slot handle pool with no shared seek state; upstream stream reader never cancels, so cancellation reduces to shutdown with reads pending"
+    },
+    {
+      "path": "docs/milestones/M03/HARDWARE_RESULTS.md",
+      "result": "Real Switch: 4 concurrent readers, 4,800 random 64 KiB reads consistent; readers stopped and disc closed during pending reads in 21.3 ms"
+    }
+  ],
+  "M03-10": [
+    {
+      "path": "docs/milestones/M03/TASKS.md",
+      "result": "resolveGamePaths puts settings, cache and memory cards under gamefolder/userdata and requires an existing asset root"
+    },
+    {
+      "path": "docs/milestones/M03/HARDWARE_RESULTS.md",
+      "result": "Device-prefixed root resolved to /switch/gtavcs_nx/gamefolder on a real Switch"
+    }
+  ],
+  "M03-11": [
+    {
+      "path": "docs/milestones/M03/TASKS.md",
+      "result": "Same-size mods/<disc path> overrides apply; other sizes refused with named warning; missing, wrong-size and shortened assets fail with the file named"
+    }
+  ],
+  "M03-12": [
+    {
+      "path": "docs/milestones/M03/HARDWARE_RESULTS.md",
+      "result": "Real Switch, HOS 22.5.0 application mode: whole 2,183,856,128-byte disc through FolderDisc on SD hashes to the source image SHA-256 at 67.4 MiB/s; lowercase open found; 8-slot handle bound held over all 341 files; clean shutdown during pending reads; 0 failures, no crash report"
+    }
+  ],
+  "M03-13": [
+    {
+      "path": "docs/milestones/M03/HARDWARE_RESULTS.md",
+      "result": "Real Switch: rooted path absolute to std::filesystem, same file reached via sdmc: and rooted path, no cwd-doubled sdmc: folder created"
+    },
+    {
+      "path": "docs/milestones/M03/TASKS.md",
+      "result": "rootedGamePath strips sdmc:, keeps rooted and relative paths, refuses other devices and .."
+    }
+  ]
+}
