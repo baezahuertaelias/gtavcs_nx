@@ -5,7 +5,6 @@
 #include <atomic>
 #include <cstdio>
 #include <cstring>
-#include <filesystem>
 #include <random>
 #include <string>
 #include <sys/stat.h>
@@ -33,6 +32,22 @@ void makeDirectory(const std::string &path) {
 #else
     mkdir(path.c_str(),0777);
 #endif
+}
+
+// The mods checkMods creates, removed one by one: std::filesystem::remove_all on a relative path
+// silently left them in place on the Switch, so a stale mod changed later reads.
+bool removeMods(const std::string &root) {
+    const std::string mods=root+"/mods";
+    for(const char *file : {"/F0.BIN","/SUB/F1.BIN"}) std::remove((mods+file).c_str());
+    for(const char *directory : {"/F2.BIN","/SUB",""}) {
+#if defined(_WIN32)
+        _rmdir((mods+directory).c_str());
+#else
+        rmdir((mods+directory).c_str());
+#endif
+    }
+    struct stat info{};
+    return stat(mods.c_str(),&info)!=0;
 }
 
 bool writeFile(const std::string &path,const void *data,size_t size) {
@@ -137,7 +152,6 @@ void checkConcurrent(const FolderDisc &disc,const Fixture &fixture) {
 }
 
 void checkMods(const Fixture &fixture) {
-    namespace fs=std::filesystem;
     makeDirectory(fixture.root+"/mods"); makeDirectory(fixture.root+"/mods/SUB");
     std::vector<uint8_t> replacement(kSector);
     fillPattern(replacement.data(),replacement.size(),0xee);
@@ -164,8 +178,7 @@ void checkMods(const Fixture &fixture) {
     expect(disc->readBytes(uint64_t(lsn)*kSector,size,file.data()) &&
         std::memcmp(file.data(),fixture.image.data()+uint64_t(lsn)*kSector,size)==0,"disc file still served");
     disc.reset();
-    std::error_code ignored;
-    fs::remove_all(fixture.root+"/mods",ignored);
+    expect(removeMods(fixture.root),"mods removed after the mod checks");
 }
 
 void checkCorruption(const Fixture &fixture) {
@@ -277,7 +290,10 @@ void checkRejections(Fixture &fixture) {
 int runFolderDiscTests() {
     failures=0;
     Fixture fixture;
-    if(!buildFixture(fixture,"folder-disc-fixture")) { std::puts("FAIL folder disc: fixture"); return 1; }
+    if(!removeMods("folder-disc-fixture") || !buildFixture(fixture,"folder-disc-fixture")) {
+        std::puts("FAIL folder disc: fixture");
+        return 1;
+    }
     std::string error;
     auto disc=FolderDisc::load(fixture.root,error);
     if(!disc) { std::printf("FAIL folder disc: load: %s\n",error.c_str()); return 1; }

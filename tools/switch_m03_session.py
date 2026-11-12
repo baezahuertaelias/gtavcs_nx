@@ -1,7 +1,7 @@
 """Copy the extracted game to the Switch and run the M03 hardware checks over FTP and nxlink.
 
     python tools/switch_m03_session.py upload <gamefolder> <evidence-dir>
-    python tools/switch_m03_session.py run <evidence-dir>
+    python tools/switch_m03_session.py run <evidence-dir> [--suite disc|runtime]
 
 Needs Sphaira open in application mode with FTP and nxlink available. `upload` copies only
 disc files and .nxdisc into sdmc:/switch/gtavcs_nx/gamefolder, skipping files whose size
@@ -20,7 +20,9 @@ HOST, PORT = "192.168.1.107", 5000
 ROOT = Path(__file__).resolve().parents[1]
 SD = "/switch/gtavcs_nx"
 BLOCK = 1 << 20
-PAYLOAD, LOG = "gtavcs_disc_tests.nro", "disc-tests-M03.log"
+SUITES = {"disc": ("gtavcs_disc_tests.nro", "disc-tests-M03.log"),
+          "runtime": ("gtavcs_runtime_tests.nro", "runtime-tests-M02.log")}
+PAYLOAD, LOG = SUITES["disc"]
 
 
 class Session:
@@ -189,7 +191,10 @@ def main():
     parser.add_argument("command", choices=["upload", "run"])
     parser.add_argument("first")
     parser.add_argument("second", nargs="?")
+    parser.add_argument("--suite", choices=sorted(SUITES), default="disc")
     args = parser.parse_args()
+    global PAYLOAD, LOG
+    PAYLOAD, LOG = SUITES[args.suite]
     session = Session(args.second if args.command == "upload" else args.first)
     if args.command == "upload":
         upload(session, args.first)
