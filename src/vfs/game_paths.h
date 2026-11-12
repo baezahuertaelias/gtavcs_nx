@@ -18,8 +18,9 @@ struct GamePaths
 
 // Paths handed to runtime std::filesystem code must not carry "sdmc:", which newlib's
 // std::filesystem treats as relative and joins onto the cwd. Strips that device and
-// accepts only rooted paths: a cwd-relative std::filesystem::remove_all silently did
-// nothing on the Switch (M03 hardware). Refuses other devices and ".." components.
+// accepts only rooted paths, so nothing depends on the cwd. Refuses other devices and ".."
+// components. std::filesystem::remove_all failed on the Switch for a relative (c5903d1) and
+// a rooted (27274a3) path alike; docs/milestones/M03/HARDWARE_RESULTS.md has the probe.
 bool rootedGamePath(std::string_view path, std::string &out);
 
 // Requires an existing asset root, and creates only the userdata folders inside it.

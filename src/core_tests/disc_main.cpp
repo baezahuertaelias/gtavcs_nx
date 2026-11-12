@@ -2,6 +2,7 @@
 // Holds no game data; every byte comes from gamefolder and is compared with its manifest.
 #include <switch.h>
 #include <atomic>
+#include <cerrno>
 #include <chrono>
 #include <cinttypes>
 #include <cstdio>
@@ -12,6 +13,7 @@
 #include <random>
 #include <string>
 #include <thread>
+#include <sys/stat.h>
 #include <unistd.h>
 #include <vector>
 #include "resources.h"
@@ -49,6 +51,41 @@ std::string manifestValue(const char *key) {
     return value;
 }
 
+void writeByte(const std::string &path) {
+    std::FILE *file=std::fopen(path.c_str(),"w");
+    if(file) { std::fputs("x",file); std::fclose(file); }
+}
+
+// Which std::filesystem calls work on the SD card, one at a time. A relative remove_all did
+// nothing here (c5903d1) and a rooted one failed with EIO (27274a3), so each step is recorded.
+// Only what the port relies on is checked: create, list, file removal and rmdir.
+void fsProbe(const std::string &base,const char *label,bool required) {
+    namespace fs=std::filesystem;
+    const std::string tree=base+"/fs-probe",sub=tree+"/sub",file=sub+"/f.bin";
+    std::remove(file.c_str()); rmdir(sub.c_str()); rmdir(tree.c_str()); // leftovers of earlier runs
+    std::error_code code;
+    const bool made=fs::create_directories(sub,code);
+    writeByte(file);
+    size_t listed=0;
+    for(const auto &entry : fs::recursive_directory_iterator(tree,code)) { (void)entry; ++listed; }
+    std::error_code fileCode,dirCode,allCode;
+    const bool fileRemoved=fs::remove(file,fileCode);
+    const bool dirRemoved=fs::remove(sub,dirCode);
+    const int rmdirResult=dirRemoved ? 0 : rmdir(sub.c_str());
+    const int rmdirErrno=rmdirResult ? errno : 0;
+    fs::create_directories(sub,code);
+    writeByte(file);
+    const auto all=fs::remove_all(tree,allCode);
+    struct stat info{};
+    const bool fileLeft=stat(file.c_str(),&info)==0,subLeft=stat(sub.c_str(),&info)==0,treeLeft=stat(tree.c_str(),&info)==0;
+    std::remove(file.c_str()); rmdir(sub.c_str()); rmdir(tree.c_str());
+    std::printf("[fs-probe] %s created=%d listed=%zu remove_file=%d/%d remove_empty_dir=%d/%d rmdir=%d/%d "
+        "remove_all=%lld/%d left=file:%d,sub:%d,tree:%d\n",label,made,listed,fileRemoved,fileCode.value(),dirRemoved,
+        dirCode.value(),rmdirResult,rmdirErrno,static_cast<long long>(all),allCode.value(),fileLeft,subLeft,treeLeft);
+    if(required)
+        check(made && listed==2 && fileRemoved && rmdirResult==0,"rooted create, list, file remove and rmdir work");
+}
+
 void checkPaths() {
     GamePaths paths; std::string error;
     // A test profile: the harness never writes into the player's userdata.
@@ -70,18 +107,8 @@ void checkPaths() {
     if(viaDevice) std::fclose(viaDevice);
     fs::remove(probe,code);
     check(!fs::exists(fs::path(kDeviceRoot)/"sdmc:",code),"no cwd-doubled device folder");
-    // The std::filesystem operations runtime code uses, on a rooted path: create, list,
-    // remove_all, exists. A cwd-relative remove_all silently did nothing here (c5903d1).
-    const fs::path tree=fs::path(paths.cache)/"fs-probe";
-    fs::remove_all(tree,code);
-    const bool made=fs::create_directories(tree/"sub",code);
-    { std::FILE *file=std::fopen((tree/"sub"/"f.bin").string().c_str(),"w"); if(file) { std::fputs("x",file); std::fclose(file); } }
-    size_t listed=0;
-    for(const auto &entry : fs::recursive_directory_iterator(tree,code)) { (void)entry; ++listed; }
-    const auto removed=fs::remove_all(tree,code);
-    std::printf("[fs-probe] created=%d listed=%zu removed=%llu error=%d exists_after=%d\n",made,listed,
-        static_cast<unsigned long long>(removed),code.value(),fs::exists(tree));
-    check(made && listed==2 && removed==3 && !fs::exists(tree),"rooted create, list, remove_all and exists work");
+    fsProbe(paths.cache,"rooted",true);
+    fsProbe("userdata/tests/m03-disc/cache","relative",false); // recorded only
 }
 
 void checkCase(const FolderDisc &disc) {
