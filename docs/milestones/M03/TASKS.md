@@ -24,7 +24,7 @@ They are private disc data and stay in `gamefolder/.nxdisc/raw.bin`.
 
 - [x] Refuses any disc that fails upstream's identity check, before writing anything.
 - [x] Keeps original names, on-disc order and every LBA in `.nxdisc/manifest.tsv`.
-- [x] Refuses overlapping extents, non-zero padding, unsafe names and names differing only by case.
+- [x] Refuses overlapping extents, non-zero padding, unsafe names and names differing only by case, before writing anything.
 - [x] Never removes files it did not write; overwriting a different-size disc file needs `--replace`.
 - [x] Real disc rebuilds to the image's SHA-256.
 
@@ -39,7 +39,7 @@ They are private disc data and stay in `gamefolder/.nxdisc/raw.bin`.
 - [x] `findFile`, `readBytes`, `totalSectors`, `listDirectory`, with listing in on-disc order.
 - [x] Normalizes device prefix, separators, case and `;N` versions; rejects traversal, stray devices and bad versions.
 - [x] Load refuses bad versions, unsafe or duplicate paths, overlaps, wrong sizes, extents past or wrapping past the end, and missing files, naming the problem.
-- [x] Zero-length files hold no sectors, as in the extractor, independent of manifest order.
+- [x] Zero-length files hold no sectors, in `FolderDisc` and in the extractor alike, independent of manifest order.
 - [x] Reads across files, padding, gaps and raw sectors equal the real image.
 - [x] End-of-disc reads zero-fill and return false, as `vcs::IsoImage` does.
 

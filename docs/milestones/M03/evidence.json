@@ -2,7 +2,7 @@
   "M03-01": [
     {
       "path": "docs/milestones/M03/VERIFICATION.md",
-      "result": "Extractor tests (python -m unittest tools.test_extract_disc, 9 OK at 1dced20): wrong identity refused before the destination exists; original LBAs and walk order kept in manifest.tsv; padding, overlap, traversal and case-only name collisions refused; changed bytes detected; unrelated files kept"
+      "result": "Extractor tests (python -m unittest tools.test_extract_disc, 10 OK at 9e020e7): wrong identity, padding, overlap, traversal and case-only collisions refused before anything is written; original LBAs and walk order kept; zero-length files hold no sectors in any order; changed bytes detected; unrelated files kept"
     },
     {
       "path": "docs/milestones/M03/VERIFICATION.md",
@@ -36,13 +36,13 @@
     },
     {
       "path": "docs/milestones/M03/VERIFICATION.md",
-      "result": "Synthetic suite at a6655af under ASan/UBSan and -O2: paths, listing, whole-image and unaligned reads, end of disc, PASS"
+      "result": "Synthetic suite at 9e020e7 under ASan/UBSan and -O2: paths, listing, whole-image and unaligned reads, end of disc, PASS"
     }
   ],
   "M03-05": [
     {
       "path": "docs/milestones/M03/VERIFICATION.md",
-      "result": "Synthetic suite at a6655af, sanitized and -O2, logs hashed: 15 rejected layouts including extents wrapping past 2^64, traversal, lower case, overlap, duplicates, wrong sizes, missing files; zero-length files in either manifest order; PASS"
+      "result": "Synthetic suite at 9e020e7, sanitized and -O2, logs hashed: 16 rejected layouts including extents wrapping past 2^64 and a second sector count, traversal, lower case, overlap, duplicates, wrong sizes, missing files; zero-length files in either manifest order; PASS"
     },
     {
       "path": "docs/milestones/M03/HARDWARE_RESULTS.md",

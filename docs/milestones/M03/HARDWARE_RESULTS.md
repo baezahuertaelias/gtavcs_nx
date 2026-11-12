@@ -1,5 +1,15 @@
 # M03 real-Switch results
 
+> **Pending final session.** Commit `9e020e7` changed payload inputs after the session
+> below: `FolderDisc` refuses a second sector count, the synthetic suite gained that case,
+> and the disc harness now resolves `GamePaths` with the `m03-disc` test profile instead of
+> the player's `userdata`. Payloads from `9e020e7` are built (disc
+> `9cf1673ad2e55df359208fdbd58de55cf94c7c86f2aadbd126482df188c911cd`, runtime
+> `56a15dbec46560c355e970b5b97b59067b8d7c70c51e4671541858c3e619956f`,
+> `build/evidence/M03/public-build-9e020e7.log`). By the user's choice the Switch rerun is
+> done once, at the end of the review fixes, and replaces this notice with its results.
+> Until then the hardware evidence below is from `1dced20` payloads.
+
 All sessions on 2026-11-12, on the user's Switch (HOS 22.5.0, `hosversionGet` = `00160500`,
 Atmosphere), launched through Sphaira nxlink in application mode (`applet=0`), driven by
 `tools/switch_m03_session.py run <evidence-dir> --suite disc|runtime`. No emulator result is
@@ -26,7 +36,7 @@ Evidence folders: `hardware-final-disc/` and `hardware-final-runtime/`. Crash re
 entries before and after each run, identical listings. SD game folder: 343 files,
 2,162,118,749 bytes, sizes checked over FTP before the first session (`hardware/`).
 
-### Disc suite log
+### Disc suite log (the two `[resources]` lines omitted)
 
 ```text
 [disc-tests] HOS=00160500 applet=0
@@ -87,7 +97,11 @@ Switch's SD card, together with M02's CPU and runtime suites.
 - **Synthetic suite on the card (M03-05, M03-10, M03-11).** All rejected layouts, mods,
   corruption, empty files, game paths and test profiles pass on the Switch file system.
 - **Memory.** Allocator use went from 75,728 bytes in use at the start of the disc suite to
-  78,656 at its end.
+  78,656 at its end (the omitted `[resources]` lines).
+- **Session result.** At `1dced20` the session tool passed a run on the payload hash and the
+  crash listing only, so the `c5903d1` runtime session with `failures=2` still ended
+  `session end ok=True`. From `9e020e7` the tool also requires exactly one
+  `finished failures=0` line in the log.
 
 ## Earlier sessions, kept for the record
 

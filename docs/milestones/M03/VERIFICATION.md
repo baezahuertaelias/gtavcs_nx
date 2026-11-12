@@ -13,7 +13,7 @@ source image. This covers files, padding, gaps and non-file sectors.
 ## Extractor tests
 
 `python -m unittest tools.test_extract_disc` builds synthetic ISO images; no game data.
-Result at commit `1dced20`: 9 tests, OK. They cover, in this order of the M03-01 claims:
+Result at commit `9e020e7`: 10 tests, OK. They cover, in this order of the M03-01 claims:
 
 - `test_rejects_wrong_identity_before_writing`: a failed identity check raises before the
   destination folder exists.
@@ -23,7 +23,12 @@ Result at commit `1dced20`: 9 tests, OK. They cover, in this order of the M03-01
   rebuilds the image's SHA-256.
 - `test_rejects_unexpected_padding`, `test_rejects_overlapping_files`,
   `test_rejects_traversing_names`, `test_rejects_names_differing_only_by_case`: each
-  refused before anything is written.
+  refused before anything is written; the padding and case tests check that the
+  destination does not exist afterwards. (Until `9e020e7` padding was checked while
+  writing, so a refusal could leave a partial tree; the review found it.)
+- `test_empty_files_hold_no_sectors_in_any_order`: zero-length files sharing a file's
+  first sector or inside its span, before or after it on the disc, extract and verify,
+  as `FolderDisc` loads them.
 - `test_detects_changed_file`, `test_keeps_unrelated_files_and_refuses_other_sizes`:
   verification catches a changed byte; re-extraction keeps unrelated files and needs
   `--replace` to overwrite a file of a different size.
@@ -40,10 +45,10 @@ AddressSanitizer printed `DEADLYSIGNAL` forever. The fixture is generated; no ga
 
 | Run | Flags | Result | Log SHA-256 |
 |---|---|---|---|
-| Sanitized | `-O1 -g -fsanitize=address,undefined -fno-sanitize-recover=all` | PASS, exit 0 | `6c1d130368cbf2988adf5f0b0cf7bb8afc3f71c349734af98428e255b5e9e884` |
-| Optimized | `-O2` | PASS, exit 0 | `f765439c9cac6d9b71ee312989b458e405cb8e1f506571772f741cb3ec0534d7` |
+| Sanitized | `-O1 -g -fsanitize=address,undefined -fno-sanitize-recover=all` | PASS, exit 0 | `771c19251a9c8ac5e03018ff68a43b06ae25f048214a27df9d6aa67264874478` |
+| Optimized | `-O2` | PASS, exit 0 | `58d46c1c8f1c6bfe410485e2420c3a1e458b261a7d2ea1b097447fb00becd065` |
 
-Both logs record source commit `a6655afbf45e4030fc4fb10c671d7272b2a61731` with
+Both logs record source commit `9e020e7ed1e9a455f26a36041a8540c726dd9d3d` with
 `sources_dirty=False`, and the full command. The same suite also runs on the Switch inside
 the runtime payload (HARDWARE_RESULTS.md). The one `read failed` line in each log is the
 intended shortened-file case.
@@ -53,10 +58,10 @@ What the suite checks:
 - Path normalization, directory listing, whole-image and unaligned reads, reads across
   padding, gaps and raw sectors, end of disc (M03-04 to M03-06).
 - Four concurrent readers over twelve files, more than the eight handle slots (M03-07).
-- 15 rejected layouts (M03-05): missing root, wrong version, traversal, lower-case name,
-  extent past the end, extents wrapping past 2^64 in `F` and `R` records, overlap, bad
-  number, entry without its parent, duplicate path, wrong size, raw data out of order,
-  truncated raw data, missing game file.
+- 16 rejected layouts (M03-05): missing root, wrong version, traversal, lower-case name,
+  extent past the end, extents wrapping past 2^64 in `F` and `R` records, a second sector
+  count after the entries, overlap, bad number, entry without its parent, duplicate path,
+  wrong size, raw data out of order, truncated raw data, missing game file.
 - Zero-length files inside the raw span and sharing a file's sector, in both manifest
   orders: load succeeds and no sector is hidden.
 - Mods (M03-11): a same-size mod replaces the disc file; a wrong-size mod and a directory
@@ -91,15 +96,17 @@ on the real data. Result: `files=341 comparisons=23449 bytes=12626136345 failure
 `tools/desktop_folder_disc.py` patches only the disposable reference clone. A tee answers
 each disc request from the ISO and compares it with `FolderDisc`. The run used an empty
 card: boot, flyover and intro cutscene with no input, then gameplay at Fort Baxter, four
-teleports and an attempted AI drive (`build/evidence/M03/desktop/tee-steps.txt`).
+logged teleports, one unlogged teleport back to the first spot, and an attempted AI drive
+(`build/evidence/M03/desktop/tee-steps.txt`).
 
-What the steps actually show: the first two teleports had no effect, because the opening
-mission still placed the player; the third and fourth reached (1325, -325) and
-(-1425, -575). The fifth placed the player at (579.4, 175.0, 111.2) on the east island,
-and the "AI drive" never moved: the player stayed there for all six samples over 75 s.
-So the live reads cover boot, movies, the cutscene, streaming at Fort Baxter and two
-teleport destinations, and the radio, not a drive. The folder-only and ISO runs followed
-the same steps with the same result.
+What the steps actually show: the first two logged teleports had no effect, because the
+opening mission still placed the player; the third and fourth reached (1325, -325) and
+(-1425, -575). The unlogged return teleport placed the player at (579.4, 175.0, 111.2) on
+the east island, and the "AI drive" never moved: the player stayed there for all six
+samples over 75 s. So the live reads cover boot, movies, the cutscene, streaming at Fort
+Baxter and two teleport destinations, and the radio, not a drive. The folder-only and ISO
+runs show the same outcome at every teleport and during the drive; their first sample at
+Fort Baxter differs by up to 69 units, as the opening scene moves the player.
 
 | Measure | Result |
 |---|---:|
@@ -144,7 +151,8 @@ The live BEACH/MALL check moved to M14-02 ([SCOPE_DECISIONS.md](SCOPE_DECISIONS.
 
 With `VCS_FOLDER_ONLY` set the patched reference opens no image and uses `FolderDisc` and
 the extracted `SLUS_215.90` directly. It reached gameplay at the same step as the ISO
-control, took the same steps with the same positions and exited its loop normally.
+control, with the same teleport and drive outcomes (the first Fort Baxter sample differs
+slightly between runs), and exited its loop normally.
 
 ## What this does not establish
 
