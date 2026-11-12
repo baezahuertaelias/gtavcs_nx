@@ -67,6 +67,9 @@ def imgui_dependency(log):
     if not target.exists():
         target.mkdir(parents=True)
         run(["git", "init", str(target)], log)
+        # the locked hash is of the repository's own (LF) bytes: no line-ending conversion on Windows hosts
+        run(["git", "-C", str(target), "config", "core.autocrlf", "false"], log)
+        run(["git", "-C", str(target), "config", "core.eol", "lf"], log)
         run(["git", "-C", str(target), "remote", "add", "origin", lock["repository"]], log)
         run(["git", "-C", str(target), "fetch", "--depth", "1", "origin", lock["commit"]], log)
         run(["git", "-C", str(target), "checkout", "--detach", lock["commit"]], log)

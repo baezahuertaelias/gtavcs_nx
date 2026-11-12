@@ -13,6 +13,6 @@
     "tag": "v1.92.7-docking",
     "license": "MIT",
     "use": "Upstream's pinned Dear ImGui (src/platform/CMakeLists.txt) with its SDL2 input backend for the Switch platform layer",
-    "header_sha256": "2582c2f72b4594f30323626456741f4b992627b0e6deff91f25944b4767cf1a7"
+    "header_sha256": "fa17ec4535996829433a8124d257979b70cdf27ff4b3d89a1c66228646e2a694"
   }
 }
