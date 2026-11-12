@@ -38,7 +38,8 @@ They are private disc data and stay in `gamefolder/.nxdisc/raw.bin`.
 
 - [x] `findFile`, `readBytes`, `totalSectors`, `listDirectory`, with listing in on-disc order.
 - [x] Normalizes device prefix, separators, case and `;N` versions; rejects traversal, stray devices and bad versions.
-- [x] Load refuses bad versions, unsafe or duplicate paths, overlaps, wrong sizes and missing files, naming the problem.
+- [x] Load refuses bad versions, unsafe or duplicate paths, overlaps, wrong sizes, extents past or wrapping past the end, and missing files, naming the problem.
+- [x] Zero-length files hold no sectors, as in the extractor, independent of manifest order.
 - [x] Reads across files, padding, gaps and raw sectors equal the real image.
 - [x] End-of-disc reads zero-fill and return false, as `vcs::IsoImage` does.
 
@@ -62,13 +63,15 @@ They are private disc data and stay in `gamefolder/.nxdisc/raw.bin`.
 
 ## M03-10, M03-13 — Paths
 
-- [x] `resolveGamePaths` puts settings, cache and cards under `gamefolder/userdata`, and needs an existing asset root.
+- [x] `resolveGamePaths` puts settings, cache, cards and card backups under `gamefolder/userdata`, and needs an existing asset root.
+- [x] A test profile puts all of them under `userdata/tests/<name>`; unsafe profile names are refused.
+- [x] Runtime use of these paths moved to M04-13 (user decision 2026-11-12, [SCOPE_DECISIONS.md](SCOPE_DECISIONS.md)).
 - [x] `rootedGamePath` strips `sdmc:`, keeps rooted and relative paths, refuses other devices and `..`.
 - [x] `sdmc:` behaviour proven on hardware (M03-12).
 
 ## M03-11 — Mods and failures
 
-- [x] Same-size file at `mods/<disc path>` replaces the disc file; other sizes are refused with a named warning.
+- [x] Same-size file at `mods/<disc path>` replaces the disc file; other sizes, and anything that is not a regular file, are refused with a warning naming the path and reason.
 - [x] Missing and wrong-size assets fail at load with the file named; a shortened file fails its read, logged and zero-filled.
 
 ## M03-12 — Hardware

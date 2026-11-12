@@ -77,7 +77,7 @@ clocks, with evidence (`M06-18`):
 Beta does not claim audible sound, movies, saves, a dev menu, widescreen, whole-map
 coverage or mission playability.
 
-## Current state (2026-11-11)
+## Current state (2026-11-12)
 
 | Milestone | State |
 |---|---|

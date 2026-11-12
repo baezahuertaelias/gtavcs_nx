@@ -203,7 +203,7 @@ mods, settings and saves resolve to the intended roots without a runtime ISO.
 - [x] M03-07 Implement thread-safe random access and async CDVD/IOP streaming completion/cancellation; avoid shared seek-pointer races.
 - [x] M03-08 Differentially compare boot, world streaming, radio, cutscene and unaligned boundary reads against source ISO. Live BEACH/MALL level loads moved to M14-02 by user decision 2026-11-12 (M03/SCOPE_DECISIONS.md).
 - [x] M03-09 Remove runtime ISO discovery/staging dependency; resolve required ELF/data staging under gamefolder without shipping it in the NRO. Switch boot-path use moved to M04-13 by user decision 2026-11-12 (M03/SCOPE_DECISIONS.md).
-- [x] M03-10 Route configuration/cache/test saves separately under gamefolder/userdata; preserve memory-card directory/file metadata and backups.
+- [x] M03-10 Route configuration/cache/test saves separately under gamefolder/userdata; preserve memory-card directory/file metadata and backups. Runtime use of these paths with Switch proof moved to M04-13 by user decision 2026-11-12 (M03/SCOPE_DECISIONS.md).
 - [x] M03-11 Define supported mod overlay precedence/root validation and verify missing/corrupt assets produce actionable logs with safe failure.
 - [x] M03-12 Verify SD case/path behavior, bounded file-handle/cache use and clean shutdown during pending reads on hardware.
 - [x] M03-13 Pass only rooted or cwd-relative paths into runtime std::filesystem code and test that a device-prefixed `sdmc:` value cannot produce a cwd-doubled path (M02 hardware finding).
@@ -230,7 +230,7 @@ states with null rendering and diagnostic evidence; stub is no longer linked.
 - [ ] M04-10 Verify stop, startup failures, HOME/focus changes and repeated launches without leaked workers or corrupted saves.
 - [ ] M04-11 Expose bounded diagnostic/control commands for later scripted scenes, with user-save isolation and stable machine-readable errors.
 - [ ] M04-12 Compare null-path behavior to desktop reference and resolve every runtime exception/unlisted-resume/unsupported syscall blocking boot; classify M02's 561 unhandled-instruction events and indirect-fallback owners against code that actually executes.
-- [ ] M04-13 Boot the Switch runtime from `FolderDisc` and `GamePaths` only: no ISO discovery, ELF read from the extracted gamefolder, no staging or NRO embedding; prove on hardware that no ISO path is opened (moved from M03-09, user decision 2026-11-12).
+- [ ] M04-13 Boot the Switch runtime from `FolderDisc` and `GamePaths` only: no ISO discovery, ELF read from the extracted gamefolder, no staging or NRO embedding; route settings, cache, both memory cards (with their order file) and card backups through `GamePaths` under gamefolder/userdata, and test runs through a `GamePaths` test profile; prove on hardware that no ISO path is opened and that those files land there (moved from M03-09 and M03-10, user decisions 2026-11-12).
 
 Proof: candidate-linked map excludes stub, guest state logs, deterministic init
 milestones, state/trace comparison and lifecycle tests. A blue screen is insufficient.

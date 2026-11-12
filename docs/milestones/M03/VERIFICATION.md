@@ -1,13 +1,71 @@
 # M03 verification
 
-Desktop and tool results, 2026-11-09. Hardware results are recorded separately after
-the Switch run. No game data is reproduced here; logs stay in `build/evidence/M03/`.
+Desktop and tool results, 2026-11-09, with the review fixes of 2026-11-12 (synthetic
+suite, extractor tests, level probe). Hardware results are in
+[HARDWARE_RESULTS.md](HARDWARE_RESULTS.md). No game data is reproduced here; logs stay in `build/evidence/M03/`.
 
 ## Whole-disc identity
 
 `tools/extract_disc.py verify --iso` rebuilds the image from the folder form and hashes
 it: `981259b841fb2567b06d3c6e16deeb955a2c935526b9ce8d2862bc455d8a7740`, equal to the
 source image. This covers files, padding, gaps and non-file sectors.
+
+## Extractor tests
+
+`python -m unittest tools.test_extract_disc` builds synthetic ISO images; no game data.
+Result at commit `c5903d1`: 9 tests, OK. They cover, in this order of the M03-01 claims:
+
+- `test_rejects_wrong_identity_before_writing`: a failed identity check raises before the
+  destination folder exists.
+- `test_manifest_keeps_original_lba_and_order`: directory and file records keep their
+  original LBAs and on-disc walk order; a data gap becomes an `R` record.
+- `test_round_trip_rebuilds_every_byte`: extracted files equal the image and `verify`
+  rebuilds the image's SHA-256.
+- `test_rejects_unexpected_padding`, `test_rejects_overlapping_files`,
+  `test_rejects_traversing_names`, `test_rejects_names_differing_only_by_case`: each
+  refused before anything is written.
+- `test_detects_changed_file`, `test_keeps_unrelated_files_and_refuses_other_sizes`:
+  verification catches a changed byte; re-extraction keeps unrelated files and needs
+  `--replace` to overwrite a file of a different size.
+
+On the real disc, `extract_disc.py verify --iso` is the whole-disc identity above.
+
+## Synthetic FolderDisc and GamePaths suite
+
+`python tools/run_folder_disc_tests.py build/evidence/M03/synthetic` compiles `src/vfs`
+and `tests/core/folder_disc_tests.cpp` with the locked container's host g++ 12.2.0 and
+runs them twice. The fixture is generated; no game data.
+
+| Run | Flags | Result | Log SHA-256 |
+|---|---|---|---|
+| Sanitized | `-O1 -g -fsanitize=address,undefined -fno-sanitize-recover=all` | PASS, exit 0 | `bf164198f8026015d4badda0e139918c287b9a44b5bef77344ae68b7a0183612` |
+| Optimized | `-O2` | PASS, exit 0 | `fecf44247fb461c9f79cc693b6fd6644e65baf9b3203d4e16ef56011864a669a` |
+
+Both logs record source commit `c5903d1ef8c7f4373c3167f8a54c63d8a51ce94e` with
+`sources_dirty=False`, and the full command. The one `read failed` line in each log is the
+intended shortened-file case.
+
+What the suite checks:
+
+- Path normalization, directory listing, whole-image and unaligned reads, reads across
+  padding, gaps and raw sectors, end of disc (M03-04 to M03-06).
+- Four concurrent readers over twelve files, more than the eight handle slots (M03-07).
+- 15 rejected layouts (M03-05): missing root, wrong version, traversal, lower-case name,
+  extent past the end, extents wrapping past 2^64 in `F` and `R` records, overlap, bad
+  number, entry without its parent, duplicate path, wrong size, raw data out of order,
+  truncated raw data, missing game file.
+- Zero-length files inside the raw span and sharing a file's sector, in both manifest
+  orders: load succeeds and no sector is hidden.
+- Mods (M03-11): a same-size mod replaces the disc file; a wrong-size mod and a directory
+  in a mod's place are each refused with a warning naming the path and the reason. A file
+  shortened after load fails its read, is logged and zero-filled.
+- `GamePaths` (M03-10, M03-13): `sdmc:` stripping and refusals; a missing game folder is
+  fatal; settings, cache, both cards and the card backups folder under `userdata`; a test
+  profile puts all of them under `userdata/tests/<name>`; unsafe profile names refused.
+
+**Review finding fixed here.** The suite at the earlier candidate read a 3,396-byte file
+into a 2,048-byte buffer. AddressSanitizer reports that heap overflow, and plain builds
+crashed. The test now reads into a buffer of the file's size.
 
 ## C++ reader against the real image
 
@@ -24,7 +82,16 @@ on the real data. Result: `files=341 comparisons=23449 bytes=12626136345 failure
 
 `tools/desktop_folder_disc.py` patches only the disposable reference clone. A tee answers
 each disc request from the ISO and compares it with `FolderDisc`. The run used an empty
-card and a scripted boot, flyover, intro cutscene, gameplay, teleports and an AI drive.
+card: boot, flyover and intro cutscene with no input, then gameplay at Fort Baxter, four
+teleports and an attempted AI drive (`build/evidence/M03/desktop/tee-steps.txt`).
+
+What the steps actually show: the first two teleports had no effect, because the opening
+mission still placed the player; the third and fourth reached (1325, -325) and
+(-1425, -575). The fifth placed the player at (579.4, 175.0, 111.2) on the east island,
+and the "AI drive" never moved: the player stayed there for all six samples over 75 s.
+So the live reads cover boot, movies, the cutscene, streaming at Fort Baxter and two
+teleport destinations, and the radio, not a drive. The folder-only and ISO runs followed
+the same steps with the same result.
 
 | Measure | Result |
 |---|---:|
@@ -43,22 +110,41 @@ mismatch: the manifest wrote directories before files, so a directory's listing 
 differed from the disc. The manifest now keeps one walk-ordered list, and the
 synthetic test uses a root where a file precedes a directory. The rerun had 0 mismatches.
 
-**Limits.** The scenario never loaded `BEACH` or `MALL`. Teleports moved the player but
-the run did not change the loaded level. The plain ISO control run behaved the same,
-so this is the scenario, not the folder disc. Those files are covered by the comparisons
-above but not by live play. The game itself issued no unaligned read in this run.
+**Limits.** The scenario never loaded `BEACH` or `MALL`, not even with the player on the
+east island; the plain ISO control run behaved the same, so this is the game's state, not
+the folder disc. Those files are covered by the comparisons above but not by live play.
+The game itself issued no unaligned read in this run.
+
+## Level probe
+
+`tools/desktop_level_probe.py` (2026-11-12, `build/evidence/M03/desktop-levels-clean/`)
+reran the question with the tee: after a new game it teleported five times and sampled the
+player, the interior area and the level the player's zone asks for (`0x4CD118`) every 5 s.
+
+- Both teleports to the east island were overridden by the opening mission (player stayed
+  at Fort Baxter, area 2 at the end); the later ones reached (1325, -325), (-675, 1425) and
+  (-1425, -575). The zone level stayed 2 (MAINLA) at every sample.
+- Reads: 416, 0 mismatches; level files read: `MAINLA.LVZ`, `MAINLA.IMG` only.
+- `tee-steps.txt` SHA-256 `79808175b2aa0a73e918c844a59f79176ccc49a8ff792d7eb4448f87ebd7689c`,
+  `tee-reads.txt` `90030b28461cdd8bd9301fe7c0d454f224b54c1dc332b3ed25c7b6e394d61fcf`.
+
+An earlier probe on 2026-11-11 recorded zone level 1 at (575, 175) but its step log was
+written by two processes at once and is unreliable; it was discarded and is not evidence.
+The live BEACH/MALL check moved to M14-02 ([SCOPE_DECISIONS.md](SCOPE_DECISIONS.md)).
 
 ## Boot with no ISO opened
 
 With `VCS_FOLDER_ONLY` set the patched reference opens no image and uses `FolderDisc` and
 the extracted `SLUS_215.90` directly. It reached gameplay at the same step as the ISO
-control, followed the same scripted route and exited its loop normally.
+control, took the same steps with the same positions and exited its loop normally.
 
 ## What this does not establish
 
 - Nothing here ran on a Switch. The Switch results are in [HARDWARE_RESULTS.md](HARDWARE_RESULTS.md).
 - Upstream `src/main.cpp` still looks for an ISO. It is not built for the Switch; M04's
-  boot code must use `FolderDisc` and `GamePaths` in its place.
+  boot code must use `FolderDisc` and `GamePaths` in its place (M04-13).
+- No runtime routes settings, cache, cards or backups through `GamePaths` yet. The desktop
+  runs used upstream's own data folder. That routing, with Switch proof, is M04-13.
 - Async stream cancellation is not exercised in play. Upstream's stream reader runs
   requests to completion and never cancels one, so the requirement reduces to safe
   shutdown with reads pending. That is covered by the hardware harness, and full
