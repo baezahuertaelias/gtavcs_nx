@@ -204,7 +204,12 @@ def main():
     if args.command == "upload":
         upload(session, args.first)
     else:
-        ok = run(session)
+        try:
+            ok = run(session)
+        except (OSError, EOFError, *ftplib.all_errors, subprocess.TimeoutExpired) as error:
+            # A refused FTP connection or a dropped link: recorded, never a silent traceback.
+            session.say(f"session error {type(error).__name__}: {error}")
+            ok = False
         session.say(f"session end ok={ok}")
         sys.exit(0 if ok else 1)
 

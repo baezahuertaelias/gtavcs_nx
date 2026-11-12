@@ -27,6 +27,12 @@ public:
         std::sort(m_files.begin(), m_files.end(), [](const Range &a, const Range &b) { return a.begin < b.begin; });
     }
 
+    ~TeeDisc() override
+    {
+        std::lock_guard<std::mutex> lock(m_mutex);
+        dump();
+    }
+
     bool findFile(std::string_view path, uint32_t &lsn, uint32_t &sizeBytes, bool &isDirectory) const override
     {
         uint32_t folderLsn = 0, folderSize = 0;
@@ -109,8 +115,8 @@ private:
         Count &bucket = m_perFile[range ? range->path : std::string("(non-file)")];
         ++bucket.reads;
         bucket.bytes += count;
-        if (m_reads % 16u == 0)
-            dump();
+        // Every read: upstream may leave with std::_Exit, so the destructor cannot be relied on.
+        dump();
     }
 
     void dump() const

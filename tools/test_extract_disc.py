@@ -116,11 +116,22 @@ class ExtractDiscTests(unittest.TestCase):
         with self.assertRaisesRegex(extract_disc.DiscError, "Unsafe"):
             extract_disc.extract(self.iso, self.dest, identity=accept)
 
-    def test_rejects_names_differing_only_by_case(self):
-        build_iso(self.iso, root_extra=record(FILE_A, 3000, "a.bin;1", False))
-        with self.assertRaisesRegex(extract_disc.DiscError, "differ only by case"):
-            extract_disc.extract(self.iso, self.dest, identity=accept)
-        self.assertFalse(self.dest.exists())
+    def test_rejects_names_the_loader_refuses(self):
+        # Lower case (which also covers names differing only by case) and control bytes:
+        # FolderDisc::load refuses both, so the extractor must not write such a tree.
+        for name in ("a.bin;1", "A\x01.BIN;1"):
+            with self.subTest(name=name):
+                build_iso(self.iso, root_extra=record(FILE_A, 3000, name, False))
+                with self.assertRaisesRegex(extract_disc.DiscError, "Unsafe"):
+                    extract_disc.extract(self.iso, self.dest, identity=accept)
+                self.assertFalse(self.dest.exists())
+
+    def test_safe_names_match_the_loader(self):
+        for path in ("SYSTEM.CNF", "AUDIO/MUSIC_1.VB", "A B-~!.BIN"):
+            extract_disc.require_safe(path)
+        for path in ("a.bin", "DIR/x", "A\x1f", "A\tB", "A:B", "A;1", "../A", "A\\B"):
+            with self.assertRaises(extract_disc.DiscError):
+                extract_disc.require_safe(path)
 
     def test_detects_changed_file(self):
         build_iso(self.iso)

@@ -17,6 +17,8 @@ from build_switch import IMAGE
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCES = ("src/vfs/folder_disc.cpp", "src/vfs/game_paths.cpp", "tests/core/folder_disc_tests.cpp")
+# Everything the build reads, headers included; the runtime include comes from the upstream submodule.
+INPUTS = ("src/vfs", "tests/core/folder_disc_tests.cpp", "upstream")
 DRIVER = "int runFolderDiscTests();\nint main() { return runFolderDiscTests() ? 1 : 0; }\n"
 VARIANTS = {
     "sanitized": "-O1 -g -fsanitize=address,undefined -fno-sanitize-recover=all -fno-omit-frame-pointer",
@@ -30,7 +32,7 @@ def main():
     evidence = Path(parser.parse_args().evidence).resolve()
     evidence.mkdir(parents=True, exist_ok=True)
     commit = subprocess.check_output(["git", "-C", str(ROOT), "rev-parse", "HEAD"], text=True).strip()
-    dirty = bool(subprocess.check_output(["git", "-C", str(ROOT), "status", "--porcelain", "--", *SOURCES], text=True).strip())
+    dirty = bool(subprocess.check_output(["git", "-C", str(ROOT), "status", "--porcelain", "--", *INPUTS], text=True).strip())
     ok = True
     for name, flags in VARIANTS.items():
         script = (

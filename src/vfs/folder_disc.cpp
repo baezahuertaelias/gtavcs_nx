@@ -77,6 +77,118 @@ namespace
         const size_t slash = path.rfind('/');
         return slash == std::string::npos ? path : path.substr(slash + 1);
     }
+
+    bool isSha256Hex(std::string_view text)
+    {
+        return text.size() == 64 &&
+               std::all_of(text.begin(), text.end(), [](char c) { return (c >= '0' && c <= '9') || (c >= 'a' && c <= 'f'); });
+    }
+
+    // FIPS 180-4 SHA-256, portable so the same code runs in the host tests and on the Switch.
+    class Sha256
+    {
+    public:
+        void update(const uint8_t *data, size_t size)
+        {
+            m_bytes += size;
+            while (size != 0)
+            {
+                const size_t count = std::min(size, sizeof(m_buffer) - m_used);
+                std::memcpy(m_buffer + m_used, data, count);
+                m_used += count;
+                data += count;
+                size -= count;
+                if (m_used == sizeof(m_buffer))
+                {
+                    block(m_buffer);
+                    m_used = 0;
+                }
+            }
+        }
+
+        std::string finishHex()
+        {
+            const uint64_t bits = m_bytes * 8;
+            const uint8_t one = 0x80, zero = 0;
+            update(&one, 1);
+            while (m_used != 56)
+            {
+                update(&zero, 1);
+            }
+            uint8_t length[8];
+            for (int i = 0; i < 8; ++i)
+            {
+                length[i] = static_cast<uint8_t>(bits >> (56 - 8 * i));
+            }
+            update(length, sizeof(length));
+            static constexpr char kDigits[] = "0123456789abcdef";
+            std::string text;
+            for (const uint32_t word : m_state)
+            {
+                for (int shift = 28; shift >= 0; shift -= 4)
+                {
+                    text.push_back(kDigits[(word >> shift) & 0xf]);
+                }
+            }
+            return text;
+        }
+
+    private:
+        static uint32_t rotate(uint32_t value, int count) { return (value >> count) | (value << (32 - count)); }
+
+        void block(const uint8_t *data)
+        {
+            static constexpr uint32_t kRound[64] = {
+                0x428a2f98, 0x71374491, 0xb5c0fbcf, 0xe9b5dba5, 0x3956c25b, 0x59f111f1, 0x923f82a4, 0xab1c5ed5,
+                0xd807aa98, 0x12835b01, 0x243185be, 0x550c7dc3, 0x72be5d74, 0x80deb1fe, 0x9bdc06a7, 0xc19bf174,
+                0xe49b69c1, 0xefbe4786, 0x0fc19dc6, 0x240ca1cc, 0x2de92c6f, 0x4a7484aa, 0x5cb0a9dc, 0x76f988da,
+                0x983e5152, 0xa831c66d, 0xb00327c8, 0xbf597fc7, 0xc6e00bf3, 0xd5a79147, 0x06ca6351, 0x14292967,
+                0x27b70a85, 0x2e1b2138, 0x4d2c6dfc, 0x53380d13, 0x650a7354, 0x766a0abb, 0x81c2c92e, 0x92722c85,
+                0xa2bfe8a1, 0xa81a664b, 0xc24b8b70, 0xc76c51a3, 0xd192e819, 0xd6990624, 0xf40e3585, 0x106aa070,
+                0x19a4c116, 0x1e376c08, 0x2748774c, 0x34b0bcb5, 0x391c0cb3, 0x4ed8aa4a, 0x5b9cca4f, 0x682e6ff3,
+                0x748f82ee, 0x78a5636f, 0x84c87814, 0x8cc70208, 0x90befffa, 0xa4506ceb, 0xbef9a3f7, 0xc67178f2};
+            uint32_t w[64];
+            for (int i = 0; i < 16; ++i)
+            {
+                w[i] = uint32_t(data[4 * i]) << 24 | uint32_t(data[4 * i + 1]) << 16 | uint32_t(data[4 * i + 2]) << 8 |
+                       uint32_t(data[4 * i + 3]);
+            }
+            for (int i = 16; i < 64; ++i)
+            {
+                const uint32_t s0 = rotate(w[i - 15], 7) ^ rotate(w[i - 15], 18) ^ (w[i - 15] >> 3);
+                const uint32_t s1 = rotate(w[i - 2], 17) ^ rotate(w[i - 2], 19) ^ (w[i - 2] >> 10);
+                w[i] = w[i - 16] + s0 + w[i - 7] + s1;
+            }
+            uint32_t a = m_state[0], b = m_state[1], c = m_state[2], d = m_state[3];
+            uint32_t e = m_state[4], f = m_state[5], g = m_state[6], h = m_state[7];
+            for (int i = 0; i < 64; ++i)
+            {
+                const uint32_t t1 = h + (rotate(e, 6) ^ rotate(e, 11) ^ rotate(e, 25)) + ((e & f) ^ (~e & g)) + kRound[i] + w[i];
+                const uint32_t t2 = (rotate(a, 2) ^ rotate(a, 13) ^ rotate(a, 22)) + ((a & b) ^ (a & c) ^ (b & c));
+                h = g;
+                g = f;
+                f = e;
+                e = d + t1;
+                d = c;
+                c = b;
+                b = a;
+                a = t1 + t2;
+            }
+            m_state[0] += a;
+            m_state[1] += b;
+            m_state[2] += c;
+            m_state[3] += d;
+            m_state[4] += e;
+            m_state[5] += f;
+            m_state[6] += g;
+            m_state[7] += h;
+        }
+
+        uint32_t m_state[8] = {0x6a09e667, 0xbb67ae85, 0x3c6ef372, 0xa54ff53a, 0x510e527f, 0x9b05688c, 0x1f83d9ab, 0x5be0cd19};
+        uint8_t m_buffer[64] = {};
+        size_t m_used = 0;
+        uint64_t m_bytes = 0;
+    };
 }
 
 bool FolderDisc::normalize(std::string_view path, std::string &out)
@@ -204,6 +316,10 @@ bool FolderDisc::parseManifest(const std::string &root, std::string &error)
             {
                 return fail("invalid extent");
             }
+            if (!directory && fields[3] != "-" && !isSha256Hex(fields[3]))
+            {
+                return fail("invalid file hash");
+            }
             const uint64_t sectors = (size + kSectorSize - 1) / kSectorSize;
             if (lba > m_totalSectors || sectors > m_totalSectors - lba)
             {
@@ -232,7 +348,8 @@ bool FolderDisc::parseManifest(const std::string &root, std::string &error)
                 extent.fileEnd = extent.begin + size;
                 extent.file = static_cast<uint32_t>(m_files.size());
                 m_extents.push_back(extent);
-                m_files.push_back(File{root + "/" + exact});
+                m_files.push_back(File{root + "/" + exact, root + "/" + exact,
+                                       fields[3] == "-" ? std::string() : std::string(fields[3])});
             }
             if (!key.empty())
             {
@@ -243,6 +360,14 @@ bool FolderDisc::parseManifest(const std::string &root, std::string &error)
                 }
                 parent->second.push_back(DirEntry{leafOf(key), static_cast<uint32_t>(lba), static_cast<uint32_t>(size), directory});
             }
+        }
+        else if (fields[0] == "raw_sha256" && fields.size() == 2)
+        {
+            if (!isSha256Hex(fields[1]) || !m_rawSha256.empty())
+            {
+                return fail(m_rawSha256.empty() ? "invalid raw hash" : "duplicate raw hash");
+            }
+            m_rawSha256 = std::string(fields[1]);
         }
         else if (fields[0] == "R" && fields.size() == 4)
         {
@@ -347,13 +472,70 @@ bool FolderDisc::finishExtents(const std::string &root, std::string &error)
         error = "manifest raw extents are too large";
         return false;
     }
-    const std::string rawPath = root + "/.nxdisc/raw.bin";
-    if (!readWholeFile(rawPath, kMaxRawBytes, m_raw) || m_raw.size() != rawBytes)
+    m_rawPath = root + "/.nxdisc/raw.bin";
+    if (!readWholeFile(m_rawPath, kMaxRawBytes, m_raw) || m_raw.size() != rawBytes)
     {
-        error = "missing or wrong size: " + rawPath;
+        error = "missing or wrong size: " + m_rawPath;
         return false;
     }
     return true;
+}
+
+std::string FolderDisc::sha256Hex(const void *data, size_t size)
+{
+    Sha256 hash;
+    hash.update(static_cast<const uint8_t *>(data), size);
+    return hash.finishHex();
+}
+
+std::vector<std::string> FolderDisc::verifyFiles() const
+{
+    std::vector<std::string> problems;
+    std::vector<uint8_t> buffer(1u << 20);
+    for (const File &file : m_files)
+    {
+        if (file.sha256.empty())
+        {
+            problems.push_back("no recorded SHA-256 for game file: " + file.discPath);
+            continue;
+        }
+        std::FILE *handle = std::fopen(file.discPath.c_str(), "rb");
+        if (!handle)
+        {
+            problems.push_back("unreadable game file: " + file.discPath);
+            continue;
+        }
+        Sha256 hash;
+        size_t count = 0;
+        while ((count = std::fread(buffer.data(), 1, buffer.size(), handle)) != 0)
+        {
+            hash.update(buffer.data(), count);
+        }
+        const bool readOk = std::ferror(handle) == 0;
+        std::fclose(handle);
+        if (!readOk)
+        {
+            problems.push_back("unreadable game file: " + file.discPath);
+        }
+        else if (hash.finishHex() != file.sha256)
+        {
+            problems.push_back("corrupt game file, SHA-256 differs from the manifest: " + file.discPath);
+        }
+    }
+    // raw.bin is held in memory from load, so its loaded copy is what reads serve.
+    if (m_rawSha256.empty())
+    {
+        problems.push_back("no recorded SHA-256 for " + m_rawPath);
+    }
+    else if (sha256Hex(m_raw.data(), m_raw.size()) != m_rawSha256)
+    {
+        problems.push_back("corrupt raw sectors, SHA-256 differs from the manifest: " + m_rawPath);
+    }
+    for (const std::string &problem : problems)
+    {
+        std::fprintf(stderr, "[folder-disc] %s\n", problem.c_str());
+    }
+    return problems;
 }
 
 std::unique_ptr<FolderDisc> FolderDisc::load(const std::string &root, std::string &error)

@@ -38,6 +38,15 @@ public:
     size_t modsApplied() const { return m_modsApplied; }
     const std::vector<std::string> &warnings() const { return m_warnings; }
 
+    // Hashes every disc file (the disc copy, not a mod replacing it) and raw.bin against the
+    // manifest's SHA-256 and returns one message per file that is unreadable, differs or has
+    // no recorded hash; empty when the tree is intact. Load checks sizes only, so a same-size
+    // corrupt file is found here. Reads the whole tree, so it is an explicit check.
+    std::vector<std::string> verifyFiles() const;
+
+    // Lower-case hex SHA-256 of a buffer.
+    static std::string sha256Hex(const void *data, size_t size);
+
 private:
     struct Entry
     {
@@ -55,7 +64,9 @@ private:
     };
     struct File
     {
-        std::string hostPath;
+        std::string hostPath; // the mod's path when a mod replaces the file
+        std::string discPath;
+        std::string sha256;   // lower-case hex from the manifest, empty when not recorded
     };
     struct Slot
     {
@@ -79,6 +90,8 @@ private:
     std::vector<File> m_files;
     std::vector<Extent> m_extents; // sorted by begin, non-overlapping
     std::vector<uint8_t> m_raw;
+    std::string m_rawPath;
+    std::string m_rawSha256;
     size_t m_modsApplied = 0;
     std::vector<std::string> m_warnings;
 

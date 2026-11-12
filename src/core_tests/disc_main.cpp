@@ -103,6 +103,22 @@ void wholeDisc(const FolderDisc &disc) {
     check(expected.size()==64 && expected==text,"whole disc through FolderDisc equals the manifest digest");
 }
 
+// The explicit integrity check: every disc file and raw.bin against the manifest SHA-256.
+void verifyTree(const FolderDisc &disc) {
+    std::vector<uint8_t> sample(3u*kChunk+123);
+    for(size_t i=0;i<sample.size();++i) sample[i]=static_cast<uint8_t>(i*131u+(i>>9));
+    uint8_t digest[SHA256_HASH_SIZE];
+    sha256CalculateHash(digest,sample.data(),sample.size());
+    char text[SHA256_HASH_SIZE*2+1];
+    for(unsigned i=0;i<SHA256_HASH_SIZE;++i) std::snprintf(text+i*2,3,"%02x",digest[i]);
+    check(FolderDisc::sha256Hex(sample.data(),sample.size())==text,"portable SHA-256 equals the libnx digest");
+    const auto start=Clock::now();
+    const std::vector<std::string> problems=disc.verifyFiles();
+    std::printf("[verify] problems=%zu seconds=%.1f\n",problems.size(),secondsSince(start));
+    for(const std::string &problem : problems) std::printf("  %s\n",problem.c_str());
+    check(problems.empty(),"every disc file and raw.bin match the manifest SHA-256");
+}
+
 void randomReaders(const FolderDisc &disc) {
     std::atomic<uint32_t> wrong{0}; std::atomic<uint64_t> reads{0};
     const uint64_t total=uint64_t(disc.totalSectors())*FolderDisc::kSectorSize;
@@ -159,6 +175,7 @@ int run() {
     checkCase(*disc);
     randomReaders(*disc);
     wholeDisc(*disc);
+    verifyTree(*disc);
     disc.reset();
     shutdownDuringReads();
     if(!reportCpuResources("disc-tests-end",4)) ++failures;

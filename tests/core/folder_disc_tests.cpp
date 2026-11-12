@@ -24,6 +24,7 @@ constexpr unsigned kManyFiles=12; // more than the open-handle limit
 struct Fixture {
     std::string root,manifest;
     std::vector<uint8_t> image,raw;
+    std::vector<std::string> hashes; // SHA-256 of each Fn.BIN
 };
 
 void makeDirectory(const std::string &path) {
@@ -66,17 +67,19 @@ bool buildFixture(Fixture &fixture,const std::string &root) {
     fixture.root=root;
     fixture.image.assign(size_t(kSectors)*kSector,0);
     makeDirectory(root); makeDirectory(root+"/.nxdisc"); makeDirectory(root+"/SUB");
-    std::string lines="NXDISC\t1\nsectors\t"+std::to_string(kSectors)+"\nvolume\tTEST\n";
-    lines+="D\t2\t2048\t-\t\nD\t3\t2048\t-\tSUB\n";
     fillPattern(fixture.image.data()+2*kSector,4*kSector,0x51);
     fixture.raw.assign(fixture.image.begin()+2*kSector,fixture.image.begin()+6*kSector);
+    std::string lines="NXDISC\t1\nsectors\t"+std::to_string(kSectors)+"\nvolume\tTEST\n";
+    lines+="raw_sha256\t"+FolderDisc::sha256Hex(fixture.raw.data(),fixture.raw.size())+"\n";
+    lines+="D\t2\t2048\t-\t\nD\t3\t2048\t-\tSUB\n";
     uint32_t lba=8;
     for(unsigned i=0;i<kManyFiles;++i) {
         const uint32_t size=kSector*(i%3u+1u)-(i%2u ? 700u : 0u);
         const std::string name=(i%2u ? "SUB/F" : "F")+std::to_string(i)+".BIN";
         fillPattern(fixture.image.data()+size_t(lba)*kSector,size,i+1);
         if(!writeFile(root+"/"+name,fixture.image.data()+size_t(lba)*kSector,size)) return false;
-        lines+="F\t"+std::to_string(lba)+"\t"+std::to_string(size)+"\t-\t"+name+"\n";
+        fixture.hashes.push_back(FolderDisc::sha256Hex(fixture.image.data()+size_t(lba)*kSector,size));
+        lines+="F\t"+std::to_string(lba)+"\t"+std::to_string(size)+"\t"+fixture.hashes.back()+"\t"+name+"\n";
         lba+=(size+kSector-1)/kSector+1; // one empty sector between files
     }
     lines+="R\t2\t4\t0\n";
@@ -195,6 +198,73 @@ void checkCorruption(const Fixture &fixture) {
     expect(writeFile(fixture.root+"/F2.BIN",original,size),"restore file");
 }
 
+bool flipByte(const std::string &path,long offset) {
+    std::FILE *file=std::fopen(path.c_str(),"r+b");
+    if(!file) return false;
+    int value=-1;
+    const bool ok=std::fseek(file,offset,SEEK_SET)==0 && (value=std::fgetc(file))!=EOF &&
+        std::fseek(file,offset,SEEK_SET)==0 && std::fputc(value^0x01,file)!=EOF;
+    return std::fclose(file)==0 && ok;
+}
+
+bool reported(const std::vector<std::string> &problems,const char *text,const char *path) {
+    return problems.size()==1 && problems[0].find(text)!=std::string::npos && problems[0].find(path)!=std::string::npos;
+}
+
+// Load checks sizes only; verifyFiles finds a same-size corrupt file by its manifest SHA-256.
+void checkVerify(const Fixture &fixture) {
+    expect(FolderDisc::sha256Hex("",0)=="e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855","SHA-256 of nothing");
+    expect(FolderDisc::sha256Hex("abc",3)=="ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad","SHA-256 of abc");
+    const char *twoBlocks="abcdbcdecdefdefgefghfghighijhijkijkljklmklmnlmnomnopnopq";
+    expect(FolderDisc::sha256Hex(twoBlocks,std::strlen(twoBlocks))=="248d6a61d20638b8e5c026930c3e6039a33ce45964ff2167f6ecedd419db06c1","SHA-256 padding into a second block");
+    const std::string million(1000000,'a');
+    expect(FolderDisc::sha256Hex(million.data(),million.size())=="cdc76e5c9914fb9281a1c7e284d73e67f1809a48a497200e046d39ccc7112cd0","SHA-256 of a million bytes");
+    std::string error;
+    auto disc=FolderDisc::load(fixture.root,error);
+    if(!disc) { expect(false,"load for verify"); return; }
+    expect(disc->verifyFiles().empty(),"intact tree verifies");
+    disc.reset();
+
+    expect(flipByte(fixture.root+"/F2.BIN",100),"flip one byte of a file");
+    disc=FolderDisc::load(fixture.root,error);
+    expect(disc!=nullptr,"same-size corrupt file passes the size check at load");
+    if(disc) expect(reported(disc->verifyFiles(),"corrupt game file","/F2.BIN"),"same-size corrupt file named by verify");
+    disc.reset();
+    expect(flipByte(fixture.root+"/F2.BIN",100),"restore the flipped byte");
+
+    expect(flipByte(fixture.root+"/.nxdisc/raw.bin",5),"flip one byte of raw.bin");
+    disc=FolderDisc::load(fixture.root,error);
+    if(disc) expect(reported(disc->verifyFiles(),"corrupt raw sectors","raw.bin"),"corrupt raw sectors named by verify");
+    else expect(false,"load with corrupt raw sectors");
+    disc.reset();
+    expect(flipByte(fixture.root+"/.nxdisc/raw.bin",5),"restore raw.bin");
+
+    // A mod is meant to differ from the disc; verify hashes the disc copy under it.
+    makeDirectory(fixture.root+"/mods");
+    std::vector<uint8_t> replacement(kSector);
+    fillPattern(replacement.data(),replacement.size(),0xee);
+    expect(writeFile(fixture.root+"/mods/F0.BIN",replacement.data(),replacement.size()),"write mod for verify");
+    disc=FolderDisc::load(fixture.root,error);
+    if(disc) expect(disc->modsApplied()==1 && disc->verifyFiles().empty(),"mod does not fail verify");
+    else expect(false,"load with mod for verify");
+    disc.reset();
+    expect(removeMods(fixture.root),"mods removed after verify");
+
+    std::string changed=fixture.manifest;
+    const std::string line="\t"+fixture.hashes[0]+"\tF0.BIN\n";
+    const size_t at=changed.find(line);
+    expect(at!=std::string::npos,"F0.BIN manifest line");
+    if(at!=std::string::npos) {
+        changed.replace(at,line.size(),"\t-\tF0.BIN\n");
+        expect(writeFile(fixture.root+"/.nxdisc/manifest.tsv",changed.data(),changed.size()),"write manifest without a hash");
+        disc=FolderDisc::load(fixture.root,error);
+        if(disc) expect(reported(disc->verifyFiles(),"no recorded SHA-256","/F0.BIN"),"file without a hash named by verify");
+        else expect(false,"load without a hash");
+        disc.reset();
+    }
+    expect(writeFile(fixture.root+"/.nxdisc/manifest.tsv",fixture.manifest.data(),fixture.manifest.size()),"restore manifest after verify");
+}
+
 // Zero-length files hold no sectors: one inside the raw span and one sharing F0.BIN's sector, in either order.
 void checkEmptyFiles(const Fixture &fixture) {
     expect(writeFile(fixture.root+"/EMPTY.BIN",nullptr,0) && writeFile(fixture.root+"/EMPTY2.BIN",nullptr,0),"write empty files");
@@ -272,13 +342,16 @@ void checkRejections(Fixture &fixture) {
     checkManifest(fixture,"past end","F\t8\t","F\t96\t","past the end");
     checkManifest(fixture,"overlap","F\t10\t","F\t8\t","overlap");
     checkManifest(fixture,"bad number","F\t8\t","F\tx\t","invalid extent");
-    checkManifest(fixture,"orphan","F\t8\t2048\t-\tF0.BIN","F\t8\t2048\t-\tNODIR/F0.BIN","parent");
+    checkManifest(fixture,"orphan","\tF0.BIN\n","\tNODIR/F0.BIN\n","parent");
     checkManifest(fixture,"duplicate","D\t3\t2048\t-\tSUB\n","D\t3\t2048\t-\tSUB\nD\t3\t2048\t-\tSUB\n","duplicate");
     checkManifest(fixture,"wrong size","F\t8\t2048\t","F\t8\t2047\t","wrong size");
     checkManifest(fixture,"raw offset","R\t2\t4\t0","R\t2\t4\t2048","out of order");
     checkManifest(fixture,"wrapping file extent","F\t8\t","F\t18446744073709551615\t","past the end");
     checkManifest(fixture,"wrapping raw extent","R\t2\t4\t0","R\t18446744073709551615\t4\t0","invalid raw extent");
     checkManifest(fixture,"second sector count","R\t2\t4\t0","R\t2\t4\t0\nsectors\t10","duplicate sector count");
+    checkManifest(fixture,"bad file hash",fixture.hashes[0]+"\tF0.BIN","x"+fixture.hashes[0].substr(1)+"\tF0.BIN","invalid file hash");
+    checkManifest(fixture,"bad raw hash","raw_sha256\t","raw_sha256\tA","invalid raw hash");
+    checkManifest(fixture,"second raw hash","R\t2\t4\t0","R\t2\t4\t0\nraw_sha256\t"+fixture.hashes[0],"duplicate raw hash");
     expect(writeFile(fixture.root+"/.nxdisc/manifest.tsv",fixture.manifest.data(),fixture.manifest.size()),"restore manifest");
     expect(writeFile(fixture.root+"/.nxdisc/raw.bin",fixture.raw.data(),fixture.raw.size()-1),"truncate raw");
     expect(loadFails(fixture.root,"wrong size"),"truncated raw data");
@@ -300,8 +373,8 @@ int runFolderDiscTests() {
     if(!disc) { std::printf("FAIL folder disc: load: %s\n",error.c_str()); return 1; }
     checkPaths(*disc); checkReads(*disc,fixture); checkConcurrent(*disc,fixture);
     disc.reset(); // releases open handles so the later cases can change files
-    checkMods(fixture); checkCorruption(fixture); checkEmptyFiles(fixture); checkGamePaths(fixture);
+    checkMods(fixture); checkCorruption(fixture); checkVerify(fixture); checkEmptyFiles(fixture); checkGamePaths(fixture);
     checkRejections(fixture);
-    if(!failures) std::puts("PASS folder disc: paths, listing, whole-image and unaligned reads, end of disc, 4 readers over 12 files, mods, corrupted file, empty files, game paths, 16 rejected layouts");
+    if(!failures) std::puts("PASS folder disc: paths, listing, whole-image and unaligned reads, end of disc, 4 readers over 12 files, mods, corrupted file, SHA-256 verify, empty files, game paths, 19 rejected layouts");
     return failures;
 }
