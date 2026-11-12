@@ -46,7 +46,7 @@
     },
     {
       "path": "docs/milestones/M03/HARDWARE_RESULTS.md",
-      "result": "Same suite in the runtime payload from 1dced20 on a real Switch: PASS, 337/337 runtime cases, failures=0"
+      "result": "Same suite in the runtime payload from 9e020e7 on a real Switch: PASS, 16 rejected layouts, 337/337 runtime cases, failures=0"
     }
   ],
   "M03-06": [
@@ -62,7 +62,7 @@
     },
     {
       "path": "docs/milestones/M03/HARDWARE_RESULTS.md",
-      "result": "Real Switch, payload from 1dced20: 4 readers, 4,800 random 64 KiB reads consistent; stop flag set during reads, readers finish their read, join and close in 23.2 ms"
+      "result": "Real Switch, payload from 9e020e7: 4 readers, 4,800 random 64 KiB reads consistent; stop flag set during reads, readers finish their read, join and close in 6.4 ms"
     }
   ],
   "M03-08": [
@@ -106,13 +106,13 @@
     },
     {
       "path": "docs/milestones/M03/HARDWARE_RESULTS.md",
-      "result": "Same suite passes on the Switch SD card in the runtime payload from 1dced20"
+      "result": "Same suite passes on the Switch SD card in the runtime payload from 9e020e7"
     }
   ],
   "M03-12": [
     {
       "path": "docs/milestones/M03/HARDWARE_RESULTS.md",
-      "result": "Real Switch, HOS 22.5.0 application mode, payload from clean 1dced20: whole 2,183,856,128-byte disc through FolderDisc on SD hashes to the source image at 68.1 MiB/s; lowercase open found; 8-slot handle bound; concurrent reads; shutdown with reads pending; failures=0, no new crash report"
+      "result": "Real Switch, HOS 22.5.0 application mode, payload from clean 9e020e7: whole 2,183,856,128-byte disc through FolderDisc on SD hashes to the source image at 68.2 MiB/s; lowercase open found; 8-slot handle bound; concurrent reads; shutdown with reads pending; failures=0, no new crash report"
     }
   ],
   "M03-13": [
