@@ -41,7 +41,7 @@ On the real disc, `extract_disc.py verify --iso` is the whole-disc identity abov
 
 ## Synthetic FolderDisc and GamePaths suite
 
-`python tools/run_folder_disc_tests.py build/evidence/M03/synthetic-54f814b` compiles `src/vfs`
+`python tools/run_folder_disc_tests.py build/evidence/M03/synthetic-4d597da` compiles `src/vfs`
 and `tests/core/folder_disc_tests.cpp` with the locked container's host g++ 12.2.0 and
 runs them twice, with address randomization off (`setarch -R`, which needs the container
 started with `seccomp=unconfined`): under the container kernel's high-entropy randomization
@@ -49,13 +49,13 @@ AddressSanitizer printed `DEADLYSIGNAL` forever. The fixture is generated; no ga
 
 | Run | Flags | Result | Log SHA-256 |
 |---|---|---|---|
-| Sanitized | `-O1 -g -fsanitize=address,undefined -fno-sanitize-recover=all` | PASS, exit 0 | `a8c9a6c264240b8f26c12a14c54011dcd2285243bd8c4ebde33f6a906842119d` |
-| Optimized | `-O2` | PASS, exit 0 | `baf7228380fe91b5346799e928a7c4e4b4a13a3a13326e9c9d37027b82c23fea` |
+| Sanitized | `-O1 -g -fsanitize=address,undefined -fno-sanitize-recover=all` | PASS, exit 0 | `f6da013bb54aebba2d9c0044d5eda18674c10f412a57d678c36d2292ffd68946` |
+| Optimized | `-O2` | PASS, exit 0 | `550447567fb468828407b4951ac1ddec3a68672d70c1f0e73d2791c31481324f` |
 
-Both logs record source commit `54f814b8a48bf038733f50e86a9dfa1e3fea058e` with
+Both logs record source commit `4d597da25b7020816c9b6fef05c3ccfb2569c497` with
 `sources_dirty=False`, and the full command. Since `c8856a7` that flag covers every build
 input (`src/vfs` headers and the `upstream` submodule too), not only the three `.cpp`
-files. Earlier logs: `synthetic/` (`9e020e7`), `synthetic-c8856a7/`, `synthetic-27274a3/`. The same suite also runs on the Switch inside
+files. Earlier logs: `synthetic/` (`9e020e7`), `synthetic-c8856a7/`, `synthetic-27274a3/`, `synthetic-54f814b/`. The same suite also runs on the Switch inside
 the runtime payload (HARDWARE_RESULTS.md). The one `read failed` line in each log is the
 intended shortened-file case; the three verify lines that follow it are the intended
 corruption and missing-hash cases.
@@ -99,7 +99,7 @@ crashed. The test now reads into a buffer of the file's size.
 Switch, because `std::filesystem::remove_all` on the relative fixture path left `mods/` in
 place there (HARDWARE_RESULTS.md, "Earlier sessions"). The mods are now removed with checked
 POSIX calls, and the suite passes on both. A later hardware probe showed `remove_all` fails
-on rooted paths as well (HARDWARE_RESULTS.md, "`std::filesystem` removal on the Switch").
+on rooted paths as well (HARDWARE_RESULTS.md, "`std::filesystem` on the Switch").
 
 ## C++ reader against the real image
 

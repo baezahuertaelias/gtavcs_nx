@@ -47,7 +47,7 @@ They are private disc data and stay in `gamefolder/.nxdisc/raw.bin`.
 
 - [x] Bounded pool of 8 open files, no shared seek state; concurrent readers on the native build.
 - [x] Upstream's stream reader never cancels a request, recorded in VERIFICATION.md.
-- [x] Shutdown with reads pending on real hardware (M03-12): 8.6 ms join and close.
+- [x] Shutdown with reads pending on real hardware (M03-12): 9.6 ms join and close.
 
 ## M03-08 — Differential comparison
 
@@ -67,7 +67,7 @@ They are private disc data and stay in `gamefolder/.nxdisc/raw.bin`.
 - [x] A test profile puts all of them under `userdata/tests/<name>`; unsafe profile names are refused.
 - [x] Runtime use of these paths moved to M04-13 (user decision 2026-11-12, [SCOPE_DECISIONS.md](SCOPE_DECISIONS.md)).
 - [x] `rootedGamePath` strips `sdmc:` and accepts only rooted paths: cwd-relative ones are refused, so no runtime path depends on the cwd (fifth review, medium finding).
-- [x] Rooted `std::filesystem` create, list, file and empty-directory removal proven on hardware; `remove_all` fails with EIO on rooted and relative paths alike, recorded, and its memory-card uses carried into M04-13.
+- [x] Rooted `std::filesystem` create, list, file and empty-directory removal and `rmdir` proven on hardware; `remove_all` (EIO) and `rename` onto an existing file (EEXIST) fail on rooted and relative paths alike, recorded, and upstream's settings and card uses carried into M04-13.
 - [x] `sdmc:` behaviour proven on hardware (M03-12).
 
 ## M03-11 — Mods and failures
@@ -79,11 +79,11 @@ They are private disc data and stay in `gamefolder/.nxdisc/raw.bin`.
 ## M03-12 — Hardware
 
 - [x] Whole-disc digest through `FolderDisc` on the SD card.
-- [x] Final disc session rerun with FTP reachability logged: FTP back 118 s after launch with the log complete, so the normal case is bounded; the earlier 496 s settle stays unexplained.
-- [x] Verify mode run over the whole tree on the SD card with no problem reported, on payloads that include it (`54f814b`, 74.3 s).
+- [x] Final disc session rerun with FTP reachability logged: the log was complete when FTP returned (104 s and 118 s in two sessions); the later wait to call it stable came from failing FTP connections after the payload finished, the likely reading of the earlier 496 s settle.
+- [x] Verify mode run over the whole tree on the SD card with no problem reported, on payloads that include it (`4d597da`, 58.9 s).
 - [x] SD case behaviour, concurrent reads, handle bound.
 - [x] Clean shutdown during pending reads.
 
-Results: [HARDWARE_RESULTS.md](HARDWARE_RESULTS.md), final session 2026-11-12 with payloads from `54f814b`, 0 failures.
+Results: [HARDWARE_RESULTS.md](HARDWARE_RESULTS.md), final session 2026-11-12 with payloads from `4d597da`, 0 failures.
 The harness is `src/core_tests/disc_main.cpp`; `tools/switch_m03_session.py` copies the
 tree and runs it.
