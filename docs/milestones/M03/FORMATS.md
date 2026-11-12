@@ -19,7 +19,7 @@ as having no structural check.
 | `RAW` | 68 | None | Native sound driver |
 | `SDT` | 68 | 7,721 records of 12 bytes, offsets within the paired RAW | Native sound driver |
 | `IRX` | 8 | ELF magic | IOP HLE; the modules are not run as guest IOP code |
-| `90` (executable) | 1 | ELF magic, SHA-1 by the extractor | Recompiled, identity checked |
+| `90` (executable) | 1 | ELF magic, SHA-1 by the extractor | Recompiled; SHA-1 checked at extraction only, run-time check is M04-13 |
 | `SCM`, `BIN`, `ICO`, `CNF` | 4 | None | Guest, native sound lookup, card icon, boot metadata |
 
 ## Decisions

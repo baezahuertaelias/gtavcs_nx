@@ -13,7 +13,7 @@ source image. This covers files, padding, gaps and non-file sectors.
 ## Extractor tests
 
 `python -m unittest tools.test_extract_disc` builds synthetic ISO images; no game data.
-Result at commit `9e020e7`: 10 tests, OK. They cover, in this order of the M03-01 claims:
+Result at commit `c8856a7`: 11 tests, OK. They cover, in this order of the M03-01 claims:
 
 - `test_rejects_wrong_identity_before_writing`: a failed identity check raises before the
   destination folder exists.
@@ -22,9 +22,12 @@ Result at commit `9e020e7`: 10 tests, OK. They cover, in this order of the M03-0
 - `test_round_trip_rebuilds_every_byte`: extracted files equal the image and `verify`
   rebuilds the image's SHA-256.
 - `test_rejects_unexpected_padding`, `test_rejects_overlapping_files`,
-  `test_rejects_traversing_names`, `test_rejects_names_differing_only_by_case`: each
-  refused before anything is written; the padding and case tests check that the
-  destination does not exist afterwards. (Until `9e020e7` padding was checked while
+  `test_rejects_traversing_names`, `test_rejects_names_the_loader_refuses`: each
+  refused before anything is written; the padding and name tests check that the
+  destination does not exist afterwards. Since `c8856a7` the extractor refuses what
+  `FolderDisc::load` refuses, lower-case names (so also names differing only by case)
+  and control bytes; `test_safe_names_match_the_loader` checks the rule directly, and
+  all 369 paths of the real disc pass it. (Until `9e020e7` padding was checked while
   writing, so a refusal could leave a partial tree; the review found it.)
 - `test_empty_files_hold_no_sectors_in_any_order`: zero-length files sharing a file's
   first sector or inside its span, before or after it on the disc, extract and verify,
@@ -37,7 +40,7 @@ On the real disc, `extract_disc.py verify --iso` is the whole-disc identity abov
 
 ## Synthetic FolderDisc and GamePaths suite
 
-`python tools/run_folder_disc_tests.py build/evidence/M03/synthetic` compiles `src/vfs`
+`python tools/run_folder_disc_tests.py build/evidence/M03/synthetic-c8856a7` compiles `src/vfs`
 and `tests/core/folder_disc_tests.cpp` with the locked container's host g++ 12.2.0 and
 runs them twice, with address randomization off (`setarch -R`, which needs the container
 started with `seccomp=unconfined`): under the container kernel's high-entropy randomization
@@ -45,28 +48,38 @@ AddressSanitizer printed `DEADLYSIGNAL` forever. The fixture is generated; no ga
 
 | Run | Flags | Result | Log SHA-256 |
 |---|---|---|---|
-| Sanitized | `-O1 -g -fsanitize=address,undefined -fno-sanitize-recover=all` | PASS, exit 0 | `771c19251a9c8ac5e03018ff68a43b06ae25f048214a27df9d6aa67264874478` |
-| Optimized | `-O2` | PASS, exit 0 | `58d46c1c8f1c6bfe410485e2420c3a1e458b261a7d2ea1b097447fb00becd065` |
+| Sanitized | `-O1 -g -fsanitize=address,undefined -fno-sanitize-recover=all` | PASS, exit 0 | `76d470ef012b40e3f27b0cba728b4e42631f6061664d61c389b7cb74372bb41b` |
+| Optimized | `-O2` | PASS, exit 0 | `639553db336ea13066edaaa5ba8c2a64a9a989dbcfcdd4b463fb51cbe43dd0b6` |
 
-Both logs record source commit `9e020e7ed1e9a455f26a36041a8540c726dd9d3d` with
-`sources_dirty=False`, and the full command. The same suite also runs on the Switch inside
+Both logs record source commit `c8856a71d937b39f86fbb158c40d82f5c6ffa5d3` with
+`sources_dirty=False`, and the full command. Since `c8856a7` that flag covers every build
+input (`src/vfs` headers and the `upstream` submodule too), not only the three `.cpp`
+files. The earlier `synthetic/` logs are from `9e020e7`. The same suite also runs on the Switch inside
 the runtime payload (HARDWARE_RESULTS.md). The one `read failed` line in each log is the
-intended shortened-file case.
+intended shortened-file case; the three verify lines that follow it are the intended
+corruption and missing-hash cases.
 
 What the suite checks:
 
 - Path normalization, directory listing, whole-image and unaligned reads, reads across
   padding, gaps and raw sectors, end of disc (M03-04 to M03-06).
 - Four concurrent readers over twelve files, more than the eight handle slots (M03-07).
-- 16 rejected layouts (M03-05): missing root, wrong version, traversal, lower-case name,
+- 19 rejected layouts (M03-05): missing root, wrong version, traversal, lower-case name,
   extent past the end, extents wrapping past 2^64 in `F` and `R` records, a second sector
   count after the entries, overlap, bad number, entry without its parent, duplicate path,
-  wrong size, raw data out of order, truncated raw data, missing game file.
+  wrong size, raw data out of order, a file hash that is not 64 lower-case hex digits, a
+  bad `raw_sha256`, a second `raw_sha256`, truncated raw data, missing game file.
 - Zero-length files inside the raw span and sharing a file's sector, in both manifest
   orders: load succeeds and no sector is hidden.
 - Mods (M03-11): a same-size mod replaces the disc file; a wrong-size mod and a directory
   in a mod's place are each refused with a warning naming the path and the reason. A file
   shortened after load fails its read, is logged and zero-filled.
+- Verify mode (M03-11): SHA-256 known answers (empty, `abc`, the two-block vector and a
+  million `a`); an intact tree verifies; one flipped byte in a file of the right size
+  still loads and `verifyFiles` names that file; one flipped byte in `raw.bin` is named;
+  a mod over a disc file does not fail verify (the disc copy is hashed); a file recorded
+  with `-` is named as having no hash. On the host the same code verified the real
+  extracted tree with 0 problems in 13.7 s.
 - `GamePaths` (M03-10, M03-13): `sdmc:` stripping and refusals; a missing game folder is
   fatal; settings, cache, both cards and the card backups folder under `userdata`; a test
   profile puts all of them under `userdata/tests/<name>`; unsafe profile names refused.
@@ -139,7 +152,10 @@ player, the interior area and the level the player's zone asks for (`0x4CD118`) 
 - Both teleports to the east island were overridden by the opening mission (player stayed
   at Fort Baxter, area 2 at the end); the later ones reached (1325, -325), (-675, 1425) and
   (-1425, -575). The zone level stayed 2 (MAINLA) at every sample.
-- Reads: 416, 0 mismatches; level files read: `MAINLA.LVZ`, `MAINLA.IMG` only.
+- Reads at the last 16-read log point: 416, 0 mismatches; level files read up to that
+  point: `MAINLA.LVZ`, `MAINLA.IMG` only. The tee then wrote its counters every 16 reads,
+  so up to 15 later reads, and the files they touched, are not recorded; mismatches were
+  always written at once. Since `c8856a7` it writes after every read and at exit.
 - `tee-steps.txt` SHA-256 `79808175b2aa0a73e918c844a59f79176ccc49a8ff792d7eb4448f87ebd7689c`,
   `tee-reads.txt` `90030b28461cdd8bd9301fe7c0d454f224b54c1dc332b3ed25c7b6e394d61fcf`.
 
@@ -162,6 +178,12 @@ slightly between runs), and exited its loop normally.
 - No runtime routes settings, cache, cards or backups through `GamePaths` yet. The desktop
   runs used upstream's own data folder. That routing, with Switch proof, is M04-13.
 - Async stream cancellation is not exercised in play. Upstream's stream reader runs
-  requests to completion and never cancels one, so the requirement reduces to safe
-  shutdown with reads pending. That is covered by the hardware harness, and full
-  cleanup is M04-08.
+  requests to completion and never cancels one, and the CD break and stop calls do
+  nothing: `sceCdBreak` and `sceCdStop` return success in the EE stubs
+  (`ps2xRuntime/src/lib/Kernel/Stubs/CD.cpp:351`, `:689`) and in the IOP
+  (`ps2xIOP/src/emulator/imports/iop_cdvd.cpp:289-292`). The requirement so reduces to
+  safe shutdown with reads pending. The hardware harness covers that for threads it owns.
+  Upstream's stream reader thread is never joined and reads through
+  `ps2_disc::image()`, so destroying a `FolderDisc` under it would be a use-after-free;
+  M04-08 now names that order (stop and drain the reader and the CD paths, clear
+  `ps2_disc::setImage`, then destroy the disc).

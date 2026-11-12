@@ -47,7 +47,7 @@ They are private disc data and stay in `gamefolder/.nxdisc/raw.bin`.
 
 - [x] Bounded pool of 8 open files, no shared seek state; concurrent readers on the native build.
 - [x] Upstream's stream reader never cancels a request, recorded in VERIFICATION.md.
-- [x] Shutdown with reads pending on real hardware (M03-12): 6.4 ms join and close.
+- [x] Shutdown with reads pending on real hardware (M03-12): 17.3 ms join and close.
 
 ## M03-08 — Differential comparison
 
@@ -73,15 +73,15 @@ They are private disc data and stay in `gamefolder/.nxdisc/raw.bin`.
 
 - [x] Same-size file at `mods/<disc path>` replaces the disc file; other sizes, and anything that is not a regular file, are refused with a warning naming the path and reason.
 - [x] Missing and wrong-size assets fail at load with the file named; a shortened file fails its read, logged and zero-filled.
-- [ ] Same-size corrupt files are detected: an explicit check hashes every disc file and `raw.bin` against the manifest SHA-256 and names each bad file (third review, medium finding; user chose verify mode 2026-11-12).
+- [x] Same-size corrupt files are detected: an explicit check hashes every disc file and `raw.bin` against the manifest SHA-256 and names each bad file (third review, medium finding; user chose verify mode 2026-11-12).
 
 ## M03-12 — Hardware
 
 - [x] Whole-disc digest through `FolderDisc` on the SD card.
-- [ ] Verify mode run over the whole tree on the SD card with no problem reported, on payloads that include it.
+- [x] Verify mode run over the whole tree on the SD card with no problem reported, on payloads that include it (`c8856a7`, 59.0 s).
 - [x] SD case behaviour, concurrent reads, handle bound.
 - [x] Clean shutdown during pending reads.
 
-Results: [HARDWARE_RESULTS.md](HARDWARE_RESULTS.md), final session 2026-11-12 with payloads from `9e020e7`, 0 failures.
+Results: [HARDWARE_RESULTS.md](HARDWARE_RESULTS.md), final session 2026-11-12 with payloads from `c8856a7`, 0 failures.
 The harness is `src/core_tests/disc_main.cpp`; `tools/switch_m03_session.py` copies the
 tree and runs it.
