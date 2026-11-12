@@ -16,8 +16,9 @@ Both payloads were built by `tools/build_core_tests.py` from clean commit
 `c8856a71d937b39f86fbb158c40d82f5c6ffa5d3` (bundle manifest `root_dirty=false`, copied to
 `bundle-manifest-c8856a7.json`, SHA-256 `ed09fcb8...d17c73`;
 `public-build-c8856a7.log`). That commit adds the SHA-256 verify mode (third review). Later
-commits change only M03 documents, `docs/MILESTONES.md` and `evidence.json`, none of
-which is a payload input.
+commits change only M03 documents, `docs/MILESTONES.md`, `evidence.json`,
+`tools/extract_disc.py`, its test and `tools/switch_m03_session.py`, none of which is a
+payload input (the bundle manifest's input list).
 
 | Payload | SHA-256 (local and SD read-back) | Bytes | Log SHA-256 | Result |
 |---|---|---:|---|---|
@@ -31,8 +32,11 @@ the one checked over FTP before the first session (`hardware/`: 343 files, 2,162
 bytes); its top-level listing hash is unchanged (`07fb34f4...2ad69`, 27 entries).
 
 The disc transcript saw the log settle 496 s after the launch, while the suite's own timed
-steps add up to about 105 s. The cause was not identified; the log itself is complete and
-ends with `finished failures=0`.
+steps add up to about 105 s, and earlier disc sessions settled about 20 s after their
+timed work. The cause was not identified: the transcript cannot tell a stall in the payload
+from Sphaira's FTP returning late. The log itself is complete and ends with
+`finished failures=0`. From `c796a19` the session tool records when FTP becomes reachable
+after launch and when the log first appears, so a later session can tell the two apart.
 
 ### Disc suite log (the two `[resources]` lines omitted)
 
@@ -84,11 +88,13 @@ corruption cases for the verify mode.
 - **Case (M03-12).** The SD card's file system opens `system.cnf` for `SYSTEM.CNF`, so host
   opens are case-insensitive there. `FolderDisc` does not rely on that: it normalizes the
   request and opens the manifest's exact name.
-- **Handle bound (M03-12).** `FolderDisc` holds at most `kMaxOpenFiles` = 8 handles in a
-  fixed slot array (`src/vfs/folder_disc.h`), so it cannot hold more by construction. The
-  whole-disc pass opened all 341 files in turn through those slots with no failed read,
-  and the synthetic suite ran four readers over twelve files on the card. Open handles
-  were not counted separately.
+- **Handle bound (M03-12).** Reads hold at most `kMaxOpenFiles` = 8 handles in a fixed
+  slot array (`src/vfs/folder_disc.h`). Two other paths open one transient handle of their
+  own outside that array: `load` (the manifest, then `raw.bin`) and `verifyFiles` (one
+  file at a time). So the bound is 8 read handles plus one while loading or verifying,
+  by construction. The whole-disc pass opened all 341 files in turn through the slots
+  with no failed read, and the synthetic suite ran four readers over twelve files on the
+  card. Open handles were not counted on hardware.
 - **Concurrency (M03-07, M03-12).** Four readers, 4,800 reads of 64 KiB at random offsets;
   every pair of repeated reads identical.
 - **Shutdown with reads pending (M03-07, M03-12).** The harness sets a stop flag while four
@@ -97,8 +103,10 @@ corruption cases for the verify mode.
   sessions).
 - **`sdmc:` paths (M03-13).** `resolveGamePaths` turns the device-prefixed root into
   `/switch/gtavcs_nx/gamefolder`, which `std::filesystem` treats as absolute; the same file
-  is reached both ways and no `sdmc:` folder appears under the working directory. The
-  harness resolves `GamePaths` with the `m03-disc` test profile, and the suite checks that
+  is reached both ways. The proof is that stripping and the `is_absolute` check. The
+  check `no cwd-doubled device folder` is only a leftover sentinel: the harness performs
+  no `std::filesystem` operation on a device-prefixed path, so it could not create one,
+  and that check cannot fail on its own. The harness resolves `GamePaths` with the `m03-disc` test profile, and the suite checks that
   the player's `userdata` is left untouched.
 - **Synthetic suite on the card (M03-05, M03-10, M03-11).** All rejected layouts, mods,
   corruption, empty files, game paths and test profiles pass on the Switch file system.

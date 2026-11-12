@@ -13,7 +13,7 @@ source image. This covers files, padding, gaps and non-file sectors.
 ## Extractor tests
 
 `python -m unittest tools.test_extract_disc` builds synthetic ISO images; no game data.
-Result at commit `c8856a7`: 11 tests, OK. They cover, in this order of the M03-01 claims:
+Result at commit `c796a19`: 11 tests, OK. They cover, in this order of the M03-01 claims:
 
 - `test_rejects_wrong_identity_before_writing`: a failed identity check raises before the
   destination folder exists.
@@ -26,7 +26,8 @@ Result at commit `c8856a7`: 11 tests, OK. They cover, in this order of the M03-0
   refused before anything is written; the padding and name tests check that the
   destination does not exist afterwards. Since `c8856a7` the extractor refuses what
   `FolderDisc::load` refuses, lower-case names (so also names differing only by case)
-  and control bytes; `test_safe_names_match_the_loader` checks the rule directly, and
+  and control bytes, and since `c796a19` anything outside printable ASCII, which the
+  ASCII manifest could not hold; `test_safe_names_match_the_loader` checks the rule directly, and
   all 369 paths of the real disc pass it. (Until `9e020e7` padding was checked while
   writing, so a refusal could leave a partial tree; the review found it.)
 - `test_empty_files_hold_no_sectors_in_any_order`: zero-length files sharing a file's
@@ -78,8 +79,11 @@ What the suite checks:
   million `a`); an intact tree verifies; one flipped byte in a file of the right size
   still loads and `verifyFiles` names that file; one flipped byte in `raw.bin` is named;
   a mod over a disc file does not fail verify (the disc copy is hashed); a file recorded
-  with `-` is named as having no hash. On the host the same code verified the real
-  extracted tree with 0 problems in 13.7 s.
+  with `-` is named as having no hash. On the host the same code, at `c796a19`
+  with `src/vfs` and `upstream` clean, verified the real extracted tree with 0 problems in
+  14.9 s (`build/evidence/M03/host-verify-c796a19/host-verify.log`, SHA-256
+  `9a142ade9093dcbcb0af8a4c89ee91e967b6980ed6183cded7eb0cf46e2a9cdd`; the driver
+  `verify_main.cpp` is kept beside it).
 - `GamePaths` (M03-10, M03-13): `sdmc:` stripping and refusals; a missing game folder is
   fatal; settings, cache, both cards and the card backups folder under `userdata`; a test
   profile puts all of them under `userdata/tests/<name>`; unsafe profile names refused.
@@ -124,8 +128,8 @@ Fort Baxter differs by up to 69 units, as the opening scene moves the player.
 | Measure | Result |
 |---|---:|
 | Read comparisons, at the last 16-read log point | 416 |
-| Bytes compared | 69.7 MB |
-| File lookups compared | 601 |
+| Bytes compared, same point | 69.7 MB |
+| File lookups compared, same point | 601 |
 | Mismatches | 0 |
 | Reads crossing a file end | 70 |
 | Unaligned reads | 0 |

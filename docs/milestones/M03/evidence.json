@@ -2,7 +2,7 @@
   "M03-01": [
     {
       "path": "docs/milestones/M03/VERIFICATION.md",
-      "result": "Extractor tests (python -m unittest tools.test_extract_disc, 11 OK at c8856a7): wrong identity, padding, overlap, traversal, lower-case and control-byte names refused before anything is written, as the loader refuses them; original LBAs and walk order kept; zero-length files hold no sectors in any order; changed bytes detected; unrelated files kept"
+      "result": "Extractor tests (python -m unittest tools.test_extract_disc, 11 OK at c796a19): wrong identity, padding, overlap, traversal, lower-case, control-byte and non-ASCII names refused before anything is written, as the loader refuses them; original LBAs and walk order kept; zero-length files hold no sectors in any order; changed bytes detected; unrelated files kept"
     },
     {
       "path": "docs/milestones/M03/VERIFICATION.md",
@@ -68,7 +68,7 @@
   "M03-08": [
     {
       "path": "docs/milestones/M03/VERIFICATION.md",
-      "result": "Live tee from an empty card through boot, movies, cutscene, Fort Baxter and two effective teleports, with radio: 416 reads, 69.7 MB, 601 lookups, 0 mismatches; first two teleports and the AI drive had no effect, as recorded; all 341 files byte-compared, 0 failures"
+      "result": "Live tee from an empty card through boot, movies, cutscene, Fort Baxter and two effective teleports, with radio: 416 reads, 69.7 MB and 601 lookups at the last 16-read log point (the tee then sampled its counters every 16 reads), 0 mismatches (mismatches were always written at once); first two teleports and the AI drive had no effect, as recorded; all 341 files byte-compared, 0 failures"
     },
     {
       "path": "docs/milestones/M03/VERIFICATION.md",
