@@ -36,17 +36,17 @@
     },
     {
       "path": "docs/milestones/M03/VERIFICATION.md",
-      "result": "Synthetic suite at c8856a7 under ASan/UBSan and -O2: paths, listing, whole-image and unaligned reads, end of disc, PASS"
+      "result": "Synthetic suite at 54f814b under ASan/UBSan and -O2: paths, listing, whole-image and unaligned reads, end of disc, zero-length reads failing only at or past the end, PASS"
     }
   ],
   "M03-05": [
     {
       "path": "docs/milestones/M03/VERIFICATION.md",
-      "result": "Synthetic suite at c8856a7, sanitized and -O2, logs hashed: 19 rejected layouts including extents wrapping past 2^64, a second sector count and invalid or duplicate hashes, traversal, lower case, overlap, duplicates, wrong sizes, missing files; zero-length files in either manifest order; PASS"
+      "result": "Synthetic suite at 54f814b, sanitized and -O2, logs hashed: 19 rejected layouts including extents wrapping past 2^64, a second sector count and invalid or duplicate hashes, traversal, lower case, overlap, duplicates, wrong sizes, missing files; zero-length files in either manifest order; PASS"
     },
     {
       "path": "docs/milestones/M03/HARDWARE_RESULTS.md",
-      "result": "Same suite in the runtime payload from c8856a7 on a real Switch: PASS, 19 rejected layouts, 337/337 runtime cases, failures=0"
+      "result": "Same suite in the runtime payload from 54f814b on a real Switch: PASS, 19 rejected layouts, 337/337 runtime cases, failures=0"
     }
   ],
   "M03-06": [
@@ -62,7 +62,7 @@
     },
     {
       "path": "docs/milestones/M03/HARDWARE_RESULTS.md",
-      "result": "Real Switch, payload from c8856a7: 4 readers, 4,800 random 64 KiB reads consistent; stop flag set during reads, readers finish their read, join and close in 17.3 ms; sceCdBreak/sceCdStop are no-ops upstream and the stream reader is never joined, so its stop order is recorded under M04-08"
+      "result": "Real Switch, payload from 54f814b: 4 readers, 4,800 random 64 KiB reads consistent; stop flag set during reads, readers finish their read, join and close in 8.6 ms; sceCdBreak/sceCdStop are no-ops upstream and the stream reader is never joined, so its stop order is recorded under M04-08"
     }
   ],
   "M03-08": [
@@ -106,23 +106,23 @@
     },
     {
       "path": "docs/milestones/M03/HARDWARE_RESULTS.md",
-      "result": "Same suite passes on the Switch SD card in the runtime payload from c8856a7, including one-byte corruption of a same-size file and of raw.bin named by FolderDisc::verifyFiles; the disc payload's verify over the real 341-file tree and raw.bin on the SD card reports 0 problems in 59.0 s"
+      "result": "Same suite passes on the Switch SD card in the runtime payload from 54f814b, including one-byte corruption of a same-size file and of raw.bin named by FolderDisc::verifyFiles; the disc payload's verify over the real 341-file tree and raw.bin on the SD card reports 0 problems in 74.3 s"
     }
   ],
   "M03-12": [
     {
       "path": "docs/milestones/M03/HARDWARE_RESULTS.md",
-      "result": "Real Switch, HOS 22.5.0 application mode, payload from clean c8856a7: whole 2,183,856,128-byte disc through FolderDisc on SD hashes to the source image at 68.0 MiB/s; verify mode hashes all 341 files and raw.bin against the manifest with 0 problems in 59.0 s; lowercase open found; 8-slot handle bound; concurrent reads; shutdown with reads pending; failures=0, no new crash report"
+      "result": "Real Switch, HOS 22.5.0 application mode, payload from clean 54f814b: whole 2,183,856,128-byte disc through FolderDisc on SD hashes to the source image at 68.0 MiB/s; verify mode hashes all 341 files and raw.bin against the manifest with 0 problems in 74.3 s; lowercase open found; 8-slot handle bound; concurrent reads; shutdown with reads pending; failures=0, no new crash report"
     }
   ],
   "M03-13": [
     {
       "path": "docs/milestones/M03/HARDWARE_RESULTS.md",
-      "result": "Real Switch: rooted path absolute to std::filesystem, same file reached via sdmc: and rooted path, no cwd-doubled sdmc: folder; a relative-path remove_all failure seen in the test suite on the Switch is recorded"
+      "result": "Real Switch, payload from 54f814b: rooted path absolute to std::filesystem, same file reached via sdmc: and rooted path; rooted create, list, file and empty-directory removal work; std::filesystem::remove_all fails with EIO on rooted and relative paths alike (recorded probe), so the c5903d1 failure was the call, not the path; upstream's card remove_all carried into M04-13"
     },
     {
       "path": "docs/milestones/M03/VERIFICATION.md",
-      "result": "Synthetic suite: rootedGamePath strips sdmc:, keeps rooted and relative paths, refuses other devices and .."
+      "result": "Synthetic suite at 54f814b: rootedGamePath strips sdmc: and accepts only rooted paths, refusing cwd-relative ones, other devices and ..; GamePaths resolved from a getcwd-based root, which on the Switch also strips sdmc:"
     }
   ]
 }

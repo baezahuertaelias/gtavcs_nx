@@ -41,7 +41,7 @@ On the real disc, `extract_disc.py verify --iso` is the whole-disc identity abov
 
 ## Synthetic FolderDisc and GamePaths suite
 
-`python tools/run_folder_disc_tests.py build/evidence/M03/synthetic-c8856a7` compiles `src/vfs`
+`python tools/run_folder_disc_tests.py build/evidence/M03/synthetic-54f814b` compiles `src/vfs`
 and `tests/core/folder_disc_tests.cpp` with the locked container's host g++ 12.2.0 and
 runs them twice, with address randomization off (`setarch -R`, which needs the container
 started with `seccomp=unconfined`): under the container kernel's high-entropy randomization
@@ -49,13 +49,13 @@ AddressSanitizer printed `DEADLYSIGNAL` forever. The fixture is generated; no ga
 
 | Run | Flags | Result | Log SHA-256 |
 |---|---|---|---|
-| Sanitized | `-O1 -g -fsanitize=address,undefined -fno-sanitize-recover=all` | PASS, exit 0 | `76d470ef012b40e3f27b0cba728b4e42631f6061664d61c389b7cb74372bb41b` |
-| Optimized | `-O2` | PASS, exit 0 | `639553db336ea13066edaaa5ba8c2a64a9a989dbcfcdd4b463fb51cbe43dd0b6` |
+| Sanitized | `-O1 -g -fsanitize=address,undefined -fno-sanitize-recover=all` | PASS, exit 0 | `a8c9a6c264240b8f26c12a14c54011dcd2285243bd8c4ebde33f6a906842119d` |
+| Optimized | `-O2` | PASS, exit 0 | `baf7228380fe91b5346799e928a7c4e4b4a13a3a13326e9c9d37027b82c23fea` |
 
-Both logs record source commit `c8856a71d937b39f86fbb158c40d82f5c6ffa5d3` with
+Both logs record source commit `54f814b8a48bf038733f50e86a9dfa1e3fea058e` with
 `sources_dirty=False`, and the full command. Since `c8856a7` that flag covers every build
 input (`src/vfs` headers and the `upstream` submodule too), not only the three `.cpp`
-files. The earlier `synthetic/` logs are from `9e020e7`. The same suite also runs on the Switch inside
+files. Earlier logs: `synthetic/` (`9e020e7`), `synthetic-c8856a7/`, `synthetic-27274a3/`. The same suite also runs on the Switch inside
 the runtime payload (HARDWARE_RESULTS.md). The one `read failed` line in each log is the
 intended shortened-file case; the three verify lines that follow it are the intended
 corruption and missing-hash cases.
@@ -63,7 +63,9 @@ corruption and missing-hash cases.
 What the suite checks:
 
 - Path normalization, directory listing, whole-image and unaligned reads, reads across
-  padding, gaps and raw sectors, end of disc (M03-04 to M03-06).
+  padding, gaps and raw sectors, end of disc (M03-04 to M03-06). A zero-length read
+  succeeds inside the disc and fails at or past its end, as `vcs::IsoImage::readBytes`
+  does (since `27274a3`; before, it succeeded everywhere).
 - Four concurrent readers over twelve files, more than the eight handle slots (M03-07).
 - 19 rejected layouts (M03-05): missing root, wrong version, traversal, lower-case name,
   extent past the end, extents wrapping past 2^64 in `F` and `R` records, a second sector
@@ -84,8 +86,9 @@ What the suite checks:
   14.9 s (`build/evidence/M03/host-verify-c796a19/host-verify.log`, SHA-256
   `9a142ade9093dcbcb0af8a4c89ee91e967b6980ed6183cded7eb0cf46e2a9cdd`; the driver
   `verify_main.cpp` is kept beside it).
-- `GamePaths` (M03-10, M03-13): `sdmc:` stripping and refusals; a missing game folder is
-  fatal; settings, cache, both cards and the card backups folder under `userdata`; a test
+- `GamePaths` (M03-10, M03-13): `sdmc:` stripping and refusals, including cwd-relative
+  paths (`game/data`, `./game`, `.`) since `27274a3`; a relative game folder is refused and
+  the cases resolve a root built from `getcwd`; a missing game folder is fatal; settings, cache, both cards and the card backups folder under `userdata`; a test
   profile puts all of them under `userdata/tests/<name>`; unsafe profile names refused.
 
 **Review finding fixed here.** The suite at the earlier candidate read a 3,396-byte file
@@ -95,17 +98,23 @@ crashed. The test now reads into a buffer of the file's size.
 **Found on the Switch.** At `c5903d1` the suite passed on the host but failed twice on the
 Switch, because `std::filesystem::remove_all` on the relative fixture path left `mods/` in
 place there (HARDWARE_RESULTS.md, "Earlier sessions"). The mods are now removed with checked
-POSIX calls, and the suite passes on both.
+POSIX calls, and the suite passes on both. A later hardware probe showed `remove_all` fails
+on rooted paths as well (HARDWARE_RESULTS.md, "`std::filesystem` removal on the Switch").
 
 ## C++ reader against the real image
 
 `tests/desktop/disc_compare.cpp` compares `FolderDisc` with upstream's `vcs::IsoImage`
-on the real data. Result: `files=341 comparisons=23449 bytes=12626136345 failures=0`.
+on the real data. Result at `27274a3`: `files=341 comparisons=23453 bytes=12626136345
+failures=0` (`build/evidence/M03/disc-compare-27274a3/disc-compare.log`, SHA-256
+`12f1451b10dba2671dcf5f14fc5cf60f7d9246c6e6932d1ce751cf0ca50ab9d5`; built in the locked
+container from `upstream/src/disc/iso_image.cpp`, `src/vfs/folder_disc.cpp` and the test,
+with `src`, `tests` and `upstream` clean). The earlier run had 23,449 comparisons.
 
 - Every file's head, every end with its padding, and unaligned reads across each start and end.
 - 20,000 random reads of 1 byte to 1 MiB.
 - The whole image sequentially in 1 MiB reads.
-- Both end-of-disc failure cases.
+- Both end-of-disc failure cases, and zero-length reads inside the disc, at its last
+  byte, at its end and past it.
 - Path lookups by `cdrom0:\...;1` and every directory listing, in order.
 
 ## Live comparison during real game execution
