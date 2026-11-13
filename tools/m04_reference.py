@@ -80,9 +80,10 @@ def main():
     args = parser.parse_args()
     config = parse(args.config)
     iso = args.iso or next(iter(sorted(ROOT.glob("*.iso"))), None)
-    exe = REFERENCE / "build/vcs.exe"
-    if not iso or not exe.is_file():
-        raise SystemExit("Need the reference build (build/m02/reference/build/vcs.exe) and the disc image")
+    # upstream's tools/build.py writes build/vcs.exe on Windows and build/vcs on Linux
+    exe = next((p for p in (REFERENCE / "build/vcs.exe", REFERENCE / "build/vcs") if p.is_file()), None)
+    if not iso or not exe:
+        raise SystemExit("Need the reference build (build/m02/reference/build/vcs.exe or build/vcs) and the disc image")
     evidence = args.evidence.resolve()
     data = evidence / "reference-userdata"
     if data.exists():
