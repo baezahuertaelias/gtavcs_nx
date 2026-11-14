@@ -320,6 +320,10 @@ namespace platform
             switch (e.type)
             {
             case SDL_QUIT:
+                // switch-sdl2 sends SDL_QUIT when appletMainLoop() reports the applet's exit request (the player
+                // closed the game from HOME; main.c holds the exit lock so it arrives here)
+                if (!g_quit)
+                    std::fprintf(stderr, "[platform] quit requested (applet exit request): stopping in order\n");
                 g_quit = true;
                 break;
             case SDL_CONTROLLERDEVICEADDED:
