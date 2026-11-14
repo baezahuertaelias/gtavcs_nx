@@ -107,6 +107,11 @@ list(FILTER game_sources EXCLUDE REGEX "/src/disc/iso_image.cpp$")
 set(private_game_sources "${upstream}/src/debug/selftest.cpp" "${upstream}/src/game/vcs_display.cpp"
     "${upstream}/src/game/vcs_overrides.cpp")
 list(REMOVE_ITEM game_sources ${private_game_sources})
+# Sources that only register themselves through a file-scope object (nothing calls into them): a plain archive
+# member like that is dropped by the linker, so they get their own library, linked whole-archive below.
+# vcs_vu0_native.cpp: its Registrar adds the native VU0 programs (ps2RegisterVu0Native).
+set(self_registering_sources "${upstream}/src/game/vcs_vu0_native.cpp")
+list(REMOVE_ITEM game_sources ${self_registering_sources})
 add_library(nx_core STATIC ${runtime_sources} ${kernel_sources} ${game_sources}
     "${upstream}/src/render/presenter.cpp" "${upstream}/src/render/gs_shaders.cpp"
     "${upstream}/src/render/ui_renderer.cpp" "${upstream}/src/rhi/rhi.cpp" "${upstream}/src/rhi/null/rhi_null.cpp"
@@ -118,6 +123,13 @@ target_include_directories(nx_core PRIVATE "${upstream}/src" "${runtime}/src/lib
 target_compile_definitions(nx_core PRIVATE PS2X_HAS_FFMPEG=0 PS2X_ENABLE_IOP_RPC_TRACE=0 _POSIX_C_SOURCE=200809L
     VCS_LAUNCHER_NO_MAIN)
 target_link_libraries(nx_core PUBLIC ps2_iop nx_imgui nx_platform)
+
+add_library(nx_self_registering STATIC ${self_registering_sources})
+nx_cpu_options(nx_self_registering)
+target_include_directories(nx_self_registering PRIVATE "${upstream}/src" "${runtime}/src/lib")
+target_compile_definitions(nx_self_registering PRIVATE PS2X_HAS_FFMPEG=0 PS2X_ENABLE_IOP_RPC_TRACE=0
+    _POSIX_C_SOURCE=200809L)
+target_link_libraries(nx_self_registering PUBLIC nx_core)
 
 # upstream's platform.h on SDL2 (src/platform/platform_switch_sdl2.cpp)
 add_library(nx_platform STATIC src/platform/platform_switch_sdl2.cpp)
@@ -162,8 +174,9 @@ target_link_options(gtavcs PRIVATE
 # Mesa/SDL dependencies without depending on incidental archive ordering.
 # The game layer, runtime, IOP and platform reference each other both ways: one group.
 target_link_libraries(gtavcs PRIVATE glad
-    -Wl,--whole-archive "${NX_PRIVATE_GENERATED_ARCHIVE}" $<TARGET_FILE:nx_game_private> -Wl,--no-whole-archive
-    -Wl,--start-group nx_game_private nx_core nx_platform nx_imgui ps2_iop
+    -Wl,--whole-archive "${NX_PRIVATE_GENERATED_ARCHIVE}" $<TARGET_FILE:nx_game_private>
+    $<TARGET_FILE:nx_self_registering> -Wl,--no-whole-archive
+    -Wl,--start-group nx_game_private nx_self_registering nx_core nx_platform nx_imgui ps2_iop
     ${NX_SDL2_STATIC_LIBRARIES} ${NX_GL_STATIC_LIBRARIES} ${NX_EGL_STATIC_LIBRARIES} ${NX_ZLIB_STATIC_LIBRARIES}
     "${NX_LIBRARY}" m -Wl,--end-group)
 

@@ -82,6 +82,29 @@ def imgui_dependency(log):
     return target
 
 
+# Archive members with static constructors that may stay out of the NRO, and why. Anything else with one must be
+# linked: a member that only registers itself (PS2_REGISTER_GAME_OVERRIDE, the VU0 natives' Registrar) is dropped
+# silently by the linker when nothing references it, and the game then runs without it (first M04 Switch session).
+UNLINKED_CONSTRUCTORS_ALLOWED = {
+    "games_database.o": "a static name table for PS2Recomp's generic runner main(), which the port does not build",
+}
+
+
+def unlinked_constructors(build, linkmap):
+    """Members of the port's archives that have static constructors but are not in the link map."""
+    objdump = "/opt/devkitpro/devkitA64/bin/aarch64-none-elf-objdump"
+    missing = []
+    for archive in (build / "libnx_core.a", build / "libnx_platform.a", build / "iop/libps2_iop.a"):
+        member = None
+        for line in subprocess.check_output([objdump, "-h", str(archive)], text=True).splitlines():
+            if "file format" in line:
+                member = line.split(":")[0].strip()
+            elif ".init_array" in line and member:
+                if f"{archive.name}({member})" not in linkmap and member not in UNLINKED_CONSTRUCTORS_ALLOWED:
+                    missing.append(f"{archive.name}({member})")
+    return sorted(set(missing))
+
+
 def inside(args, log):
     if run(["dkp-pacman", "-Q"], log) != (ROOT / "docs/milestones/M01/package-lock.txt").read_text():
         raise RuntimeError("Toolchain package lock mismatch")
@@ -98,8 +121,8 @@ def inside(args, log):
             raise RuntimeError("Private code was not generated from the pinned source")
         options += [f"-DNX_PRIVATE_GENERATED_ARCHIVE={ARCHIVE}", "-DNX_PRIVATE_GENERATED_DIR=/cache/generated/ee"]
     run(["cmake", "-S", "/work", "-B", build, "-G", "Ninja", *options], log)
-    target = "nx_core" if args.public else "gtavcs_nro"
-    run(["cmake", "--build", build, "--parallel", str(min(os.cpu_count() or 1, 12)), "--target", target, "--",
+    targets = ["nx_core", "nx_self_registering"] if args.public else ["gtavcs_nro"]
+    run(["cmake", "--build", build, "--parallel", str(min(os.cpu_count() or 1, 12)), "--target", *targets, "--",
          "-k", "0"], log)
     if args.public:
         commands = (build / "compile_commands.json").read_text()
@@ -121,9 +144,12 @@ def inside(args, log):
         "wrapped_thread_create": "__wrap___syscall_thread_create" in linkmap,
         # applyVcs registers itself statically; without this object the game boots with none of its hooks
         "game_overrides_linked": "(vcs_overrides.o)" in linkmap,
+        "vu0_natives_linked": "(vcs_vu0_native.o)" in linkmap,
+        "unlinked_constructors": unlinked_constructors(build, linkmap),
     }
     if (manifest["core_stub_linked"] or not manifest["generated_linked"] or not manifest["wrapped_thread_create"]
-            or not manifest["game_overrides_linked"]):
+            or not manifest["game_overrides_linked"] or not manifest["vu0_natives_linked"]
+            or manifest["unlinked_constructors"]):
         raise RuntimeError(f"Unexpected link map: {manifest}")
     (out / "manifest-inside.json").write_text(json.dumps(manifest, indent=2) + "\n")
     print("PASS private game NRO " + manifest["nro_sha256"], flush=True)
