@@ -72,6 +72,7 @@ int main(int argc, char **argv)
     int sockets_started = 0;
     AppletHookCookie hook;
     int hook_started = 0;
+    int exit_locked = 0;
     if (__nxlink_host.s_addr && R_SUCCEEDED(socketInitializeDefault())) {
         sockets_started = 1;
         nx_socket = nxlinkConnectToHost(true, false);
@@ -89,6 +90,11 @@ int main(int argc, char **argv)
         diagnostic("[boot] Full application memory required; launch using title override\n");
         goto cleanup;
     }
+    /* Without the exit lock Horizon ends the process at once when the player closes the game from HOME, so
+     * nothing below runs (first M04 close run). Locked, the close arrives as an applet exit request:
+     * appletMainLoop() returns false, the loop stops the core in order, and the lock is released last. */
+    if (R_SUCCEEDED(appletLockExit())) exit_locked = 1;
+    else diagnostic("[lifecycle] Cannot lock exit: a close from HOME will skip the orderly shutdown\n");
 
     /* Standard libnx startup mounts sdmc. Do not mount a second copy or change
      * cwd later: workers and all relative asset/mod lookups share this root. */
@@ -236,5 +242,6 @@ cleanup:;
         close(nx_socket);
     }
     if (sockets_started) socketExit();
+    if (exit_locked) appletUnlockExit(); /* the system may end the process from here on */
     return result;
 }
