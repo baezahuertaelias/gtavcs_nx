@@ -35,11 +35,13 @@ authorize general implementation delegation or additional user-owned chats.
 GitHub plan limitations on private branch protection must be recorded honestly;
 they do not relax these operating rules.
 
-**Current deliverable (M04, hardware proof recorded, awaiting independent review) boots the real runtime.**
+**Current deliverable (M05 in progress: OpenGL RHI implemented and host-verified, Switch proof pending).**
 `python tools/build_game.py` links the private generated EE/VU archive, the
 overlaid upstream runtime/game layer, `src/core/core.cpp` behind the C ABI in
-`src/core.h` and the SDL2 platform adapter. Rendering is the null RHI until M05:
-the screen stays black. `--public` (CI) compiles every public library and links
+`src/core.h`, the SDL2 platform adapter and the OpenGL 3.3 RHI backend
+(`src/rhi/gl`, GLSL ports in `src/render/glsl`); the RHI swaps the window, and
+`VCS_RHI=null` keeps the null backend. It also builds the public RHI conformance
+NRO (`src/rhi_tests`). `--public` (CI) compiles every public library and links
 no game code. The C ABI is port-owned glue, not an upstream API. Do not describe
 a successful build as ingame validation.
 
@@ -86,6 +88,9 @@ gtavcs_nx/
     core/                        C++ core adapter (boot/frame/shutdown, nxrun.cfg)
     platform/                    SDL2 implementation of upstream's platform.h
     switch/                      libnx link wraps (thread stacks, open audit, indirect-branch trace)
+    rhi/gl/                      OpenGL 3.3 core backend of upstream's rhi::Device (M05)
+    render/glsl/                 GLSL 330 ports of upstream's HLSL shaders (README: conventions)
+    rhi_tests/                   RHI conformance scenes: host runner, Switch NRO
   third_party/glad/              generated GLAD 2.0.8, GL 3.3 core, no extensions
     include/{glad,KHR}/
     src/gl.c
@@ -267,6 +272,8 @@ on a Linux host with Docker's engine (no local devkitPro). The game NRO links th
 private generated core, the game layer and the SDL2 platform; on an actual Switch
 it boots the real runtime from the folder disc, reaches the game's outdoor state
 with the null renderer (black screen, the game's own sound), and passes HOME,
-sleep, close and startup-failure checks (M04 evidence). Rendering is M05; no
-picture, gameplay or frame-rate acceptance is claimed. Full paired wireless/Pro
+sleep, close and startup-failure checks (M04 evidence). The M05 OpenGL backend
+matches upstream's Vulkan backend byte for byte on the host's GPU (125/125
+conformance readbacks); it is not yet proven on the Switch, and no picture,
+gameplay or frame-rate acceptance is claimed. Full paired wireless/Pro
 controller and docking acceptance remain open.
