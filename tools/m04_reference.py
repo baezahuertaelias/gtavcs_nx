@@ -1,6 +1,10 @@
-"""Run a Switch run schedule (tests/switch/*.cfg, the nxrun.cfg format) on the desktop reference, null renderer.
+"""Run a Switch run schedule (tests/switch/*.cfg, the nxrun.cfg format) on the desktop reference.
 
-    python tools/m04_reference.py tests/switch/m04-boot.cfg <evidence-dir> [--iso PATH]
+    python tools/m04_reference.py tests/switch/m04-boot.cfg <evidence-dir> [--iso PATH] [--rhi null|vulkan|opengl]
+
+--rhi (default null, M04's comparison) picks the reference's renderer; `opengl` needs the reference built with the
+port's backend (tests/rhi/desktop-opengl.patch, M05). A schedule's `screenshot <path>` commands write to
+<evidence-dir>/screenshots/<file name> instead (game pictures: keep the evidence folder under build/).
 
 The reference is upstream's own desktop build in build/m02/reference (M02-01), started hidden with VCS_RHI=null and
 an empty card of its own (VCS_DATA_DIR under the evidence folder; never the player's). The schedule's commands go
@@ -77,6 +81,7 @@ def main():
     parser.add_argument("config")
     parser.add_argument("evidence", type=Path)
     parser.add_argument("--iso", type=Path)
+    parser.add_argument("--rhi", default="null", choices=["null", "vulkan", "opengl"])
     args = parser.parse_args()
     config = parse(args.config)
     iso = args.iso or next(iter(sorted(ROOT.glob("*.iso"))), None)
@@ -90,7 +95,7 @@ def main():
         shutil.rmtree(data)
     data.mkdir(parents=True)
     env = dict(os.environ)
-    env.update({"PS2X_HIDDEN": "1", "PS2X_CONTROL": "1", "PS2X_CONTROL_PORT": str(PORT), "VCS_RHI": "null",
+    env.update({"PS2X_HIDDEN": "1", "PS2X_CONTROL": "1", "PS2X_CONTROL_PORT": str(PORT), "VCS_RHI": args.rhi,
                 "VCS_DATA_DIR": str(data)})
     env.update(dict(config["env"]))
     log = open(evidence / "reference-game.log", "w", encoding="utf-8", errors="replace")
@@ -116,7 +121,7 @@ def main():
             raise SystemExit("The reference never answered on the control channel")
         t0 = time.time()
         result(0.0, "config", f"profile={quote(config['profile'])} seconds={config['seconds']} "
-                              f"commands={len(config['commands'])} renderer=null")
+                              f"commands={len(config['commands'])} renderer={args.rhi}")
         pending = list(config["commands"])
         next_report = 0.0
         while True:
@@ -131,6 +136,10 @@ def main():
                 next_report = now + config["report"]
             while pending and pending[0][0] <= now:
                 at, command = pending.pop(0)
+                if command.startswith("screenshot "):
+                    shots = evidence / "screenshots"
+                    shots.mkdir(exist_ok=True)
+                    command = "screenshot " + str(shots / Path(command.split(" ", 1)[1]).name)
                 try:
                     answer = send(command)
                 except OSError as error:
