@@ -2,8 +2,8 @@
 
 Branch `milestone/m04-runtime-boot`. Parent task status lives in [docs/MILESTONES.md](../../MILESTONES.md). A step
 here is ticked only when its proof exists: host and desktop results in [VERIFICATION.md](VERIFICATION.md), Switch
-results in [HARDWARE_RESULTS.md](HARDWARE_RESULTS.md) (candidate NRO `15b07bae...`, built from clean `d68d19a` and
-byte-identical at `8e8f6b3`). The session procedure is [HARDWARE.md](HARDWARE.md).
+results in [HARDWARE_RESULTS.md](HARDWARE_RESULTS.md) (candidate NRO `96091d30...`, built from clean `9a1c79e`; runtime
+tests `e908526f...`). The session procedure is [HARDWARE.md](HARDWARE.md).
 
 ## M04-01 — Explicit boot / run / stop behind the C ABI
 
@@ -48,8 +48,8 @@ byte-identical at `8e8f6b3`). The session procedure is [HARDWARE.md](HARDWARE.md
 - [x] The main thread owns SDL events and the GL context; the game thread and render worker are the core's own
   (`threads_created=6` in every game run that booted, `live_threads` 2 / 4 / 2 at boot / running / shutdown).
 - [x] Guest yields resume: the boot reaches gameplay state on both launches, with no `unlisted-resume` line.
-- [x] No main / game thread deadlock in any run of the session: two boots, two files runs, two saves, HOME, sleep
-  and close.
+- [x] No main / game thread deadlock in any run of the session: three boots, files, two saves, the branch trace, HOME,
+  sleep and close.
 
 ## M04-07 — Desktop OS facilities on the boot path
 
@@ -80,8 +80,8 @@ byte-identical at `8e8f6b3`). The session procedure is [HARDWARE.md](HARDWARE.md
   crash; a failure before SDL keeps M01's console screen.
 - [x] HOME and sleep: suspensions detected, focus pairs logged, progress resumes.
 - [x] Close from HOME: the exit request reaches the orderly shutdown.
-- [x] Repeated launches: two boots and two saves on the same test cards, the same thread counts, the card tree
-  unchanged by the second boot; no new crash report in any run.
+- [x] Repeated launches: two full boots and two saves on the same test cards, the same thread counts, the card tree
+  unchanged by the repeated boot; no new crash report in any run.
 
 ## M04-11 — Diagnostic and control commands
 
@@ -90,15 +90,21 @@ byte-identical at `8e8f6b3`). The session procedure is [HARDWARE.md](HARDWARE.md
   configuration on the Switch).
 - [x] Results are one machine-readable line per event, with `status=ok|error|timeout|unanswered`; an unknown setting
   and an unknown command on the Switch answer `status=error reply="error ..."` and the run carries on.
-- [x] User-save isolation: every run's card, settings and results go to `userdata/tests/<profile>`.
+- [x] User-save isolation: a schedule must name a `profile` (refused otherwise, host tests); every scripted run's card,
+  settings and results go to `userdata/tests/<profile>`, never the player's own userdata.
 
 ## M04-12 — Reference comparison and unhandled instructions
 
 - [x] The desktop reference (upstream's own build of the pin, null RHI) and both Switch boots reach outdoors with a
   follow camera on the same route, 0 errors each (`m04_compare.py`).
 - [x] No runtime exception, unlisted resume or unsupported syscall in any final log.
-- [x] M02's 561 unhandled-instruction events: all compile to a throw; none executed in the five final Switch logs or
+- [x] M02's 561 unhandled-instruction events: all compile to a throw; none executed in the nine final Switch logs or
   the reference (`unhandled_classification.json`).
+- [x] M02's indirect-fallback sites (1,196 warnings = 598 sites, one per owner): all compile to a runtime dispatch;
+  the Switch branch trace on the boot route plus a save ran 129 of them, every target registered, and 469 were not
+  reached on that route (`indirect_classification.json`).
+- [x] Generator entry-list completeness for the running game: no missing-target or unlisted-resume report in any final
+  Switch log or the reference; the trace saw 234 indirect sites and 12,241,707 dispatches with no missing target.
 
 ## M04-13 — Folder disc and game paths only
 
@@ -106,9 +112,10 @@ byte-identical at `8e8f6b3`). The session procedure is [HARDWARE.md](HARDWARE.md
   `gamefolder/SLUS_215.90`; preflight finds no disc image on the card.
 - [x] The ELF's SHA-1 checked against `kElfSha1` at run time, naming the path on a mismatch.
 - [x] `FolderDisc::verifyFiles` as a run option: `verify problems=0` on the Switch.
-- [x] Settings, cache, both cards with their order files and the card backups under `gamefolder/userdata` through
-  `GamePaths`, test runs under `userdata/tests/<profile>`: the game's own save wrote the save folder, both
-  `.ps2x-order` files and a backup there, and a second save a second backup beside it.
+- [x] Settings, cache, both card folders and the card backups under `gamefolder/userdata` through `GamePaths`, test
+  runs under `userdata/tests/<profile>`: the game's own save to the first card wrote its save folder, the card's and
+  the folder's `.ps2x-order` files and a backup there, and each later save another backup beside the existing ones.
+  The second card's folder and the cache were created and never written (the game saves to the first card).
 - [x] Checked removal instead of `remove_all` (card format / unformat of a card holding saves) and replacement instead
   of rename-onto-existing (a second and third settings save, card rename onto an existing name, `replaceFile` twice),
   on the Switch.

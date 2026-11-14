@@ -3,7 +3,8 @@
     python tools/classify_indirect.py <generated-ee-dir> <out.json> --trace NAME=PATH [--trace ...] [--log NAME=PATH ...]
 
 For every 'control-flow' warning in docs/milestones/M02/generation_metadata.json (a jr / jalr whose targets the
-generator could not list): the owner function, the address and what the generator emitted there (the
+generator could not list; the generator reports each such site twice, so 1,196 events are 598 sites): the owner
+function, the address and what the generator emitted there (the
 `dispatchGuestBranch` call with the computed target and its GuestBranchKind). Each --trace is a Switch game log of a
 run with VCS_NX_BRANCH_TRACE=1 and PS2X_FAST_DISPATCH=0 (tests/switch/m04-branches.cfg): its `[branch-trace] site=`
 lines (src/switch/branch_trace.cpp) say which indirect sites ran, how often, how many distinct targets they reached and
@@ -47,6 +48,10 @@ def main():
     args = parser.parse_args()
     meta = json.loads((ROOT / "docs/milestones/M02/generation_metadata.json").read_text())
     events = [e for e in meta["diagnostic_events"] if e["category"] == "control-flow"]
+    # M02's generator reports every such site twice (1,196 events, 598 sites): classify each (owner, address) once
+    unique = {}
+    for e in events:
+        unique.setdefault((e["function"], e["address"]), e)
 
     emitted = collections.defaultdict(set)
     for path in sorted(args.generated.glob("*.cpp")):
@@ -71,7 +76,7 @@ def main():
 
     warned = set()
     rows, kinds = [], collections.Counter()
-    for e in events:
+    for e in unique.values():
         address = int(e["address"], 16)
         warned.add(address)
         kind = sorted(emitted.get(address, {"(no dispatch found)"}))
@@ -96,6 +101,7 @@ def main():
             "trace_summary": trace["summary"],
         }
     summary = {
+        "events": len(events),
         "sites": len(rows),
         "owners": len(owners),
         "emitted_kinds": dict(kinds),

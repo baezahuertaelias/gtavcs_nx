@@ -21,9 +21,9 @@ from M02's 1,768,078,598 bytes (build paths differ); the generated sources are t
 
 | Command | Result |
 |---|---|
-| `python tools/build_game.py --public` (source CI) | `PASS public core library compiled; no game code linked, no NRO`; `nx_core` and the new `nx_self_registering` both compiled |
-| `python tools/build_game.py` at clean `d68d19a` and again at clean `8e8f6b3` | `PASS private game NRO 15b07baefe52db8f4fe1b3c7ed354d860373e058e3e9c99037ada7b5989813c7` both times (`root_dirty=false`) |
-| `python tools/build_core_tests.py` at clean `8e8f6b3` | PASS; overlay applied, synthetic VU fixture reproduced; `gtavcs_runtime_tests.nro` `4172518f...c8951` |
+| `python tools/build_game.py --public` (source CI) | `PASS public core library compiled; no game code linked, no NRO`; `nx_core` (with `src/switch/branch_trace.cpp`), `nx_self_registering` and `nx_entry_check` (`src/main.c`, `src/switch/thread_stack.c`, `src/switch/open_audit.c`, compile-only) compiled |
+| `python tools/build_game.py` at clean `9a1c79e` | `PASS private game NRO 96091d30b06b3bf4e3345ed24e480231a3b724f8c4ecbccf3d7603903bad9361` (`root_dirty=false`); rebuilt byte-identical after the hardware session |
+| `python tools/build_core_tests.py` at clean `9a1c79e` | PASS; overlay applied, synthetic VU fixture reproduced; `gtavcs_runtime_tests.nro` `e908526fbd7647879e4aacdc512ebe4655c82223c602aab4b9a22574cd571d23` (`root_dirty=false`) |
 
 The private build's own checks (`tools/build_game.py`, inside the container) on the candidate's link map:
 `core_stub_linked=false`, `generated_linked=true`, `wrapped_thread_create=true`, `game_overrides_linked=true`,
@@ -46,7 +46,7 @@ would have caught both objects the first Switch sessions lost (`vcs_overrides.o`
 
 | Command | Result |
 |---|---|
-| `python tools/run_core_host_tests.py build/evidence/M04/host-tests` | `run_config` and `host_fs_logic`, sanitized and optimized: PASS |
+| `python tools/run_core_host_tests.py build/evidence/M04/host-tests` | `run_config` and `host_fs_logic`, sanitized and optimized: PASS, including `empty file refused: no profile` and `commands and env without a profile refused (never on the player's userdata)` |
 | `python -m unittest discover -s tools -p 'test_*.py'` (as CI) | 28 tests OK |
 | `python tools/validate_project.py` | PASS: 179 unique tasks, 16 milestones, inventories, paths, tracked-artifact policy |
 
@@ -59,7 +59,21 @@ would have caught both objects the first Switch sessions lost (`vcs_overrides.o`
   with the final Switch logs (both boots, files, focus, close) and the desktop reference: all 561 of M02's
   unhandled-instruction events in 43 owners compile to a throw (`without_throw: 0`; 499 SPECIAL, 45 COP2, 15 COP0
   CO-OP, 2 COP0 format); none executed in any of the six logs (`executed_per_log` all 0). An executed site ends the
-  game thread with its address in the log; every run reached its own end.
+  game thread with its address in the log; every run reached its own end. Logs: `m04-boot`, `-2`, `-3`, `m04-files`,
+  `m04-save` twice, `m04-branches`, `m04-focus`, `m04-close` and the desktop reference.
+- `python tools/classify_indirect.py build/m04/gen-source/generated/ee docs/milestones/M04/indirect_classification.json
+  --trace switch-branches=<m04-branches log> --log ...` (the same logs): M02's 1,196 control-flow warnings are 598
+  sites (each reported twice), one per owner function; every one compiles to `dispatchGuestBranch` with the computed
+  target (554 indirect calls, 44 indirect jumps, `without_dispatch: 0`). On the traced Switch route (boot plus a save,
+  `PS2X_FAST_DISPATCH=0`, `VCS_NX_BRANCH_TRACE=1`) 129 of them ran, all with every target in the function table
+  (`warned_sites_with_missing_targets: 0`); 469 were not reached on the route; 105 other indirect sites ran too, also
+  with no missing target (234 sites, 12,241,707 indirect dispatches, `missing=0`). Entry-list completeness for the
+  running game: no `[guest-branch:missing-target]` report (any branch kind whose target is not registered) and no
+  `[guest-branch:unlisted-resume]` report (an unlisted mid-function entry) in any of the nine final Switch logs or the
+  desktop reference. The tool exits 0.
+- The trace (`src/switch/branch_trace.cpp`) wraps `PS2Runtime::dispatchGuestBranchSlow` at link time
+  (`-Wl,--wrap=...`; 322 members of the generated archive call it), records nothing unless `VCS_NX_BRANCH_TRACE=1`,
+  and changes no upstream file.
 
 ## Desktop reference
 
@@ -76,6 +90,12 @@ The Switch is slower, so it reaches each state later; no timing target applies t
 
 The `m04-save` schedule ran on the same reference first: `[mc-test] save done`, the save folder, both `.ps2x-order`
 files and an `auto-*.zip` backup in the run's own data folder.
+
+## Run configuration isolation
+
+`parseRunConfig` (`src/core/run_config.cpp`) refuses an `nxrun.cfg` without a `profile` (first independent review): a
+scripted run's commands, env and results can only reach `userdata/tests/<profile>`, never the player's own cards and
+settings. Without the file the game starts as a player's normal run.
 
 ## Lifecycle code review points
 
@@ -95,3 +115,18 @@ files and an `auto-*.zip` backup in the run's own data folder.
   (2345-0021, [HARDWARE_RESULTS.md](HARDWARE_RESULTS.md) attempt 4).
 - File replacement and removal on the SD card go through overlay 0007's `ps2x::replaceFile` / `ps2x::removeTree`:
   settings (`settings.cpp`), card backups and card renames (`MemoryCard.cpp`), card format / unformat.
+
+## Limitations
+
+- `ps2x::replaceFile` (overlay 0007) moves the target aside before renaming the new file in, because the Switch's SD
+  card cannot rename onto an existing file: a power loss between the two steps leaves the target missing with its
+  `.old` copy beside it, and nothing restores it at the next start; a failure to remove the `.old` copy is not
+  reported. A card rename onto a non-empty folder succeeds where POSIX refuses.
+- A scheduled `screenshot` command starts upstream's detached PNG writer, which shutdown does not join; no M04 schedule
+  sends one.
+- Startup failures exercised on hardware: the bad configuration after SDL started (system error dialog) and, in M01,
+  a failure before SDL (console screen). An ELF SHA-1 mismatch, a missing manifest and initialize / loadELF failures
+  were reviewed in code only.
+- The indirect-site trace covers the boot route and a save; sites not reached there (469 of 598) stay unclassified
+  until a later milestone's routes run them with the trace.
+- Only the second card's folder (`mc1`) and the cache were created, never written: the game saves to the first card.

@@ -94,7 +94,7 @@
  "M04-11": [
   {
    "path": "src/core/run_config.cpp",
-   "result": "Bounded schedules (lines, bytes, commands, env, seconds); env limited to VCS_/PS2X_ minus control socket, hidden mode and data folder; refusals name the line"
+   "result": "Bounded schedules (lines, bytes, commands, env, seconds); env limited to VCS_/PS2X_ minus control socket, hidden mode and data folder; a file without a profile is refused; refusals name the line"
   },
   {
    "path": "docs/milestones/M04/HARDWARE_RESULTS.md",
@@ -102,7 +102,7 @@
   },
   {
    "path": "docs/milestones/M04/VERIFICATION.md",
-   "result": "run_config host tests PASS sanitized and optimized"
+   "result": "run_config host tests PASS sanitized and optimized, including the empty file and commands without a profile refused"
   }
  ],
  "M04-12": [
@@ -113,12 +113,20 @@
   {
    "path": "docs/milestones/M04/unhandled_classification.json",
    "result": "561 events in 43 owners all compile to a throw; executed 0 in five final Switch logs and the desktop reference"
+  },
+  {
+   "path": "docs/milestones/M04/indirect_classification.json",
+   "result": "598 indirect-fallback sites (1,196 warnings) all compile to a runtime dispatch; Switch branch trace: 129 ran with every target registered, 469 not reached on the route; no missing-target or unlisted-resume report in any final log"
+  },
+  {
+   "path": "src/switch/branch_trace.cpp",
+   "result": "Link-time wrap of the generated code's out-of-line guest dispatcher, recording indirect sites only with VCS_NX_BRANCH_TRACE=1"
   }
  ],
  "M04-13": [
   {
    "path": "docs/milestones/M04/HARDWARE_RESULTS.md",
-   "result": "cdImage=(none), iso_opens=0, ELF SHA-1 d1832508... checked, verify problems=0; the game's own save put the save folder, both .ps2x-order files and backups under userdata/tests/m04-save, a second backup beside the first"
+   "result": "cdImage=(none), iso_opens=0, ELF SHA-1 d1832508... checked, verify problems=0; the game's own save put the save folder, the card's and the save folder's .ps2x-order files and backups under userdata/tests/m04-save, each later save a backup beside the existing ones"
   },
   {
    "path": "docs/milestones/M04/HARDWARE_RESULTS.md",
