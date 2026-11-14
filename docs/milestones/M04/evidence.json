@@ -116,7 +116,7 @@
   },
   {
    "path": "docs/milestones/M04/indirect_classification.json",
-   "result": "598 indirect-fallback sites (1,196 warnings) all compile to a runtime dispatch; Switch branch trace: 129 ran with every target registered, 469 not reached on the route; no missing-target or unlisted-resume report in any final log"
+   "result": "598 indirect-fallback owners (1,196 warnings, each reported twice) hold 1,370 indirect sites, all compiled to a runtime dispatch; Switch branch trace: 148 owners ran with every target registered, 450 not reached on the route; no missing-target or unlisted-resume report in any final log"
   },
   {
    "path": "src/switch/branch_trace.cpp",

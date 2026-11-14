@@ -1,20 +1,21 @@
 {
  "summary": {
   "events": 1196,
-  "sites": 598,
   "owners": 598,
-  "emitted_kinds": {
+  "indirect_sites_in_owners": 1370,
+  "first_address_emitted_kinds": {
    "IndirectCall": 554,
    "IndirectJump": 44
   },
   "without_dispatch": 0,
   "per_trace": {
    "switch-branches": {
-    "warned_sites_ran": 129,
-    "warned_sites_not_reached": 469,
-    "warned_owners_ran": 129,
-    "warned_sites_with_missing_targets": 0,
-    "other_indirect_sites_ran": 105,
+    "owners_ran": 148,
+    "owners_not_reached": 450,
+    "owners_with_missing_targets": 0,
+    "indirect_sites_of_warned_owners_ran": 234,
+    "traced_sites_outside_warned_owners": 0,
+    "traced_sites_not_in_generated_code": 0,
     "trace_summary": {
      "sites": 234,
      "dispatches": 12241707,
@@ -64,7101 +65,7175 @@
     "unlisted_resume": 0
    }
   },
-  "reading": "A warned site compiles to dispatchGuestBranch with the computed target, which looks it up in the function table. 'ran' is from the trace: sites that ran reached only registered targets when their 'missing' is 0; sites not reached did not run on this route (the trace sees every indirect dispatch with PS2X_FAST_DISPATCH=0). No missing-target or unlisted-resume report in a log means the entry list held every branch target and resume point of that run."
+  "reading": "Each owner's indirect jr / jalr compile to dispatchGuestBranch with the computed target, which looks it up in the function table. An owner 'ran' when any of its indirect sites appears in the trace (which sees every indirect dispatch from generated code with PS2X_FAST_DISPATCH=0); its 'missing' is 0 when every target it reached was registered. Owners not reached did not run an indirect dispatch on this route. No missing-target or unlisted-resume report in a log means the entry list held every branch target and resume point of that run."
  },
- "owners": {
-  "FUN_00100ba0": 1,
-  "FUN_00101d30": 1,
-  "FUN_00103440": 1,
-  "FUN_00106ef0": 1,
-  "FUN_00106fc8": 1,
-  "FUN_00108128": 1,
-  "FUN_00108338": 1,
-  "FUN_0010b500": 1,
-  "FUN_0011ca80": 1,
-  "FUN_0011cc78": 1,
-  "FUN_0011d910": 1,
-  "FUN_00120c40": 1,
-  "FUN_00120e38": 1,
-  "FUN_00121688": 1,
-  "FUN_00121c90": 1,
-  "FUN_00122088": 1,
-  "FUN_00122e58": 1,
-  "FUN_00122f08": 1,
-  "FUN_00123578": 1,
-  "FUN_00123658": 1,
-  "FUN_001237a0": 1,
-  "FUN_00123ba8": 1,
-  "FUN_00123d88": 1,
-  "FUN_001240d8": 1,
-  "FUN_001243e8": 1,
-  "FUN_00124540": 1,
-  "FUN_00124640": 1,
-  "FUN_00124718": 1,
-  "FUN_00124818": 1,
-  "FUN_001248d8": 1,
-  "FUN_00124990": 1,
-  "FUN_00124a10": 1,
-  "FUN_00125578": 1,
-  "FUN_00125830": 1,
-  "FUN_00125f78": 1,
-  "FUN_00125fc0": 1,
-  "FUN_0012ae48": 1,
-  "FUN_0012b238": 1,
-  "FUN_00131748": 1,
-  "FUN_00132f30": 1,
-  "FUN_00133398": 1,
-  "FUN_00133480": 1,
-  "FUN_00133568": 1,
-  "FUN_00135b68": 1,
-  "FUN_00135f90": 1,
-  "FUN_00136688": 1,
-  "FUN_00136748": 1,
-  "FUN_00136c10": 1,
-  "FUN_00138280": 1,
-  "FUN_0013a0a0": 1,
-  "FUN_0014c308": 1,
-  "FUN_0014d070": 1,
-  "FUN_0014e370": 1,
-  "FUN_0014fdf0": 1,
-  "FUN_00150078": 1,
-  "FUN_00151928": 1,
-  "FUN_00151a88": 1,
-  "FUN_00152908": 1,
-  "FUN_00156710": 1,
-  "FUN_00156800": 1,
-  "FUN_00156ac0": 1,
-  "fn_0015a2d0": 1,
-  "fn_00161b4c": 1,
-  "FUN_0016bc58": 1,
-  "FUN_00176680": 1,
-  "FUN_00176b10": 1,
-  "FUN_00178930": 1,
-  "FUN_00179330": 1,
-  "FUN_00179578": 1,
-  "FUN_0017b068": 1,
-  "FUN_0017b1a0": 1,
-  "FUN_0017b800": 1,
-  "FUN_0017b900": 1,
-  "FUN_0017bac8": 1,
-  "FUN_0017bb88": 1,
-  "FUN_0017c258": 1,
-  "FUN_00180fc8": 1,
-  "FUN_00181f90": 1,
-  "FUN_001866a8": 1,
-  "FUN_00186770": 1,
-  "FUN_001867f8": 1,
-  "FUN_0018f5d0": 1,
-  "FUN_0018f8f8": 1,
-  "FUN_0018fa50": 1,
-  "FUN_00191c00": 1,
-  "FUN_001929a8": 1,
-  "FUN_00193248": 1,
-  "FUN_001933c0": 1,
-  "FUN_00194d00": 1,
-  "FUN_00196940": 1,
-  "FUN_001971f8": 1,
-  "FUN_00197480": 1,
-  "FUN_00198408": 1,
-  "FUN_001984a8": 1,
-  "FUN_001988a8": 1,
-  "FUN_0019c690": 1,
-  "FUN_0019fda0": 1,
-  "FUN_001a3ac8": 1,
-  "FUN_001a5648": 1,
-  "fn_001a78e8": 1,
-  "FUN_001a8198": 1,
-  "FUN_001adba8": 1,
-  "FUN_001ae390": 1,
-  "FUN_001af678": 1,
-  "FUN_001b4618": 1,
-  "FUN_001b47a0": 1,
-  "FUN_001b63a8": 1,
-  "FUN_001b96b0": 1,
-  "FUN_001c7b60": 1,
-  "FUN_001c7f60": 1,
-  "FUN_001c8f40": 1,
-  "FUN_001c9a88": 1,
-  "FUN_001c9f50": 1,
-  "FUN_001caf58": 1,
-  "FUN_001cb198": 1,
-  "FUN_001ce930": 1,
-  "FUN_001cf020": 1,
-  "FUN_001cf188": 1,
-  "FUN_001cf380": 1,
-  "FUN_001d0970": 1,
-  "FUN_001d2140": 1,
-  "FUN_001d4320": 1,
-  "FUN_001d46e0": 1,
-  "FUN_001d47b8": 1,
-  "FUN_001d59c8": 1,
-  "FUN_001d6800": 1,
-  "fn_001d6d48": 1,
-  "FUN_001d7940": 1,
-  "FUN_001d9268": 1,
-  "FUN_001db5f8": 1,
-  "FUN_001dc3e8": 1,
-  "FUN_001dd4b0": 1,
-  "entry": 1,
-  "FUN_001de0b8": 1,
-  "FUN_001de198": 1,
-  "FUN_001df590": 1,
-  "FUN_001e2d20": 1,
-  "FUN_001e3640": 1,
-  "FUN_001e47e0": 1,
-  "FUN_001e4da8": 1,
-  "FUN_001e5218": 1,
-  "FUN_001ed840": 1,
-  "FUN_001ee918": 1,
-  "FUN_001f1d38": 1,
-  "FUN_001f25f0": 1,
-  "FUN_001f4a70": 1,
-  "FUN_001f4bf0": 1,
-  "FUN_001f93b0": 1,
-  "FUN_001fa830": 1,
-  "fn_001fdba0": 1,
-  "FUN_001fde18": 1,
-  "FUN_001fedc8": 1,
-  "FUN_001ffb20": 1,
-  "FUN_00201300": 1,
-  "FUN_00203e90": 1,
-  "FUN_00204038": 1,
-  "FUN_002043b8": 1,
-  "FUN_002044e0": 1,
-  "FUN_002045b0": 1,
-  "FUN_00204c40": 1,
-  "FUN_00205a68": 1,
-  "FUN_00205c20": 1,
-  "FUN_0020a3b8": 1,
-  "FUN_0020b460": 1,
-  "FUN_0020ed50": 1,
-  "FUN_00211f70": 1,
-  "FUN_00213fb8": 1,
-  "FUN_00214900": 1,
-  "FUN_00214a08": 1,
-  "FUN_00216768": 1,
-  "FUN_002168e8": 1,
-  "FUN_00217188": 1,
-  "FUN_00217950": 1,
-  "FUN_002190c8": 1,
-  "FUN_00219340": 1,
-  "FUN_002196d8": 1,
-  "FUN_002197b0": 1,
-  "FUN_00219898": 1,
-  "FUN_0021a2d8": 1,
-  "FUN_0021bf50": 1,
-  "FUN_0021c468": 1,
-  "FUN_00220fa8": 1,
-  "FUN_00221278": 1,
-  "FUN_00225378": 1,
-  "FUN_00227700": 1,
-  "FUN_0022cff0": 1,
-  "FUN_0022d418": 1,
-  "FUN_0022f708": 1,
-  "FUN_0022fbd8": 1,
-  "FUN_00230348": 1,
-  "FUN_00230640": 1,
-  "FUN_00233728": 1,
-  "FUN_00233ff0": 1,
-  "FUN_002343e0": 1,
-  "FUN_002357f8": 1,
-  "FUN_00235d30": 1,
-  "FUN_00237c30": 1,
-  "FUN_00239040": 1,
-  "FUN_002394d8": 1,
-  "FUN_0023a320": 1,
-  "FUN_0023a420": 1,
-  "FUN_0023b3a8": 1,
-  "FUN_0023e748": 1,
-  "FUN_002470b0": 1,
-  "FUN_00247258": 1,
-  "FUN_002473c0": 1,
-  "FUN_00248d48": 1,
-  "FUN_0024abc0": 1,
-  "FUN_0024ad58": 1,
-  "FUN_0024cf50": 1,
-  "FUN_0024d350": 1,
-  "FUN_0024d7d8": 1,
-  "FUN_0024edd0": 1,
-  "FUN_0024ee20": 1,
-  "FUN_002560d8": 1,
-  "FUN_00256e60": 1,
-  "FUN_00259af8": 1,
-  "FUN_00259f70": 1,
-  "FUN_0025a428": 1,
-  "FUN_0025add8": 1,
-  "FUN_0025f570": 1,
-  "FUN_00263680": 1,
-  "FUN_002637f0": 1,
-  "FUN_00265208": 1,
-  "FUN_002668f0": 1,
-  "FUN_0026ea28": 1,
-  "FUN_0027b958": 1,
-  "FUN_0027bca8": 1,
-  "FUN_00282190": 1,
-  "FUN_00288320": 1,
-  "FUN_0029faf0": 1,
-  "FUN_002aac20": 1,
-  "FUN_002aacb8": 1,
-  "fn_002ad6e0": 1,
-  "FUN_002b0200": 1,
-  "FUN_002b0c00": 1,
-  "FUN_002b0e78": 1,
-  "FUN_002b1070": 1,
-  "FUN_002b17a8": 1,
-  "FUN_002b3020": 1,
-  "FUN_002b33a0": 1,
-  "FUN_002b3ca0": 1,
-  "FUN_002b4680": 1,
-  "FUN_002b4bc0": 1,
-  "FUN_002b52e8": 1,
-  "FUN_002b5990": 1,
-  "FUN_002b60c0": 1,
-  "FUN_002bc7e8": 1,
-  "FUN_002bc918": 1,
-  "FUN_002bd7c8": 1,
-  "FUN_002bee00": 1,
-  "FUN_002c01f8": 1,
-  "FUN_002c0270": 1,
-  "FUN_002c1d80": 1,
-  "FUN_002c6060": 1,
-  "FUN_002c6460": 1,
-  "FUN_002cb7c0": 1,
-  "FUN_002cebe0": 1,
-  "FUN_002d00b8": 1,
-  "fn_002d2410": 1,
-  "FUN_002d57e0": 1,
-  "FUN_002d63b0": 1,
-  "FUN_002d68c8": 1,
-  "FUN_002d6a70": 1,
-  "FUN_002d6c80": 1,
-  "FUN_002d6dc0": 1,
-  "FUN_002d8788": 1,
-  "FUN_002d9860": 1,
-  "FUN_002dabe8": 1,
-  "FUN_002de3e8": 1,
-  "FUN_002defe0": 1,
-  "FUN_002df640": 1,
-  "FUN_002df908": 1,
-  "FUN_002dfe10": 1,
-  "FUN_002e1140": 1,
-  "FUN_002e23a0": 1,
-  "FUN_002e4ef0": 1,
-  "FUN_002e5250": 1,
-  "FUN_002e52a8": 1,
-  "FUN_002e55d0": 1,
-  "FUN_002e9d00": 1,
-  "FUN_002ea400": 1,
-  "FUN_002eb058": 1,
-  "FUN_002eb720": 1,
-  "fn_002f13d0": 1,
-  "fn_002f14c8": 1,
-  "fn_002f18c0": 1,
-  "fn_002f19b8": 1,
-  "FUN_002f8710": 1,
-  "FUN_002fcf98": 1,
-  "FUN_002fd098": 1,
-  "FUN_002fd668": 1,
-  "FUN_002fd838": 1,
-  "FUN_002fdf80": 1,
-  "fn_002fe298": 1,
-  "FUN_002fe7e0": 1,
-  "FUN_00300368": 1,
-  "FUN_00301500": 1,
-  "FUN_003017e0": 1,
-  "FUN_00301dd8": 1,
-  "FUN_003028b8": 1,
-  "FUN_003033d0": 1,
-  "FUN_00303800": 1,
-  "FUN_00305408": 1,
-  "FUN_00305978": 1,
-  "fn_00306010": 1,
-  "FUN_00306680": 1,
-  "FUN_003087b8": 1,
-  "FUN_003095d8": 1,
-  "FUN_00309ae0": 1,
-  "FUN_0030a628": 1,
-  "FUN_0030a9e8": 1,
-  "FUN_0030aac8": 1,
-  "FUN_0030c2b8": 1,
-  "FUN_0030d018": 1,
-  "FUN_0030d3c0": 1,
-  "FUN_0030e2d0": 1,
-  "FUN_0030eaf0": 1,
-  "FUN_003105a0": 1,
-  "FUN_00310bb8": 1,
-  "FUN_003159d8": 1,
-  "FUN_00315a50": 1,
-  "FUN_00315ae0": 1,
-  "FUN_00315d78": 1,
-  "FUN_00316028": 1,
-  "FUN_00319058": 1,
-  "FUN_0031b6a0": 1,
-  "FUN_0031ba18": 1,
-  "FUN_00324fc8": 1,
-  "FUN_00325cd8": 1,
-  "FUN_00326fd8": 1,
-  "FUN_00327478": 1,
-  "FUN_003279c8": 1,
-  "FUN_00329cb8": 1,
-  "FUN_0032a040": 1,
-  "FUN_0032af08": 1,
-  "FUN_0032b368": 1,
-  "FUN_0032bc90": 1,
-  "FUN_0032c130": 1,
-  "FUN_0032c358": 1,
-  "FUN_0032c518": 1,
-  "FUN_0032c670": 1,
-  "FUN_0032e6b8": 1,
-  "FUN_003341c0": 1,
-  "FUN_00334200": 1,
-  "FUN_00334538": 1,
-  "FUN_003348d0": 1,
-  "FUN_00335298": 1,
-  "FUN_00337208": 1,
-  "FUN_003451a8": 1,
-  "FUN_00346a10": 1,
-  "FUN_003470f0": 1,
-  "FUN_00347348": 1,
-  "FUN_00347740": 1,
-  "FUN_00348d40": 1,
-  "FUN_0034a350": 1,
-  "FUN_0034a8e8": 1,
-  "FUN_0034b128": 1,
-  "FUN_0034ec18": 1,
-  "FUN_0034fbb8": 1,
-  "FUN_0034fd60": 1,
-  "FUN_003537e0": 1,
-  "FUN_00354dd8": 1,
-  "FUN_00356448": 1,
-  "FUN_0035c4b8": 1,
-  "FUN_0035d5e8": 1,
-  "FUN_0035d610": 1,
-  "FUN_0035dea8": 1,
-  "FUN_0035efd8": 1,
-  "FUN_00364450": 1,
-  "FUN_00365068": 1,
-  "FUN_00370300": 1,
-  "FUN_00387278": 1,
-  "FUN_00387930": 1,
-  "FUN_00387a20": 1,
-  "FUN_00387dc8": 1,
-  "FUN_00387fd8": 1,
-  "FUN_00388140": 1,
-  "FUN_00388428": 1,
-  "FUN_003885f0": 1,
-  "FUN_003886d8": 1,
-  "FUN_0038a118": 1,
-  "FUN_0038bcb8": 1,
-  "FUN_0038bef0": 1,
-  "FUN_0038e368": 1,
-  "FUN_0038e668": 1,
-  "FUN_0038e778": 1,
-  "FUN_0038e9f8": 1,
-  "FUN_0038f5c0": 1,
-  "FUN_0038f9b0": 1,
-  "FUN_0038fea0": 1,
-  "FUN_00390278": 1,
-  "FUN_003902a8": 1,
-  "FUN_00392f10": 1,
-  "FUN_00395948": 1,
-  "FUN_00396bc0": 1,
-  "FUN_003977a8": 1,
-  "FUN_003978c8": 1,
-  "FUN_00397a38": 1,
-  "FUN_00397e58": 1,
-  "FUN_00398018": 1,
-  "FUN_00398108": 1,
-  "FUN_003982b0": 1,
-  "FUN_003987f0": 1,
-  "FUN_00399530": 1,
-  "FUN_00399fa0": 1,
-  "FUN_0039c248": 1,
-  "FUN_0039c5c0": 1,
-  "FUN_0039d2c8": 1,
-  "FUN_0039d9a8": 1,
-  "FUN_003a55f8": 1,
-  "FUN_003a63f0": 1,
-  "FUN_003b45e8": 1,
-  "FUN_003b5bd8": 1,
-  "FUN_003b6c28": 1,
-  "FUN_003b6d38": 1,
-  "FUN_003b6e48": 1,
-  "FUN_003b7c80": 1,
-  "FUN_003b8698": 1,
-  "FUN_003b89c8": 1,
-  "FUN_003b95b0": 1,
-  "FUN_003bb670": 1,
-  "FUN_003bc9a8": 1,
-  "FUN_003c1348": 1,
-  "FUN_003c2730": 1,
-  "FUN_003c29e8": 1,
-  "FUN_003c3e58": 1,
-  "fn_003c44f0": 1,
-  "fn_003c46f0": 1,
-  "FUN_003c47d8": 1,
-  "FUN_003c51c0": 1,
-  "FUN_003c6000": 1,
-  "FUN_003c7498": 1,
-  "FUN_003c7678": 1,
-  "FUN_003c7d00": 1,
-  "FUN_003c7df8": 1,
-  "FUN_003c81b0": 1,
-  "FUN_003c8618": 1,
-  "FUN_003c8bc8": 1,
-  "FUN_003ca188": 1,
-  "FUN_003caec8": 1,
-  "FUN_003cb010": 1,
-  "FUN_003cb168": 1,
-  "FUN_003cc210": 1,
-  "FUN_003cc2b8": 1,
-  "FUN_003cc6d0": 1,
-  "FUN_003ccda0": 1,
-  "FUN_003ccf70": 1,
-  "FUN_003cd058": 1,
-  "FUN_003cd208": 1,
-  "FUN_003cd5f0": 1,
-  "FUN_003cdc58": 1,
-  "FUN_003cddd0": 1,
-  "FUN_003cde90": 1,
-  "FUN_003cdf20": 1,
-  "FUN_003cdff8": 1,
-  "FUN_003ce068": 1,
-  "FUN_003ce1f8": 1,
-  "FUN_003ce260": 1,
-  "FUN_003ce330": 1,
-  "FUN_003ce550": 1,
-  "FUN_003cf4e0": 1,
-  "FUN_003cf588": 1,
-  "FUN_003cf700": 1,
-  "FUN_003cfae0": 1,
-  "FUN_003cfda0": 1,
-  "FUN_003cffc0": 1,
-  "FUN_003d00d8": 1,
-  "fn_003d0268": 1,
-  "FUN_003d0860": 1,
-  "FUN_003d0c80": 1,
-  "FUN_003d2558": 1,
-  "FUN_003d40d8": 1,
-  "FUN_003d5ab8": 1,
-  "FUN_003d5ca0": 1,
-  "FUN_003d6600": 1,
-  "FUN_003d7830": 1,
-  "FUN_003e1158": 1,
-  "FUN_003e1358": 1,
-  "FUN_003e6660": 1,
-  "FUN_003e80a0": 1,
-  "FUN_003e86d0": 1,
-  "FUN_003e9568": 1,
-  "FUN_003e9ec8": 1,
-  "FUN_003ea1a0": 1,
-  "FUN_003ea6c8": 1,
-  "FUN_003efd28": 1,
-  "FUN_003f07f8": 1,
-  "FUN_003f0a58": 1,
-  "fn_003f5b40": 1,
-  "FUN_003f81b8": 1,
-  "FUN_003feeb0": 1,
-  "FUN_003ff148": 1,
-  "FUN_003ff348": 1,
-  "FUN_003ff608": 1,
-  "FUN_003ffa00": 1,
-  "FUN_00400f38": 1,
-  "FUN_004010e8": 1,
-  "FUN_00401210": 1,
-  "FUN_00401ad8": 1,
-  "FUN_004022d8": 1,
-  "FUN_00403bb0": 1,
-  "FUN_00409208": 1,
-  "FUN_0040ada0": 1,
-  "FUN_0040b348": 1,
-  "FUN_0040c4b8": 1,
-  "FUN_0040d718": 1,
-  "FUN_0040d7a8": 1,
-  "FUN_00410290": 1,
-  "FUN_00410448": 1,
-  "FUN_004108c8": 1,
-  "FUN_004126b0": 1,
-  "FUN_00415038": 1,
-  "FUN_00416a80": 1,
-  "FUN_00417130": 1,
-  "FUN_004198d0": 1,
-  "FUN_0041ea90": 1,
-  "FUN_00420f78": 1,
-  "FUN_00423e88": 1,
-  "FUN_00424e18": 1,
-  "FUN_004250f8": 1,
-  "FUN_00425268": 1,
-  "FUN_00427820": 1,
-  "FUN_00427f50": 1,
-  "FUN_00428c48": 1,
-  "FUN_0042bcb8": 1,
-  "FUN_0042bdb0": 1,
-  "FUN_0042c440": 1,
-  "FUN_0042d0f8": 1,
-  "FUN_0042d338": 1,
-  "FUN_0042d898": 1,
-  "FUN_00430290": 1,
-  "FUN_00433188": 1,
-  "FUN_00433378": 1,
-  "FUN_00437b98": 1,
-  "FUN_0043c130": 1,
-  "FUN_0043fcb8": 1,
-  "FUN_004430d0": 1,
-  "FUN_00443128": 1,
-  "FUN_00445660": 1,
-  "FUN_00445718": 1,
-  "FUN_00445740": 1,
-  "FUN_00445768": 1,
-  "FUN_004457f8": 1,
-  "FUN_00445820": 1,
-  "fn_00445998": 1,
-  "fn_00445a40": 1,
-  "fn_00445ab0": 1,
-  "FUN_00445be0": 1,
-  "FUN_004461f8": 1,
-  "FUN_004463d8": 1,
-  "FUN_00448ee8": 1,
-  "FUN_0044e0b0": 1,
-  "FUN_00451038": 1,
-  "FUN_00452a90": 1,
-  "FUN_00452c00": 1,
-  "FUN_00452fc8": 1,
-  "FUN_00453040": 1,
-  "FUN_00458378": 1,
-  "FUN_0045bbf8": 1,
-  "FUN_0045dd10": 1,
-  "FUN_0045ddc8": 1,
-  "FUN_0045e5c0": 1,
-  "FUN_0045e9d0": 1,
-  "FUN_0045ead8": 1,
-  "FUN_0045eea0": 1,
-  "FUN_0045f1c8": 1,
-  "FUN_0045f7a0": 1,
-  "FUN_00468c78": 1,
-  "FUN_00468e50": 1,
-  "FUN_0046a338": 1,
-  "FUN_0046a830": 1,
-  "fn_0046ba18": 1,
-  "FUN_0046df80": 1,
-  "FUN_0046e738": 1,
-  "FUN_0046e9f0": 1,
-  "fn_0046efc0": 1,
-  "FUN_00470ae8": 1,
-  "FUN_00472308": 1,
-  "FUN_00472a28": 1,
-  "FUN_004732b8": 1,
-  "FUN_00473a68": 1,
-  "fn_00474150": 1,
-  "FUN_00474598": 1,
-  "FUN_00475d20": 1,
-  "FUN_004784c8": 1,
-  "FUN_00478800": 1,
-  "FUN_00478aa8": 1,
-  "FUN_004796c0": 1,
-  "FUN_0047a9d0": 1,
-  "FUN_0047b160": 1,
-  "FUN_0047bbe8": 1,
-  "fn_0047c398": 1,
-  "FUN_0047e470": 1,
-  "FUN_0047e998": 1,
-  "FUN_0047f680": 1,
-  "FUN_0047f960": 1,
-  "FUN_0047fbf8": 1
- },
- "sites": [
+ "owners": [
   {
    "owner": "FUN_00100ba0",
-   "address": "0x1013b4",
-   "emitted": [
+   "first_address": "0x1013b4",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00101d30",
-   "address": "0x10269c",
-   "emitted": [
+   "first_address": "0x10269c",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 5,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00103440",
-   "address": "0x10346c",
-   "emitted": [
+   "first_address": "0x10346c",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00106ef0",
-   "address": "0x106f2c",
-   "emitted": [
+   "first_address": "0x106f2c",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 3,
    "ran": {
     "switch-branches": {
-     "count": 40,
-     "targets": 1,
+     "sites_ran": 3,
+     "dispatches": 86,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_00106fc8",
-   "address": "0x106fec",
-   "emitted": [
+   "first_address": "0x106fec",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00108128",
-   "address": "0x108208",
-   "emitted": [
+   "first_address": "0x108208",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00108338",
-   "address": "0x1083f8",
-   "emitted": [
+   "first_address": "0x1083f8",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 4,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_0010b500",
-   "address": "0x10b510",
-   "emitted": [
+   "first_address": "0x10b510",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": {
-     "count": 9,
-     "targets": 1,
+     "sites_ran": 1,
+     "dispatches": 9,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_0011ca80",
-   "address": "0x11cad8",
-   "emitted": [
+   "first_address": "0x11cad8",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": {
-     "count": 65,
-     "targets": 1,
+     "sites_ran": 1,
+     "dispatches": 65,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_0011cc78",
-   "address": "0x11cd20",
-   "emitted": [
+   "first_address": "0x11cd20",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": {
-     "count": 71,
-     "targets": 1,
+     "sites_ran": 2,
+     "dispatches": 212,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_0011d910",
-   "address": "0x11d93c",
-   "emitted": [
+   "first_address": "0x11d93c",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00120c40",
-   "address": "0x120c8c",
-   "emitted": [
+   "first_address": "0x120c8c",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": {
-     "count": 76472,
-     "targets": 2,
+     "sites_ran": 1,
+     "dispatches": 76472,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_00120e38",
-   "address": "0x120f10",
-   "emitted": [
+   "first_address": "0x120f10",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 10,
    "ran": {
-    "switch-branches": null
+    "switch-branches": {
+     "sites_ran": 3,
+     "dispatches": 60878,
+     "missing": 0
+    }
    }
   },
   {
    "owner": "FUN_00121688",
-   "address": "0x12190c",
-   "emitted": [
+   "first_address": "0x12190c",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00121c90",
-   "address": "0x121d10",
-   "emitted": [
+   "first_address": "0x121d10",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 3,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00122088",
-   "address": "0x122140",
-   "emitted": [
+   "first_address": "0x122140",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00122e58",
-   "address": "0x122edc",
-   "emitted": [
+   "first_address": "0x122edc",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00122f08",
-   "address": "0x122f30",
-   "emitted": [
+   "first_address": "0x122f30",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00123578",
-   "address": "0x12359c",
-   "emitted": [
+   "first_address": "0x12359c",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 3,
    "ran": {
     "switch-branches": {
-     "count": 35174,
-     "targets": 2,
+     "sites_ran": 2,
+     "dispatches": 70348,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_00123658",
-   "address": "0x123674",
-   "emitted": [
+   "first_address": "0x123674",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": {
-     "count": 30439,
-     "targets": 2,
+     "sites_ran": 1,
+     "dispatches": 30439,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_001237a0",
-   "address": "0x1237dc",
-   "emitted": [
+   "first_address": "0x1237dc",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": {
-     "count": 30129,
-     "targets": 2,
+     "sites_ran": 1,
+     "dispatches": 30129,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_00123ba8",
-   "address": "0x123be4",
-   "emitted": [
+   "first_address": "0x123be4",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 3,
    "ran": {
     "switch-branches": {
-     "count": 30439,
-     "targets": 2,
+     "sites_ran": 1,
+     "dispatches": 30439,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_00123d88",
-   "address": "0x123f90",
-   "emitted": [
+   "first_address": "0x123f90",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 4,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_001240d8",
-   "address": "0x124108",
-   "emitted": [
+   "first_address": "0x124108",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_001243e8",
-   "address": "0x124410",
-   "emitted": [
+   "first_address": "0x124410",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00124540",
-   "address": "0x124570",
-   "emitted": [
+   "first_address": "0x124570",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00124640",
-   "address": "0x12466c",
-   "emitted": [
+   "first_address": "0x12466c",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00124718",
-   "address": "0x124754",
-   "emitted": [
+   "first_address": "0x124754",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00124818",
-   "address": "0x12488c",
-   "emitted": [
+   "first_address": "0x12488c",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_001248d8",
-   "address": "0x124920",
-   "emitted": [
+   "first_address": "0x124920",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 3,
    "ran": {
     "switch-branches": {
-     "count": 23797,
-     "targets": 1,
+     "sites_ran": 1,
+     "dispatches": 23797,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_00124990",
-   "address": "0x1249b0",
-   "emitted": [
+   "first_address": "0x1249b0",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00124a10",
-   "address": "0x124b18",
-   "emitted": [
+   "first_address": "0x124b18",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00125578",
-   "address": "0x125660",
-   "emitted": [
+   "first_address": "0x125660",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00125830",
-   "address": "0x1258b4",
-   "emitted": [
+   "first_address": "0x1258b4",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00125f78",
-   "address": "0x125f88",
-   "emitted": [
+   "first_address": "0x125f88",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": {
-     "count": 34353,
-     "targets": 2,
+     "sites_ran": 1,
+     "dispatches": 34353,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_00125fc0",
-   "address": "0x125fe4",
-   "emitted": [
+   "first_address": "0x125fe4",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": {
-     "count": 1128,
-     "targets": 2,
+     "sites_ran": 1,
+     "dispatches": 1128,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_0012ae48",
-   "address": "0x12b0c0",
-   "emitted": [
+   "first_address": "0x12b0c0",
+   "first_emitted": [
     "IndirectJump"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_0012b238",
-   "address": "0x12b4b0",
-   "emitted": [
+   "first_address": "0x12b4b0",
+   "first_emitted": [
     "IndirectJump"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00131748",
-   "address": "0x131ab4",
-   "emitted": [
+   "first_address": "0x131ab4",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00132f30",
-   "address": "0x133070",
-   "emitted": [
+   "first_address": "0x133070",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00133398",
-   "address": "0x133440",
-   "emitted": [
+   "first_address": "0x133440",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00133480",
-   "address": "0x133528",
-   "emitted": [
+   "first_address": "0x133528",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00133568",
-   "address": "0x13366c",
-   "emitted": [
+   "first_address": "0x13366c",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00135b68",
-   "address": "0x135d70",
-   "emitted": [
+   "first_address": "0x135d70",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00135f90",
-   "address": "0x135ffc",
-   "emitted": [
+   "first_address": "0x135ffc",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 11,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00136688",
-   "address": "0x1366c8",
-   "emitted": [
+   "first_address": "0x1366c8",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00136748",
-   "address": "0x136788",
-   "emitted": [
+   "first_address": "0x136788",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00136c10",
-   "address": "0x1370f0",
-   "emitted": [
+   "first_address": "0x1370f0",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 15,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00138280",
-   "address": "0x138360",
-   "emitted": [
+   "first_address": "0x138360",
+   "first_emitted": [
     "IndirectJump"
    ],
+   "indirect_sites": 6,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_0013a0a0",
-   "address": "0x13ac88",
-   "emitted": [
+   "first_address": "0x13ac88",
+   "first_emitted": [
     "IndirectJump"
    ],
+   "indirect_sites": 15,
    "ran": {
-    "switch-branches": null
+    "switch-branches": {
+     "sites_ran": 5,
+     "dispatches": 10433,
+     "missing": 0
+    }
    }
   },
   {
    "owner": "FUN_0014c308",
-   "address": "0x14c514",
-   "emitted": [
+   "first_address": "0x14c514",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 6,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_0014d070",
-   "address": "0x14d2b0",
-   "emitted": [
+   "first_address": "0x14d2b0",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 4,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_0014e370",
-   "address": "0x14e3c4",
-   "emitted": [
+   "first_address": "0x14e3c4",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_0014fdf0",
-   "address": "0x14fe3c",
-   "emitted": [
+   "first_address": "0x14fe3c",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 10,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00150078",
-   "address": "0x150130",
-   "emitted": [
+   "first_address": "0x150130",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00151928",
-   "address": "0x151a48",
-   "emitted": [
+   "first_address": "0x151a48",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00151a88",
-   "address": "0x151d98",
-   "emitted": [
+   "first_address": "0x151d98",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00152908",
-   "address": "0x152958",
-   "emitted": [
+   "first_address": "0x152958",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 8,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00156710",
-   "address": "0x1567e8",
-   "emitted": [
+   "first_address": "0x1567e8",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": {
-     "count": 6,
-     "targets": 1,
+     "sites_ran": 1,
+     "dispatches": 6,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_00156800",
-   "address": "0x156878",
-   "emitted": [
+   "first_address": "0x156878",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00156ac0",
-   "address": "0x156cc0",
-   "emitted": [
+   "first_address": "0x156cc0",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "fn_0015a2d0",
-   "address": "0x15a31c",
-   "emitted": [
+   "first_address": "0x15a31c",
+   "first_emitted": [
     "IndirectJump"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "fn_00161b4c",
-   "address": "0x161b9c",
-   "emitted": [
+   "first_address": "0x161b9c",
+   "first_emitted": [
     "IndirectJump"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_0016bc58",
-   "address": "0x16be84",
-   "emitted": [
+   "first_address": "0x16be84",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": {
-     "count": 9368,
-     "targets": 1,
+     "sites_ran": 1,
+     "dispatches": 9368,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_00176680",
-   "address": "0x176720",
-   "emitted": [
+   "first_address": "0x176720",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00176b10",
-   "address": "0x176b3c",
-   "emitted": [
+   "first_address": "0x176b3c",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00178930",
-   "address": "0x178960",
-   "emitted": [
+   "first_address": "0x178960",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00179330",
-   "address": "0x1793e0",
-   "emitted": [
+   "first_address": "0x1793e0",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00179578",
-   "address": "0x179598",
-   "emitted": [
+   "first_address": "0x179598",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 5,
    "ran": {
     "switch-branches": {
-     "count": 26173,
-     "targets": 2,
+     "sites_ran": 1,
+     "dispatches": 26173,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_0017b068",
-   "address": "0x17b0ec",
-   "emitted": [
+   "first_address": "0x17b0ec",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_0017b1a0",
-   "address": "0x17b200",
-   "emitted": [
+   "first_address": "0x17b200",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 5,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_0017b800",
-   "address": "0x17b884",
-   "emitted": [
+   "first_address": "0x17b884",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_0017b900",
-   "address": "0x17b98c",
-   "emitted": [
+   "first_address": "0x17b98c",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_0017bac8",
-   "address": "0x17bae0",
-   "emitted": [
+   "first_address": "0x17bae0",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_0017bb88",
-   "address": "0x17bd58",
-   "emitted": [
+   "first_address": "0x17bd58",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 4,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_0017c258",
-   "address": "0x17c28c",
-   "emitted": [
+   "first_address": "0x17c28c",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00180fc8",
-   "address": "0x181050",
-   "emitted": [
+   "first_address": "0x181050",
+   "first_emitted": [
     "IndirectJump"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00181f90",
-   "address": "0x182484",
-   "emitted": [
+   "first_address": "0x182484",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 3,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_001866a8",
-   "address": "0x1866ec",
-   "emitted": [
+   "first_address": "0x1866ec",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00186770",
-   "address": "0x1867ac",
-   "emitted": [
+   "first_address": "0x1867ac",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_001867f8",
-   "address": "0x186868",
-   "emitted": [
+   "first_address": "0x186868",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_0018f5d0",
-   "address": "0x18f6e0",
-   "emitted": [
+   "first_address": "0x18f6e0",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 5,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_0018f8f8",
-   "address": "0x18f9d4",
-   "emitted": [
+   "first_address": "0x18f9d4",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": {
-     "count": 300,
-     "targets": 3,
+     "sites_ran": 1,
+     "dispatches": 300,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_0018fa50",
-   "address": "0x18fc04",
-   "emitted": [
+   "first_address": "0x18fc04",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": {
-     "count": 133,
-     "targets": 3,
+     "sites_ran": 1,
+     "dispatches": 133,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_00191c00",
-   "address": "0x191e68",
-   "emitted": [
+   "first_address": "0x191e68",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_001929a8",
-   "address": "0x192d00",
-   "emitted": [
+   "first_address": "0x192d00",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00193248",
-   "address": "0x19328c",
-   "emitted": [
+   "first_address": "0x19328c",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 5,
    "ran": {
     "switch-branches": {
-     "count": 30828,
-     "targets": 2,
+     "sites_ran": 1,
+     "dispatches": 30828,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_001933c0",
-   "address": "0x19345c",
-   "emitted": [
+   "first_address": "0x19345c",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 21,
    "ran": {
-    "switch-branches": null
+    "switch-branches": {
+     "sites_ran": 12,
+     "dispatches": 250421,
+     "missing": 0
+    }
    }
   },
   {
    "owner": "FUN_00194d00",
-   "address": "0x194d8c",
-   "emitted": [
+   "first_address": "0x194d8c",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00196940",
-   "address": "0x196a78",
-   "emitted": [
+   "first_address": "0x196a78",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": {
-     "count": 45,
-     "targets": 3,
+     "sites_ran": 1,
+     "dispatches": 45,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_001971f8",
-   "address": "0x197424",
-   "emitted": [
+   "first_address": "0x197424",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00197480",
-   "address": "0x1975b0",
-   "emitted": [
+   "first_address": "0x1975b0",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 3,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00198408",
-   "address": "0x198490",
-   "emitted": [
+   "first_address": "0x198490",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_001984a8",
-   "address": "0x19877c",
-   "emitted": [
+   "first_address": "0x19877c",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": {
-     "count": 3,
-     "targets": 1,
+     "sites_ran": 1,
+     "dispatches": 3,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_001988a8",
-   "address": "0x198a90",
-   "emitted": [
+   "first_address": "0x198a90",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_0019c690",
-   "address": "0x19e9f0",
-   "emitted": [
+   "first_address": "0x19e9f0",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_0019fda0",
-   "address": "0x19ffc0",
-   "emitted": [
+   "first_address": "0x19ffc0",
+   "first_emitted": [
     "IndirectJump"
    ],
+   "indirect_sites": 3,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_001a3ac8",
-   "address": "0x1a41ec",
-   "emitted": [
+   "first_address": "0x1a41ec",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_001a5648",
-   "address": "0x1a5bb4",
-   "emitted": [
+   "first_address": "0x1a5bb4",
+   "first_emitted": [
     "IndirectJump"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "fn_001a78e8",
-   "address": "0x1a797c",
-   "emitted": [
+   "first_address": "0x1a797c",
+   "first_emitted": [
     "IndirectJump"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_001a8198",
-   "address": "0x1a8208",
-   "emitted": [
+   "first_address": "0x1a8208",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": {
-     "count": 111,
-     "targets": 1,
+     "sites_ran": 1,
+     "dispatches": 111,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_001adba8",
-   "address": "0x1adbec",
-   "emitted": [
+   "first_address": "0x1adbec",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_001ae390",
-   "address": "0x1aeffc",
-   "emitted": [
+   "first_address": "0x1aeffc",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 5,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_001af678",
-   "address": "0x1aff68",
-   "emitted": [
+   "first_address": "0x1aff68",
+   "first_emitted": [
     "IndirectJump"
    ],
+   "indirect_sites": 8,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_001b4618",
-   "address": "0x1b464c",
-   "emitted": [
+   "first_address": "0x1b464c",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": {
-     "count": 15046,
-     "targets": 3,
+     "sites_ran": 1,
+     "dispatches": 15046,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_001b47a0",
-   "address": "0x1b47dc",
-   "emitted": [
+   "first_address": "0x1b47dc",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": {
-     "count": 92,
-     "targets": 1,
+     "sites_ran": 1,
+     "dispatches": 92,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_001b63a8",
-   "address": "0x1b68b8",
-   "emitted": [
+   "first_address": "0x1b68b8",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_001b96b0",
-   "address": "0x1b9acc",
-   "emitted": [
+   "first_address": "0x1b9acc",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_001c7b60",
-   "address": "0x1c7c98",
-   "emitted": [
+   "first_address": "0x1c7c98",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_001c7f60",
-   "address": "0x1c8134",
-   "emitted": [
+   "first_address": "0x1c8134",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_001c8f40",
-   "address": "0x1c906c",
-   "emitted": [
+   "first_address": "0x1c906c",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_001c9a88",
-   "address": "0x1c9b78",
-   "emitted": [
+   "first_address": "0x1c9b78",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_001c9f50",
-   "address": "0x1ca03c",
-   "emitted": [
+   "first_address": "0x1ca03c",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_001caf58",
-   "address": "0x1cafa0",
-   "emitted": [
+   "first_address": "0x1cafa0",
+   "first_emitted": [
     "IndirectJump"
    ],
+   "indirect_sites": 4,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_001cb198",
-   "address": "0x1cb1cc",
-   "emitted": [
+   "first_address": "0x1cb1cc",
+   "first_emitted": [
     "IndirectJump"
    ],
+   "indirect_sites": 3,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_001ce930",
-   "address": "0x1ce94c",
-   "emitted": [
+   "first_address": "0x1ce94c",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_001cf020",
-   "address": "0x1cf10c",
-   "emitted": [
+   "first_address": "0x1cf10c",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": {
-     "count": 2352,
-     "targets": 2,
+     "sites_ran": 2,
+     "dispatches": 2576,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_001cf188",
-   "address": "0x1cf2a4",
-   "emitted": [
+   "first_address": "0x1cf2a4",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_001cf380",
-   "address": "0x1cf524",
-   "emitted": [
+   "first_address": "0x1cf524",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": {
-     "count": 7,
-     "targets": 1,
+     "sites_ran": 1,
+     "dispatches": 7,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_001d0970",
-   "address": "0x1d0a58",
-   "emitted": [
+   "first_address": "0x1d0a58",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 6,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_001d2140",
-   "address": "0x1d2384",
-   "emitted": [
+   "first_address": "0x1d2384",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_001d4320",
-   "address": "0x1d4340",
-   "emitted": [
+   "first_address": "0x1d4340",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 4,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_001d46e0",
-   "address": "0x1d4700",
-   "emitted": [
+   "first_address": "0x1d4700",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 3,
    "ran": {
     "switch-branches": {
-     "count": 30382,
-     "targets": 2,
+     "sites_ran": 1,
+     "dispatches": 30382,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_001d47b8",
-   "address": "0x1d4830",
-   "emitted": [
+   "first_address": "0x1d4830",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 9,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_001d59c8",
-   "address": "0x1d5a44",
-   "emitted": [
+   "first_address": "0x1d5a44",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 32,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_001d6800",
-   "address": "0x1d6868",
-   "emitted": [
+   "first_address": "0x1d6868",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 8,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "fn_001d6d48",
-   "address": "0x1d6d98",
-   "emitted": [
+   "first_address": "0x1d6d98",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 3,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_001d7940",
-   "address": "0x1d7d58",
-   "emitted": [
+   "first_address": "0x1d7d58",
+   "first_emitted": [
     "IndirectJump"
    ],
+   "indirect_sites": 3,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_001d9268",
-   "address": "0x1d9370",
-   "emitted": [
+   "first_address": "0x1d9370",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": {
-     "count": 221,
-     "targets": 1,
+     "sites_ran": 1,
+     "dispatches": 221,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_001db5f8",
-   "address": "0x1db818",
-   "emitted": [
+   "first_address": "0x1db818",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 23,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_001dc3e8",
-   "address": "0x1dc5fc",
-   "emitted": [
+   "first_address": "0x1dc5fc",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 6,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_001dd4b0",
-   "address": "0x1dd524",
-   "emitted": [
+   "first_address": "0x1dd524",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "entry",
-   "address": "0x1dd8a0",
-   "emitted": [
+   "first_address": "0x1dd8a0",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": {
-     "count": 1,
-     "targets": 1,
+     "sites_ran": 1,
+     "dispatches": 1,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_001de0b8",
-   "address": "0x1de11c",
-   "emitted": [
+   "first_address": "0x1de11c",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": {
-     "count": 2,
-     "targets": 1,
+     "sites_ran": 1,
+     "dispatches": 2,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_001de198",
-   "address": "0x1de21c",
-   "emitted": [
+   "first_address": "0x1de21c",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_001df590",
-   "address": "0x1df5c8",
-   "emitted": [
+   "first_address": "0x1df5c8",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_001e2d20",
-   "address": "0x1e2dc8",
-   "emitted": [
+   "first_address": "0x1e2dc8",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_001e3640",
-   "address": "0x1e3750",
-   "emitted": [
+   "first_address": "0x1e3750",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_001e47e0",
-   "address": "0x1e4a4c",
-   "emitted": [
+   "first_address": "0x1e4a4c",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": {
-     "count": 44,
-     "targets": 2,
+     "sites_ran": 1,
+     "dispatches": 44,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_001e4da8",
-   "address": "0x1e50e8",
-   "emitted": [
+   "first_address": "0x1e50e8",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 3,
    "ran": {
     "switch-branches": {
-     "count": 9352,
-     "targets": 1,
+     "sites_ran": 1,
+     "dispatches": 9352,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_001e5218",
-   "address": "0x1e5328",
-   "emitted": [
+   "first_address": "0x1e5328",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 3,
    "ran": {
     "switch-branches": {
-     "count": 963,
-     "targets": 1,
+     "sites_ran": 2,
+     "dispatches": 6847,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_001ed840",
-   "address": "0x1ee680",
-   "emitted": [
+   "first_address": "0x1ee680",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": {
-     "count": 37,
-     "targets": 1,
+     "sites_ran": 1,
+     "dispatches": 37,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_001ee918",
-   "address": "0x1ee954",
-   "emitted": [
+   "first_address": "0x1ee954",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": {
-     "count": 33,
-     "targets": 1,
+     "sites_ran": 1,
+     "dispatches": 33,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_001f1d38",
-   "address": "0x1f1d70",
-   "emitted": [
+   "first_address": "0x1f1d70",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 8,
    "ran": {
     "switch-branches": {
-     "count": 30131,
-     "targets": 2,
+     "sites_ran": 6,
+     "dispatches": 180786,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_001f25f0",
-   "address": "0x1f2648",
-   "emitted": [
+   "first_address": "0x1f2648",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": {
-     "count": 29861,
-     "targets": 2,
+     "sites_ran": 1,
+     "dispatches": 29861,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_001f4a70",
-   "address": "0x1f4aa8",
-   "emitted": [
+   "first_address": "0x1f4aa8",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": {
-     "count": 30382,
-     "targets": 2,
+     "sites_ran": 2,
+     "dispatches": 60764,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_001f4bf0",
-   "address": "0x1f4d28",
-   "emitted": [
+   "first_address": "0x1f4d28",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 11,
    "ran": {
     "switch-branches": {
-     "count": 2,
-     "targets": 1,
+     "sites_ran": 6,
+     "dispatches": 146881,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_001f93b0",
-   "address": "0x1f96bc",
-   "emitted": [
+   "first_address": "0x1f96bc",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": {
-     "count": 22917,
-     "targets": 1,
+     "sites_ran": 2,
+     "dispatches": 34132,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_001fa830",
-   "address": "0x1fa8d4",
-   "emitted": [
+   "first_address": "0x1fa8d4",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "fn_001fdba0",
-   "address": "0x1fdc4c",
-   "emitted": [
+   "first_address": "0x1fdc4c",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 3,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_001fde18",
-   "address": "0x1fded0",
-   "emitted": [
+   "first_address": "0x1fded0",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_001fedc8",
-   "address": "0x1feed0",
-   "emitted": [
+   "first_address": "0x1feed0",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_001ffb20",
-   "address": "0x1ffc00",
-   "emitted": [
+   "first_address": "0x1ffc00",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": {
-     "count": 31,
-     "targets": 1,
+     "sites_ran": 1,
+     "dispatches": 31,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_00201300",
-   "address": "0x201568",
-   "emitted": [
+   "first_address": "0x201568",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": {
-     "count": 351,
-     "targets": 1,
+     "sites_ran": 1,
+     "dispatches": 351,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_00203e90",
-   "address": "0x203ec8",
-   "emitted": [
+   "first_address": "0x203ec8",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 4,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00204038",
-   "address": "0x204070",
-   "emitted": [
+   "first_address": "0x204070",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 4,
    "ran": {
     "switch-branches": {
-     "count": 10522,
-     "targets": 1,
+     "sites_ran": 4,
+     "dispatches": 21154,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_002043b8",
-   "address": "0x2043ec",
-   "emitted": [
+   "first_address": "0x2043ec",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 5,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_002044e0",
-   "address": "0x204584",
-   "emitted": [
+   "first_address": "0x204584",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_002045b0",
-   "address": "0x2045d4",
-   "emitted": [
+   "first_address": "0x2045d4",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00204c40",
-   "address": "0x205000",
-   "emitted": [
+   "first_address": "0x205000",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": {
-     "count": 23650,
-     "targets": 1,
+     "sites_ran": 2,
+     "dispatches": 47265,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_00205a68",
-   "address": "0x205a90",
-   "emitted": [
+   "first_address": "0x205a90",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00205c20",
-   "address": "0x205c44",
-   "emitted": [
+   "first_address": "0x205c44",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_0020a3b8",
-   "address": "0x20a56c",
-   "emitted": [
+   "first_address": "0x20a56c",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 3,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_0020b460",
-   "address": "0x20b4b0",
-   "emitted": [
+   "first_address": "0x20b4b0",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_0020ed50",
-   "address": "0x20edf4",
-   "emitted": [
+   "first_address": "0x20edf4",
+   "first_emitted": [
     "IndirectJump"
    ],
+   "indirect_sites": 4,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00211f70",
-   "address": "0x211fe8",
-   "emitted": [
+   "first_address": "0x211fe8",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00213fb8",
-   "address": "0x2142f8",
-   "emitted": [
+   "first_address": "0x2142f8",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": {
-     "count": 239,
-     "targets": 1,
+     "sites_ran": 1,
+     "dispatches": 239,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_00214900",
-   "address": "0x214944",
-   "emitted": [
+   "first_address": "0x214944",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00214a08",
-   "address": "0x214a2c",
-   "emitted": [
+   "first_address": "0x214a2c",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00216768",
-   "address": "0x216878",
-   "emitted": [
+   "first_address": "0x216878",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_002168e8",
-   "address": "0x216998",
-   "emitted": [
+   "first_address": "0x216998",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00217188",
-   "address": "0x2174b8",
-   "emitted": [
+   "first_address": "0x2174b8",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 3,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00217950",
-   "address": "0x217a0c",
-   "emitted": [
+   "first_address": "0x217a0c",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_002190c8",
-   "address": "0x2190ec",
-   "emitted": [
+   "first_address": "0x2190ec",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00219340",
-   "address": "0x2193d0",
-   "emitted": [
+   "first_address": "0x2193d0",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 3,
    "ran": {
-    "switch-branches": null
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 161,
+     "missing": 0
+    }
    }
   },
   {
    "owner": "FUN_002196d8",
-   "address": "0x219718",
-   "emitted": [
+   "first_address": "0x219718",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 4,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_002197b0",
-   "address": "0x2197d0",
-   "emitted": [
+   "first_address": "0x2197d0",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 3,
    "ran": {
     "switch-branches": {
-     "count": 30382,
-     "targets": 2,
+     "sites_ran": 1,
+     "dispatches": 30382,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_00219898",
-   "address": "0x2198c4",
-   "emitted": [
+   "first_address": "0x2198c4",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 3,
    "ran": {
     "switch-branches": {
-     "count": 30382,
-     "targets": 2,
+     "sites_ran": 1,
+     "dispatches": 30382,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_0021a2d8",
-   "address": "0x21a36c",
-   "emitted": [
+   "first_address": "0x21a36c",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_0021bf50",
-   "address": "0x21c024",
-   "emitted": [
+   "first_address": "0x21c024",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_0021c468",
-   "address": "0x21c508",
-   "emitted": [
+   "first_address": "0x21c508",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00220fa8",
-   "address": "0x22101c",
-   "emitted": [
+   "first_address": "0x22101c",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00221278",
-   "address": "0x2212c8",
-   "emitted": [
+   "first_address": "0x2212c8",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00225378",
-   "address": "0x225468",
-   "emitted": [
+   "first_address": "0x225468",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": {
-     "count": 16,
-     "targets": 1,
+     "sites_ran": 2,
+     "dispatches": 32,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_00227700",
-   "address": "0x227750",
-   "emitted": [
+   "first_address": "0x227750",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_0022cff0",
-   "address": "0x22d048",
-   "emitted": [
+   "first_address": "0x22d048",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": {
-     "count": 14709,
-     "targets": 1,
+     "sites_ran": 1,
+     "dispatches": 14709,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_0022d418",
-   "address": "0x22d9bc",
-   "emitted": [
+   "first_address": "0x22d9bc",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 4,
    "ran": {
-    "switch-branches": null
+    "switch-branches": {
+     "sites_ran": 2,
+     "dispatches": 6,
+     "missing": 0
+    }
    }
   },
   {
    "owner": "FUN_0022f708",
-   "address": "0x22fb50",
-   "emitted": [
+   "first_address": "0x22fb50",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": {
-     "count": 1,
-     "targets": 1,
+     "sites_ran": 1,
+     "dispatches": 1,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_0022fbd8",
-   "address": "0x22fc50",
-   "emitted": [
+   "first_address": "0x22fc50",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00230348",
-   "address": "0x2304e4",
-   "emitted": [
+   "first_address": "0x2304e4",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 12,
    "ran": {
     "switch-branches": {
-     "count": 4793,
-     "targets": 1,
+     "sites_ran": 1,
+     "dispatches": 4793,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_00230640",
-   "address": "0x230ad4",
-   "emitted": [
+   "first_address": "0x230ad4",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 8,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00233728",
-   "address": "0x23381c",
-   "emitted": [
+   "first_address": "0x23381c",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00233ff0",
-   "address": "0x234178",
-   "emitted": [
+   "first_address": "0x234178",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 4,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_002343e0",
-   "address": "0x235640",
-   "emitted": [
+   "first_address": "0x235640",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_002357f8",
-   "address": "0x23583c",
-   "emitted": [
+   "first_address": "0x23583c",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 11,
    "ran": {
     "switch-branches": {
-     "count": 4779,
-     "targets": 1,
+     "sites_ran": 3,
+     "dispatches": 14337,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_00235d30",
-   "address": "0x23683c",
-   "emitted": [
+   "first_address": "0x23683c",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 7,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00237c30",
-   "address": "0x237d54",
-   "emitted": [
+   "first_address": "0x237d54",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00239040",
-   "address": "0x239330",
-   "emitted": [
+   "first_address": "0x239330",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_002394d8",
-   "address": "0x2396fc",
-   "emitted": [
+   "first_address": "0x2396fc",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_0023a320",
-   "address": "0x23a348",
-   "emitted": [
+   "first_address": "0x23a348",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 4,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_0023a420",
-   "address": "0x23a474",
-   "emitted": [
+   "first_address": "0x23a474",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_0023b3a8",
-   "address": "0x23b7a0",
-   "emitted": [
+   "first_address": "0x23b7a0",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_0023e748",
-   "address": "0x23f080",
-   "emitted": [
+   "first_address": "0x23f080",
+   "first_emitted": [
     "IndirectJump"
    ],
+   "indirect_sites": 6,
    "ran": {
-    "switch-branches": null
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 39232,
+     "missing": 0
+    }
    }
   },
   {
    "owner": "FUN_002470b0",
-   "address": "0x247118",
-   "emitted": [
+   "first_address": "0x247118",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00247258",
-   "address": "0x247290",
-   "emitted": [
+   "first_address": "0x247290",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_002473c0",
-   "address": "0x247e18",
-   "emitted": [
+   "first_address": "0x247e18",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00248d48",
-   "address": "0x248ee8",
-   "emitted": [
+   "first_address": "0x248ee8",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_0024abc0",
-   "address": "0x24ac20",
-   "emitted": [
+   "first_address": "0x24ac20",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_0024ad58",
-   "address": "0x24ad78",
-   "emitted": [
+   "first_address": "0x24ad78",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_0024cf50",
-   "address": "0x24d16c",
-   "emitted": [
+   "first_address": "0x24d16c",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_0024d350",
-   "address": "0x24d518",
-   "emitted": [
+   "first_address": "0x24d518",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_0024d7d8",
-   "address": "0x24d824",
-   "emitted": [
+   "first_address": "0x24d824",
+   "first_emitted": [
     "IndirectJump"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_0024edd0",
-   "address": "0x24ee04",
-   "emitted": [
+   "first_address": "0x24ee04",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_0024ee20",
-   "address": "0x24eedc",
-   "emitted": [
+   "first_address": "0x24eedc",
+   "first_emitted": [
     "IndirectJump"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_002560d8",
-   "address": "0x25615c",
-   "emitted": [
+   "first_address": "0x25615c",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": {
-     "count": 8036869,
-     "targets": 255,
+     "sites_ran": 1,
+     "dispatches": 8036869,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_00256e60",
-   "address": "0x256f60",
-   "emitted": [
+   "first_address": "0x256f60",
+   "first_emitted": [
     "IndirectJump"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": {
-     "count": 307584,
-     "targets": 1,
+     "sites_ran": 1,
+     "dispatches": 307584,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_00259af8",
-   "address": "0x259d00",
-   "emitted": [
+   "first_address": "0x259d00",
+   "first_emitted": [
     "IndirectJump"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00259f70",
-   "address": "0x25a0e4",
-   "emitted": [
+   "first_address": "0x25a0e4",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_0025a428",
-   "address": "0x25a79c",
-   "emitted": [
+   "first_address": "0x25a79c",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": {
-     "count": 1,
-     "targets": 1,
+     "sites_ran": 1,
+     "dispatches": 1,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_0025add8",
-   "address": "0x25aec4",
-   "emitted": [
+   "first_address": "0x25aec4",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": {
-     "count": 4,
-     "targets": 1,
+     "sites_ran": 1,
+     "dispatches": 4,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_0025f570",
-   "address": "0x25f660",
-   "emitted": [
+   "first_address": "0x25f660",
+   "first_emitted": [
     "IndirectJump"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00263680",
-   "address": "0x263708",
-   "emitted": [
+   "first_address": "0x263708",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": {
-     "count": 7,
-     "targets": 1,
+     "sites_ran": 1,
+     "dispatches": 7,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_002637f0",
-   "address": "0x263830",
-   "emitted": [
+   "first_address": "0x263830",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00265208",
-   "address": "0x265244",
-   "emitted": [
+   "first_address": "0x265244",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
-    "switch-branches": null
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 7,
+     "missing": 0
+    }
    }
   },
   {
    "owner": "FUN_002668f0",
-   "address": "0x266940",
-   "emitted": [
+   "first_address": "0x266940",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": {
-     "count": 34322,
-     "targets": 1,
+     "sites_ran": 1,
+     "dispatches": 34322,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_0026ea28",
-   "address": "0x26ecb0",
-   "emitted": [
+   "first_address": "0x26ecb0",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": {
-     "count": 1,
-     "targets": 1,
+     "sites_ran": 1,
+     "dispatches": 1,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_0027b958",
-   "address": "0x27bc58",
-   "emitted": [
+   "first_address": "0x27bc58",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_0027bca8",
-   "address": "0x27bfa8",
-   "emitted": [
+   "first_address": "0x27bfa8",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00282190",
-   "address": "0x28227c",
-   "emitted": [
+   "first_address": "0x28227c",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00288320",
-   "address": "0x2883ac",
-   "emitted": [
+   "first_address": "0x2883ac",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_0029faf0",
-   "address": "0x2a0a70",
-   "emitted": [
+   "first_address": "0x2a0a70",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_002aac20",
-   "address": "0x2aac70",
-   "emitted": [
+   "first_address": "0x2aac70",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
-    "switch-branches": null
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 1,
+     "missing": 0
+    }
    }
   },
   {
    "owner": "FUN_002aacb8",
-   "address": "0x2aad00",
-   "emitted": [
+   "first_address": "0x2aad00",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "fn_002ad6e0",
-   "address": "0x2ad9c0",
-   "emitted": [
+   "first_address": "0x2ad9c0",
+   "first_emitted": [
     "IndirectJump"
    ],
+   "indirect_sites": 18,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_002b0200",
-   "address": "0x2b042c",
-   "emitted": [
+   "first_address": "0x2b042c",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_002b0c00",
-   "address": "0x2b0d70",
-   "emitted": [
+   "first_address": "0x2b0d70",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_002b0e78",
-   "address": "0x2b0ed0",
-   "emitted": [
+   "first_address": "0x2b0ed0",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": {
-     "count": 8,
-     "targets": 1,
+     "sites_ran": 1,
+     "dispatches": 8,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_002b1070",
-   "address": "0x2b12d4",
-   "emitted": [
+   "first_address": "0x2b12d4",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": {
-     "count": 8,
-     "targets": 1,
+     "sites_ran": 1,
+     "dispatches": 8,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_002b17a8",
-   "address": "0x2b233c",
-   "emitted": [
+   "first_address": "0x2b233c",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_002b3020",
-   "address": "0x2b31e4",
-   "emitted": [
+   "first_address": "0x2b31e4",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_002b33a0",
-   "address": "0x2b3460",
-   "emitted": [
+   "first_address": "0x2b3460",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 8,
    "ran": {
-    "switch-branches": null
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 29,
+     "missing": 0
+    }
    }
   },
   {
    "owner": "FUN_002b3ca0",
-   "address": "0x2b3fc0",
-   "emitted": [
+   "first_address": "0x2b3fc0",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_002b4680",
-   "address": "0x2b4808",
-   "emitted": [
+   "first_address": "0x2b4808",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": {
-     "count": 3,
-     "targets": 1,
+     "sites_ran": 2,
+     "dispatches": 7,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_002b4bc0",
-   "address": "0x2b4eb8",
-   "emitted": [
+   "first_address": "0x2b4eb8",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": {
-     "count": 25,
-     "targets": 1,
+     "sites_ran": 1,
+     "dispatches": 25,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_002b52e8",
-   "address": "0x2b5608",
-   "emitted": [
+   "first_address": "0x2b5608",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_002b5990",
-   "address": "0x2b5b24",
-   "emitted": [
+   "first_address": "0x2b5b24",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_002b60c0",
-   "address": "0x2b60ec",
-   "emitted": [
+   "first_address": "0x2b60ec",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_002bc7e8",
-   "address": "0x2bc86c",
-   "emitted": [
+   "first_address": "0x2bc86c",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_002bc918",
-   "address": "0x2bc9d4",
-   "emitted": [
+   "first_address": "0x2bc9d4",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_002bd7c8",
-   "address": "0x2bd8dc",
-   "emitted": [
+   "first_address": "0x2bd8dc",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 4,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_002bee00",
-   "address": "0x2befb8",
-   "emitted": [
+   "first_address": "0x2befb8",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_002c01f8",
-   "address": "0x2c0234",
-   "emitted": [
+   "first_address": "0x2c0234",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": {
-     "count": 39941,
-     "targets": 14,
+     "sites_ran": 1,
+     "dispatches": 39941,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_002c0270",
-   "address": "0x2c02d4",
-   "emitted": [
+   "first_address": "0x2c02d4",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": {
-     "count": 39010,
-     "targets": 6,
+     "sites_ran": 1,
+     "dispatches": 39010,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_002c1d80",
-   "address": "0x2c33a8",
-   "emitted": [
+   "first_address": "0x2c33a8",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 3,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_002c6060",
-   "address": "0x2c617c",
-   "emitted": [
+   "first_address": "0x2c617c",
+   "first_emitted": [
     "IndirectJump"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_002c6460",
-   "address": "0x2c68dc",
-   "emitted": [
+   "first_address": "0x2c68dc",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 5,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_002cb7c0",
-   "address": "0x2cc8e4",
-   "emitted": [
+   "first_address": "0x2cc8e4",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 3,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_002cebe0",
-   "address": "0x2cefe4",
-   "emitted": [
+   "first_address": "0x2cefe4",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_002d00b8",
-   "address": "0x2d02c4",
-   "emitted": [
+   "first_address": "0x2d02c4",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "fn_002d2410",
-   "address": "0x2d2458",
-   "emitted": [
+   "first_address": "0x2d2458",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_002d57e0",
-   "address": "0x2d5954",
-   "emitted": [
+   "first_address": "0x2d5954",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_002d63b0",
-   "address": "0x2d6438",
-   "emitted": [
+   "first_address": "0x2d6438",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_002d68c8",
-   "address": "0x2d695c",
-   "emitted": [
+   "first_address": "0x2d695c",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_002d6a70",
-   "address": "0x2d6bd0",
-   "emitted": [
+   "first_address": "0x2d6bd0",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_002d6c80",
-   "address": "0x2d6d58",
-   "emitted": [
+   "first_address": "0x2d6d58",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_002d6dc0",
-   "address": "0x2d6fb8",
-   "emitted": [
+   "first_address": "0x2d6fb8",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_002d8788",
-   "address": "0x2d882c",
-   "emitted": [
+   "first_address": "0x2d882c",
+   "first_emitted": [
     "IndirectJump"
    ],
+   "indirect_sites": 4,
    "ran": {
-    "switch-branches": null
+    "switch-branches": {
+     "sites_ran": 3,
+     "dispatches": 50940,
+     "missing": 0
+    }
    }
   },
   {
    "owner": "FUN_002d9860",
-   "address": "0x2d9c28",
-   "emitted": [
+   "first_address": "0x2d9c28",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_002dabe8",
-   "address": "0x2dacdc",
-   "emitted": [
+   "first_address": "0x2dacdc",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_002de3e8",
-   "address": "0x2de49c",
-   "emitted": [
+   "first_address": "0x2de49c",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_002defe0",
-   "address": "0x2df0f4",
-   "emitted": [
+   "first_address": "0x2df0f4",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 3,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_002df640",
-   "address": "0x2df684",
-   "emitted": [
+   "first_address": "0x2df684",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 6,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_002df908",
-   "address": "0x2df9bc",
-   "emitted": [
+   "first_address": "0x2df9bc",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_002dfe10",
-   "address": "0x2dfe90",
-   "emitted": [
+   "first_address": "0x2dfe90",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_002e1140",
-   "address": "0x2e138c",
-   "emitted": [
+   "first_address": "0x2e138c",
+   "first_emitted": [
     "IndirectJump"
    ],
+   "indirect_sites": 8,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_002e23a0",
-   "address": "0x2e2564",
-   "emitted": [
+   "first_address": "0x2e2564",
+   "first_emitted": [
     "IndirectJump"
    ],
+   "indirect_sites": 3,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_002e4ef0",
-   "address": "0x2e4fbc",
-   "emitted": [
+   "first_address": "0x2e4fbc",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": {
-     "count": 2,
-     "targets": 1,
+     "sites_ran": 1,
+     "dispatches": 2,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_002e5250",
-   "address": "0x2e5288",
-   "emitted": [
+   "first_address": "0x2e5288",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": {
-     "count": 2,
-     "targets": 1,
+     "sites_ran": 1,
+     "dispatches": 2,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_002e52a8",
-   "address": "0x2e535c",
-   "emitted": [
+   "first_address": "0x2e535c",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_002e55d0",
-   "address": "0x2e5608",
-   "emitted": [
+   "first_address": "0x2e5608",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_002e9d00",
-   "address": "0x2e9f20",
-   "emitted": [
+   "first_address": "0x2e9f20",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_002ea400",
-   "address": "0x2ea654",
-   "emitted": [
+   "first_address": "0x2ea654",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_002eb058",
-   "address": "0x2eb0a8",
-   "emitted": [
+   "first_address": "0x2eb0a8",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 8,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_002eb720",
-   "address": "0x2eb96c",
-   "emitted": [
+   "first_address": "0x2eb96c",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "fn_002f13d0",
-   "address": "0x2f14a8",
-   "emitted": [
+   "first_address": "0x2f14a8",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "fn_002f14c8",
-   "address": "0x2f14e0",
-   "emitted": [
+   "first_address": "0x2f14e0",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "fn_002f18c0",
-   "address": "0x2f1998",
-   "emitted": [
+   "first_address": "0x2f1998",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "fn_002f19b8",
-   "address": "0x2f19d0",
-   "emitted": [
+   "first_address": "0x2f19d0",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_002f8710",
-   "address": "0x2f87b4",
-   "emitted": [
+   "first_address": "0x2f87b4",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 3,
    "ran": {
     "switch-branches": {
-     "count": 4741,
-     "targets": 1,
+     "sites_ran": 3,
+     "dispatches": 129626,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_002fcf98",
-   "address": "0x2fd078",
-   "emitted": [
+   "first_address": "0x2fd078",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_002fd098",
-   "address": "0x2fd26c",
-   "emitted": [
+   "first_address": "0x2fd26c",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 4,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_002fd668",
-   "address": "0x2fd808",
-   "emitted": [
+   "first_address": "0x2fd808",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_002fd838",
-   "address": "0x2fdac4",
-   "emitted": [
+   "first_address": "0x2fdac4",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 4,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_002fdf80",
-   "address": "0x2fe06c",
-   "emitted": [
+   "first_address": "0x2fe06c",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "fn_002fe298",
-   "address": "0x2fe530",
-   "emitted": [
+   "first_address": "0x2fe530",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 4,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_002fe7e0",
-   "address": "0x2fef34",
-   "emitted": [
+   "first_address": "0x2fef34",
+   "first_emitted": [
     "IndirectJump"
    ],
+   "indirect_sites": 3,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00300368",
-   "address": "0x300550",
-   "emitted": [
+   "first_address": "0x300550",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00301500",
-   "address": "0x301664",
-   "emitted": [
+   "first_address": "0x301664",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_003017e0",
-   "address": "0x3018c0",
-   "emitted": [
+   "first_address": "0x3018c0",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00301dd8",
-   "address": "0x301f28",
-   "emitted": [
+   "first_address": "0x301f28",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_003028b8",
-   "address": "0x302944",
-   "emitted": [
+   "first_address": "0x302944",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 3,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_003033d0",
-   "address": "0x303608",
-   "emitted": [
+   "first_address": "0x303608",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00303800",
-   "address": "0x3039f8",
-   "emitted": [
+   "first_address": "0x3039f8",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00305408",
-   "address": "0x3057c8",
-   "emitted": [
+   "first_address": "0x3057c8",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 6,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00305978",
-   "address": "0x305a60",
-   "emitted": [
+   "first_address": "0x305a60",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 6,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "fn_00306010",
-   "address": "0x306264",
-   "emitted": [
+   "first_address": "0x306264",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00306680",
-   "address": "0x306738",
-   "emitted": [
+   "first_address": "0x306738",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_003087b8",
-   "address": "0x308d20",
-   "emitted": [
+   "first_address": "0x308d20",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 3,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_003095d8",
-   "address": "0x309828",
-   "emitted": [
+   "first_address": "0x309828",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00309ae0",
-   "address": "0x309cd4",
-   "emitted": [
+   "first_address": "0x309cd4",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_0030a628",
-   "address": "0x30a694",
-   "emitted": [
+   "first_address": "0x30a694",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_0030a9e8",
-   "address": "0x30aaa8",
-   "emitted": [
+   "first_address": "0x30aaa8",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_0030aac8",
-   "address": "0x30ab64",
-   "emitted": [
+   "first_address": "0x30ab64",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 4,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_0030c2b8",
-   "address": "0x30c2d4",
-   "emitted": [
+   "first_address": "0x30c2d4",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_0030d018",
-   "address": "0x30d0b8",
-   "emitted": [
+   "first_address": "0x30d0b8",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": {
-     "count": 4,
-     "targets": 1,
+     "sites_ran": 1,
+     "dispatches": 4,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_0030d3c0",
-   "address": "0x30d47c",
-   "emitted": [
+   "first_address": "0x30d47c",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_0030e2d0",
-   "address": "0x30e9bc",
-   "emitted": [
+   "first_address": "0x30e9bc",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_0030eaf0",
-   "address": "0x30f2c8",
-   "emitted": [
+   "first_address": "0x30f2c8",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_003105a0",
-   "address": "0x310668",
-   "emitted": [
+   "first_address": "0x310668",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00310bb8",
-   "address": "0x310ca8",
-   "emitted": [
+   "first_address": "0x310ca8",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 4,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_003159d8",
-   "address": "0x315a1c",
-   "emitted": [
+   "first_address": "0x315a1c",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00315a50",
-   "address": "0x315a90",
-   "emitted": [
+   "first_address": "0x315a90",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00315ae0",
-   "address": "0x315b20",
-   "emitted": [
+   "first_address": "0x315b20",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00315d78",
-   "address": "0x315db8",
-   "emitted": [
+   "first_address": "0x315db8",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00316028",
-   "address": "0x3160f0",
-   "emitted": [
+   "first_address": "0x3160f0",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00319058",
-   "address": "0x3191cc",
-   "emitted": [
+   "first_address": "0x3191cc",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_0031b6a0",
-   "address": "0x31b718",
-   "emitted": [
+   "first_address": "0x31b718",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_0031ba18",
-   "address": "0x31ba84",
-   "emitted": [
+   "first_address": "0x31ba84",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00324fc8",
-   "address": "0x325274",
-   "emitted": [
+   "first_address": "0x325274",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 6,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00325cd8",
-   "address": "0x3265cc",
-   "emitted": [
+   "first_address": "0x3265cc",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00326fd8",
-   "address": "0x32707c",
-   "emitted": [
+   "first_address": "0x32707c",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 4,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00327478",
-   "address": "0x3274b0",
-   "emitted": [
+   "first_address": "0x3274b0",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 4,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_003279c8",
-   "address": "0x327b94",
-   "emitted": [
+   "first_address": "0x327b94",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00329cb8",
-   "address": "0x329e18",
-   "emitted": [
+   "first_address": "0x329e18",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_0032a040",
-   "address": "0x32a0e0",
-   "emitted": [
+   "first_address": "0x32a0e0",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_0032af08",
-   "address": "0x32aff8",
-   "emitted": [
+   "first_address": "0x32aff8",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_0032b368",
-   "address": "0x32b3ec",
-   "emitted": [
+   "first_address": "0x32b3ec",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": {
-     "count": 66893,
-     "targets": 1,
+     "sites_ran": 1,
+     "dispatches": 66893,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_0032bc90",
-   "address": "0x32bd4c",
-   "emitted": [
+   "first_address": "0x32bd4c",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 6,
    "ran": {
     "switch-branches": {
-     "count": 309,
-     "targets": 1,
+     "sites_ran": 3,
+     "dispatches": 5706,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_0032c130",
-   "address": "0x32c14c",
-   "emitted": [
+   "first_address": "0x32c14c",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": {
-     "count": 309,
-     "targets": 1,
+     "sites_ran": 1,
+     "dispatches": 309,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_0032c358",
-   "address": "0x32c3d0",
-   "emitted": [
+   "first_address": "0x32c3d0",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 3,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_0032c518",
-   "address": "0x32c568",
-   "emitted": [
+   "first_address": "0x32c568",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 3,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_0032c670",
-   "address": "0x32c6c0",
-   "emitted": [
+   "first_address": "0x32c6c0",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 3,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_0032e6b8",
-   "address": "0x32e6e0",
-   "emitted": [
+   "first_address": "0x32e6e0",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_003341c0",
-   "address": "0x3341ec",
-   "emitted": [
+   "first_address": "0x3341ec",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00334200",
-   "address": "0x334240",
-   "emitted": [
+   "first_address": "0x334240",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00334538",
-   "address": "0x3345ec",
-   "emitted": [
+   "first_address": "0x3345ec",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_003348d0",
-   "address": "0x334a7c",
-   "emitted": [
+   "first_address": "0x334a7c",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00335298",
-   "address": "0x3353e4",
-   "emitted": [
+   "first_address": "0x3353e4",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 3,
    "ran": {
     "switch-branches": {
-     "count": 2,
-     "targets": 1,
+     "sites_ran": 3,
+     "dispatches": 6,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_00337208",
-   "address": "0x33741c",
-   "emitted": [
+   "first_address": "0x33741c",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 11,
    "ran": {
     "switch-branches": {
-     "count": 4773,
-     "targets": 1,
+     "sites_ran": 4,
+     "dispatches": 9550,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_003451a8",
-   "address": "0x3451e4",
-   "emitted": [
+   "first_address": "0x3451e4",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00346a10",
-   "address": "0x346a4c",
-   "emitted": [
+   "first_address": "0x346a4c",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": {
-     "count": 56151,
-     "targets": 3,
+     "sites_ran": 1,
+     "dispatches": 56151,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_003470f0",
-   "address": "0x3471a4",
-   "emitted": [
+   "first_address": "0x3471a4",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00347348",
-   "address": "0x347388",
-   "emitted": [
+   "first_address": "0x347388",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 3,
    "ran": {
     "switch-branches": {
-     "count": 286,
-     "targets": 1,
+     "sites_ran": 1,
+     "dispatches": 286,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_00347740",
-   "address": "0x347780",
-   "emitted": [
+   "first_address": "0x347780",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 3,
    "ran": {
     "switch-branches": {
-     "count": 40532,
-     "targets": 1,
+     "sites_ran": 1,
+     "dispatches": 40532,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_00348d40",
-   "address": "0x348dcc",
-   "emitted": [
+   "first_address": "0x348dcc",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 8,
    "ran": {
     "switch-branches": {
-     "count": 560,
-     "targets": 2,
+     "sites_ran": 5,
+     "dispatches": 91408,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_0034a350",
-   "address": "0x34a4d8",
-   "emitted": [
+   "first_address": "0x34a4d8",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": {
-     "count": 59,
-     "targets": 1,
+     "sites_ran": 2,
+     "dispatches": 118,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_0034a8e8",
-   "address": "0x34a91c",
-   "emitted": [
+   "first_address": "0x34a91c",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": {
-     "count": 16299,
-     "targets": 1,
+     "sites_ran": 1,
+     "dispatches": 16299,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_0034b128",
-   "address": "0x34c080",
-   "emitted": [
+   "first_address": "0x34c080",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 3,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_0034ec18",
-   "address": "0x34eeac",
-   "emitted": [
+   "first_address": "0x34eeac",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_0034fbb8",
-   "address": "0x34fc1c",
-   "emitted": [
+   "first_address": "0x34fc1c",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_0034fd60",
-   "address": "0x350cb8",
-   "emitted": [
+   "first_address": "0x350cb8",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 6,
    "ran": {
-    "switch-branches": null
+    "switch-branches": {
+     "sites_ran": 3,
+     "dispatches": 228210,
+     "missing": 0
+    }
    }
   },
   {
    "owner": "FUN_003537e0",
-   "address": "0x3545f4",
-   "emitted": [
+   "first_address": "0x3545f4",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 3,
    "ran": {
     "switch-branches": {
-     "count": 388,
-     "targets": 1,
+     "sites_ran": 1,
+     "dispatches": 388,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_00354dd8",
-   "address": "0x3550c0",
-   "emitted": [
+   "first_address": "0x3550c0",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00356448",
-   "address": "0x3564c0",
-   "emitted": [
+   "first_address": "0x3564c0",
+   "first_emitted": [
     "IndirectJump"
    ],
+   "indirect_sites": 8,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_0035c4b8",
-   "address": "0x35c50c",
-   "emitted": [
+   "first_address": "0x35c50c",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 4,
    "ran": {
     "switch-branches": {
-     "count": 292,
-     "targets": 1,
+     "sites_ran": 4,
+     "dispatches": 24845,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_0035d5e8",
-   "address": "0x35d5f8",
-   "emitted": [
+   "first_address": "0x35d5f8",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_0035d610",
-   "address": "0x35d75c",
-   "emitted": [
+   "first_address": "0x35d75c",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 6,
    "ran": {
     "switch-branches": {
-     "count": 11892,
-     "targets": 5,
+     "sites_ran": 4,
+     "dispatches": 35722,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_0035dea8",
-   "address": "0x35e214",
-   "emitted": [
+   "first_address": "0x35e214",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": {
-     "count": 128156,
-     "targets": 3,
+     "sites_ran": 1,
+     "dispatches": 128156,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_0035efd8",
-   "address": "0x35f214",
-   "emitted": [
+   "first_address": "0x35f214",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 5,
    "ran": {
-    "switch-branches": null
+    "switch-branches": {
+     "sites_ran": 2,
+     "dispatches": 35,
+     "missing": 0
+    }
    }
   },
   {
    "owner": "FUN_00364450",
-   "address": "0x36447c",
-   "emitted": [
+   "first_address": "0x36447c",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00365068",
-   "address": "0x365160",
-   "emitted": [
+   "first_address": "0x365160",
+   "first_emitted": [
     "IndirectJump"
    ],
+   "indirect_sites": 6,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00370300",
-   "address": "0x37035c",
-   "emitted": [
+   "first_address": "0x37035c",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": {
-     "count": 23558,
-     "targets": 2,
+     "sites_ran": 1,
+     "dispatches": 23558,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_00387278",
-   "address": "0x387294",
-   "emitted": [
+   "first_address": "0x387294",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00387930",
-   "address": "0x387978",
-   "emitted": [
+   "first_address": "0x387978",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": {
-     "count": 44,
-     "targets": 2,
+     "sites_ran": 1,
+     "dispatches": 44,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_00387a20",
-   "address": "0x387a58",
-   "emitted": [
+   "first_address": "0x387a58",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": {
-     "count": 6847,
-     "targets": 2,
+     "sites_ran": 1,
+     "dispatches": 6847,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_00387dc8",
-   "address": "0x387e08",
-   "emitted": [
+   "first_address": "0x387e08",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": {
-     "count": 9352,
-     "targets": 1,
+     "sites_ran": 1,
+     "dispatches": 9352,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_00387fd8",
-   "address": "0x388064",
-   "emitted": [
+   "first_address": "0x388064",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00388140",
-   "address": "0x3881d4",
-   "emitted": [
+   "first_address": "0x3881d4",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00388428",
-   "address": "0x388574",
-   "emitted": [
+   "first_address": "0x388574",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": {
-     "count": 42,
-     "targets": 1,
+     "sites_ran": 1,
+     "dispatches": 42,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_003885f0",
-   "address": "0x38864c",
-   "emitted": [
+   "first_address": "0x38864c",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_003886d8",
-   "address": "0x388700",
-   "emitted": [
+   "first_address": "0x388700",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_0038a118",
-   "address": "0x38a568",
-   "emitted": [
+   "first_address": "0x38a568",
+   "first_emitted": [
     "IndirectJump"
    ],
+   "indirect_sites": 2,
    "ran": {
-    "switch-branches": null
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 4626,
+     "missing": 0
+    }
    }
   },
   {
    "owner": "FUN_0038bcb8",
-   "address": "0x38bdb8",
-   "emitted": [
+   "first_address": "0x38bdb8",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": {
-     "count": 85167,
-     "targets": 1,
+     "sites_ran": 1,
+     "dispatches": 85167,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_0038bef0",
-   "address": "0x38bfc8",
-   "emitted": [
+   "first_address": "0x38bfc8",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_0038e368",
-   "address": "0x38e3e8",
-   "emitted": [
+   "first_address": "0x38e3e8",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_0038e668",
-   "address": "0x38e6ec",
-   "emitted": [
+   "first_address": "0x38e6ec",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_0038e778",
-   "address": "0x38e7c4",
-   "emitted": [
+   "first_address": "0x38e7c4",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_0038e9f8",
-   "address": "0x38f14c",
-   "emitted": [
+   "first_address": "0x38f14c",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 4,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_0038f5c0",
-   "address": "0x38f620",
-   "emitted": [
+   "first_address": "0x38f620",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_0038f9b0",
-   "address": "0x38fa58",
-   "emitted": [
+   "first_address": "0x38fa58",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_0038fea0",
-   "address": "0x3901a8",
-   "emitted": [
+   "first_address": "0x3901a8",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 3,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00390278",
-   "address": "0x390288",
-   "emitted": [
+   "first_address": "0x390288",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_003902a8",
-   "address": "0x3902fc",
-   "emitted": [
+   "first_address": "0x3902fc",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00392f10",
-   "address": "0x392f8c",
-   "emitted": [
+   "first_address": "0x392f8c",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 3,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00395948",
-   "address": "0x395b58",
-   "emitted": [
+   "first_address": "0x395b58",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": {
-     "count": 120,
-     "targets": 1,
+     "sites_ran": 1,
+     "dispatches": 120,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_00396bc0",
-   "address": "0x396bfc",
-   "emitted": [
+   "first_address": "0x396bfc",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_003977a8",
-   "address": "0x3977c4",
-   "emitted": [
+   "first_address": "0x3977c4",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_003978c8",
-   "address": "0x397980",
-   "emitted": [
+   "first_address": "0x397980",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 3,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00397a38",
-   "address": "0x397a88",
-   "emitted": [
+   "first_address": "0x397a88",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 3,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00397e58",
-   "address": "0x397e84",
-   "emitted": [
+   "first_address": "0x397e84",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 4,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00398018",
-   "address": "0x3980b4",
-   "emitted": [
+   "first_address": "0x3980b4",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00398108",
-   "address": "0x398184",
-   "emitted": [
+   "first_address": "0x398184",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_003982b0",
-   "address": "0x398358",
-   "emitted": [
+   "first_address": "0x398358",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 3,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_003987f0",
-   "address": "0x398890",
-   "emitted": [
+   "first_address": "0x398890",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00399530",
-   "address": "0x399740",
-   "emitted": [
+   "first_address": "0x399740",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00399fa0",
-   "address": "0x39a02c",
-   "emitted": [
+   "first_address": "0x39a02c",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_0039c248",
-   "address": "0x39c4ac",
-   "emitted": [
+   "first_address": "0x39c4ac",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_0039c5c0",
-   "address": "0x39c5ec",
-   "emitted": [
+   "first_address": "0x39c5ec",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_0039d2c8",
-   "address": "0x39d310",
-   "emitted": [
+   "first_address": "0x39d310",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_0039d9a8",
-   "address": "0x39ddd0",
-   "emitted": [
+   "first_address": "0x39ddd0",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_003a55f8",
-   "address": "0x3a5670",
-   "emitted": [
+   "first_address": "0x3a5670",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 3,
    "ran": {
     "switch-branches": {
-     "count": 7,
-     "targets": 1,
+     "sites_ran": 2,
+     "dispatches": 14,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_003a63f0",
-   "address": "0x3a6430",
-   "emitted": [
+   "first_address": "0x3a6430",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": {
-     "count": 8,
-     "targets": 1,
+     "sites_ran": 1,
+     "dispatches": 8,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_003b45e8",
-   "address": "0x3b48fc",
-   "emitted": [
+   "first_address": "0x3b48fc",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": {
-     "count": 1,
-     "targets": 1,
+     "sites_ran": 1,
+     "dispatches": 1,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_003b5bd8",
-   "address": "0x3b5cc4",
-   "emitted": [
+   "first_address": "0x3b5cc4",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 6,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_003b6c28",
-   "address": "0x3b6cd0",
-   "emitted": [
+   "first_address": "0x3b6cd0",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_003b6d38",
-   "address": "0x3b6de0",
-   "emitted": [
+   "first_address": "0x3b6de0",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_003b6e48",
-   "address": "0x3b6f7c",
-   "emitted": [
+   "first_address": "0x3b6f7c",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 3,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_003b7c80",
-   "address": "0x3b7e0c",
-   "emitted": [
+   "first_address": "0x3b7e0c",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 6,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_003b8698",
-   "address": "0x3b8948",
-   "emitted": [
+   "first_address": "0x3b8948",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_003b89c8",
-   "address": "0x3b8c70",
-   "emitted": [
+   "first_address": "0x3b8c70",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_003b95b0",
-   "address": "0x3b9838",
-   "emitted": [
+   "first_address": "0x3b9838",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": {
-     "count": 1,
-     "targets": 1,
+     "sites_ran": 1,
+     "dispatches": 1,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_003bb670",
-   "address": "0x3bb6c0",
-   "emitted": [
+   "first_address": "0x3bb6c0",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 9,
    "ran": {
     "switch-branches": {
-     "count": 11745,
-     "targets": 1,
+     "sites_ran": 1,
+     "dispatches": 11745,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_003bc9a8",
-   "address": "0x3bcc54",
-   "emitted": [
+   "first_address": "0x3bcc54",
+   "first_emitted": [
     "IndirectJump"
    ],
+   "indirect_sites": 14,
    "ran": {
-    "switch-branches": null
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 843,
+     "missing": 0
+    }
    }
   },
   {
    "owner": "FUN_003c1348",
-   "address": "0x3c19f0",
-   "emitted": [
+   "first_address": "0x3c19f0",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_003c2730",
-   "address": "0x3c2870",
-   "emitted": [
+   "first_address": "0x3c2870",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": {
-     "count": 56,
-     "targets": 1,
+     "sites_ran": 1,
+     "dispatches": 56,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_003c29e8",
-   "address": "0x3c2a38",
-   "emitted": [
+   "first_address": "0x3c2a38",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": {
-     "count": 91,
-     "targets": 3,
+     "sites_ran": 1,
+     "dispatches": 91,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_003c3e58",
-   "address": "0x3c3f18",
-   "emitted": [
+   "first_address": "0x3c3f18",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": {
-     "count": 1728,
-     "targets": 1,
+     "sites_ran": 1,
+     "dispatches": 1728,
      "missing": 0
     }
    }
   },
   {
    "owner": "fn_003c44f0",
-   "address": "0x3c4530",
-   "emitted": [
+   "first_address": "0x3c4530",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": {
-     "count": 6,
-     "targets": 1,
+     "sites_ran": 2,
+     "dispatches": 12,
      "missing": 0
     }
    }
   },
   {
    "owner": "fn_003c46f0",
-   "address": "0x3c4728",
-   "emitted": [
+   "first_address": "0x3c4728",
+   "first_emitted": [
     "IndirectJump"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": {
-     "count": 8,
-     "targets": 1,
+     "sites_ran": 1,
+     "dispatches": 8,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_003c47d8",
-   "address": "0x3c4818",
-   "emitted": [
+   "first_address": "0x3c4818",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 3,
    "ran": {
     "switch-branches": {
-     "count": 6,
-     "targets": 1,
+     "sites_ran": 1,
+     "dispatches": 6,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_003c51c0",
-   "address": "0x3c5224",
-   "emitted": [
+   "first_address": "0x3c5224",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": {
-     "count": 81086,
-     "targets": 2,
+     "sites_ran": 1,
+     "dispatches": 81086,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_003c6000",
-   "address": "0x3c6058",
-   "emitted": [
+   "first_address": "0x3c6058",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_003c7498",
-   "address": "0x3c74f8",
-   "emitted": [
+   "first_address": "0x3c74f8",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": {
-     "count": 87,
-     "targets": 4,
+     "sites_ran": 1,
+     "dispatches": 87,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_003c7678",
-   "address": "0x3c7750",
-   "emitted": [
+   "first_address": "0x3c7750",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 8,
    "ran": {
     "switch-branches": {
-     "count": 87,
-     "targets": 4,
+     "sites_ran": 8,
+     "dispatches": 477,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_003c7d00",
-   "address": "0x3c7da8",
-   "emitted": [
+   "first_address": "0x3c7da8",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": {
-     "count": 87,
-     "targets": 4,
+     "sites_ran": 1,
+     "dispatches": 87,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_003c7df8",
-   "address": "0x3c7e80",
-   "emitted": [
+   "first_address": "0x3c7e80",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": {
-     "count": 10377,
-     "targets": 4,
+     "sites_ran": 1,
+     "dispatches": 10377,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_003c81b0",
-   "address": "0x3c8448",
-   "emitted": [
+   "first_address": "0x3c8448",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_003c8618",
-   "address": "0x3c87d8",
-   "emitted": [
+   "first_address": "0x3c87d8",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": {
-     "count": 47,
-     "targets": 4,
+     "sites_ran": 1,
+     "dispatches": 47,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_003c8bc8",
-   "address": "0x3c8c58",
-   "emitted": [
+   "first_address": "0x3c8c58",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_003ca188",
-   "address": "0x3cae0c",
-   "emitted": [
+   "first_address": "0x3cae0c",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_003caec8",
-   "address": "0x3caf70",
-   "emitted": [
+   "first_address": "0x3caf70",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_003cb010",
-   "address": "0x3cb0c8",
-   "emitted": [
+   "first_address": "0x3cb0c8",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_003cb168",
-   "address": "0x3cb1a8",
-   "emitted": [
+   "first_address": "0x3cb1a8",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": {
-     "count": 121719,
-     "targets": 1,
+     "sites_ran": 1,
+     "dispatches": 121719,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_003cc210",
-   "address": "0x3cc27c",
-   "emitted": [
+   "first_address": "0x3cc27c",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_003cc2b8",
-   "address": "0x3cc430",
-   "emitted": [
+   "first_address": "0x3cc430",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_003cc6d0",
-   "address": "0x3cc7a8",
-   "emitted": [
+   "first_address": "0x3cc7a8",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": {
-     "count": 24219,
-     "targets": 1,
+     "sites_ran": 2,
+     "dispatches": 34825,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_003ccda0",
-   "address": "0x3cced8",
-   "emitted": [
+   "first_address": "0x3cced8",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": {
-     "count": 9474,
-     "targets": 1,
+     "sites_ran": 1,
+     "dispatches": 9474,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_003ccf70",
-   "address": "0x3ccfcc",
-   "emitted": [
+   "first_address": "0x3ccfcc",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 3,
    "ran": {
     "switch-branches": {
-     "count": 819,
-     "targets": 1,
+     "sites_ran": 3,
+     "dispatches": 2457,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_003cd058",
-   "address": "0x3cd0ac",
-   "emitted": [
+   "first_address": "0x3cd0ac",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": {
-     "count": 25351,
-     "targets": 1,
+     "sites_ran": 1,
+     "dispatches": 25351,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_003cd208",
-   "address": "0x3cd338",
-   "emitted": [
+   "first_address": "0x3cd338",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 3,
    "ran": {
-    "switch-branches": null
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 819,
+     "missing": 0
+    }
    }
   },
   {
    "owner": "FUN_003cd5f0",
-   "address": "0x3cd654",
-   "emitted": [
+   "first_address": "0x3cd654",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_003cdc58",
-   "address": "0x3cdcbc",
-   "emitted": [
+   "first_address": "0x3cdcbc",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_003cddd0",
-   "address": "0x3cde24",
-   "emitted": [
+   "first_address": "0x3cde24",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_003cde90",
-   "address": "0x3cdee4",
-   "emitted": [
+   "first_address": "0x3cdee4",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_003cdf20",
-   "address": "0x3cdfa0",
-   "emitted": [
+   "first_address": "0x3cdfa0",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_003cdff8",
-   "address": "0x3ce050",
-   "emitted": [
+   "first_address": "0x3ce050",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_003ce068",
-   "address": "0x3ce0b0",
-   "emitted": [
+   "first_address": "0x3ce0b0",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_003ce1f8",
-   "address": "0x3ce228",
-   "emitted": [
+   "first_address": "0x3ce228",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_003ce260",
-   "address": "0x3ce2c4",
-   "emitted": [
+   "first_address": "0x3ce2c4",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_003ce330",
-   "address": "0x3ce358",
-   "emitted": [
+   "first_address": "0x3ce358",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_003ce550",
-   "address": "0x3cf418",
-   "emitted": [
+   "first_address": "0x3cf418",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": {
-     "count": 263,
-     "targets": 10,
+     "sites_ran": 1,
+     "dispatches": 263,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_003cf4e0",
-   "address": "0x3cf534",
-   "emitted": [
+   "first_address": "0x3cf534",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_003cf588",
-   "address": "0x3cf5dc",
-   "emitted": [
+   "first_address": "0x3cf5dc",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_003cf700",
-   "address": "0x3cf7ec",
-   "emitted": [
+   "first_address": "0x3cf7ec",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_003cfae0",
-   "address": "0x3cfc40",
-   "emitted": [
+   "first_address": "0x3cfc40",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_003cfda0",
-   "address": "0x3cfdf8",
-   "emitted": [
+   "first_address": "0x3cfdf8",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 6,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_003cffc0",
-   "address": "0x3cfff8",
-   "emitted": [
+   "first_address": "0x3cfff8",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_003d00d8",
-   "address": "0x3d0104",
-   "emitted": [
+   "first_address": "0x3d0104",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "fn_003d0268",
-   "address": "0x3d0354",
-   "emitted": [
+   "first_address": "0x3d0354",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_003d0860",
-   "address": "0x3d08ec",
-   "emitted": [
+   "first_address": "0x3d08ec",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": {
-     "count": 1,
-     "targets": 1,
+     "sites_ran": 1,
+     "dispatches": 1,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_003d0c80",
-   "address": "0x3d0d00",
-   "emitted": [
+   "first_address": "0x3d0d00",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 3,
    "ran": {
-    "switch-branches": null
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 1,
+     "missing": 0
+    }
    }
   },
   {
    "owner": "FUN_003d2558",
-   "address": "0x3d25ac",
-   "emitted": [
+   "first_address": "0x3d25ac",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_003d40d8",
-   "address": "0x3d452c",
-   "emitted": [
+   "first_address": "0x3d452c",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_003d5ab8",
-   "address": "0x3d5b3c",
-   "emitted": [
+   "first_address": "0x3d5b3c",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_003d5ca0",
-   "address": "0x3d5d80",
-   "emitted": [
+   "first_address": "0x3d5d80",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_003d6600",
-   "address": "0x3d6720",
-   "emitted": [
+   "first_address": "0x3d6720",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_003d7830",
-   "address": "0x3d7884",
-   "emitted": [
+   "first_address": "0x3d7884",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_003e1158",
-   "address": "0x3e11d8",
-   "emitted": [
+   "first_address": "0x3e11d8",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_003e1358",
-   "address": "0x3e14d0",
-   "emitted": [
+   "first_address": "0x3e14d0",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_003e6660",
-   "address": "0x3e6688",
-   "emitted": [
+   "first_address": "0x3e6688",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": {
-     "count": 1,
-     "targets": 1,
+     "sites_ran": 1,
+     "dispatches": 1,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_003e80a0",
-   "address": "0x3e8260",
-   "emitted": [
+   "first_address": "0x3e8260",
+   "first_emitted": [
     "IndirectJump"
    ],
+   "indirect_sites": 5,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_003e86d0",
-   "address": "0x3e87a0",
-   "emitted": [
+   "first_address": "0x3e87a0",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_003e9568",
-   "address": "0x3e95c8",
-   "emitted": [
+   "first_address": "0x3e95c8",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_003e9ec8",
-   "address": "0x3e9efc",
-   "emitted": [
+   "first_address": "0x3e9efc",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 3,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_003ea1a0",
-   "address": "0x3ea1fc",
-   "emitted": [
+   "first_address": "0x3ea1fc",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 3,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_003ea6c8",
-   "address": "0x3ea8e8",
-   "emitted": [
+   "first_address": "0x3ea8e8",
+   "first_emitted": [
     "IndirectJump"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_003efd28",
-   "address": "0x3efd78",
-   "emitted": [
+   "first_address": "0x3efd78",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 3,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_003f07f8",
-   "address": "0x3f08d0",
-   "emitted": [
+   "first_address": "0x3f08d0",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_003f0a58",
-   "address": "0x3f0dfc",
-   "emitted": [
+   "first_address": "0x3f0dfc",
+   "first_emitted": [
     "IndirectJump"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "fn_003f5b40",
-   "address": "0x3f5e0c",
-   "emitted": [
+   "first_address": "0x3f5e0c",
+   "first_emitted": [
     "IndirectJump"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_003f81b8",
-   "address": "0x3f8518",
-   "emitted": [
+   "first_address": "0x3f8518",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_003feeb0",
-   "address": "0x3ff0c0",
-   "emitted": [
+   "first_address": "0x3ff0c0",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_003ff148",
-   "address": "0x3ff1c4",
-   "emitted": [
+   "first_address": "0x3ff1c4",
+   "first_emitted": [
     "IndirectJump"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_003ff348",
-   "address": "0x3ff580",
-   "emitted": [
+   "first_address": "0x3ff580",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_003ff608",
-   "address": "0x3ff6e0",
-   "emitted": [
+   "first_address": "0x3ff6e0",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 6,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_003ffa00",
-   "address": "0x3ffacc",
-   "emitted": [
+   "first_address": "0x3ffacc",
+   "first_emitted": [
     "IndirectJump"
    ],
+   "indirect_sites": 4,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00400f38",
-   "address": "0x401038",
-   "emitted": [
+   "first_address": "0x401038",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_004010e8",
-   "address": "0x401170",
-   "emitted": [
+   "first_address": "0x401170",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00401210",
-   "address": "0x401288",
-   "emitted": [
+   "first_address": "0x401288",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00401ad8",
-   "address": "0x401b1c",
-   "emitted": [
+   "first_address": "0x401b1c",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": {
-     "count": 944220,
-     "targets": 5,
+     "sites_ran": 1,
+     "dispatches": 944220,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_004022d8",
-   "address": "0x40238c",
-   "emitted": [
+   "first_address": "0x40238c",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00403bb0",
-   "address": "0x403bdc",
-   "emitted": [
+   "first_address": "0x403bdc",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00409208",
-   "address": "0x409e3c",
-   "emitted": [
+   "first_address": "0x409e3c",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_0040ada0",
-   "address": "0x40b288",
-   "emitted": [
+   "first_address": "0x40b288",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_0040b348",
-   "address": "0x40bae8",
-   "emitted": [
+   "first_address": "0x40bae8",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_0040c4b8",
-   "address": "0x40c628",
-   "emitted": [
+   "first_address": "0x40c628",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": {
-     "count": 24520,
-     "targets": 1,
+     "sites_ran": 1,
+     "dispatches": 24520,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_0040d718",
-   "address": "0x40d728",
-   "emitted": [
+   "first_address": "0x40d728",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_0040d7a8",
-   "address": "0x40d7bc",
-   "emitted": [
+   "first_address": "0x40d7bc",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00410290",
-   "address": "0x4102e4",
-   "emitted": [
+   "first_address": "0x4102e4",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 4,
    "ran": {
     "switch-branches": {
-     "count": 18688,
-     "targets": 1,
+     "sites_ran": 4,
+     "dispatches": 74752,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_00410448",
-   "address": "0x4104f4",
-   "emitted": [
+   "first_address": "0x4104f4",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_004108c8",
-   "address": "0x410944",
-   "emitted": [
+   "first_address": "0x410944",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_004126b0",
-   "address": "0x412768",
-   "emitted": [
+   "first_address": "0x412768",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 4,
    "ran": {
-    "switch-branches": null
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 2,
+     "missing": 0
+    }
    }
   },
   {
    "owner": "FUN_00415038",
-   "address": "0x4150bc",
-   "emitted": [
+   "first_address": "0x4150bc",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00416a80",
-   "address": "0x416ca0",
-   "emitted": [
+   "first_address": "0x416ca0",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 3,
    "ran": {
-    "switch-branches": null
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 1,
+     "missing": 0
+    }
    }
   },
   {
    "owner": "FUN_00417130",
-   "address": "0x417230",
-   "emitted": [
+   "first_address": "0x417230",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_004198d0",
-   "address": "0x419990",
-   "emitted": [
+   "first_address": "0x419990",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_0041ea90",
-   "address": "0x41eaf8",
-   "emitted": [
+   "first_address": "0x41eaf8",
+   "first_emitted": [
     "IndirectJump"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00420f78",
-   "address": "0x4210e8",
-   "emitted": [
+   "first_address": "0x4210e8",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00423e88",
-   "address": "0x423fa0",
-   "emitted": [
+   "first_address": "0x423fa0",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00424e18",
-   "address": "0x424fdc",
-   "emitted": [
+   "first_address": "0x424fdc",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_004250f8",
-   "address": "0x425230",
-   "emitted": [
+   "first_address": "0x425230",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00425268",
-   "address": "0x4254a0",
-   "emitted": [
+   "first_address": "0x4254a0",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00427820",
-   "address": "0x427998",
-   "emitted": [
+   "first_address": "0x427998",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": {
-     "count": 7,
-     "targets": 1,
+     "sites_ran": 2,
+     "dispatches": 14,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_00427f50",
-   "address": "0x427ff8",
-   "emitted": [
+   "first_address": "0x427ff8",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": {
-     "count": 7,
-     "targets": 1,
+     "sites_ran": 2,
+     "dispatches": 14,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_00428c48",
-   "address": "0x428cf0",
-   "emitted": [
+   "first_address": "0x428cf0",
+   "first_emitted": [
     "IndirectJump"
    ],
+   "indirect_sites": 3,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_0042bcb8",
-   "address": "0x42bcf4",
-   "emitted": [
+   "first_address": "0x42bcf4",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_0042bdb0",
-   "address": "0x42be18",
-   "emitted": [
+   "first_address": "0x42be18",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_0042c440",
-   "address": "0x42c518",
-   "emitted": [
+   "first_address": "0x42c518",
+   "first_emitted": [
     "IndirectJump"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_0042d0f8",
-   "address": "0x42d1a0",
-   "emitted": [
+   "first_address": "0x42d1a0",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_0042d338",
-   "address": "0x42d478",
-   "emitted": [
+   "first_address": "0x42d478",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_0042d898",
-   "address": "0x42d9c4",
-   "emitted": [
+   "first_address": "0x42d9c4",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": {
-     "count": 147,
-     "targets": 1,
+     "sites_ran": 1,
+     "dispatches": 147,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_00430290",
-   "address": "0x4304fc",
-   "emitted": [
+   "first_address": "0x4304fc",
+   "first_emitted": [
     "IndirectJump"
    ],
+   "indirect_sites": 4,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00433188",
-   "address": "0x43333c",
-   "emitted": [
+   "first_address": "0x43333c",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00433378",
-   "address": "0x433758",
-   "emitted": [
+   "first_address": "0x433758",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00437b98",
-   "address": "0x438004",
-   "emitted": [
+   "first_address": "0x438004",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_0043c130",
-   "address": "0x43c628",
-   "emitted": [
+   "first_address": "0x43c628",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_0043fcb8",
-   "address": "0x43fcc8",
-   "emitted": [
+   "first_address": "0x43fcc8",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_004430d0",
-   "address": "0x4430fc",
-   "emitted": [
+   "first_address": "0x4430fc",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00443128",
-   "address": "0x4431b4",
-   "emitted": [
+   "first_address": "0x4431b4",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": {
-     "count": 125,
-     "targets": 125,
+     "sites_ran": 1,
+     "dispatches": 125,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_00445660",
-   "address": "0x445670",
-   "emitted": [
+   "first_address": "0x445670",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00445718",
-   "address": "0x445728",
-   "emitted": [
+   "first_address": "0x445728",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00445740",
-   "address": "0x445750",
-   "emitted": [
+   "first_address": "0x445750",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00445768",
-   "address": "0x44577c",
-   "emitted": [
+   "first_address": "0x44577c",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_004457f8",
-   "address": "0x445808",
-   "emitted": [
+   "first_address": "0x445808",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00445820",
-   "address": "0x445884",
-   "emitted": [
+   "first_address": "0x445884",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 3,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "fn_00445998",
-   "address": "0x4459f8",
-   "emitted": [
+   "first_address": "0x4459f8",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "fn_00445a40",
-   "address": "0x445a74",
-   "emitted": [
+   "first_address": "0x445a74",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "fn_00445ab0",
-   "address": "0x445adc",
-   "emitted": [
+   "first_address": "0x445adc",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00445be0",
-   "address": "0x445cc0",
-   "emitted": [
+   "first_address": "0x445cc0",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_004461f8",
-   "address": "0x44625c",
-   "emitted": [
+   "first_address": "0x44625c",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_004463d8",
-   "address": "0x446444",
-   "emitted": [
+   "first_address": "0x446444",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00448ee8",
-   "address": "0x448f0c",
-   "emitted": [
+   "first_address": "0x448f0c",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_0044e0b0",
-   "address": "0x44e0e8",
-   "emitted": [
+   "first_address": "0x44e0e8",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00451038",
-   "address": "0x451108",
-   "emitted": [
+   "first_address": "0x451108",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00452a90",
-   "address": "0x452b58",
-   "emitted": [
+   "first_address": "0x452b58",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00452c00",
-   "address": "0x452d90",
-   "emitted": [
+   "first_address": "0x452d90",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00452fc8",
-   "address": "0x453018",
-   "emitted": [
+   "first_address": "0x453018",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00453040",
-   "address": "0x453090",
-   "emitted": [
+   "first_address": "0x453090",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00458378",
-   "address": "0x458420",
-   "emitted": [
+   "first_address": "0x458420",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 2,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_0045bbf8",
-   "address": "0x45bcf8",
-   "emitted": [
+   "first_address": "0x45bcf8",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_0045dd10",
-   "address": "0x45dd94",
-   "emitted": [
+   "first_address": "0x45dd94",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_0045ddc8",
-   "address": "0x45de9c",
-   "emitted": [
+   "first_address": "0x45de9c",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_0045e5c0",
-   "address": "0x45e6a0",
-   "emitted": [
+   "first_address": "0x45e6a0",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 4,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_0045e9d0",
-   "address": "0x45ea54",
-   "emitted": [
+   "first_address": "0x45ea54",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_0045ead8",
-   "address": "0x45eb88",
-   "emitted": [
+   "first_address": "0x45eb88",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 3,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_0045eea0",
-   "address": "0x45eeec",
-   "emitted": [
+   "first_address": "0x45eeec",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_0045f1c8",
-   "address": "0x45f2e0",
-   "emitted": [
+   "first_address": "0x45f2e0",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": {
-     "count": 8,
-     "targets": 1,
+     "sites_ran": 1,
+     "dispatches": 8,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_0045f7a0",
-   "address": "0x45f900",
-   "emitted": [
+   "first_address": "0x45f900",
+   "first_emitted": [
     "IndirectJump"
    ],
+   "indirect_sites": 5,
    "ran": {
-    "switch-branches": null
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 75,
+     "missing": 0
+    }
    }
   },
   {
    "owner": "FUN_00468c78",
-   "address": "0x468cf4",
-   "emitted": [
+   "first_address": "0x468cf4",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00468e50",
-   "address": "0x468f04",
-   "emitted": [
+   "first_address": "0x468f04",
+   "first_emitted": [
     "IndirectJump"
    ],
+   "indirect_sites": 23,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_0046a338",
-   "address": "0x46a450",
-   "emitted": [
+   "first_address": "0x46a450",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_0046a830",
-   "address": "0x46a89c",
-   "emitted": [
+   "first_address": "0x46a89c",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "fn_0046ba18",
-   "address": "0x46ba38",
-   "emitted": [
+   "first_address": "0x46ba38",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_0046df80",
-   "address": "0x46e0a4",
-   "emitted": [
+   "first_address": "0x46e0a4",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": {
-     "count": 22,
-     "targets": 1,
+     "sites_ran": 1,
+     "dispatches": 22,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_0046e738",
-   "address": "0x46e75c",
-   "emitted": [
+   "first_address": "0x46e75c",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": {
-     "count": 22,
-     "targets": 1,
+     "sites_ran": 1,
+     "dispatches": 22,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_0046e9f0",
-   "address": "0x46ea60",
-   "emitted": [
+   "first_address": "0x46ea60",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "fn_0046efc0",
-   "address": "0x46f0d0",
-   "emitted": [
+   "first_address": "0x46f0d0",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00470ae8",
-   "address": "0x470b00",
-   "emitted": [
+   "first_address": "0x470b00",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00472308",
-   "address": "0x472320",
-   "emitted": [
+   "first_address": "0x472320",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00472a28",
-   "address": "0x472a40",
-   "emitted": [
+   "first_address": "0x472a40",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_004732b8",
-   "address": "0x4732c8",
-   "emitted": [
+   "first_address": "0x4732c8",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00473a68",
-   "address": "0x473a80",
-   "emitted": [
+   "first_address": "0x473a80",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "fn_00474150",
-   "address": "0x47415c",
-   "emitted": [
+   "first_address": "0x47415c",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": {
-     "count": 2,
-     "targets": 2,
+     "sites_ran": 1,
+     "dispatches": 2,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_00474598",
-   "address": "0x474608",
-   "emitted": [
+   "first_address": "0x474608",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 7,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00475d20",
-   "address": "0x475d38",
-   "emitted": [
+   "first_address": "0x475d38",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_004784c8",
-   "address": "0x478514",
-   "emitted": [
+   "first_address": "0x478514",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": {
-     "count": 1,
-     "targets": 1,
+     "sites_ran": 1,
+     "dispatches": 1,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_00478800",
-   "address": "0x478818",
-   "emitted": [
+   "first_address": "0x478818",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_00478aa8",
-   "address": "0x478ae8",
-   "emitted": [
+   "first_address": "0x478ae8",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": {
-     "count": 17113,
-     "targets": 1,
+     "sites_ran": 1,
+     "dispatches": 17113,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_004796c0",
-   "address": "0x4796d8",
-   "emitted": [
+   "first_address": "0x4796d8",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_0047a9d0",
-   "address": "0x47a9e8",
-   "emitted": [
+   "first_address": "0x47a9e8",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_0047b160",
-   "address": "0x47b178",
-   "emitted": [
+   "first_address": "0x47b178",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_0047bbe8",
-   "address": "0x47bc00",
-   "emitted": [
+   "first_address": "0x47bc00",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "fn_0047c398",
-   "address": "0x47c3ac",
-   "emitted": [
+   "first_address": "0x47c3ac",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_0047e470",
-   "address": "0x47e488",
-   "emitted": [
+   "first_address": "0x47e488",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_0047e998",
-   "address": "0x47e9ac",
-   "emitted": [
+   "first_address": "0x47e9ac",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": {
-     "count": 1,
-     "targets": 1,
+     "sites_ran": 1,
+     "dispatches": 1,
      "missing": 0
     }
    }
   },
   {
    "owner": "FUN_0047f680",
-   "address": "0x47f698",
-   "emitted": [
+   "first_address": "0x47f698",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_0047f960",
-   "address": "0x47f978",
-   "emitted": [
+   "first_address": "0x47f978",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }
   },
   {
    "owner": "FUN_0047fbf8",
-   "address": "0x47fc08",
-   "emitted": [
+   "first_address": "0x47fc08",
+   "first_emitted": [
     "IndirectCall"
    ],
+   "indirect_sites": 1,
    "ran": {
     "switch-branches": null
    }

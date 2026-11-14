@@ -100,9 +100,10 @@ tests `e908526f...`). The session procedure is [HARDWARE.md](HARDWARE.md).
 - [x] No runtime exception, unlisted resume or unsupported syscall in any final log.
 - [x] M02's 561 unhandled-instruction events: all compile to a throw; none executed in the nine final Switch logs or
   the reference (`unhandled_classification.json`).
-- [x] M02's indirect-fallback sites (1,196 warnings = 598 sites, one per owner): all compile to a runtime dispatch;
-  the Switch branch trace on the boot route plus a save ran 129 of them, every target registered, and 469 were not
-  reached on that route (`indirect_classification.json`).
+- [x] M02's indirect-fallback owners (1,196 warnings = 598 per-owner promotions, each reported twice; 1,370 indirect
+  sites in them, all compiled to a runtime dispatch): on the Switch branch trace of the boot route plus a save, 148
+  owners ran an indirect dispatch, every target registered, and 450 were not reached on that route
+  (`indirect_classification.json`).
 - [x] Generator entry-list completeness for the running game: no missing-target or unlisted-resume report in any final
   Switch log or the reference; the trace saw 234 indirect sites and 12,241,707 dispatches with no missing target.
 

@@ -58,16 +58,18 @@ would have caught both objects the first Switch sessions lost (`vcs_overrides.o`
 - `python tools/classify_unhandled.py build/m04/gen-source/generated/ee docs/milestones/M04/unhandled_classification.json`
   with the final Switch logs (both boots, files, focus, close) and the desktop reference: all 561 of M02's
   unhandled-instruction events in 43 owners compile to a throw (`without_throw: 0`; 499 SPECIAL, 45 COP2, 15 COP0
-  CO-OP, 2 COP0 format); none executed in any of the six logs (`executed_per_log` all 0). An executed site ends the
+  CO-OP, 2 COP0 format); none executed in any of the ten logs (`executed_per_log` all 0). An executed site ends the
   game thread with its address in the log; every run reached its own end. Logs: `m04-boot`, `-2`, `-3`, `m04-files`,
   `m04-save` twice, `m04-branches`, `m04-focus`, `m04-close` and the desktop reference.
 - `python tools/classify_indirect.py build/m04/gen-source/generated/ee docs/milestones/M04/indirect_classification.json
   --trace switch-branches=<m04-branches log> --log ...` (the same logs): M02's 1,196 control-flow warnings are 598
-  sites (each reported twice), one per owner function; every one compiles to `dispatchGuestBranch` with the computed
-  target (554 indirect calls, 44 indirect jumps, `without_dispatch: 0`). On the traced Switch route (boot plus a save,
-  `PS2X_FAST_DISPATCH=0`, `VCS_NX_BRANCH_TRACE=1`) 129 of them ran, all with every target in the function table
-  (`warned_sites_with_missing_targets: 0`); 469 were not reached on the route; 105 other indirect sites ran too, also
-  with no missing target (234 sites, 12,241,707 indirect dispatches, `missing=0`). Entry-list completeness for the
+  indirect-fallback promotions, one per owner function (ps2xRecomp's `recordIndirectFallbackPromotion`), each reported
+  twice; an event keeps only the owner's first jr / jalr. The 598 owners hold 1,370 indirect sites, every one compiled
+  to `dispatchGuestBranch` with the computed target (`without_dispatch: 0`). The tool maps each traced site to its
+  generated owner (one function per file). On the traced Switch route (boot plus a save, `PS2X_FAST_DISPATCH=0`,
+  `VCS_NX_BRANCH_TRACE=1`) 148 owners ran an indirect dispatch, all with every target in the function table
+  (`owners_with_missing_targets: 0`), and 450 were not reached; all 234 traced sites lie in these owners (12,241,707
+  indirect dispatches, `missing=0`). The second independent review's own owner mapping gave the same 148 / 450. Entry-list completeness for the
   running game: no `[guest-branch:missing-target]` report (any branch kind whose target is not registered) and no
   `[guest-branch:unlisted-resume]` report (an unlisted mid-function entry) in any of the nine final Switch logs or the
   desktop reference. The tool exits 0.
@@ -127,6 +129,8 @@ settings. Without the file the game starts as a player's normal run.
 - Startup failures exercised on hardware: the bad configuration after SDL started (system error dialog) and, in M01,
   a failure before SDL (console screen). An ELF SHA-1 mismatch, a missing manifest and initialize / loadELF failures
   were reviewed in code only.
-- The indirect-site trace covers the boot route and a save; sites not reached there (469 of 598) stay unclassified
+- The indirect-site trace covers the boot route and a save; owners not reached there (450 of 598) stay unclassified
   until a later milestone's routes run them with the trace.
+- A profiled test run still resolves the player's default `GamePaths` first (`core.cpp`), which creates the empty
+  `mc0`, `mc1`, `backups` and `cache` folders in `userdata` if they are missing; nothing is written into them.
 - Only the second card's folder (`mc1`) and the cache were created, never written: the game saves to the first card.

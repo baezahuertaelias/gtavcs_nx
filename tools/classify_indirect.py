@@ -2,10 +2,12 @@
 
     python tools/classify_indirect.py <generated-ee-dir> <out.json> --trace NAME=PATH [--trace ...] [--log NAME=PATH ...]
 
-For every 'control-flow' warning in docs/milestones/M02/generation_metadata.json (a jr / jalr whose targets the
-generator could not list; the generator reports each such site twice, so 1,196 events are 598 sites): the owner
-function, the address and what the generator emitted there (the
-`dispatchGuestBranch` call with the computed target and its GuestBranchKind). Each --trace is a Switch game log of a
+Each 'control-flow' warning in docs/milestones/M02/generation_metadata.json is an indirect-fallback promotion of one
+owner function (ps2xRecomp's RecompilerReporter::recordIndirectFallbackPromotion): the function has jr / jalr whose
+targets the generator could not list, and the event keeps only the first one's address. The generator reports each
+promotion twice, so 1,196 events are 598 owners. For each owner this lists every indirect dispatch the generator
+emitted in its file (`dispatchGuestBranch` with the computed target, IndirectJump / IndirectCall) and classifies the
+owner against the trace: ran when any of its indirect sites ran. Each --trace is a Switch game log of a
 run with VCS_NX_BRANCH_TRACE=1 and PS2X_FAST_DISPATCH=0 (tests/switch/m04-branches.cfg): its `[branch-trace] site=`
 lines (src/switch/branch_trace.cpp) say which indirect sites ran, how often, how many distinct targets they reached and
 how many of those were missing from the function table. Each --log (and each trace) is also searched for the runtime's
@@ -53,10 +55,17 @@ def main():
     for e in events:
         unique.setdefault((e["function"], e["address"]), e)
 
-    emitted = collections.defaultdict(set)
+    emitted = collections.defaultdict(set)      # site address -> emitted kinds
+    owner_of = {}                               # indirect site address -> generated owner (one function per file)
+    owner_sites = collections.defaultdict(set)  # owner -> its indirect site addresses
     for path in sorted(args.generated.glob("*.cpp")):
+        owner = path.stem.split("_0x")[0]
         for match in DISPATCH.finditer(path.read_text(encoding="utf-8", errors="replace")):
-            emitted[int(match.group(1), 16)].add(match.group(2))
+            address = int(match.group(1), 16)
+            emitted[address].add(match.group(2))
+            if match.group(2) in ("IndirectJump", "IndirectCall"):
+                owner_of[address] = owner
+                owner_sites[owner].add(address)
 
     traces = {}
     for name, text in parse_pairs(args.trace):
@@ -74,50 +83,55 @@ def main():
     for name, text in parse_pairs(args.trace) + parse_pairs(args.log):
         reports[name] = {"missing_target": len(MISSING.findall(text)), "unlisted_resume": len(UNLISTED.findall(text))}
 
-    warned = set()
+    warned_owners = {e["function"] for e in unique.values()}
     rows, kinds = [], collections.Counter()
     for e in unique.values():
         address = int(e["address"], 16)
-        warned.add(address)
+        owner = e["function"]
         kind = sorted(emitted.get(address, {"(no dispatch found)"}))
         kinds[" / ".join(kind)] += 1
+        sites = sorted(owner_sites.get(owner, ()))
         ran = {}
         for name, trace in traces.items():
-            site = trace["sites"].get(address)
-            ran[name] = ({"count": site["count"], "targets": site["targets"], "missing": site["missing"]}
-                         if site else None)
-        rows.append({"owner": e["function"], "address": e["address"], "emitted": kind, "ran": ran})
+            hit = [trace["sites"][a] for a in sites if a in trace["sites"]]
+            ran[name] = ({"sites_ran": len(hit), "dispatches": sum(h["count"] for h in hit),
+                          "missing": sum(h["missing"] for h in hit)} if hit else None)
+        rows.append({"owner": owner, "first_address": e["address"], "first_emitted": kind,
+                     "indirect_sites": len(sites), "ran": ran})
 
-    owners = collections.Counter(r["owner"] for r in rows)
     per_trace = {}
     for name, trace in traces.items():
         hit = [r for r in rows if r["ran"][name]]
+        traced = set(trace["sites"])
         per_trace[name] = {
-            "warned_sites_ran": len(hit),
-            "warned_sites_not_reached": len(rows) - len(hit),
-            "warned_owners_ran": len({r["owner"] for r in hit}),
-            "warned_sites_with_missing_targets": sum(1 for r in hit if r["ran"][name]["missing"]),
-            "other_indirect_sites_ran": sum(1 for a in trace["sites"] if a not in warned),
+            "owners_ran": len(hit),
+            "owners_not_reached": len(rows) - len(hit),
+            "owners_with_missing_targets": sum(1 for r in hit if r["ran"][name]["missing"]),
+            "indirect_sites_of_warned_owners_ran": sum(r["ran"][name]["sites_ran"] for r in hit),
+            "traced_sites_outside_warned_owners": sum(1 for a in traced if owner_of.get(a) not in warned_owners),
+            "traced_sites_not_in_generated_code": sum(1 for a in traced if a not in owner_of),
             "trace_summary": trace["summary"],
         }
     summary = {
         "events": len(events),
-        "sites": len(rows),
-        "owners": len(owners),
-        "emitted_kinds": dict(kinds),
-        "without_dispatch": sum(1 for r in rows if r["emitted"] == ["(no dispatch found)"]),
+        "owners": len(rows),
+        "indirect_sites_in_owners": sum(r["indirect_sites"] for r in rows),
+        "first_address_emitted_kinds": dict(kinds),
+        "without_dispatch": sum(1 for r in rows if r["first_emitted"] == ["(no dispatch found)"]),
         "per_trace": per_trace,
         "runtime_reports": reports,
-        "reading": ("A warned site compiles to dispatchGuestBranch with the computed target, which looks it up in the "
-                    "function table. 'ran' is from the trace: sites that ran reached only registered targets when their "
-                    "'missing' is 0; sites not reached did not run on this route (the trace sees every indirect "
-                    "dispatch with PS2X_FAST_DISPATCH=0). No missing-target or unlisted-resume report in a log means "
-                    "the entry list held every branch target and resume point of that run."),
+        "reading": ("Each owner's indirect jr / jalr compile to dispatchGuestBranch with the computed target, which "
+                    "looks it up in the function table. An owner 'ran' when any of its indirect sites appears in the "
+                    "trace (which sees every indirect dispatch from generated code with PS2X_FAST_DISPATCH=0); its "
+                    "'missing' is 0 when every target it reached was registered. Owners not reached did not run an "
+                    "indirect dispatch on this route. No missing-target or unlisted-resume report in a log means the "
+                    "entry list held every branch target and resume point of that run."),
     }
-    args.out.write_text(json.dumps({"summary": summary, "owners": dict(owners.most_common()), "sites": rows},
+    args.out.write_text(json.dumps({"summary": summary, "owners": rows},
                                    indent=1) + "\n")
     print(json.dumps(summary, indent=2))
-    bad = summary["without_dispatch"] or any(t["warned_sites_with_missing_targets"] for t in per_trace.values()) or \
+    bad = summary["without_dispatch"] or any(t["owners_with_missing_targets"] or t["traced_sites_not_in_generated_code"]
+                                             for t in per_trace.values()) or \
         any(r["missing_target"] or r["unlisted_resume"] for r in reports.values())
     return 1 if bad else 0
 
