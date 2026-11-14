@@ -1,0 +1,47 @@
+{
+ "milestone": "M04",
+ "candidate_commit": "9657da996855e8e5c123e53e5ab0e0682353744a",
+ "verdict": "APPROVE",
+ "reviewer_id": "m04_independent_review_3",
+ "independent": true,
+ "unresolved_findings": [],
+ "checks": [
+  "Earlier independent reviews of M04 requested changes: review 1 (023e3e0) on the M04-12 indirect-fallback owners and entry-list completeness and on M04-11's optional profile; review 2 (a681377) on the owner classification keyed on each promotion's first address. This third, fresh reviewer reviewed candidate 9657da9.",
+  "HEAD = 9657da996855e8e5c123e53e5ab0e0682353744a and git status --short was empty at the start and at the end",
+  "Read the full wording of M04-01..13 in docs/MILESTONES.md against TASKS.md and VERIFICATION.md, focusing on M04-11 and M04-12 and on the changes since a681377 (classify_indirect.py, CMakeLists comment, TASKS/VERIFICATION/evidence.json)",
+  "Review 1 (b) is still fixed: src/core/run_config.cpp:161-164 rejects an nxrun.cfg without a profile; host run_config tests pass",
+  "Upstream ps2xRecomp recorder_reporter.cpp:128-146 and control_flow_analyzer.cpp:401-412 confirm each control-flow event is one owner's indirect-fallback promotion and keeps only jumpAddresses.front(); metadata has 1,196 events = 598 (function, address) pairs, each exactly twice, in 598 distinct functions",
+  "Own owner mapping, keyed by address rather than file-name stem: 10,383 generated function files, one PS2_GUEST_CC function each; no indirect site address appears in two files; all 598 warned first addresses map to exactly one file of the same name; the 5 duplicate name stems (AddDmacHandler, AddIntcHandler, RFU091, RFU116_SetSyscall, thunk_FUN_00459c00) are not warned owners",
+  "Own count: 1,370 IndirectJump/IndirectCall dispatch sites in the 598 owner files (1,746 in all generated code); the trace has 234 sites, 12,241,707 dispatches, missing=0; all 234 lie in warned owners; 148 owners ran an indirect dispatch and 450 did not; only 129 owners' first addresses ran, which explains the old 129/469 figure",
+  "The 376 indirect sites outside the warned owners (345 functions) are dispatchGuestBranch fallbacks after jump-table switch statements (e.g. the default: case in FUN_00106918); none ran, which fits",
+  "Trace method: with PS2X_FAST_DISPATCH=0, ps2_runtime.cpp:831-834 sets m_eeClock to null, so the inline dispatcher in ps2_runtime.h:660-684 always calls dispatchGuestBranchSlow; CMakeLists.txt:182 wraps it; the branches log shows the env lines, the save, an orderly stop and runtime destroyed",
+  "classify_indirect.py rerun with the committed log names reproduces docs/milestones/M04/indirect_classification.json byte-for-byte (cmp identical), exit code 0",
+  "sha256 of every final gtavcs.log and results.txt matches HARDWARE_RESULTS.md (boot, boot-2, boot-3, files, save, save-2, branches, focus, close, badcfg; runtime-tests f13918d6...)",
+  "transcript.txt: all 10 runs report nro sha256=96091d30..., and the runtime tests local sha256=e908526f...",
+  "All 11 crash-before/crash-after listing pairs are identical; all 23 crash listings have one hash",
+  "m04_compare.py, reference against boot-2 and against boot-3: 'both reached outdoors with a follow camera: True'",
+  "Contract: no change to upstream or .gitmodules since main; no ISO, ELF, NRO, zip or generated/ files tracked; the classification JSONs hold owner names, addresses, kinds and counts only; CI builds only --public; no rendering, gameplay or FPS acceptance is claimed",
+  "Review 2's non-blocking notes are fixed: the nx_entry_check comment (CMakeLists.txt:144-146), 'ten logs' in VERIFICATION.md, and the empty default userdata folders, now listed as a limitation"
+ ],
+ "limitations": [
+  "Did not contact the Switch; hardware claims are judged from the retained private evidence in build/evidence/M04 and its hashes",
+  "The build reproduction ran in the existing build tree (ninja: no work to do), not from a clean directory",
+  "GitHub CI status for this commit was not checked",
+  "The 450 owners that ran no indirect dispatch are classified only for the boot-plus-save route, as VERIFICATION.md's limitations say; later routes need the trace",
+  "I did not reread every line of M04-01..10 and M04-13 code end to end; I relied on the evidence trail, the gate and the tests, and focused on the changes since a681377",
+  "Non-blocking, left for a later change so the reviewed candidate stays unchanged: tests/switch/m04-branches.cfg:4 names classify_unhandled.py instead of classify_indirect.py; TASKS.md and evidence.json say 450 owners 'not reached' where 'ran no indirect dispatch on the route' is meant; classify_indirect.py checks without_dispatch only at each owner's first address and finds owners by file-name stem; the 376 jump-table fallback sites outside the warned owners (none ran) are not described in VERIFICATION.md"
+ ],
+ "observed_test_results": [
+  "python3 tools/milestone_gate.py M04 -> 'PASS M04: eligible to request independent review' (rc 0)",
+  "python3 tools/validate_project.py -> 'PASS foundation: 179 unique tasks, 16 milestones, ...' (rc 0)",
+  "PYTHONPATH=tools python3 -m unittest discover -s tools -p 'test_*.py' -> Ran 28 tests, OK",
+  "python3 tools/run_core_host_tests.py <scratch>/host-tests -> PASS run_config and host_fs_logic, sanitized and optimized (rc 0)",
+  "python3 tools/build_game.py -> 'PASS private game NRO 96091d30b06b3bf4e3345ed24e480231a3b724f8c4ecbccf3d7603903bad9361' (rc 0)",
+  "python3 tools/build_core_tests.py -> runtime tests NRO e908526fbd7647879e4aacdc512ebe4655c82223c602aab4b9a22574cd571d23, PASS (rc 0)",
+  "python3 tools/build_game.py --public -> 'PASS public core library compiled; no game code linked, no NRO' (rc 0)",
+  "python3 tools/classify_indirect.py ... --trace switch-branches=m04-branches log, plus 9 --log files -> rc 0; owners_ran 148, owners_not_reached 450, indirect_sites_in_owners 1370, missing 0, all runtime_reports 0; output identical to the committed JSON",
+  "Own script review3/mymap.py -> 598/598 mapped, 1370 sites, 148 ran / 450 not, 129 first addresses ran, 0 trace sites outside owners or outside generated code",
+  "python3 tools/m04_compare.py reference vs m04-boot-2 and vs m04-boot-3 -> both 'both reached outdoors with a follow camera: True'",
+  "sha256sum of the hw-session logs and results -> all match HARDWARE_RESULTS.md; cmp crash-before/after -> 11/11 identical"
+ ]
+}

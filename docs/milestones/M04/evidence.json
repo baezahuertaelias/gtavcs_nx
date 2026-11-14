@@ -1,0 +1,140 @@
+{
+ "M04-01": [
+  {
+   "path": "src/core/core.cpp",
+   "result": "gtavcs_core_boot/_frame/_shutdown implement src/core.h on overlay 0007's runBegin/runFrame/runEnd; src/main.c owns the loop"
+  },
+  {
+   "path": "docs/milestones/M04/VERIFICATION.md",
+   "result": "Candidate link map: core_stub_linked=false, generated_linked=true (build_game.py at clean d68d19a and 8e8f6b3, NRO 15b07bae...)"
+  },
+  {
+   "path": "docs/milestones/M04/HARDWARE_RESULTS.md",
+   "result": "Every Switch run logs 'SDL2 2.28.5 adopted main.c's window': one window and GL context"
+  }
+ ],
+ "M04-02": [
+  {
+   "path": "docs/milestones/M04/VERIFICATION.md",
+   "result": "All 42 functions declared in upstream platform.h are defined in src/platform/platform_switch_sdl2.cpp"
+  },
+  {
+   "path": "src/platform/platform_switch_sdl2.cpp",
+   "result": "Desktop-only operations accepted with no effect and logged (mouse capture)"
+  }
+ ],
+ "M04-03": [
+  {
+   "path": "docs/milestones/M04/VERIFICATION.md",
+   "result": "Link map holds libSDL2.a only, no SDL3 symbol; no SDL3 in the game build's compile commands"
+  },
+  {
+   "path": "docs/milestones/M04/HARDWARE_RESULTS.md",
+   "result": "SDL2 events, controller mapping, 48 kHz stereo audio paused and resumed across HOME and sleep on the Switch"
+  }
+ ],
+ "M04-04": [
+  {
+   "path": "docs/milestones/M04/VERIFICATION.md",
+   "result": "Boot order as upstream main(): early IoPaths, UI callbacks, initialize, loadELF, final IoPaths without a disc image, installHooks, self-test, runBegin; FolderDisc mapped before initialize, closed after the runtime"
+  },
+  {
+   "path": "tools/build_game.py",
+   "result": "Generated archive linked whole-archive; unlinked_constructors=[] (every self-registering member linked), refused otherwise"
+  }
+ ],
+ "M04-05": [
+  {
+   "path": "docs/milestones/M04/TASKS.md",
+   "result": "applyVcs through the override registry at loadELF, then launcher::installHooks (rig, trainer, input, volume, game info, setting/menu); UI callbacks before initialize"
+  },
+  {
+   "path": "docs/milestones/M04/HARDWARE_RESULTS.md",
+   "result": "Same [menu]/[sound]/[iop]/[input]/[movie] lines as the reference; gameinfo, soundstate, menustate, setting answer over the schedule, no desktop hotkey"
+  }
+ ],
+ "M04-06": [
+  {
+   "path": "docs/milestones/M04/HARDWARE_RESULTS.md",
+   "result": "threads_created=6, live_threads 2/4/2 in every booted run; no deadlock or unlisted resume across two boots, two files runs, two saves, HOME, sleep and close"
+  }
+ ],
+ "M04-07": [
+  {
+   "path": "docs/milestones/M04/boot_os_audit.json",
+   "result": "Every desktop_os/thread_time candidate compiled into the candidate NRO ruled; unresolved 0; 20 std::thread sites with owner and end"
+  },
+  {
+   "path": "docs/milestones/M04/VERIFICATION.md",
+   "result": "Audit rerun on the candidate's compile commands: unchanged; watchdog and profiler not started, logged"
+  }
+ ],
+ "M04-08": [
+  {
+   "path": "src/core/core.cpp",
+   "result": "Shutdown: game thread joined, render worker/platform stopped, stream reader stopped, setImage(nullptr), runtime destroyed, folder disc closed"
+  },
+  {
+   "path": "docs/milestones/M04/HARDWARE_RESULTS.md",
+   "result": "Those lines in order in every Switch run, including the close from HOME; no std::_Exit on the stop path"
+  }
+ ],
+ "M04-09": [
+  {
+   "path": "docs/milestones/M04/HARDWARE_RESULTS.md",
+   "result": "Folder-disc reads (file_opens 145, iso_opens 0), game_frames rising from 0, native sound driver, emulated IOP off as on the desktop, player from 5 s, outdoors with follow camera, clock advancing, menustate ok"
+  }
+ ],
+ "M04-10": [
+  {
+   "path": "docs/milestones/M04/HARDWARE_RESULTS.md",
+   "result": "stop reason=seconds and clean shutdown in every timed run; bad configuration named in the system error dialog, no crash; HOME and sleep suspensions with progress resuming; close from HOME orderly; repeated boots and saves with unchanged thread counts and no new crash report"
+  }
+ ],
+ "M04-11": [
+  {
+   "path": "src/core/run_config.cpp",
+   "result": "Bounded schedules (lines, bytes, commands, env, seconds); env limited to VCS_/PS2X_ minus control socket, hidden mode and data folder; a file without a profile is refused; refusals name the line"
+  },
+  {
+   "path": "docs/milestones/M04/HARDWARE_RESULTS.md",
+   "result": "Unknown setting and unknown command answer status=error reply=\"error ...\" on the Switch and the run carries on; results under userdata/tests/<profile>"
+  },
+  {
+   "path": "docs/milestones/M04/VERIFICATION.md",
+   "result": "run_config host tests PASS sanitized and optimized, including the empty file and commands without a profile refused"
+  }
+ ],
+ "M04-12": [
+  {
+   "path": "docs/milestones/M04/HARDWARE_RESULTS.md",
+   "result": "m04_compare.py: reference and both Switch boots reach outdoors with a follow camera, 0 errors each; no exception, unlisted resume or unsupported syscall in any final log"
+  },
+  {
+   "path": "docs/milestones/M04/unhandled_classification.json",
+   "result": "561 events in 43 owners all compile to a throw; executed 0 in five final Switch logs and the desktop reference"
+  },
+  {
+   "path": "docs/milestones/M04/indirect_classification.json",
+   "result": "598 indirect-fallback owners (1,196 warnings, each reported twice) hold 1,370 indirect sites, all compiled to a runtime dispatch; Switch branch trace: 148 owners ran with every target registered, 450 not reached on the route; no missing-target or unlisted-resume report in any final log"
+  },
+  {
+   "path": "src/switch/branch_trace.cpp",
+   "result": "Link-time wrap of the generated code's out-of-line guest dispatcher, recording indirect sites only with VCS_NX_BRANCH_TRACE=1"
+  }
+ ],
+ "M04-13": [
+  {
+   "path": "docs/milestones/M04/HARDWARE_RESULTS.md",
+   "result": "cdImage=(none), iso_opens=0, ELF SHA-1 d1832508... checked, verify problems=0; the game's own save put the save folder, the card's and the save folder's .ps2x-order files and backups under userdata/tests/m04-save, each later save a backup beside the existing ones"
+  },
+  {
+   "path": "docs/milestones/M04/HARDWARE_RESULTS.md",
+   "result": "Switch host-fs suite failures=0: card format/unformat of a card holding saves, rename onto an existing name, replaceFile twice, second backup beside the first; settings saved three times"
+  },
+  {
+   "path": "src/core/core.cpp",
+   "result": "ELF SHA-1 against kElfSha1 naming the path; FolderDisc::verifyFiles on request; GamePaths only, no disc image path"
+  }
+ ]
+}

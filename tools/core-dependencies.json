@@ -6,5 +6,13 @@
     "license": "MIT",
     "use": "Candidate ARM intrinsic compatibility layer; numeric equivalence requires M02 differential tests",
     "header_sha256": "78632498a57bf7e080e84cb8d74c47ce93b204cece77eab79de2908eb8bc92ed"
+  },
+  "imgui": {
+    "repository": "https://github.com/ocornut/imgui.git",
+    "commit": "b1bcb12a624af7509894c8e77dd47416997777fa",
+    "tag": "v1.92.7-docking",
+    "license": "MIT",
+    "use": "Upstream's pinned Dear ImGui (src/platform/CMakeLists.txt) with its SDL2 input backend for the Switch platform layer",
+    "header_sha256": "fa17ec4535996829433a8124d257979b70cdf27ff4b3d89a1c66228646e2a694"
   }
 }

@@ -1,0 +1,7242 @@
+{
+ "summary": {
+  "events": 1196,
+  "owners": 598,
+  "indirect_sites_in_owners": 1370,
+  "first_address_emitted_kinds": {
+   "IndirectCall": 554,
+   "IndirectJump": 44
+  },
+  "without_dispatch": 0,
+  "per_trace": {
+   "switch-branches": {
+    "owners_ran": 148,
+    "owners_not_reached": 450,
+    "owners_with_missing_targets": 0,
+    "indirect_sites_of_warned_owners_ran": 234,
+    "traced_sites_outside_warned_owners": 0,
+    "traced_sites_not_in_generated_code": 0,
+    "trace_summary": {
+     "sites": 234,
+     "dispatches": 12241707,
+     "missing": 0
+    }
+   }
+  },
+  "runtime_reports": {
+   "switch-branches": {
+    "missing_target": 0,
+    "unlisted_resume": 0
+   },
+   "switch-boot": {
+    "missing_target": 0,
+    "unlisted_resume": 0
+   },
+   "switch-boot-2": {
+    "missing_target": 0,
+    "unlisted_resume": 0
+   },
+   "switch-boot-3": {
+    "missing_target": 0,
+    "unlisted_resume": 0
+   },
+   "switch-files": {
+    "missing_target": 0,
+    "unlisted_resume": 0
+   },
+   "switch-save": {
+    "missing_target": 0,
+    "unlisted_resume": 0
+   },
+   "switch-save-2": {
+    "missing_target": 0,
+    "unlisted_resume": 0
+   },
+   "switch-focus": {
+    "missing_target": 0,
+    "unlisted_resume": 0
+   },
+   "switch-close": {
+    "missing_target": 0,
+    "unlisted_resume": 0
+   },
+   "desktop-reference": {
+    "missing_target": 0,
+    "unlisted_resume": 0
+   }
+  },
+  "reading": "Each owner's indirect jr / jalr compile to dispatchGuestBranch with the computed target, which looks it up in the function table. An owner 'ran' when any of its indirect sites appears in the trace (which sees every indirect dispatch from generated code with PS2X_FAST_DISPATCH=0); its 'missing' is 0 when every target it reached was registered. Owners not reached did not run an indirect dispatch on this route. No missing-target or unlisted-resume report in a log means the entry list held every branch target and resume point of that run."
+ },
+ "owners": [
+  {
+   "owner": "FUN_00100ba0",
+   "first_address": "0x1013b4",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00101d30",
+   "first_address": "0x10269c",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 5,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00103440",
+   "first_address": "0x10346c",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00106ef0",
+   "first_address": "0x106f2c",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 3,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 3,
+     "dispatches": 86,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_00106fc8",
+   "first_address": "0x106fec",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00108128",
+   "first_address": "0x108208",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00108338",
+   "first_address": "0x1083f8",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 4,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_0010b500",
+   "first_address": "0x10b510",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 9,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_0011ca80",
+   "first_address": "0x11cad8",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 65,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_0011cc78",
+   "first_address": "0x11cd20",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 2,
+     "dispatches": 212,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_0011d910",
+   "first_address": "0x11d93c",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00120c40",
+   "first_address": "0x120c8c",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 76472,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_00120e38",
+   "first_address": "0x120f10",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 10,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 3,
+     "dispatches": 60878,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_00121688",
+   "first_address": "0x12190c",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00121c90",
+   "first_address": "0x121d10",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 3,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00122088",
+   "first_address": "0x122140",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00122e58",
+   "first_address": "0x122edc",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00122f08",
+   "first_address": "0x122f30",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00123578",
+   "first_address": "0x12359c",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 3,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 2,
+     "dispatches": 70348,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_00123658",
+   "first_address": "0x123674",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 30439,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_001237a0",
+   "first_address": "0x1237dc",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 30129,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_00123ba8",
+   "first_address": "0x123be4",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 3,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 30439,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_00123d88",
+   "first_address": "0x123f90",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 4,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_001240d8",
+   "first_address": "0x124108",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_001243e8",
+   "first_address": "0x124410",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00124540",
+   "first_address": "0x124570",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00124640",
+   "first_address": "0x12466c",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00124718",
+   "first_address": "0x124754",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00124818",
+   "first_address": "0x12488c",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_001248d8",
+   "first_address": "0x124920",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 3,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 23797,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_00124990",
+   "first_address": "0x1249b0",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00124a10",
+   "first_address": "0x124b18",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00125578",
+   "first_address": "0x125660",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00125830",
+   "first_address": "0x1258b4",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00125f78",
+   "first_address": "0x125f88",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 34353,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_00125fc0",
+   "first_address": "0x125fe4",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 1128,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_0012ae48",
+   "first_address": "0x12b0c0",
+   "first_emitted": [
+    "IndirectJump"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_0012b238",
+   "first_address": "0x12b4b0",
+   "first_emitted": [
+    "IndirectJump"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00131748",
+   "first_address": "0x131ab4",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00132f30",
+   "first_address": "0x133070",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00133398",
+   "first_address": "0x133440",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00133480",
+   "first_address": "0x133528",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00133568",
+   "first_address": "0x13366c",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00135b68",
+   "first_address": "0x135d70",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00135f90",
+   "first_address": "0x135ffc",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 11,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00136688",
+   "first_address": "0x1366c8",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00136748",
+   "first_address": "0x136788",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00136c10",
+   "first_address": "0x1370f0",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 15,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00138280",
+   "first_address": "0x138360",
+   "first_emitted": [
+    "IndirectJump"
+   ],
+   "indirect_sites": 6,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_0013a0a0",
+   "first_address": "0x13ac88",
+   "first_emitted": [
+    "IndirectJump"
+   ],
+   "indirect_sites": 15,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 5,
+     "dispatches": 10433,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_0014c308",
+   "first_address": "0x14c514",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 6,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_0014d070",
+   "first_address": "0x14d2b0",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 4,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_0014e370",
+   "first_address": "0x14e3c4",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_0014fdf0",
+   "first_address": "0x14fe3c",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 10,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00150078",
+   "first_address": "0x150130",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00151928",
+   "first_address": "0x151a48",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00151a88",
+   "first_address": "0x151d98",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00152908",
+   "first_address": "0x152958",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 8,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00156710",
+   "first_address": "0x1567e8",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 6,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_00156800",
+   "first_address": "0x156878",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00156ac0",
+   "first_address": "0x156cc0",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "fn_0015a2d0",
+   "first_address": "0x15a31c",
+   "first_emitted": [
+    "IndirectJump"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "fn_00161b4c",
+   "first_address": "0x161b9c",
+   "first_emitted": [
+    "IndirectJump"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_0016bc58",
+   "first_address": "0x16be84",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 9368,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_00176680",
+   "first_address": "0x176720",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00176b10",
+   "first_address": "0x176b3c",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00178930",
+   "first_address": "0x178960",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00179330",
+   "first_address": "0x1793e0",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00179578",
+   "first_address": "0x179598",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 5,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 26173,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_0017b068",
+   "first_address": "0x17b0ec",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_0017b1a0",
+   "first_address": "0x17b200",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 5,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_0017b800",
+   "first_address": "0x17b884",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_0017b900",
+   "first_address": "0x17b98c",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_0017bac8",
+   "first_address": "0x17bae0",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_0017bb88",
+   "first_address": "0x17bd58",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 4,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_0017c258",
+   "first_address": "0x17c28c",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00180fc8",
+   "first_address": "0x181050",
+   "first_emitted": [
+    "IndirectJump"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00181f90",
+   "first_address": "0x182484",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 3,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_001866a8",
+   "first_address": "0x1866ec",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00186770",
+   "first_address": "0x1867ac",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_001867f8",
+   "first_address": "0x186868",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_0018f5d0",
+   "first_address": "0x18f6e0",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 5,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_0018f8f8",
+   "first_address": "0x18f9d4",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 300,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_0018fa50",
+   "first_address": "0x18fc04",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 133,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_00191c00",
+   "first_address": "0x191e68",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_001929a8",
+   "first_address": "0x192d00",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00193248",
+   "first_address": "0x19328c",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 5,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 30828,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_001933c0",
+   "first_address": "0x19345c",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 21,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 12,
+     "dispatches": 250421,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_00194d00",
+   "first_address": "0x194d8c",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00196940",
+   "first_address": "0x196a78",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 45,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_001971f8",
+   "first_address": "0x197424",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00197480",
+   "first_address": "0x1975b0",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 3,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00198408",
+   "first_address": "0x198490",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_001984a8",
+   "first_address": "0x19877c",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 3,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_001988a8",
+   "first_address": "0x198a90",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_0019c690",
+   "first_address": "0x19e9f0",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_0019fda0",
+   "first_address": "0x19ffc0",
+   "first_emitted": [
+    "IndirectJump"
+   ],
+   "indirect_sites": 3,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_001a3ac8",
+   "first_address": "0x1a41ec",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_001a5648",
+   "first_address": "0x1a5bb4",
+   "first_emitted": [
+    "IndirectJump"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "fn_001a78e8",
+   "first_address": "0x1a797c",
+   "first_emitted": [
+    "IndirectJump"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_001a8198",
+   "first_address": "0x1a8208",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 111,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_001adba8",
+   "first_address": "0x1adbec",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_001ae390",
+   "first_address": "0x1aeffc",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 5,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_001af678",
+   "first_address": "0x1aff68",
+   "first_emitted": [
+    "IndirectJump"
+   ],
+   "indirect_sites": 8,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_001b4618",
+   "first_address": "0x1b464c",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 15046,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_001b47a0",
+   "first_address": "0x1b47dc",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 92,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_001b63a8",
+   "first_address": "0x1b68b8",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_001b96b0",
+   "first_address": "0x1b9acc",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_001c7b60",
+   "first_address": "0x1c7c98",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_001c7f60",
+   "first_address": "0x1c8134",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_001c8f40",
+   "first_address": "0x1c906c",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_001c9a88",
+   "first_address": "0x1c9b78",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_001c9f50",
+   "first_address": "0x1ca03c",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_001caf58",
+   "first_address": "0x1cafa0",
+   "first_emitted": [
+    "IndirectJump"
+   ],
+   "indirect_sites": 4,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_001cb198",
+   "first_address": "0x1cb1cc",
+   "first_emitted": [
+    "IndirectJump"
+   ],
+   "indirect_sites": 3,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_001ce930",
+   "first_address": "0x1ce94c",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_001cf020",
+   "first_address": "0x1cf10c",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 2,
+     "dispatches": 2576,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_001cf188",
+   "first_address": "0x1cf2a4",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_001cf380",
+   "first_address": "0x1cf524",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 7,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_001d0970",
+   "first_address": "0x1d0a58",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 6,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_001d2140",
+   "first_address": "0x1d2384",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_001d4320",
+   "first_address": "0x1d4340",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 4,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_001d46e0",
+   "first_address": "0x1d4700",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 3,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 30382,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_001d47b8",
+   "first_address": "0x1d4830",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 9,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_001d59c8",
+   "first_address": "0x1d5a44",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 32,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_001d6800",
+   "first_address": "0x1d6868",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 8,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "fn_001d6d48",
+   "first_address": "0x1d6d98",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 3,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_001d7940",
+   "first_address": "0x1d7d58",
+   "first_emitted": [
+    "IndirectJump"
+   ],
+   "indirect_sites": 3,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_001d9268",
+   "first_address": "0x1d9370",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 221,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_001db5f8",
+   "first_address": "0x1db818",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 23,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_001dc3e8",
+   "first_address": "0x1dc5fc",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 6,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_001dd4b0",
+   "first_address": "0x1dd524",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "entry",
+   "first_address": "0x1dd8a0",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 1,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_001de0b8",
+   "first_address": "0x1de11c",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 2,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_001de198",
+   "first_address": "0x1de21c",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_001df590",
+   "first_address": "0x1df5c8",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_001e2d20",
+   "first_address": "0x1e2dc8",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_001e3640",
+   "first_address": "0x1e3750",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_001e47e0",
+   "first_address": "0x1e4a4c",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 44,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_001e4da8",
+   "first_address": "0x1e50e8",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 3,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 9352,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_001e5218",
+   "first_address": "0x1e5328",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 3,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 2,
+     "dispatches": 6847,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_001ed840",
+   "first_address": "0x1ee680",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 37,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_001ee918",
+   "first_address": "0x1ee954",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 33,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_001f1d38",
+   "first_address": "0x1f1d70",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 8,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 6,
+     "dispatches": 180786,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_001f25f0",
+   "first_address": "0x1f2648",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 29861,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_001f4a70",
+   "first_address": "0x1f4aa8",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 2,
+     "dispatches": 60764,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_001f4bf0",
+   "first_address": "0x1f4d28",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 11,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 6,
+     "dispatches": 146881,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_001f93b0",
+   "first_address": "0x1f96bc",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 2,
+     "dispatches": 34132,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_001fa830",
+   "first_address": "0x1fa8d4",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "fn_001fdba0",
+   "first_address": "0x1fdc4c",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 3,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_001fde18",
+   "first_address": "0x1fded0",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_001fedc8",
+   "first_address": "0x1feed0",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_001ffb20",
+   "first_address": "0x1ffc00",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 31,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_00201300",
+   "first_address": "0x201568",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 351,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_00203e90",
+   "first_address": "0x203ec8",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 4,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00204038",
+   "first_address": "0x204070",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 4,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 4,
+     "dispatches": 21154,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_002043b8",
+   "first_address": "0x2043ec",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 5,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_002044e0",
+   "first_address": "0x204584",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_002045b0",
+   "first_address": "0x2045d4",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00204c40",
+   "first_address": "0x205000",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 2,
+     "dispatches": 47265,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_00205a68",
+   "first_address": "0x205a90",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00205c20",
+   "first_address": "0x205c44",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_0020a3b8",
+   "first_address": "0x20a56c",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 3,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_0020b460",
+   "first_address": "0x20b4b0",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_0020ed50",
+   "first_address": "0x20edf4",
+   "first_emitted": [
+    "IndirectJump"
+   ],
+   "indirect_sites": 4,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00211f70",
+   "first_address": "0x211fe8",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00213fb8",
+   "first_address": "0x2142f8",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 239,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_00214900",
+   "first_address": "0x214944",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00214a08",
+   "first_address": "0x214a2c",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00216768",
+   "first_address": "0x216878",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_002168e8",
+   "first_address": "0x216998",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00217188",
+   "first_address": "0x2174b8",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 3,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00217950",
+   "first_address": "0x217a0c",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_002190c8",
+   "first_address": "0x2190ec",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00219340",
+   "first_address": "0x2193d0",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 3,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 161,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_002196d8",
+   "first_address": "0x219718",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 4,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_002197b0",
+   "first_address": "0x2197d0",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 3,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 30382,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_00219898",
+   "first_address": "0x2198c4",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 3,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 30382,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_0021a2d8",
+   "first_address": "0x21a36c",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_0021bf50",
+   "first_address": "0x21c024",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_0021c468",
+   "first_address": "0x21c508",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00220fa8",
+   "first_address": "0x22101c",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00221278",
+   "first_address": "0x2212c8",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00225378",
+   "first_address": "0x225468",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 2,
+     "dispatches": 32,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_00227700",
+   "first_address": "0x227750",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_0022cff0",
+   "first_address": "0x22d048",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 14709,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_0022d418",
+   "first_address": "0x22d9bc",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 4,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 2,
+     "dispatches": 6,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_0022f708",
+   "first_address": "0x22fb50",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 1,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_0022fbd8",
+   "first_address": "0x22fc50",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00230348",
+   "first_address": "0x2304e4",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 12,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 4793,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_00230640",
+   "first_address": "0x230ad4",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 8,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00233728",
+   "first_address": "0x23381c",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00233ff0",
+   "first_address": "0x234178",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 4,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_002343e0",
+   "first_address": "0x235640",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_002357f8",
+   "first_address": "0x23583c",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 11,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 3,
+     "dispatches": 14337,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_00235d30",
+   "first_address": "0x23683c",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 7,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00237c30",
+   "first_address": "0x237d54",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00239040",
+   "first_address": "0x239330",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_002394d8",
+   "first_address": "0x2396fc",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_0023a320",
+   "first_address": "0x23a348",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 4,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_0023a420",
+   "first_address": "0x23a474",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_0023b3a8",
+   "first_address": "0x23b7a0",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_0023e748",
+   "first_address": "0x23f080",
+   "first_emitted": [
+    "IndirectJump"
+   ],
+   "indirect_sites": 6,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 39232,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_002470b0",
+   "first_address": "0x247118",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00247258",
+   "first_address": "0x247290",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_002473c0",
+   "first_address": "0x247e18",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00248d48",
+   "first_address": "0x248ee8",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_0024abc0",
+   "first_address": "0x24ac20",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_0024ad58",
+   "first_address": "0x24ad78",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_0024cf50",
+   "first_address": "0x24d16c",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_0024d350",
+   "first_address": "0x24d518",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_0024d7d8",
+   "first_address": "0x24d824",
+   "first_emitted": [
+    "IndirectJump"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_0024edd0",
+   "first_address": "0x24ee04",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_0024ee20",
+   "first_address": "0x24eedc",
+   "first_emitted": [
+    "IndirectJump"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_002560d8",
+   "first_address": "0x25615c",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 8036869,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_00256e60",
+   "first_address": "0x256f60",
+   "first_emitted": [
+    "IndirectJump"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 307584,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_00259af8",
+   "first_address": "0x259d00",
+   "first_emitted": [
+    "IndirectJump"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00259f70",
+   "first_address": "0x25a0e4",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_0025a428",
+   "first_address": "0x25a79c",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 1,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_0025add8",
+   "first_address": "0x25aec4",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 4,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_0025f570",
+   "first_address": "0x25f660",
+   "first_emitted": [
+    "IndirectJump"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00263680",
+   "first_address": "0x263708",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 7,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_002637f0",
+   "first_address": "0x263830",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00265208",
+   "first_address": "0x265244",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 7,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_002668f0",
+   "first_address": "0x266940",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 34322,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_0026ea28",
+   "first_address": "0x26ecb0",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 1,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_0027b958",
+   "first_address": "0x27bc58",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_0027bca8",
+   "first_address": "0x27bfa8",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00282190",
+   "first_address": "0x28227c",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00288320",
+   "first_address": "0x2883ac",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_0029faf0",
+   "first_address": "0x2a0a70",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_002aac20",
+   "first_address": "0x2aac70",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 1,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_002aacb8",
+   "first_address": "0x2aad00",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "fn_002ad6e0",
+   "first_address": "0x2ad9c0",
+   "first_emitted": [
+    "IndirectJump"
+   ],
+   "indirect_sites": 18,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_002b0200",
+   "first_address": "0x2b042c",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_002b0c00",
+   "first_address": "0x2b0d70",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_002b0e78",
+   "first_address": "0x2b0ed0",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 8,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_002b1070",
+   "first_address": "0x2b12d4",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 8,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_002b17a8",
+   "first_address": "0x2b233c",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_002b3020",
+   "first_address": "0x2b31e4",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_002b33a0",
+   "first_address": "0x2b3460",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 8,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 29,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_002b3ca0",
+   "first_address": "0x2b3fc0",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_002b4680",
+   "first_address": "0x2b4808",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 2,
+     "dispatches": 7,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_002b4bc0",
+   "first_address": "0x2b4eb8",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 25,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_002b52e8",
+   "first_address": "0x2b5608",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_002b5990",
+   "first_address": "0x2b5b24",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_002b60c0",
+   "first_address": "0x2b60ec",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_002bc7e8",
+   "first_address": "0x2bc86c",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_002bc918",
+   "first_address": "0x2bc9d4",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_002bd7c8",
+   "first_address": "0x2bd8dc",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 4,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_002bee00",
+   "first_address": "0x2befb8",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_002c01f8",
+   "first_address": "0x2c0234",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 39941,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_002c0270",
+   "first_address": "0x2c02d4",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 39010,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_002c1d80",
+   "first_address": "0x2c33a8",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 3,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_002c6060",
+   "first_address": "0x2c617c",
+   "first_emitted": [
+    "IndirectJump"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_002c6460",
+   "first_address": "0x2c68dc",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 5,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_002cb7c0",
+   "first_address": "0x2cc8e4",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 3,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_002cebe0",
+   "first_address": "0x2cefe4",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_002d00b8",
+   "first_address": "0x2d02c4",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "fn_002d2410",
+   "first_address": "0x2d2458",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_002d57e0",
+   "first_address": "0x2d5954",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_002d63b0",
+   "first_address": "0x2d6438",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_002d68c8",
+   "first_address": "0x2d695c",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_002d6a70",
+   "first_address": "0x2d6bd0",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_002d6c80",
+   "first_address": "0x2d6d58",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_002d6dc0",
+   "first_address": "0x2d6fb8",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_002d8788",
+   "first_address": "0x2d882c",
+   "first_emitted": [
+    "IndirectJump"
+   ],
+   "indirect_sites": 4,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 3,
+     "dispatches": 50940,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_002d9860",
+   "first_address": "0x2d9c28",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_002dabe8",
+   "first_address": "0x2dacdc",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_002de3e8",
+   "first_address": "0x2de49c",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_002defe0",
+   "first_address": "0x2df0f4",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 3,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_002df640",
+   "first_address": "0x2df684",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 6,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_002df908",
+   "first_address": "0x2df9bc",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_002dfe10",
+   "first_address": "0x2dfe90",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_002e1140",
+   "first_address": "0x2e138c",
+   "first_emitted": [
+    "IndirectJump"
+   ],
+   "indirect_sites": 8,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_002e23a0",
+   "first_address": "0x2e2564",
+   "first_emitted": [
+    "IndirectJump"
+   ],
+   "indirect_sites": 3,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_002e4ef0",
+   "first_address": "0x2e4fbc",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 2,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_002e5250",
+   "first_address": "0x2e5288",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 2,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_002e52a8",
+   "first_address": "0x2e535c",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_002e55d0",
+   "first_address": "0x2e5608",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_002e9d00",
+   "first_address": "0x2e9f20",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_002ea400",
+   "first_address": "0x2ea654",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_002eb058",
+   "first_address": "0x2eb0a8",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 8,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_002eb720",
+   "first_address": "0x2eb96c",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "fn_002f13d0",
+   "first_address": "0x2f14a8",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "fn_002f14c8",
+   "first_address": "0x2f14e0",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "fn_002f18c0",
+   "first_address": "0x2f1998",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "fn_002f19b8",
+   "first_address": "0x2f19d0",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_002f8710",
+   "first_address": "0x2f87b4",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 3,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 3,
+     "dispatches": 129626,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_002fcf98",
+   "first_address": "0x2fd078",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_002fd098",
+   "first_address": "0x2fd26c",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 4,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_002fd668",
+   "first_address": "0x2fd808",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_002fd838",
+   "first_address": "0x2fdac4",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 4,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_002fdf80",
+   "first_address": "0x2fe06c",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "fn_002fe298",
+   "first_address": "0x2fe530",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 4,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_002fe7e0",
+   "first_address": "0x2fef34",
+   "first_emitted": [
+    "IndirectJump"
+   ],
+   "indirect_sites": 3,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00300368",
+   "first_address": "0x300550",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00301500",
+   "first_address": "0x301664",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_003017e0",
+   "first_address": "0x3018c0",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00301dd8",
+   "first_address": "0x301f28",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_003028b8",
+   "first_address": "0x302944",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 3,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_003033d0",
+   "first_address": "0x303608",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00303800",
+   "first_address": "0x3039f8",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00305408",
+   "first_address": "0x3057c8",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 6,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00305978",
+   "first_address": "0x305a60",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 6,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "fn_00306010",
+   "first_address": "0x306264",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00306680",
+   "first_address": "0x306738",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_003087b8",
+   "first_address": "0x308d20",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 3,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_003095d8",
+   "first_address": "0x309828",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00309ae0",
+   "first_address": "0x309cd4",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_0030a628",
+   "first_address": "0x30a694",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_0030a9e8",
+   "first_address": "0x30aaa8",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_0030aac8",
+   "first_address": "0x30ab64",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 4,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_0030c2b8",
+   "first_address": "0x30c2d4",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_0030d018",
+   "first_address": "0x30d0b8",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 4,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_0030d3c0",
+   "first_address": "0x30d47c",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_0030e2d0",
+   "first_address": "0x30e9bc",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_0030eaf0",
+   "first_address": "0x30f2c8",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_003105a0",
+   "first_address": "0x310668",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00310bb8",
+   "first_address": "0x310ca8",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 4,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_003159d8",
+   "first_address": "0x315a1c",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00315a50",
+   "first_address": "0x315a90",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00315ae0",
+   "first_address": "0x315b20",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00315d78",
+   "first_address": "0x315db8",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00316028",
+   "first_address": "0x3160f0",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00319058",
+   "first_address": "0x3191cc",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_0031b6a0",
+   "first_address": "0x31b718",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_0031ba18",
+   "first_address": "0x31ba84",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00324fc8",
+   "first_address": "0x325274",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 6,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00325cd8",
+   "first_address": "0x3265cc",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00326fd8",
+   "first_address": "0x32707c",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 4,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00327478",
+   "first_address": "0x3274b0",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 4,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_003279c8",
+   "first_address": "0x327b94",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00329cb8",
+   "first_address": "0x329e18",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_0032a040",
+   "first_address": "0x32a0e0",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_0032af08",
+   "first_address": "0x32aff8",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_0032b368",
+   "first_address": "0x32b3ec",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 66893,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_0032bc90",
+   "first_address": "0x32bd4c",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 6,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 3,
+     "dispatches": 5706,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_0032c130",
+   "first_address": "0x32c14c",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 309,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_0032c358",
+   "first_address": "0x32c3d0",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 3,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_0032c518",
+   "first_address": "0x32c568",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 3,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_0032c670",
+   "first_address": "0x32c6c0",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 3,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_0032e6b8",
+   "first_address": "0x32e6e0",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_003341c0",
+   "first_address": "0x3341ec",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00334200",
+   "first_address": "0x334240",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00334538",
+   "first_address": "0x3345ec",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_003348d0",
+   "first_address": "0x334a7c",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00335298",
+   "first_address": "0x3353e4",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 3,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 3,
+     "dispatches": 6,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_00337208",
+   "first_address": "0x33741c",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 11,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 4,
+     "dispatches": 9550,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_003451a8",
+   "first_address": "0x3451e4",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00346a10",
+   "first_address": "0x346a4c",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 56151,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_003470f0",
+   "first_address": "0x3471a4",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00347348",
+   "first_address": "0x347388",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 3,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 286,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_00347740",
+   "first_address": "0x347780",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 3,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 40532,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_00348d40",
+   "first_address": "0x348dcc",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 8,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 5,
+     "dispatches": 91408,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_0034a350",
+   "first_address": "0x34a4d8",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 2,
+     "dispatches": 118,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_0034a8e8",
+   "first_address": "0x34a91c",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 16299,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_0034b128",
+   "first_address": "0x34c080",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 3,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_0034ec18",
+   "first_address": "0x34eeac",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_0034fbb8",
+   "first_address": "0x34fc1c",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_0034fd60",
+   "first_address": "0x350cb8",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 6,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 3,
+     "dispatches": 228210,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_003537e0",
+   "first_address": "0x3545f4",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 3,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 388,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_00354dd8",
+   "first_address": "0x3550c0",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00356448",
+   "first_address": "0x3564c0",
+   "first_emitted": [
+    "IndirectJump"
+   ],
+   "indirect_sites": 8,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_0035c4b8",
+   "first_address": "0x35c50c",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 4,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 4,
+     "dispatches": 24845,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_0035d5e8",
+   "first_address": "0x35d5f8",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_0035d610",
+   "first_address": "0x35d75c",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 6,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 4,
+     "dispatches": 35722,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_0035dea8",
+   "first_address": "0x35e214",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 128156,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_0035efd8",
+   "first_address": "0x35f214",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 5,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 2,
+     "dispatches": 35,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_00364450",
+   "first_address": "0x36447c",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00365068",
+   "first_address": "0x365160",
+   "first_emitted": [
+    "IndirectJump"
+   ],
+   "indirect_sites": 6,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00370300",
+   "first_address": "0x37035c",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 23558,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_00387278",
+   "first_address": "0x387294",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00387930",
+   "first_address": "0x387978",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 44,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_00387a20",
+   "first_address": "0x387a58",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 6847,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_00387dc8",
+   "first_address": "0x387e08",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 9352,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_00387fd8",
+   "first_address": "0x388064",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00388140",
+   "first_address": "0x3881d4",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00388428",
+   "first_address": "0x388574",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 42,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_003885f0",
+   "first_address": "0x38864c",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_003886d8",
+   "first_address": "0x388700",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_0038a118",
+   "first_address": "0x38a568",
+   "first_emitted": [
+    "IndirectJump"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 4626,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_0038bcb8",
+   "first_address": "0x38bdb8",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 85167,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_0038bef0",
+   "first_address": "0x38bfc8",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_0038e368",
+   "first_address": "0x38e3e8",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_0038e668",
+   "first_address": "0x38e6ec",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_0038e778",
+   "first_address": "0x38e7c4",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_0038e9f8",
+   "first_address": "0x38f14c",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 4,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_0038f5c0",
+   "first_address": "0x38f620",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_0038f9b0",
+   "first_address": "0x38fa58",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_0038fea0",
+   "first_address": "0x3901a8",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 3,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00390278",
+   "first_address": "0x390288",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_003902a8",
+   "first_address": "0x3902fc",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00392f10",
+   "first_address": "0x392f8c",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 3,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00395948",
+   "first_address": "0x395b58",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 120,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_00396bc0",
+   "first_address": "0x396bfc",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_003977a8",
+   "first_address": "0x3977c4",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_003978c8",
+   "first_address": "0x397980",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 3,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00397a38",
+   "first_address": "0x397a88",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 3,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00397e58",
+   "first_address": "0x397e84",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 4,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00398018",
+   "first_address": "0x3980b4",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00398108",
+   "first_address": "0x398184",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_003982b0",
+   "first_address": "0x398358",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 3,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_003987f0",
+   "first_address": "0x398890",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00399530",
+   "first_address": "0x399740",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00399fa0",
+   "first_address": "0x39a02c",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_0039c248",
+   "first_address": "0x39c4ac",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_0039c5c0",
+   "first_address": "0x39c5ec",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_0039d2c8",
+   "first_address": "0x39d310",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_0039d9a8",
+   "first_address": "0x39ddd0",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_003a55f8",
+   "first_address": "0x3a5670",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 3,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 2,
+     "dispatches": 14,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_003a63f0",
+   "first_address": "0x3a6430",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 8,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_003b45e8",
+   "first_address": "0x3b48fc",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 1,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_003b5bd8",
+   "first_address": "0x3b5cc4",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 6,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_003b6c28",
+   "first_address": "0x3b6cd0",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_003b6d38",
+   "first_address": "0x3b6de0",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_003b6e48",
+   "first_address": "0x3b6f7c",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 3,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_003b7c80",
+   "first_address": "0x3b7e0c",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 6,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_003b8698",
+   "first_address": "0x3b8948",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_003b89c8",
+   "first_address": "0x3b8c70",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_003b95b0",
+   "first_address": "0x3b9838",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 1,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_003bb670",
+   "first_address": "0x3bb6c0",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 9,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 11745,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_003bc9a8",
+   "first_address": "0x3bcc54",
+   "first_emitted": [
+    "IndirectJump"
+   ],
+   "indirect_sites": 14,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 843,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_003c1348",
+   "first_address": "0x3c19f0",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_003c2730",
+   "first_address": "0x3c2870",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 56,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_003c29e8",
+   "first_address": "0x3c2a38",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 91,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_003c3e58",
+   "first_address": "0x3c3f18",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 1728,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "fn_003c44f0",
+   "first_address": "0x3c4530",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 2,
+     "dispatches": 12,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "fn_003c46f0",
+   "first_address": "0x3c4728",
+   "first_emitted": [
+    "IndirectJump"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 8,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_003c47d8",
+   "first_address": "0x3c4818",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 3,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 6,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_003c51c0",
+   "first_address": "0x3c5224",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 81086,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_003c6000",
+   "first_address": "0x3c6058",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_003c7498",
+   "first_address": "0x3c74f8",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 87,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_003c7678",
+   "first_address": "0x3c7750",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 8,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 8,
+     "dispatches": 477,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_003c7d00",
+   "first_address": "0x3c7da8",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 87,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_003c7df8",
+   "first_address": "0x3c7e80",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 10377,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_003c81b0",
+   "first_address": "0x3c8448",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_003c8618",
+   "first_address": "0x3c87d8",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 47,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_003c8bc8",
+   "first_address": "0x3c8c58",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_003ca188",
+   "first_address": "0x3cae0c",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_003caec8",
+   "first_address": "0x3caf70",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_003cb010",
+   "first_address": "0x3cb0c8",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_003cb168",
+   "first_address": "0x3cb1a8",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 121719,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_003cc210",
+   "first_address": "0x3cc27c",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_003cc2b8",
+   "first_address": "0x3cc430",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_003cc6d0",
+   "first_address": "0x3cc7a8",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 2,
+     "dispatches": 34825,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_003ccda0",
+   "first_address": "0x3cced8",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 9474,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_003ccf70",
+   "first_address": "0x3ccfcc",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 3,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 3,
+     "dispatches": 2457,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_003cd058",
+   "first_address": "0x3cd0ac",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 25351,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_003cd208",
+   "first_address": "0x3cd338",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 3,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 819,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_003cd5f0",
+   "first_address": "0x3cd654",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_003cdc58",
+   "first_address": "0x3cdcbc",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_003cddd0",
+   "first_address": "0x3cde24",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_003cde90",
+   "first_address": "0x3cdee4",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_003cdf20",
+   "first_address": "0x3cdfa0",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_003cdff8",
+   "first_address": "0x3ce050",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_003ce068",
+   "first_address": "0x3ce0b0",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_003ce1f8",
+   "first_address": "0x3ce228",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_003ce260",
+   "first_address": "0x3ce2c4",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_003ce330",
+   "first_address": "0x3ce358",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_003ce550",
+   "first_address": "0x3cf418",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 263,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_003cf4e0",
+   "first_address": "0x3cf534",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_003cf588",
+   "first_address": "0x3cf5dc",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_003cf700",
+   "first_address": "0x3cf7ec",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_003cfae0",
+   "first_address": "0x3cfc40",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_003cfda0",
+   "first_address": "0x3cfdf8",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 6,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_003cffc0",
+   "first_address": "0x3cfff8",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_003d00d8",
+   "first_address": "0x3d0104",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "fn_003d0268",
+   "first_address": "0x3d0354",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_003d0860",
+   "first_address": "0x3d08ec",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 1,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_003d0c80",
+   "first_address": "0x3d0d00",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 3,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 1,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_003d2558",
+   "first_address": "0x3d25ac",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_003d40d8",
+   "first_address": "0x3d452c",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_003d5ab8",
+   "first_address": "0x3d5b3c",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_003d5ca0",
+   "first_address": "0x3d5d80",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_003d6600",
+   "first_address": "0x3d6720",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_003d7830",
+   "first_address": "0x3d7884",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_003e1158",
+   "first_address": "0x3e11d8",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_003e1358",
+   "first_address": "0x3e14d0",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_003e6660",
+   "first_address": "0x3e6688",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 1,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_003e80a0",
+   "first_address": "0x3e8260",
+   "first_emitted": [
+    "IndirectJump"
+   ],
+   "indirect_sites": 5,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_003e86d0",
+   "first_address": "0x3e87a0",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_003e9568",
+   "first_address": "0x3e95c8",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_003e9ec8",
+   "first_address": "0x3e9efc",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 3,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_003ea1a0",
+   "first_address": "0x3ea1fc",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 3,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_003ea6c8",
+   "first_address": "0x3ea8e8",
+   "first_emitted": [
+    "IndirectJump"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_003efd28",
+   "first_address": "0x3efd78",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 3,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_003f07f8",
+   "first_address": "0x3f08d0",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_003f0a58",
+   "first_address": "0x3f0dfc",
+   "first_emitted": [
+    "IndirectJump"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "fn_003f5b40",
+   "first_address": "0x3f5e0c",
+   "first_emitted": [
+    "IndirectJump"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_003f81b8",
+   "first_address": "0x3f8518",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_003feeb0",
+   "first_address": "0x3ff0c0",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_003ff148",
+   "first_address": "0x3ff1c4",
+   "first_emitted": [
+    "IndirectJump"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_003ff348",
+   "first_address": "0x3ff580",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_003ff608",
+   "first_address": "0x3ff6e0",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 6,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_003ffa00",
+   "first_address": "0x3ffacc",
+   "first_emitted": [
+    "IndirectJump"
+   ],
+   "indirect_sites": 4,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00400f38",
+   "first_address": "0x401038",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_004010e8",
+   "first_address": "0x401170",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00401210",
+   "first_address": "0x401288",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00401ad8",
+   "first_address": "0x401b1c",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 944220,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_004022d8",
+   "first_address": "0x40238c",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00403bb0",
+   "first_address": "0x403bdc",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00409208",
+   "first_address": "0x409e3c",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_0040ada0",
+   "first_address": "0x40b288",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_0040b348",
+   "first_address": "0x40bae8",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_0040c4b8",
+   "first_address": "0x40c628",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 24520,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_0040d718",
+   "first_address": "0x40d728",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_0040d7a8",
+   "first_address": "0x40d7bc",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00410290",
+   "first_address": "0x4102e4",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 4,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 4,
+     "dispatches": 74752,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_00410448",
+   "first_address": "0x4104f4",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_004108c8",
+   "first_address": "0x410944",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_004126b0",
+   "first_address": "0x412768",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 4,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 2,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_00415038",
+   "first_address": "0x4150bc",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00416a80",
+   "first_address": "0x416ca0",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 3,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 1,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_00417130",
+   "first_address": "0x417230",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_004198d0",
+   "first_address": "0x419990",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_0041ea90",
+   "first_address": "0x41eaf8",
+   "first_emitted": [
+    "IndirectJump"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00420f78",
+   "first_address": "0x4210e8",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00423e88",
+   "first_address": "0x423fa0",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00424e18",
+   "first_address": "0x424fdc",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_004250f8",
+   "first_address": "0x425230",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00425268",
+   "first_address": "0x4254a0",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00427820",
+   "first_address": "0x427998",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 2,
+     "dispatches": 14,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_00427f50",
+   "first_address": "0x427ff8",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 2,
+     "dispatches": 14,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_00428c48",
+   "first_address": "0x428cf0",
+   "first_emitted": [
+    "IndirectJump"
+   ],
+   "indirect_sites": 3,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_0042bcb8",
+   "first_address": "0x42bcf4",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_0042bdb0",
+   "first_address": "0x42be18",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_0042c440",
+   "first_address": "0x42c518",
+   "first_emitted": [
+    "IndirectJump"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_0042d0f8",
+   "first_address": "0x42d1a0",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_0042d338",
+   "first_address": "0x42d478",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_0042d898",
+   "first_address": "0x42d9c4",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 147,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_00430290",
+   "first_address": "0x4304fc",
+   "first_emitted": [
+    "IndirectJump"
+   ],
+   "indirect_sites": 4,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00433188",
+   "first_address": "0x43333c",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00433378",
+   "first_address": "0x433758",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00437b98",
+   "first_address": "0x438004",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_0043c130",
+   "first_address": "0x43c628",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_0043fcb8",
+   "first_address": "0x43fcc8",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_004430d0",
+   "first_address": "0x4430fc",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00443128",
+   "first_address": "0x4431b4",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 125,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_00445660",
+   "first_address": "0x445670",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00445718",
+   "first_address": "0x445728",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00445740",
+   "first_address": "0x445750",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00445768",
+   "first_address": "0x44577c",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_004457f8",
+   "first_address": "0x445808",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00445820",
+   "first_address": "0x445884",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 3,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "fn_00445998",
+   "first_address": "0x4459f8",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "fn_00445a40",
+   "first_address": "0x445a74",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "fn_00445ab0",
+   "first_address": "0x445adc",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00445be0",
+   "first_address": "0x445cc0",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_004461f8",
+   "first_address": "0x44625c",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_004463d8",
+   "first_address": "0x446444",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00448ee8",
+   "first_address": "0x448f0c",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_0044e0b0",
+   "first_address": "0x44e0e8",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00451038",
+   "first_address": "0x451108",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00452a90",
+   "first_address": "0x452b58",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00452c00",
+   "first_address": "0x452d90",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00452fc8",
+   "first_address": "0x453018",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00453040",
+   "first_address": "0x453090",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00458378",
+   "first_address": "0x458420",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 2,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_0045bbf8",
+   "first_address": "0x45bcf8",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_0045dd10",
+   "first_address": "0x45dd94",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_0045ddc8",
+   "first_address": "0x45de9c",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_0045e5c0",
+   "first_address": "0x45e6a0",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 4,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_0045e9d0",
+   "first_address": "0x45ea54",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_0045ead8",
+   "first_address": "0x45eb88",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 3,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_0045eea0",
+   "first_address": "0x45eeec",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_0045f1c8",
+   "first_address": "0x45f2e0",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 8,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_0045f7a0",
+   "first_address": "0x45f900",
+   "first_emitted": [
+    "IndirectJump"
+   ],
+   "indirect_sites": 5,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 75,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_00468c78",
+   "first_address": "0x468cf4",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00468e50",
+   "first_address": "0x468f04",
+   "first_emitted": [
+    "IndirectJump"
+   ],
+   "indirect_sites": 23,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_0046a338",
+   "first_address": "0x46a450",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_0046a830",
+   "first_address": "0x46a89c",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "fn_0046ba18",
+   "first_address": "0x46ba38",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_0046df80",
+   "first_address": "0x46e0a4",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 22,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_0046e738",
+   "first_address": "0x46e75c",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 22,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_0046e9f0",
+   "first_address": "0x46ea60",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "fn_0046efc0",
+   "first_address": "0x46f0d0",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00470ae8",
+   "first_address": "0x470b00",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00472308",
+   "first_address": "0x472320",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00472a28",
+   "first_address": "0x472a40",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_004732b8",
+   "first_address": "0x4732c8",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00473a68",
+   "first_address": "0x473a80",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "fn_00474150",
+   "first_address": "0x47415c",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 2,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_00474598",
+   "first_address": "0x474608",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 7,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00475d20",
+   "first_address": "0x475d38",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_004784c8",
+   "first_address": "0x478514",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 1,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_00478800",
+   "first_address": "0x478818",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_00478aa8",
+   "first_address": "0x478ae8",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 17113,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_004796c0",
+   "first_address": "0x4796d8",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_0047a9d0",
+   "first_address": "0x47a9e8",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_0047b160",
+   "first_address": "0x47b178",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_0047bbe8",
+   "first_address": "0x47bc00",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "fn_0047c398",
+   "first_address": "0x47c3ac",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_0047e470",
+   "first_address": "0x47e488",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_0047e998",
+   "first_address": "0x47e9ac",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": {
+     "sites_ran": 1,
+     "dispatches": 1,
+     "missing": 0
+    }
+   }
+  },
+  {
+   "owner": "FUN_0047f680",
+   "first_address": "0x47f698",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_0047f960",
+   "first_address": "0x47f978",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  },
+  {
+   "owner": "FUN_0047fbf8",
+   "first_address": "0x47fc08",
+   "first_emitted": [
+    "IndirectCall"
+   ],
+   "indirect_sites": 1,
+   "ran": {
+    "switch-branches": null
+   }
+  }
+ ]
+}

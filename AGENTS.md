@@ -35,11 +35,13 @@ authorize general implementation delegation or additional user-owned chats.
 GitHub plan limitations on private branch protection must be recorded honestly;
 they do not relax these operating rules.
 
-**Current deliverable is a platform scaffold, not an integrated game port.**
-The root build compiles `src/main.c` and `src/core_stub.c`: a GL clear, controller
-hotplug and bounded silent audio streaming. It neither generates nor links game
-code. The C ABI in `src/core.h` is new port-owned glue, not an upstream API.
-Do not describe a successful scaffold build as ingame validation.
+**Current deliverable (M04, hardware proof recorded, awaiting independent review) boots the real runtime.**
+`python tools/build_game.py` links the private generated EE/VU archive, the
+overlaid upstream runtime/game layer, `src/core/core.cpp` behind the C ABI in
+`src/core.h` and the SDL2 platform adapter. Rendering is the null RHI until M05:
+the screen stays black. `--public` (CI) compiles every public library and links
+no game code. The C ABI is port-owned glue, not an upstream API. Do not describe
+a successful build as ingame validation.
 
 ## Corrected graphics architecture
 
@@ -80,8 +82,10 @@ gtavcs_nx/
   CMakeLists.txt                 Switch scaffold; official toolchain only
   src/
     main.c                       process, cwd, SDL2/GL/audio/input lifetime
-    core.h                       C ABI to a future C++ runtime adapter
-    core_stub.c                  explicitly labelled platform-only stub
+    core.h                       C ABI between main.c and the C++ core adapter
+    core/                        C++ core adapter (boot/frame/shutdown, nxrun.cfg)
+    platform/                    SDL2 implementation of upstream's platform.h
+    switch/                      libnx link wraps (thread stacks, open audit, indirect-branch trace)
   third_party/glad/              generated GLAD 2.0.8, GL 3.3 core, no extensions
     include/{glad,KHR}/
     src/gl.c
@@ -258,11 +262,11 @@ Final acceptance (M10/M15) includes a controllable ingame route with audible
    busy route. Record median/p95 frame time, audio underruns, memory and CPU/GPU
    timing at stock clocks in both modes. Intro/title FPS is not gameplay proof.
 
-Current verification status (2026-11-08): Docker's Linux engine works; only
-`docker-desktop` is installed in WSL and no local `C:/devkitPro` is required by
-the pinned container pipeline. Cross compilation and source-only CI pass.
-An actual Switch reports application mode, GL 4.3 core/NV120, 1280x720 and a
-bounded silent audio queue, visible blue clear, HOME/sleep recovery, readable
-startup failure and clean process exit. Full paired wireless/Pro controller
-and docking acceptance remain open. See M01 evidence; no game code is
-linked and no gameplay validation is claimed.
+Current verification status (2026-11-14): the pinned container pipeline also runs
+on a Linux host with Docker's engine (no local devkitPro). The game NRO links the
+private generated core, the game layer and the SDL2 platform; on an actual Switch
+it boots the real runtime from the folder disc, reaches the game's outdoor state
+with the null renderer (black screen, the game's own sound), and passes HOME,
+sleep, close and startup-failure checks (M04 evidence). Rendering is M05; no
+picture, gameplay or frame-rate acceptance is claimed. Full paired wireless/Pro
+controller and docking acceptance remain open.

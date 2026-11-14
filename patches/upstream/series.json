@@ -24,6 +24,10 @@
     {
       "path": "0006-target-runner-without-generator.patch",
       "sha256": "9e4132a1ede60db3a8a2697a4e1dc75eaa0adeb188c7b4c50155862a04ead9af"
+    },
+    {
+      "path": "0007-switch-runtime-boot.patch",
+      "sha256": "f7b53a47e3a71b4c5e0b8decc7e2e9ddb40924731cb14e7d7d1cb207301e26bd"
     }
   ]
 }

@@ -28,6 +28,7 @@ int runGuestDispatchTests();
 int runCompiledVuTests();
 int runIopDirectoryBoundsTests();
 int runFolderDiscTests();
+int runHostFsTests();
 #ifdef NX_EXTENDED_CPU_TESTS
 int runPackedIntegerTests();
 int runFloatTests();
@@ -48,6 +49,8 @@ static int runSuites() {
     if(setenv("PS2X_VU1_FAST","0",1) || setenv("PS2X_IOP_REALTIME","0",1)) return EXIT_FAILURE;
 #endif
     std::puts("M02 public upstream runtime suites; accurate VU; EE-derived IOP; null host; no game boot");
+    // First: card backups are throttled to one per 10 s per process, and this suite checks that one is written.
+    int hostFsFailures=runHostFsTests();
     MiniTest::BeforeEach(reset_ps2_test_function_table);
     register_pad_input_tests(); register_ps2_runtime_io_tests();
     register_ps2_runtime_kernel_tests(); register_ps2_runtime_interrupt_tests();
@@ -55,7 +58,7 @@ static int runSuites() {
     register_ps2_gs_tests(); register_ps2_iop_tests();
     register_ps2_sif_rpc_tests(); register_ps2_sif_dma_tests();
     register_ps2_runtime_expansion_tests(); register_ps2_float_semantics_tests();
-    int failures=MiniTest::Run();
+    int failures=MiniTest::Run()+hostFsFailures;
     failures+=runSchedulerWorkload();
     failures+=runGuestDispatchTests();
     failures+=runCompiledVuTests();
