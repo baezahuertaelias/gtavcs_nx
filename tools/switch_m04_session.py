@@ -33,6 +33,10 @@ NRO_SD = SD + "/gtavcs.nro"
 TESTS_LOCAL = ROOT / "build/m02/test-bundle/gtavcs_runtime_tests.nro"
 TESTS_SD = SD + "/gtavcs_runtime_tests.nro"
 TESTS_LOG = SD + "/runtime-tests-M02.log"
+# The runtime suite's TMPDIR (src/core_tests/runtime_main.cpp). Upstream's tests leave their folders there, with a
+# 2 KiB synthetic disc.iso fixture (ps2_runtime_io_tests.cpp), because std::filesystem::remove_all fails on the
+# Switch (M03): the session removes the folder after reading the suite back, so preflight finds no disc image.
+TESTS_TMP = SD + "/test-work-M02/tmp"
 CRASHES = "/atmosphere/crash_reports"
 IMAGE = "gtavcs-nx-toolchain:m01"
 
@@ -128,6 +132,25 @@ def delete(session, remote):
     ftp.quit()
 
 
+def remove_tests_tmp(session):
+    """Delete the runtime suite's leftover temp folder (files first, then folders, deepest first)."""
+    ftp = connect()
+    try:
+        try:
+            tree = walk(ftp, TESTS_TMP, depth=16)
+        except ftplib.error_perm:
+            tree = {}
+        files = [p for p, kind in tree.items() if kind != "d"]
+        folders = sorted((p for p, kind in tree.items() if kind == "d"), key=lambda p: p.count("/"), reverse=True)
+        for path in files:
+            ftp.delete(path)
+        for path in folders:
+            ftp.rmd(path)
+    finally:
+        ftp.quit()
+    session.say(f"removed the suite's temp folder contents under {TESTS_TMP}: files={len(files)} folders={len(folders)}")
+
+
 def record_tree(session, path, name):
     ftp = connect()
     tree = walk(ftp, path)
@@ -200,6 +223,7 @@ def tests(session):
     if not nxlink(session, TESTS_LOCAL, TESTS_SD) or not wait_back(session, 1800):
         return False
     data = fetch(session, TESTS_LOG, session.evidence / "runtime-tests.log")
+    remove_tests_tmp(session)
     text = (data or b"").decode("utf-8", errors="replace")
     finished = re.findall(r"finished failures=(\d+)", text)
     host_fs = re.findall(r"\[host-fs\] failures=(\d+)", text)
@@ -219,6 +243,12 @@ def profile_of(config_text):
 def game(session, config, prompt, expect_failure):
     config_bytes = Path(config).read_bytes()
     label = Path(config).stem
+    # a repeated configuration (the second boot) keeps the first run's files: m04-boot, m04-boot-2, ...
+    if (session.evidence / f"{label}-gtavcs.log").exists():
+        n = 2
+        while (session.evidence / f"{label}-{n}-gtavcs.log").exists():
+            n += 1
+        label = f"{label}-{n}"
     profile = profile_of(config_bytes.decode())
     userdata = f"{GAME}/userdata" + (f"/tests/{profile}" if profile else "")
     seconds = re.search(r"^\s*seconds\s+([\d.]+)", config_bytes.decode(), re.M)
@@ -281,6 +311,7 @@ def main():
             ok = tests(session)
         elif args.command == "cleanup":
             delete(session, f"{GAME}/userdata/nxrun.cfg")
+            remove_tests_tmp(session)
             ok = True
         else:
             if not args.config:
