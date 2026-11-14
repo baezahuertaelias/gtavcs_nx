@@ -277,7 +277,10 @@ def game(session, config, prompt, expect_failure):
     record_tree(session, f"{GAME}/userdata", f"userdata-after-{label}.txt")
     if profile:
         ftp = connect()
-        ini = names(listing(ftp, userdata)).get("vcs.ini")
+        try:
+            ini = names(listing(ftp, userdata)).get("vcs.ini")
+        except ftplib.all_errors:
+            ini = None  # a boot that failed before creating its profile folder (bad configuration) has none
         ftp.quit()
         if ini is not None:
             fetch(session, f"{userdata}/vcs.ini", session.evidence / f"{label}-vcs.ini")

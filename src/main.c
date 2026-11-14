@@ -38,7 +38,13 @@ static void diagnostic(const char *format, ...)
 
 static void fatal_screen(void)
 {
-    /* Only called before SDL init or after its window/context have been freed. */
+    /* Only called before SDL init or after its window/context have been freed. SDL/Mesa EGL leave their buffers
+     * registered on the default NWindow; the software console's first framebufferBegin then fails to dequeue
+     * (LibnxError_BadGfxDequeueBuffer) and libnx aborts - a boot that failed after SDL started crashed here
+     * (M04 bad-configuration run). Release those buffers first; without SDL there are none and this is harmless. */
+    const Result released = nwindowReleaseBuffers(nwindowGetDefault());
+    fprintf(stderr, "[boot] failure screen: default window buffers released (%08x)\n", released);
+    fflush(stderr);
     PrintConsole *screen = consoleInit(NULL);
     char message[768];
     snprintf(message, sizeof(message), "GTA VCS NX failed\n%s\n"
