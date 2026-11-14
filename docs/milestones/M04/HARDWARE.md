@@ -33,13 +33,17 @@ python tools/switch_m04_session.py game $E tests/switch/m04-focus.cfg \
   --prompt "At about 30 s press HOME, wait 10 s, go back to the game. At about 70 s press the power button (sleep), wait 10 s, wake it and go back."
 python tools/switch_m04_session.py game $E tests/switch/m04-close.cfg \
   --prompt "At about 40 s press HOME and choose Close. Then open Sphaira again (title override) so FTP comes back."
-python tools/switch_m04_session.py game $E tests/switch/m04-badcfg.cfg --expect-failure "nxrun.cfg:3: unknown directive"
+python tools/switch_m04_session.py game $E tests/switch/m04-badcfg.cfg --expect-failure "nxrun.cfg:3: unknown directive" \
+  --prompt "When the system error dialog appears, read it and press OK."
 python tools/m04_compare.py build/evidence/M04/reference/reference-results.txt $E/m04-boot-results.txt
 ```
 
 The person at the Switch only acts where a step prints `ACTION FOR THE PERSON AT
-THE SWITCH`. Until M05 the screen stays black while the game runs (null renderer);
-the bad-configuration step shows a text screen for 15 seconds.
+THE SWITCH`. Until M05 the screen stays black while the game runs (null renderer).
+A boot that fails after SDL has started (the bad-configuration step) shows the system's error dialog, which
+stays up until someone presses OK; a failure before SDL starts (no gamefolder) keeps the 15-second text screen.
+The libnx console cannot draw once Mesa EGL has used the display window (2345-0021 in framebufferBegin, first
+M04 session), so the post-SDL path must not use it.
 
 ## Required observations
 
@@ -54,6 +58,7 @@ the bad-configuration step shows a text screen for 15 seconds.
 - Focus: `focus state=out` / `state=in` pairs, progress resuming after each, a clean end.
 - Close: the orderly shutdown lines (game thread joined, stream reader stopped, folder disc closed) after the
   applet's exit request, with no new crash report.
-- Bad configuration: the boot fails naming `nxrun.cfg:3`, the text screen, a clean return to Sphaira.
+- Bad configuration: the boot fails naming `nxrun.cfg:3`, the system error dialog naming it (the log's
+  `failure shown in the system error dialog (00000000)`), no new crash report, a clean return to Sphaira.
 
 Missing or failed observations keep their tasks open.

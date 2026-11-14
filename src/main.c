@@ -36,15 +36,26 @@ static void diagnostic(const char *format, ...)
     if (nx_socket >= 0) { fputs(last_message, stdout); fflush(stdout); }
 }
 
+/* A failure after SDL started: the system's error dialog shows the message without needing our display window
+ * (see fatal_screen). It stays up until the player presses OK; the full text is under Details. */
+static void error_dialog(void)
+{
+    char details[1024];
+    snprintf(details, sizeof(details), "%s\nCheck /switch/gtavcs_nx/gtavcs-boot.log or gamefolder/gtavcs.log.",
+             last_message);
+    ErrorApplicationConfig config;
+    Result rc = errorApplicationCreate(&config, "GTA VCS NX failed to start.", details);
+    if (R_SUCCEEDED(rc)) rc = errorApplicationShow(&config);
+    fprintf(stderr, "[boot] failure shown in the system error dialog (%08x)\n", rc);
+    fflush(stderr);
+}
+
 static void fatal_screen(void)
 {
-    /* Only called before SDL init or after its window/context have been freed. SDL/Mesa EGL leave their buffers
-     * registered on the default NWindow; the software console's first framebufferBegin then fails to dequeue
-     * (LibnxError_BadGfxDequeueBuffer) and libnx aborts - a boot that failed after SDL started crashed here
-     * (M04 bad-configuration run). Release those buffers first; without SDL there are none and this is harmless. */
-    const Result released = nwindowReleaseBuffers(nwindowGetDefault());
-    fprintf(stderr, "[boot] failure screen: default window buffers released (%08x)\n", released);
-    fflush(stderr);
+    /* Only for failures before SDL started (see error_dialog). Once Mesa EGL has used the default NWindow, the
+     * software console cannot take it back: its first framebufferBegin fails to dequeue a buffer
+     * (LibnxError_BadGfxDequeueBuffer, 2345-0021) and libnx aborts, even after nwindowReleaseBuffers (M04
+     * bad-configuration runs). */
     PrintConsole *screen = consoleInit(NULL);
     char message[768];
     snprintf(message, sizeof(message), "GTA VCS NX failed\n%s\n"
@@ -79,6 +90,7 @@ int main(int argc, char **argv)
     AppletHookCookie hook;
     int hook_started = 0;
     int exit_locked = 0;
+    int sdl_started = 0;
     if (__nxlink_host.s_addr && R_SUCCEEDED(socketInitializeDefault())) {
         sockets_started = 1;
         nx_socket = nxlinkConnectToHost(true, false);
@@ -119,6 +131,7 @@ int main(int argc, char **argv)
     /* SDL owns audren (opened by the core's platform layer) and the controllers. */
     if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO | SDL_INIT_GAMECONTROLLER | SDL_INIT_TIMER) < 0)
         goto sdl_error;
+    sdl_started = 1;
     if (appletGetAppletType() == AppletType_Application) {
         const Result rc = appletSetFocusHandlingMode(AppletFocusHandlingMode_SuspendHomeSleepNotify);
         if (R_FAILED(rc)) {
@@ -237,7 +250,8 @@ cleanup:;
         diagnostic("[shutdown] core, context, window and SDL closed\n");
     else {
         memcpy(last_message, failure, sizeof(last_message));
-        fatal_screen();
+        if (sdl_started) error_dialog();
+        else fatal_screen();
     }
     if (log) { fflush(log); fclose(log); }
     if (nx_socket >= 0) {
