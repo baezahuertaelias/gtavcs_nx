@@ -160,8 +160,8 @@ int main(int argc, char **argv)
         goto cleanup;
     }
     diagnostic("[boot] GL %s; renderer %s\n", glGetString(GL_VERSION), glGetString(GL_RENDERER));
-    /* The core paces host frames (platform::waitNextFrame, 60 Hz). Until the GL
-     * renderer presents (M05) a vsynced swap would halve that pacing. */
+    /* The core paces host frames (platform::waitNextFrame, 60 Hz); the RHI sets the
+     * interval from the Display > Vertical sync setting when it presents. */
     if (SDL_GL_SetSwapInterval(0) < 0)
         diagnostic("[boot] swap interval 0 unavailable: %s\n", SDL_GetError());
 
@@ -220,9 +220,12 @@ int main(int argc, char **argv)
         const int state = gtavcs_core_frame();
         if (state < 0) { diagnostic("[core] frame failed: %s\n", gtavcs_core_error()); goto cleanup; }
         if (state == 0) { diagnostic("[core] orderly stop after %lu frames\n", frames_presented); break; }
-        /* Null RHI until M05: the runtime draws nothing, so present a cleared
-         * frame to keep the display owned and the swap path exercised. */
-        if (width > 0 && height > 0) {
+        /* The OpenGL RHI drew and swapped inside the frame. With the null RHI
+         * (VCS_RHI=null) nothing is drawn: present a cleared frame to keep the
+         * display owned. */
+        if (gtavcs_core_presents()) {
+            ++frames_presented;
+        } else if (width > 0 && height > 0) {
             glViewport(0, 0, width, height);
             glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);

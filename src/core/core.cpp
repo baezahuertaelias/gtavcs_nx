@@ -32,6 +32,8 @@
 #include "game/vcs_stream.h"
 #include "game/vcs_trainer.h"
 #include "launcher.h"
+#include "render/presenter.h"
+#include "rhi/rhi.h"
 #include "settings/settings.h"
 #include "util/sha1.h"
 
@@ -309,7 +311,8 @@ namespace
             setenv(name.c_str(), value.c_str(), 1);
             std::fprintf(stderr, "[core] env %s=%s\n", name.c_str(), value.c_str());
         }
-        // upstream main: the hardware GS renderer unless PS2X_GS says otherwise (here through the null RHI until M05)
+        // upstream main: the hardware GS renderer unless PS2X_GS says otherwise; it draws through the OpenGL RHI
+        // (VCS_RHI=null keeps the null backend for CPU-side bring-up)
         if (const char *gs = std::getenv("PS2X_GS"); !gs || !*gs)
             setenv("PS2X_GS", "hw", 1);
 
@@ -519,3 +522,9 @@ extern "C" void gtavcs_core_shutdown(void)
 }
 
 extern "C" const char *gtavcs_core_error(void) { return g_error.c_str(); }
+
+extern "C" int gtavcs_core_presents(void)
+{
+    rhi::Device *device = present::device();
+    return device && device->backend() == rhi::Backend::OpenGL ? 1 : 0;
+}

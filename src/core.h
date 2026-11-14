@@ -25,6 +25,9 @@ int gtavcs_core_boot(const char *asset_root);
 int gtavcs_core_frame(void);
 void gtavcs_core_set_focus(int focused);
 void gtavcs_core_shutdown(void);
+/* 1 when the core's renderer presents (the OpenGL RHI swaps in gtavcs_core_frame);
+ * 0 with the null RHI (VCS_RHI=null), when main.c keeps the display owned itself. */
+int gtavcs_core_presents(void);
 /* One line naming why boot or a frame failed; empty when nothing failed. */
 const char *gtavcs_core_error(void);
 

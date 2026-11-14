@@ -1,0 +1,223 @@
+diff --git a/src/platform/platform.h b/src/platform/platform.h
+index 1a3f12d..8971e4e 100644
+--- a/src/platform/platform.h
++++ b/src/platform/platform.h
+@@ -159,6 +159,15 @@ namespace platform
+     const char *const *vulkanInstanceExtensions(uint32_t *count); // the instance extensions the surface needs
+     bool vulkanCreateSurface(void *instance, uint64_t *surface);  // VkInstance -> VkSurfaceKHR
+ 
++    // [gta-recomp] For the OpenGL renderer (rhi::GlWindow; the Switch port's platform layer only): the window's GL
++    // context, made and owned by the platform side and current on the main thread. Main thread.
++    void *glGetProcAddress(const char *name);
++    void glSwapWindow();
++    void glDrawableSize(uint32_t *width, uint32_t *height);
++    bool glSetSwapInterval(int interval);
++    bool glLoaderAvailable();                 // a texture-loading context sharing the window's (made at init when asked)
++    bool glMakeLoaderCurrent(bool current);   // on the calling thread, no surface; false releases it
++
+     // Main thread, once per host frame, in this order:
+     //   pumpEvents()      events + input snapshot
+     //   beginFrame()      new Dear ImGui frame (overlays / debug UI may draw from here on; the renderer's ImGui
+diff --git a/src/render/gs_shaders.cpp b/src/render/gs_shaders.cpp
+index a3d7fb7..08a80fa 100644
+--- a/src/render/gs_shaders.cpp
++++ b/src/render/gs_shaders.cpp
+@@ -85,6 +85,10 @@ using BYTE = unsigned char; // fxc's /Fh headers declare `const BYTE name[]`
+ #include "spirv/gs_draw_ps6_noz.h"
+ #include "spirv/gs_draw_ps6_dual_noz.h"
+ #endif
++#if defined(VCS_HAVE_OPENGL)
++// [gta-recomp] the Switch port's GLSL 330 ports of the same shaders (its src/render/glsl, tools/glsl_shaders.py)
++#include "glsl/gs_shaders_glsl.h"
++#endif
+ 
+ namespace render
+ {
+@@ -159,6 +163,42 @@ namespace render
+         };
+         if (backend == rhi::Backend::Vulkan)
+             return spirv;
++#endif
++#if defined(VCS_HAVE_OPENGL)
++        // [gta-recomp] GLSL source text (the device compiles it; the size includes the terminating zero)
++        static const GsShaders glsl{
++            {kGsDrawVS_glsl, sizeof(kGsDrawVS_glsl)},
++            {kGsWorldVS_glsl, sizeof(kGsWorldVS_glsl)},
++            {kGsLitVS_glsl, sizeof(kGsLitVS_glsl)},
++            {
++                {{kGsDrawPS0_glsl, sizeof(kGsDrawPS0_glsl)}, {kGsDrawPS0Dual_glsl, sizeof(kGsDrawPS0Dual_glsl)}},
++                {{kGsDrawPS1_glsl, sizeof(kGsDrawPS1_glsl)}, {kGsDrawPS1Dual_glsl, sizeof(kGsDrawPS1Dual_glsl)}},
++                {{kGsDrawPS2_glsl, sizeof(kGsDrawPS2_glsl)}, {kGsDrawPS2Dual_glsl, sizeof(kGsDrawPS2Dual_glsl)}},
++                {{kGsDrawPS3_glsl, sizeof(kGsDrawPS3_glsl)}, {kGsDrawPS3Dual_glsl, sizeof(kGsDrawPS3Dual_glsl)}},
++                {{kGsDrawPS4_glsl, sizeof(kGsDrawPS4_glsl)}, {kGsDrawPS4Dual_glsl, sizeof(kGsDrawPS4Dual_glsl)}},
++                {{kGsDrawPS5_glsl, sizeof(kGsDrawPS5_glsl)}, {kGsDrawPS5Dual_glsl, sizeof(kGsDrawPS5Dual_glsl)}},
++                {{kGsDrawPS6_glsl, sizeof(kGsDrawPS6_glsl)}, {kGsDrawPS6Dual_glsl, sizeof(kGsDrawPS6Dual_glsl)}},
++            },
++            {kGsQuadVS_glsl, sizeof(kGsQuadVS_glsl)},
++            {kGsBlitPS_glsl, sizeof(kGsBlitPS_glsl)},
++            {kGsFillColorPS_glsl, sizeof(kGsFillColorPS_glsl)},
++            {kGsFillDepthPS_glsl, sizeof(kGsFillDepthPS_glsl)},
++            {kPresentVS_glsl, sizeof(kPresentVS_glsl)},
++            {kPresentPS_glsl, sizeof(kPresentPS_glsl)},
++            {kUiVS_glsl, sizeof(kUiVS_glsl)},
++            {kUiPS_glsl, sizeof(kUiPS_glsl)},
++            {
++                {{kGsDrawPS0NoZ_glsl, sizeof(kGsDrawPS0NoZ_glsl)}, {kGsDrawPS0DualNoZ_glsl, sizeof(kGsDrawPS0DualNoZ_glsl)}},
++                {{kGsDrawPS1NoZ_glsl, sizeof(kGsDrawPS1NoZ_glsl)}, {kGsDrawPS1DualNoZ_glsl, sizeof(kGsDrawPS1DualNoZ_glsl)}},
++                {{kGsDrawPS2NoZ_glsl, sizeof(kGsDrawPS2NoZ_glsl)}, {kGsDrawPS2DualNoZ_glsl, sizeof(kGsDrawPS2DualNoZ_glsl)}},
++                {{kGsDrawPS3NoZ_glsl, sizeof(kGsDrawPS3NoZ_glsl)}, {kGsDrawPS3DualNoZ_glsl, sizeof(kGsDrawPS3DualNoZ_glsl)}},
++                {{kGsDrawPS4NoZ_glsl, sizeof(kGsDrawPS4NoZ_glsl)}, {kGsDrawPS4DualNoZ_glsl, sizeof(kGsDrawPS4DualNoZ_glsl)}},
++                {{kGsDrawPS5NoZ_glsl, sizeof(kGsDrawPS5NoZ_glsl)}, {kGsDrawPS5DualNoZ_glsl, sizeof(kGsDrawPS5DualNoZ_glsl)}},
++                {{kGsDrawPS6NoZ_glsl, sizeof(kGsDrawPS6NoZ_glsl)}, {kGsDrawPS6DualNoZ_glsl, sizeof(kGsDrawPS6DualNoZ_glsl)}},
++            },
++        };
++        if (backend == rhi::Backend::OpenGL)
++            return glsl;
+ #endif
+         (void)backend;
+         static const GsShaders none{};
+diff --git a/src/render/presenter.cpp b/src/render/presenter.cpp
+index a924b7b..4766b8d 100644
+--- a/src/render/presenter.cpp
++++ b/src/render/presenter.cpp
+@@ -53,7 +53,7 @@ namespace present
+             if (env && *env)
+             {
+                 if (!rhi::backendFromName(env, b))
+-                    std::fprintf(stderr, "[present] VCS_RHI=%s not understood (d3d11, vulkan or null)\n", env);
++                    std::fprintf(stderr, "[present] VCS_RHI=%s not understood (d3d11, vulkan, opengl or null)\n", env);
+             }
+             else if (g_backendSetting >= 0)
+                 b = static_cast<rhi::Backend>(g_backendSetting);
+@@ -103,6 +103,14 @@ namespace present
+         desc.nativeWindow = platform::nativeWindow();
+         desc.vulkan.instanceExtensions = platform::vulkanInstanceExtensions;
+         desc.vulkan.createSurface = platform::vulkanCreateSurface;
++#if defined(VCS_HAVE_OPENGL) // [gta-recomp] the Switch port: the platform layer's GL context
++        desc.gl.getProcAddress = platform::glGetProcAddress;
++        desc.gl.swap = platform::glSwapWindow;
++        desc.gl.drawableSize = platform::glDrawableSize;
++        desc.gl.setSwapInterval = platform::glSetSwapInterval;
++        desc.gl.loaderAvailable = platform::glLoaderAvailable;
++        desc.gl.makeLoaderCurrent = platform::glMakeLoaderCurrent;
++#endif
+         desc.offscreen = platform::windowHidden();
+         desc.width = static_cast<uint32_t>(std::max(width, 1));
+         desc.height = static_cast<uint32_t>(std::max(height, 1));
+diff --git a/src/rhi/rhi.cpp b/src/rhi/rhi.cpp
+index a1356c1..a3d67dd 100644
+--- a/src/rhi/rhi.cpp
++++ b/src/rhi/rhi.cpp
+@@ -13,6 +13,7 @@ namespace rhi
+         case Backend::D3D11: return "D3D11";
+         case Backend::Vulkan: return "Vulkan";
+         case Backend::Null: return "null";
++        case Backend::OpenGL: return "OpenGL"; // [gta-recomp]
+         }
+         return "?";
+     }
+@@ -30,6 +31,8 @@ namespace rhi
+             out = Backend::Vulkan;
+         else if (std::strcmp(lower, "null") == 0)
+             out = Backend::Null;
++        else if (std::strcmp(lower, "opengl") == 0) // [gta-recomp]
++            out = Backend::OpenGL;
+         else
+             return false;
+         return true;
+@@ -44,6 +47,9 @@ namespace rhi
+ #endif
+ #if defined(VCS_HAVE_VULKAN)
+         case Backend::Vulkan: return true;
++#endif
++#if defined(VCS_HAVE_OPENGL) // [gta-recomp]
++        case Backend::OpenGL: return true;
+ #endif
+         case Backend::Null: return true;
+         default: return false;
+@@ -56,6 +62,8 @@ namespace rhi
+         return Backend::D3D11;
+ #elif defined(VCS_HAVE_VULKAN)
+         return Backend::Vulkan;
++#elif defined(VCS_HAVE_OPENGL) // [gta-recomp] only the Switch port builds it, and builds neither of the above
++        return Backend::OpenGL;
+ #else
+         return Backend::Null;
+ #endif
+@@ -70,6 +78,9 @@ namespace rhi
+ #endif
+ #if defined(VCS_HAVE_VULKAN)
+         case Backend::Vulkan: return createVulkanDevice(desc, error);
++#endif
++#if defined(VCS_HAVE_OPENGL) // [gta-recomp]
++        case Backend::OpenGL: return createOpenGLDevice(desc, error);
+ #endif
+         case Backend::Null: return createNullDevice(desc, error);
+         default: break;
+diff --git a/src/rhi/rhi.h b/src/rhi/rhi.h
+index b9ea870..ba39d9e 100644
+--- a/src/rhi/rhi.h
++++ b/src/rhi/rhi.h
+@@ -1,6 +1,7 @@
+ // Render hardware interface (docs/NATIVE_RENDERER.md): the small set of GPU operations the renderer needs, so the
+ // renderer never sees a graphics API. One backend per API: D3D11 (rhi/d3d11, Windows), Vulkan (rhi/vulkan, Linux, and
+-// Windows to compare) and null (rhi/null, no GPU work). Immutable pipelines, explicit passes, copies and readbacks as
++// Windows to compare), null (rhi/null, no GPU work) and - [gta-recomp] in the Nintendo Switch port only - OpenGL 3.3
++// core (the port's rhi_gl.cpp, on the context its platform layer owns; never part of the desktop build). Immutable pipelines, explicit passes, copies and readbacks as
+ // plain operations.
+ //
+ // Threading: one device, used from one thread (the main thread). No API types appear in this header.
+@@ -228,11 +229,12 @@ namespace rhi
+         D3D11,
+         Vulkan,
+         Null, // no GPU work: textures read back as zeros (bring-up and tests of the CPU side)
++        OpenGL, // [gta-recomp] the Switch port's backend (VCS_HAVE_OPENGL); after Null so stored setting values keep theirs
+     };
+-    const char *backendName(Backend backend);         // "D3D11", "Vulkan", "null"
+-    bool backendFromName(const char *name, Backend &out); // d3d11 | vulkan | null, any case
++    const char *backendName(Backend backend);         // "D3D11", "Vulkan", "null", "OpenGL"
++    bool backendFromName(const char *name, Backend &out); // d3d11 | vulkan | null | opengl, any case
+     bool backendBuilt(Backend backend);               // compiled into this build
+-    Backend defaultBackend();                         // D3D11 on Windows, Vulkan elsewhere
++    Backend defaultBackend();                         // D3D11 on Windows, Vulkan elsewhere (OpenGL: the Switch port)
+ 
+     // What the Vulkan backend needs from the window (the platform layer's SDL): opaque to the RHI.
+     struct VulkanWindow
+@@ -241,15 +243,30 @@ namespace rhi
+         bool (*createSurface)(void *instance, uint64_t *surface) = nullptr;  // VkInstance -> VkSurfaceKHR
+     };
+ 
++    // [gta-recomp] What the OpenGL backend needs from the window: its GL context is made and owned by the platform layer
++    // (SDL), current on the thread that creates and uses the device. The backend never makes a context or surface.
++    struct GlWindow
++    {
++        void *(*getProcAddress)(const char *name) = nullptr;     // GL entry points of that context
++        void (*swap)() = nullptr;                                // present the back buffer (SDL_GL_SwapWindow)
++        void (*drawableSize)(uint32_t *width, uint32_t *height) = nullptr; // the default framebuffer in pixels
++        bool (*setSwapInterval)(int interval) = nullptr;         // 0 immediate, 1 vsync
++        // Optional: a second context sharing the window context's objects, made current (true) / released (false) on
++        // the calling thread without a surface - the backend's free-threaded texture creation (freeThreadedCreation)
++        bool (*loaderAvailable)() = nullptr;
++        bool (*makeLoaderCurrent)(bool current) = nullptr;
++    };
++
+     struct DeviceDesc
+     {
+         Backend backend = defaultBackend();
+         void *nativeWindow = nullptr; // D3D11: the HWND
+         VulkanWindow vulkan;          // Vulkan
++        GlWindow gl;                  // [gta-recomp] OpenGL
+         uint32_t width = 0;
+         uint32_t height = 0;
+         bool debug = false;     // API validation layer (when installed)
+-        bool offscreen = false; // Vulkan: no swapchain, the back buffer is a texture (hidden windows: test runs)
++        bool offscreen = false; // Vulkan, OpenGL: no swapchain, the back buffer is a texture (hidden windows: test runs)
+     };
+ 
+     class Device
+@@ -339,4 +356,5 @@ namespace rhi
+     std::unique_ptr<Device> createD3D11Device(const DeviceDesc &desc, std::string &error);
+     std::unique_ptr<Device> createVulkanDevice(const DeviceDesc &desc, std::string &error);
+     std::unique_ptr<Device> createNullDevice(const DeviceDesc &desc, std::string &error);
++    std::unique_ptr<Device> createOpenGLDevice(const DeviceDesc &desc, std::string &error); // [gta-recomp] Switch port
+ }
