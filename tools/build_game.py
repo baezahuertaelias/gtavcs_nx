@@ -18,7 +18,7 @@ import subprocess
 import sys
 
 from build_core_tests import dependency as sse2neon_dependency
-from build_switch import IMAGE
+from build_switch import IMAGE, reclaim
 from upstream_overlay import prepare
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -158,7 +158,10 @@ def main():
                        "--imgui", imgui.relative_to(ROOT).as_posix()]
             if args.public:
                 command.append("--public")
-            run(command, log)
+            try:
+                run(command, log)
+            finally:
+                reclaim(ROOT, PRIVATE, LOGS)
             if not args.public:
                 manifest = json.loads((PRIVATE / "manifest-inside.json").read_text())
                 manifest.update({"root_commit": git(ROOT, "rev-parse", "HEAD"),

@@ -13,7 +13,7 @@ import shutil
 import subprocess
 import sys
 
-from build_switch import IMAGE, PIN
+from build_switch import IMAGE, PIN, reclaim
 from upstream_overlay import prepare
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -245,9 +245,13 @@ def main():
             manifest_path = LOGS / "public-inputs.json"
             manifest_path.write_text(json.dumps(manifest, indent=2) + "\n")
             run(["docker", "build", "--network=none", "-f", "Dockerfile.switch", "-t", IMAGE, "."], log)
-            run(["docker", "run", "--rm", "--network=none", "--mount", f"type=bind,source={ROOT},target=/work",
-                 "--mount", f"type=volume,source={VOLUME},target=/cache", "-w", "/work", IMAGE,
-                 "python3", "tools/build_core_tests.py", "--inside", "/work/" + manifest_path.relative_to(ROOT).as_posix()], log)
+            try:
+                run(["docker", "run", "--rm", "--network=none", "--mount", f"type=bind,source={ROOT},target=/work",
+                     "--mount", f"type=volume,source={VOLUME},target=/cache", "-w", "/work", IMAGE,
+                     "python3", "tools/build_core_tests.py", "--inside",
+                     "/work/" + manifest_path.relative_to(ROOT).as_posix()], log)
+            finally:
+                reclaim(ROOT, BUNDLE, LOGS)
         return 0
     except (OSError, RuntimeError, subprocess.CalledProcessError, ValueError, KeyError, TypeError) as error:
         # No stale NRO may be mistaken for a newly validated public bundle.
