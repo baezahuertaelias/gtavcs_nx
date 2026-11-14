@@ -154,11 +154,15 @@ target_link_directories(gtavcs PRIVATE "${SWITCH_PORTLIBS}/lib")
 target_link_options(gtavcs PRIVATE
     "-Wl,-Map,${CMAKE_CURRENT_BINARY_DIR}/gtavcs.map" -Wl,--wrap=__syscall_thread_create -Wl,--wrap=_open_r
     ${NX_SDL2_STATIC_LDFLAGS_OTHER} ${NX_GL_STATIC_LDFLAGS_OTHER} ${NX_EGL_STATIC_LDFLAGS_OTHER})
-# The generated archive is whole-archive: its registration constructor references every function. Portlibs are
-# static; grouping resolves Mesa/SDL dependencies without depending on incidental archive ordering.
+# The generated archive is whole-archive: its registration constructor references every function. So is
+# nx_game_private: vcs_overrides.cpp installs the whole game layer (applyVcs) through a static
+# PS2_REGISTER_GAME_OVERRIDE object that nothing references, and a plain archive member like that is dropped by the
+# linker - the game then boots without its hooks and waits forever in the PS2 movie player. Upstream's desktop build
+# compiles these sources into the executable, so it never loses them. Portlibs are static; grouping resolves
+# Mesa/SDL dependencies without depending on incidental archive ordering.
 # The game layer, runtime, IOP and platform reference each other both ways: one group.
 target_link_libraries(gtavcs PRIVATE glad
-    -Wl,--whole-archive "${NX_PRIVATE_GENERATED_ARCHIVE}" -Wl,--no-whole-archive
+    -Wl,--whole-archive "${NX_PRIVATE_GENERATED_ARCHIVE}" $<TARGET_FILE:nx_game_private> -Wl,--no-whole-archive
     -Wl,--start-group nx_game_private nx_core nx_platform nx_imgui ps2_iop
     ${NX_SDL2_STATIC_LIBRARIES} ${NX_GL_STATIC_LIBRARIES} ${NX_EGL_STATIC_LIBRARIES} ${NX_ZLIB_STATIC_LIBRARIES}
     "${NX_LIBRARY}" m -Wl,--end-group)

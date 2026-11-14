@@ -119,8 +119,11 @@ def inside(args, log):
         "core_stub_linked": "core_stub" in linkmap,
         "generated_linked": "libvcs_generated_cpu.a" in linkmap,
         "wrapped_thread_create": "__wrap___syscall_thread_create" in linkmap,
+        # applyVcs registers itself statically; without this object the game boots with none of its hooks
+        "game_overrides_linked": "(vcs_overrides.o)" in linkmap,
     }
-    if manifest["core_stub_linked"] or not manifest["generated_linked"] or not manifest["wrapped_thread_create"]:
+    if (manifest["core_stub_linked"] or not manifest["generated_linked"] or not manifest["wrapped_thread_create"]
+            or not manifest["game_overrides_linked"]):
         raise RuntimeError(f"Unexpected link map: {manifest}")
     (out / "manifest-inside.json").write_text(json.dumps(manifest, indent=2) + "\n")
     print("PASS private game NRO " + manifest["nro_sha256"], flush=True)
