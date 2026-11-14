@@ -797,7 +797,8 @@ namespace conformance
                                                BlendFactor::DstAlpha, BlendFactor::InvDstAlpha, BlendFactor::Constant, BlendFactor::InvConstant};
                 const BlendOp ops[] = {BlendOp::Add, BlendOp::Subtract, BlendOp::ReverseSubtract, BlendOp::Min, BlendOp::Max};
                 const char *opNames[] = {"add", "subtract", "reverse_subtract", "min", "max"};
-                const float dst[4] = {0.2f, 0.4f, 0.6f, 0.4f}, src[4] = {0.8f, 0.3f, 0.1f, 0.7f};
+                // k / 255 inputs (no float -> unorm rounding ties before the blend)
+                const float dst[4] = {51 / 255.0f, 102 / 255.0f, 153 / 255.0f, 102 / 255.0f}, src[4] = {204 / 255.0f, 77 / 255.0f, 26 / 255.0f, 179 / 255.0f};
                 const float constant[4] = {0.25f, 0.5f, 0.75f, 0.6f};
                 for (int o = 0; o < 5; ++o)
                     for (int alpha = 0; alpha < 2; ++alpha)
@@ -873,7 +874,7 @@ namespace conformance
                     auto t = target(64, 64, "dual");
                     if (!t)
                         return;
-                    begin(t.get(), nullptr, true, 0.25f, 0.5f, 0.75f, 0.5f);
+                    begin(t.get(), nullptr, true, 64 / 255.0f, 128 / 255.0f, 191 / 255.0f, 128 / 255.0f);
                     for (int e = 0; e < 8; ++e)
                     {
                         BlendState b;
@@ -1194,10 +1195,10 @@ namespace conformance
                 check("clip_depth_0_to_1", std::fabs(z0 - 0.28125f) < 1e-6f, std::to_string(z0));
                 emit("origin_color", *t);
                 emit("origin_depth", *d, "float:1e-6");
-                // UNORM: 0.6 -> 153, no sRGB encode on write or decode on read
+                // UNORM: 0.6 -> 153 and 128 / 255 -> 128, no sRGB encode on write or decode on read
                 auto u = target(4, 4, "unorm");
                 begin(u.get());
-                const float c[4] = {0.6f, 0.5f, 0.2f, 1.0f};
+                const float c[4] = {0.6f, 128 / 255.0f, 0.2f, 1.0f};
                 fill(4, 4, 0, 0, 4, 4, c);
                 m_dev.endPass();
                 px = read(*u);
@@ -1257,7 +1258,7 @@ namespace conformance
                     return;
                 const float so[4] = {2.0f / 64, -2.0f / 48, -1.0f, 1.0f}; // ImGui's projection (top-left origin)
                 m_dev.updateBuffer(*cb, so, sizeof(so));
-                begin(ut.get(), nullptr, true, 0.1f, 0.1f, 0.1f, 1.0f);
+                begin(ut.get(), nullptr, true, 26 / 255.0f, 26 / 255.0f, 26 / 255.0f, 1.0f); // k / 255: no rounding tie
                 m_dev.setPipeline(*ui);
                 m_dev.setConstants(0, *cb);
                 m_dev.setVertexBuffer(*vb, 0);
@@ -1333,7 +1334,7 @@ namespace conformance
                         auto d = depthTarget(80, 16, "gs mode depth");
                         if (!pipe || !t || !d)
                             continue;
-                        begin(t.get(), d.get(), true, 0.5f, 0.25f, 0.125f, 0.5f, true, 0.0f);
+                        begin(t.get(), d.get(), true, 128 / 255.0f, 64 / 255.0f, 32 / 255.0f, 128 / 255.0f, true, 0.0f);
                         const int paths = mode == 0 ? 5 : 1;
                         for (int path = 0; path < paths; ++path)
                         {
@@ -1396,7 +1397,7 @@ namespace conformance
                 auto t = target(64, 64, "tfx");
                 if (!tex || !pipe || !t)
                     return;
-                begin(t.get(), nullptr, true, 0.2f, 0.2f, 0.2f, 0.0f);
+                begin(t.get(), nullptr, true, 51 / 255.0f, 51 / 255.0f, 51 / 255.0f, 0.0f);
                 int cell = 0;
                 auto at = [&](std::vector<GsVertex> &v, uint32_t color, float fog = 1.0f) {
                     const float x = static_cast<float>((cell % 8) * 8), y = static_cast<float>((cell / 8) * 8);

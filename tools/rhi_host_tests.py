@@ -66,18 +66,27 @@ def main():
     run(["cmake", "--build", build])
     if a.no_run:
         return 0
-    env = dict(os.environ, VK_ICD_FILENAMES=os.environ.get("VK_ICD_FILENAMES", "/usr/share/vulkan/icd.d/lvp_icd.json"))
+    # the desktop reference: upstream's Vulkan backend on this host's GPU (Mesa ANV / RADV, whatever the loader picks
+    # first among hardware ICDs) and on lavapipe (a second, software implementation); the port's OpenGL backend
+    icds = Path("/usr/share/vulkan/icd.d")
+    runs = [("vulkan", "vulkan", {"VK_ICD_FILENAMES": str(icds / "lvp_icd.json")})]
+    hardware = [p for p in (icds / "intel_icd.json", icds / "radeon_icd.json") if p.exists()]
+    if hardware:
+        runs.insert(0, ("vulkan_hw", "vulkan", {"VK_ICD_FILENAMES": ":".join(map(str, hardware))}))
+    runs.append(("opengl", "opengl", {}))
     status = 0
-    for backend in ("vulkan", "opengl"):
-        result = out / backend
+    for name, backend, extra in runs:
+        result = out / name
         shutil.rmtree(result, ignore_errors=True)
-        with open(out / f"{backend}.stderr.log", "w") as log:
+        with open(out / f"{name}.stderr.log", "w") as log:
             code = subprocess.run([build / "rhi_conformance", "--backend", backend, "--out", result, "--churn", str(a.churn)],
-                                  env=env, stderr=log).returncode
-        print(f"{backend}: exit {code}; checks {result / 'checks.tsv'}; log {out / (backend + '.stderr.log')}")
+                                  env=dict(os.environ, **extra), stderr=log).returncode
+        print(f"{name}: exit {code}; {(result / 'log.txt').read_text().splitlines()[0] if (result / 'log.txt').exists() else ''}")
         status |= code != 0
-    code = subprocess.run([sys.executable, ROOT / "tools/rhi_compare.py", out / "vulkan", out / "opengl",
-                           "--report", out / "compare-host.json"]).returncode
+    code = 0
+    for ref in [r[0] for r in runs if r[1] == "vulkan"]:
+        code |= subprocess.run([sys.executable, ROOT / "tools/rhi_compare.py", out / ref, out / "opengl",
+                                "--report", out / f"compare-{ref}-opengl.json"]).returncode
     return 1 if status or code else 0
 
 
