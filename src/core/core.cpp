@@ -144,10 +144,20 @@ namespace
         const struct mallinfo m = mallinfo();
         // live threads of this process (the kernel's list): boot and shutdown compare to show no worker outlived the
         // core
+        // The kernel refuses the CUR_PROCESS_HANDLE pseudo-handle here (0xE401, invalid handle; first M04 Switch boot),
+        // so ask with the real process handle the homebrew loader passes (envGetOwnProcessHandle) first.
         s32 live = -1;
         u64 ids[256];
-        const Result listed = svcGetThreadList(&live, ids, 256, CUR_PROCESS_HANDLE);
-        std::fprintf(stderr, "[resources] %s live_threads=%d (svc %08x)\n", stage, R_SUCCEEDED(listed) ? live : -1, listed);
+        const Handle own = envGetOwnProcessHandle();
+        const char *via = "own";
+        Result listed = own != INVALID_HANDLE ? svcGetThreadList(&live, ids, 256, own) : MAKERESULT(Module_Libnx, LibnxError_NotFound);
+        if (R_FAILED(listed))
+        {
+            via = "pseudo";
+            listed = svcGetThreadList(&live, ids, 256, CUR_PROCESS_HANDLE);
+        }
+        std::fprintf(stderr, "[resources] %s live_threads=%d (svc %08x via %s)\n", stage, R_SUCCEEDED(listed) ? live : -1,
+                     listed, via);
         std::fprintf(stderr,
                      "[resources] %s mapped_total=%llu mapped_used=%llu heap_in_use=%zu heap_obtained=%zu "
                      "threads_created=%u default_thread_stack=%zu file_opens=%u iso_opens=%u\n",
