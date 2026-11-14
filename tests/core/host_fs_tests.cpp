@@ -13,6 +13,7 @@
 #include <fstream>
 #include <iterator>
 #include <string>
+#include <thread>
 #include <vector>
 
 namespace
@@ -145,6 +146,19 @@ int runHostFsTests()
         setReg(ctx, 5, 0);
         ps2_stubs::sceMcUnformat(rdram.data(), &ctx, nullptr);
         check(syncMc(rdram) == 0 && entries(mc0) == 0, "card unformat clears a card holding saves");
+
+        // M04-13: a backup written while an earlier one already exists. Backups come once per burst of card
+        // changes (kMcBackupQuiet, 10 s in MemoryCard.cpp), so wait the burst out, then change the card again.
+        const size_t before = entries(data / "backups");
+        std::this_thread::sleep_for(std::chrono::seconds(11));
+        fs::create_directories(mc0 / "SAVE3", ec);
+        writeText(mc0 / "SAVE3" / "slot.dat", "third");
+        ctx = R5900Context{};
+        setReg(ctx, 4, 0);
+        setReg(ctx, 5, 0);
+        ps2_stubs::sceMcFormat(rdram.data(), &ctx, nullptr);
+        check(syncMc(rdram) == 0 && before >= 1 && entries(data / "backups") == before + 1,
+              "card backup written beside an existing backup");
         std::printf("[host-fs] backups=%zu\n", entries(data / "backups"));
     }
 
