@@ -3,7 +3,8 @@
 // The Switch has no command line or test client, so a session that needs its own saves, settings overrides, a time
 // limit or control-channel queries puts them in this file; without it the game starts as a player's normal run.
 // One directive per line, '#' starts a comment:
-//   profile <name>          GamePaths test profile: settings, cache, cards and backups under userdata/tests/<name>
+//   profile <name>          required: GamePaths test profile, settings, cache, cards, backups and results under
+//                           userdata/tests/<name>; a file without one is refused (the player's userdata stays untouched)
 //   env <NAME>=<value>      an environment override for this run (NAME starts with VCS_ or PS2X_; not the desktop
 //                           control socket PS2X_CONTROL / _PORT, PS2X_HIDDEN or VCS_DATA_DIR)
 //   seconds <n>             stop in an orderly way after n seconds of frames (1..86400)

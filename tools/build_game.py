@@ -121,7 +121,7 @@ def inside(args, log):
             raise RuntimeError("Private code was not generated from the pinned source")
         options += [f"-DNX_PRIVATE_GENERATED_ARCHIVE={ARCHIVE}", "-DNX_PRIVATE_GENERATED_DIR=/cache/generated/ee"]
     run(["cmake", "-S", "/work", "-B", build, "-G", "Ninja", *options], log)
-    targets = ["nx_core", "nx_self_registering"] if args.public else ["gtavcs_nro"]
+    targets = ["nx_core", "nx_self_registering", "nx_entry_check"] if args.public else ["gtavcs_nro"]
     run(["cmake", "--build", build, "--parallel", str(min(os.cpu_count() or 1, 12)), "--target", *targets, "--",
          "-k", "0"], log)
     if args.public:

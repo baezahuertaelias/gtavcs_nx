@@ -55,8 +55,12 @@ int runRunConfigTests()
     {
         RunConfig config;
         std::string error;
-        check(parseRunConfig("", config, error) && config.commands.empty() && config.profile.empty(), "empty file");
+        check(parseRunConfig("profile p\n", config, error) && config.commands.empty() && config.profile == "p",
+              "a file with only its profile");
     }
+    check(rejects("", "profile is required"), "empty file refused: no profile");
+    check(rejects("seconds 30\nat 10 press cross\nenv VCS_TEST_SAVE=5\n", "profile is required"),
+          "commands and env without a profile refused (never on the player's userdata)");
     check(rejects("bogus 1\n", "nxrun.cfg:1: unknown directive"), "unknown directive named with its line");
     check(rejects("profile a\nprofile b\n", "nxrun.cfg:2: profile given twice"), "profile twice");
     check(rejects("profile ../x\n", "profile needs"), "unsafe profile");

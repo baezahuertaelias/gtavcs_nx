@@ -156,6 +156,14 @@ bool parseRunConfig(std::string_view text, RunConfig &out, std::string &error)
         else
             return fail("unknown directive '" + std::string(verb) + "'");
     }
+    // A scripted run never touches the player's own userdata: its commands and env (a test save, presses, pokes)
+    // could change the real cards and settings, and its results would land beside them (M04 review).
+    if (out.profile.empty())
+    {
+        error = "nxrun.cfg: profile is required (a scripted run keeps its cards, settings and results under "
+                "userdata/tests/<profile>)";
+        return false;
+    }
     std::stable_sort(out.commands.begin(), out.commands.end(),
                      [](const RunCommand &a, const RunCommand &b) { return a.at < b.at; });
     return true;

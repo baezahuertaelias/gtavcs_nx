@@ -54,6 +54,7 @@ extern "C" unsigned gtavcs_threads_created(void);
 extern "C" size_t gtavcs_default_thread_stack(void);
 extern "C" unsigned gtavcs_open_count(void);
 extern "C" unsigned gtavcs_iso_open_count(void);
+extern "C" void gtavcs_branch_trace_report(void);
 extern "C" const char *gtavcs_first_iso_open(void);
 
 namespace
@@ -236,6 +237,7 @@ namespace
                 core.runtime->runEnd();
                 core.running = false;
                 std::fprintf(stderr, "[core] game thread joined, render worker and platform stopped\n");
+                gtavcs_branch_trace_report(); // VCS_NX_BRANCH_TRACE=1 only (src/switch/branch_trace.cpp)
             }
         }
         for (Pending &p : core.pending)

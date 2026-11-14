@@ -115,7 +115,8 @@ list(REMOVE_ITEM game_sources ${self_registering_sources})
 add_library(nx_core STATIC ${runtime_sources} ${kernel_sources} ${game_sources}
     "${upstream}/src/render/presenter.cpp" "${upstream}/src/render/gs_shaders.cpp"
     "${upstream}/src/render/ui_renderer.cpp" "${upstream}/src/rhi/rhi.cpp" "${upstream}/src/rhi/null/rhi_null.cpp"
-    src/core/core.cpp src/core/run_config.cpp src/vfs/folder_disc.cpp src/vfs/game_paths.cpp)
+    src/core/core.cpp src/core/run_config.cpp src/vfs/folder_disc.cpp src/vfs/game_paths.cpp
+    src/switch/branch_trace.cpp)
 nx_cpu_options(nx_core)
 target_include_directories(nx_core PRIVATE "${upstream}/src" "${runtime}/src/lib")
 # Movies (FFmpeg) are M07: vcs_movie.cpp keys them on __has_include, so the portlibs' include folder (which holds
@@ -138,6 +139,17 @@ target_include_directories(nx_platform PRIVATE "${upstream}/src" "${PORT_ROOT}/s
 target_compile_options(nx_platform PRIVATE -O2 -fPIE ${NX_SDL2_CFLAGS_OTHER})
 target_link_libraries(nx_platform PUBLIC nx_imgui)
 
+# The entry point and the libnx link wraps, compile-only: source CI builds this target too (the executable below needs
+# the private archive), so main.c and src/switch/*.c are compiled on every change. The executable compiles the same
+# sources with the same options.
+set(nx_entry_sources src/main.c src/switch/thread_stack.c src/switch/open_audit.c)
+add_library(nx_entry_check OBJECT ${nx_entry_sources})
+target_include_directories(nx_entry_check PRIVATE src ${NX_SDL2_INCLUDE_DIRS} ${NX_GL_INCLUDE_DIRS} ${NX_EGL_INCLUDE_DIRS})
+target_compile_definitions(nx_entry_check PRIVATE SDL_MAIN_HANDLED GTAVCS_LIBNX_PACKAGE="${NX_PACKAGE}")
+target_compile_options(nx_entry_check PRIVATE -Wall -Wextra -Wpedantic -ffp-contract=off -fno-strict-aliasing
+    ${NX_SDL2_CFLAGS_OTHER} ${NX_GL_CFLAGS_OTHER} ${NX_EGL_CFLAGS_OTHER})
+target_link_libraries(nx_entry_check PRIVATE glad)
+
 if(NOT NX_PRIVATE_GENERATED_ARCHIVE)
     # Source CI: every public piece compiles; without the user's generated code there is no game to link.
     message(STATUS "No private generated archive: building the public core library only (no NRO)")
@@ -154,7 +166,7 @@ target_compile_definitions(nx_game_private PRIVATE PS2X_HAS_FFMPEG=0 PS2X_ENABLE
     _POSIX_C_SOURCE=200809L)
 target_link_libraries(nx_game_private PUBLIC nx_core)
 
-add_executable(gtavcs src/main.c src/switch/thread_stack.c src/switch/open_audit.c)
+add_executable(gtavcs ${nx_entry_sources})
 set_target_properties(gtavcs PROPERTIES SUFFIX ".elf" LINKER_LANGUAGE CXX)
 target_include_directories(gtavcs PRIVATE src
     ${NX_SDL2_INCLUDE_DIRS} ${NX_GL_INCLUDE_DIRS} ${NX_EGL_INCLUDE_DIRS})
@@ -165,6 +177,8 @@ target_compile_options(gtavcs PRIVATE -Wall -Wextra -Wpedantic
 target_link_directories(gtavcs PRIVATE "${SWITCH_PORTLIBS}/lib")
 target_link_options(gtavcs PRIVATE
     "-Wl,-Map,${CMAKE_CURRENT_BINARY_DIR}/gtavcs.map" -Wl,--wrap=__syscall_thread_create -Wl,--wrap=_open_r
+    # src/switch/branch_trace.cpp: the indirect-site trace (M04-12); generated code calls this out of line
+    -Wl,--wrap=_ZN10PS2Runtime23dispatchGuestBranchSlowEPhP12R5900ContextjjjNS_15GuestBranchKindEPKc
     ${NX_SDL2_STATIC_LDFLAGS_OTHER} ${NX_GL_STATIC_LDFLAGS_OTHER} ${NX_EGL_STATIC_LDFLAGS_OTHER})
 # The generated archive is whole-archive: its registration constructor references every function. So is
 # nx_game_private: vcs_overrides.cpp installs the whole game layer (applyVcs) through a static

@@ -31,6 +31,7 @@ python tools/switch_m04_session.py game $E tests/switch/m04-boot.cfg      # repe
 python tools/switch_m04_session.py game $E tests/switch/m04-files.cfg
 python tools/switch_m04_session.py game $E tests/switch/m04-save.cfg       # the game saves through its own card code
 python tools/switch_m04_session.py game $E tests/switch/m04-save.cfg       # again on the same card: a second backup
+python tools/switch_m04_session.py game $E tests/switch/m04-branches.cfg   # indirect-site trace (M04-12)
 python tools/switch_m04_session.py game $E tests/switch/m04-focus.cfg \
   --prompt "At about 30 s press HOME, wait 10 s, go back to the game. At about 70 s press the power button (sleep), wait 10 s, wake it and go back."
 python tools/switch_m04_session.py game $E tests/switch/m04-close.cfg \
@@ -60,6 +61,8 @@ M04 session), so the post-SDL path must not use it.
   `userdata/tests/m04-files` holding `audio.volume=90` after the three saves (each after the first replaces the file).
 - Save (twice): `[mc-test] save done` in each; under `userdata/tests/m04-save` the save folder, both
   `.ps2x-order` files and one `backups/auto-*.zip` after the first run, a second backup beside it after the second.
+- Branches: a `[branch-trace] indirect sites=... missing=0` summary and its site lines; no
+  `[guest-branch:missing-target]` or `unlisted-resume` line; `tools/classify_indirect.py` exits 0 on it.
 - Focus: `focus state=out` / `state=in` pairs, progress resuming after each, a clean end.
 - Close: the orderly shutdown lines (game thread joined, stream reader stopped, folder disc closed) after the
   applet's exit request, with no new crash report.
