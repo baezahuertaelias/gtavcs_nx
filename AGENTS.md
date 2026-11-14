@@ -35,7 +35,7 @@ authorize general implementation delegation or additional user-owned chats.
 GitHub plan limitations on private branch protection must be recorded honestly;
 they do not relax these operating rules.
 
-**Current deliverable (M04, pending hardware proof) boots the real runtime.**
+**Current deliverable (M04, hardware proof recorded, awaiting independent review) boots the real runtime.**
 `python tools/build_game.py` links the private generated EE/VU archive, the
 overlaid upstream runtime/game layer, `src/core/core.cpp` behind the C ABI in
 `src/core.h` and the SDL2 platform adapter. Rendering is the null RHI until M05:
