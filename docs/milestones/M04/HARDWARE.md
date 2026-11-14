@@ -29,6 +29,8 @@ python tools/switch_m04_session.py tests $E
 python tools/switch_m04_session.py game $E tests/switch/m04-boot.cfg
 python tools/switch_m04_session.py game $E tests/switch/m04-boot.cfg      # repeated launch, same test card
 python tools/switch_m04_session.py game $E tests/switch/m04-files.cfg
+python tools/switch_m04_session.py game $E tests/switch/m04-save.cfg       # the game saves through its own card code
+python tools/switch_m04_session.py game $E tests/switch/m04-save.cfg       # again on the same card: a second backup
 python tools/switch_m04_session.py game $E tests/switch/m04-focus.cfg \
   --prompt "At about 30 s press HOME, wait 10 s, go back to the game. At about 70 s press the power button (sleep), wait 10 s, wake it and go back."
 python tools/switch_m04_session.py game $E tests/switch/m04-close.cfg \
@@ -53,8 +55,11 @@ M04 session), so the post-SDL path must not use it.
   schedule's area/player answers reaching outdoors (area 0) and a follow camera as on the desktop reference;
   `stop reason=seconds`; `audit ... iso_opens=0`; live threads at shutdown back to the boot count;
   `[shutdown] core, context, window and SDL closed`; the test card's files unchanged by the second launch.
-- Files: `verify problems=0`; the schedule's `setting display.fps` answers `ok 30` then `ok 60`; `vcs.ini` in
+- Files: `verify problems=0`; the unknown setting and the unknown command answer `status=error reply="error ..."`
+  and the run carries on; the schedule's `setting display.fps` answers `ok 30` then `ok 60`; `vcs.ini` in
   `userdata/tests/m04-files` holding `audio.volume=90` after the three saves (each after the first replaces the file).
+- Save (twice): `[mc-test] save done` in each; under `userdata/tests/m04-save` the save folder, both
+  `.ps2x-order` files and one `backups/auto-*.zip` after the first run, a second backup beside it after the second.
 - Focus: `focus state=out` / `state=in` pairs, progress resuming after each, a clean end.
 - Close: the orderly shutdown lines (game thread joined, stream reader stopped, folder disc closed) after the
   applet's exit request, with no new crash report.
