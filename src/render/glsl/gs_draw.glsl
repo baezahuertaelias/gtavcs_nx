@@ -257,7 +257,7 @@ vec4 sampleBilinear(vec2 uv)
     return mix(mix(c00, c10, f.x), mix(c01, c11, f.x), f.y);
 }
 
-vec2 g_pixel; // SV_Position of the pixel being shaded (main): gl_FragCoord, rows top-down in every render target
+vec2 g_pixel = vec2(0.0); // SV_Position of the pixel being shaded (main): gl_FragCoord, rows top-down in every render target
 
 // A filtered read of a render target (atstArefAfailRt.w == 3): a tent filter over the texel's footprint
 vec4 sampleRtFiltered(vec2 uv)

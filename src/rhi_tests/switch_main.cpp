@@ -20,6 +20,7 @@
 #include "rhi/rhi.h"
 
 #include <SDL.h>
+#include <malloc.h>
 #include <switch.h>
 
 #include <algorithm>
@@ -60,13 +61,10 @@ namespace
 
     double ms(Clock::time_point a, Clock::time_point b) { return std::chrono::duration<double, std::milli>(b - a).count(); }
 
-    uint64_t usedMemory()
-    {
-        uint64_t used = 0;
-        if (R_FAILED(svcGetInfo(&used, InfoType_UsedMemorySize, CUR_PROCESS_HANDLE, 0)))
-            return 0;
-        return used;
-    }
+    // Heap bytes in use (newlib mallinfo): libnx reserves the whole heap at start, so svcGetInfo(UsedMemorySize)
+    // stays constant; Mesa nouveau's buffers and textures come from this heap (the first M05 run read 3339763712
+    // before and after the churn from svcGetInfo, which proves nothing)
+    uint64_t usedMemory() { return static_cast<uint64_t>(mallinfo().uordblks); }
 
     void *procAddress(const char *name) { return SDL_GL_GetProcAddress(name); }
     void swapWindow() { SDL_GL_SwapWindow(g_window); }

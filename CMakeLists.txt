@@ -154,7 +154,7 @@ add_library(nx_platform STATIC src/platform/platform_switch_sdl2.cpp src/platfor
 target_include_directories(nx_platform PRIVATE "${upstream}/src" "${PORT_ROOT}/src"
     ${NX_SDL2_INCLUDE_DIRS} ${NX_ZLIB_INCLUDE_DIRS} ${NX_EGL_INCLUDE_DIRS})
 target_compile_options(nx_platform PRIVATE -O2 -fPIE ${NX_SDL2_CFLAGS_OTHER} ${NX_EGL_CFLAGS_OTHER})
-target_link_libraries(nx_platform PUBLIC nx_imgui)
+target_link_libraries(nx_platform PUBLIC nx_imgui glad)
 
 # The entry point and the libnx link wraps, compile-only: source CI builds this target too (the executable below needs
 # the private archive), so main.c and src/switch/*.c are compiled on every change. The executable compiles the same
