@@ -178,7 +178,8 @@ int main(int argc, char **argv)
     const int suspension_clock = R_SUCCEEDED(appletGetProgramTotalActiveTime(&active_time));
     u64 suspended_epoch = suspension_clock ? armTicksToNs(armGetSystemTick()) - active_time : 0;
     diagnostic("[lifecycle] suspension_clock=%d\n", suspension_clock);
-    int focused = 1, previous_width = 0, previous_height = 0;
+    int focused = 1, previous_width = 0, previous_height = 0, previous_mode = -1;
+    u64 window_frames = 0, window_start = armTicksToNs(armGetSystemTick());
     appletHook(&hook, lifecycle_hook, NULL);
     hook_started = 1;
     unsigned long frames_presented = 0;
@@ -210,13 +211,22 @@ int main(int argc, char **argv)
             gtavcs_core_set_focus(focused);
         }
         if (!focused) { SDL_Delay(20); continue; }
-        int width, height;
+        int width, height, window_w, window_h;
         SDL_GL_GetDrawableSize(window, &width, &height);
-        if (width != previous_width || height != previous_height) {
-            diagnostic("[video] drawable=%dx%d mode=%d; one SDL GL context\n",
-                width, height, appletGetOperationMode());
-            previous_width = width; previous_height = height;
+        SDL_GetWindowSize(window, &window_w, &window_h);
+        /* Docking (M05-10): every operation-mode or drawable change, with the frames presented and their mean
+         * interval since the last one (a dock change that stops presentation shows as a collapsed interval). */
+        const int mode = appletGetOperationMode();
+        if (width != previous_width || height != previous_height || mode != previous_mode) {
+            const u64 now = armTicksToNs(armGetSystemTick());
+            diagnostic("[video] drawable=%dx%d window=%dx%d mode=%d (was %d); %llu frames, %.2f ms each since the last change\n",
+                width, height, window_w, window_h, mode, previous_mode, (unsigned long long)window_frames,
+                window_frames ? (double)(now - window_start) / 1e6 / (double)window_frames : 0.0);
+            previous_width = width; previous_height = height; previous_mode = mode;
+            window_frames = 0;
+            window_start = now;
         }
+        ++window_frames;
         const int state = gtavcs_core_frame();
         if (state < 0) { diagnostic("[core] frame failed: %s\n", gtavcs_core_error()); goto cleanup; }
         if (state == 0) { diagnostic("[core] orderly stop after %lu frames\n", frames_presented); break; }

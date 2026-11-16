@@ -10,8 +10,9 @@
 //      every GL call on the main thread), and (B) on a worker thread through the loader context; main-thread frame
 //      times during the burst, worker time, fences waited, contents checked
 //   3. window (M05-10/14): the SDL back buffer drawn and swapped for WINDOW_SECONDS: an orientation card (red top-left,
-//      green top-right, blue bottom-left, white bottom-right), drawable sizes as SDL reports them (programmatic
-//      SDL_SetWindowSize first, then docking by hand), present intervals with Vsync and Immediate
+//      green top-right, blue bottom-left, white bottom-right); docking by hand first (0-60 s: the operation mode, SDL's
+//      window and drawable size on every change, the present interval every second), then programmatic
+//      SDL_SetWindowSize (60-72 s), present intervals with Vsync and Immediate
 #include "rhi_tests/rhi_conformance.h"
 
 #include "platform/gl_loader_egl.h"
@@ -39,7 +40,7 @@
 namespace
 {
     constexpr const char *kOut = "sdmc:/switch/gtavcs_nx/rhi-tests";
-    constexpr double kWindowSeconds = 75.0;
+    constexpr double kWindowSeconds = 90.0;
     using Clock = std::chrono::steady_clock;
 
     SDL_Window *g_window = nullptr;
@@ -332,6 +333,9 @@ namespace
         out << "t\tevent\twidth\theight\tdetail\n";
         const auto t0 = Clock::now();
         uint32_t lastW = 0, lastH = 0;
+        int lastMode = -1, lastWinW = 0, lastWinH = 0;
+        double secondStart = 0.0;
+        std::vector<double> second;
         std::vector<double> vsync, immediate;
         auto prev = Clock::now();
         int phase = -1;
@@ -341,18 +345,30 @@ namespace
             const double t = std::chrono::duration<double>(Clock::now() - t0).count();
             if (t > kWindowSeconds)
                 break;
-            // 0-12 s: programmatic sizes, 3 s each; then the window stays as the system sets it (dock / undock by hand)
-            const int p = t < 12.0 ? static_cast<int>(t / 3.0) : 4;
+            // 0-60 s: the window as the system sets it (dock / undock by hand); 60-72 s: programmatic sizes, 3 s each
+            const int p = t < 60.0 ? -2 : t < 72.0 ? static_cast<int>((t - 60.0) / 3.0) : 4;
             if (p != phase)
             {
                 phase = p;
-                if (p < 4)
+                if (p >= 0 && p < 4)
                 {
                     SDL_SetWindowSize(g_window, sizes[p][0], sizes[p][1]);
                     out << t << "\tset_window_size\t" << sizes[p][0] << '\t' << sizes[p][1] << "\tSDL_SetWindowSize\n";
                 }
-                else
-                    out << t << "\thand\t0\t0\tdock / undock now\n";
+                else if (p == -2)
+                    out << t << "\thand\t0\t0\tdock / undock now (0-60 s)\n";
+            }
+            const int mode = appletGetOperationMode();
+            int winW = 0, winH = 0;
+            SDL_GetWindowSize(g_window, &winW, &winH);
+            if (mode != lastMode || winW != lastWinW || winH != lastWinH)
+            {
+                out << t << "\tmode\t" << winW << '\t' << winH << "\toperation mode " << mode << " (was " << lastMode << ")\n";
+                out.flush();
+                say("[window] t=%.2f operation mode %d, SDL window %dx%d\n", t, mode, winW, winH);
+                lastMode = mode;
+                lastWinW = winW;
+                lastWinH = winH;
             }
             uint32_t w = 0, h = 0;
             drawableSize(&w, &h);
@@ -380,15 +396,23 @@ namespace
             dev.draw(4);
             dev.setTexture(0, nullptr, nullptr);
             dev.endPass();
-            // 0-30 s immediate, 30-45 s vsync, then immediate (the interval follows the mode)
-            const bool vs = t >= 30.0 && t < 45.0;
+            // vsync while docking (0-60 s), immediate 60-75 s, vsync again 75-90 s (the interval follows the mode)
+            const bool vs = t < 60.0 || t >= 75.0;
             dev.present(vs ? rhi::Device::PresentMode::Vsync : rhi::Device::PresentMode::Immediate);
             const auto now = Clock::now();
             const double interval = ms(prev, now);
             prev = now;
-            if (t > 31.0 && t < 45.0)
+            second.push_back(interval);
+            if (t - secondStart >= 1.0)
+            {
+                out << t << "\tinterval\t" << second.size() << "\t0\tmedian_ms " << median(second) << " max_ms "
+                    << *std::max_element(second.begin(), second.end()) << " mode " << mode << '\n';
+                second.clear();
+                secondStart = t;
+            }
+            if (t > 76.0)
                 vsync.push_back(interval);
-            else if (t > 46.0)
+            else if (t > 61.0 && t < 75.0)
                 immediate.push_back(interval);
         }
         char row[256];
