@@ -494,7 +494,8 @@ int main(int, char **)
                     << "\nmax_samples " << caps.maxSamples << " color " << caps.maxColorTextureSamples << " depth "
                     << caps.maxDepthTextureSamples << "\nmax_texture_size " << caps.maxTextureSize << "\nmax_uniform_block_size "
                     << caps.maxUniformBlockSize << "\ndefault_framebuffer_encoding 0x" << std::hex << caps.defaultFramebufferEncoding
-                    << std::dec << "\nloader_context " << loader << "\nused_memory_start " << usedMemory() << '\n';
+                    << std::dec << "\nloader_context " << loader << "\nused_memory_start " << usedMemory()
+                    << "\noperation_mode_start " << appletGetOperationMode() << " (0 handheld, 1 docked)\n";
             capsOut.close();
 
             // 1. conformance
@@ -529,6 +530,7 @@ int main(int, char **)
             conformance::Options options;
             const auto c0 = Clock::now();
             const int failures = conformance::run(*dev, sink, options);
+            say("[rhi-tests] conformance ran in operation mode %d at its end (0 handheld, 1 docked)\n", appletGetOperationMode());
             index.close();
             checks.close();
             say("[rhi-tests] conformance: %d images, %d failed checks, %.1f s\n", images, failures, ms(c0, Clock::now()) / 1000.0);
