@@ -1,0 +1,36 @@
+config t=0.000 profile="m05-dock" seconds=180.000000 commands=71 env=2 verify_files=0
+focus t=0.000 state=out
+focus t=0.000 state=in
+command t=5.041 at=5.000000 command="frames" status=ok reply="ok 34"
+command t=15.111 at=15.000000 command="frames" status=ok reply="ok 268"
+command t=15.111 at=15.000000 command="screenshot userdata/tests/m05-dock/shot-015.png" status=ok reply="ok 1920x1080"
+command t=25.026 at=25.000000 command="frames" status=ok reply="ok 565"
+command t=30.035 at=30.000000 command="screenshot userdata/tests/m05-dock/shot-030.png" status=ok reply="ok 1920x1080"
+command t=35.029 at=35.000000 command="frames" status=ok reply="ok 813"
+command t=45.088 at=45.000000 command="frames" status=ok reply="ok 1083"
+command t=45.088 at=45.000000 command="screenshot userdata/tests/m05-dock/shot-045.png" status=ok reply="ok 1920x1080"
+command t=55.050 at=55.000000 command="frames" status=ok reply="ok 1278"
+command t=60.084 at=60.000000 command="screenshot userdata/tests/m05-dock/shot-060.png" status=ok reply="ok 1280x720"
+command t=65.073 at=65.000000 command="frames" status=ok reply="ok 1473"
+command t=75.075 at=75.000000 command="frames" status=ok reply="ok 1683"
+command t=75.075 at=75.000000 command="screenshot userdata/tests/m05-dock/shot-075.png" status=ok reply="ok 1280x720"
+command t=85.036 at=85.000000 command="frames" status=ok reply="ok 1868"
+command t=90.050 at=90.000000 command="screenshot userdata/tests/m05-dock/shot-090.png" status=ok reply="ok 1920x1080"
+command t=95.049 at=95.000000 command="frames" status=ok reply="ok 2077"
+command t=105.083 at=105.000000 command="frames" status=ok reply="ok 2260"
+command t=105.083 at=105.000000 command="screenshot userdata/tests/m05-dock/shot-105.png" status=ok reply="ok 1280x720"
+command t=115.072 at=115.000000 command="frames" status=ok reply="ok 2434"
+command t=120.089 at=120.000000 command="screenshot userdata/tests/m05-dock/shot-120.png" status=ok reply="ok 1280x720"
+command t=125.032 at=125.000000 command="frames" status=ok reply="ok 2604"
+command t=135.040 at=135.000000 command="frames" status=ok reply="ok 2817"
+command t=135.040 at=135.000000 command="screenshot userdata/tests/m05-dock/shot-135.png" status=ok reply="ok 1920x1080"
+command t=145.029 at=145.000000 command="frames" status=ok reply="ok 2990"
+command t=150.041 at=150.000000 command="screenshot userdata/tests/m05-dock/shot-150.png" status=ok reply="ok 1920x1080"
+command t=155.033 at=155.000000 command="frames" status=ok reply="ok 3182"
+command t=165.043 at=165.000000 command="frames" status=ok reply="ok 3390"
+command t=165.043 at=165.000000 command="screenshot userdata/tests/m05-dock/shot-165.png" status=ok reply="ok 1920x1080"
+command t=175.018 at=175.000000 command="frames" status=ok reply="ok 3576"
+command t=176.042 at=176.000000 command="perf" status=ok reply="ok game_fps=18.6 frame_ms=53.7 vblank_per_s=46.1 game_ms=37.3 render_ms=3.4 iop_ms=1.9 wait_ms=11.1 draws=326 verts=25413 tex_uploads=1 dma_tags=203 vu1_programs=0 host_fps=32 gl_ms=32.2 audio_ms=294 black_frames=0 dip_frames=0 probed_frames=0 worker_ms=46.0 gs_ms=28.0 gs_draws=0.0 gs_verts=0.0 gs_vu1=0.0 gs_hle=0.0 gs_path2=0.0 gs_path3=0.0 native_draws=211.3 hud_draws=14.2 post_draws=15.2 packed_draws=68.2 packed_verts=9824.5 tex_create_us=5035.1 tex_kb=64.0 tex_decode_us=279.0"
+stop t=180.014 reason=seconds frames=6295
+shutdown t=180.014 frames=6295
+audit t=180.014 file_opens=156 iso_opens=0 first_iso="" threads_created=6

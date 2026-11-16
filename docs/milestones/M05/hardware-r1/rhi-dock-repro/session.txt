@@ -1,0 +1,6 @@
+15:19:19 == rhi-dock-repro: rhi tests nro sha256=4457de9ef5b237fa75ffe1f10d6a79d6eaf1d7c7fcd31ee8daef74b73c3cdc79
+15:19:21 cleared /switch/gtavcs_nx/rhi-tests
+15:19:22 nxlink attempt=1 exit=0 output='Sending /switch/gtavcs_nx/gtavcs_rhi_tests.nro, 7264453 bytes\n2740415 sent (37.72%), 234 blocks'
+15:22:08 ftp back after 166s: the payload has ended
+15:22:18 rhi-dock-repro: summary=['DONE', 'images 127', 'failed_checks 0'] compare_exit=0 compare_tail=['127 images, 101 byte-identical, 0 failures'] sd_matches_local=True new_crashes=[]
+15:22:18 RESULT rhi PASS

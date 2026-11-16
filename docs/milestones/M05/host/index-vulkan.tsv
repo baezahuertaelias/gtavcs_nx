@@ -16,8 +16,8 @@ samplers/nearest_repeat	rgba8	32	32	exact	samplers.nearest_repeat.bin
 samplers/nearest_mixed	rgba8	32	32	exact	samplers.nearest_mixed.bin
 samplers/linear_clamp	rgba8	32	32	unorm:2	samplers.linear_clamp.bin
 samplers/linear_repeat	rgba8	32	32	unorm:2	samplers.linear_repeat.bin
-samplers/trilinear	rgba8	64	64	impl:texture filtering footprint (LOD / anisotropy approximation)	samplers.trilinear.bin
-samplers/anisotropic_16	rgba8	64	64	impl:texture filtering footprint (LOD / anisotropy approximation)	samplers.anisotropic_16.bin
+samplers/trilinear	rgba8	64	64	bands:8,mean:3,stdev:8	samplers.trilinear.bin
+samplers/anisotropic_16	rgba8	64	64	bands:8,mean:3,stdev:8	samplers.anisotropic_16.bin
 buffers/result	rgba8	64	64	exact	buffers.result.bin
 topology/triangles	rgba8	32	32	exact	topology.triangles.bin
 topology/strip	rgba8	32	32	exact	topology.strip.bin
@@ -51,9 +51,11 @@ passes/viewport_scissor	rgba8	64	64	unorm:255,pixels:24	passes.viewport_scissor.
 passes/depth_only	d32f	32	32	exact	passes.depth_only.bin
 copies/color	rgba8	40	30	exact	copies.color.bin
 copies/depth	d32f	32	32	exact	copies.depth.bin
-msaa/resolved	rgba8	32	32	impl:multisample sample positions on edge pixels	msaa.resolved.bin
+msaa/resolved	rgba8	32	32	unorm:1	msaa.resolved.bin
 conventions/origin_color	rgba8	32	16	exact	conventions.origin_color.bin
 conventions/origin_depth	d32f	32	16	float:1e-6	conventions.origin_depth.bin
+pixel_centre/sprites	rgba8	64	48	exact	pixel_centre.sprites.bin
+pixel_centre/triangle_lines_points_copy	rgba8	64	48	exact	pixel_centre.triangle_lines_points_copy.bin
 present_ui/letterbox	rgba8	64	48	unorm:2	present_ui.letterbox.bin
 present_ui/ui	rgba8	64	48	unorm:2	present_ui.ui.bin
 gs_util/blit	rgba8	64	32	exact	gs_util.blit.bin

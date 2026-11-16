@@ -1,0 +1,85 @@
+/set_up	PASS	base pipelines / buffers / samplers
+textures/upload_pitch_roundtrip	PASS	
+textures/update_subrect	PASS	
+textures/read_subrect_pitch	PASS	
+textures/r32f_roundtrip	PASS	
+textures/dynamic_rewrite	PASS	
+textures/no_gl_errors	PASS	0 GL errors
+mips/create_levels	PASS	
+mips/level_0	PASS	ff0000ff
+mips/level_1	PASS	ff00ff00
+mips/level_2	PASS	ffff0000
+mips/level_3	PASS	ff00ffff
+mips/level_4	PASS	ffffff00
+mips/level_5	PASS	ffff00ff
+mips/level_6	PASS	ff808080
+mips/rt_generate_mips	PASS	ff0000ff ffff0000
+mips/no_gl_errors	PASS	0 GL errors
+samplers/nearest_clamp_texels	PASS	
+samplers/nearest_repeat_texels	PASS	
+samplers/nearest_mixed_texels	PASS	
+samplers/trilinear_uses_mips	PASS	far 0.000000 middle 56.565720
+samplers/anisotropic_16_uses_mips	PASS	far 17.169394 middle 64.879504
+samplers/no_gl_errors	PASS	0 GL errors
+buffers/vb_update_1	PASS	ff0000ff
+buffers/vb_update_2	PASS	ff00ff00
+buffers/cb_update_1	PASS	ff0000ff
+buffers/cb_update_2	PASS	ffff0000
+buffers/static_offset	PASS	ffff00ff
+buffers/index16_first	PASS	ff0080ff
+buffers/index32_base	PASS	ffff8000
+buffers/no_gl_errors	PASS	0 GL errors
+topology/no_gl_errors	PASS	0 GL errors
+blend/src_alpha_over	PASS	b340549e expected b340549e
+blend/no_gl_errors	PASS	0 GL errors
+dual_source/no_gl_errors	PASS	0 GL errors
+write_mask/masks	PASS	
+write_mask/no_gl_errors	PASS	0 GL errors
+depth/raster_depth	PASS	
+depth/shader_depth	PASS	
+depth/write_without_test	PASS	
+depth/test_without_write	PASS	
+depth/no_gl_errors	PASS	0 GL errors
+passes/viewport_top_left	PASS	
+passes/scissor	PASS	
+passes/depth_only_fill	PASS	0.625000 0.125000
+passes/load_without_clear	PASS	
+passes/no_gl_errors	PASS	0 GL errors
+copies/color_region	PASS	
+copies/depth_region	PASS	
+copies/no_gl_errors	PASS	0 GL errors
+msaa/interior_exact	PASS	
+msaa/no_gl_errors	PASS	0 GL errors
+conventions/row0_is_top	PASS	
+conventions/left_is_x0	PASS	
+conventions/clip_depth_0_to_1	PASS	0.281250
+conventions/unorm_no_srgb	PASS	ff338099
+conventions/no_gl_errors	PASS	0 GL errors
+pixel_centre/sprites_top_left_rule	PASS	
+pixel_centre/triangle_top_left_rule	PASS	
+pixel_centre/copy_1to1	PASS	
+pixel_centre/no_gl_errors	PASS	0 GL errors
+present_ui/no_gl_errors	PASS	0 GL errors
+gs_util/blit_1to1	PASS	
+gs_util/no_gl_errors	PASS	0 GL errors
+gs_modes/mode0_gather_verify	PASS	PS2X_HW_GATHER=verify path painted a mismatch
+gs_modes/mode0_dual_gather_verify	PASS	PS2X_HW_GATHER=verify path painted a mismatch
+gs_modes/mode0_noz_gather_verify	PASS	PS2X_HW_GATHER=verify path painted a mismatch
+gs_modes/mode0_dual_noz_gather_verify	PASS	PS2X_HW_GATHER=verify path painted a mismatch
+gs_modes/no_gl_errors	PASS	0 GL errors
+gs_tfx/no_gl_errors	PASS	0 GL errors
+gs_wrap/no_gl_errors	PASS	0 GL errors
+gs_rt_reads/no_gl_errors	PASS	0 GL errors
+gs_native/no_gl_errors	PASS	0 GL errors
+gl_checks/refusals_counted	PASS	5 refusals
+gl_checks/hazard_counted	PASS	
+gl_checks/no_gl_error_from_refusals	PASS	
+gl_checks/no_gl_errors	PASS	0 GL errors
+free_threaded/no_gl_errors	PASS	0 GL errors
+churn/objects_return	PASS	textures 0->0, buffers 5->5, pending 0
+churn/bytes_return	PASS	0->0
+churn/framebuffers_bounded	PASS	0->0
+churn/programs_bounded	PASS	35
+churn/memory_budget	PASS	2666128 bytes growth
+churn/no_gl_errors	PASS	0 GL errors
+window/back_buffer_equals_texture	PASS	1920x1080, 0 differing pixels

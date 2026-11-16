@@ -25,6 +25,8 @@ scene msaa
 covers TextureDesc::samples resolveTexture
 scene conventions
 covers conventions: Y origin, clip depth, pixel centres, UNORM encode
+scene pixel_centre
+covers pixel-centre ties (rtOrigin.z 0.5): sprites, shared edges, triangles, lines, points, 1:1 copy
 scene present_ui
 covers present VS/PS ui VS/PS VertexFormat::Float2 VertexFormat::UByte4Norm
 scene gs_util
@@ -46,5 +48,5 @@ covers freeThreadedCreation createTexture/createTextureLevels off the owner thre
 freeThreadedCreation 0
 scene churn
 covers resource churn, deferred destruction, offscreen resize
-churn: process memory 91406336 -> 91979776 bytes, peak 91979776
-images 125 failures 0
+churn: process memory 90984448 -> 91369472 bytes, peak 91369472
+images 127 failures 0

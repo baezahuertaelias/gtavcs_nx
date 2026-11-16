@@ -1,90 +1,111 @@
-# M05 hardware results (2026-11-15 / 16)
+# M05 hardware results
 
 Console: the user's Switch at 192.168.1.91, Sphaira by title override (full application memory), FTP + nxlink;
-`tools/switch_m05_session.py`. Driver as the console reports it (`hardware/*/caps.txt`): **Mesa 20.1.0-rc3 nouveau,
+`tools/switch_m05_session.py`. Driver as the console reports it (`hardware-r1/*/caps.txt`): **Mesa 20.1.0-rc3 nouveau,
 renderer NV120, OpenGL 4.3 core profile, GLSL 4.30** (asked for 3.3 core): `ARB_clip_control`, viewport arrays,
-anisotropy (max 16), KHR_debug, 1 dual-source draw buffer, 8 samples (colour / depth), max texture 16384, max uniform
-block 65536, default framebuffer encoding GL_LINEAR (0x2601). Records: [hardware/](hardware/) (test-program outputs,
-comparisons, session transcripts, excerpts of the game logs; game screenshots stay private under build/, their
-SHA-256 in `hardware/*-screenshot-sha256.txt`). Reference for every comparison: upstream's Vulkan backend on the host
-GPU (`build/m05/host/vulkan_hw`, Intel ADL-N ANV, `tools/rhi_host_tests.py`).
+anisotropy (max 16), KHR_debug, 1 dual-source draw buffer, 8 samples, max texture 16384, max uniform block 65536,
+window framebuffer encoding GL_LINEAR. Reference for every comparison: upstream's Vulkan backend on the host GPU
+(`build/m05/host/vulkan_hw`: Intel ADL-N, Mesa ANV; `tools/rhi_host_tests.py`). Game screenshots stay private under
+build/; their SHA-256 are in `*-screenshot-sha256.txt`.
 
-## Runs (in order)
+Two rounds. **Round 1** (2026-11-15/16, [hardware/](hardware/)) was the first review's candidate `cb70b74`; the
+independent review requested changes ([REVIEW1_RESPONSE.md](REVIEW1_RESPONSE.md)). **Round 2** (2026-11-16,
+[hardware-r1/](hardware-r1/)) is the evidence for the current candidate: game NRO `39071ced…` and RHI-tests NRO
+`4457de9e…`, both built from `75fd248` (the code has not changed since; later commits are records only).
 
-| Run | NRO (sha256, source commit) | Mode | Result |
+## Round 2 runs (current candidate code, `75fd248`)
+
+| Run | NRO | Mode | Result |
 |---|---|---|---|
-| `rhi-handheld` (first try) | tests `7c916dfc...` (`99f977a`) | docked | 125 readbacks within tolerance (99 identical); the 25 failed checks are the worker-context scene; **the B benchmark crashed the console** (Atmosphère report). Fixed in `610c830`, see M05-09 |
-| `rhi-run2` | tests `3eb9a53e...` (`610c830`) | docked throughout | **PASS**: 125/125 within tolerance (99 identical), 0 failed checks, 0 GL errors, 0 debug messages, no crash; loader context refused by the sharing check |
-| `m05-gl` | game `8ba17eda...` (`610c830`) | docked | **PASS**: 240 s, 9,599 host frames, ~4.0 M draws, 0 GL errors / debug / refusals / hazards; clean exit, no crash; flyover and Fort Baxter drawn |
-| `m05-gl-worker` | game `8ba17eda...` (`610c830`) | docked | **PASS**: `PS2X_GL_WORKER_CONTEXT=1`: loader refused by the sharing check, textures on the owner; 0 GL errors, clean exit. The user moved the camera during it (stick input reached the game); its timings are not compared |
-| `m05-dock` | game `60d315d8...` (`a69402c`) | docked → 4 changes by hand | **PASS**: drawable 1920x1080 ↔ 1280x720 on every mode change, presentation continued, 0 GL errors, clean exit; screenshots at both sizes correct |
-| `m05-null` | game `60d315d8...` (`a69402c`) | docked | **PASS**: `VCS_RHI=null`: `[present] null`, 3,600 frames in 60 s, clean exit |
-| `rhi-attended2` | tests `3eb9a53e...` (`610c830`) | handheld at the benchmark, docked at the window phase | **PASS** (125/125, 0 failed); the screen went black after the second re-dock: that build resized its own window before the docking (see M05-10) |
-| `rhi-final` | tests `5169f24c...` (`284f5ac`) | started docked, undocked during the scenes; 4 dock changes by hand | **PASS**: 125/125 (99 identical), 0 failed; the user: card colours right, picture right after every change |
-| `rhi-handheld-full` | tests `5169f24c...` (`284f5ac`) | handheld throughout (`operation_mode_start 0`, mode 0 at the end) | **PASS**: 125/125 (99 identical), 0 failed checks, 0 GL errors, 0 debug messages |
+| `rhi-docked2` | tests `4457de9e` | docked throughout | PASS: 127 readbacks within tolerance, 101 byte-identical; 0 failed checks (incl. `pixel_centre/*`, `window/back_buffer_equals_texture` 1920x1080 0 px, `*_uses_mips`); 0 GL errors, 0 debug messages; the present probe and the interval steps all as requested (below) |
+| `rhi-dock-repro` | tests `4457de9e` | scenes docked; window phase from handheld with 7 dock changes by hand | PASS: 127 within tolerance (101 identical), 0 failed checks; Vsync 60/s through every dock change, also after the program's own `SDL_SetWindowSize` (finding 6) |
+| `m05-gl` | game `39071ced` | docked | PASS: 240 s, 0 GL errors / debug / refusals / hazards, clean exit, no crash; picture correct |
+| `m05-gl-worker` | game `39071ced` | docked | PASS: loader refused by the sharing check, textures on the owner; 0 GL errors, clean exit |
+| `m05-null` | game `39071ced` | docked | PASS: `[present] null`, clean exit |
+| `m05-dock` | game `39071ced` | docked; 4 dock changes by hand | PASS: drawable 1920x1080 ↔ 1280x720 at every change, presentation continued, 0 GL errors, clean exit; screenshots correct at both sizes |
 
-Every run's crash-report listing before and after is in `hardware/crash-*.txt`; only the first try added a report.
+The same fixes before the interval change ran on tests `956cfc79` (`30af93b`): `rhi-r1` (docked) and
+`rhi-r1-handheld` (**handheld throughout**, `operation_mode_start 0`): 127 within tolerance, 101 identical, 0 failed
+checks, window readback 1280x720 0 px. The only code change from `30af93b` to `75fd248` is the swap-interval path,
+which the conformance scenes never take (they present Immediate), and every one of the 127 readbacks is
+byte-identical between `rhi-r1-handheld` (handheld, `30af93b`), `rhi-r1` (docked, `30af93b`) and `rhi-docked2`
+(docked, `75fd248`). `rhi-dock` and `rhi-probe` (`238c0c8`)
+located the interval defect. An interrupted send at 14:51 (`crash-before-rhi-docked.txt`, no results fetched) was
+rerun as `rhi-docked2`. No run in round 2 added a crash report (`crash-*.txt`).
 
 ## Pixel / depth comparison with the desktop reference (M05-13)
 
-The Switch readbacks differ from the host GPU reference in 26 of 125 images, all within the declared tolerances
-(`hardware/rhi-handheld-full/rhi-handheld-full-compare.json`; docked run2 the same), every difference in a class the
-host already explained:
+The Switch differs from the host GPU reference in 26 of 127 images, all within the declared tolerances
+(`hardware-r1/rhi-docked2/rhi-docked2-compare.json`; every round-2 run the same 26):
 
 | Class | Images | Size |
 |---|---|---|
 | blend unit rounding of non-representable products (incl. every dual-source variant) | blend add / subtract / reverse-subtract colour, gs_modes `*_dual*` | ±1, 1-512 px |
-| `floor()` after filtering or `mix` landing within an ulp of an integer (the GS math floors) | gs_wrap pot / npot, gs_native colour | ±1, 4-84 px |
+| `floor()` after filtering / `mix` landing within an ulp of an integer (the GS math floors) | gs_wrap pot / npot, gs_native colour | ±1, 4-84 px |
 | bilinear sub-texel weight precision | samplers linear, present_ui letterbox / ui | ±1, 11-110 px |
-| a deliberately fractional viewport's edge pixels (10.5 px wide; both have viewport arrays) | passes/viewport_scissor | 20 px (24 allowed) |
-| multisample sample positions on edge pixels | msaa/resolved | 25 px (implementation-defined) |
-| anisotropic / trilinear footprint (the spec's "approximation") | samplers anisotropic_16, trilinear | implementation-defined |
+| a half-covered pixel's resolve (255 and 0 averaged: 127.5 → 7f here, 80 on the reference) | msaa/resolved | ±1, 25 px (`unorm:1`) |
+| trilinear / anisotropic LOD and footprint (per pixel the implementation's) | samplers trilinear, anisotropic_16 | per 8-row band mean within 1.1 and spread within 4.5 of the reference's (`bands:8,mean:3,stdev:8`); `*_uses_mips` pass |
+| a viewport whose origin is a half pixel (40.25, 4.5): each implementation treats its edge rows differently (lavapipe rows 4-14 cols 40-50; ANV rows 4-14 cols 40-49; nouveau rows 5-14 cols 40-50). No upstream caller sets such a viewport: `setViewport` is called only by `beginPass`, with whole-pixel targets | passes/viewport_scissor | 20 px (24 allowed) |
 
-The other 99 images (textures, pitches, R32F, D32F depth values, every Compare function, shader depth vs raster
-depth, copies, clears, scissor, Y origin, clip depth, UNORM encode, all non-dual GS modes, TFX / fog / alpha tests,
-render-target reads, the native world / lit shaders' depth) are **byte-identical** to upstream's Vulkan backend.
+The other 101 images are **byte-identical** to upstream's Vulkan backend. That includes `pixel_centre/*`, the game's
+own configuration (every GS draw moved by half a pixel, so integer edges lie on pixel centres): with the
+`glClipControl(GL_UPPER_LEFT)` fix these follow D3D's top-left rule exactly (finding 1).
 
 ## Threading decision (M05-09)
 
-Both prototypes ran on the console:
+Both prototypes ran on the console in round 1 ([hardware/](hardware/)):
 
 - **A, record on workers / every GL call on the main thread** (upstream's design): correct in every run. A burst of
-  256 textures of 128x128 with full mip chains costs the owner 676-782 ms docked and 1,215-1,356 ms handheld
-  (`hardware/*/bench.tsv`): Mesa nouveau's texture upload on this console is slow, a measurement for M10.
-- **B, a worker-owned GL context sharing the window context's objects:** made with `eglCreateContext` (first try) and
-  with SDL's `SDL_GL_SHARE_WITH_CURRENT_CONTEXT` (the fix): in both, the window context does not see the loader's
-  textures or fences (`glBindTexture: non-gen name`, `glWaitSync: not a valid sync object`; `[gl-loader] sharing
-  check: made 1, texture seen by the window context 0, fence 0`). Sampling such textures crashed the console.
-  **B is not correct on this driver / SDL backend.**
+  256 textures of 128x128 with full mip chains costs the owner 0.68-1.36 s (`*/bench.tsv`; it varied between
+  sessions, docked and handheld alike): Mesa nouveau's texture upload is slow on this console, a measurement for M10.
+- **B, a worker-owned GL context sharing the window context's objects:** with `eglCreateContext` and with SDL's
+  `SDL_GL_SHARE_WITH_CURRENT_CONTEXT`, the window context does not see the loader's textures or fences
+  (`glBindTexture: non-gen name`, `glWaitSync: not a valid sync object`; `[gl-loader] sharing check: made 1, texture
+  seen by the window context 0, fence 0`); sampling them crashed the console in the first run. **Not correct here.**
 
-Decision (rule in HARDWARE.md, user decision 2026-11-11: the correct, faster one): **A**. `freeThreadedCreation()`
-stays false on the Switch; B remains an opt-in that the sharing check disables wherever objects are not shared,
-so neither the game nor the tests can reach unshared objects (`m05-gl-worker`). AGENTS.md's ownership rule (the
-main thread owns every GL call) stands.
+Decision (user decision 2026-11-11: the correct, faster one): **A**. `freeThreadedCreation()` stays false on the
+Switch; B stays opt-in behind the sharing check, so neither the game nor the tests reach unshared objects
+(`m05-gl-worker`, both rounds). AGENTS.md's rule (the main thread owns every GL call) stands.
 
 ## Window, docking and presentation (M05-10 / M05-14)
 
-- Game (`m05-dock`): the back buffer follows every dock change (`[video] drawable=1920x1080 ... mode=1` ↔
-  `1280x720 ... mode=0`), the RHI's back buffer the drawable; frames between changes 22-46 ms; one 0.43-0.46 s frame
-  at each re-dock; the screenshots after each change show the full picture, 4:3 pillarboxed, HUD at its aspect.
-- Test program (`rhi-final`, after moving its own `SDL_SetWindowSize` calls behind the docking): mode 0 ↔ 1 and SDL's
-  window 1280x720 ↔ 1920x1080 at 17.6 / 23.1 / 39.9 / 48.4 s; one 0.55-0.83 s frame at each change; then
-  programmatic sizes 1920x1080 / 960x540 / 1280x720 followed. The user, at the console, reported the card correct and the picture right after every change ("Everything looks right", 2026-11-16).
-  `rhi-attended2` went black after a re-dock: that build had called `SDL_SetWindowSize` before the
-  docking; the game never sets a window size. Recorded for M13's docking work.
-- Presentation: 16.0-16.2 ms per frame with swap interval 1, and also with interval 0 (Immediate): the console
-  presents at 60 Hz either way. While the console is moved between dock and hand, swaps briefly stop waiting
-  (~1 ms) until the new display takes over.
-- Diagnostics: KHR_debug synchronous output on in every run: 0 messages after the `g_pixel` initialisation (the first
-  try had Mesa's "used uninitialized" compiler warning, high severity); 0 GL errors in every passing run.
-- Churn (200 rounds, `churn/*` checks): GL objects and bytes back to their start, 0 deletions pending, programs 35
-  (bounded by the variants); heap in use (newlib `mallinfo`; libnx reserves the whole heap at start, so
-  `svcGetInfo(UsedMemorySize)` is constant) +2.5 MiB after the churn, within the 8 MiB budget (peak during it +10 to +13 MiB). In the game the
-  texture cache peaked at 2,888 textures / 205 MiB and evicted to 2,284 (upstream's 3,000-entry cap).
+- **Swap interval.** `rhi-docked2`'s probe (`window.tsv` `probe` rows), device changes in 3 s steps: Immediate 119.6
+  swaps/s (SDL interval 0), Vsync 60.0/s (interval 1), back and forth five times, also after a same-size window resize;
+  interval 2 set directly gives 30.0/s. The interval experiments: 1 → 60.0/s, 0 → 120.0/s, 2 → 30.0/s. **The defect
+  behind the first review's finding 2:** a change from interval 2 straight to 1 was reported by SDL but not applied
+  (30/s remained, `rhi-dock`); the device now passes through 0 (`75fd248`) and the same step lands at 60/s within a
+  second (`rhi-docked2`, 55.6 s). Round 1's "Vsync" windows measured exactly the interval-0 pattern (120/s,
+  alternating ~16 / ~0.4 ms); those builds did not log the interval, so which change failed there is not established;
+  round 1's claim of 60 Hz in both modes was wrong and is withdrawn.
+- **Docking in the game** (`m05-dock`): `[video] drawable=1920x1080 … mode=1` ↔ `1280x720 … mode=0` at all four
+  changes; frames between changes 22-47 ms; one 0.43-0.86 s frame at each re-dock; screenshots after each change show
+  the full picture at the new size, 4:3 pillarboxed. The game never calls `SDL_SetWindowSize` (only the test program
+  does).
+- **Docking in the test program** (`rhi-dock-repro`): mode 0 ↔ 1 and SDL's window 1280x720 ↔ 1920x1080 at 23.9 /
+  31.3 / 41.4 / 51.5 s, and after the program's own `SDL_SetWindowSize` (55-64 s) at 80.8 / 91.0 / 102.3 s; Vsync
+  60/s before and after every change (one short second at each). **The round-1 black screen after a re-dock
+  (`rhi-attended2`, ~1 ms swaps) did not reproduce** on the fixed build in this exact order; its cause is not
+  established (that build also had the interval defect).
+- **The window path read back** (finding 5): `window/back_buffer_equals_texture`: the window back buffer, drawn with
+  sub-viewports, scissors and the UI pipeline with its clip scissor and read with `glReadPixels(GL_BACK)` before the
+  swap, equals the same drawing in a texture: 0 differing pixels at 1920x1080 docked and 1280x720 handheld.
+- **Diagnostics.** KHR_debug synchronous output on in every run: 0 messages and 0 GL errors in every round-2 run.
+- **Churn** (200 rounds, `churn/*`): GL objects and bytes back to their start, 0 deletions pending, programs 35; heap
+  in use (newlib `mallinfo`; libnx reserves the whole heap at start, so `svcGetInfo(UsedMemorySize)` stays constant)
+  +2.5 MiB after the churn, within the 8 MiB budget, +10 to +13 MiB at its peak. Copy and readback framebuffers now
+  detach their textures after use (finding 7). Whether `mallinfo` covers all of nouveau's GPU allocations is not
+  established; the backend's own byte counters cover the textures and buffers it makes. In the game the texture cache
+  peaks near upstream's 3,000-entry cap (2,987 / 210 MiB) and evicts.
 
 ## Game through OpenGL (not M06 acceptance)
 
-`m05-gl`: the flyover at 8 s, Fort Baxter with the world, the player, HUD (clock, health, money), radar and the
-mission marker from 60 s; the same frames as the desktop's (docs/milestones/M05/desktop). At 236 s (docked, 1x):
-`game_fps=16.9 frame_ms=59.0 game_ms=24.2 render_ms=10.0 gl_ms=25.3 host_fps=38`; the user saw ~20 fps while
-playing. Measured, not a target (M10). No controllability, 5-minute or beta claim: that is M06.
+`m05-gl` and `m05-dock`: the flyover and Fort Baxter with the world, the player, HUD (clock, health, money), radar and
+the mission marker, correct after the clip-control change. At the end of the 240 s run (docked, 1x):
+`game_fps=18.6 frame_ms=53.7 host_fps=32 gl_ms=32.2`; the dock run `game_fps=21.3`; the user saw ~20 fps while
+playing in round 1. Measured, not a target (M10). No controllability, 5-minute or beta claim: that is M06.
+
+## People at the console
+
+The user, 2026-11-16: the orientation card correct (red top-left, green top-right, blue bottom-left, white
+bottom-right): "Everything looks right" and "I've saw those colors"; the docking changes in `m05-dock` and
+`rhi-dock-repro` done by hand (the TV was not watched in round 2: the logs above are the evidence there).

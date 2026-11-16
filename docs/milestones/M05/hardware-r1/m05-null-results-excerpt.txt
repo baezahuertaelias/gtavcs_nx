@@ -1,0 +1,12 @@
+config t=0.000 profile="m05-null" seconds=60.000000 commands=6 env=2 verify_files=0
+focus t=0.000 state=out
+focus t=0.000 state=in
+command t=5.026 at=5.000000 command="frames" status=ok reply="ok 53"
+command t=15.027 at=15.000000 command="frames" status=ok reply="ok 351"
+command t=25.017 at=25.000000 command="frames" status=ok reply="ok 594"
+command t=35.021 at=35.000000 command="frames" status=ok reply="ok 895"
+command t=45.025 at=45.000000 command="frames" status=ok reply="ok 1116"
+command t=55.025 at=55.000000 command="frames" status=ok reply="ok 1341"
+stop t=60.008 reason=seconds frames=3600
+shutdown t=60.008 frames=3600
+audit t=60.008 file_opens=142 iso_opens=0 first_iso="" threads_created=6

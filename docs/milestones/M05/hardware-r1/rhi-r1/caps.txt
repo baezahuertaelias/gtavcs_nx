@@ -1,0 +1,17 @@
+vendor nouveau
+renderer NV120
+version 4.3 (Core Profile) Mesa 20.1.0-rc3
+glsl 4.30
+gl 4.3
+clip_control 1
+viewport_array 1
+anisotropy 1 max 16
+khr_debug 1
+max_dual_source_draw_buffers 1
+max_samples 8 color 8 depth 8
+max_texture_size 16384
+max_uniform_block_size 65536
+default_framebuffer_encoding 0x2601
+loader_context 0
+used_memory_start 136644192
+operation_mode_start 1 (0 handheld, 1 docked)

@@ -21,12 +21,15 @@ SHA-256 of its text.
 
 ## Conventions (what differs from HLSL and how it is resolved)
 
-- **Rows / Y origin.** Every texture holds rows top-down, as in D3D and Vulkan. Vertex shaders end with
-  `rhiPosition(p)`, which multiplies clip-space Y by the uniform `rhi_flipY`: -1 when drawing into a texture (NDC +1
-  lands on row 0, and `gl_FragCoord.y` counts rows from the top like `SV_Position`), +1 for the window. The device
-  sets it per pass and converts the window's viewport / scissor to GL's bottom-left origin.
-- **Clip depth.** D3D's clip depth is 0..1. With GL 4.5 / `ARB_clip_control` the device calls
-  `glClipControl(GL_LOWER_LEFT, GL_ZERO_TO_ONE)` and `RHI_ZERO_TO_ONE` is 1; otherwise `rhiPosition` remaps
+- **Rows / Y origin.** Every texture holds rows top-down, as in D3D and Vulkan. Where the context has clip control
+  (the Switch's Mesa does), drawing into a texture uses `glClipControl(GL_UPPER_LEFT, GL_ZERO_TO_ONE)`: NDC +1 lands
+  on row 0, `gl_FragCoord.y` counts rows from the top like `SV_Position`, and an edge exactly on a pixel centre (every
+  GS edge: `gs_hw.cpp` moves draws by half a pixel) follows D3D's top-left rule. Without clip control, `rhiPosition(p)`
+  multiplies clip-space Y by the uniform `rhi_flipY` (-1 for textures): the same rows, but GL's lower-left tie rule
+  (nouveau then dropped the top row of such edges: first M05 review). The window uses `GL_LOWER_LEFT`, unflipped; the
+  device converts its viewport / scissor to GL's bottom-left origin.
+- **Clip depth.** D3D's clip depth is 0..1. With GL 4.5 / `ARB_clip_control` the device sets `GL_ZERO_TO_ONE` (with
+  the origin above) and `RHI_ZERO_TO_ONE` is 1; otherwise `rhiPosition` remaps
   z to `2z - w` (checked with `PS2X_GL_NO_CLIP_CONTROL=1`). `gl_FragDepth` is window depth 0..1 like `SV_Depth`.
 - **Bindings.** GLSL 330 has no `layout(binding)`: uniform blocks are named `<Name>_b<N>` (HLSL `register(bN)`)
   and samplers `<name>_t<N>` (`register(tN)`/`sN`, one sampler per unit); the device binds them by name at link.

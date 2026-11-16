@@ -848,7 +848,7 @@
    "differing_pixels": 0,
    "pixels": 1024,
    "ok": true,
-   "tolerance": "impl:multisample sample positions on edge pixels"
+   "tolerance": "unorm:1"
   },
   "passes/depth_only": {
    "bytes_equal": true,
@@ -865,6 +865,22 @@
    "pixels": 4096,
    "ok": true,
    "tolerance": "unorm:255,pixels:24"
+  },
+  "pixel_centre/sprites": {
+   "bytes_equal": true,
+   "max_channel_diff": 0,
+   "differing_pixels": 0,
+   "pixels": 3072,
+   "ok": true,
+   "tolerance": "exact"
+  },
+  "pixel_centre/triangle_lines_points_copy": {
+   "bytes_equal": true,
+   "max_channel_diff": 0,
+   "differing_pixels": 0,
+   "pixels": 3072,
+   "ok": true,
+   "tolerance": "exact"
   },
   "present_ui/letterbox": {
    "bytes_equal": true,
@@ -887,8 +903,10 @@
    "max_channel_diff": 0,
    "differing_pixels": 0,
    "pixels": 4096,
+   "band_mean_diff": 0.0,
+   "band_stdev_diff": 0.0,
    "ok": true,
-   "tolerance": "impl:texture filtering footprint (LOD / anisotropy approximation)"
+   "tolerance": "bands:8,mean:3,stdev:8"
   },
   "samplers/linear_clamp": {
    "bytes_equal": true,
@@ -935,8 +953,10 @@
    "max_channel_diff": 0,
    "differing_pixels": 0,
    "pixels": 4096,
+   "band_mean_diff": 0.0,
+   "band_stdev_diff": 0.0,
    "ok": true,
-   "tolerance": "impl:texture filtering footprint (LOD / anisotropy approximation)"
+   "tolerance": "bands:8,mean:3,stdev:8"
   },
   "textures/r32f": {
    "bytes_equal": true,
@@ -1005,17 +1025,17 @@
  },
  "checks": {
   "reference": {
-   "total": 48,
+   "total": 53,
    "failed": []
   },
   "candidate": {
-   "total": 78,
+   "total": 84,
    "failed": []
   }
  },
  "summary": {
-  "images": 125,
-  "bytes_equal": 125,
+  "images": 127,
+  "bytes_equal": 127,
   "failures": 0
  },
  "failures": []

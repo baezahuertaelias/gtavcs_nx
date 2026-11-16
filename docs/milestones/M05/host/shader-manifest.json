@@ -25,7 +25,7 @@
    "entry": "vs_main",
    "stage": "vertex",
    "defines": [],
-   "sha256": "bb5521569b345e3bb53ceb3621080be76e7b8d2a8a2cb522b10b187c3e7dc852"
+   "sha256": "9a60819dcb3ed1a4924982dfbfdc08537a6e8fc947eafbf41ec2fb34440aef93"
   },
   {
    "name": "kGsWorldVS",
@@ -34,7 +34,7 @@
    "entry": "vs_world",
    "stage": "vertex",
    "defines": [],
-   "sha256": "8ae5114c0340ad86af1f228fa1d86141cb2c9d0e4e701e6299f8310d6b263795"
+   "sha256": "2977d219d176322fb20170d1fd53950796eaeb1159bdb9629c8a1e748d330632"
   },
   {
    "name": "kGsLitVS",
@@ -43,7 +43,7 @@
    "entry": "vs_lit",
    "stage": "vertex",
    "defines": [],
-   "sha256": "5d0072b49497d5e0aeee92eaa1e90fb0e37993aa6e51d5cfec2808de0b71c4a4"
+   "sha256": "1761a4ba2563767d03413173d255a52fbc7c12e2e8d83180e13c8aa18e33e96e"
   },
   {
    "name": "kGsDrawPS0",
@@ -55,7 +55,7 @@
     "DUAL_SOURCE=0",
     "SAMPLE_MODE=0"
    ],
-   "sha256": "2b2238f73a0d57be855e4a50bd106c201a928e15049799dab987b679356ab73e"
+   "sha256": "5565576f900506930e6fb65a8f1380500fcda97d1d9de012eb087da2fc2612f5"
   },
   {
    "name": "kGsDrawPS0Dual",
@@ -67,7 +67,7 @@
     "DUAL_SOURCE=1",
     "SAMPLE_MODE=0"
    ],
-   "sha256": "8ceb667c141afdbe7bbd8615dd5058818c156091ac824c66893192d73e7b5f60"
+   "sha256": "eed981c878aab6902475b1e6efabfa84f7b4c185a7c3a8e75e92f33bf182e59d"
   },
   {
    "name": "kGsDrawPS0NoZ",
@@ -80,7 +80,7 @@
     "SAMPLE_MODE=0",
     "SHADER_DEPTH=0"
    ],
-   "sha256": "0cccc82f5dbf38df165356583cbc8796c6f3f2662d4dc9d33bc40e625ba66710"
+   "sha256": "b26b75881828ab7297f26070c78511316a9d622d1783baa3994fdccd47a8d966"
   },
   {
    "name": "kGsDrawPS0DualNoZ",
@@ -93,7 +93,7 @@
     "SAMPLE_MODE=0",
     "SHADER_DEPTH=0"
    ],
-   "sha256": "b1080a5453a1c2b289d53e252b254e9482b567a2b5cda943f7efeb31bca43533"
+   "sha256": "b1dae8d2fada2ee30ae0fb6fd80bfc9792dbc28b47f29714af2fb78afff9a53d"
   },
   {
    "name": "kGsDrawPS1",
@@ -105,7 +105,7 @@
     "DUAL_SOURCE=0",
     "SAMPLE_MODE=1"
    ],
-   "sha256": "44d7551b1620a152bd29ad8e0b1d46b48d8d9b1cdd2f518835c4f23ec7a2972a"
+   "sha256": "fade8b9effbde27bfa40da2a9a6b1d4b3268058baf1e72775f4f888196550097"
   },
   {
    "name": "kGsDrawPS1Dual",
@@ -117,7 +117,7 @@
     "DUAL_SOURCE=1",
     "SAMPLE_MODE=1"
    ],
-   "sha256": "07c5541ab2a82a97e20d3b4186bb64f8ae125cef878d56209288147afe3306c7"
+   "sha256": "174e73922401199ee1a2000c14af21106a71bde082d798c7dd082b14d4a55fa1"
   },
   {
    "name": "kGsDrawPS1NoZ",
@@ -130,7 +130,7 @@
     "SAMPLE_MODE=1",
     "SHADER_DEPTH=0"
    ],
-   "sha256": "24f28903a55c7a9a5ecb7a1c210fd71c7bd2ce123f94fea7ada4d9d3b919e86d"
+   "sha256": "ceea4b1c99b5c6da7a2802a394ac4865d1a4b34495c8f9371df1b2b9b2814fe3"
   },
   {
    "name": "kGsDrawPS1DualNoZ",
@@ -143,7 +143,7 @@
     "SAMPLE_MODE=1",
     "SHADER_DEPTH=0"
    ],
-   "sha256": "909fd2bd1561024e6c115a92fa8d418d2bdac5e25543d0b67cfdebd6b8444b03"
+   "sha256": "1e84f5c45b9b559fc3106e0cd9afda07f6282bc98293ba12d88315b4b90dae69"
   },
   {
    "name": "kGsDrawPS2",
@@ -155,7 +155,7 @@
     "DUAL_SOURCE=0",
     "SAMPLE_MODE=2"
    ],
-   "sha256": "15bfa08aed8aee09bec8c1643d37da6384af091da156bbeff27013161d9afba9"
+   "sha256": "9411fc0d5634cd5547dc50729fa895c7ecf65198f874de1c4700943e32d4d409"
   },
   {
    "name": "kGsDrawPS2Dual",
@@ -167,7 +167,7 @@
     "DUAL_SOURCE=1",
     "SAMPLE_MODE=2"
    ],
-   "sha256": "6dc5093c32cab66cf08bbc3fa4001db73d01e3622f59b2b6f761d4ddd136e7f4"
+   "sha256": "3c66205c4c49d50550bae74f44877f41b18ad130e9c396d70d7e7c29791c879d"
   },
   {
    "name": "kGsDrawPS2NoZ",
@@ -180,7 +180,7 @@
     "SAMPLE_MODE=2",
     "SHADER_DEPTH=0"
    ],
-   "sha256": "a6ee07a12732c434fb8f51e900171f443199f244817036e315464999a8748cb4"
+   "sha256": "0ea57bb2d38c4071e64da448dbcb956e3190a31bf8f534dccfbf72a9b042aa07"
   },
   {
    "name": "kGsDrawPS2DualNoZ",
@@ -193,7 +193,7 @@
     "SAMPLE_MODE=2",
     "SHADER_DEPTH=0"
    ],
-   "sha256": "7d7fd52c9becd707fa8fc67255a97b2ece19e29cc636540add0e8e68268a8a15"
+   "sha256": "e0ea748c4cb8bfed2ec47dfd33bce10e8b27cb398ab2ea1d162f80efe5efec5b"
   },
   {
    "name": "kGsDrawPS3",
@@ -205,7 +205,7 @@
     "DUAL_SOURCE=0",
     "SAMPLE_MODE=3"
    ],
-   "sha256": "7d9e6e4c1af226a5511eaa9899472abd34e27d4c1b2076d757300507a707cc77"
+   "sha256": "db81d77a1adaa64032f72f8c5c4976f3de48747668353a803c6c183b4ffa853b"
   },
   {
    "name": "kGsDrawPS3Dual",
@@ -217,7 +217,7 @@
     "DUAL_SOURCE=1",
     "SAMPLE_MODE=3"
    ],
-   "sha256": "2fc3932efd732404db4dbecec978d22673acd9b5183db93493da0b9271b23a1c"
+   "sha256": "5e671f7eede03d6daac6e548c7507b8c9513936f9eed79913d307804bca0c368"
   },
   {
    "name": "kGsDrawPS3NoZ",
@@ -230,7 +230,7 @@
     "SAMPLE_MODE=3",
     "SHADER_DEPTH=0"
    ],
-   "sha256": "7a0355cc46cb8cef1f23ca8516630682b65524a09c4126b21d0867d93fdbc900"
+   "sha256": "8b65b236d632d37f9db96c062d6ec723d4f1334b39c1ad2d3a4ea433f660916b"
   },
   {
    "name": "kGsDrawPS3DualNoZ",
@@ -243,7 +243,7 @@
     "SAMPLE_MODE=3",
     "SHADER_DEPTH=0"
    ],
-   "sha256": "13c38cf70cc141a5c26f21b3fe92435240e34918746755221f0b5c6117c6a41d"
+   "sha256": "ffc22b17573871b64bbee0871475a42b59d60c2ec314aba41001160b9d92c077"
   },
   {
    "name": "kGsDrawPS4",
@@ -255,7 +255,7 @@
     "DUAL_SOURCE=0",
     "SAMPLE_MODE=4"
    ],
-   "sha256": "6ee0b76936456e7ea9512ee555db36cd803d10bea6073b63922a89345e9ece4b"
+   "sha256": "78d63fba644c05dfa332a85a841dd8b3ab156b9b4e5f587a4d28be96aa4bc42a"
   },
   {
    "name": "kGsDrawPS4Dual",
@@ -267,7 +267,7 @@
     "DUAL_SOURCE=1",
     "SAMPLE_MODE=4"
    ],
-   "sha256": "aef6bbd8b8d440592368930e929e4a7efb34b11a07560a10d721eaa5171dd54a"
+   "sha256": "9e508189fd45625c1fc77a54a947fe37dad147304665290f0c3c2a9c6460ef1b"
   },
   {
    "name": "kGsDrawPS4NoZ",
@@ -280,7 +280,7 @@
     "SAMPLE_MODE=4",
     "SHADER_DEPTH=0"
    ],
-   "sha256": "dacaf368f3949f6349cdfdcbe0cfc0b16961a073cf2e0f9deeb129053d2d6685"
+   "sha256": "7c889c71d31aa9261f26f6f640536ec686f898736383fe75529e30789e9a4a74"
   },
   {
    "name": "kGsDrawPS4DualNoZ",
@@ -293,7 +293,7 @@
     "SAMPLE_MODE=4",
     "SHADER_DEPTH=0"
    ],
-   "sha256": "490aae2bd12ccbb1dd89a3f290ba1d0cf35edfa263954427ad4fad518e265ac1"
+   "sha256": "e3fbda7bb148fa98513286263e9c9a14e846c901b103e119b527f09c406d51bf"
   },
   {
    "name": "kGsDrawPS5",
@@ -305,7 +305,7 @@
     "DUAL_SOURCE=0",
     "SAMPLE_MODE=5"
    ],
-   "sha256": "a680e3566e36797ce7a4b2110ed57d00dc0621d5dfe837120560ebc8930d4dfd"
+   "sha256": "bcc9def6bd0d92bddc1257dd4a5017826ea216914b70b3d81d532e22eedc1dfd"
   },
   {
    "name": "kGsDrawPS5Dual",
@@ -317,7 +317,7 @@
     "DUAL_SOURCE=1",
     "SAMPLE_MODE=5"
    ],
-   "sha256": "f88c21f70044d6f391db3b74c1a3cc5dd8bf8099c63080d2e2320fee84962f88"
+   "sha256": "68ae3357df9829b4935bf0be05fcb9ec09a9cc010aa4d2e19dd5384db3de0fb1"
   },
   {
    "name": "kGsDrawPS5NoZ",
@@ -330,7 +330,7 @@
     "SAMPLE_MODE=5",
     "SHADER_DEPTH=0"
    ],
-   "sha256": "98603293af8e4269136251d8742735d8683a3c21d55a6599854f834fd4c19622"
+   "sha256": "e09337ab4d3d6791e9746e9facdc2e3dd5442b2b97f0ff11e52f80aa18c44692"
   },
   {
    "name": "kGsDrawPS5DualNoZ",
@@ -343,7 +343,7 @@
     "SAMPLE_MODE=5",
     "SHADER_DEPTH=0"
    ],
-   "sha256": "b20b503c57839b40f8f9bf2cde9baba61c4d8deb914dd111706efb5caabd0a92"
+   "sha256": "d4a59d691b9d53838057714c47cf67b9a30056b5b8c461a066ae2bf70ec9d9d4"
   },
   {
    "name": "kGsDrawPS6",
@@ -355,7 +355,7 @@
     "DUAL_SOURCE=0",
     "SAMPLE_MODE=6"
    ],
-   "sha256": "3dd70538964c7295fc32de33d8b64f5734fe8578e6a6de6f03af44bdad05cea8"
+   "sha256": "6139541a4595f52f069c8b040d040556bde7779421f1ef1b9fe25ff936bb445c"
   },
   {
    "name": "kGsDrawPS6Dual",
@@ -367,7 +367,7 @@
     "DUAL_SOURCE=1",
     "SAMPLE_MODE=6"
    ],
-   "sha256": "76aa4bf8c7cafeefeb375583fa9f4010212b7c91b3642630ae7089604f9f4425"
+   "sha256": "dfb2f33804945973d5232341e8750ea76fa64fd60a071a0abd6417402cb0cfe7"
   },
   {
    "name": "kGsDrawPS6NoZ",
@@ -380,7 +380,7 @@
     "SAMPLE_MODE=6",
     "SHADER_DEPTH=0"
    ],
-   "sha256": "86abf96c29ae332f287fabedc24aef9470b3636df29bcfeadcc4877dafa1c115"
+   "sha256": "02455653ade8c71411dbc9bd398252e73abb109e8a72e1c23138b296406bbf53"
   },
   {
    "name": "kGsDrawPS6DualNoZ",
@@ -393,7 +393,7 @@
     "SAMPLE_MODE=6",
     "SHADER_DEPTH=0"
    ],
-   "sha256": "0a8ca177478a9c1925676346e3930f1e9469e06daecc560162d68825bdccdd0b"
+   "sha256": "c050a6b37942fefda1924830d5ffb13a0309d84cb01d813bb9e7d9df1820a062"
   },
   {
    "name": "kGsQuadVS",

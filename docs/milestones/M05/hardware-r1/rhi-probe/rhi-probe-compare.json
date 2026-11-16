@@ -1,6 +1,6 @@
 {
- "reference": "vulkan_hw",
- "candidate": "gl_worker",
+ "reference": "/Downloads/repos/gtavcs_nx/build/m05/host/vulkan_hw",
+ "candidate": "build/evidence/M05/probe/rhi-probe",
  "images": {
   "blend/add_alpha": {
    "bytes_equal": true,
@@ -11,10 +11,16 @@
    "tolerance": "unorm:1"
   },
   "blend/add_color": {
-   "bytes_equal": true,
-   "max_channel_diff": 0,
-   "differing_pixels": 0,
+   "bytes_equal": false,
+   "max_channel_diff": 1,
+   "differing_pixels": 512,
    "pixels": 4096,
+   "first_diff": {
+    "x": 48,
+    "y": 0,
+    "reference": "332713b3",
+    "candidate": "332613b3"
+   },
    "ok": true,
    "tolerance": "unorm:1"
   },
@@ -59,10 +65,16 @@
    "tolerance": "unorm:1"
   },
   "blend/reverse_subtract_color": {
-   "bytes_equal": true,
-   "max_channel_diff": 0,
-   "differing_pixels": 0,
+   "bytes_equal": false,
+   "max_channel_diff": 1,
+   "differing_pixels": 384,
    "pixels": 4096,
+   "first_diff": {
+    "x": 48,
+    "y": 8,
+    "reference": "003f86b3",
+    "candidate": "004086b3"
+   },
    "ok": true,
    "tolerance": "unorm:1"
   },
@@ -75,10 +87,16 @@
    "tolerance": "unorm:1"
   },
   "blend/subtract_color": {
-   "bytes_equal": true,
-   "max_channel_diff": 0,
-   "differing_pixels": 0,
+   "bytes_equal": false,
+   "max_channel_diff": 1,
+   "differing_pixels": 128,
    "pixels": 4096,
+   "first_diff": {
+    "x": 48,
+    "y": 0,
+    "reference": "332713b3",
+    "candidate": "332613b3"
+   },
    "ok": true,
    "tolerance": "unorm:1"
   },
@@ -243,10 +261,16 @@
    "tolerance": "exact"
   },
   "gs_modes/mode0_dual": {
-   "bytes_equal": true,
-   "max_channel_diff": 0,
-   "differing_pixels": 0,
+   "bytes_equal": false,
+   "max_channel_diff": 1,
+   "differing_pixels": 8,
    "pixels": 1280,
+   "first_diff": {
+    "x": 26,
+    "y": 4,
+    "reference": "69427e40",
+    "candidate": "6a417d40"
+   },
    "ok": true,
    "tolerance": "unorm:1"
   },
@@ -259,10 +283,16 @@
    "tolerance": "exact"
   },
   "gs_modes/mode0_dual_noz": {
-   "bytes_equal": true,
-   "max_channel_diff": 0,
-   "differing_pixels": 0,
+   "bytes_equal": false,
+   "max_channel_diff": 1,
+   "differing_pixels": 8,
    "pixels": 1280,
+   "first_diff": {
+    "x": 26,
+    "y": 4,
+    "reference": "69427e40",
+    "candidate": "6a417d40"
+   },
    "ok": true,
    "tolerance": "unorm:1"
   },
@@ -371,10 +401,16 @@
    "tolerance": "exact"
   },
   "gs_modes/mode2_dual": {
-   "bytes_equal": true,
-   "max_channel_diff": 0,
-   "differing_pixels": 0,
+   "bytes_equal": false,
+   "max_channel_diff": 1,
+   "differing_pixels": 1,
    "pixels": 1280,
+   "first_diff": {
+    "x": 0,
+    "y": 11,
+    "reference": "8e689040",
+    "candidate": "8d688f40"
+   },
    "ok": true,
    "tolerance": "unorm:1"
   },
@@ -387,10 +423,16 @@
    "tolerance": "exact"
   },
   "gs_modes/mode2_dual_noz": {
-   "bytes_equal": true,
-   "max_channel_diff": 0,
-   "differing_pixels": 0,
+   "bytes_equal": false,
+   "max_channel_diff": 1,
+   "differing_pixels": 1,
    "pixels": 1280,
+   "first_diff": {
+    "x": 0,
+    "y": 11,
+    "reference": "8e689040",
+    "candidate": "8d688f40"
+   },
    "ok": true,
    "tolerance": "unorm:1"
   },
@@ -435,10 +477,16 @@
    "tolerance": "exact"
   },
   "gs_modes/mode3_dual": {
-   "bytes_equal": true,
-   "max_channel_diff": 0,
-   "differing_pixels": 0,
+   "bytes_equal": false,
+   "max_channel_diff": 1,
+   "differing_pixels": 2,
    "pixels": 1280,
+   "first_diff": {
+    "x": 10,
+    "y": 4,
+    "reference": "69427e40",
+    "candidate": "6a417d40"
+   },
    "ok": true,
    "tolerance": "unorm:1"
   },
@@ -451,10 +499,16 @@
    "tolerance": "exact"
   },
   "gs_modes/mode3_dual_noz": {
-   "bytes_equal": true,
-   "max_channel_diff": 0,
-   "differing_pixels": 0,
+   "bytes_equal": false,
+   "max_channel_diff": 1,
+   "differing_pixels": 2,
    "pixels": 1280,
+   "first_diff": {
+    "x": 10,
+    "y": 4,
+    "reference": "69427e40",
+    "candidate": "6a417d40"
+   },
    "ok": true,
    "tolerance": "unorm:1"
   },
@@ -499,10 +553,16 @@
    "tolerance": "exact"
   },
   "gs_modes/mode4_dual": {
-   "bytes_equal": true,
-   "max_channel_diff": 0,
-   "differing_pixels": 0,
+   "bytes_equal": false,
+   "max_channel_diff": 1,
+   "differing_pixels": 1,
    "pixels": 1280,
+   "first_diff": {
+    "x": 0,
+    "y": 11,
+    "reference": "8e689040",
+    "candidate": "8d688f40"
+   },
    "ok": true,
    "tolerance": "unorm:1"
   },
@@ -515,10 +575,16 @@
    "tolerance": "exact"
   },
   "gs_modes/mode4_dual_noz": {
-   "bytes_equal": true,
-   "max_channel_diff": 0,
-   "differing_pixels": 0,
+   "bytes_equal": false,
+   "max_channel_diff": 1,
+   "differing_pixels": 1,
    "pixels": 1280,
+   "first_diff": {
+    "x": 0,
+    "y": 11,
+    "reference": "8e689040",
+    "candidate": "8d688f40"
+   },
    "ok": true,
    "tolerance": "unorm:1"
   },
@@ -563,10 +629,16 @@
    "tolerance": "exact"
   },
   "gs_modes/mode5_dual": {
-   "bytes_equal": true,
-   "max_channel_diff": 0,
-   "differing_pixels": 0,
+   "bytes_equal": false,
+   "max_channel_diff": 1,
+   "differing_pixels": 2,
    "pixels": 1280,
+   "first_diff": {
+    "x": 10,
+    "y": 4,
+    "reference": "69427e40",
+    "candidate": "6a417d40"
+   },
    "ok": true,
    "tolerance": "unorm:1"
   },
@@ -579,10 +651,16 @@
    "tolerance": "exact"
   },
   "gs_modes/mode5_dual_noz": {
-   "bytes_equal": true,
-   "max_channel_diff": 0,
-   "differing_pixels": 0,
+   "bytes_equal": false,
+   "max_channel_diff": 1,
+   "differing_pixels": 2,
    "pixels": 1280,
+   "first_diff": {
+    "x": 10,
+    "y": 4,
+    "reference": "69427e40",
+    "candidate": "6a417d40"
+   },
    "ok": true,
    "tolerance": "unorm:1"
   },
@@ -627,10 +705,16 @@
    "tolerance": "exact"
   },
   "gs_modes/mode6_dual": {
-   "bytes_equal": true,
-   "max_channel_diff": 0,
-   "differing_pixels": 0,
+   "bytes_equal": false,
+   "max_channel_diff": 1,
+   "differing_pixels": 1,
    "pixels": 1280,
+   "first_diff": {
+    "x": 0,
+    "y": 11,
+    "reference": "8e689040",
+    "candidate": "8d688f40"
+   },
    "ok": true,
    "tolerance": "unorm:1"
   },
@@ -643,10 +727,16 @@
    "tolerance": "exact"
   },
   "gs_modes/mode6_dual_noz": {
-   "bytes_equal": true,
-   "max_channel_diff": 0,
-   "differing_pixels": 0,
+   "bytes_equal": false,
+   "max_channel_diff": 1,
+   "differing_pixels": 1,
    "pixels": 1280,
+   "first_diff": {
+    "x": 0,
+    "y": 11,
+    "reference": "8e689040",
+    "candidate": "8d688f40"
+   },
    "ok": true,
    "tolerance": "unorm:1"
   },
@@ -675,10 +765,16 @@
    "tolerance": "exact"
   },
   "gs_native/color": {
-   "bytes_equal": true,
-   "max_channel_diff": 0,
-   "differing_pixels": 0,
+   "bytes_equal": false,
+   "max_channel_diff": 1,
+   "differing_pixels": 4,
    "pixels": 2048,
+   "first_diff": {
+    "x": 31,
+    "y": 29,
+    "reference": "21f6e780",
+    "candidate": "20f6e780"
+   },
    "ok": true,
    "tolerance": "unorm:1"
   },
@@ -747,18 +843,30 @@
    "tolerance": "exact"
   },
   "gs_wrap/npot": {
-   "bytes_equal": true,
-   "max_channel_diff": 0,
-   "differing_pixels": 0,
+   "bytes_equal": false,
+   "max_channel_diff": 1,
+   "differing_pixels": 42,
    "pixels": 4608,
+   "first_diff": {
+    "x": 41,
+    "y": 24,
+    "reference": "ada0b4df",
+    "candidate": "ad9fb3df"
+   },
    "ok": true,
    "tolerance": "unorm:1"
   },
   "gs_wrap/pot": {
-   "bytes_equal": true,
-   "max_channel_diff": 0,
-   "differing_pixels": 0,
+   "bytes_equal": false,
+   "max_channel_diff": 1,
+   "differing_pixels": 84,
    "pixels": 4608,
+   "first_diff": {
+    "x": 14,
+    "y": 24,
+    "reference": "9360a67e",
+    "candidate": "9260a67e"
+   },
    "ok": true,
    "tolerance": "unorm:1"
   },
@@ -843,12 +951,18 @@
    "tolerance": "unorm:1"
   },
   "msaa/resolved": {
-   "bytes_equal": true,
-   "max_channel_diff": 0,
-   "differing_pixels": 0,
+   "bytes_equal": false,
+   "max_channel_diff": 1,
+   "differing_pixels": 25,
    "pixels": 1024,
+   "first_diff": {
+    "x": 4,
+    "y": 2,
+    "reference": "808080ff",
+    "candidate": "7f7f7fff"
+   },
    "ok": true,
-   "tolerance": "impl:multisample sample positions on edge pixels"
+   "tolerance": "unorm:1"
   },
   "passes/depth_only": {
    "bytes_equal": true,
@@ -859,50 +973,104 @@
    "tolerance": "exact"
   },
   "passes/viewport_scissor": {
-   "bytes_equal": true,
-   "max_channel_diff": 0,
-   "differing_pixels": 0,
+   "bytes_equal": false,
+   "max_channel_diff": 255,
+   "differing_pixels": 20,
    "pixels": 4096,
+   "first_diff": {
+    "x": 40,
+    "y": 4,
+    "reference": "ffffffff",
+    "candidate": "0000ffff"
+   },
    "ok": true,
    "tolerance": "unorm:255,pixels:24"
   },
-  "present_ui/letterbox": {
+  "pixel_centre/sprites": {
    "bytes_equal": true,
    "max_channel_diff": 0,
    "differing_pixels": 0,
    "pixels": 3072,
+   "ok": true,
+   "tolerance": "exact"
+  },
+  "pixel_centre/triangle_lines_points_copy": {
+   "bytes_equal": true,
+   "max_channel_diff": 0,
+   "differing_pixels": 0,
+   "pixels": 3072,
+   "ok": true,
+   "tolerance": "exact"
+  },
+  "present_ui/letterbox": {
+   "bytes_equal": false,
+   "max_channel_diff": 1,
+   "differing_pixels": 38,
+   "pixels": 3072,
+   "first_diff": {
+    "x": 58,
+    "y": 26,
+    "reference": "29201dca",
+    "candidate": "28201dcb"
+   },
    "ok": true,
    "tolerance": "unorm:2"
   },
   "present_ui/ui": {
-   "bytes_equal": true,
-   "max_channel_diff": 0,
-   "differing_pixels": 0,
+   "bytes_equal": false,
+   "max_channel_diff": 1,
+   "differing_pixels": 110,
    "pixels": 3072,
+   "first_diff": {
+    "x": 19,
+    "y": 8,
+    "reference": "263841ff",
+    "candidate": "253841ff"
+   },
    "ok": true,
    "tolerance": "unorm:2"
   },
   "samplers/anisotropic_16": {
-   "bytes_equal": true,
-   "max_channel_diff": 0,
-   "differing_pixels": 0,
+   "bytes_equal": false,
+   "max_channel_diff": 35,
+   "differing_pixels": 3241,
    "pixels": 4096,
+   "band_mean_diff": 0.326,
+   "band_stdev_diff": 2.564,
+   "first_diff": {
+    "x": 0,
+    "y": 0,
+    "reference": "80808080",
+    "candidate": "7e7e7e80"
+   },
    "ok": true,
-   "tolerance": "impl:texture filtering footprint (LOD / anisotropy approximation)"
+   "tolerance": "bands:8,mean:3,stdev:8"
   },
   "samplers/linear_clamp": {
-   "bytes_equal": true,
-   "max_channel_diff": 0,
-   "differing_pixels": 0,
+   "bytes_equal": false,
+   "max_channel_diff": 1,
+   "differing_pixels": 11,
    "pixels": 1024,
+   "first_diff": {
+    "x": 9,
+    "y": 2,
+    "reference": "1541b7ff",
+    "candidate": "1540b7ff"
+   },
    "ok": true,
    "tolerance": "unorm:2"
   },
   "samplers/linear_repeat": {
-   "bytes_equal": true,
-   "max_channel_diff": 0,
-   "differing_pixels": 0,
+   "bytes_equal": false,
+   "max_channel_diff": 1,
+   "differing_pixels": 64,
    "pixels": 1024,
+   "first_diff": {
+    "x": 0,
+    "y": 1,
+    "reference": "b96382ff",
+    "candidate": "b96381ff"
+   },
    "ok": true,
    "tolerance": "unorm:2"
   },
@@ -931,12 +1099,20 @@
    "tolerance": "exact"
   },
   "samplers/trilinear": {
-   "bytes_equal": true,
-   "max_channel_diff": 0,
-   "differing_pixels": 0,
+   "bytes_equal": false,
+   "max_channel_diff": 25,
+   "differing_pixels": 3628,
    "pixels": 4096,
+   "band_mean_diff": 1.0,
+   "band_stdev_diff": 4.505,
+   "first_diff": {
+    "x": 0,
+    "y": 0,
+    "reference": "80808080",
+    "candidate": "7f7f7f80"
+   },
    "ok": true,
-   "tolerance": "impl:texture filtering footprint (LOD / anisotropy approximation)"
+   "tolerance": "bands:8,mean:3,stdev:8"
   },
   "textures/r32f": {
    "bytes_equal": true,
@@ -1005,17 +1181,17 @@
  },
  "checks": {
   "reference": {
-   "total": 48,
+   "total": 53,
    "failed": []
   },
   "candidate": {
-   "total": 79,
+   "total": 85,
    "failed": []
   }
  },
  "summary": {
-  "images": 125,
-  "bytes_equal": 125,
+  "images": 127,
+  "bytes_equal": 101,
   "failures": 0
  },
  "failures": []
