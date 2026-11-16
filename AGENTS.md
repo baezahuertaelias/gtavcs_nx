@@ -273,8 +273,8 @@ private generated core, the game layer and the SDL2 platform; on an actual Switc
 it boots the real runtime from the folder disc, reaches the game's outdoor state
 with the null renderer (black screen, the game's own sound), and passes HOME,
 sleep, close and startup-failure checks (M04 evidence). The M05 OpenGL backend
-runs on the Switch's Mesa 20.1 nouveau (GL 4.3 core): 125/125 conformance
-readbacks within tolerance of upstream's Vulkan backend (99 identical), the real
+runs on the Switch's Mesa 20.1 nouveau (GL 4.3 core): 127/127 conformance
+readbacks within tolerance of upstream's Vulkan backend (101 identical), the real
 game drawn through it with 0 GL errors, docking followed; every GL call stays on
 the main thread (a shared worker context shares nothing on this driver, M05-09).
 No gameplay, beta or frame-rate acceptance is claimed (M06, M10). Full paired wireless/Pro

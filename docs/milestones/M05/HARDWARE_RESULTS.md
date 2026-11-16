@@ -40,12 +40,12 @@ The Switch differs from the host GPU reference in 26 of 127 images, all within t
 
 | Class | Images | Size |
 |---|---|---|
-| blend unit rounding of non-representable products (incl. every dual-source variant) | blend add / subtract / reverse-subtract colour, gs_modes `*_dual*` | ±1, 1-512 px |
+| blend unit rounding of non-representable products | blend add / subtract / reverse-subtract colour; gs_modes mode0 and mode2-6 `_dual` / `_dual_noz` (mode1's dual variants and `dual_source/mode_0..6` are byte-identical) | ±1, 1-512 px |
 | `floor()` after filtering / `mix` landing within an ulp of an integer (the GS math floors) | gs_wrap pot / npot, gs_native colour | ±1, 4-84 px |
 | bilinear sub-texel weight precision | samplers linear, present_ui letterbox / ui | ±1, 11-110 px |
 | a half-covered pixel's resolve (255 and 0 averaged: 127.5 → 7f here, 80 on the reference) | msaa/resolved | ±1, 25 px (`unorm:1`) |
 | trilinear / anisotropic LOD and footprint (per pixel the implementation's) | samplers trilinear, anisotropic_16 | per 8-row band mean within 1.1 and spread within 4.5 of the reference's (`bands:8,mean:3,stdev:8`); `*_uses_mips` pass |
-| a viewport whose origin is a half pixel (40.25, 4.5): each implementation treats its edge rows differently (lavapipe rows 4-14 cols 40-50; ANV rows 4-14 cols 40-49; nouveau rows 5-14 cols 40-50). No upstream caller sets such a viewport: `setViewport` is called only by `beginPass`, with whole-pixel targets | passes/viewport_scissor | 20 px (24 allowed) |
+| a viewport with a fractional origin (x 40.25, a quarter pixel; y 4.5, a half pixel): each implementation treats its edges differently (lavapipe rows 4-14 cols 40-50; ANV rows 4-14 cols 40-49; nouveau rows 5-14 cols 40-50; consistent with nouveau rounding its viewport clip rectangle to whole pixels, not confirmed). Upstream's callers never set a fractional origin: `beginPass` sets (0, 0, target size); `render::UiRenderer` (ui_renderer.cpp:181) sets (0, 0, DisplaySize x FramebufferScale), which on the Switch is the drawable exactly (window = drawable, scale 1.0; `[video] window=1920x1080 drawable=1920x1080`), and only an offscreen capture's scale can make its *width* fractional, its origin staying 0 | passes/viewport_scissor | 20 px (24 allowed) |
 
 The other 101 images are **byte-identical** to upstream's Vulkan backend. That includes `pixel_centre/*`, the game's
 own configuration (every GS draw moved by half a pixel, so integer edges lie on pixel centres): with the

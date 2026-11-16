@@ -13,7 +13,7 @@ hardware evidence; this file says what each task's proof is and where it stands.
 | GLSL 330 ports of `present`, `ui`, `gs_util`, `gs_draw`; the 39-variant header and shader manifest | `src/render/glsl/*.glsl`, `README.md`; `tools/glsl_shaders.py` |
 | SDL2 platform: `GlWindow` callbacks; EGL loader context (opt-in) | `src/platform/platform_switch_sdl2.cpp`, `src/platform/gl_loader_egl.{h,cpp}` |
 | `main.c`: the RHI swaps when it presents (`gtavcs_core_presents`); a cleared frame only with `VCS_RHI=null` | `src/main.c`, `src/core.h`, `src/core/core.cpp` |
-| Conformance scenes (23), host runner (Vulkan + GL), Switch runner (+ threading measurement, window phase), comparer | `src/rhi_tests/`, `tests/rhi/CMakeLists.txt`, `tools/rhi_host_tests.py`, `tools/rhi_compare.py` |
+| Conformance scenes (24), host runner (Vulkan + GL), Switch runner (+ threading measurement, window phase), comparer | `src/rhi_tests/`, `tests/rhi/CMakeLists.txt`, `tools/rhi_host_tests.py`, `tools/rhi_compare.py` |
 | Hardware session | `tools/switch_m05_session.py`, `tests/switch/m05-*.cfg`, [HARDWARE.md](HARDWARE.md) |
 
 ## Host results (final candidate code `75fd248`)
