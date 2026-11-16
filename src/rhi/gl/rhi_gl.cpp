@@ -1123,7 +1123,11 @@ namespace rhi
                     const int interval = mode == PresentMode::Vsync ? 1 : 0; // Tearing falls back to Immediate
                     if (interval != m_swapInterval && m_window.setSwapInterval)
                     {
-                        if (!m_window.setSwapInterval(interval))
+                        // Through 0 first: on the Switch (Mesa 20.1 / switch-sdl2) a change from interval 2 straight to
+                        // 1 is reported by SDL but not applied (30 presents a second remained); 2 -> 0 and 0 -> 1 are
+                        // (M05 review 1, the present-interval probe in src/rhi_tests/switch_main.cpp)
+                        const bool ok = (interval == 0 || m_window.setSwapInterval(0)) && m_window.setSwapInterval(interval);
+                        if (!ok)
                             std::fprintf(stderr, "[rhi] swap interval %d refused\n", interval);
                         m_swapInterval = interval;
                     }
