@@ -565,7 +565,7 @@ namespace
         for (int variant = 0; variant < 3; ++variant)
         {
             const uint64_t start = usedMemory();
-            for (int cycle = 0; cycle < 10; ++cycle)
+            for (int cycle = 0; cycle < 3; ++cycle)
                 for (int half = 0; half < 2; ++half)
                 {
                     const int w = variant == 2 ? w0 : (half ? 1280 : 1920), h = variant == 2 ? h0 : (half ? 720 : 1080);
@@ -582,7 +582,7 @@ namespace
                     out << row;
                 }
             out.flush();
-            say("[window] %s: heap %+lld bytes over 20 resizes\n", names[variant],
+            say("[window] %s: heap %+lld bytes over 6 resizes\n", names[variant],
                 static_cast<long long>(usedMemory()) - static_cast<long long>(start));
         }
         SDL_SetWindowSize(g_window, w0, h0);
@@ -631,6 +631,11 @@ namespace
             say("[window] set-up failed\n");
             return;
         }
+        // The window is made non-resizable for the docking stretch: SDL2's Switch backend then keeps its size (and
+        // its buffers) when the console is docked or undocked; every SDL resize leaks the surface's buffers (the
+        // resize probe above; third M05 review). The compositor scales the fixed-size picture to the display.
+        SDL_SetWindowResizable(g_window, SDL_FALSE);
+        out << "0\tresizable\t0\t0\tSDL_SetWindowResizable(false) before the docking stretch\n";
         const auto t0 = Clock::now();
         uint32_t lastW = 0, lastH = 0;
         int lastMode = -1, lastWinW = 0, lastWinH = 0, phase = -100;
@@ -680,7 +685,7 @@ namespace
             SDL_GetWindowSize(g_window, &winW, &winH);
             if (mode != lastMode || winW != lastWinW || winH != lastWinH)
             {
-                out << t << "\tmode\t" << winW << '\t' << winH << "\toperation mode " << mode << " (was " << lastMode << ")\n";
+                out << t << "\tmode\t" << winW << '\t' << winH << "\toperation mode " << mode << " (was " << lastMode << ") heap " << usedMemory() << "\n";
                 out.flush();
                 say("[window] t=%.2f operation mode %d, SDL window %dx%d\n", t, mode, winW, winH);
                 lastMode = mode;
