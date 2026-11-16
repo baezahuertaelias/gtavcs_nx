@@ -4,10 +4,14 @@
 // (tools/glsl_shaders.py, src/render/glsl/README.md):
 //
 //   - Rows: every texture holds rows top-down, as in D3D / Vulkan (data row 0 = texture row 0 = PS2 row 0). Drawing
-//     into a texture flips clip-space Y (rhi_flipY = -1), so NDC +1 lands on row 0 and gl_FragCoord.y counts rows from
-//     the top like SV_Position; viewports and scissors take D3D's top-left rectangles unchanged. The window (the
-//     default framebuffer) is drawn unflipped, its rectangles converted to GL's bottom-left origin.
-//   - Depth: D3D's 0..1 clip depth through glClipControl(GL_LOWER_LEFT, GL_ZERO_TO_ONE) where the context has it, else
+//     into a texture uses glClipControl(GL_UPPER_LEFT, GL_ZERO_TO_ONE) where the context has clip control (GL 4.5 /
+//     ARB_clip_control; the Switch's Mesa has it): NDC +1 lands on row 0, gl_FragCoord.y counts rows from the top like
+//     SV_Position and the rasteriser's tie rule for edges on pixel centres is D3D's top-left one. Without clip control
+//     the vertex shader flips Y instead (rhi_flipY = -1): the same rows, but GL's lower-left tie rule (an edge exactly
+//     on a pixel centre covers the row below instead of the row above). Viewports and scissors take D3D's top-left
+//     rectangles unchanged. The window (the default framebuffer) is drawn with GL_LOWER_LEFT, unflipped, its
+//     rectangles converted to GL's bottom-left origin.
+//   - Depth: D3D's 0..1 clip depth through glClipControl(..., GL_ZERO_TO_ONE) where the context has it, else
 //     remapped in the vertex shader (RHI_ZERO_TO_ONE 0). Depth targets are D32F; clears and shader depth are 0..1.
 //   - Bindings: uniform blocks named <Name>_b<N> go to binding N (HLSL register bN), samplers <name>_t<N> to texture
 //     unit N (tN / sN); vertex attributes at location = their index in PipelineDesc::attributes.
@@ -45,7 +49,7 @@ namespace rhi
     namespace
     {
         // Entry points and enums beyond GLAD's GL 3.3 core set, loaded only when the context reports them.
-        constexpr GLenum kLowerLeft = 0x8CA1, kZeroToOne = 0x935F;
+        constexpr GLenum kLowerLeft = 0x8CA1, kUpperLeft = 0x8CA2, kZeroToOne = 0x935F;
         constexpr GLenum kTextureMaxAnisotropy = 0x84FE, kMaxTextureMaxAnisotropy = 0x84FF;
         constexpr GLenum kDebugOutput = 0x92E0, kDebugOutputSynchronous = 0x8242, kDebugSourceApplication = 0x824A;
         constexpr GLenum kDebugSeverityHigh = 0x9146, kDebugSeverityMedium = 0x9147;
@@ -372,7 +376,10 @@ namespace rhi
                 if (envOn("PS2X_GL_WORKER_CONTEXT") && !m_freeThreaded)
                     std::fprintf(stderr, "[rhi] PS2X_GL_WORKER_CONTEXT: no loader context from the platform; textures on the owner only\n");
                 if (m_caps.clipControl && m_clipControl)
+                {
                     m_clipControl(kLowerLeft, kZeroToOne);
+                    m_clipOrigin = kLowerLeft;
+                }
                 glDisable(GL_FRAMEBUFFER_SRGB); // UNORM targets everywhere, as the D3D11 / Vulkan backends use
                 glDisable(GL_PRIMITIVE_RESTART);
                 glDisable(GL_CULL_FACE);
@@ -523,6 +530,7 @@ namespace rhi
                 attachCopy(GL_READ_FRAMEBUFFER, m_copyFbo[0], t);
                 if (!complete(GL_READ_FRAMEBUFFER, "readTexture"))
                 {
+                    detachCopy(GL_READ_FRAMEBUFFER, m_copyFbo[0]);
                     restoreFramebuffer();
                     return false;
                 }
@@ -543,6 +551,7 @@ namespace rhi
                         std::memcpy(static_cast<uint8_t *>(out) + static_cast<size_t>(row) * pitch,
                                     rows.data() + static_cast<size_t>(row) * width * bpp, static_cast<size_t>(width) * bpp);
                 }
+                detachCopy(GL_READ_FRAMEBUFFER, m_copyFbo[0]);
                 restoreFramebuffer();
                 return glCheckError("readTexture") == 0;
             }
@@ -827,7 +836,24 @@ namespace rhi
                 }
                 m_passWidth = w;
                 m_passHeight = h;
-                m_flip = m_toWindow ? 1.0f : -1.0f;
+                // Rows top-down in a texture. With clip control the rasteriser itself works upper-left there
+                // (glClipControl(GL_UPPER_LEFT)): NDC +1 lands on row 0 and the fill rule's tie-breaking follows
+                // D3D's top-left rule. A Y flip in the shader gives the same rows but the GL lower-left fill rule:
+                // an edge exactly on a pixel centre (every GS edge: gs_hw.cpp moves geometry by half a pixel) lost
+                // the top row and gained the bottom one on nouveau (first M05 review). The flip stays only for
+                // contexts without clip control.
+                if (m_caps.clipControl && m_clipControl)
+                {
+                    const GLenum origin = m_toWindow ? kLowerLeft : kUpperLeft;
+                    if (origin != m_clipOrigin)
+                    {
+                        m_clipControl(origin, kZeroToOne);
+                        m_clipOrigin = origin;
+                    }
+                    m_flip = 1.0f;
+                }
+                else
+                    m_flip = m_toWindow ? 1.0f : -1.0f;
                 // a target may still be bound as a shader input from an earlier pass (D3D11 beginPass unbinds them)
                 unbindTextures();
                 if (pass.name)
@@ -1522,10 +1548,21 @@ namespace rhi
                     glEnable(GL_SCISSOR_TEST);
                     m_pipelineStateValid = false;
                 }
+                detachCopy(GL_READ_FRAMEBUFFER, m_copyFbo[0]);
+                detachCopy(GL_DRAW_FRAMEBUFFER, m_copyFbo[1]);
                 glBindFramebuffer(GL_READ_FRAMEBUFFER, 0);
                 glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
                 restoreFramebuffer();
                 glCheckError(what);
+            }
+
+            // a copy / readback framebuffer keeps nothing attached after use: GL keeps a released texture's storage
+            // while an unbound framebuffer still references it (first M05 review)
+            static void detachCopy(GLenum target, GLuint fbo)
+            {
+                glBindFramebuffer(target, fbo);
+                glFramebufferTexture2D(target, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, 0, 0);
+                glFramebufferTexture2D(target, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, 0, 0);
             }
 
             bool makeOffscreenBack()
@@ -1922,6 +1959,7 @@ namespace rhi
             GLuint m_passColor = 0, m_passDepth = 0;
             uint32_t m_passWidth = 1, m_passHeight = 1;
             float m_flip = -1.0f;
+            GLenum m_clipOrigin = 0; // the glClipControl origin set last (clip control only)
             GlPipeline *m_pipeline = nullptr;
             bool m_pipelineStateValid = false;
             BoundBuffer m_vertexBuffer;

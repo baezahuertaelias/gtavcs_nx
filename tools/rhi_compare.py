@@ -8,6 +8,10 @@ within the tolerance the scene declared:
     exact                 every byte equal
     unorm:N[,pixels:K]    every 8-bit channel within N; with pixels:K, up to K pixels may exceed N
     float:E               every float within E (r32f / d32f)
+    bands:R,mean:M,stdev:S   filtering whose per-pixel result is the implementation's (trilinear / anisotropic LOD
+                          and footprint): for every band of R rows and each colour channel, the mean within M and
+                          the standard deviation within S of the reference's. A wrong mip selection (an aliased
+                          checker where the reference has grey) moves a band's deviation by tens: it fails
     impl:<why>            implementation-defined (filter footprint, sample positions): measured and reported, not
                           failed, unless more than half the pixels differ by more than 32 (the scene is broken)
 Both folders' self-checks must pass. Exit 0 when everything agrees. Standard library only.
@@ -15,6 +19,7 @@ Both folders' self-checks must pass. Exit 0 when everything agrees. Standard lib
 import argparse
 import json
 from pathlib import Path
+import statistics
 import struct
 import sys
 
@@ -64,6 +69,18 @@ def compare(ref, cand):
             n = int(parts["unorm"])
             k = int(parts.get("pixels", 0))
             ok = sum(1 for d in over.values() if d > n) <= k
+        elif tol.startswith("bands:"):
+            parts = dict(p.split(":") for p in tol.split(","))
+            rows, mean_tol, dev_tol = int(parts["bands"]), float(parts["mean"]), float(parts["stdev"])
+            worst_mean = worst_dev = 0.0
+            for band in range(0, ref["h"], rows):
+                for c in range(3):
+                    va = [a[4 * (y * ref["w"] + x) + c] for y in range(band, min(band + rows, ref["h"])) for x in range(ref["w"])]
+                    vb = [b[4 * (y * ref["w"] + x) + c] for y in range(band, min(band + rows, ref["h"])) for x in range(ref["w"])]
+                    worst_mean = max(worst_mean, abs(statistics.fmean(va) - statistics.fmean(vb)))
+                    worst_dev = max(worst_dev, abs(statistics.pstdev(va) - statistics.pstdev(vb)))
+            result.update(band_mean_diff=round(worst_mean, 3), band_stdev_diff=round(worst_dev, 3))
+            ok = worst_mean <= mean_tol and worst_dev <= dev_tol
         elif tol.startswith("impl:"):
             ok = sum(1 for d in over.values() if d > 32) <= pixels // 2
         else:

@@ -51,6 +51,17 @@ class RhiCompareTest(unittest.TestCase):
         self.assertEqual(result.returncode, 1)
         self.assertEqual(result.stdout.count("FAIL "), 4)
 
+    def test_bands(self):
+        # 8x4: two bands of 2 rows; the candidate moves pixels within a band (same mean / spread), the bad one aliases
+        grey = bytes([128, 128, 128, 255] * 16)
+        checker = bytes(sum(([v, v, v, 255] for v in [0, 255] * 8), []))
+        ref = folder(self.tmp, "ref", [("s/f", "rgba8", 8, 4, "bands:2,mean:3,stdev:8", grey + checker)])
+        moved = bytes(sum(([v, v, v, 255] for v in [255, 0] * 8), []))
+        good = folder(self.tmp, "good", [("s/f", "rgba8", 8, 4, "bands:2,mean:3,stdev:8", grey + moved)])
+        self.assertEqual(self.run_compare(ref, good).returncode, 0)
+        bad = folder(self.tmp, "bad", [("s/f", "rgba8", 8, 4, "bands:2,mean:3,stdev:8", checker + checker)])
+        self.assertEqual(self.run_compare(ref, bad).returncode, 1)
+
     def test_missing_image_and_failed_check(self):
         a = bytes(16)
         ref = folder(self.tmp, "ref", [("s/x", "rgba8", 2, 2, "exact", a), ("s/y", "rgba8", 2, 2, "exact", a)])

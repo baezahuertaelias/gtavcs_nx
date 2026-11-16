@@ -9,10 +9,10 @@
 //   2. threading (M05-09): a texture burst made (A) on the owner thread, the upstream design (record on workers,
 //      every GL call on the main thread), and (B) on a worker thread through the loader context; main-thread frame
 //      times during the burst, worker time, fences waited, contents checked
-//   3. window (M05-10/14): the SDL back buffer drawn and swapped for WINDOW_SECONDS: an orientation card (red top-left,
-//      green top-right, blue bottom-left, white bottom-right); docking by hand first (0-60 s: the operation mode, SDL's
-//      window and drawable size on every change, the present interval every second), then programmatic
-//      SDL_SetWindowSize (60-72 s), present intervals with Vsync and Immediate
+//   3. window (M05-10/11/14): the back buffer read back against the same drawing in a texture (viewports, scissors,
+//      the UI pipeline), then the SDL back buffer drawn and swapped for WINDOW_SECONDS with an orientation card (red
+//      top-left, green top-right, blue bottom-left, white bottom-right): docking by hand, the swap interval
+//      experiments (1 / 0 / 2), the program's own SDL_SetWindowSize, docking by hand again (window() has the timeline)
 #include "rhi_tests/rhi_conformance.h"
 
 #include "platform/gl_loader_egl.h"
@@ -20,6 +20,7 @@
 #include "rhi/gl/rhi_gl.h"
 #include "rhi/rhi.h"
 
+#include <glad/gl.h>
 #include <SDL.h>
 #include <malloc.h>
 #include <switch.h>
@@ -27,6 +28,7 @@
 #include <algorithm>
 #include <atomic>
 #include <chrono>
+#include <cmath>
 #include <cstdarg>
 #include <cstdio>
 #include <cstdlib>
@@ -40,7 +42,7 @@
 namespace
 {
     constexpr const char *kOut = "sdmc:/switch/gtavcs_nx/rhi-tests";
-    constexpr double kWindowSeconds = 90.0;
+    constexpr double kWindowSeconds = 110.0;
     using Clock = std::chrono::steady_clock;
 
     SDL_Window *g_window = nullptr;
@@ -295,7 +297,149 @@ namespace
             }
     }
 
-    // ---- phase 3: window -------------------------------------------------------------------------------------------
+    // ---- phase 3a: the window's back buffer read back (first M05 review: the window path had no readback) --------
+    // The same drawing into the SDL back buffer and into a texture of its size: rectangles through sub-viewports and
+    // scissors (the window's bottom-left conversion in rhi_gl.cpp), and the Dear ImGui pipeline (UByte4Norm colours,
+    // 16-bit indices, a clip scissor, its own projection). The back buffer is read with glReadPixels before the swap
+    // and its rows flipped (GL's window rows are bottom-up); the two must be identical. No edge lies on a pixel centre.
+    struct UiVertex
+    {
+        float pos[2];
+        float uv[2];
+        uint32_t col;
+    };
+
+    bool windowReadback(rhi::Device &dev, std::ofstream &checks, std::ofstream &out)
+    {
+        uint32_t w = 0, h = 0;
+        drawableSize(&w, &h);
+        dev.resize(w, h);
+        const render::GsShaders &s = render::gsShaders(dev.backend());
+        rhi::PipelineDesc fd;
+        fd.vertex = s.quadVS;
+        fd.pixel = s.fillColorPS;
+        fd.topology = rhi::Topology::TriangleStrip;
+        fd.name = "window fill";
+        auto fill = dev.createPipeline(fd);
+        rhi::PipelineDesc ud;
+        ud.vertex = s.uiVS;
+        ud.pixel = s.uiPS;
+        ud.attributes = {{"POSITION", 0, rhi::VertexFormat::Float2, 0}, {"TEXCOORD", 0, rhi::VertexFormat::Float2, 8},
+                         {"COLOR", 0, rhi::VertexFormat::UByte4Norm, 16}};
+        ud.stride = sizeof(UiVertex);
+        ud.blend.enable = true;
+        ud.blend.srcColor = rhi::BlendFactor::SrcAlpha;
+        ud.blend.dstColor = rhi::BlendFactor::InvSrcAlpha;
+        ud.blend.srcAlpha = rhi::BlendFactor::One;
+        ud.blend.dstAlpha = rhi::BlendFactor::InvSrcAlpha;
+        ud.scissor = true;
+        ud.name = "window ui";
+        auto ui = dev.createPipeline(ud);
+        auto quad = dev.createBuffer({64, rhi::BufferUsage::Constant, true, "window quad"});
+        auto uiCb = dev.createBuffer({16, rhi::BufferUsage::Constant, true, "window ui constants"});
+        const uint32_t white = 0xFFFFFFFFu;
+        rhi::TextureDesc wt;
+        wt.width = wt.height = 1;
+        wt.name = "white";
+        auto whiteTex = dev.createTexture(wt, &white);
+        auto linear = dev.createSampler({rhi::Filter::Linear, rhi::Wrap::Clamp, rhi::Wrap::Clamp});
+        const float W = static_cast<float>(w), H = static_cast<float>(h);
+        // UI: two quads in ImGui's top-left pixel space, one clipped by a scissor through its middle
+        const UiVertex verts[] = {{{W * 0.1f, H * 0.6f}, {0, 0}, 0xFF0000FFu}, {{W * 0.45f, H * 0.6f}, {1, 0}, 0xC000FF00u},
+                                  {{W * 0.1f, H * 0.9f}, {0, 1}, 0x80FF0000u}, {{W * 0.45f, H * 0.9f}, {1, 1}, 0xFFFFFFFFu},
+                                  {{W * 0.55f, H * 0.55f}, {0, 0}, 0xFF00FFFFu}, {{W * 0.95f, H * 0.55f}, {1, 0}, 0xFF00FFFFu},
+                                  {{W * 0.55f, H * 0.95f}, {0, 1}, 0xFFFF00FFu}, {{W * 0.95f, H * 0.95f}, {1, 1}, 0xFFFF00FFu}};
+        const uint16_t idx[] = {0, 1, 2, 1, 3, 2, 4, 5, 6, 5, 7, 6};
+        auto vb = dev.createBuffer({sizeof(verts), rhi::BufferUsage::Vertex, false, "window ui vertices"}, verts);
+        auto ib = dev.createBuffer({sizeof(idx), rhi::BufferUsage::Index, false, "window ui indices"}, idx);
+        rhi::TextureDesc td;
+        td.width = w;
+        td.height = h;
+        td.usage = rhi::UsageRenderTarget | rhi::UsageSampled;
+        td.name = "window twin";
+        auto twin = dev.createTexture(td);
+        if (!fill || !ui || !quad || !uiCb || !whiteTex || !linear || !vb || !ib || !twin)
+        {
+            checks << "window/set_up\tFAIL\t\n";
+            return false;
+        }
+        auto draw = [&](rhi::Texture *target) {
+            rhi::PassDesc p;
+            p.color = target;
+            p.clearColor = true;
+            p.clearRgba[0] = 0.0f, p.clearRgba[1] = 0.0f, p.clearRgba[2] = 64 / 255.0f, p.clearRgba[3] = 1.0f;
+            p.name = "window readback";
+            dev.beginPass(p);
+            const uint32_t iw = w / 8u, ih = h / 8u;
+            struct Rect
+            {
+                uint32_t vx, vy, vw, vh, sx, sy, sw, sh;
+                float r, g, b;
+            } rects[] = {
+                {0, 0, iw * 3, ih * 2, 0, 0, iw * 3, ih * 2, 1, 0, 0},                 // top-left
+                {iw * 5, 0, iw * 3, ih * 2, iw * 6, ih / 2, iw * 2, ih, 0, 1, 0},     // top-right, scissored
+                {iw * 3, ih * 2, iw * 2, ih * 2, iw * 3, ih * 3, iw * 2, ih, 1, 1, 0}, // middle, lower half only
+            };
+            for (const Rect &r : rects)
+            {
+                const float q[16] = {-1, 1, 1, -1, 0, 0, 1, 1, r.r, r.g, r.b, 1, 0, 0, 0, 0};
+                dev.setViewport(static_cast<float>(r.vx), static_cast<float>(r.vy), static_cast<float>(r.vw), static_cast<float>(r.vh));
+                dev.setScissor(static_cast<int>(r.sx), static_cast<int>(r.sy), static_cast<int>(r.sw), static_cast<int>(r.sh));
+                dev.updateBuffer(*quad, q, sizeof(q));
+                dev.setPipeline(*fill);
+                dev.setConstants(0, *quad);
+                dev.draw(4);
+            }
+            dev.setViewport(0, 0, W, H);
+            dev.setScissor(0, 0, static_cast<int>(w), static_cast<int>(h));
+            const float so[4] = {2.0f / W, -2.0f / H, -1.0f, 1.0f};
+            dev.updateBuffer(*uiCb, so, sizeof(so));
+            dev.setPipeline(*ui);
+            dev.setConstants(0, *uiCb);
+            dev.setVertexBuffer(*vb, 0);
+            dev.setIndexBuffer(*ib, false);
+            dev.setTexture(0, whiteTex.get(), linear.get());
+            dev.drawIndexed(6, 0, 0);
+            dev.setScissor(static_cast<int>(w * 0.55f), static_cast<int>(h * 0.55f), static_cast<int>(w * 0.2f), static_cast<int>(h * 0.25f));
+            dev.drawIndexed(6, 6, 0);
+            dev.setTexture(0, nullptr, nullptr);
+            dev.endPass();
+        };
+        draw(twin.get());
+        std::vector<uint8_t> expect(static_cast<size_t>(w) * h * 4), got(expect.size()), rows(expect.size());
+        dev.readTexture(*twin, 0, 0, w, h, expect.data());
+        draw(nullptr);
+        glBindFramebuffer(GL_FRAMEBUFFER, 0);
+        glReadBuffer(GL_BACK);
+        glReadPixels(0, 0, static_cast<GLsizei>(w), static_cast<GLsizei>(h), GL_RGBA, GL_UNSIGNED_BYTE, rows.data());
+        for (uint32_t y = 0; y < h; ++y) // the window's rows come bottom-up
+            std::memcpy(got.data() + static_cast<size_t>(y) * w * 4, rows.data() + static_cast<size_t>(h - 1 - y) * w * 4, w * 4u);
+        size_t differing = 0, first = SIZE_MAX;
+        for (size_t i = 0; i < static_cast<size_t>(w) * h; ++i)
+            if (std::memcmp(got.data() + i * 4, expect.data() + i * 4, 4) != 0)
+            {
+                ++differing;
+                first = std::min(first, i);
+            }
+        dev.present(rhi::Device::PresentMode::Vsync);
+        char detail[200];
+        std::snprintf(detail, sizeof(detail), "%ux%u, %zu differing pixels%s", w, h, differing,
+                      first == SIZE_MAX ? "" : (", first at " + std::to_string(first % w) + "," + std::to_string(first / w)).c_str());
+        checks << "window/back_buffer_equals_texture\t" << (differing == 0 ? "PASS" : "FAIL") << '\t' << detail << '\n';
+        checks.flush();
+        out << "0\twindow_readback\t" << w << '\t' << h << '\t' << detail << '\n';
+        say("[window] back buffer readback vs texture: %s\n", detail);
+        return differing == 0;
+    }
+
+    // ---- phase 3b: window, docking and presentation ---------------------------------------------------------------
+    // Timeline (seconds after the card appears):
+    //    0-40   docking by hand, swap interval 1 (Vsync), nothing resized by the program
+    //   40-55   presentation without docking: interval 1 (40-45), 0 (45-50), 2 (50-55; SDL_GL_SetSwapInterval directly)
+    //   55-67   SDL_SetWindowSize 1920x1080 / 960x540 / 1280x720 / 1280x720 (3 s each)
+    //   67-110  docking by hand again, after the program's own resizes (the rhi-attended2 black screen's order)
+    // Logged: every operation-mode / SDL window / drawable change, and every second the swaps, their median / max
+    // interval and SDL_GL_GetSwapInterval.
     void window(rhi::Device &dev, std::ofstream &out)
     {
         // the orientation card: quadrants red (top-left), green (top-right), blue (bottom-left), white (bottom-right),
@@ -330,33 +474,49 @@ namespace
             say("[window] set-up failed\n");
             return;
         }
-        out << "t\tevent\twidth\theight\tdetail\n";
         const auto t0 = Clock::now();
         uint32_t lastW = 0, lastH = 0;
-        int lastMode = -1, lastWinW = 0, lastWinH = 0;
+        int lastMode = -1, lastWinW = 0, lastWinH = 0, phase = -100;
         double secondStart = 0.0;
         std::vector<double> second;
-        std::vector<double> vsync, immediate;
+        std::vector<double> perInterval[3];
         auto prev = Clock::now();
-        int phase = -1;
-        const int sizes[][2] = {{1280, 720}, {1920, 1080}, {960, 540}, {1280, 720}};
+        const int sizes[][2] = {{1920, 1080}, {960, 540}, {1280, 720}, {1280, 720}};
         while (pump())
         {
             const double t = std::chrono::duration<double>(Clock::now() - t0).count();
             if (t > kWindowSeconds)
                 break;
-            // 0-60 s: the window as the system sets it (dock / undock by hand); 60-72 s: programmatic sizes, 3 s each
-            const int p = t < 60.0 ? -2 : t < 72.0 ? static_cast<int>((t - 60.0) / 3.0) : 4;
+            int p = 0; // 0 dock by hand #1, 1..3 interval 1/0/2, 4..7 programmatic sizes, 8 dock by hand #2
+            if (t < 40.0)
+                p = 0;
+            else if (t < 55.0)
+                p = 1 + static_cast<int>((t - 40.0) / 5.0);
+            else if (t < 67.0)
+                p = 4 + static_cast<int>((t - 55.0) / 3.0);
+            else
+                p = 8;
             if (p != phase)
             {
                 phase = p;
-                if (p >= 0 && p < 4)
+                if (p == 0)
+                    out << t << "\thand\t0\t0\tdock / undock by hand (0-40 s), nothing resized by the program\n";
+                else if (p >= 1 && p <= 3)
                 {
-                    SDL_SetWindowSize(g_window, sizes[p][0], sizes[p][1]);
-                    out << t << "\tset_window_size\t" << sizes[p][0] << '\t' << sizes[p][1] << "\tSDL_SetWindowSize\n";
+                    const int interval = p == 1 ? 1 : p == 2 ? 0 : 2;
+                    // the device keeps the interval it set last; set it here directly (the device presents Immediate
+                    // in this stretch so it never changes it back)
+                    SDL_GL_SetSwapInterval(interval);
+                    out << t << "\tswap_interval\t" << interval << "\t" << SDL_GL_GetSwapInterval() << "\tSDL_GL_SetSwapInterval / Get\n";
                 }
-                else if (p == -2)
-                    out << t << "\thand\t0\t0\tdock / undock now (0-60 s)\n";
+                else if (p >= 4 && p <= 7)
+                {
+                    SDL_SetWindowSize(g_window, sizes[p - 4][0], sizes[p - 4][1]);
+                    out << t << "\tset_window_size\t" << sizes[p - 4][0] << '\t' << sizes[p - 4][1] << "\tSDL_SetWindowSize\n";
+                }
+                else
+                    out << t << "\thand\t0\t0\tdock / undock by hand again (67-110 s), after the program's resizes\n";
+                out.flush();
             }
             const int mode = appletGetOperationMode();
             int winW = 0, winH = 0;
@@ -377,9 +537,8 @@ namespace
             dev.backbufferSize(bw, bh);
             if (bw != lastW || bh != lastH)
             {
-                out << t << "\tdrawable\t" << bw << '\t' << bh << "\toperation mode " << appletGetOperationMode() << '\n';
+                out << t << "\tdrawable\t" << bw << '\t' << bh << "\toperation mode " << mode << '\n';
                 out.flush();
-                say("[window] t=%.2f back buffer %ux%u (mode %d)\n", t, bw, bh, appletGetOperationMode());
                 lastW = bw;
                 lastH = bh;
             }
@@ -396,31 +555,43 @@ namespace
             dev.draw(4);
             dev.setTexture(0, nullptr, nullptr);
             dev.endPass();
-            // vsync while docking (0-60 s), immediate 60-75 s, vsync again 75-90 s (the interval follows the mode)
-            const bool vs = t < 60.0 || t >= 75.0;
-            dev.present(vs ? rhi::Device::PresentMode::Vsync : rhi::Device::PresentMode::Immediate);
+            // Vsync while docking (the device sets interval 1); Immediate during the interval experiments, whose
+            // interval this loop sets itself (the device then leaves it alone)
+            dev.present(p >= 1 && p <= 3 ? rhi::Device::PresentMode::Immediate : rhi::Device::PresentMode::Vsync);
+            if (p >= 1 && p <= 3 && SDL_GL_GetSwapInterval() != (p == 1 ? 1 : p == 2 ? 0 : 2))
+                SDL_GL_SetSwapInterval(p == 1 ? 1 : p == 2 ? 0 : 2); // the device switched to 0 on its first Immediate
             const auto now = Clock::now();
             const double interval = ms(prev, now);
             prev = now;
             second.push_back(interval);
+            if (p >= 1 && p <= 3 && std::fmod(t - 40.0, 5.0) > 0.5) // skip the first half second after a change
+                perInterval[p - 1].push_back(interval);
             if (t - secondStart >= 1.0)
             {
-                out << t << "\tinterval\t" << second.size() << "\t0\tmedian_ms " << median(second) << " max_ms "
-                    << *std::max_element(second.begin(), second.end()) << " mode " << mode << '\n';
+                out << t << "\tinterval\t" << second.size() << "\t" << SDL_GL_GetSwapInterval() << "\tmedian_ms " << median(second)
+                    << " max_ms " << *std::max_element(second.begin(), second.end()) << " mode " << mode << " phase " << p << '\n';
                 second.clear();
                 secondStart = t;
             }
-            if (t > 76.0)
-                vsync.push_back(interval);
-            else if (t > 61.0 && t < 75.0)
-                immediate.push_back(interval);
         }
-        char row[256];
-        std::snprintf(row, sizeof(row), "summary\tvsync_median_ms %.3f p95 %.3f frames %zu\timmediate_median_ms %.3f p95 %.3f frames %zu\n",
-                      median(vsync), percentile(vsync, 0.95), vsync.size(), median(immediate), percentile(immediate, 0.95), immediate.size());
-        out << row;
-        say("[window] %s", row);
+        const char *names[3] = {"interval_1", "interval_0", "interval_2"};
+        for (int i = 0; i < 3; ++i)
+        {
+            const double seconds = [&] {
+                double sum = 0;
+                for (double v : perInterval[i])
+                    sum += v;
+                return sum / 1000.0;
+            }();
+            char row[256];
+            std::snprintf(row, sizeof(row), "summary\t%s\tswaps %zu in %.2f s = %.1f per s\tmedian_ms %.3f p95 %.3f\n", names[i],
+                          perInterval[i].size(), seconds, seconds > 0 ? perInterval[i].size() / seconds : 0.0, median(perInterval[i]),
+                          percentile(perInterval[i], 0.95));
+            out << row;
+            say("[window] %s", row);
+        }
     }
+
 }
 
 int main(int, char **)
@@ -541,21 +712,28 @@ int main(int, char **)
                 threading(*dev, bench);
             bench.close();
 
-            // 3. window
+            int windowFailures = 0;
+            // 3. window: the back buffer read back, then docking and presentation
             std::ofstream win(out + "/window.tsv");
+            win << "t\tevent\ta\tb\tdetail\n";
             if (!aborted)
+            {
+                std::ofstream more(out + "/checks.tsv", std::ios::app);
+                if (!windowReadback(*dev, more, win))
+                    ++windowFailures;
                 window(*dev, win);
+            }
             win.close();
 
             rhi::GlStats st;
             rhi::openGLStats(*dev, st);
             std::ofstream summary(out + "/summary.txt");
-            summary << (aborted ? "ABORTED" : "DONE") << "\nimages " << images << "\nfailed_checks " << failures << "\ngl_errors " << st.glErrors
+            summary << (aborted ? "ABORTED" : "DONE") << "\nimages " << images << "\nfailed_checks " << failures + windowFailures << "\ngl_errors " << st.glErrors
                     << "\ndebug_messages " << st.debugMessages << "\nincomplete_framebuffers " << st.incompleteFramebuffers
                     << "\nowner_violations " << st.ownerViolations << "\nrejected " << st.rejected << "\nhazards " << st.hazards
                     << "\ncompile_failures " << st.compileFailures << "\noff_owner_created " << st.offOwnerCreated << "\nfences_waited "
                     << st.fencesWaited << "\ntextures_left " << st.textures << "\nused_memory_end " << usedMemory() << '\n';
-            status = (failures || aborted) ? 1 : 0;
+            status = (failures || windowFailures || aborted) ? 1 : 0;
         }
     }
     gl_loader::destroy();

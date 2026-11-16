@@ -136,6 +136,7 @@ namespace conformance
                     {"copies", &Runner::sceneCopies},
                     {"msaa", &Runner::sceneMsaa},
                     {"conventions", &Runner::sceneConventions},
+                    {"pixel_centre", &Runner::scenePixelCentre},
                     {"present_ui", &Runner::scenePresentUi},
                     {"gs_util", &Runner::sceneGsUtil},
                     {"gs_modes", &Runner::sceneGsModes},
@@ -663,7 +664,28 @@ namespace conformance
                     v = {a, b, cc, b, d, cc};
                     gsDraw(*pipe, c, v, ck.get(), i ? aniso.get() : tri.get());
                     m_dev.endPass();
-                    emit(i ? "anisotropic_16" : "trilinear", *t, "impl:texture filtering footprint (LOD / anisotropy approximation)");
+                    // per pixel the LOD / footprint is the implementation's ("an approximation"); per band of 8 rows the
+                    // mean and spread are not (tools/rhi_compare.py bands; ANV, lavapipe, iris and nouveau agree within
+                    // 1.1 / 6)
+                    emit(i ? "anisotropic_16" : "trilinear", *t, "bands:8,mean:3,stdev:8");
+                    // the mip chain is used: the far band (q 1/8) is filtered towards the checker's grey (spread under 25; 0 trilinear, 17-18 anisotropic on every implementation),
+                    // the middle (rows 24..31) still shows it (spread over 30); level 0 alone would alias the far band
+                    auto px = read(*t);
+                    auto spread = [&](uint32_t y0) {
+                        double sum = 0, sq = 0;
+                        for (uint32_t y = y0; y < y0 + 8; ++y)
+                            for (uint32_t x = 0; x < 64; ++x)
+                            {
+                                const double v = pixel(px, 64, x, y) & 0xFF;
+                                sum += v;
+                                sq += v * v;
+                            }
+                        const double n = 512.0, m = sum / n;
+                        return std::sqrt(std::max(0.0, sq / n - m * m));
+                    };
+                    const double far = spread(0), mid = spread(24);
+                    check(std::string(i ? "anisotropic_16" : "trilinear") + "_uses_mips", far < 25.0 && mid > 30.0,
+                          "far " + std::to_string(far) + " middle " + std::to_string(mid));
                 }
             }
 
@@ -1161,9 +1183,9 @@ namespace conformance
                 m_dev.resolveTexture(*rs, *ms);
                 auto px = read(*rs);
                 check("interior_exact", pixel(px, 32, 16, 16) == rgba(255, 0, 0, 255) && pixel(px, 32, 30, 30) == rgba(0, 0, 0, 255));
-                // edge pixels average the covered samples: positions differ between implementations (GL leaves them to
-                // the driver; D3D / Vulkan define the standard 4x pattern)
-                emit("resolved", *rs, "impl:multisample sample positions on edge pixels");
+                // edge pixels average their covered samples; the Switch's 25 differing pixels are the 127.5 of a
+                // half-covered pixel rounded down (7f) where the reference rounds up (80): unorm:1
+                emit("resolved", *rs, "unorm:1"); // half-covered edge pixels average 255 and 0: 127.5 rounds either way
             }
 
             // Y origin (row 0 = top in every texture), clip-space depth 0..1, gl_FragCoord vs SV_Position, UNORM / sRGB
@@ -1203,6 +1225,115 @@ namespace conformance
                 m_dev.endPass();
                 px = read(*u);
                 check("unorm_no_srgb", pixel(px, 4, 1, 1) == rgba(153, 128, 51, 255), hex(pixel(px, 4, 1, 1)));
+            }
+
+            // The game's own configuration: gs_hw.cpp moves every GS draw by half a pixel (rtOrigin.z = 0.5,
+            // gsPixelCentreOffset), so integer GS edges lie exactly on pixel centres and D3D's top-left fill rule
+            // decides them: a sprite from (x0, y0) to (x1, y1) covers pixels x0..x1-1 and y0..y1-1, adjacent sprites
+            // meet without gaps or double coverage, and a 1:1 copy (u = x + 0.5... sampled at x) is exact. The first M05
+            // review found nouveau dropping the top row of such an edge with the shader Y flip (GL's lower-left rule).
+            void scenePixelCentre()
+            {
+                covers("pixel-centre ties (rtOrigin.z 0.5): sprites, shared edges, triangles, lines, points, 1:1 copy");
+                auto add = gsPipeline(1, false, false, {true, BlendFactor::One, BlendFactor::One, BlendOp::Add, BlendFactor::One,
+                                                         BlendFactor::One, BlendOp::Add, 0xF}, {});
+                auto plain = gsPipeline(1, false, false, {}, {});
+                auto t = target(64, 48, "pixel centre");
+                if (!add || !plain || !t)
+                    return;
+                begin(t.get(), nullptr, true, 0, 0, 0, 0);
+                Draw c = drawConstants(64, 48);
+                c.rtOrigin[2] = 0.5f;
+                // a 4 x 3 grid of sprites sharing edges (each adds 64 to red), and lone sprites of odd sizes
+                std::vector<GsVertex> v;
+                const int xs[] = {2, 7, 9, 16, 22}, ys[] = {3, 6, 11, 13};
+                for (int j = 0; j + 1 < 4; ++j)
+                    for (int i = 0; i + 1 < 5; ++i)
+                        gsRect(v, static_cast<float>(xs[i]), static_cast<float>(ys[j]), static_cast<float>(xs[i + 1]),
+                               static_cast<float>(ys[j + 1]), 0, 0, 0, 0, rgba(64, 0, 0, 0));
+                gsRect(v, 30, 2, 33, 5, 0, 0, 0, 0, rgba(0, 64, 0, 0));
+                gsRect(v, 35, 1, 36, 2, 0, 0, 0, 0, rgba(0, 64, 0, 0)); // a single pixel
+                gsDraw(*add, c, v);
+                m_dev.endPass();
+                auto px = read(*t);
+                bool grid = true, lone = true;
+                std::string detail;
+                for (uint32_t y = 0; y < 48; ++y)
+                    for (uint32_t x = 0; x < 64; ++x)
+                    {
+                        const uint32_t r = pixel(px, 64, x, y) & 0xFF, g = (pixel(px, 64, x, y) >> 8) & 0xFF;
+                        const bool inGrid = x >= 2 && x < 22 && y >= 3 && y < 13;
+                        if (r != (inGrid ? 64u : 0u))
+                        {
+                            if (grid)
+                                detail += "grid " + std::to_string(x) + "," + std::to_string(y) + "=" + std::to_string(r) + " ";
+                            grid = false;
+                        }
+                        const bool inLone = (x >= 30 && x < 33 && y >= 2 && y < 5) || (x == 35 && y == 1);
+                        if (g != (inLone ? 64u : 0u))
+                        {
+                            if (lone)
+                                detail += "lone " + std::to_string(x) + "," + std::to_string(y) + "=" + std::to_string(g) + " ";
+                            lone = false;
+                        }
+                    }
+                check("sprites_top_left_rule", grid && lone, detail);
+                emit("sprites", *t);
+                // a triangle, lines and points with integer vertices; a 1:1 nearest copy (FST u = x, sampled at x)
+                auto tri = target(64, 48, "pixel centre 2");
+                auto lines = gsPipeline(1, false, false, {}, {}, Topology::Lines);
+                auto points = gsPipeline(1, false, false, {}, {}, Topology::Points);
+                auto copy = gsPipeline(2, false, false, {}, {});
+                auto src = pattern(16, 16, 31);
+                auto tex = texture(16, 16, Format::RGBA8, UsageSampled, "pixel centre source", src.data());
+                if (!tri || !lines || !points || !copy || !tex)
+                    return;
+                begin(tri.get(), nullptr, true, 0, 0, 0, 0);
+                auto vert = [](float x, float y, uint32_t col) {
+                    GsVertex g{};
+                    g.x = x, g.y = y, g.z = 0.5f, g.q = 1, g.r = col & 0xFF, g.g = (col >> 8) & 0xFF, g.b = (col >> 16) & 0xFF, g.a = 255;
+                    g.fog = 1;
+                    return g;
+                };
+                std::vector<GsVertex> tv = {vert(2, 2, rgba(255, 0, 0, 255)), vert(14, 2, rgba(255, 0, 0, 255)), vert(2, 10, rgba(255, 0, 0, 255))};
+                gsDraw(*plain, c, tv);
+                std::vector<GsVertex> lv = {vert(18, 2, rgba(0, 255, 0, 255)), vert(30, 2, rgba(0, 255, 0, 255)),
+                                            vert(18, 4, rgba(0, 255, 0, 255)), vert(18, 12, rgba(0, 255, 0, 255)),
+                                            vert(20, 4, rgba(0, 255, 0, 255)), vert(28, 12, rgba(0, 255, 0, 255))};
+                gsDraw(*lines, c, lv);
+                std::vector<GsVertex> pv = {vert(34, 2, rgba(0, 0, 255, 255)), vert(36, 3, rgba(0, 0, 255, 255)), vert(38, 5, rgba(0, 0, 255, 255))};
+                gsDraw(*points, c, pv);
+                Draw cc = c;
+                cc.tmeTfxTccFst[0] = 1, cc.tmeTfxTccFst[1] = 1, cc.tmeTfxTccFst[2] = 1, cc.tmeTfxTccFst[3] = 1;
+                cc.texSizeWrap[0] = cc.texSizeWrap[1] = 16;
+                cc.texSizeWrap[2] = cc.texSizeWrap[3] = 1;
+                std::vector<GsVertex> cv;
+                gsRect(cv, 40, 20, 56, 36, 0, 0, 16, 16, rgba(128, 128, 128, 128));
+                gsDraw(*copy, cc, cv, tex.get());
+                m_dev.endPass();
+                px = read(*tri);
+                // the triangle: pixel (x, y) with centre (x + 0.5, y + 0.5) after the +0.5 shift lies in the original
+                // triangle at (x, y): x >= 2, y >= 2, (x - 2) / 12 + (y - 2) / 8 < 1 (the hypotenuse is not a tie here
+                // except where it passes exactly through pixel positions; those are left to the comparison)
+                bool triOk = true;
+                for (uint32_t y = 0; y < 14; ++y)
+                    for (uint32_t x = 0; x < 16; ++x)
+                    {
+                        const double e = (x - 2.0) / 12.0 + (y - 2.0) / 8.0;
+                        if (std::fabs(e - 1.0) < 1e-9)
+                            continue;
+                        const bool in = x >= 2 && y >= 2 && e < 1.0;
+                        if ((pixel(px, 64, x, y) == rgba(255, 0, 0, 255)) != in)
+                            triOk = false;
+                    }
+                check("triangle_top_left_rule", triOk);
+                bool copyOk = true;
+                for (uint32_t y = 0; y < 16; ++y)
+                    for (uint32_t x = 0; x < 16; ++x)
+                        if (pixel(px, 64, 40 + x, 20 + y) != src[y * 16 + x])
+                            copyOk = false;
+                check("copy_1to1", copyOk);
+                emit("triangle_lines_points_copy", *tri);
             }
 
             // present.hlsl and ui.hlsl variants: the presenter's letterboxed picture with Linear / Nearest samplers and
