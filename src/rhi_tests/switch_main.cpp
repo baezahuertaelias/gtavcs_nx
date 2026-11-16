@@ -432,6 +432,71 @@ namespace
         return differing == 0;
     }
 
+    // ---- phase 3a': present-interval probe (first M05 review, finding 2) --------------------------------------------
+    // 3 s steps, each recording swaps per second and SDL_GL_GetSwapInterval: does the device's own interval change take
+    // effect after Immediate, after a direct SDL change, after a window resize? (A 60 Hz display: Vsync = 60 per
+    // second; interval 0 = 120 on this console; interval 2 = 30.)
+    void presentProbe(rhi::Device &dev, std::ofstream &out)
+    {
+        struct Step
+        {
+            const char *what;
+            rhi::Device::PresentMode mode;
+            int direct;  // >= 0: SDL_GL_SetSwapInterval(direct) before the step (the device does not know)
+            bool resize; // SDL_SetWindowSize to the current size before the step
+        } steps[] = {
+            {"device Immediate", rhi::Device::PresentMode::Immediate, -1, false},
+            {"device Vsync", rhi::Device::PresentMode::Vsync, -1, false},
+            {"device Immediate", rhi::Device::PresentMode::Immediate, -1, false},
+            {"device Vsync", rhi::Device::PresentMode::Vsync, -1, false},
+            {"direct 2, device Vsync", rhi::Device::PresentMode::Vsync, 2, false},
+            {"device Immediate", rhi::Device::PresentMode::Immediate, -1, false},
+            {"device Vsync", rhi::Device::PresentMode::Vsync, -1, false},
+            {"window resized, device Vsync", rhi::Device::PresentMode::Vsync, -1, true},
+            {"device Immediate", rhi::Device::PresentMode::Immediate, -1, false},
+            {"device Vsync", rhi::Device::PresentMode::Vsync, -1, false},
+        };
+        int index = 0;
+        for (const Step &step : steps)
+        {
+            if (step.direct >= 0)
+                SDL_GL_SetSwapInterval(step.direct);
+            if (step.resize)
+            {
+                int ww = 0, wh = 0;
+                SDL_GetWindowSize(g_window, &ww, &wh);
+                SDL_SetWindowSize(g_window, ww, wh);
+            }
+            std::vector<double> intervals;
+            const auto start = Clock::now();
+            auto prev = start;
+            while (ms(start, Clock::now()) < 3000.0 && pump())
+            {
+                rhi::PassDesc pass;
+                pass.clearColor = true;
+                pass.clearRgba[0] = (index % 2) ? 0.2f : 0.0f;
+                pass.name = "probe";
+                dev.beginPass(pass);
+                dev.endPass();
+                dev.present(step.mode);
+                const auto now = Clock::now();
+                if (ms(start, now) > 500.0)
+                    intervals.push_back(ms(prev, now));
+                prev = now;
+            }
+            double total = 0;
+            for (double v : intervals)
+                total += v;
+            char row[256];
+            std::snprintf(row, sizeof(row), "probe\t%d\t%.1f per s\tSDL interval %d\t%s (median %.3f ms)\n", index,
+                          total > 0 ? intervals.size() * 1000.0 / total : 0.0, SDL_GL_GetSwapInterval(), step.what, median(intervals));
+            out << row;
+            out.flush();
+            say("[window] %s", row);
+            ++index;
+        }
+    }
+
     // ---- phase 3b: window, docking and presentation ---------------------------------------------------------------
     // Timeline (seconds after the card appears):
     //    0-40   docking by hand, swap interval 1 (Vsync), nothing resized by the program
@@ -721,6 +786,7 @@ int main(int, char **)
                 std::ofstream more(out + "/checks.tsv", std::ios::app);
                 if (!windowReadback(*dev, more, win))
                     ++windowFailures;
+                presentProbe(*dev, win);
                 window(*dev, win);
             }
             win.close();
