@@ -251,11 +251,11 @@ with diagnostic offscreen comparisons and resource lifetime proof.
 - [x] M05-07 Verify dual-source blending support/limits and implement a correct bounded fallback only where required; no visual guess.
 - [x] M05-08 Resolve clip-space depth/Y origin, handedness, texture swizzle/format and sRGB conventions against known images.
 - [x] M05-09 Implement hazards/fences/staging and deferred destruction; freeThreadedCreation must reflect actual GL owner-thread constraints.
-- [x] M05-10 Wire SDL-owned backbuffer/present/resize; no second swapchain/context or unsynchronized GL calls from workers.
+- [ ] M05-10 Wire SDL-owned backbuffer/present/resize; no second swapchain/context or unsynchronized GL calls from workers.
 - [x] M05-11 Implement UI renderer methods through existing ImGui/RHI ownership; verify reset-render-state/scissor and texture lifetime.
 - [x] M05-12 Validate every Device virtual method and GLSL variant in deterministic resource/draw/readback scenes on hardware.
 - [x] M05-13 Compare pixel/depth results with the desktop reference, record tolerances and resolve all unexplained differences.
-- [x] M05-14 Run GL diagnostics and repeated resize/resource churn; enforce measured GPU/CPU memory budgets and no unbounded growth.
+- [ ] M05-14 Run GL diagnostics and repeated resize/resource churn; enforce measured GPU/CPU memory budgets and no unbounded growth.
 
 Proof: RHI method matrix, shader manifest, image/depth differences and target GL
 diagnostics. Claim no ingame milestone until world integration is tested.

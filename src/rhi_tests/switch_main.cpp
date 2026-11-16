@@ -535,6 +535,60 @@ namespace
         }
     }
 
+    // ---- phase 3a'': window resize memory probe (third M05 review: ~25 MB of heap per drawable change) -----------
+    // Heap in use (mallinfo; nouveau's buffers come from the newlib heap) after each step of 10 resize cycles each:
+    //   A  SDL_SetWindowSize 1920x1080 <-> 1280x720, the context left current (what a dock change does)
+    //   B  the same with the GL context released from the window around each resize (SDL_GL_MakeCurrent(window, NULL))
+    //   C  a same-size SDL_SetWindowSize (control)
+    // Each size is presented 10 frames before the heap is read.
+    void resizeProbe(rhi::Device &dev, SDL_GLContext context, std::ofstream &out)
+    {
+        auto frames = [&](int n) {
+            for (int i = 0; i < n && pump(); ++i)
+            {
+                uint32_t w = 0, h = 0;
+                drawableSize(&w, &h);
+                dev.resize(w, h);
+                rhi::PassDesc pass;
+                pass.clearColor = true;
+                pass.clearRgba[1] = (i & 1) ? 0.3f : 0.0f;
+                pass.name = "resize probe";
+                dev.beginPass(pass);
+                dev.endPass();
+                dev.present(rhi::Device::PresentMode::Vsync);
+            }
+        };
+        int w0 = 0, h0 = 0;
+        SDL_GetWindowSize(g_window, &w0, &h0);
+        frames(10);
+        const char *names[3] = {"A_resize", "B_resize_released", "C_same_size"};
+        for (int variant = 0; variant < 3; ++variant)
+        {
+            const uint64_t start = usedMemory();
+            for (int cycle = 0; cycle < 10; ++cycle)
+                for (int half = 0; half < 2; ++half)
+                {
+                    const int w = variant == 2 ? w0 : (half ? 1280 : 1920), h = variant == 2 ? h0 : (half ? 720 : 1080);
+                    if (variant == 1)
+                        SDL_GL_MakeCurrent(g_window, nullptr);
+                    SDL_SetWindowSize(g_window, w, h);
+                    if (variant == 1)
+                        SDL_GL_MakeCurrent(g_window, context);
+                    frames(10);
+                    char row[200];
+                    std::snprintf(row, sizeof(row), "resize\t%s\t%d\t%d\theap %llu (+%lld since the variant began)\n", names[variant],
+                                  cycle * 2 + half, w, static_cast<unsigned long long>(usedMemory()),
+                                  static_cast<long long>(usedMemory()) - static_cast<long long>(start));
+                    out << row;
+                }
+            out.flush();
+            say("[window] %s: heap %+lld bytes over 20 resizes\n", names[variant],
+                static_cast<long long>(usedMemory()) - static_cast<long long>(start));
+        }
+        SDL_SetWindowSize(g_window, w0, h0);
+        frames(10);
+    }
+
     // ---- phase 3b: window, docking and presentation ---------------------------------------------------------------
     // Timeline (seconds after the card appears):
     //    0-40   docking by hand, swap interval 1 (Vsync), nothing resized by the program
@@ -672,7 +726,8 @@ namespace
             if (t - secondStart >= 1.0)
             {
                 out << t << "\tinterval\t" << second.size() << "\t" << SDL_GL_GetSwapInterval() << "\tmedian_ms " << median(second)
-                    << " max_ms " << *std::max_element(second.begin(), second.end()) << " mode " << mode << " phase " << p << '\n';
+                    << " max_ms " << *std::max_element(second.begin(), second.end()) << " mode " << mode << " phase " << p
+                    << " heap " << usedMemory() << '\n';
                 second.clear();
                 secondStart = t;
             }
@@ -825,6 +880,7 @@ int main(int, char **)
                 if (!windowReadback(*dev, more, win))
                     ++windowFailures;
                 presentProbe(*dev, win);
+                resizeProbe(*dev, context, win);
                 window(*dev, win);
             }
             win.close();
