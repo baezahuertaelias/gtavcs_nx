@@ -242,20 +242,20 @@ Branch: `milestone/m05-opengl-rhi` <!-- M05 -->
 Exit: all required rhi::Device methods/shader variants operate correctly on Switch,
 with diagnostic offscreen comparisons and resource lifetime proof.
 
-- [ ] M05-01 Add OpenGL backend selection to RHI without modifying desktop backend behavior; keep null backend available.
-- [ ] M05-02 Implement texture formats/creation/subresource update, row pitch, mip chains and sampler/filter/wrap/anisotropy behavior.
-- [ ] M05-03 Implement vertex/index/constant buffers, update/discard semantics and resource bounds/alignment checks.
-- [ ] M05-04 Implement immutable pipeline translation, vertex layouts, topology, blend equations/write masks and depth state.
-- [ ] M05-05 Implement render passes, viewport/scissor, clears, resolves, copies, readback and framebuffer completeness checks.
-- [ ] M05-06 Implement shader/constants/texture bindings and every required present, GS draw/world/lit, utility and UI GLSL variant.
-- [ ] M05-07 Verify dual-source blending support/limits and implement a correct bounded fallback only where required; no visual guess.
-- [ ] M05-08 Resolve clip-space depth/Y origin, handedness, texture swizzle/format and sRGB conventions against known images.
-- [ ] M05-09 Implement hazards/fences/staging and deferred destruction; freeThreadedCreation must reflect actual GL owner-thread constraints.
-- [ ] M05-10 Wire SDL-owned backbuffer/present/resize; no second swapchain/context or unsynchronized GL calls from workers.
-- [ ] M05-11 Implement UI renderer methods through existing ImGui/RHI ownership; verify reset-render-state/scissor and texture lifetime.
-- [ ] M05-12 Validate every Device virtual method and GLSL variant in deterministic resource/draw/readback scenes on hardware.
-- [ ] M05-13 Compare pixel/depth results with the desktop reference, record tolerances and resolve all unexplained differences.
-- [ ] M05-14 Run GL diagnostics and repeated resize/resource churn; enforce measured GPU/CPU memory budgets and no unbounded growth.
+- [x] M05-01 Add OpenGL backend selection to RHI without modifying desktop backend behavior; keep null backend available.
+- [x] M05-02 Implement texture formats/creation/subresource update, row pitch, mip chains and sampler/filter/wrap/anisotropy behavior.
+- [x] M05-03 Implement vertex/index/constant buffers, update/discard semantics and resource bounds/alignment checks.
+- [x] M05-04 Implement immutable pipeline translation, vertex layouts, topology, blend equations/write masks and depth state.
+- [x] M05-05 Implement render passes, viewport/scissor, clears, resolves, copies, readback and framebuffer completeness checks.
+- [x] M05-06 Implement shader/constants/texture bindings and every required present, GS draw/world/lit, utility and UI GLSL variant.
+- [x] M05-07 Verify dual-source blending support/limits and implement a correct bounded fallback only where required; no visual guess.
+- [x] M05-08 Resolve clip-space depth/Y origin, handedness, texture swizzle/format and sRGB conventions against known images.
+- [x] M05-09 Implement hazards/fences/staging and deferred destruction; freeThreadedCreation must reflect actual GL owner-thread constraints.
+- [x] M05-10 Wire SDL-owned backbuffer/present/resize; no second swapchain/context or unsynchronized GL calls from workers.
+- [x] M05-11 Implement UI renderer methods through existing ImGui/RHI ownership; verify reset-render-state/scissor and texture lifetime.
+- [x] M05-12 Validate every Device virtual method and GLSL variant in deterministic resource/draw/readback scenes on hardware.
+- [x] M05-13 Compare pixel/depth results with the desktop reference, record tolerances and resolve all unexplained differences.
+- [x] M05-14 Run GL diagnostics and repeated resize/resource churn; enforce measured GPU/CPU memory budgets and no unbounded growth.
 
 Proof: RHI method matrix, shader manifest, image/depth differences and target GL
 diagnostics. Claim no ingame milestone until world integration is tested.

@@ -35,7 +35,7 @@ authorize general implementation delegation or additional user-owned chats.
 GitHub plan limitations on private branch protection must be recorded honestly;
 they do not relax these operating rules.
 
-**Current deliverable (M05 in progress: OpenGL RHI implemented and host-verified, Switch proof pending).**
+**Current deliverable (M05: OpenGL RHI proven on the Switch, awaiting independent review).**
 `python tools/build_game.py` links the private generated EE/VU archive, the
 overlaid upstream runtime/game layer, `src/core/core.cpp` behind the C ABI in
 `src/core.h`, the SDL2 platform adapter and the OpenGL 3.3 RHI backend
@@ -273,7 +273,9 @@ private generated core, the game layer and the SDL2 platform; on an actual Switc
 it boots the real runtime from the folder disc, reaches the game's outdoor state
 with the null renderer (black screen, the game's own sound), and passes HOME,
 sleep, close and startup-failure checks (M04 evidence). The M05 OpenGL backend
-matches upstream's Vulkan backend byte for byte on the host's GPU (125/125
-conformance readbacks); it is not yet proven on the Switch, and no picture,
-gameplay or frame-rate acceptance is claimed. Full paired wireless/Pro
+runs on the Switch's Mesa 20.1 nouveau (GL 4.3 core): 125/125 conformance
+readbacks within tolerance of upstream's Vulkan backend (99 identical), the real
+game drawn through it with 0 GL errors, docking followed; every GL call stays on
+the main thread (a shared worker context shares nothing on this driver, M05-09).
+No gameplay, beta or frame-rate acceptance is claimed (M06, M10). Full paired wireless/Pro
 controller and docking acceptance remain open.

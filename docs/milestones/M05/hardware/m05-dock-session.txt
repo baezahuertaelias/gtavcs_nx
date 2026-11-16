@@ -1,0 +1,14 @@
+13:34:37 == m05-dock: profile=m05-dock nro sha256=60d315d834d7bc3c38c857b28de6c4a83381f10069a51c61c03570cfc9b23b52
+13:34:39 tree /switch/gtavcs_nx/gamefolder/userdata entries=106 file=userdata-before-m05-dock.txt
+13:34:39 deleted /switch/gtavcs_nx/gamefolder/gtavcs.log
+13:34:39 nothing to delete at /switch/gtavcs_nx/gamefolder/userdata/tests/m05-dock/nxrun-results.txt
+13:34:39 wrote /switch/gtavcs_nx/gamefolder/userdata/nxrun.cfg bytes=1000 sha256=8b11a782a079fc4e209504a53da0f8cf4d070def25c95021d8c81896bc8e0e8f
+13:36:44 nxlink attempt=1 exit=1 output='recv: Connection reset by peer\nInvalid response'
+13:36:57 nxlink attempt=2 exit=0 output='Sending /switch/gtavcs_nx/gtavcs.nro, 54110405 bytes\n19864190 sent (36.71%), 1590 blocks'
+13:37:12 ACTION FOR THE PERSON AT THE SWITCH: Game dock run (3 min). Start docked. At about 40 s undock; 70 s dock; 100 s undock; 130 s dock. Say what the screen shows after each change.
+13:40:24 ftp back after 206s: the payload has ended
+13:40:27 deleted /switch/gtavcs_nx/gamefolder/userdata/nxrun.cfg
+13:40:28 tree /switch/gtavcs_nx/gamefolder/userdata entries=123 file=userdata-after-m05-dock.txt
+13:40:34 m05-dock: clean_exit_line=True results_tail=['stop t=180.017 reason=seconds frames=6251', 'shutdown t=180.017 frames=6251', 'audit t=180.017 file_opens=156 iso_opens=0 first_iso="" threads_created=6'] sd_matches_local=True new_crashes=[]
+13:40:36 screenshots read back: 16 to build/evidence/M05/screenshots/m05-dock (private)
+13:40:36 RESULT game PASS

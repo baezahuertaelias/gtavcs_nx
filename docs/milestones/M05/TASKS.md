@@ -38,23 +38,21 @@ every one was a test-design fault, fixed in the scenes, not in the backend: text
 boundaries (a last-ulp interpolation difference picks the neighbour texel) and colours at an exact .5 after x255
 (rounding ties every API leaves to the implementation).
 
-## Tasks
+## Tasks (all observed on the Switch, 2026-11-15/16: [HARDWARE_RESULTS.md](HARDWARE_RESULTS.md))
 
-| Task | Implementation | Proof still needed |
+| Task | Implementation | Switch proof |
 |---|---|---|
-| M05-01 backend selection, desktop unchanged, null kept | patch 0008; `VCS_RHI=opengl|null`; default OpenGL only where it is the only built backend | Switch: game boots on OpenGL (`m05-gl`) and on `VCS_RHI=null` (`m05-null`) |
-| M05-02 textures, formats, pitch, mips, samplers | `textures`, `mips`, `samplers` scenes | Switch conformance run vs host reference |
-| M05-03 buffers, discard, bounds / alignment | `buffers`, `gl_checks` scenes | Switch conformance run |
-| M05-04 pipelines, layouts, topology, blend, masks, depth | `topology`, `blend`, `write_mask`, `depth`, `gs_native` | Switch conformance run |
-| M05-05 passes, viewport / scissor, clears, resolves, copies, readback, completeness | `passes`, `copies`, `msaa`; incomplete-framebuffer counter | Switch conformance run |
-| M05-06 bindings and every GLSL variant | 39 variants, `present_ui`, `gs_util`, `gs_modes`, `gs_tfx`, `gs_wrap`, `gs_rt_reads`, `gs_native` | Switch conformance run (the variants compile on nouveau) |
-| M05-07 dual source | GL 3.3 core `SRC1`; `GL_MAX_DUAL_SOURCE_DRAW_BUFFERS` checked at creation; no fallback needed where it is ≥ 1 | Switch caps (`caps.txt`) and `dual_source` scene |
-| M05-08 depth / Y / swizzle / sRGB conventions | README conventions; `conventions` scene; clip_control and remap both pass | Switch conformance run; orientation card on the screen |
-| M05-09 hazards, fences, staging, deferred destruction; threading decision | owner-thread device with deferred destruction; option B (loader context + fences) opt-in | Switch: `bench.tsv` (A vs B burst) and the `m05-gl` / `m05-gl-worker` game runs; adopt the faster correct one |
-| M05-10 SDL back buffer, present, resize | `GlWindow`; swap interval per present mode; drawable size per frame | Switch: window phase (programmatic sizes, docking), game runs |
-| M05-11 UI through ImGui / RHI | `uiInit` false: upstream's `render::UiRenderer` through the RHI, as on Vulkan | Switch: `present_ui` scene; game run (ImGui frame drawn every frame) |
-| M05-12 every Device method / variant on hardware | the scene list covers every method (see [host/](host/) `log-opengl.txt` `covers` lines) | Switch conformance run |
-| M05-13 pixel / depth comparison with the desktop reference | `tools/rhi_compare.py`, tolerances per scene | Switch readbacks vs `vulkan_hw` |
-| M05-14 GL diagnostics, resize / resource churn, memory budgets | KHR_debug (synchronous), glGetError per frame, object / byte counters, churn scene with an 8 MiB process budget | Switch: churn under `svcGetInfo(UsedMemorySize)`, debug message count, window phase resizes |
-
-Hardware is required for every task (MILESTONES: "operate correctly on Switch"). See [HARDWARE.md](HARDWARE.md).
+| M05-01 backend selection, desktop unchanged, null kept | patch 0008; `VCS_RHI=opengl\|null`; default OpenGL only where it is the only built backend | `m05-gl` boots on OpenGL; `m05-null` on `VCS_RHI=null` |
+| M05-02 textures, formats, pitch, mips, samplers | `textures`, `mips`, `samplers` | checks pass; identical to upstream Vulkan except filtering (±1, implementation-defined footprints) |
+| M05-03 buffers, discard, bounds / alignment | `buffers`, `gl_checks` | checks pass; refusals counted without GL errors |
+| M05-04 pipelines, layouts, topology, blend, masks, depth | `topology`, `blend`, `write_mask`, `depth`, `gs_native` | identical but blend ±1 rounding |
+| M05-05 passes, viewport / scissor, clears, resolves, copies, readback, completeness | `passes`, `copies`, `msaa` | checks pass; 0 incomplete framebuffers |
+| M05-06 bindings and every GLSL variant | 39 variants | all compile and link on Mesa 20.1 nouveau (0 failures, 0 debug messages); drawn |
+| M05-07 dual source | GL 3.3 core `SRC1` | `max_dual_source_draw_buffers 1`; dual variants ±1 |
+| M05-08 depth / Y / swizzle / sRGB conventions | README conventions | `conventions` checks pass; the user saw the orientation card correct |
+| M05-09 hazards, fences, staging, deferred destruction; threading decision | owner-thread device, deferred destruction; B opt-in with a sharing check | A adopted: B's shared context shares nothing on the Switch (and crashed when forced) |
+| M05-10 SDL back buffer, present, resize | `GlWindow`, drawable per frame | game and test program follow every dock change; programmatic sizes |
+| M05-11 UI through ImGui / RHI | `render::UiRenderer` (as on Vulkan) | `present_ui` within ±1; the game's ImGui frame every frame, 0 GL errors |
+| M05-12 every Device method / variant on hardware | 23 scenes | 125 readbacks, 0 failed checks, handheld and docked |
+| M05-13 pixel / depth comparison with the desktop reference | `tools/rhi_compare.py` | 125/125 within tolerance, 99 identical; differences classified |
+| M05-14 GL diagnostics, churn, memory budgets | KHR_debug, counters, churn | 0 GL errors / debug messages; churn objects and bytes return; heap +2.5 MiB of 8 MiB |

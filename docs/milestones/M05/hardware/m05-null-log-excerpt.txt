@@ -1,0 +1,21 @@
+[boot] checked chdir succeeded: sdmc:/switch/gtavcs_nx/gamefolder
+[boot] SDL Switch; audio switch
+[boot] GL 4.3 (Core Profile) Mesa 20.1.0-rc3; renderer NV120
+[core] root=/switch/gtavcs_nx/gamefolder userdata=/switch/gtavcs_nx/gamefolder/userdata/tests/m05-null settings=/switch/gtavcs_nx/gamefolder/userdata/tests/m05-null/vcs.ini mc0=/switch/gtavcs_nx/gamefolder/userdata/tests/m05-null/mc0 mc1=/switch/gtavcs_nx/gamefolder/userdata/tests/m05-null/mc1 backups=/switch/gtavcs_nx/gamefolder/userdata/tests/m05-null/backups cache=/switch/gtavcs_nx/gamefolder/userdata/tests/m05-null/cache elf=/switch/gtavcs_nx/gamefolder/SLUS_215.90 profile=m05-null
+[core] /switch/gtavcs_nx/gamefolder/SLUS_215.90 sha1 d1832508caf0990c2291c0f255c96a889cce9f88: GTA: Vice City Stories - USA (SLUS-21590) v1.00
+[core] folder disc 1066336 sectors, 0 mods applied; no disc image opened
+[gs] hardware GS renderer (null)
+[present] null on none (null renderer)
+[core] io elf=/switch/gtavcs_nx/gamefolder/SLUS_215.90 host=/switch/gtavcs_nx/gamefolder cd=/switch/gtavcs_nx/gamefolder mc=/switch/gtavcs_nx/gamefolder/userdata/tests/m05-null/mc0 cdImage=(none)
+[core] desktop watchdog and sampling profiler not started (detached desktop threads; progress comes from the run's report lines)
+[lifecycle] suspension_clock=1
+[lifecycle] resume=0 focus_notifications=1 focus=1
+[video] drawable=1920x1080 window=1920x1080 mode=1 (was -1); 0 frames, 0.00 ms each since the last change
+[gs-hw] renderer ready (none (null renderer)), scale 1x
+[present] display aspect 1.333
+[gs-hw] a draw samples its own render target: reading a copy
+[core] orderly stop after 3599 frames
+[core] game thread joined, render worker and platform stopped
+[core] runtime destroyed
+[core] folder disc closed
+[shutdown] core, context, window and SDL closed

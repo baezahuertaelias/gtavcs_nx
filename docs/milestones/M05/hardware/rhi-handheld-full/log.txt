@@ -1,0 +1,103 @@
+[rhi-tests] start; HOS 00160500 applet 0
+[gl-loader] sharing check: made 1, texture seen by the window context 0, fence 0
+[gl-loader] the loader context does not share the window context's objects: none
+[rhi] GL debug output on (KHR_debug, synchronous)
+[rhi] PS2X_GL_WORKER_CONTEXT: no loader context from the platform; textures on the owner only
+[rhi] OpenGL 4.3: clip_control 1, viewport_array 1, anisotropy 1 (max 16), KHR_debug 1, dual-source draw buffers 1, samples 8/8/8, max texture 16384, framebuffer encoding 0x2601
+[rhi-tests] NV120 (4.3 (Core Profile) Mesa 20.1.0-rc3; GLSL 4.30); loader context 0; free-threaded 0
+[rhi-tests] scene textures
+[rhi-tests] covers createTexture updateTexture readTexture Format::RGBA8 Format::R32F UsageDynamic
+[rhi-tests] scene mips
+[rhi-tests] covers createTextureLevels createTexture(mipLevels=0) generateMips
+[rhi-tests] scene samplers
+[rhi-tests] covers createSampler Filter::Nearest Filter::Linear Wrap::Clamp Wrap::Repeat anisotropy
+[rhi-tests] scene buffers
+[rhi-tests] covers createBuffer updateBuffer setVertexBuffer(offset) setIndexBuffer(16,32) drawIndexed(firstIndex,baseVertex) setConstants
+[rhi-tests] scene topology
+[rhi-tests] covers Topology::Triangles Topology::TriangleStrip Topology::Lines Topology::Points
+[rhi-tests] scene blend
+[rhi-tests] covers BlendState BlendFactor BlendOp setBlendConstant
+[rhi-tests] scene dual_source
+[rhi-tests] covers BlendFactor::Src1Alpha BlendFactor::InvSrc1Alpha gs_draw DUAL_SOURCE=1
+[rhi-tests] scene write_mask
+[rhi-tests] covers BlendState::writeMask
+[rhi-tests] scene depth
+[rhi-tests] covers DepthState Compare Format::D32F clearDepth readTexture(D32F) depthClip SHADER_DEPTH
+[rhi-tests] scene passes
+[rhi-tests] covers beginPass endPass setViewport setScissor PassDesc::clearColor PassDesc::clearDepth PassDesc::depthOnly pushMarker popMarker
+[rhi-tests] scene copies
+[rhi-tests] covers copyTexture(RGBA8) copyTexture(D32F)
+[rhi-tests] scene msaa
+[rhi-tests] covers TextureDesc::samples resolveTexture
+[rhi-tests] scene conventions
+[rhi-tests] covers conventions: Y origin, clip depth, pixel centres, UNORM encode
+[rhi-tests] scene present_ui
+[rhi-tests] covers present VS/PS ui VS/PS VertexFormat::Float2 VertexFormat::UByte4Norm
+[rhi-tests] scene gs_util
+[rhi-tests] covers gs_quad VS gs_blit PS gs_fill_color PS gs_fill_depth PS
+[rhi-tests] scene gs_modes
+[rhi-tests] covers gs_draw VS gs_draw PS modes 0-6 (x dual x NoZ)
+[rhi-tests] scene gs_tfx
+[rhi-tests] covers gs_draw TFX TCC IIP FGE ATST AFAIL FST STQ premultiply
+[rhi-tests] scene gs_wrap
+[rhi-tests] covers gs_draw wrapc REPEAT CLAMP REGION_CLAMP REGION_REPEAT non-power-of-two
+[rhi-tests] scene gs_rt_reads
+[rhi-tests] covers gs_draw texIsRt 1/2/3 rtScale rtOrigin filterSize filterDest gl_FragCoord
+[rhi-tests] scene gs_native
+[rhi-tests] covers gs_world VS gs_lit VS VertexFormat::UInt1 VertexFormat::Float3 setConstants(slot 1) depthClip=false clip distances
+[rhi-tests] scene gl_checks
+[rhi-tests] covers GL bounds / hazard / owner-thread refusals
+[rhi] refused: updateTexture: 8x8 at 4,4 outside 'bounds' (8x8), no data, multisampled or depth
+[rhi] refused: readTexture: 9x1 at 0,0 outside 'bounds', no destination or multisampled (resolve first)
+[rhi] refused: updateBuffer: 64 bytes into 'small' of 16: clamped
+[rhi] refused: draw 'blit': texture 'bounds' is sampled while it is the pass's target
+[rhi] refused: draw 'gs draw': 3 vertices of 32 bytes from offset 0 past 'small' (16 bytes)
+[rhi-tests] scene free_threaded
+[rhi-tests] covers freeThreadedCreation createTexture/createTextureLevels off the owner thread
+[rhi-tests] freeThreadedCreation 0
+[rhi-tests] scene churn
+[rhi-tests] covers resource churn, deferred destruction, offscreen resize
+[rhi] back buffer 512x304 -> 1280x720 (the window's drawable)
+[rhi] back buffer 384x272 -> 1280x720 (the window's drawable)
+[rhi] back buffer 576x240 -> 1280x720 (the window's drawable)
+[rhi] back buffer 448x304 -> 1280x720 (the window's drawable)
+[rhi] back buffer 320x272 -> 1280x720 (the window's drawable)
+[rhi] back buffer 512x240 -> 1280x720 (the window's drawable)
+[rhi] back buffer 384x304 -> 1280x720 (the window's drawable)
+[rhi] back buffer 576x272 -> 1280x720 (the window's drawable)
+[rhi] back buffer 448x240 -> 1280x720 (the window's drawable)
+[rhi] back buffer 320x304 -> 1280x720 (the window's drawable)
+[rhi] back buffer 512x272 -> 1280x720 (the window's drawable)
+[rhi] back buffer 384x240 -> 1280x720 (the window's drawable)
+[rhi] back buffer 576x304 -> 1280x720 (the window's drawable)
+[rhi] back buffer 448x272 -> 1280x720 (the window's drawable)
+[rhi] back buffer 320x240 -> 1280x720 (the window's drawable)
+[rhi] back buffer 512x304 -> 1280x720 (the window's drawable)
+[rhi] back buffer 384x272 -> 1280x720 (the window's drawable)
+[rhi] back buffer 576x240 -> 1280x720 (the window's drawable)
+[rhi] back buffer 448x304 -> 1280x720 (the window's drawable)
+[rhi] back buffer 320x272 -> 1280x720 (the window's drawable)
+[rhi] back buffer 512x240 -> 1280x720 (the window's drawable)
+[rhi] back buffer 384x304 -> 1280x720 (the window's drawable)
+[rhi] back buffer 576x272 -> 1280x720 (the window's drawable)
+[rhi] back buffer 448x240 -> 1280x720 (the window's drawable)
+[rhi] back buffer 640x448 -> 1280x720 (the window's drawable)
+[rhi-tests] churn: process memory 132485152 -> 135151328 bytes, peak 145458256
+[rhi-tests] conformance ran in operation mode 0 at its end (0 handheld, 1 docked)
+[rhi-tests] conformance: 125 images, 0 failed checks, 13.9 s
+[bench] A_owner	0	256	1215.152	1215.152	1281.101	30	0.973	1231.501	ok
+[bench] fences waited 0 (use 17.160 ms)
+[bench] A_owner	1	256	1355.716	1355.716	1441.178	30	0.643	1383.146	ok
+[bench] fences waited 0 (use 18.807 ms)
+[bench] A_owner	2	256	1338.016	1338.016	1419.799	30	0.971	1365.583	ok
+[bench] fences waited 0 (use 16.956 ms)
+[window] t=0.00 operation mode 0, SDL window 1280x720
+[window] t=0.00 back buffer 1280x720 (mode 0)
+[window] t=63.01 operation mode 0, SDL window 1920x1080
+[window] t=63.01 back buffer 1920x1080 (mode 0)
+[window] t=66.01 operation mode 0, SDL window 960x540
+[window] t=66.01 back buffer 960x540 (mode 0)
+[window] t=69.01 operation mode 0, SDL window 1280x720
+[window] t=69.01 back buffer 1280x720 (mode 0)
+[window] summary	vsync_median_ms 8.968 p95 16.297 frames 1680	immediate_median_ms 9.375 p95 16.313 frames 1671
+[rhi-tests] exit 0

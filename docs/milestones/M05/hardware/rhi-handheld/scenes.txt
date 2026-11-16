@@ -1,0 +1,48 @@
+scene textures
+covers createTexture updateTexture readTexture Format::RGBA8 Format::R32F UsageDynamic
+scene mips
+covers createTextureLevels createTexture(mipLevels=0) generateMips
+scene samplers
+covers createSampler Filter::Nearest Filter::Linear Wrap::Clamp Wrap::Repeat anisotropy
+scene buffers
+covers createBuffer updateBuffer setVertexBuffer(offset) setIndexBuffer(16,32) drawIndexed(firstIndex,baseVertex) setConstants
+scene topology
+covers Topology::Triangles Topology::TriangleStrip Topology::Lines Topology::Points
+scene blend
+covers BlendState BlendFactor BlendOp setBlendConstant
+scene dual_source
+covers BlendFactor::Src1Alpha BlendFactor::InvSrc1Alpha gs_draw DUAL_SOURCE=1
+scene write_mask
+covers BlendState::writeMask
+scene depth
+covers DepthState Compare Format::D32F clearDepth readTexture(D32F) depthClip SHADER_DEPTH
+scene passes
+covers beginPass endPass setViewport setScissor PassDesc::clearColor PassDesc::clearDepth PassDesc::depthOnly pushMarker popMarker
+scene copies
+covers copyTexture(RGBA8) copyTexture(D32F)
+scene msaa
+covers TextureDesc::samples resolveTexture
+scene conventions
+covers conventions: Y origin, clip depth, pixel centres, UNORM encode
+scene present_ui
+covers present VS/PS ui VS/PS VertexFormat::Float2 VertexFormat::UByte4Norm
+scene gs_util
+covers gs_quad VS gs_blit PS gs_fill_color PS gs_fill_depth PS
+scene gs_modes
+covers gs_draw VS gs_draw PS modes 0-6 (x dual x NoZ)
+scene gs_tfx
+covers gs_draw TFX TCC IIP FGE ATST AFAIL FST STQ premultiply
+scene gs_wrap
+covers gs_draw wrapc REPEAT CLAMP REGION_CLAMP REGION_REPEAT non-power-of-two
+scene gs_rt_reads
+covers gs_draw texIsRt 1/2/3 rtScale rtOrigin filterSize filterDest gl_FragCoord
+scene gs_native
+covers gs_world VS gs_lit VS VertexFormat::UInt1 VertexFormat::Float3 setConstants(slot 1) depthClip=false clip distances
+scene gl_checks
+covers GL bounds / hazard / owner-thread refusals
+scene free_threaded
+covers freeThreadedCreation createTexture/createTextureLevels off the owner thread
+freeThreadedCreation 1
+scene churn
+covers resource churn, deferred destruction, offscreen resize
+churn: process memory 3339763712 -> 3339763712 bytes, peak 3339763712

@@ -1,0 +1,162 @@
+{
+ "M05-01": [
+  {
+   "path": "patches/upstream/0008-opengl-backend-seam.patch",
+   "result": "Backend::OpenGL after Null, built only with VCS_HAVE_OPENGL (no desktop build defines it); desktop defaults unchanged"
+  },
+  {
+   "path": "docs/milestones/M05/hardware/m05-gl-log-excerpt.txt",
+   "result": "Switch game run: '[present] OpenGL on NV120 (4.3 Core Mesa 20.1)', '[gs] hardware GS renderer (OpenGL)', clean exit"
+  },
+  {
+   "path": "docs/milestones/M05/hardware/m05-null-log-excerpt.txt",
+   "result": "VCS_RHI=null on the Switch: '[present] null on none', 3600 frames in 60 s, clean exit"
+  }
+ ],
+ "M05-02": [
+  {
+   "path": "docs/milestones/M05/hardware/rhi-handheld-full/checks.tsv",
+   "result": "Switch handheld: textures/mips/samplers checks PASS (pitch round-trips, sub-rect update/read, R32F, dynamic rewrite, every mip level, RT generateMips, nearest wrap texels)"
+  },
+  {
+   "path": "docs/milestones/M05/hardware/rhi-handheld-full/rhi-handheld-full-compare.json",
+   "result": "textures/mips/nearest samplers byte-identical to upstream Vulkan; linear +-1, aniso/trilinear implementation-defined"
+  }
+ ],
+ "M05-03": [
+  {
+   "path": "docs/milestones/M05/hardware/rhi-handheld-full/checks.tsv",
+   "result": "buffers checks PASS on the Switch (in-pass vertex/constant discard, static update + offset, 16/32-bit indices with firstIndex/baseVertex); gl_checks refusals counted, no GL error"
+  },
+  {
+   "path": "src/rhi/gl/rhi_gl.cpp",
+   "result": "bounds / alignment / size / owner checks, orphaning updates, UBO size vs block size per draw"
+  }
+ ],
+ "M05-04": [
+  {
+   "path": "docs/milestones/M05/hardware/rhi-handheld-full/rhi-handheld-full-compare.json",
+   "result": "topology, depth (every Compare, shader vs raster depth), write masks, native world/lit byte-identical to the reference; blend +-1 rounding"
+  },
+  {
+   "path": "docs/milestones/M05/HARDWARE_RESULTS.md",
+   "result": "Pixel / depth comparison section: every difference classified"
+  }
+ ],
+ "M05-05": [
+  {
+   "path": "docs/milestones/M05/hardware/rhi-handheld-full/checks.tsv",
+   "result": "passes (viewport/scissor top-left, depth-only fill, load without clear), copies (colour and depth regions), msaa interior exact: PASS; 0 incomplete framebuffers (summary.txt)"
+  },
+  {
+   "path": "docs/milestones/M05/hardware/rhi-handheld-full/summary.txt",
+   "result": "DONE, images 125, failed_checks 0, gl_errors 0, incomplete_framebuffers 0"
+  }
+ ],
+ "M05-06": [
+  {
+   "path": "docs/milestones/M05/host/shader-manifest.json",
+   "result": "39 GLSL variants, one per upstream vcs_shader variant (tools/glsl_shaders.py reads upstream's list)"
+  },
+  {
+   "path": "docs/milestones/M05/hardware/rhi-handheld-full/log.txt",
+   "result": "every variant compiled and linked by Mesa 20.1 nouveau: compile_failures 0, debug_messages 0; gs_modes 0-6 x dual x NoZ, present, ui, gs_util all drawn"
+  }
+ ],
+ "M05-07": [
+  {
+   "path": "docs/milestones/M05/hardware/rhi-handheld-full/caps.txt",
+   "result": "max_dual_source_draw_buffers 1 on the Switch: dual-source supported, no fallback needed"
+  },
+  {
+   "path": "docs/milestones/M05/hardware/rhi-handheld-full/rhi-handheld-full-compare.json",
+   "result": "dual_source modes 0-6 and gs_modes *_dual within +-1 of upstream Vulkan (blend rounding)"
+  }
+ ],
+ "M05-08": [
+  {
+   "path": "docs/milestones/M05/hardware/rhi-handheld-full/checks.tsv",
+   "result": "conventions/row0_is_top, left_is_x0, clip_depth_0_to_1, unorm_no_srgb PASS on the Switch (clip_control path)"
+  },
+  {
+   "path": "docs/milestones/M05/HARDWARE_RESULTS.md",
+   "result": "Attended rhi-final run: the user reported the orientation card correct (red top-left, green top-right, blue bottom-left, white bottom-right) and the picture right after every dock change ('Everything looks right')"
+  },
+  {
+   "path": "docs/milestones/M05/host/compare-vulkan_hw-opengl-PS2X_GL_NO_CLIP_CONTROL.json",
+   "result": "shader depth-remap fallback byte-identical to upstream Vulkan on the host (125/125)"
+  }
+ ],
+ "M05-09": [
+  {
+   "path": "docs/milestones/M05/HARDWARE_RESULTS.md",
+   "result": "Threading decision: A (main thread owns GL) correct everywhere; B (shared worker context) does not share objects on the Switch (EGL and SDL attempts) and crashed when forced: A adopted"
+  },
+  {
+   "path": "docs/milestones/M05/hardware/rhi-run2/bench.tsv",
+   "result": "A: 256-texture burst 676-782 ms on the owner docked, contents ok; B refused by the sharing check"
+  },
+  {
+   "path": "docs/milestones/M05/hardware/m05-gl-worker-log-excerpt.txt",
+   "result": "PS2X_GL_WORKER_CONTEXT=1 game run: sharing check fails, textures on the owner only, 0 GL errors, clean exit"
+  }
+ ],
+ "M05-10": [
+  {
+   "path": "docs/milestones/M05/hardware/m05-dock-log-excerpt.txt",
+   "result": "Game: drawable 1920x1080 <-> 1280x720 on four dock changes, presentation continued, 0 GL errors, clean exit"
+  },
+  {
+   "path": "docs/milestones/M05/hardware/rhi-final/window.tsv",
+   "result": "Test program: mode 0<->1 and SDL window 1280x720<->1920x1080 at 17.6/23.1/39.9/48.4 s, then programmatic sizes followed"
+  }
+ ],
+ "M05-11": [
+  {
+   "path": "docs/milestones/M05/hardware/rhi-handheld-full/rhi-handheld-full-compare.json",
+   "result": "present_ui/ui (the RHI UI pipeline: UByte4Norm colours, scissor, 16-bit indices) within +-1 of upstream Vulkan"
+  },
+  {
+   "path": "docs/milestones/M05/hardware/m05-gl-log-excerpt.txt",
+   "result": "The game's Dear ImGui frame drawn through render::UiRenderer every frame (uiInit false, as on Vulkan): 0 GL errors over ~4 M draws"
+  }
+ ],
+ "M05-12": [
+  {
+   "path": "docs/milestones/M05/hardware/rhi-handheld-full/scenes.txt",
+   "result": "Every Device method and variant covered by the 23 scenes (covers lines), run on the Switch handheld and docked"
+  },
+  {
+   "path": "docs/milestones/M05/hardware/rhi-handheld-full/summary.txt",
+   "result": "125 readbacks, 0 failed checks on the Switch"
+  }
+ ],
+ "M05-13": [
+  {
+   "path": "docs/milestones/M05/hardware/rhi-handheld-full/rhi-handheld-full-compare.json",
+   "result": "125/125 within tolerance of upstream Vulkan on the host GPU, 99 byte-identical; 26 differences all in explained classes"
+  },
+  {
+   "path": "docs/milestones/M05/hardware/rhi-run2/rhi-run2-compare.json",
+   "result": "Docked: the same 125/125 within tolerance, 99 byte-identical"
+  },
+  {
+   "path": "docs/milestones/M05/HARDWARE_RESULTS.md",
+   "result": "Each difference class with its images and size"
+  }
+ ],
+ "M05-14": [
+  {
+   "path": "docs/milestones/M05/hardware/rhi-handheld-full/checks.tsv",
+   "result": "churn/objects_return, bytes_return, framebuffers_bounded, programs_bounded, memory_budget (+2.5 MiB of 8 MiB) PASS on the Switch"
+  },
+  {
+   "path": "docs/milestones/M05/hardware/m05-gl-log-excerpt.txt",
+   "result": "rhi-stats: 0 GL errors / debug / incomplete over 240 s; texture cache peaks 2888 (205 MiB) and evicts"
+  },
+  {
+   "path": "docs/milestones/M05/hardware/rhi-final/window.tsv",
+   "result": "Repeated resizes (4 docks + 3 programmatic) with per-second present timing"
+  }
+ ]
+}

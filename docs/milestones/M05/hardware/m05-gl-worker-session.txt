@@ -1,0 +1,12 @@
+17:17:53 == m05-gl-worker: profile=m05-gl-worker nro sha256=8ba17eda279c39e96848b32c07e066d0a623f7d832060c2a8f02967cc8697f68
+17:17:55 tree /switch/gtavcs_nx/gamefolder/userdata entries=82 file=userdata-before-m05-gl-worker.txt
+17:17:55 deleted /switch/gtavcs_nx/gamefolder/gtavcs.log
+17:17:55 nothing to delete at /switch/gtavcs_nx/gamefolder/userdata/tests/m05-gl-worker/nxrun-results.txt
+17:17:55 wrote /switch/gtavcs_nx/gamefolder/userdata/nxrun.cfg bytes=1070 sha256=0610600162eb497ea87c7c2b7c41e11d2d0449f86ab818f3749977b4759ba311
+17:17:59 nxlink attempt=1 exit=0 output='Sending /switch/gtavcs_nx/gtavcs.nro, 54106309 bytes\n19863990 sent (36.71%), 1590 blocks'
+17:22:05 ftp back after 246s: the payload has ended
+17:22:08 deleted /switch/gtavcs_nx/gamefolder/userdata/nxrun.cfg
+17:22:10 tree /switch/gtavcs_nx/gamefolder/userdata entries=98 file=userdata-after-m05-gl-worker.txt
+17:22:15 m05-gl-worker: clean_exit_line=True results_tail=['stop t=240.006 reason=seconds frames=7881', 'shutdown t=240.006 frames=7881', 'audit t=240.006 file_opens=155 iso_opens=0 first_iso="" threads_created=7'] sd_matches_local=True new_crashes=[]
+17:22:15 screenshots read back: 15 to build/evidence/M05/screenshots/m05-gl-worker (private)
+17:22:15 RESULT game PASS

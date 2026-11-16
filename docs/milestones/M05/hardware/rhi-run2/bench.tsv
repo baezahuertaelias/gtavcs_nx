@@ -1,0 +1,4 @@
+mode	round	textures	create_ms	owner_ms	wall_ms	frames	median_frame_ms	worst_frame_ms	contents
+A_owner	0	256	675.828	675.828	712.234	30	0.370	687.177	ok
+A_owner	1	256	781.877	781.877	837.172	30	0.339	799.812	ok
+A_owner	2	256	759.276	759.276	805.619	30	0.322	777.936	ok
