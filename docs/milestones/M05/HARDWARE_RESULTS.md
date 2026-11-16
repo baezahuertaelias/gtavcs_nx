@@ -5,15 +5,31 @@ Console: the user's Switch at 192.168.1.91, Sphaira by title override (full appl
 renderer NV120, OpenGL 4.3 core profile, GLSL 4.30** (asked for 3.3 core): `ARB_clip_control`, viewport arrays,
 anisotropy (max 16), KHR_debug, 1 dual-source draw buffer, 8 samples, max texture 16384, max uniform block 65536,
 window framebuffer encoding GL_LINEAR. Reference for every comparison: upstream's Vulkan backend on the host GPU
-(`build/m05/host/vulkan_hw`: Intel ADL-N, Mesa ANV; `tools/rhi_host_tests.py`). Game screenshots stay private under
+(`build/m05/host/vulkan_hw`: Intel ADL-N, Mesa ANV; `tools/rhi_host_tests.py`); round 3 also against lavapipe (`build/m05/host/vulkan`). Game screenshots stay private under
 build/; their SHA-256 are in `*-screenshot-sha256.txt`.
 
 Two rounds. **Round 1** (2026-11-15/16, [hardware/](hardware/)) was the first review's candidate `cb70b74`; the
 independent review requested changes ([REVIEW1_RESPONSE.md](REVIEW1_RESPONSE.md)). **Round 2** (2026-11-16,
-[hardware-r1/](hardware-r1/)) is the evidence for the current candidate: game NRO `39071ced…` and RHI-tests NRO
-`4457de9e…`, both built from `75fd248` (the code has not changed since; later commits are records only).
+[hardware-r1/](hardware-r1/)) is the evidence for the game and backend code `75fd248` (game NRO `39071ced…`; unchanged
+since). The second independent review requested changes to tests and records ([REVIEW2_RESPONSE.md](REVIEW2_RESPONSE.md));
+**round 3** ([hardware-r2/](hardware-r2/)) ran the changed RHI tests (`e0ba4541…`, `9cb098a`).
 
-## Round 2 runs (current candidate code, `75fd248`)
+## Round 3 runs (review 2's fixes: RHI tests `e0ba4541`, built from `9cb098a`; game unchanged)
+
+| Run | Mode | Result |
+|---|---|---|
+| `rhi-r2` | handheld throughout (`operation_mode_start 0`) | PASS: 127/127 within tolerance of ANV (101 identical) and of lavapipe (90 identical); 0 failed checks: `uses_mips_negative_control` (far band 109 without mips), `window/half_pixel_edges_top_left_rule`, `window/back_buffer_equals_texture` 1280x720 0 px |
+| `rhi-r2-docked` | docked throughout | PASS: the same against both references; window readback with pixel-centre edges 1920x1080 0 px |
+
+All 127 readbacks are byte-identical to round 2's (`rhi-docked2`). Band spreads between every pair of implementations:
+[hardware-r2/band-spread-pairs.txt](hardware-r2/band-spread-pairs.txt). Review 2's findings and their resolutions:
+[REVIEW2_RESPONSE.md](REVIEW2_RESPONSE.md).
+
+**NRO reproducibility.** Rebuilding an NRO from the same commit can change only its 20-byte build ID (debug line
+strings of a different length; found by review 2), so a recorded NRO hash identifies the binary that ran, not a
+rebuild; code identity is shown by comparing with the build ID masked.
+
+## Round 2 runs (game and backend code `75fd248`, the current game NRO)
 
 | Run | NRO | Mode | Result |
 |---|---|---|---|
@@ -44,7 +60,7 @@ The Switch differs from the host GPU reference in 26 of 127 images, all within t
 | `floor()` after filtering / `mix` landing within an ulp of an integer (the GS math floors) | gs_wrap pot / npot, gs_native colour | ±1, 4-84 px |
 | bilinear sub-texel weight precision | samplers linear, present_ui letterbox / ui | ±1, 11-110 px |
 | a half-covered pixel's resolve (255 and 0 averaged: 127.5 → 7f here, 80 on the reference) | msaa/resolved | ±1, 25 px (`unorm:1`) |
-| trilinear / anisotropic LOD and footprint (per pixel the implementation's) | samplers trilinear, anisotropic_16 | per 8-row band mean within 1.1 and spread within 4.5 of the reference's (`bands:8,mean:3,stdev:8`); `*_uses_mips` pass |
+| trilinear / anisotropic LOD and footprint (per pixel the implementation's) | samplers trilinear, anisotropic_16 | per 8-row band mean within 1.0 and spread within 4.5 of ANV's (8.5 of lavapipe's; `bands:8,mean:3,stdev:16`, twice the largest spread between any two implementations); `*_uses_mips` and the no-mip negative control pass |
 | a viewport with a fractional origin (x 40.25, a quarter pixel; y 4.5, a half pixel): each implementation treats its edges differently (lavapipe rows 4-14 cols 40-50; ANV rows 4-14 cols 40-49; nouveau rows 5-14 cols 40-50; consistent with nouveau rounding its viewport clip rectangle to whole pixels, not confirmed). Upstream's callers never set a fractional origin: `beginPass` sets (0, 0, target size); `render::UiRenderer` (ui_renderer.cpp:181) sets (0, 0, DisplaySize x FramebufferScale), which on the Switch is the drawable exactly (window = drawable, scale 1.0; `[video] window=1920x1080 drawable=1920x1080`), and only an offscreen capture's scale can make its *width* fractional, its origin staying 0 | passes/viewport_scissor | 20 px (24 allowed) |
 
 The other 101 images are **byte-identical** to upstream's Vulkan backend. That includes `pixel_centre/*`, the game's

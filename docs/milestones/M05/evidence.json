@@ -25,6 +25,14 @@
   {
    "path": "docs/milestones/M05/hardware-r1/rhi-docked2/rhi-docked2-compare.json",
    "result": "textures and mips byte-identical to upstream Vulkan; linear +-1; trilinear/anisotropic within bands:8,mean:3,stdev:8 (1.0 / 4.5)"
+  },
+  {
+   "path": "docs/milestones/M05/hardware-r2/band-spread-pairs.txt",
+   "result": "Band spreads between every pair of ANV, lavapipe, iris, nouveau: means within 1.0, spreads within 8.5; tolerance stdev:16"
+  },
+  {
+   "path": "docs/milestones/M05/hardware-r2/rhi-r2/checks.tsv",
+   "result": "uses_mips_negative_control PASS on the Switch: far band 109 without mips vs 0 / 17 with them"
   }
  ],
  "M05-03": [
@@ -59,6 +67,10 @@
   {
    "path": "docs/milestones/M05/REVIEW1_RESPONSE.md",
    "result": "Findings 1, 3, 7: viewport origin explained, resolve classified, copy FBOs detached"
+  },
+  {
+   "path": "docs/milestones/M05/REVIEW2_RESPONSE.md",
+   "result": "Review 2 finding 2: setViewport callers (beginPass, UiRenderer) both use origin (0,0); viewport difference explained"
   }
  ],
  "M05-06": [
@@ -129,6 +141,10 @@
   {
    "path": "docs/milestones/M05/hardware-r1/rhi-docked2/window.tsv",
    "result": "Present probe: Immediate 119.6/s, Vsync 60.0/s in every device step; interval 2 -> 1 now applied (60/s at 55.6 s)"
+  },
+  {
+   "path": "docs/milestones/M05/hardware-r2/rhi-r2-docked/checks.tsv",
+   "result": "window/half_pixel_edges_top_left_rule and back_buffer_equals_texture PASS at 1920x1080 docked: the window's lower-left convention decides pixel-centre ties as the textures do"
   }
  ],
  "M05-11": [
@@ -143,6 +159,10 @@
   {
    "path": "docs/milestones/M05/hardware-r1/rhi-docked2/rhi-docked2-compare.json",
    "result": "present_ui/ui within +-2 of upstream Vulkan (bilinear weights)"
+  },
+  {
+   "path": "docs/milestones/M05/hardware-r2/rhi-r2/checks.tsv",
+   "result": "window readback with pixel-centre edges and half-pixel UI quads: 0 differing pixels at 1280x720 handheld"
   }
  ],
  "M05-12": [
@@ -157,6 +177,10 @@
   {
    "path": "docs/milestones/M05/hardware-r1/rhi-r1-handheld/summary.txt",
    "result": "127 readbacks, 0 failed checks handheld"
+  },
+  {
+   "path": "docs/milestones/M05/hardware-r2/rhi-r2/summary.txt",
+   "result": "Round 3 handheld: 127 readbacks, 0 failed checks (incl. the negative control and window ties)"
   }
  ],
  "M05-13": [
@@ -171,6 +195,14 @@
   {
    "path": "docs/milestones/M05/REVIEW1_RESPONSE.md",
    "result": "Review 1 findings 1, 3, 4 resolved"
+  },
+  {
+   "path": "docs/milestones/M05/hardware-r2/rhi-r2/rhi-r2-compare-lavapipe.json",
+   "result": "Switch vs lavapipe (a second conformant reference): 127 within tolerance, 0 failures"
+  },
+  {
+   "path": "docs/milestones/M05/REVIEW2_RESPONSE.md",
+   "result": "Review 2 findings 1-4 resolved"
   }
  ],
  "M05-14": [

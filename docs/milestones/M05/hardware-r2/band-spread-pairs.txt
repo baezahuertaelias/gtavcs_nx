@@ -1,0 +1,16 @@
+Per 8-row band and colour channel: the largest difference of the mean and of the standard deviation between two implementations.
+Tolerance bands:8,mean:3,stdev:16 (twice the largest spread). Negative control (no mip chain): far-band spread ~109 vs 0-17 with mips.
+samplers.trilinear.bin
+  ANV (host GPU, upstream Vulkan) vs lavapipe (upstream Vulkan): mean 0.34, stdev 0.80
+  ANV (host GPU, upstream Vulkan) vs iris (port OpenGL): mean 0.00, stdev 0.00
+  ANV (host GPU, upstream Vulkan) vs nouveau (Switch, port OpenGL): mean 1.00, stdev 4.50
+  lavapipe (upstream Vulkan) vs iris (port OpenGL): mean 0.34, stdev 0.80
+  lavapipe (upstream Vulkan) vs nouveau (Switch, port OpenGL): mean 1.00, stdev 5.23
+  iris (port OpenGL) vs nouveau (Switch, port OpenGL): mean 1.00, stdev 4.50
+samplers.anisotropic_16.bin
+  ANV (host GPU, upstream Vulkan) vs lavapipe (upstream Vulkan): mean 0.48, stdev 5.93
+  ANV (host GPU, upstream Vulkan) vs iris (port OpenGL): mean 0.00, stdev 0.00
+  ANV (host GPU, upstream Vulkan) vs nouveau (Switch, port OpenGL): mean 0.33, stdev 2.56
+  lavapipe (upstream Vulkan) vs iris (port OpenGL): mean 0.48, stdev 5.93
+  lavapipe (upstream Vulkan) vs nouveau (Switch, port OpenGL): mean 0.44, stdev 8.50
+  iris (port OpenGL) vs nouveau (Switch, port OpenGL): mean 0.33, stdev 2.56
