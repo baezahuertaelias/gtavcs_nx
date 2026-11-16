@@ -637,12 +637,15 @@ namespace conformance
                     for (uint32_t x = 0; x < 64; ++x)
                         checker[y * 64 + x] = ((x / 4 + y / 4) & 1) ? rgba(255, 255, 255, 128) : rgba(0, 0, 0, 128);
                 auto ck = texture(64, 64, Format::RGBA8, UsageSampled, "checker", checker.data(), 0, 1, 0);
+                // the negative control: the same checker without a mip chain (what a broken mip path would sample)
+                auto ckFlat = texture(64, 64, Format::RGBA8, UsageSampled, "checker without mips", checker.data());
                 auto aniso = m_dev.createSampler({Filter::Linear, Wrap::Repeat, Wrap::Repeat, 16});
                 auto tri = m_dev.createSampler({Filter::Linear, Wrap::Repeat, Wrap::Repeat, 0});
                 auto pipe = gsPipeline(4, false, true, {}, {});
-                if (!ck || !aniso || !tri || !pipe)
+                if (!ck || !ckFlat || !aniso || !tri || !pipe)
                     return;
-                for (int i = 0; i < 2; ++i)
+                double controlFar = -1.0;
+                for (int i = 0; i < 3; ++i) // 0 trilinear, 1 anisotropic 16, 2 the control (trilinear, no mip chain)
                 {
                     auto t = target(64, 64, "aniso target");
                     begin(t.get());
@@ -662,12 +665,15 @@ namespace conformance
                     const GsVertex a = vert(0, 0, 0, 0, 0.125f), b = vert(64, 0, 8, 0, 0.125f), cc = vert(0, 64, 0, 4, 1.0f),
                                    d = vert(64, 64, 8, 4, 1.0f);
                     v = {a, b, cc, b, d, cc};
-                    gsDraw(*pipe, c, v, ck.get(), i ? aniso.get() : tri.get());
+                    gsDraw(*pipe, c, v, i == 2 ? ckFlat.get() : ck.get(), i == 1 ? aniso.get() : tri.get());
                     m_dev.endPass();
-                    // per pixel the LOD / footprint is the implementation's ("an approximation"); per band of 8 rows the
-                    // mean and spread are not (tools/rhi_compare.py bands; ANV, lavapipe, iris and nouveau agree within
-                    // 1.1 / 6)
-                    emit(i ? "anisotropic_16" : "trilinear", *t, "bands:8,mean:3,stdev:8");
+                    // Per pixel the LOD / footprint is the implementation's ("an approximation"); per band of 8 rows the
+                    // mean and spread are not. Measured between conformant implementations (ANV, lavapipe, iris,
+                    // nouveau; every pair): band means within 1.0, spreads within 8.5 (lavapipe vs nouveau, anisotropic);
+                    // the tolerance is twice that. The mip-use check below and its negative control catch a mip path
+                    // that is not taken.
+                    if (i < 2)
+                        emit(i ? "anisotropic_16" : "trilinear", *t, "bands:8,mean:3,stdev:16");
                     // the mip chain is used: the far band (q 1/8) is filtered towards the checker's grey (spread under 25; 0 trilinear, 17-18 anisotropic on every implementation),
                     // the middle (rows 24..31) still shows it (spread over 30); level 0 alone would alias the far band
                     auto px = read(*t);
@@ -684,9 +690,16 @@ namespace conformance
                         return std::sqrt(std::max(0.0, sq / n - m * m));
                     };
                     const double far = spread(0), mid = spread(24);
+                    if (i == 2)
+                    {
+                        controlFar = far;
+                        continue;
+                    }
                     check(std::string(i ? "anisotropic_16" : "trilinear") + "_uses_mips", far < 25.0 && mid > 30.0,
                           "far " + std::to_string(far) + " middle " + std::to_string(mid));
                 }
+                // the check discriminates: without a mip chain the far band is not filtered to grey on this device
+                check("uses_mips_negative_control", controlFar >= 25.0, "far band without mips " + std::to_string(controlFar));
             }
 
             // createBuffer (dynamic / static, with / without data), updateBuffer discard semantics between draws in one

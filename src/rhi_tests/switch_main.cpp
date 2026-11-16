@@ -301,7 +301,10 @@ namespace
     // The same drawing into the SDL back buffer and into a texture of its size: rectangles through sub-viewports and
     // scissors (the window's bottom-left conversion in rhi_gl.cpp), and the Dear ImGui pipeline (UByte4Norm colours,
     // 16-bit indices, a clip scissor, its own projection). The back buffer is read with glReadPixels before the swap
-    // and its rows flipped (GL's window rows are bottom-up); the two must be identical. No edge lies on a pixel centre.
+    // and its rows flipped (GL's window rows are bottom-up); the two must be identical. Edges lie both on pixel
+    // boundaries and on pixel centres (second M05 review): rectangles from x + 0.5 to x1 + 0.5 as the GS renderer's
+    // half-pixel shift makes every GS edge, and UI quads at half-pixel positions as Dear ImGui's anti-aliased fringes
+    // are, so the window's GL_LOWER_LEFT convention is compared with the textures' GL_UPPER_LEFT on tie edges too.
     struct UiVertex
     {
         float pos[2];
@@ -348,8 +351,11 @@ namespace
         const UiVertex verts[] = {{{W * 0.1f, H * 0.6f}, {0, 0}, 0xFF0000FFu}, {{W * 0.45f, H * 0.6f}, {1, 0}, 0xC000FF00u},
                                   {{W * 0.1f, H * 0.9f}, {0, 1}, 0x80FF0000u}, {{W * 0.45f, H * 0.9f}, {1, 1}, 0xFFFFFFFFu},
                                   {{W * 0.55f, H * 0.55f}, {0, 0}, 0xFF00FFFFu}, {{W * 0.95f, H * 0.55f}, {1, 0}, 0xFF00FFFFu},
-                                  {{W * 0.55f, H * 0.95f}, {0, 1}, 0xFFFF00FFu}, {{W * 0.95f, H * 0.95f}, {1, 1}, 0xFFFF00FFu}};
-        const uint16_t idx[] = {0, 1, 2, 1, 3, 2, 4, 5, 6, 5, 7, 6};
+                                  {{W * 0.55f, H * 0.95f}, {0, 1}, 0xFFFF00FFu}, {{W * 0.95f, H * 0.95f}, {1, 1}, 0xFFFF00FFu},
+                                  // half-pixel corners (an anti-aliased fringe's positions): edges on pixel centres
+                                  {{W * 0.5f + 10.5f, H * 0.1f + 0.5f}, {0, 0}, 0xFF80FF40u}, {{W * 0.5f + 60.5f, H * 0.1f + 0.5f}, {1, 0}, 0xFF80FF40u},
+                                  {{W * 0.5f + 10.5f, H * 0.1f + 40.5f}, {0, 1}, 0xFF80FF40u}, {{W * 0.5f + 60.5f, H * 0.1f + 40.5f}, {1, 1}, 0xFF80FF40u}};
+        const uint16_t idx[] = {0, 1, 2, 1, 3, 2, 4, 5, 6, 5, 7, 6, 8, 9, 10, 9, 11, 10};
         auto vb = dev.createBuffer({sizeof(verts), rhi::BufferUsage::Vertex, false, "window ui vertices"}, verts);
         auto ib = dev.createBuffer({sizeof(idx), rhi::BufferUsage::Index, false, "window ui indices"}, idx);
         rhi::TextureDesc td;
@@ -392,6 +398,19 @@ namespace
             }
             dev.setViewport(0, 0, W, H);
             dev.setScissor(0, 0, static_cast<int>(w), static_cast<int>(h));
+            // rectangles whose edges lie exactly on pixel centres (x0 + 0.5 .. x1 + 0.5), of 1 to 9 pixels, as GS
+            // sprites are drawn after gs_hw.cpp's half-pixel shift: D3D's top-left rule decides every edge
+            for (int k = 0; k < 9; ++k)
+            {
+                const float x0 = 20.0f + k * 14.0f + 0.5f, y0 = H * 0.5f + (k % 3) * 3.0f + 0.5f;
+                const float x1 = x0 + 1.0f + k, y1 = y0 + 1.0f + (k * 2) % 9;
+                const float q[16] = {x0 / W * 2.0f - 1.0f, 1.0f - y0 / H * 2.0f, x1 / W * 2.0f - 1.0f, 1.0f - y1 / H * 2.0f, 0, 0, 1, 1,
+                                     (k & 1) ? 1.0f : 0.5f, (k & 2) ? 1.0f : 0.25f, (k & 4) ? 1.0f : 0.0f, 1, 0, 0, 0, 0};
+                dev.updateBuffer(*quad, q, sizeof(q));
+                dev.setPipeline(*fill);
+                dev.setConstants(0, *quad);
+                dev.draw(4);
+            }
             const float so[4] = {2.0f / W, -2.0f / H, -1.0f, 1.0f};
             dev.updateBuffer(*uiCb, so, sizeof(so));
             dev.setPipeline(*ui);
@@ -402,12 +421,31 @@ namespace
             dev.drawIndexed(6, 0, 0);
             dev.setScissor(static_cast<int>(w * 0.55f), static_cast<int>(h * 0.55f), static_cast<int>(w * 0.2f), static_cast<int>(h * 0.25f));
             dev.drawIndexed(6, 6, 0);
+            dev.setScissor(0, 0, static_cast<int>(w), static_cast<int>(h));
+            dev.drawIndexed(6, 12, 0);
             dev.setTexture(0, nullptr, nullptr);
             dev.endPass();
         };
         draw(twin.get());
         std::vector<uint8_t> expect(static_cast<size_t>(w) * h * 4), got(expect.size()), rows(expect.size());
         dev.readTexture(*twin, 0, 0, w, h, expect.data());
+        // the half-pixel rectangles really are tie cases: in the texture (D3D's rule, proven by pixel_centre) each
+        // covers columns floor(x0)..floor(x1)-1 and rows floor(y0)..floor(y1)-1, its edge pixels' centres on the edges
+        bool ties = true;
+        for (int k = 0; k < 9 && ties; ++k)
+        {
+            const int x0 = 20 + k * 14, y0 = static_cast<int>(h / 2) + (k % 3) * 3, x1 = x0 + 1 + k, y1 = y0 + 1 + (k * 2) % 9;
+            for (int y = y0 - 1; y <= y1; ++y)
+                for (int x = x0 - 1; x <= x1; ++x)
+                {
+                    const uint8_t *px = expect.data() + (static_cast<size_t>(y) * w + x) * 4;
+                    const bool lit = px[0] >= 128 || px[1] >= 64 || px[2] >= 128; // the rectangle colours over the clear
+                    const bool in = x >= x0 && x < x1 && y >= y0 && y < y1;
+                    if (lit != in)
+                        ties = false;
+                }
+        }
+        checks << "window/half_pixel_edges_top_left_rule\t" << (ties ? "PASS" : "FAIL") << "\tthe texture twin's tie rectangles\n";
         draw(nullptr);
         glBindFramebuffer(GL_FRAMEBUFFER, 0);
         glReadBuffer(GL_BACK);
@@ -429,7 +467,7 @@ namespace
         checks.flush();
         out << "0\twindow_readback\t" << w << '\t' << h << '\t' << detail << '\n';
         say("[window] back buffer readback vs texture: %s\n", detail);
-        return differing == 0;
+        return differing == 0 && ties;
     }
 
     // ---- phase 3a': present-interval probe (first M05 review, finding 2) --------------------------------------------
