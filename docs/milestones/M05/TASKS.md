@@ -35,7 +35,7 @@ Before the first commit, a host run found 21 differences that were test-design f
 boundaries, colours on rounding ties), fixed in the scenes. Intel follows D3D's tie rule even with the shader Y flip,
 so only the Switch distinguished it (review 1, finding 1).
 
-## Tasks (observed on the Switch: [HARDWARE_RESULTS.md](HARDWARE_RESULTS.md), rounds 2-5; reviews: [REVIEW1_RESPONSE.md](REVIEW1_RESPONSE.md), [REVIEW2_RESPONSE.md](REVIEW2_RESPONSE.md), [REVIEW3_RESPONSE.md](REVIEW3_RESPONSE.md), [REVIEW4_RESPONSE.md](REVIEW4_RESPONSE.md), [REVIEW5_RESPONSE.md](REVIEW5_RESPONSE.md))
+## Tasks (observed on the Switch: [HARDWARE_RESULTS.md](HARDWARE_RESULTS.md), rounds 2-5; reviews: [REVIEW1_RESPONSE.md](REVIEW1_RESPONSE.md), [REVIEW2_RESPONSE.md](REVIEW2_RESPONSE.md), [REVIEW3_RESPONSE.md](REVIEW3_RESPONSE.md), [REVIEW4_RESPONSE.md](REVIEW4_RESPONSE.md), [REVIEW5_RESPONSE.md](REVIEW5_RESPONSE.md), [REVIEW6_RESPONSE.md](REVIEW6_RESPONSE.md))
 
 | Task | Implementation | Switch proof (RHI scenes: round 3; game runs: round 2; unless noted) |
 |---|---|---|
@@ -52,4 +52,4 @@ so only the Switch distinguished it (review 1, finding 1).
 | M05-11 UI through ImGui / RHI | `render::UiRenderer` (as on Vulkan) | `present_ui` within ±2; the UI pipeline and its clip scissor read back from the window identical to a texture |
 | M05-12 every Device method / variant on hardware | 24 scenes + window readback | 127 readbacks, 0 failed checks, handheld and docked |
 | M05-13 pixel / depth comparison with the desktop reference | `tools/rhi_compare.py` | 127/127 within tolerance, 101 identical; the 26 differences classified |
-| M05-14 GL diagnostics, churn, memory budgets | KHR_debug, counters, churn; heap at every `[video]` change | 0 GL errors / debug messages; churn objects and bytes return; heap +2.5 MiB of 8 MiB; rounds 4-5: no growth per dock change in the test program (within 12 KB / 2 KB; the SDL resize leak removed); game heap sampled at changes only (inference) |
+| M05-14 GL diagnostics, churn, memory budgets | KHR_debug, counters, churn; heap at every `[video]` change | 0 GL errors / debug messages; churn objects and bytes return; heap +2.5 MiB of 8 MiB; rounds 4-5: no growth per dock change in the test program (within 12,000 / 2,064 bytes; the SDL resize leak removed); game heap sampled at changes only (inference) |
