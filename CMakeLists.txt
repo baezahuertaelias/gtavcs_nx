@@ -67,6 +67,20 @@ set(runtime "${upstream}/third_party/PS2Recomp/ps2xRuntime")
 add_library(glad STATIC third_party/glad/src/gl.c)
 target_include_directories(glad PUBLIC third_party/glad/include)
 
+# The OpenGL RHI's shaders (M05): GLSL 330 ports of upstream's HLSL (src/render/glsl), one string per variant upstream
+# builds; tools/glsl_shaders.py reads the variant list from upstream's src/render/CMakeLists.txt.
+find_program(NX_PYTHON NAMES python3 REQUIRED)
+set(NX_SHADER_DIR "${CMAKE_CURRENT_BINARY_DIR}/shaders")
+file(GLOB nx_glsl_sources CONFIGURE_DEPENDS "${PORT_ROOT}/src/render/glsl/*.glsl")
+add_custom_command(
+    OUTPUT "${NX_SHADER_DIR}/glsl/gs_shaders_glsl.h" "${CMAKE_CURRENT_BINARY_DIR}/shader-manifest.json"
+    COMMAND "${NX_PYTHON}" -I "${PORT_ROOT}/tools/glsl_shaders.py" --upstream "${upstream}"
+            --out "${NX_SHADER_DIR}/glsl/gs_shaders_glsl.h" --manifest "${CMAKE_CURRENT_BINARY_DIR}/shader-manifest.json"
+    DEPENDS ${nx_glsl_sources} "${PORT_ROOT}/tools/glsl_shaders.py" "${upstream}/src/render/CMakeLists.txt"
+    COMMENT "GLSL shader variants"
+    VERBATIM)
+add_custom_target(nx_glsl DEPENDS "${NX_SHADER_DIR}/glsl/gs_shaders_glsl.h")
+
 # Dear ImGui (upstream's pinned version) with its SDL2 input backend; the null RHI takes its draw data until M05.
 add_library(nx_imgui STATIC "${NX_IMGUI_DIR}/imgui.cpp" "${NX_IMGUI_DIR}/imgui_draw.cpp"
     "${NX_IMGUI_DIR}/imgui_tables.cpp" "${NX_IMGUI_DIR}/imgui_widgets.cpp" "${NX_IMGUI_DIR}/imgui_demo.cpp"
@@ -115,15 +129,18 @@ list(REMOVE_ITEM game_sources ${self_registering_sources})
 add_library(nx_core STATIC ${runtime_sources} ${kernel_sources} ${game_sources}
     "${upstream}/src/render/presenter.cpp" "${upstream}/src/render/gs_shaders.cpp"
     "${upstream}/src/render/ui_renderer.cpp" "${upstream}/src/rhi/rhi.cpp" "${upstream}/src/rhi/null/rhi_null.cpp"
-    src/core/core.cpp src/core/run_config.cpp src/vfs/folder_disc.cpp src/vfs/game_paths.cpp
+    src/rhi/gl/rhi_gl.cpp src/core/core.cpp src/core/run_config.cpp src/vfs/folder_disc.cpp src/vfs/game_paths.cpp
     src/switch/branch_trace.cpp)
 nx_cpu_options(nx_core)
-target_include_directories(nx_core PRIVATE "${upstream}/src" "${runtime}/src/lib")
+target_include_directories(nx_core PRIVATE "${upstream}/src" "${runtime}/src/lib" "${PORT_ROOT}/src" "${NX_SHADER_DIR}")
+add_dependencies(nx_core nx_glsl)
+# the OpenGL RHI (src/rhi/gl) is the Switch's renderer; the null backend stays selectable (VCS_RHI=null)
+target_compile_definitions(nx_core PUBLIC VCS_HAVE_OPENGL=1)
 # Movies (FFmpeg) are M07: vcs_movie.cpp keys them on __has_include, so the portlibs' include folder (which holds
 # FFmpeg's headers) stays off this library; only the platform layer below sees SDL2 and zlib.
 target_compile_definitions(nx_core PRIVATE PS2X_HAS_FFMPEG=0 PS2X_ENABLE_IOP_RPC_TRACE=0 _POSIX_C_SOURCE=200809L
     VCS_LAUNCHER_NO_MAIN)
-target_link_libraries(nx_core PUBLIC ps2_iop nx_imgui nx_platform)
+target_link_libraries(nx_core PUBLIC ps2_iop nx_imgui nx_platform glad)
 
 add_library(nx_self_registering STATIC ${self_registering_sources})
 nx_cpu_options(nx_self_registering)
@@ -133,11 +150,11 @@ target_compile_definitions(nx_self_registering PRIVATE PS2X_HAS_FFMPEG=0 PS2X_EN
 target_link_libraries(nx_self_registering PUBLIC nx_core)
 
 # upstream's platform.h on SDL2 (src/platform/platform_switch_sdl2.cpp)
-add_library(nx_platform STATIC src/platform/platform_switch_sdl2.cpp)
+add_library(nx_platform STATIC src/platform/platform_switch_sdl2.cpp src/platform/gl_loader_egl.cpp)
 target_include_directories(nx_platform PRIVATE "${upstream}/src" "${PORT_ROOT}/src"
-    ${NX_SDL2_INCLUDE_DIRS} ${NX_ZLIB_INCLUDE_DIRS})
-target_compile_options(nx_platform PRIVATE -O2 -fPIE ${NX_SDL2_CFLAGS_OTHER})
-target_link_libraries(nx_platform PUBLIC nx_imgui)
+    ${NX_SDL2_INCLUDE_DIRS} ${NX_ZLIB_INCLUDE_DIRS} ${NX_EGL_INCLUDE_DIRS})
+target_compile_options(nx_platform PRIVATE -O2 -fPIE ${NX_SDL2_CFLAGS_OTHER} ${NX_EGL_CFLAGS_OTHER})
+target_link_libraries(nx_platform PUBLIC nx_imgui glad)
 
 # The entry point and the libnx link wraps, compile-only: source CI builds this target too (the executable below needs
 # the private archive), so main.c and src/switch/*.c are compiled on every change. The executable compiles the same
@@ -150,6 +167,31 @@ target_compile_definitions(nx_entry_check PRIVATE SDL_MAIN_HANDLED GTAVCS_LIBNX_
 target_compile_options(nx_entry_check PRIVATE -Wall -Wextra -Wpedantic -ffp-contract=off -fno-strict-aliasing
     ${NX_SDL2_CFLAGS_OTHER} ${NX_GL_CFLAGS_OTHER} ${NX_EGL_CFLAGS_OTHER})
 target_link_libraries(nx_entry_check PRIVATE glad)
+
+# The RHI conformance scenes on the Switch (src/rhi_tests, M05): every rhi::Device method and GLSL variant through the
+# OpenGL backend on SDL2's context, readbacks to the SD card. Public: no game code, no assets.
+add_library(nx_rhi_tests STATIC src/rhi_tests/rhi_conformance.cpp src/rhi/gl/rhi_gl.cpp
+    "${upstream}/src/rhi/rhi.cpp" "${upstream}/src/rhi/null/rhi_null.cpp" "${upstream}/src/render/gs_shaders.cpp")
+target_include_directories(nx_rhi_tests PUBLIC "${PORT_ROOT}/src" "${upstream}/src" "${NX_SHADER_DIR}")
+target_compile_definitions(nx_rhi_tests PUBLIC VCS_HAVE_OPENGL=1)
+target_compile_options(nx_rhi_tests PRIVATE -Wall -Wextra -ffp-contract=off)
+target_link_libraries(nx_rhi_tests PUBLIC glad nx_imgui)
+add_dependencies(nx_rhi_tests nx_glsl)
+add_executable(gtavcs_rhi_tests src/rhi_tests/switch_main.cpp src/platform/gl_loader_egl.cpp)
+set_target_properties(gtavcs_rhi_tests PROPERTIES SUFFIX ".elf")
+target_include_directories(gtavcs_rhi_tests PRIVATE ${NX_SDL2_INCLUDE_DIRS} ${NX_EGL_INCLUDE_DIRS})
+target_compile_definitions(gtavcs_rhi_tests PRIVATE SDL_MAIN_HANDLED _POSIX_C_SOURCE=200809L)
+target_compile_options(gtavcs_rhi_tests PRIVATE -Wall -Wextra ${NX_SDL2_CFLAGS_OTHER} ${NX_EGL_CFLAGS_OTHER})
+target_link_directories(gtavcs_rhi_tests PRIVATE "${SWITCH_PORTLIBS}/lib")
+target_link_options(gtavcs_rhi_tests PRIVATE "-Wl,-Map,${CMAKE_CURRENT_BINARY_DIR}/gtavcs_rhi_tests.map"
+    ${NX_SDL2_STATIC_LDFLAGS_OTHER} ${NX_GL_STATIC_LDFLAGS_OTHER} ${NX_EGL_STATIC_LDFLAGS_OTHER})
+target_link_libraries(gtavcs_rhi_tests PRIVATE nx_rhi_tests
+    -Wl,--start-group ${NX_SDL2_STATIC_LIBRARIES} ${NX_GL_STATIC_LIBRARIES} ${NX_EGL_STATIC_LIBRARIES} "${NX_LIBRARY}" m
+    -Wl,--end-group)
+nx_generate_nacp(OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/gtavcs_rhi_tests.nacp"
+    NAME "GTA VCS NX RHI tests" AUTHOR "gtavcs_nx contributors" VERSION "${PROJECT_VERSION}")
+nx_create_nro(gtavcs_rhi_tests OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/gtavcs_rhi_tests.nro"
+    NACP "${CMAKE_CURRENT_BINARY_DIR}/gtavcs_rhi_tests.nacp")
 
 if(NOT NX_PRIVATE_GENERATED_ARCHIVE)
     # Source CI: every public piece compiles; without the user's generated code there is no game to link.

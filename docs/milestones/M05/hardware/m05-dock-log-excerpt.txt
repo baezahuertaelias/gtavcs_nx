@@ -1,0 +1,104 @@
+[boot] checked chdir succeeded: sdmc:/switch/gtavcs_nx/gamefolder
+[boot] SDL Switch; audio switch
+[boot] GL 4.3 (Core Profile) Mesa 20.1.0-rc3; renderer NV120
+[core] root=/switch/gtavcs_nx/gamefolder userdata=/switch/gtavcs_nx/gamefolder/userdata/tests/m05-dock settings=/switch/gtavcs_nx/gamefolder/userdata/tests/m05-dock/vcs.ini mc0=/switch/gtavcs_nx/gamefolder/userdata/tests/m05-dock/mc0 mc1=/switch/gtavcs_nx/gamefolder/userdata/tests/m05-dock/mc1 backups=/switch/gtavcs_nx/gamefolder/userdata/tests/m05-dock/backups cache=/switch/gtavcs_nx/gamefolder/userdata/tests/m05-dock/cache elf=/switch/gtavcs_nx/gamefolder/SLUS_215.90 profile=m05-dock
+[core] /switch/gtavcs_nx/gamefolder/SLUS_215.90 sha1 d1832508caf0990c2291c0f255c96a889cce9f88: GTA: Vice City Stories - USA (SLUS-21590) v1.00
+[core] folder disc 1066336 sectors, 0 mods applied; no disc image opened
+[gs] hardware GS renderer (OpenGL)
+[rhi] OpenGL 4.3: clip_control 1, viewport_array 1, anisotropy 1 (max 16), KHR_debug 1, dual-source draw buffers 1, samples 8/8/8, max texture 16384, framebuffer encoding 0x2601
+[present] OpenGL on NV120 (4.3 (Core Profile) Mesa 20.1.0-rc3; GLSL 4.30)
+[core] io elf=/switch/gtavcs_nx/gamefolder/SLUS_215.90 host=/switch/gtavcs_nx/gamefolder cd=/switch/gtavcs_nx/gamefolder mc=/switch/gtavcs_nx/gamefolder/userdata/tests/m05-dock/mc0 cdImage=(none)
+[core] desktop watchdog and sampling profiler not started (detached desktop threads; progress comes from the run's report lines)
+[lifecycle] suspension_clock=1
+[lifecycle] resume=0 focus_notifications=1 focus=1
+[video] drawable=1920x1080 window=1920x1080 mode=1 (was -1); 0 frames, 0.00 ms each since the last change
+[gs-hw] renderer ready (NV120 (4.3 (Core Profile) Mesa 20.1.0-rc3; GLSL 4.30)), scale 1x
+[present] display aspect 1.333
+[gs-hw] a draw samples its own render target: reading a copy
+[rhi-stats] textures 26 (31.1 MiB) buffers 21 (1.3 MiB) samplers 9 pipelines 23 programs 15 fbos 16 pending 0 | draws 524 passes 430 presents 220 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[gs-hw] input delay by stage: input -> queued 1414.9 ms (game, render worker, GS stage), queued -> taken 31.9 ms
+[rhi-stats] textures 644 (39.7 MiB) buffers 1031 (2.7 MiB) samplers 9 pipelines 31 programs 15 fbos 16 pending 0 | draws 28463 passes 4469 presents 473 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[gs-hw] input delay by stage: input -> queued 147.3 ms (game, render worker, GS stage), queued -> taken 33.5 ms
+[rhi-stats] textures 806 (43.6 MiB) buffers 1369 (4.2 MiB) samplers 9 pipelines 35 programs 17 fbos 16 pending 0 | draws 87592 passes 5977 presents 670 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[gs-hw] input delay by stage: input -> queued 153.9 ms (game, render worker, GS stage), queued -> taken 15.5 ms
+[rhi-stats] textures 875 (53.8 MiB) buffers 1597 (4.7 MiB) samplers 9 pipelines 38 programs 18 fbos 17 pending 0 | draws 144514 passes 8445 presents 909 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[gs-hw] input delay by stage: input -> queued 49.9 ms (game, render worker, GS stage), queued -> taken 18.2 ms
+[rhi-stats] textures 1009 (61.6 MiB) buffers 1643 (4.9 MiB) samplers 9 pipelines 41 programs 18 fbos 18 pending 0 | draws 213982 passes 12508 presents 1180 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[gs-hw] input delay by stage: input -> queued 40.2 ms (game, render worker, GS stage), queued -> taken 10.9 ms
+[rhi-stats] textures 1145 (70.0 MiB) buffers 1643 (4.9 MiB) samplers 9 pipelines 41 programs 18 fbos 18 pending 0 | draws 288908 passes 16823 presents 1456 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[gs-hw] input delay by stage: input -> queued 42.2 ms (game, render worker, GS stage), queued -> taken 10.5 ms
+[rhi-stats] textures 1207 (73.8 MiB) buffers 1643 (4.9 MiB) samplers 9 pipelines 41 programs 18 fbos 18 pending 0 | draws 322337 passes 18936 presents 1610 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[gs-hw] input delay by stage: input -> queued 617.9 ms (game, render worker, GS stage), queued -> taken 325.6 ms
+[rhi-stats] textures 1343 (82.3 MiB) buffers 1643 (4.9 MiB) samplers 9 pipelines 41 programs 18 fbos 18 pending 0 | draws 393719 passes 23124 presents 1883 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[gs-hw] input delay by stage: input -> queued 40.5 ms (game, render worker, GS stage), queued -> taken 11.6 ms
+[rhi-stats] textures 1480 (90.8 MiB) buffers 1643 (4.9 MiB) samplers 9 pipelines 41 programs 18 fbos 18 pending 0 | draws 466168 passes 27374 presents 2160 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[gs-hw] input delay by stage: input -> queued 40.3 ms (game, render worker, GS stage), queued -> taken 11.5 ms
+[rhi-stats] textures 1558 (95.7 MiB) buffers 1643 (4.9 MiB) samplers 9 pipelines 41 programs 18 fbos 18 pending 0 | draws 507409 passes 29792 presents 2315 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[gs-hw] input delay by stage: input -> queued 95.3 ms (game, render worker, GS stage), queued -> taken 234.0 ms
+[rhi-stats] textures 1678 (103.2 MiB) buffers 4840 (14.3 MiB) samplers 9 pipelines 41 programs 18 fbos 18 pending 0 | draws 571371 passes 33649 presents 2532 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[gs-hw] input delay by stage: input -> queued 373.7 ms (game, render worker, GS stage), queued -> taken 91.1 ms
+[rhi-stats] textures 1806 (111.2 MiB) buffers 8264 (24.4 MiB) samplers 9 pipelines 41 programs 18 fbos 18 pending 0 | draws 638482 passes 37517 presents 2717 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[gs-hw] input delay by stage: input -> queued 44.7 ms (game, render worker, GS stage), queued -> taken 8.8 ms
+[video] drawable=1920x1080 window=1920x1080 mode=0 (was 1); 2880 frames, 22.55 ms each since the last change
+[video] drawable=1280x720 window=1280x720 mode=0 (was 0); 1 frames, 59.07 ms each since the last change
+[rhi-stats] textures 1902 (106.2 MiB) buffers 10856 (32.0 MiB) samplers 9 pipelines 41 programs 18 fbos 18 pending 0 | draws 689259 passes 40500 presents 2885 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[gs-hw] input delay by stage: input -> queued 75.2 ms (game, render worker, GS stage), queued -> taken 36.9 ms
+[rhi-stats] textures 1984 (111.3 MiB) buffers 10070 (31.8 MiB) samplers 9 pipelines 41 programs 18 fbos 18 pending 0 | draws 733190 passes 43177 presents 3009 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[gs-hw] input delay by stage: input -> queued 154.5 ms (game, render worker, GS stage), queued -> taken 84.8 ms
+[rhi-stats] textures 2087 (117.7 MiB) buffers 9849 (31.2 MiB) samplers 9 pipelines 41 programs 18 fbos 18 pending 0 | draws 787361 passes 46279 presents 3124 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[gs-hw] input delay by stage: input -> queued 60.6 ms (game, render worker, GS stage), queued -> taken 28.1 ms
+[rhi-stats] textures 2187 (124.0 MiB) buffers 9549 (30.3 MiB) samplers 9 pipelines 41 programs 18 fbos 18 pending 0 | draws 839862 passes 49304 presents 3248 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[gs-hw] input delay by stage: input -> queued 53.2 ms (game, render worker, GS stage), queued -> taken 39.0 ms
+[rhi-stats] textures 2278 (129.7 MiB) buffers 12005 (37.5 MiB) samplers 9 pipelines 41 programs 18 fbos 18 pending 0 | draws 888261 passes 52230 presents 3400 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[gs-hw] input delay by stage: input -> queued 231.1 ms (game, render worker, GS stage), queued -> taken 82.3 ms
+[rhi-stats] textures 2383 (136.2 MiB) buffers 11840 (37.0 MiB) samplers 9 pipelines 41 programs 18 fbos 18 pending 0 | draws 943448 passes 55419 presents 3524 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[gs-hw] input delay by stage: input -> queued 54.1 ms (game, render worker, GS stage), queued -> taken 32.3 ms
+[video] drawable=1280x720 window=1280x720 mode=1 (was 0); 683 frames, 42.59 ms each since the last change
+[video] drawable=1920x1080 window=1920x1080 mode=1 (was 1); 1 frames, 433.00 ms each since the last change
+[rhi-stats] textures 2457 (151.8 MiB) buffers 10838 (34.1 MiB) samplers 9 pipelines 41 programs 18 fbos 18 pending 0 | draws 982614 passes 57773 presents 3651 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[gs-hw] input delay by stage: input -> queued 104.8 ms (game, render worker, GS stage), queued -> taken 61.9 ms
+[rhi-stats] textures 2538 (156.9 MiB) buffers 10025 (31.7 MiB) samplers 9 pipelines 41 programs 18 fbos 18 pending 0 | draws 1026137 passes 60530 presents 3824 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[gs-hw] input delay by stage: input -> queued 293.1 ms (game, render worker, GS stage), queued -> taken 214.4 ms
+[rhi-stats] textures 2652 (164.0 MiB) buffers 10097 (31.9 MiB) samplers 9 pipelines 41 programs 18 fbos 18 pending 0 | draws 1086021 passes 64042 presents 4005 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[gs-hw] input delay by stage: input -> queued 55.3 ms (game, render worker, GS stage), queued -> taken 10.0 ms
+[rhi-stats] textures 2769 (171.3 MiB) buffers 10253 (32.4 MiB) samplers 9 pipelines 41 programs 18 fbos 18 pending 0 | draws 1147381 passes 67618 presents 4172 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[gs-hw] input delay by stage: input -> queued 51.5 ms (game, render worker, GS stage), queued -> taken 26.1 ms
+[rhi-stats] textures 2841 (175.8 MiB) buffers 9194 (29.3 MiB) samplers 9 pipelines 41 programs 18 fbos 18 pending 0 | draws 1186391 passes 70176 presents 4357 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[gs-hw] input delay by stage: input -> queued 292.7 ms (game, render worker, GS stage), queued -> taken 199.7 ms
+[video] drawable=1920x1080 window=1920x1080 mode=0 (was 1); 846 frames, 34.79 ms each since the last change
+[video] drawable=1280x720 window=1280x720 mode=0 (was 0); 1 frames, 122.36 ms each since the last change
+[rhi-stats] textures 2921 (174.2 MiB) buffers 11354 (35.6 MiB) samplers 9 pipelines 41 programs 18 fbos 18 pending 0 | draws 1228728 passes 72698 presents 4464 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[gs-hw] input delay by stage: input -> queued 92.4 ms (game, render worker, GS stage), queued -> taken 47.2 ms
+[rhi-stats] textures 3010 (179.8 MiB) buffers 10757 (33.8 MiB) samplers 9 pipelines 41 programs 18 fbos 18 pending 0 | draws 1275689 passes 75469 presents 4579 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[gs-hw] input delay by stage: input -> queued 71.4 ms (game, render worker, GS stage), queued -> taken 34.1 ms
+[rhi-stats] textures 2308 (162.1 MiB) buffers 9052 (28.8 MiB) samplers 9 pipelines 41 programs 18 fbos 18 pending 0 | draws 1301638 passes 77142 presents 4679 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[gs-hw] input delay by stage: input -> queued 337.8 ms (game, render worker, GS stage), queued -> taken 131.8 ms
+[rhi-stats] textures 2376 (166.4 MiB) buffers 10885 (34.2 MiB) samplers 9 pipelines 41 programs 18 fbos 18 pending 0 | draws 1337849 passes 79360 presents 4795 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[gs-hw] input delay by stage: input -> queued 110.3 ms (game, render worker, GS stage), queued -> taken 28.1 ms
+[rhi-stats] textures 2472 (172.4 MiB) buffers 10471 (33.0 MiB) samplers 9 pipelines 41 programs 18 fbos 18 pending 0 | draws 1388313 passes 82293 presents 4904 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[gs-hw] input delay by stage: input -> queued 69.5 ms (game, render worker, GS stage), queued -> taken 33.1 ms
+[rhi-stats] textures 2527 (175.8 MiB) buffers 11956 (37.4 MiB) samplers 9 pipelines 41 programs 18 fbos 18 pending 0 | draws 1417808 passes 84138 presents 5003 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[gs-hw] input delay by stage: input -> queued 301.6 ms (game, render worker, GS stage), queued -> taken 123.9 ms
+[video] drawable=1280x720 window=1280x720 mode=1 (was 0); 670 frames, 46.25 ms each since the last change
+[video] drawable=1920x1080 window=1920x1080 mode=1 (was 1); 1 frames, 461.34 ms each since the last change
+[rhi-stats] textures 2593 (186.6 MiB) buffers 10738 (33.8 MiB) samplers 9 pipelines 41 programs 18 fbos 18 pending 0 | draws 1452961 passes 86287 presents 5113 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[gs-hw] input delay by stage: input -> queued 140.1 ms (game, render worker, GS stage), queued -> taken 53.5 ms
+[rhi-stats] textures 2670 (191.4 MiB) buffers 9817 (31.1 MiB) samplers 9 pipelines 41 programs 18 fbos 18 pending 0 | draws 1493763 passes 88764 presents 5262 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[gs-hw] input delay by stage: input -> queued 109.2 ms (game, render worker, GS stage), queued -> taken 16.5 ms
+[rhi-stats] textures 2721 (198.9 MiB) buffers 11187 (35.1 MiB) samplers 9 pipelines 41 programs 18 fbos 18 pending 0 | draws 1521272 passes 90516 presents 5374 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[gs-hw] input delay by stage: input -> queued 695.0 ms (game, render worker, GS stage), queued -> taken 301.8 ms
+[rhi-stats] textures 2799 (203.8 MiB) buffers 10293 (32.5 MiB) samplers 9 pipelines 41 programs 18 fbos 18 pending 0 | draws 1562556 passes 92966 presents 5492 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[gs-hw] input delay by stage: input -> queued 99.4 ms (game, render worker, GS stage), queued -> taken 27.1 ms
+[rhi-stats] textures 2897 (209.9 MiB) buffers 9937 (31.4 MiB) samplers 9 pipelines 41 programs 18 fbos 18 pending 0 | draws 1614194 passes 95990 presents 5634 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[gs-hw] input delay by stage: input -> queued 67.3 ms (game, render worker, GS stage), queued -> taken 18.0 ms
+[rhi-stats] textures 2977 (214.9 MiB) buffers 9097 (29.0 MiB) samplers 9 pipelines 41 programs 18 fbos 18 pending 0 | draws 1656441 passes 98493 presents 5771 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[gs-hw] input delay by stage: input -> queued 69.7 ms (game, render worker, GS stage), queued -> taken 40.6 ms
+[rhi-stats] textures 2312 (176.0 MiB) buffers 11388 (35.7 MiB) samplers 9 pipelines 41 programs 18 fbos 18 pending 0 | draws 1702021 passes 101358 presents 5971 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[gs-hw] input delay by stage: input -> queued 508.4 ms (game, render worker, GS stage), queued -> taken 210.9 ms
+[rhi-stats] textures 2413 (182.3 MiB) buffers 11110 (34.9 MiB) samplers 9 pipelines 41 programs 18 fbos 18 pending 0 | draws 1755221 passes 104493 presents 6132 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[gs-hw] input delay by stage: input -> queued 63.4 ms (game, render worker, GS stage), queued -> taken 15.5 ms
+[core] orderly stop after 6250 frames
+[core] game thread joined, render worker and platform stopped
+[core] runtime destroyed
+[core] folder disc closed
+[shutdown] core, context, window and SDL closed

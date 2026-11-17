@@ -1,0 +1,14 @@
+DONE
+images 127
+failed_checks 0
+gl_errors 0
+debug_messages 0
+incomplete_framebuffers 0
+owner_violations 0
+rejected 5
+hazards 1
+compile_failures 0
+off_owner_created 0
+fences_waited 0
+textures_left 0
+used_memory_end 726985008

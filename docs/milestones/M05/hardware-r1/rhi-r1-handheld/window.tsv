@@ -1,0 +1,130 @@
+t	event	a	b	detail
+0	window_readback	1280	720	1280x720, 0 differing pixels
+2.0228e-05	hand	0	0	dock / undock by hand (0-40 s), nothing resized by the program
+2.0228e-05	mode	1280	720	operation mode 0 (was -1)
+2.0228e-05	drawable	1280	720	operation mode 0
+1.00197	interval	63	1	median_ms 16.6636 max_ms 17.5066 mode 0 phase 0
+2.00204	interval	60	1	median_ms 16.6676 max_ms 16.7561 mode 0 phase 0
+3.01868	interval	61	1	median_ms 16.6708 max_ms 16.7381 mode 0 phase 0
+4.01869	interval	60	1	median_ms 16.6621 max_ms 16.7631 mode 0 phase 0
+5.03538	interval	61	1	median_ms 16.6734 max_ms 16.7509 mode 0 phase 0
+6.03539	interval	60	1	median_ms 16.6654 max_ms 16.7954 mode 0 phase 0
+7.03541	interval	60	1	median_ms 16.6609 max_ms 16.7977 mode 0 phase 0
+8.05202	interval	61	1	median_ms 16.6713 max_ms 16.793 mode 0 phase 0
+9.06869	interval	61	1	median_ms 16.6718 max_ms 16.7837 mode 0 phase 0
+10.0687	interval	60	1	median_ms 16.6558 max_ms 16.7764 mode 0 phase 0
+11.0853	interval	61	1	median_ms 16.6681 max_ms 16.7773 mode 0 phase 0
+12.0854	interval	60	1	median_ms 16.6689 max_ms 16.7889 mode 0 phase 0
+13.102	interval	61	1	median_ms 16.671 max_ms 16.7702 mode 0 phase 0
+14.102	interval	60	1	median_ms 16.6665 max_ms 16.7889 mode 0 phase 0
+15.102	interval	60	1	median_ms 16.6658 max_ms 16.7823 mode 0 phase 0
+16.1021	interval	60	1	median_ms 16.6737 max_ms 16.7956 mode 0 phase 0
+17.1187	interval	61	1	median_ms 16.663 max_ms 16.7885 mode 0 phase 0
+18.1187	interval	60	1	median_ms 16.662 max_ms 16.8174 mode 0 phase 0
+19.1187	interval	60	1	median_ms 16.6666 max_ms 16.7894 mode 0 phase 0
+20.1353	interval	61	1	median_ms 16.6589 max_ms 16.7864 mode 0 phase 0
+21.152	interval	61	1	median_ms 16.6679 max_ms 16.8026 mode 0 phase 0
+22.1521	interval	60	1	median_ms 16.6747 max_ms 16.7994 mode 0 phase 0
+23.1687	interval	61	1	median_ms 16.6663 max_ms 16.7963 mode 0 phase 0
+24.1687	interval	60	1	median_ms 16.6618 max_ms 16.7844 mode 0 phase 0
+25.1854	interval	61	1	median_ms 16.6715 max_ms 16.7547 mode 0 phase 0
+26.1854	interval	60	1	median_ms 16.673 max_ms 16.7702 mode 0 phase 0
+27.202	interval	61	1	median_ms 16.6657 max_ms 16.7703 mode 0 phase 0
+28.2186	interval	61	1	median_ms 16.6698 max_ms 16.7831 mode 0 phase 0
+29.2187	interval	60	1	median_ms 16.6707 max_ms 16.779 mode 0 phase 0
+30.2354	interval	61	1	median_ms 16.6777 max_ms 16.769 mode 0 phase 0
+31.2354	interval	60	1	median_ms 16.6804 max_ms 16.7705 mode 0 phase 0
+32.252	interval	61	1	median_ms 16.6651 max_ms 16.7737 mode 0 phase 0
+33.2521	interval	60	1	median_ms 16.6808 max_ms 16.7612 mode 0 phase 0
+34.2686	interval	61	1	median_ms 16.6715 max_ms 16.7817 mode 0 phase 0
+35.2687	interval	60	1	median_ms 16.6711 max_ms 16.7802 mode 0 phase 0
+36.2853	interval	61	1	median_ms 16.6648 max_ms 16.7544 mode 0 phase 0
+37.2853	interval	60	1	median_ms 16.6769 max_ms 16.7764 mode 0 phase 0
+38.2854	interval	60	1	median_ms 16.6787 max_ms 16.7689 mode 0 phase 0
+39.302	interval	61	1	median_ms 16.6715 max_ms 16.7762 mode 0 phase 0
+40.002	swap_interval	1	1	SDL_GL_SetSwapInterval / Get
+40.3021	interval	61	1	median_ms 16.6704 max_ms 16.786 mode 0 phase 1
+41.3187	interval	61	1	median_ms 16.6763 max_ms 16.7782 mode 0 phase 1
+42.3187	interval	60	1	median_ms 16.6734 max_ms 16.7773 mode 0 phase 1
+43.3187	interval	60	1	median_ms 16.6651 max_ms 16.7709 mode 0 phase 1
+44.3354	interval	61	1	median_ms 16.6686 max_ms 16.7818 mode 0 phase 1
+45.002	swap_interval	0	0	SDL_GL_SetSwapInterval / Get
+45.3357	interval	78	0	median_ms 16.5912 max_ms 16.7906 mode 0 phase 2
+46.3357	interval	120	0	median_ms 16.1477 max_ms 16.3637 mode 0 phase 2
+47.352	interval	121	0	median_ms 0.497848 max_ms 16.3784 mode 0 phase 2
+48.3524	interval	121	0	median_ms 16.0534 max_ms 16.3935 mode 0 phase 2
+49.3686	interval	121	0	median_ms 0.476164 max_ms 16.3832 mode 0 phase 2
+50.0019	swap_interval	2	2	SDL_GL_SetSwapInterval / Get
+50.3854	interval	90	2	median_ms 16.1964 max_ms 33.3833 mode 0 phase 3
+51.4187	interval	31	2	median_ms 33.3338 max_ms 33.3862 mode 0 phase 3
+52.4187	interval	30	2	median_ms 33.332 max_ms 33.3937 mode 0 phase 3
+53.452	interval	31	2	median_ms 33.3257 max_ms 33.4038 mode 0 phase 3
+54.452	interval	30	2	median_ms 33.333 max_ms 33.4177 mode 0 phase 3
+55.0187	set_window_size	1920	1080	SDL_SetWindowSize
+55.0187	mode	1920	1080	operation mode 0 (was 0)
+55.0187	drawable	1920	1080	operation mode 0
+55.4853	interval	32	1	median_ms 33.3327 max_ms 50.6619 mode 0 phase 4
+56.4853	interval	30	1	median_ms 33.3528 max_ms 33.3908 mode 0 phase 4
+57.5187	interval	31	1	median_ms 33.3341 max_ms 33.3793 mode 0 phase 4
+58.0187	set_window_size	960	540	SDL_SetWindowSize
+58.0187	mode	960	540	operation mode 0 (was 0)
+58.0187	drawable	960	540	operation mode 0
+58.5354	interval	32	1	median_ms 33.3373 max_ms 44.6711 mode 0 phase 5
+59.5354	interval	30	1	median_ms 33.3366 max_ms 33.3843 mode 0 phase 5
+60.5686	interval	31	1	median_ms 33.3286 max_ms 33.4002 mode 0 phase 5
+61.0021	set_window_size	1280	720	SDL_SetWindowSize
+61.0021	mode	1280	720	operation mode 0 (was 0)
+61.0021	drawable	1280	720	operation mode 0
+61.5854	interval	32	1	median_ms 33.3361 max_ms 44.6443 mode 0 phase 6
+62.6186	interval	31	1	median_ms 33.336 max_ms 33.3824 mode 0 phase 6
+63.652	interval	31	1	median_ms 33.3363 max_ms 33.3862 mode 0 phase 6
+64.0187	set_window_size	1280	720	SDL_SetWindowSize
+64.652	interval	32	1	median_ms 33.3341 max_ms 33.5232 mode 0 phase 7
+65.6853	interval	31	1	median_ms 33.3319 max_ms 33.4207 mode 0 phase 7
+66.6853	interval	30	1	median_ms 33.3332 max_ms 33.3812 mode 0 phase 7
+67.0187	hand	0	0	dock / undock by hand again (67-110 s), after the program's resizes
+67.7187	interval	31	1	median_ms 33.3325 max_ms 33.3946 mode 0 phase 8
+68.752	interval	31	1	median_ms 33.3337 max_ms 33.3839 mode 0 phase 8
+69.7853	interval	31	1	median_ms 33.3319 max_ms 33.3798 mode 0 phase 8
+70.8186	interval	31	1	median_ms 33.3357 max_ms 33.3872 mode 0 phase 8
+71.8187	interval	30	1	median_ms 33.3329 max_ms 33.4017 mode 0 phase 8
+72.852	interval	31	1	median_ms 33.3292 max_ms 33.3945 mode 0 phase 8
+73.8853	interval	31	1	median_ms 33.3388 max_ms 33.398 mode 0 phase 8
+74.9187	interval	31	1	median_ms 33.3377 max_ms 33.4296 mode 0 phase 8
+75.952	interval	31	1	median_ms 33.3333 max_ms 33.4037 mode 0 phase 8
+76.9853	interval	31	1	median_ms 33.3358 max_ms 33.3886 mode 0 phase 8
+77.9853	interval	30	1	median_ms 33.3287 max_ms 33.3862 mode 0 phase 8
+78.9854	interval	30	1	median_ms 33.3278 max_ms 33.3876 mode 0 phase 8
+80.0186	interval	31	1	median_ms 33.3362 max_ms 33.3766 mode 0 phase 8
+81.0187	interval	30	1	median_ms 33.3445 max_ms 33.4274 mode 0 phase 8
+82.0187	interval	30	1	median_ms 33.329 max_ms 33.4181 mode 0 phase 8
+83.052	interval	31	1	median_ms 33.3304 max_ms 33.3974 mode 0 phase 8
+84.052	interval	30	1	median_ms 33.3341 max_ms 33.4318 mode 0 phase 8
+85.0853	interval	31	1	median_ms 33.3293 max_ms 33.4081 mode 0 phase 8
+86.0854	interval	30	1	median_ms 33.3371 max_ms 33.4009 mode 0 phase 8
+87.0854	interval	30	1	median_ms 33.3395 max_ms 33.3914 mode 0 phase 8
+88.1186	interval	31	1	median_ms 33.3368 max_ms 33.3834 mode 0 phase 8
+89.1186	interval	30	1	median_ms 33.3383 max_ms 33.4527 mode 0 phase 8
+90.1187	interval	30	1	median_ms 33.3405 max_ms 33.3941 mode 0 phase 8
+91.152	interval	31	1	median_ms 33.3326 max_ms 33.4052 mode 0 phase 8
+92.1853	interval	31	1	median_ms 33.33 max_ms 33.3974 mode 0 phase 8
+93.1854	interval	30	1	median_ms 33.3344 max_ms 33.3846 mode 0 phase 8
+94.2186	interval	31	1	median_ms 33.3369 max_ms 33.3943 mode 0 phase 8
+95.2186	interval	30	1	median_ms 33.3327 max_ms 33.4127 mode 0 phase 8
+96.2187	interval	30	1	median_ms 33.3335 max_ms 33.3932 mode 0 phase 8
+97.252	interval	31	1	median_ms 33.3281 max_ms 33.389 mode 0 phase 8
+98.252	interval	30	1	median_ms 33.3337 max_ms 33.3895 mode 0 phase 8
+99.252	interval	30	1	median_ms 33.3334 max_ms 33.4059 mode 0 phase 8
+100.285	interval	31	1	median_ms 33.3175 max_ms 33.429 mode 0 phase 8
+101.319	interval	31	1	median_ms 33.3284 max_ms 33.3955 mode 0 phase 8
+102.352	interval	31	1	median_ms 33.3341 max_ms 33.3728 mode 0 phase 8
+103.385	interval	31	1	median_ms 33.333 max_ms 33.3852 mode 0 phase 8
+104.385	interval	30	1	median_ms 33.3336 max_ms 33.368 mode 0 phase 8
+105.419	interval	31	1	median_ms 33.3368 max_ms 33.3865 mode 0 phase 8
+106.452	interval	31	1	median_ms 33.333 max_ms 33.3868 mode 0 phase 8
+107.452	interval	30	1	median_ms 33.3433 max_ms 33.3986 mode 0 phase 8
+108.485	interval	31	1	median_ms 33.3335 max_ms 33.4151 mode 0 phase 8
+109.519	interval	31	1	median_ms 33.3328 max_ms 33.4388 mode 0 phase 8
+summary	interval_1	swaps 270 in 4.50 s = 60.0 per s	median_ms 16.668 p95 16.757
+summary	interval_0	swaps 540 in 4.50 s = 120.0 per s	median_ms 16.053 p95 16.296
+summary	interval_2	swaps 135 in 4.50 s = 30.0 per s	median_ms 33.332 p95 33.392

@@ -1,0 +1,104 @@
+t	event	width	height	detail
+1.7628e-05	hand	0	0	dock / undock now (0-60 s)
+1.7628e-05	mode	1280	720	operation mode 0 (was -1)
+1.7628e-05	drawable	1280	720	operation mode 0
+1.0124	interval	64	0	median_ms 16.6692 max_ms 16.8044 mode 0
+2.01247	interval	60	0	median_ms 16.6653 max_ms 16.7587 mode 0
+3.01247	interval	60	0	median_ms 16.6671 max_ms 16.7514 mode 0
+4.02911	interval	61	0	median_ms 16.6663 max_ms 16.7546 mode 0
+5.02913	interval	60	0	median_ms 16.6664 max_ms 16.7555 mode 0
+6.04578	interval	61	0	median_ms 16.663 max_ms 16.7577 mode 0
+7.04578	interval	60	0	median_ms 16.6621 max_ms 16.7639 mode 0
+8.06243	interval	61	0	median_ms 16.6638 max_ms 16.7591 mode 0
+9.07915	interval	61	0	median_ms 16.6622 max_ms 16.7722 mode 0
+10.0792	interval	60	0	median_ms 16.6674 max_ms 16.7621 mode 0
+11.0958	interval	61	0	median_ms 16.6667 max_ms 16.7669 mode 0
+12.1124	interval	61	0	median_ms 16.6694 max_ms 16.7769 mode 0
+13.1124	interval	60	0	median_ms 16.6657 max_ms 16.8067 mode 0
+14.1291	interval	61	0	median_ms 16.665 max_ms 16.7765 mode 0
+15.1291	interval	60	0	median_ms 16.6671 max_ms 16.7506 mode 0
+16.1458	interval	61	0	median_ms 16.6644 max_ms 16.8058 mode 0
+17.1624	interval	61	0	median_ms 16.67 max_ms 16.764 mode 0
+18.1624	interval	60	0	median_ms 16.6603 max_ms 16.7772 mode 0
+19.1625	interval	60	0	median_ms 16.6657 max_ms 16.7749 mode 0
+20.1625	interval	60	0	median_ms 16.6666 max_ms 16.7681 mode 0
+21.1625	interval	60	0	median_ms 16.6657 max_ms 16.7807 mode 0
+22.1791	interval	61	0	median_ms 16.6651 max_ms 16.7552 mode 0
+23.1791	interval	60	0	median_ms 16.6648 max_ms 16.7804 mode 0
+24.1791	interval	60	0	median_ms 16.6592 max_ms 16.7476 mode 0
+25.1957	interval	61	0	median_ms 16.6654 max_ms 16.7745 mode 0
+26.1958	interval	60	0	median_ms 16.6773 max_ms 16.8076 mode 0
+27.1958	interval	60	0	median_ms 16.6704 max_ms 16.7844 mode 0
+28.2125	interval	61	0	median_ms 16.6693 max_ms 16.8088 mode 0
+29.229	interval	61	0	median_ms 16.6709 max_ms 16.758 mode 0
+30.2291	interval	60	0	median_ms 16.6632 max_ms 16.7632 mode 0
+31.2291	interval	60	0	median_ms 16.6618 max_ms 16.7497 mode 0
+32.2458	interval	61	0	median_ms 16.6619 max_ms 16.7686 mode 0
+33.2625	interval	61	0	median_ms 16.6702 max_ms 16.7713 mode 0
+34.2791	interval	61	0	median_ms 16.6642 max_ms 16.7581 mode 0
+35.2791	interval	60	0	median_ms 16.6614 max_ms 16.7681 mode 0
+36.2958	interval	61	0	median_ms 16.6645 max_ms 16.7494 mode 0
+37.2958	interval	60	0	median_ms 16.6681 max_ms 16.7882 mode 0
+38.3124	interval	61	0	median_ms 16.6743 max_ms 16.7607 mode 0
+39.3124	interval	60	0	median_ms 16.6736 max_ms 16.7713 mode 0
+40.3124	interval	60	0	median_ms 16.6625 max_ms 16.7833 mode 0
+41.329	interval	61	0	median_ms 16.6705 max_ms 16.7694 mode 0
+42.3291	interval	60	0	median_ms 16.666 max_ms 16.7575 mode 0
+43.3291	interval	60	0	median_ms 16.6691 max_ms 16.7714 mode 0
+44.3458	interval	61	0	median_ms 16.6622 max_ms 16.7578 mode 0
+45.3458	interval	60	0	median_ms 16.6705 max_ms 16.7588 mode 0
+46.3624	interval	61	0	median_ms 16.6632 max_ms 16.7681 mode 0
+47.3791	interval	61	0	median_ms 16.672 max_ms 16.759 mode 0
+48.3791	interval	60	0	median_ms 16.6655 max_ms 16.7674 mode 0
+49.3792	interval	60	0	median_ms 16.667 max_ms 16.7709 mode 0
+50.3957	interval	61	0	median_ms 16.6633 max_ms 16.7874 mode 0
+51.3958	interval	60	0	median_ms 16.6674 max_ms 16.7715 mode 0
+52.4125	interval	61	0	median_ms 16.6644 max_ms 16.7378 mode 0
+53.4291	interval	61	0	median_ms 16.664 max_ms 16.766 mode 0
+54.4291	interval	60	0	median_ms 16.6705 max_ms 16.839 mode 0
+55.4291	interval	60	0	median_ms 16.6646 max_ms 16.7933 mode 0
+56.4458	interval	61	0	median_ms 16.6706 max_ms 16.7763 mode 0
+57.4624	interval	61	0	median_ms 16.662 max_ms 16.7948 mode 0
+58.4625	interval	60	0	median_ms 16.663 max_ms 16.7857 mode 0
+59.4791	interval	61	0	median_ms 16.6654 max_ms 16.7472 mode 0
+60.0125	set_window_size	1280	720	SDL_SetWindowSize
+60.4794	interval	88	0	median_ms 16.2831 max_ms 28.2515 mode 0
+61.4958	interval	121	0	median_ms 0.495924 max_ms 16.4431 mode 0
+62.4962	interval	121	0	median_ms 16.1168 max_ms 16.3992 mode 0
+63.0125	set_window_size	1920	1080	SDL_SetWindowSize
+63.0125	mode	1920	1080	operation mode 0 (was 0)
+63.0125	drawable	1920	1080	operation mode 0
+63.4962	interval	117	0	median_ms 2.15665 max_ms 45.8271 mode 0
+64.5124	interval	121	0	median_ms 0.493792 max_ms 16.3148 mode 0
+65.5128	interval	121	0	median_ms 16.0746 max_ms 16.3854 mode 0
+66.0124	set_window_size	960	540	SDL_SetWindowSize
+66.0124	mode	960	540	operation mode 0 (was 0)
+66.0124	drawable	960	540	operation mode 0
+66.529	interval	118	0	median_ms 9.37508 max_ms 38.8736 mode 0
+67.5294	interval	121	0	median_ms 16.1513 max_ms 16.3589 mode 0
+68.5457	interval	121	0	median_ms 0.477984 max_ms 16.3617 mode 0
+69.0124	set_window_size	1280	720	SDL_SetWindowSize
+69.0124	mode	1280	720	operation mode 0 (was 0)
+69.0124	drawable	1280	720	operation mode 0
+69.5461	interval	118	0	median_ms 16.1713 max_ms 36.9612 mode 0
+70.5462	interval	120	0	median_ms 16.121 max_ms 16.4135 mode 0
+71.5624	interval	121	0	median_ms 0.468208 max_ms 16.4208 mode 0
+72.5627	interval	121	0	median_ms 16.1729 max_ms 16.3688 mode 0
+73.579	interval	121	0	median_ms 0.429104 max_ms 16.4283 mode 0
+74.5791	interval	120	0	median_ms 16.1677 max_ms 16.3535 mode 0
+75.5794	interval	121	0	median_ms 16.1513 max_ms 16.3743 mode 0
+76.5957	interval	121	0	median_ms 0.428688 max_ms 16.402 mode 0
+77.5957	interval	120	0	median_ms 16.136 max_ms 16.397 mode 0
+78.5961	interval	121	0	median_ms 16.1131 max_ms 16.3786 mode 0
+79.6124	interval	121	0	median_ms 0.424476 max_ms 16.3965 mode 0
+80.6124	interval	120	0	median_ms 16.1507 max_ms 16.3346 mode 0
+81.6128	interval	121	0	median_ms 16.1724 max_ms 16.3694 mode 0
+82.6128	interval	120	0	median_ms 16.0716 max_ms 16.3886 mode 0
+83.629	interval	121	0	median_ms 0.436852 max_ms 16.4098 mode 0
+84.629	interval	120	0	median_ms 16.1729 max_ms 16.3296 mode 0
+85.6294	interval	121	0	median_ms 16.138 max_ms 16.3944 mode 0
+86.6457	interval	121	0	median_ms 7.69304 max_ms 16.3958 mode 0
+87.6462	interval	121	0	median_ms 16.1329 max_ms 16.3629 mode 0
+88.6462	interval	120	0	median_ms 16.0665 max_ms 16.4257 mode 0
+89.6624	interval	121	0	median_ms 0.461032 max_ms 16.3793 mode 0
+summary	vsync_median_ms 8.968 p95 16.297 frames 1680	immediate_median_ms 9.375 p95 16.313 frames 1671

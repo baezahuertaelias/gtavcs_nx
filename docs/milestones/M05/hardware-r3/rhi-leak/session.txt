@@ -1,0 +1,6 @@
+18:55:45 == rhi-leak: rhi tests nro sha256=1d3d3af4ead1f77e8c3b07ba3430bd8893632b4bc9315cb912fe627f017366fd
+18:55:46 cleared /switch/gtavcs_nx/rhi-tests
+18:55:47 nxlink attempt=1 exit=0 output='Sending /switch/gtavcs_nx/gtavcs_rhi_tests.nro, 7268549 bytes\n2743243 sent (37.74%), 234 blocks'
+18:58:33 ftp back after 165s: the payload has ended
+18:58:42 rhi-leak: summary=['DONE', 'images 127', 'failed_checks 0'] compare_exit=0 compare_tail=['127 images, 101 byte-identical, 0 failures'] sd_matches_local=True new_crashes=[]
+18:58:42 RESULT rhi PASS

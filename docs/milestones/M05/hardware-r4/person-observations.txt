@@ -1,0 +1,8 @@
+2026-11-16 rhi-fixedwin-handheld (RHI tests NRO 43d6a9301ac639733fa52a6f1197de7f50288260138a041cb9dcc2e3c7349e62, commit 2e7df71, console 192.168.1.107, handheld only, no dock available):
+  person: the orientation card filled the whole handheld screen and was sharp ("yes").
+2026-11-16 rhi-fixedwin (same NRO 43d6a930..., console 192.168.1.107, started handheld; dock ~10 s, undock ~20 s, dock ~30 s, undock ~40 s after the card):
+  person: "everything looks good" (card full-screen and sharp after the docking changes).
+2026-11-16 rhi-noresizable (RHI tests NRO 58c458b00141fdcd7e4da28da7aa6472a3f27f91aa6d5702c3590007fd296401, window created without SDL_WINDOW_RESIZABLE, started handheld, 1280x720 kept through docking):
+  person: "everything was good" (card on the TV docked and on the handheld screen after undocking).
+2026-11-17 m05-dock (game NRO af94eee1b198c55846a3b7292e28ecf513d41bff463fcc4347de635691af77ba, window without SDL_WINDOW_RESIZABLE, started handheld; dock ~40 s, undock ~70 s, dock ~100 s, undock ~130 s):
+  person: "all good" (game picture on the TV and on the handheld screen).

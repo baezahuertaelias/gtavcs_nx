@@ -1,0 +1,6 @@
+14:39:36 == rhi-probe: rhi tests nro sha256=0277fb1a8c1249c3f1e1e9fe8b25f94ff33fc62af83116d84814d8f2c534b235
+14:39:37 cleared /switch/gtavcs_nx/rhi-tests
+14:39:38 nxlink attempt=1 exit=0 output='Sending /switch/gtavcs_nx/gtavcs_rhi_tests.nro, 7264453 bytes\n2740353 sent (37.72%), 234 blocks'
+14:42:24 ftp back after 165s: the payload has ended
+14:42:34 rhi-probe: summary=['DONE', 'images 127', 'failed_checks 0'] compare_exit=0 compare_tail=['127 images, 101 byte-identical, 0 failures'] sd_matches_local=True new_crashes=[]
+14:42:34 RESULT rhi PASS

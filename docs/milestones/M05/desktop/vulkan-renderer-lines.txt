@@ -1,0 +1,145 @@
+[gs] hardware GS renderer (Vulkan)
+[present] Vulkan on Intel(R) Graphics (ADL-N) (Intel open-source Mesa driver Mesa 25.0.7-2+deb13u1)
+[gs-hw] renderer ready (Intel(R) Graphics (ADL-N) (Intel open-source Mesa driver Mesa 25.0.7-2+deb13u1)), scale 1x
+[present] display aspect 1.333
+[rhi] vulkan per frame: 57 draws, 111 descriptor writes, 16.0 passes, 0.5 suspended, 36.3 barriers, 1.0 waits, 141 KB uploaded; 23 new pipelines (1305 ms); CPU ms waiting: fence 0.01, acquire 0.00, submit 0.23, present 0.00
+[rhi] per frame: 19 pipeline binds (18 shaders, 0 vertex layout, 2 state only: 1 blend, 0 depth); 44 pushes (54 buffer, 34 texture, 23 sampler writes); CPU ms (PS2X_HOST_SPIKES): prepareDraw 0.00 (binds 0.00, pushes 0.00), vkCmdDraw 0.00
+[rhi] input to GPU done: avg 140.5 ms, p50 30.4, p95 701.1, max 851.2 (194 frames; the display adds up to a refresh)
+[rhi] vulkan per frame: 1006 draws, 1512 descriptor writes, 26.2 passes, 0.9 suspended, 63.6 barriers, 1.0 waits, 790 KB uploaded; 7 new pipelines (90 ms); CPU ms waiting: fence 0.01, acquire 0.00, submit 0.33, present 0.00
+[rhi] per frame: 70 pipeline binds (68 shaders, 0 vertex layout, 3 state only: 2 blend, 0 depth); 687 pushes (903 buffer, 549 texture, 61 sampler writes); CPU ms (PS2X_HOST_SPIKES): prepareDraw 0.00 (binds 0.00, pushes 0.00), vkCmdDraw 0.00
+[rhi] input to GPU done: avg 38.2 ms, p50 32.7, p95 66.0, max 191.2 (283 frames; the display adds up to a refresh)
+[rhi] vulkan per frame: 1071 draws, 1520 descriptor writes, 23.0 passes, 0.7 suspended, 52.0 barriers, 1.0 waits, 922 KB uploaded; 1 new pipelines (0 ms); CPU ms waiting: fence 0.01, acquire 0.00, submit 0.38, present 0.00
+[rhi] per frame: 85 pipeline binds (83 shaders, 0 vertex layout, 2 state only: 1 blend, 0 depth); 646 pushes (883 buffer, 599 texture, 39 sampler writes); CPU ms (PS2X_HOST_SPIKES): prepareDraw 0.00 (binds 0.00, pushes 0.00), vkCmdDraw 0.00
+[rhi] input to GPU done: avg 84.9 ms, p50 68.1, p95 272.1, max 350.8 (249 frames; the display adds up to a refresh)
+[rhi] vulkan per frame: 478 draws, 572 descriptor writes, 21.2 passes, 0.7 suspended, 47.5 barriers, 1.0 waits, 545 KB uploaded; 3 new pipelines (0 ms); CPU ms waiting: fence 0.01, acquire 0.00, submit 0.25, present 0.00
+[rhi] per frame: 60 pipeline binds (58 shaders, 0 vertex layout, 2 state only: 1 blend, 0 depth); 368 pushes (401 buffer, 133 texture, 39 sampler writes); CPU ms (PS2X_HOST_SPIKES): prepareDraw 0.00 (binds 0.00, pushes 0.00), vkCmdDraw 0.00
+[rhi] input to GPU done: avg 38.2 ms, p50 32.4, p95 70.0, max 119.8 (282 frames; the display adds up to a refresh)
+[rhi] vulkan per frame: 546 draws, 680 descriptor writes, 33.6 passes, 1.0 suspended, 73.1 barriers, 1.0 waits, 852 KB uploaded; 0 new pipelines (0 ms); CPU ms waiting: fence 0.01, acquire 0.00, submit 0.24, present 0.00
+[rhi] per frame: 94 pipeline binds (92 shaders, 0 vertex layout, 2 state only: 1 blend, 0 depth); 469 pushes (482 buffer, 148 texture, 50 sampler writes); CPU ms (PS2X_HOST_SPIKES): prepareDraw 0.00 (binds 0.00, pushes 0.00), vkCmdDraw 0.00
+[rhi] input to GPU done: avg 35.7 ms, p50 32.8, p95 51.3, max 158.6 (293 frames; the display adds up to a refresh)
+[rhi] vulkan per frame: 526 draws, 662 descriptor writes, 32.6 passes, 1.0 suspended, 71.1 barriers, 1.0 waits, 855 KB uploaded; 0 new pipelines (0 ms); CPU ms waiting: fence 0.00, acquire 0.00, submit 0.22, present 0.00
+[rhi] per frame: 95 pipeline binds (93 shaders, 0 vertex layout, 2 state only: 1 blend, 0 depth); 446 pushes (459 buffer, 151 texture, 52 sampler writes); CPU ms (PS2X_HOST_SPIKES): prepareDraw 0.00 (binds 0.00, pushes 0.00), vkCmdDraw 0.00
+[rhi] input to GPU done: avg 30.4 ms, p50 29.9, p95 32.3, max 50.4 (300 frames; the display adds up to a refresh)
+[rhi] vulkan per frame: 505 draws, 641 descriptor writes, 31.9 passes, 1.0 suspended, 69.8 barriers, 1.0 waits, 838 KB uploaded; 0 new pipelines (0 ms); CPU ms waiting: fence 0.00, acquire 0.00, submit 0.19, present 0.00
+[rhi] per frame: 95 pipeline binds (93 shaders, 0 vertex layout, 2 state only: 1 blend, 0 depth); 425 pushes (438 buffer, 152 texture, 52 sampler writes); CPU ms (PS2X_HOST_SPIKES): prepareDraw 0.00 (binds 0.00, pushes 0.00), vkCmdDraw 0.00
+[rhi] input to GPU done: avg 29.7 ms, p50 29.2, p95 31.1, max 50.3 (301 frames; the display adds up to a refresh)
+[rhi] vulkan per frame: 503 draws, 639 descriptor writes, 31.8 passes, 1.0 suspended, 69.6 barriers, 1.0 waits, 834 KB uploaded; 0 new pipelines (0 ms); CPU ms waiting: fence 0.00, acquire 0.00, submit 0.34, present 0.00
+[rhi] per frame: 94 pipeline binds (92 shaders, 0 vertex layout, 2 state only: 1 blend, 0 depth); 423 pushes (436 buffer, 151 texture, 52 sampler writes); CPU ms (PS2X_HOST_SPIKES): prepareDraw 0.00 (binds 0.00, pushes 0.00), vkCmdDraw 0.00
+[rhi] input to GPU done: avg 30.1 ms, p50 29.1, p95 31.2, max 98.6 (298 frames; the display adds up to a refresh)
+[rhi] vulkan per frame: 488 draws, 619 descriptor writes, 31.0 passes, 1.0 suspended, 67.8 barriers, 1.0 waits, 846 KB uploaded; 0 new pipelines (0 ms); CPU ms waiting: fence 0.00, acquire 0.00, submit 0.18, present 0.00
+[rhi] per frame: 91 pipeline binds (89 shaders, 0 vertex layout, 2 state only: 1 blend, 0 depth); 410 pushes (422 buffer, 147 texture, 50 sampler writes); CPU ms (PS2X_HOST_SPIKES): prepareDraw 0.00 (binds 0.00, pushes 0.00), vkCmdDraw 0.00
+[rhi] input to GPU done: avg 34.7 ms, p50 30.2, p95 44.9, max 211.0 (293 frames; the display adds up to a refresh)
+[rhi] vulkan per frame: 506 draws, 639 descriptor writes, 32.0 passes, 1.0 suspended, 70.0 barriers, 1.0 waits, 912 KB uploaded; 0 new pipelines (0 ms); CPU ms waiting: fence 0.00, acquire 0.00, submit 0.19, present 0.00
+[rhi] per frame: 94 pipeline binds (92 shaders, 0 vertex layout, 2 state only: 1 blend, 0 depth); 425 pushes (438 buffer, 151 texture, 50 sampler writes); CPU ms (PS2X_HOST_SPIKES): prepareDraw 0.00 (binds 0.00, pushes 0.00), vkCmdDraw 0.00
+[rhi] input to GPU done: avg 30.4 ms, p50 30.4, p95 32.3, max 34.2 (300 frames; the display adds up to a refresh)
+[rhi] vulkan per frame: 506 draws, 639 descriptor writes, 32.0 passes, 1.0 suspended, 70.0 barriers, 1.0 waits, 913 KB uploaded; 0 new pipelines (0 ms); CPU ms waiting: fence 0.00, acquire 0.00, submit 0.22, present 0.00
+[rhi] per frame: 94 pipeline binds (92 shaders, 0 vertex layout, 2 state only: 1 blend, 0 depth); 425 pushes (438 buffer, 151 texture, 50 sampler writes); CPU ms (PS2X_HOST_SPIKES): prepareDraw 0.00 (binds 0.00, pushes 0.00), vkCmdDraw 0.00
+[rhi] input to GPU done: avg 29.9 ms, p50 29.8, p95 32.2, max 36.7 (300 frames; the display adds up to a refresh)
+[rhi] vulkan per frame: 504 draws, 637 descriptor writes, 31.9 passes, 1.0 suspended, 69.8 barriers, 1.0 waits, 910 KB uploaded; 0 new pipelines (0 ms); CPU ms waiting: fence 0.00, acquire 0.00, submit 0.21, present 0.00
+[rhi] per frame: 94 pipeline binds (92 shaders, 0 vertex layout, 2 state only: 1 blend, 0 depth); 424 pushes (437 buffer, 151 texture, 50 sampler writes); CPU ms (PS2X_HOST_SPIKES): prepareDraw 0.00 (binds 0.00, pushes 0.00), vkCmdDraw 0.00
+[rhi] input to GPU done: avg 29.5 ms, p50 28.8, p95 32.0, max 45.2 (300 frames; the display adds up to a refresh)
+[rhi] vulkan per frame: 493 draws, 623 descriptor writes, 31.3 passes, 1.0 suspended, 68.4 barriers, 1.0 waits, 888 KB uploaded; 0 new pipelines (0 ms); CPU ms waiting: fence 0.00, acquire 0.00, submit 0.27, present 0.00
+[rhi] per frame: 92 pipeline binds (90 shaders, 0 vertex layout, 2 state only: 1 blend, 0 depth); 414 pushes (427 buffer, 148 texture, 49 sampler writes); CPU ms (PS2X_HOST_SPIKES): prepareDraw 0.00 (binds 0.00, pushes 0.00), vkCmdDraw 0.00
+[rhi] input to GPU done: avg 35.8 ms, p50 32.7, p95 39.3, max 192.2 (293 frames; the display adds up to a refresh)
+[rhi] vulkan per frame: 506 draws, 639 descriptor writes, 32.0 passes, 1.0 suspended, 70.0 barriers, 1.0 waits, 912 KB uploaded; 0 new pipelines (0 ms); CPU ms waiting: fence 0.01, acquire 0.00, submit 0.28, present 0.00
+[rhi] per frame: 94 pipeline binds (92 shaders, 0 vertex layout, 2 state only: 1 blend, 0 depth); 425 pushes (438 buffer, 151 texture, 50 sampler writes); CPU ms (PS2X_HOST_SPIKES): prepareDraw 0.00 (binds 0.00, pushes 0.00), vkCmdDraw 0.00
+[rhi] input to GPU done: avg 32.5 ms, p50 32.5, p95 34.9, max 39.0 (298 frames; the display adds up to a refresh)
+[rhi] vulkan per frame: 578 draws, 720 descriptor writes, 31.3 passes, 1.0 suspended, 68.6 barriers, 1.0 waits, 983 KB uploaded; 0 new pipelines (0 ms); CPU ms waiting: fence 0.01, acquire 0.00, submit 0.27, present 0.00
+[rhi] per frame: 92 pipeline binds (90 shaders, 0 vertex layout, 2 state only: 1 blend, 0 depth); 499 pushes (515 buffer, 156 texture, 49 sampler writes); CPU ms (PS2X_HOST_SPIKES): prepareDraw 0.00 (binds 0.00, pushes 0.00), vkCmdDraw 0.00
+[rhi] input to GPU done: avg 34.0 ms, p50 32.9, p95 48.2, max 54.3 (297 frames; the display adds up to a refresh)
+[rhi] vulkan per frame: 685 draws, 842 descriptor writes, 31.5 passes, 1.0 suspended, 68.9 barriers, 1.0 waits, 1102 KB uploaded; 0 new pipelines (0 ms); CPU ms waiting: fence 0.01, acquire 0.00, submit 0.25, present 0.00
+[rhi] per frame: 92 pipeline binds (90 shaders, 0 vertex layout, 2 state only: 1 blend, 0 depth); 605 pushes (627 buffer, 166 texture, 49 sampler writes); CPU ms (PS2X_HOST_SPIKES): prepareDraw 0.00 (binds 0.00, pushes 0.00), vkCmdDraw 0.00
+[rhi] input to GPU done: avg 35.1 ms, p50 34.3, p95 40.4, max 52.7 (289 frames; the display adds up to a refresh)
+[rhi] vulkan per frame: 684 draws, 842 descriptor writes, 31.4 passes, 1.0 suspended, 68.7 barriers, 1.0 waits, 1099 KB uploaded; 0 new pipelines (0 ms); CPU ms waiting: fence 0.01, acquire 0.00, submit 0.26, present 0.00
+[rhi] per frame: 92 pipeline binds (90 shaders, 0 vertex layout, 2 state only: 1 blend, 0 depth); 605 pushes (627 buffer, 166 texture, 49 sampler writes); CPU ms (PS2X_HOST_SPIKES): prepareDraw 0.00 (binds 0.00, pushes 0.00), vkCmdDraw 0.00
+[rhi] input to GPU done: avg 35.4 ms, p50 35.0, p95 43.6, max 52.5 (286 frames; the display adds up to a refresh)
+[rhi] vulkan per frame: 798 draws, 972 descriptor writes, 30.8 passes, 1.0 suspended, 67.5 barriers, 1.0 waits, 1213 KB uploaded; 0 new pipelines (0 ms); CPU ms waiting: fence 0.01, acquire 0.00, submit 0.26, present 0.00
+[rhi] per frame: 90 pipeline binds (88 shaders, 0 vertex layout, 2 state only: 1 blend, 0 depth); 721 pushes (749 buffer, 174 texture, 49 sampler writes); CPU ms (PS2X_HOST_SPIKES): prepareDraw 0.00 (binds 0.00, pushes 0.00), vkCmdDraw 0.00
+[rhi] input to GPU done: avg 35.3 ms, p50 33.2, p95 51.0, max 53.8 (295 frames; the display adds up to a refresh)
+[rhi] vulkan per frame: 835 draws, 1013 descriptor writes, 29.0 passes, 0.9 suspended, 63.7 barriers, 1.0 waits, 1223 KB uploaded; 0 new pipelines (0 ms); CPU ms waiting: fence 0.01, acquire 0.00, submit 0.24, present 0.00
+[rhi] per frame: 85 pipeline binds (83 shaders, 0 vertex layout, 2 state only: 1 blend, 0 depth); 763 pushes (795 buffer, 172 texture, 47 sampler writes); CPU ms (PS2X_HOST_SPIKES): prepareDraw 0.00 (binds 0.00, pushes 0.00), vkCmdDraw 0.00
+[rhi] input to GPU done: avg 45.2 ms, p50 39.4, p95 55.5, max 217.1 (260 frames; the display adds up to a refresh)
+[rhi] vulkan per frame: 807 draws, 982 descriptor writes, 31.7 passes, 1.0 suspended, 69.3 barriers, 1.0 waits, 1225 KB uploaded; 0 new pipelines (0 ms); CPU ms waiting: fence 0.00, acquire 0.00, submit 0.30, present 0.00
+[rhi] per frame: 93 pipeline binds (91 shaders, 0 vertex layout, 2 state only: 1 blend, 0 depth); 727 pushes (757 buffer, 175 texture, 50 sampler writes); CPU ms (PS2X_HOST_SPIKES): prepareDraw 0.00 (binds 0.00, pushes 0.00), vkCmdDraw 0.00
+[rhi] input to GPU done: avg 34.9 ms, p50 34.0, p95 38.0, max 52.2 (289 frames; the display adds up to a refresh)
+[rhi] vulkan per frame: 703 draws, 863 descriptor writes, 31.7 passes, 1.0 suspended, 69.4 barriers, 1.0 waits, 1100 KB uploaded; 0 new pipelines (0 ms); CPU ms waiting: fence 0.00, acquire 0.00, submit 0.26, present 0.00
+[rhi] per frame: 93 pipeline binds (91 shaders, 0 vertex layout, 2 state only: 1 blend, 0 depth); 623 pushes (648 buffer, 165 texture, 50 sampler writes); CPU ms (PS2X_HOST_SPIKES): prepareDraw 0.00 (binds 0.00, pushes 0.00), vkCmdDraw 0.00
+[rhi] input to GPU done: avg 32.9 ms, p50 32.4, p95 36.1, max 50.3 (299 frames; the display adds up to a refresh)
+[rhi] vulkan per frame: 544 draws, 680 descriptor writes, 31.6 passes, 1.0 suspended, 69.1 barriers, 1.0 waits, 921 KB uploaded; 0 new pipelines (0 ms); CPU ms waiting: fence 0.00, acquire 0.00, submit 0.24, present 0.00
+[rhi] per frame: 93 pipeline binds (91 shaders, 0 vertex layout, 2 state only: 1 blend, 0 depth); 464 pushes (481 buffer, 150 texture, 50 sampler writes); CPU ms (PS2X_HOST_SPIKES): prepareDraw 0.00 (binds 0.00, pushes 0.00), vkCmdDraw 0.00
+[rhi] input to GPU done: avg 33.8 ms, p50 33.2, p95 36.8, max 51.7 (295 frames; the display adds up to a refresh)
+[rhi] vulkan per frame: 534 draws, 670 descriptor writes, 32.0 passes, 1.0 suspended, 70.0 barriers, 1.0 waits, 928 KB uploaded; 0 new pipelines (0 ms); CPU ms waiting: fence 0.01, acquire 0.00, submit 0.29, present 0.00
+[rhi] per frame: 94 pipeline binds (92 shaders, 0 vertex layout, 2 state only: 1 blend, 0 depth); 453 pushes (468 buffer, 151 texture, 50 sampler writes); CPU ms (PS2X_HOST_SPIKES): prepareDraw 0.00 (binds 0.00, pushes 0.00), vkCmdDraw 0.00
+[rhi] input to GPU done: avg 32.3 ms, p50 32.3, p95 33.8, max 37.2 (299 frames; the display adds up to a refresh)
+[rhi] vulkan per frame: 514 draws, 647 descriptor writes, 31.1 passes, 1.0 suspended, 68.1 barriers, 1.0 waits, 900 KB uploaded; 0 new pipelines (0 ms); CPU ms waiting: fence 0.01, acquire 0.00, submit 0.29, present 0.00
+[rhi] per frame: 91 pipeline binds (89 shaders, 0 vertex layout, 2 state only: 1 blend, 0 depth); 436 pushes (450 buffer, 148 texture, 49 sampler writes); CPU ms (PS2X_HOST_SPIKES): prepareDraw 0.00 (binds 0.00, pushes 0.00), vkCmdDraw 0.00
+[rhi] input to GPU done: avg 32.3 ms, p50 31.4, p95 47.0, max 52.2 (299 frames; the display adds up to a refresh)
+[rhi] vulkan per frame: 648 draws, 800 descriptor writes, 30.6 passes, 0.9 suspended, 66.9 barriers, 1.0 waits, 1048 KB uploaded; 0 new pipelines (0 ms); CPU ms waiting: fence 0.01, acquire 0.00, submit 0.27, present 0.00
+[rhi] per frame: 89 pipeline binds (87 shaders, 0 vertex layout, 2 state only: 1 blend, 0 depth); 571 pushes (592 buffer, 160 texture, 48 sampler writes); CPU ms (PS2X_HOST_SPIKES): prepareDraw 0.00 (binds 0.00, pushes 0.00), vkCmdDraw 0.00
+[rhi] input to GPU done: avg 37.9 ms, p50 32.5, p95 51.4, max 232.7 (290 frames; the display adds up to a refresh)
+[rhi] vulkan per frame: 659 draws, 813 descriptor writes, 30.4 passes, 0.9 suspended, 66.5 barriers, 1.0 waits, 1059 KB uploaded; 0 new pipelines (0 ms); CPU ms waiting: fence 0.01, acquire 0.00, submit 0.25, present 0.00
+[rhi] per frame: 89 pipeline binds (87 shaders, 0 vertex layout, 2 state only: 1 blend, 0 depth); 583 pushes (604 buffer, 161 texture, 48 sampler writes); CPU ms (PS2X_HOST_SPIKES): prepareDraw 0.00 (binds 0.00, pushes 0.00), vkCmdDraw 0.00
+[rhi] input to GPU done: avg 34.7 ms, p50 32.9, p95 49.5, max 52.5 (296 frames; the display adds up to a refresh)
+[rhi] vulkan per frame: 689 draws, 848 descriptor writes, 31.7 passes, 1.0 suspended, 69.4 barriers, 1.0 waits, 1107 KB uploaded; 0 new pipelines (0 ms); CPU ms waiting: fence 0.01, acquire 0.00, submit 0.27, present 0.00
+[rhi] per frame: 93 pipeline binds (91 shaders, 0 vertex layout, 2 state only: 1 blend, 0 depth); 609 pushes (630 buffer, 167 texture, 50 sampler writes); CPU ms (PS2X_HOST_SPIKES): prepareDraw 0.00 (binds 0.00, pushes 0.00), vkCmdDraw 0.00
+[rhi] input to GPU done: avg 32.2 ms, p50 31.9, p95 36.7, max 51.6 (298 frames; the display adds up to a refresh)
+[rhi] vulkan per frame: 529 draws, 665 descriptor writes, 31.7 passes, 1.0 suspended, 69.4 barriers, 1.0 waits, 934 KB uploaded; 0 new pipelines (0 ms); CPU ms waiting: fence 0.01, acquire 0.00, submit 0.29, present 0.00
+[rhi] per frame: 93 pipeline binds (91 shaders, 0 vertex layout, 2 state only: 1 blend, 0 depth); 449 pushes (462 buffer, 153 texture, 50 sampler writes); CPU ms (PS2X_HOST_SPIKES): prepareDraw 0.00 (binds 0.00, pushes 0.00), vkCmdDraw 0.00
+[rhi] input to GPU done: avg 32.2 ms, p50 31.8, p95 34.8, max 51.0 (299 frames; the display adds up to a refresh)
+[rhi] vulkan per frame: 503 draws, 635 descriptor writes, 31.8 passes, 1.0 suspended, 69.6 barriers, 1.0 waits, 906 KB uploaded; 0 new pipelines (0 ms); CPU ms waiting: fence 0.01, acquire 0.00, submit 0.26, present 0.00
+[rhi] per frame: 93 pipeline binds (91 shaders, 0 vertex layout, 2 state only: 1 blend, 0 depth); 422 pushes (435 buffer, 150 texture, 50 sampler writes); CPU ms (PS2X_HOST_SPIKES): prepareDraw 0.00 (binds 0.00, pushes 0.00), vkCmdDraw 0.00
+[rhi] input to GPU done: avg 33.1 ms, p50 32.8, p95 36.2, max 47.4 (297 frames; the display adds up to a refresh)
+[rhi] vulkan per frame: 504 draws, 636 descriptor writes, 31.9 passes, 1.0 suspended, 69.8 barriers, 1.0 waits, 909 KB uploaded; 0 new pipelines (0 ms); CPU ms waiting: fence 0.01, acquire 0.00, submit 0.31, present 0.00
+[rhi] per frame: 94 pipeline binds (92 shaders, 0 vertex layout, 2 state only: 1 blend, 0 depth); 423 pushes (436 buffer, 150 texture, 50 sampler writes); CPU ms (PS2X_HOST_SPIKES): prepareDraw 0.00 (binds 0.00, pushes 0.00), vkCmdDraw 0.00
+[rhi] input to GPU done: avg 31.5 ms, p50 31.5, p95 33.1, max 48.5 (300 frames; the display adds up to a refresh)
+[rhi] vulkan per frame: 488 draws, 618 descriptor writes, 31.1 passes, 1.0 suspended, 68.0 barriers, 1.0 waits, 881 KB uploaded; 0 new pipelines (0 ms); CPU ms waiting: fence 0.01, acquire 0.00, submit 0.29, present 0.00
+[rhi] per frame: 91 pipeline binds (89 shaders, 0 vertex layout, 2 state only: 1 blend, 0 depth); 410 pushes (423 buffer, 146 texture, 49 sampler writes); CPU ms (PS2X_HOST_SPIKES): prepareDraw 0.00 (binds 0.00, pushes 0.00), vkCmdDraw 0.00
+[rhi] input to GPU done: avg 37.0 ms, p50 32.6, p95 48.6, max 221.8 (289 frames; the display adds up to a refresh)
+[rhi] vulkan per frame: 503 draws, 635 descriptor writes, 31.8 passes, 1.0 suspended, 69.6 barriers, 1.0 waits, 906 KB uploaded; 0 new pipelines (0 ms); CPU ms waiting: fence 0.01, acquire 0.00, submit 0.29, present 0.00
+[rhi] per frame: 93 pipeline binds (91 shaders, 0 vertex layout, 2 state only: 1 blend, 0 depth); 422 pushes (435 buffer, 150 texture, 50 sampler writes); CPU ms (PS2X_HOST_SPIKES): prepareDraw 0.00 (binds 0.00, pushes 0.00), vkCmdDraw 0.00
+[rhi] input to GPU done: avg 32.4 ms, p50 32.1, p95 34.8, max 48.8 (299 frames; the display adds up to a refresh)
+[rhi] vulkan per frame: 502 draws, 635 descriptor writes, 31.8 passes, 1.0 suspended, 69.6 barriers, 1.0 waits, 906 KB uploaded; 0 new pipelines (0 ms); CPU ms waiting: fence 0.01, acquire 0.00, submit 0.30, present 0.00
+[rhi] per frame: 93 pipeline binds (91 shaders, 0 vertex layout, 2 state only: 1 blend, 0 depth); 422 pushes (435 buffer, 150 texture, 50 sampler writes); CPU ms (PS2X_HOST_SPIKES): prepareDraw 0.00 (binds 0.00, pushes 0.00), vkCmdDraw 0.00
+[rhi] input to GPU done: avg 33.0 ms, p50 32.7, p95 35.6, max 50.7 (298 frames; the display adds up to a refresh)
+[rhi] vulkan per frame: 503 draws, 635 descriptor writes, 31.8 passes, 1.0 suspended, 69.6 barriers, 1.0 waits, 906 KB uploaded; 0 new pipelines (0 ms); CPU ms waiting: fence 0.01, acquire 0.00, submit 0.25, present 0.00
+[rhi] per frame: 93 pipeline binds (91 shaders, 0 vertex layout, 2 state only: 1 blend, 0 depth); 422 pushes (435 buffer, 150 texture, 50 sampler writes); CPU ms (PS2X_HOST_SPIKES): prepareDraw 0.00 (binds 0.00, pushes 0.00), vkCmdDraw 0.00
+[rhi] input to GPU done: avg 33.2 ms, p50 32.8, p95 35.3, max 49.9 (298 frames; the display adds up to a refresh)
+[rhi] vulkan per frame: 501 draws, 634 descriptor writes, 31.6 passes, 1.0 suspended, 69.2 barriers, 1.0 waits, 901 KB uploaded; 0 new pipelines (0 ms); CPU ms waiting: fence 0.01, acquire 0.00, submit 0.30, present 0.00
+[rhi] per frame: 93 pipeline binds (91 shaders, 0 vertex layout, 2 state only: 1 blend, 0 depth); 421 pushes (433 buffer, 151 texture, 50 sampler writes); CPU ms (PS2X_HOST_SPIKES): prepareDraw 0.00 (binds 0.00, pushes 0.00), vkCmdDraw 0.00
+[rhi] input to GPU done: avg 32.5 ms, p50 31.7, p95 35.0, max 50.9 (299 frames; the display adds up to a refresh)
+[rhi] vulkan per frame: 504 draws, 637 descriptor writes, 31.7 passes, 1.0 suspended, 69.4 barriers, 1.0 waits, 903 KB uploaded; 0 new pipelines (0 ms); CPU ms waiting: fence 0.01, acquire 0.00, submit 0.28, present 0.00
+[rhi] per frame: 93 pipeline binds (91 shaders, 0 vertex layout, 2 state only: 1 blend, 0 depth); 423 pushes (435 buffer, 152 texture, 50 sampler writes); CPU ms (PS2X_HOST_SPIKES): prepareDraw 0.00 (binds 0.00, pushes 0.00), vkCmdDraw 0.00
+[rhi] input to GPU done: avg 32.9 ms, p50 32.6, p95 35.4, max 50.6 (294 frames; the display adds up to a refresh)
+[rhi] vulkan per frame: 492 draws, 623 descriptor writes, 31.1 passes, 1.0 suspended, 68.0 barriers, 1.0 waits, 881 KB uploaded; 0 new pipelines (0 ms); CPU ms waiting: fence 0.01, acquire 0.00, submit 0.27, present 0.00
+[rhi] per frame: 91 pipeline binds (89 shaders, 0 vertex layout, 2 state only: 1 blend, 0 depth); 414 pushes (425 buffer, 150 texture, 49 sampler writes); CPU ms (PS2X_HOST_SPIKES): prepareDraw 0.00 (binds 0.00, pushes 0.00), vkCmdDraw 0.00
+[rhi] input to GPU done: avg 38.1 ms, p50 34.3, p95 50.9, max 195.9 (291 frames; the display adds up to a refresh)
+[rhi] vulkan per frame: 505 draws, 638 descriptor writes, 31.8 passes, 1.0 suspended, 69.6 barriers, 1.0 waits, 906 KB uploaded; 0 new pipelines (0 ms); CPU ms waiting: fence 0.01, acquire 0.00, submit 0.24, present 0.00
+[rhi] per frame: 93 pipeline binds (91 shaders, 0 vertex layout, 2 state only: 1 blend, 0 depth); 424 pushes (436 buffer, 152 texture, 50 sampler writes); CPU ms (PS2X_HOST_SPIKES): prepareDraw 0.00 (binds 0.00, pushes 0.00), vkCmdDraw 0.00
+[rhi] input to GPU done: avg 34.7 ms, p50 34.3, p95 38.3, max 51.6 (290 frames; the display adds up to a refresh)
+[rhi] vulkan per frame: 505 draws, 638 descriptor writes, 31.8 passes, 1.0 suspended, 69.6 barriers, 1.0 waits, 906 KB uploaded; 0 new pipelines (0 ms); CPU ms waiting: fence 0.01, acquire 0.00, submit 0.27, present 0.00
+[rhi] per frame: 93 pipeline binds (91 shaders, 0 vertex layout, 2 state only: 1 blend, 0 depth); 424 pushes (436 buffer, 152 texture, 50 sampler writes); CPU ms (PS2X_HOST_SPIKES): prepareDraw 0.00 (binds 0.00, pushes 0.00), vkCmdDraw 0.00
+[rhi] input to GPU done: avg 32.9 ms, p50 32.7, p95 35.7, max 52.1 (299 frames; the display adds up to a refresh)
+[rhi] vulkan per frame: 502 draws, 635 descriptor writes, 31.7 passes, 1.0 suspended, 69.4 barriers, 1.0 waits, 904 KB uploaded; 0 new pipelines (0 ms); CPU ms waiting: fence 0.01, acquire 0.00, submit 0.26, present 0.00
+[rhi] per frame: 93 pipeline binds (91 shaders, 0 vertex layout, 2 state only: 1 blend, 0 depth); 422 pushes (434 buffer, 151 texture, 50 sampler writes); CPU ms (PS2X_HOST_SPIKES): prepareDraw 0.00 (binds 0.00, pushes 0.00), vkCmdDraw 0.00
+[rhi] input to GPU done: avg 33.4 ms, p50 32.9, p95 35.6, max 50.6 (298 frames; the display adds up to a refresh)
+[rhi] vulkan per frame: 505 draws, 639 descriptor writes, 31.9 passes, 1.0 suspended, 69.8 barriers, 1.0 waits, 909 KB uploaded; 0 new pipelines (0 ms); CPU ms waiting: fence 0.00, acquire 0.00, submit 0.25, present 0.00
+[rhi] per frame: 94 pipeline binds (92 shaders, 0 vertex layout, 2 state only: 1 blend, 0 depth); 425 pushes (437 buffer, 151 texture, 50 sampler writes); CPU ms (PS2X_HOST_SPIKES): prepareDraw 0.00 (binds 0.00, pushes 0.00), vkCmdDraw 0.00
+[rhi] input to GPU done: avg 33.2 ms, p50 32.9, p95 35.3, max 51.0 (298 frames; the display adds up to a refresh)
+[rhi] vulkan per frame: 498 draws, 629 descriptor writes, 31.5 passes, 1.0 suspended, 69.0 barriers, 1.0 waits, 897 KB uploaded; 0 new pipelines (0 ms); CPU ms waiting: fence 0.00, acquire 0.00, submit 0.26, present 0.00
+[rhi] per frame: 92 pipeline binds (90 shaders, 0 vertex layout, 2 state only: 1 blend, 0 depth); 418 pushes (431 buffer, 149 texture, 49 sampler writes); CPU ms (PS2X_HOST_SPIKES): prepareDraw 0.00 (binds 0.00, pushes 0.00), vkCmdDraw 0.00
+[rhi] input to GPU done: avg 34.1 ms, p50 32.9, p95 36.0, max 145.7 (292 frames; the display adds up to a refresh)
+[rhi] vulkan per frame: 495 draws, 626 descriptor writes, 31.4 passes, 1.0 suspended, 68.6 barriers, 1.0 waits, 890 KB uploaded; 0 new pipelines (0 ms); CPU ms waiting: fence 0.00, acquire 0.00, submit 0.26, present 0.00
+[rhi] per frame: 92 pipeline binds (90 shaders, 0 vertex layout, 2 state only: 1 blend, 0 depth); 416 pushes (428 buffer, 148 texture, 49 sampler writes); CPU ms (PS2X_HOST_SPIKES): prepareDraw 0.00 (binds 0.00, pushes 0.00), vkCmdDraw 0.00
+[rhi] input to GPU done: avg 35.7 ms, p50 32.8, p95 39.6, max 197.1 (297 frames; the display adds up to a refresh)
+[rhi] vulkan per frame: 499 draws, 630 descriptor writes, 31.6 passes, 1.0 suspended, 69.1 barriers, 1.0 waits, 900 KB uploaded; 0 new pipelines (0 ms); CPU ms waiting: fence 0.01, acquire 0.00, submit 0.29, present 0.00
+[rhi] per frame: 93 pipeline binds (91 shaders, 0 vertex layout, 2 state only: 1 blend, 0 depth); 419 pushes (432 buffer, 149 texture, 50 sampler writes); CPU ms (PS2X_HOST_SPIKES): prepareDraw 0.00 (binds 0.00, pushes 0.00), vkCmdDraw 0.00
+[rhi] input to GPU done: avg 32.7 ms, p50 31.8, p95 36.7, max 49.5 (299 frames; the display adds up to a refresh)
+[rhi] vulkan per frame: 502 draws, 634 descriptor writes, 31.8 passes, 1.0 suspended, 69.6 barriers, 1.0 waits, 906 KB uploaded; 0 new pipelines (0 ms); CPU ms waiting: fence 0.01, acquire 0.00, submit 0.31, present 0.00
+[rhi] per frame: 93 pipeline binds (91 shaders, 0 vertex layout, 2 state only: 1 blend, 0 depth); 422 pushes (435 buffer, 150 texture, 50 sampler writes); CPU ms (PS2X_HOST_SPIKES): prepareDraw 0.00 (binds 0.00, pushes 0.00), vkCmdDraw 0.00
+[rhi] input to GPU done: avg 32.5 ms, p50 32.2, p95 34.6, max 49.8 (299 frames; the display adds up to a refresh)
+[rhi] vulkan per frame: 501 draws, 633 descriptor writes, 31.7 passes, 1.0 suspended, 69.4 barriers, 1.0 waits, 903 KB uploaded; 0 new pipelines (0 ms); CPU ms waiting: fence 0.01, acquire 0.00, submit 0.26, present 0.00
+[rhi] per frame: 93 pipeline binds (91 shaders, 0 vertex layout, 2 state only: 1 blend, 0 depth); 421 pushes (434 buffer, 150 texture, 50 sampler writes); CPU ms (PS2X_HOST_SPIKES): prepareDraw 0.00 (binds 0.00, pushes 0.00), vkCmdDraw 0.00
+[rhi] input to GPU done: avg 33.6 ms, p50 32.4, p95 34.4, max 146.5 (293 frames; the display adds up to a refresh)
+[rhi] vulkan per frame: 492 draws, 623 descriptor writes, 31.3 passes, 1.0 suspended, 68.4 barriers, 1.0 waits, 888 KB uploaded; 0 new pipelines (0 ms); CPU ms waiting: fence 0.01, acquire 0.00, submit 0.27, present 0.00
+[rhi] per frame: 92 pipeline binds (90 shaders, 0 vertex layout, 2 state only: 1 blend, 0 depth); 414 pushes (426 buffer, 147 texture, 49 sampler writes); CPU ms (PS2X_HOST_SPIKES): prepareDraw 0.00 (binds 0.00, pushes 0.00), vkCmdDraw 0.00
+[rhi] input to GPU done: avg 36.4 ms, p50 32.7, p95 52.0, max 213.4 (296 frames; the display adds up to a refresh)

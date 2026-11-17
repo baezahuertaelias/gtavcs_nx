@@ -1,0 +1,7 @@
+14:05:10 == rhi-r1: rhi tests nro sha256=956cfc793a52c7c4c0f5a3680c0510c49f60c4d197ec1e95756d4328a7170bbd
+14:05:14 cleared /switch/gtavcs_nx/rhi-tests
+14:05:16 nxlink attempt=1 exit=0 output='Sending /switch/gtavcs_nx/gtavcs_rhi_tests.nro, 7260357 bytes\n2739305 sent (37.73%), 234 blocks'
+14:05:31 ACTION FOR THE PERSON AT THE SWITCH: Start handheld. Card appears after ~30-60 s. 0-40 s after it: dock,10s,undock,10s,dock,10s,undock. 40-67 s: hands off. 67-110 s: dock,10s,undock,10s,dock,10s,undock. Tell if black.
+14:07:31 ftp back after 135s: the payload has ended
+14:07:42 rhi-r1: summary=['DONE', 'images 127', 'failed_checks 0'] compare_exit=0 compare_tail=['127 images, 101 byte-identical, 0 failures'] sd_matches_local=True new_crashes=[]
+14:07:42 RESULT rhi PASS

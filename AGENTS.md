@@ -35,11 +35,13 @@ authorize general implementation delegation or additional user-owned chats.
 GitHub plan limitations on private branch protection must be recorded honestly;
 they do not relax these operating rules.
 
-**Current deliverable (M04, hardware proof recorded, awaiting independent review) boots the real runtime.**
+**Current deliverable (M05: OpenGL RHI proven on the Switch, awaiting independent review).**
 `python tools/build_game.py` links the private generated EE/VU archive, the
 overlaid upstream runtime/game layer, `src/core/core.cpp` behind the C ABI in
-`src/core.h` and the SDL2 platform adapter. Rendering is the null RHI until M05:
-the screen stays black. `--public` (CI) compiles every public library and links
+`src/core.h`, the SDL2 platform adapter and the OpenGL 3.3 RHI backend
+(`src/rhi/gl`, GLSL ports in `src/render/glsl`); the RHI swaps the window, and
+`VCS_RHI=null` keeps the null backend. It also builds the public RHI conformance
+NRO (`src/rhi_tests`). `--public` (CI) compiles every public library and links
 no game code. The C ABI is port-owned glue, not an upstream API. Do not describe
 a successful build as ingame validation.
 
@@ -86,6 +88,9 @@ gtavcs_nx/
     core/                        C++ core adapter (boot/frame/shutdown, nxrun.cfg)
     platform/                    SDL2 implementation of upstream's platform.h
     switch/                      libnx link wraps (thread stacks, open audit, indirect-branch trace)
+    rhi/gl/                      OpenGL 3.3 core backend of upstream's rhi::Device (M05)
+    render/glsl/                 GLSL 330 ports of upstream's HLSL shaders (README: conventions)
+    rhi_tests/                   RHI conformance scenes: host runner, Switch NRO
   third_party/glad/              generated GLAD 2.0.8, GL 3.3 core, no extensions
     include/{glad,KHR}/
     src/gl.c
@@ -204,9 +209,14 @@ Switch build command. See the checklist before attempting ARM64 core compilation
 ## Runtime ownership and developer guidelines
 
 - The main thread owns SDL events, window/context, GL calls and presentation.
-  The current SDL backend automatically resizes a resizable window at dock changes;
-  always query drawable pixels and rebuild future render targets on size changes.
+  The window is created at the starting mode's size without SDL_WINDOW_RESIZABLE:
+  switch-sdl2 2.28 resizes a resizable window at dock changes and every resize
+  (also SDL_SetWindowSize) leaks the EGL surface's buffers (M05). The compositor
+  scales the fixed window to the panel or TV. Still query drawable pixels and
+  rebuild render targets on size changes.
   1280x720 handheld / 1920x1080 docked are output targets, not measured performance.
+  Until M06-20 they hold only in the starting mode: a handheld start upscales 720p
+  on the TV, a docked start renders 1080p and downscales it on the panel.
   Keep render scale distinct from drawable size and keep HUD aspect correct.
 - Snapshot controller state once per event pump; publish a synchronized snapshot
   to the future game thread. Handle hotplug, disconnect-to-neutral, dead zones,
@@ -262,11 +272,18 @@ Final acceptance (M10/M15) includes a controllable ingame route with audible
    busy route. Record median/p95 frame time, audio underruns, memory and CPU/GPU
    timing at stock clocks in both modes. Intro/title FPS is not gameplay proof.
 
-Current verification status (2026-11-14): the pinned container pipeline also runs
+Current verification status (2026-11-17): the pinned container pipeline also runs
 on a Linux host with Docker's engine (no local devkitPro). The game NRO links the
 private generated core, the game layer and the SDL2 platform; on an actual Switch
 it boots the real runtime from the folder disc, reaches the game's outdoor state
 with the null renderer (black screen, the game's own sound), and passes HOME,
-sleep, close and startup-failure checks (M04 evidence). Rendering is M05; no
-picture, gameplay or frame-rate acceptance is claimed. Full paired wireless/Pro
+sleep, close and startup-failure checks (M04 evidence). The M05 OpenGL backend
+runs on the Switch's Mesa 20.1 nouveau (GL 4.3 core): 127/127 conformance
+readbacks within tolerance of upstream's Vulkan backend (101 identical), the real
+game drawn through it with 0 GL errors, the fixed-size window kept across docking
+from either starting mode in the game and the test program, with no heap growth
+per change shown in the test program (the game's heap is sampled at the changes
+only; output size: M06-20); every GL call stays on
+the main thread (a shared worker context shares nothing on this driver, M05-09).
+No gameplay, beta or frame-rate acceptance is claimed (M06, M10). Full paired wireless/Pro
 controller and docking acceptance remain open.

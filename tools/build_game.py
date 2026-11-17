@@ -105,6 +105,21 @@ def unlinked_constructors(build, linkmap):
     return sorted(set(missing))
 
 
+RHI_TESTS = ROOT / "build/m05/rhi-tests"
+
+
+def stage_rhi_tests(build):
+    """The public RHI conformance NRO and its map / shader manifest, to build/m05/rhi-tests (ignored)."""
+    out = Path("/work") / RHI_TESTS.relative_to(ROOT)
+    out.mkdir(parents=True, exist_ok=True)
+    for name in ("gtavcs_rhi_tests.nro", "gtavcs_rhi_tests.map", "shader-manifest.json"):
+        shutil.copyfile(build / name, out / name)
+    linkmap = (build / "gtavcs_rhi_tests.map").read_text(errors="replace")
+    if "libvcs_generated_cpu" in linkmap or "nx_game_private" in linkmap:
+        raise RuntimeError("Game code linked into the RHI tests NRO")
+    print("PASS RHI tests NRO " + file_digest(out / "gtavcs_rhi_tests.nro"), flush=True)
+
+
 def inside(args, log):
     if run(["dkp-pacman", "-Q"], log) != (ROOT / "docs/milestones/M01/package-lock.txt").read_text():
         raise RuntimeError("Toolchain package lock mismatch")
@@ -121,15 +136,18 @@ def inside(args, log):
             raise RuntimeError("Private code was not generated from the pinned source")
         options += [f"-DNX_PRIVATE_GENERATED_ARCHIVE={ARCHIVE}", "-DNX_PRIVATE_GENERATED_DIR=/cache/generated/ee"]
     run(["cmake", "-S", "/work", "-B", build, "-G", "Ninja", *options], log)
-    targets = ["nx_core", "nx_self_registering", "nx_entry_check"] if args.public else ["gtavcs_nro"]
+    # the RHI conformance NRO (M05) is public: no game code, built in both modes
+    targets = (["nx_core", "nx_self_registering", "nx_entry_check"] if args.public else ["gtavcs_nro"]) + ["gtavcs_rhi_tests_nro"]
     run(["cmake", "--build", build, "--parallel", str(min(os.cpu_count() or 1, 12)), "--target", *targets, "--",
          "-k", "0"], log)
     if args.public:
         commands = (build / "compile_commands.json").read_text()
         if "/generated/" in commands or "libvcs_generated_cpu" in commands:
             raise RuntimeError("Private generated input appeared in the public build")
+        stage_rhi_tests(build)
         print("PASS public core library compiled; no game code linked, no NRO", flush=True)
         return
+    stage_rhi_tests(build)
     out = Path("/work") / PRIVATE.relative_to(ROOT)
     out.mkdir(parents=True, exist_ok=True)
     for name in ("gtavcs.nro", "gtavcs.map", "gtavcs.elf", "compile_commands.json"):
@@ -190,7 +208,7 @@ def main():
             try:
                 run(command, log)
             finally:
-                reclaim(ROOT, PRIVATE, LOGS)
+                reclaim(ROOT, PRIVATE, LOGS, RHI_TESTS)
             if not args.public:
                 manifest = json.loads((PRIVATE / "manifest-inside.json").read_text())
                 manifest.update({"root_commit": git(ROOT, "rev-parse", "HEAD"),

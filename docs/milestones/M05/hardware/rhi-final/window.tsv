@@ -1,0 +1,112 @@
+t	event	width	height	detail
+1.794e-05	hand	0	0	dock / undock now (0-60 s)
+1.794e-05	mode	1280	720	operation mode 0 (was -1)
+1.794e-05	drawable	1280	720	operation mode 0
+1.01141	interval	120	0	median_ms 15.6865 max_ms 16.8492 mode 0
+2.0118	interval	121	0	median_ms 16.0626 max_ms 16.3876 mode 0
+3.01182	interval	120	0	median_ms 16.0905 max_ms 16.3908 mode 0
+4.02808	interval	121	0	median_ms 0.460408 max_ms 16.4184 mode 0
+5.02808	interval	120	0	median_ms 16.1253 max_ms 16.4175 mode 0
+6.02847	interval	121	0	median_ms 16.1606 max_ms 16.3633 mode 0
+7.02849	interval	120	0	median_ms 16.129 max_ms 16.4162 mode 0
+8.04476	interval	121	0	median_ms 0.429156 max_ms 16.3312 mode 0
+9.04514	interval	121	0	median_ms 16.1437 max_ms 16.3949 mode 0
+10.0614	interval	121	0	median_ms 0.451984 max_ms 16.3629 mode 0
+11.0616	interval	120	0	median_ms 16.1408 max_ms 16.4634 mode 0
+12.0669	interval	139	0	median_ms 0.975572 max_ms 240.408 mode 0
+13.0669	interval	210	0	median_ms 0.98332 max_ms 15.5187 mode 0
+14.0679	interval	211	0	median_ms 0.98904 max_ms 15.4008 mode 0
+15.0679	interval	210	0	median_ms 0.93834 max_ms 15.3646 mode 0
+16.068	interval	210	0	median_ms 0.969228 max_ms 15.4105 mode 0
+17.0688	interval	211	0	median_ms 0.945828 max_ms 15.3243 mode 0
+17.5698	mode	1920	1080	operation mode 1 (was 0)
+17.5698	drawable	1920	1080	operation mode 1
+18.0741	interval	24	0	median_ms 9.53784 max_ms 810.005 mode 1
+19.0744	interval	121	0	median_ms 15.8781 max_ms 16.3643 mode 1
+20.0907	interval	121	0	median_ms 0.485212 max_ms 16.3712 mode 1
+21.091	interval	121	0	median_ms 16.1611 max_ms 16.3646 mode 1
+22.1073	interval	121	0	median_ms 0.738608 max_ms 16.5059 mode 1
+23.0778	mode	1280	720	operation mode 0 (was 1)
+23.0778	drawable	1280	720	operation mode 0
+23.112	interval	54	0	median_ms 8.01648 max_ms 554.789 mode 0
+24.112	interval	120	0	median_ms 16.0976 max_ms 16.3538 mode 0
+25.112	interval	120	0	median_ms 16.0727 max_ms 16.421 mode 0
+26.112	interval	120	0	median_ms 16.022 max_ms 16.4728 mode 0
+27.112	interval	120	0	median_ms 16.0517 max_ms 16.4346 mode 0
+28.1123	interval	121	0	median_ms 16.1189 max_ms 16.4066 mode 0
+29.1123	interval	120	0	median_ms 16.0594 max_ms 16.3841 mode 0
+30.1124	interval	120	0	median_ms 16.1251 max_ms 16.4106 mode 0
+31.1285	interval	121	0	median_ms 0.477048 max_ms 16.3791 mode 0
+32.1285	interval	120	0	median_ms 16.1342 max_ms 16.3731 mode 0
+33.1289	interval	121	0	median_ms 16.1672 max_ms 16.3438 mode 0
+34.1289	interval	120	0	median_ms 16.1587 max_ms 16.3989 mode 0
+35.3525	interval	119	0	median_ms 0.959556 max_ms 240.213 mode 0
+36.3529	interval	213	0	median_ms 0.983372 max_ms 15.4145 mode 0
+37.3534	interval	211	0	median_ms 0.958776 max_ms 15.3975 mode 0
+38.3534	interval	210	0	median_ms 0.963196 max_ms 15.3148 mode 0
+39.3535	interval	210	0	median_ms 0.9854 max_ms 15.3879 mode 0
+39.8727	mode	1920	1080	operation mode 1 (was 0)
+39.8727	drawable	1920	1080	operation mode 1
+40.3618	interval	22	0	median_ms 8.21735 max_ms 830.143 mode 1
+41.3621	interval	121	0	median_ms 15.7516 max_ms 16.4087 mode 1
+42.3784	interval	121	0	median_ms 0.515788 max_ms 16.3652 mode 1
+43.3784	interval	120	0	median_ms 16.1054 max_ms 16.3612 mode 1
+44.3787	interval	121	0	median_ms 16.0397 max_ms 16.4175 mode 1
+45.3788	interval	120	0	median_ms 16.0557 max_ms 16.347 mode 1
+46.3789	interval	120	0	median_ms 16.0902 max_ms 16.3595 mode 1
+47.395	interval	121	0	median_ms 0.57304 max_ms 16.4335 mode 1
+48.3827	mode	1280	720	operation mode 0 (was 1)
+48.3827	drawable	1280	720	operation mode 0
+48.4004	interval	55	0	median_ms 8.02324 max_ms 554.408 mode 0
+49.4006	interval	119	0	median_ms 0.537472 max_ms 16.4226 mode 0
+50.4009	interval	121	0	median_ms 16.115 max_ms 16.4235 mode 0
+51.4171	interval	121	0	median_ms 0.519012 max_ms 16.3764 mode 0
+52.4174	interval	121	0	median_ms 16.0587 max_ms 16.4115 mode 0
+53.4174	interval	120	0	median_ms 16.1011 max_ms 16.3627 mode 0
+54.4337	interval	121	0	median_ms 0.48204 max_ms 16.3286 mode 0
+55.4337	interval	120	0	median_ms 16.1582 max_ms 16.3924 mode 0
+56.4337	interval	120	0	median_ms 16.0699 max_ms 16.3719 mode 0
+57.434	interval	121	0	median_ms 16.0893 max_ms 16.417 mode 0
+58.434	interval	120	0	median_ms 16.1337 max_ms 16.3651 mode 0
+59.4342	interval	120	0	median_ms 16.1273 max_ms 16.4144 mode 0
+60.0003	set_window_size	1280	720	SDL_SetWindowSize
+60.4503	interval	120	0	median_ms 4.07399 max_ms 28.4919 mode 0
+61.4507	interval	121	0	median_ms 16.072 max_ms 16.4335 mode 0
+62.4507	interval	120	0	median_ms 16.1327 max_ms 16.3569 mode 0
+63.0003	set_window_size	1920	1080	SDL_SetWindowSize
+63.0003	mode	1920	1080	operation mode 0 (was 0)
+63.0003	drawable	1920	1080	operation mode 0
+63.4507	interval	116	0	median_ms 16.104 max_ms 48.2595 mode 0
+64.4507	interval	120	0	median_ms 16.134 max_ms 16.3976 mode 0
+65.467	interval	121	0	median_ms 0.452608 max_ms 16.4146 mode 0
+66.0003	set_window_size	960	540	SDL_SetWindowSize
+66.0003	mode	960	540	operation mode 0 (was 0)
+66.0003	drawable	960	540	operation mode 0
+66.4674	interval	118	0	median_ms 16.1288 max_ms 38.3829 mode 0
+67.4674	interval	120	0	median_ms 16.1438 max_ms 16.4078 mode 0
+68.4674	interval	120	0	median_ms 16.1177 max_ms 16.3998 mode 0
+69.0003	set_window_size	1280	720	SDL_SetWindowSize
+69.0003	mode	1280	720	operation mode 0 (was 0)
+69.0003	drawable	1280	720	operation mode 0
+69.4674	interval	117	0	median_ms 11.1791 max_ms 36.9206 mode 0
+70.4674	interval	120	0	median_ms 16.087 max_ms 16.4874 mode 0
+71.4836	interval	121	0	median_ms 0.433264 max_ms 16.359 mode 0
+72.4837	interval	120	0	median_ms 16.1232 max_ms 16.406 mode 0
+73.484	interval	121	0	median_ms 16.0952 max_ms 16.4076 mode 0
+74.4841	interval	120	0	median_ms 16.1528 max_ms 16.3932 mode 0
+75.4841	interval	120	0	median_ms 16.1608 max_ms 16.3596 mode 0
+76.4841	interval	120	0	median_ms 16.1559 max_ms 16.385 mode 0
+77.4841	interval	120	0	median_ms 16.1398 max_ms 16.3578 mode 0
+78.5003	interval	121	0	median_ms 0.475904 max_ms 16.3907 mode 0
+79.5003	interval	120	0	median_ms 16.138 max_ms 16.3663 mode 0
+80.5007	interval	121	0	median_ms 16.1105 max_ms 16.3667 mode 0
+81.5007	interval	120	0	median_ms 16.0943 max_ms 16.4233 mode 0
+82.5008	interval	120	0	median_ms 16.0715 max_ms 16.4213 mode 0
+83.517	interval	121	0	median_ms 0.470964 max_ms 16.3469 mode 0
+84.5174	interval	121	0	median_ms 16.0548 max_ms 16.4263 mode 0
+85.5174	interval	120	0	median_ms 16.1194 max_ms 16.3881 mode 0
+86.5337	interval	121	0	median_ms 7.09686 max_ms 16.3632 mode 0
+87.534	interval	121	0	median_ms 16.0977 max_ms 16.4022 mode 0
+88.5341	interval	120	0	median_ms 16.107 max_ms 16.3931 mode 0
+89.5342	interval	120	0	median_ms 16.0859 max_ms 16.3624 mode 0
+summary	vsync_median_ms 9.470 p95 16.288 frames 1680	immediate_median_ms 11.179 p95 16.304 frames 1670

@@ -1,0 +1,376 @@
+14:50:58 == rhi-docked: rhi tests nro sha256=4457de9ef5b237fa75ffe1f10d6a79d6eaf1d7c7fcd31ee8daef74b73c3cdc79
+14:50:59 cleared /switch/gtavcs_nx/rhi-tests
+14:51:01 nxlink attempt=1 exit=0 output='Sending /switch/gtavcs_nx/gtavcs_rhi_tests.nro, 7264453 bytes\n2740415 sent (37.72%), 234 blocks'
+14:53:53 == rhi-docked2: rhi tests nro sha256=4457de9ef5b237fa75ffe1f10d6a79d6eaf1d7c7fcd31ee8daef74b73c3cdc79
+14:53:55 cleared /switch/gtavcs_nx/rhi-tests
+14:53:56 nxlink attempt=1 exit=0 output='Sending /switch/gtavcs_nx/gtavcs_rhi_tests.nro, 7264453 bytes\n2740415 sent (37.72%), 234 blocks'
+14:56:42 ftp back after 165s: the payload has ended
+14:56:45 read-back /switch/gtavcs_nx/rhi-tests/bench.tsv bytes=280 sha256=9bad59b4992b98f953c4741e6abfd988a3382bda21f36a2e893e8c27d10c69f2
+14:56:45 read-back /switch/gtavcs_nx/rhi-tests/blend.add_alpha.bin bytes=16384 sha256=51249cd46934f31990323cdba4cf7b3a99d7d74ead93b63f59a23c2753636ec2
+14:56:45 read-back /switch/gtavcs_nx/rhi-tests/blend.add_color.bin bytes=16384 sha256=326df90c6c4cfd705f61b4c9b532ec8f7a4dc91bb983e3b1b6f0ce16904f9159
+14:56:45 read-back /switch/gtavcs_nx/rhi-tests/blend.max_alpha.bin bytes=16384 sha256=12706b597c123eb8acdcddf2c390b448094cad9df22bc42d879a4ce045b895a5
+14:56:45 read-back /switch/gtavcs_nx/rhi-tests/blend.max_color.bin bytes=16384 sha256=696366e6e8308725fdec4d436fbd50f643a1ab336434877034c1a135fa0e8dbc
+14:56:45 read-back /switch/gtavcs_nx/rhi-tests/blend.min_alpha.bin bytes=16384 sha256=3b09fe47615df16ab3dd20651a8823b83ccd33413701c0bba6a4037180159362
+14:56:45 read-back /switch/gtavcs_nx/rhi-tests/blend.min_color.bin bytes=16384 sha256=39e251ddba681f819d09772885f35325829666c629f2d3b186cf2129e6c0b544
+14:56:45 read-back /switch/gtavcs_nx/rhi-tests/blend.reverse_subtract_alpha.bin bytes=16384 sha256=23d146f113083be232f506727fb0bce413060d7c3bb25123a5a2114efc4e287a
+14:56:46 read-back /switch/gtavcs_nx/rhi-tests/blend.reverse_subtract_color.bin bytes=16384 sha256=50031bbffd61dcaa413c611cf1bce51c124e9f923f05433b559326b31c716511
+14:56:46 read-back /switch/gtavcs_nx/rhi-tests/blend.subtract_alpha.bin bytes=16384 sha256=b74577b17b2add04740998e749d2ca035eb4a07c3207aa041bdac2188adc1bde
+14:56:46 read-back /switch/gtavcs_nx/rhi-tests/blend.subtract_color.bin bytes=16384 sha256=c0c54bef1c3842d31b1a6469484c5faeedf14daae1b46026b67b6f9abd2a842a
+14:56:46 read-back /switch/gtavcs_nx/rhi-tests/buffers.result.bin bytes=16384 sha256=8e1ab1fc6ba000d016343c0f1b14b44d208528bfc41c50dab3781c75ba48b2cd
+14:56:46 read-back /switch/gtavcs_nx/rhi-tests/caps.txt bytes=394 sha256=1627f6e0f8fdef35566b492f9574fb2aea0eced50f4521fa8aa5a02e3d80c55c
+14:56:46 read-back /switch/gtavcs_nx/rhi-tests/checks.tsv bytes=3297 sha256=f628636a37e9d4db039d8ec677f382134dd35f11969cd55b0aba93473a0ab077
+14:56:46 read-back /switch/gtavcs_nx/rhi-tests/conventions.origin_color.bin bytes=2048 sha256=ee7d890be6a5c9970c899b861350c4d6bd7d20dec661e8ef630fda1097714d8e
+14:56:46 read-back /switch/gtavcs_nx/rhi-tests/conventions.origin_depth.bin bytes=2048 sha256=e53c2c63b7f4a81c04f06217e1dc504621c5a9afaff01fe90cab95e8dc925abf
+14:56:46 read-back /switch/gtavcs_nx/rhi-tests/copies.color.bin bytes=4800 sha256=101ff5c8b5b7c303e327641728a0dd4e7e7d3ad183e57685c2db50b9b0e1b503
+14:56:46 read-back /switch/gtavcs_nx/rhi-tests/copies.depth.bin bytes=4096 sha256=ccd3cab9dce44c0b1b82fdb06805997a01db8361c518027206cc926c85f55e06
+14:56:46 read-back /switch/gtavcs_nx/rhi-tests/depth.raster_depth_color.bin bytes=12288 sha256=edf1be95b0c15ac0683900b91a1e4c97b2e4ef6a0cc036a35519c01caa0c24c1
+14:56:46 read-back /switch/gtavcs_nx/rhi-tests/depth.raster_depth_depth.bin bytes=12288 sha256=13c78b0f2dc931d396972f75c212484eaf521a90dd173a558f4b1f6c1398d4ff
+14:56:46 read-back /switch/gtavcs_nx/rhi-tests/depth.shader_depth_color.bin bytes=12288 sha256=edf1be95b0c15ac0683900b91a1e4c97b2e4ef6a0cc036a35519c01caa0c24c1
+14:56:46 read-back /switch/gtavcs_nx/rhi-tests/depth.shader_depth_depth.bin bytes=12288 sha256=13c78b0f2dc931d396972f75c212484eaf521a90dd173a558f4b1f6c1398d4ff
+14:56:46 read-back /switch/gtavcs_nx/rhi-tests/depth.write_test_color.bin bytes=1024 sha256=31567dbfea32559462037fbec6d8cba43f4c09243b51509659a1bee23ecb5c98
+14:56:46 read-back /switch/gtavcs_nx/rhi-tests/depth.write_test_depth.bin bytes=1024 sha256=2f2ea29782ead15c79ee522e0283e14db594e997214015ede5ddc91dd884a139
+14:56:46 read-back /switch/gtavcs_nx/rhi-tests/dual_source.mode_0.bin bytes=16384 sha256=209812dda1ce55b6777c150995efbee66e3efc0edff6f1b2e0ca3255c40ed7a7
+14:56:46 read-back /switch/gtavcs_nx/rhi-tests/dual_source.mode_1.bin bytes=16384 sha256=209812dda1ce55b6777c150995efbee66e3efc0edff6f1b2e0ca3255c40ed7a7
+14:56:46 read-back /switch/gtavcs_nx/rhi-tests/dual_source.mode_2.bin bytes=16384 sha256=209812dda1ce55b6777c150995efbee66e3efc0edff6f1b2e0ca3255c40ed7a7
+14:56:46 read-back /switch/gtavcs_nx/rhi-tests/dual_source.mode_3.bin bytes=16384 sha256=209812dda1ce55b6777c150995efbee66e3efc0edff6f1b2e0ca3255c40ed7a7
+14:56:46 read-back /switch/gtavcs_nx/rhi-tests/dual_source.mode_4.bin bytes=16384 sha256=209812dda1ce55b6777c150995efbee66e3efc0edff6f1b2e0ca3255c40ed7a7
+14:56:46 read-back /switch/gtavcs_nx/rhi-tests/dual_source.mode_5.bin bytes=16384 sha256=209812dda1ce55b6777c150995efbee66e3efc0edff6f1b2e0ca3255c40ed7a7
+14:56:46 read-back /switch/gtavcs_nx/rhi-tests/dual_source.mode_6.bin bytes=16384 sha256=209812dda1ce55b6777c150995efbee66e3efc0edff6f1b2e0ca3255c40ed7a7
+14:56:46 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode0.bin bytes=5120 sha256=8a7aa01a16e3e9cae4bafcf8ddee0719d711e0fb3ea8fd0c3efe0eefe909acab
+14:56:46 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode0_depth.bin bytes=5120 sha256=477320ba75c7e0d7a32402cd4554de93d483ce6fb8b7eb951ce33eaefcf5ff50
+14:56:47 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode0_dual.bin bytes=5120 sha256=0c27882b2a1fdc1f47688bb9a40fc68acf6bc28d405d9902a16544f58ff3ceed
+14:56:47 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode0_dual_depth.bin bytes=5120 sha256=477320ba75c7e0d7a32402cd4554de93d483ce6fb8b7eb951ce33eaefcf5ff50
+14:56:47 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode0_dual_noz.bin bytes=5120 sha256=0c27882b2a1fdc1f47688bb9a40fc68acf6bc28d405d9902a16544f58ff3ceed
+14:56:47 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode0_dual_noz_depth.bin bytes=5120 sha256=477320ba75c7e0d7a32402cd4554de93d483ce6fb8b7eb951ce33eaefcf5ff50
+14:56:47 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode0_noz.bin bytes=5120 sha256=8a7aa01a16e3e9cae4bafcf8ddee0719d711e0fb3ea8fd0c3efe0eefe909acab
+14:56:47 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode0_noz_depth.bin bytes=5120 sha256=477320ba75c7e0d7a32402cd4554de93d483ce6fb8b7eb951ce33eaefcf5ff50
+14:56:47 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode1.bin bytes=5120 sha256=150935873189cf1c54a2292a8d698fa045de3ca23e910fa895aa9e0a4da3744e
+14:56:47 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode1_depth.bin bytes=5120 sha256=0ec03fb584d3829f04934c6d90f234833bbaabb6e68263d5e0e1013dc0e0bc71
+14:56:47 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode1_dual.bin bytes=5120 sha256=b9b50a47f2aa3737cb7e232663611d37f0c789f1ad49ec34ce613e7880ff3d63
+14:56:47 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode1_dual_depth.bin bytes=5120 sha256=0ec03fb584d3829f04934c6d90f234833bbaabb6e68263d5e0e1013dc0e0bc71
+14:56:47 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode1_dual_noz.bin bytes=5120 sha256=b9b50a47f2aa3737cb7e232663611d37f0c789f1ad49ec34ce613e7880ff3d63
+14:56:47 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode1_dual_noz_depth.bin bytes=5120 sha256=0ec03fb584d3829f04934c6d90f234833bbaabb6e68263d5e0e1013dc0e0bc71
+14:56:47 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode1_noz.bin bytes=5120 sha256=150935873189cf1c54a2292a8d698fa045de3ca23e910fa895aa9e0a4da3744e
+14:56:47 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode1_noz_depth.bin bytes=5120 sha256=0ec03fb584d3829f04934c6d90f234833bbaabb6e68263d5e0e1013dc0e0bc71
+14:56:47 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode2.bin bytes=5120 sha256=f15e741785f2f7a23116de3abf9994ce860de1c598b69e8b43aab0034162be4d
+14:56:47 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode2_depth.bin bytes=5120 sha256=0ec03fb584d3829f04934c6d90f234833bbaabb6e68263d5e0e1013dc0e0bc71
+14:56:47 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode2_dual.bin bytes=5120 sha256=abfac55c67cf7340ea56b8ccb4951145ed794a2f7cb958b8fc28e90de2e8d048
+14:56:47 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode2_dual_depth.bin bytes=5120 sha256=0ec03fb584d3829f04934c6d90f234833bbaabb6e68263d5e0e1013dc0e0bc71
+14:56:47 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode2_dual_noz.bin bytes=5120 sha256=abfac55c67cf7340ea56b8ccb4951145ed794a2f7cb958b8fc28e90de2e8d048
+14:56:47 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode2_dual_noz_depth.bin bytes=5120 sha256=0ec03fb584d3829f04934c6d90f234833bbaabb6e68263d5e0e1013dc0e0bc71
+14:56:47 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode2_noz.bin bytes=5120 sha256=f15e741785f2f7a23116de3abf9994ce860de1c598b69e8b43aab0034162be4d
+14:56:47 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode2_noz_depth.bin bytes=5120 sha256=0ec03fb584d3829f04934c6d90f234833bbaabb6e68263d5e0e1013dc0e0bc71
+14:56:47 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode3.bin bytes=5120 sha256=bc0a51178e5e3675ab053885a17b4fc767ede941b077c40461730514e2973a71
+14:56:47 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode3_depth.bin bytes=5120 sha256=0ec03fb584d3829f04934c6d90f234833bbaabb6e68263d5e0e1013dc0e0bc71
+14:56:47 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode3_dual.bin bytes=5120 sha256=d3f6733cde4d994ba7b29c1f09a2769e143207ad82425b309b59ae8ed2ad9d18
+14:56:47 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode3_dual_depth.bin bytes=5120 sha256=0ec03fb584d3829f04934c6d90f234833bbaabb6e68263d5e0e1013dc0e0bc71
+14:56:47 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode3_dual_noz.bin bytes=5120 sha256=d3f6733cde4d994ba7b29c1f09a2769e143207ad82425b309b59ae8ed2ad9d18
+14:56:47 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode3_dual_noz_depth.bin bytes=5120 sha256=0ec03fb584d3829f04934c6d90f234833bbaabb6e68263d5e0e1013dc0e0bc71
+14:56:47 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode3_noz.bin bytes=5120 sha256=bc0a51178e5e3675ab053885a17b4fc767ede941b077c40461730514e2973a71
+14:56:47 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode3_noz_depth.bin bytes=5120 sha256=0ec03fb584d3829f04934c6d90f234833bbaabb6e68263d5e0e1013dc0e0bc71
+14:56:48 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode4.bin bytes=5120 sha256=f15e741785f2f7a23116de3abf9994ce860de1c598b69e8b43aab0034162be4d
+14:56:48 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode4_depth.bin bytes=5120 sha256=0ec03fb584d3829f04934c6d90f234833bbaabb6e68263d5e0e1013dc0e0bc71
+14:56:48 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode4_dual.bin bytes=5120 sha256=abfac55c67cf7340ea56b8ccb4951145ed794a2f7cb958b8fc28e90de2e8d048
+14:56:48 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode4_dual_depth.bin bytes=5120 sha256=0ec03fb584d3829f04934c6d90f234833bbaabb6e68263d5e0e1013dc0e0bc71
+14:56:48 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode4_dual_noz.bin bytes=5120 sha256=abfac55c67cf7340ea56b8ccb4951145ed794a2f7cb958b8fc28e90de2e8d048
+14:56:48 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode4_dual_noz_depth.bin bytes=5120 sha256=0ec03fb584d3829f04934c6d90f234833bbaabb6e68263d5e0e1013dc0e0bc71
+14:56:48 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode4_noz.bin bytes=5120 sha256=f15e741785f2f7a23116de3abf9994ce860de1c598b69e8b43aab0034162be4d
+14:56:48 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode4_noz_depth.bin bytes=5120 sha256=0ec03fb584d3829f04934c6d90f234833bbaabb6e68263d5e0e1013dc0e0bc71
+14:56:48 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode5.bin bytes=5120 sha256=bc0a51178e5e3675ab053885a17b4fc767ede941b077c40461730514e2973a71
+14:56:48 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode5_depth.bin bytes=5120 sha256=0ec03fb584d3829f04934c6d90f234833bbaabb6e68263d5e0e1013dc0e0bc71
+14:56:48 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode5_dual.bin bytes=5120 sha256=d3f6733cde4d994ba7b29c1f09a2769e143207ad82425b309b59ae8ed2ad9d18
+14:56:48 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode5_dual_depth.bin bytes=5120 sha256=0ec03fb584d3829f04934c6d90f234833bbaabb6e68263d5e0e1013dc0e0bc71
+14:56:48 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode5_dual_noz.bin bytes=5120 sha256=d3f6733cde4d994ba7b29c1f09a2769e143207ad82425b309b59ae8ed2ad9d18
+14:56:48 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode5_dual_noz_depth.bin bytes=5120 sha256=0ec03fb584d3829f04934c6d90f234833bbaabb6e68263d5e0e1013dc0e0bc71
+14:56:48 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode5_noz.bin bytes=5120 sha256=bc0a51178e5e3675ab053885a17b4fc767ede941b077c40461730514e2973a71
+14:56:48 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode5_noz_depth.bin bytes=5120 sha256=0ec03fb584d3829f04934c6d90f234833bbaabb6e68263d5e0e1013dc0e0bc71
+14:56:48 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode6.bin bytes=5120 sha256=f15e741785f2f7a23116de3abf9994ce860de1c598b69e8b43aab0034162be4d
+14:56:48 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode6_depth.bin bytes=5120 sha256=0ec03fb584d3829f04934c6d90f234833bbaabb6e68263d5e0e1013dc0e0bc71
+14:56:48 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode6_dual.bin bytes=5120 sha256=abfac55c67cf7340ea56b8ccb4951145ed794a2f7cb958b8fc28e90de2e8d048
+14:56:48 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode6_dual_depth.bin bytes=5120 sha256=0ec03fb584d3829f04934c6d90f234833bbaabb6e68263d5e0e1013dc0e0bc71
+14:56:48 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode6_dual_noz.bin bytes=5120 sha256=abfac55c67cf7340ea56b8ccb4951145ed794a2f7cb958b8fc28e90de2e8d048
+14:56:48 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode6_dual_noz_depth.bin bytes=5120 sha256=0ec03fb584d3829f04934c6d90f234833bbaabb6e68263d5e0e1013dc0e0bc71
+14:56:48 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode6_noz.bin bytes=5120 sha256=f15e741785f2f7a23116de3abf9994ce860de1c598b69e8b43aab0034162be4d
+14:56:48 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode6_noz_depth.bin bytes=5120 sha256=0ec03fb584d3829f04934c6d90f234833bbaabb6e68263d5e0e1013dc0e0bc71
+14:56:48 read-back /switch/gtavcs_nx/rhi-tests/gs_native.color.bin bytes=8192 sha256=901c10871fab4126a6e71bedd7b1cbf34cc22293e95f2f4c28c7bbea07f249a7
+14:56:48 read-back /switch/gtavcs_nx/rhi-tests/gs_native.depth.bin bytes=8192 sha256=14a9bae8973c24ab1c07ccce8c76e3a043f16003fc369b9f37e340495f96af66
+14:56:48 read-back /switch/gtavcs_nx/rhi-tests/gs_rt_reads.rt_filtered.bin bytes=4096 sha256=49ea06a3dc52a8a422d56ede4df7451d3c836616697aad48eef58f78e42f429b
+14:56:48 read-back /switch/gtavcs_nx/rhi-tests/gs_rt_reads.rt_full_linear.bin bytes=4096 sha256=dfd0db1a94b87ef45f1a4787d15a6a72c74ca65e55a91ad41c5a4e9f05ec4a93
+14:56:48 read-back /switch/gtavcs_nx/rhi-tests/gs_rt_reads.rt_full_mode0.bin bytes=4096 sha256=dfd0db1a94b87ef45f1a4787d15a6a72c74ca65e55a91ad41c5a4e9f05ec4a93
+14:56:49 read-back /switch/gtavcs_nx/rhi-tests/gs_rt_reads.rt_full_nearest.bin bytes=4096 sha256=1d3058613f5f789516ee93b3568a0c115f2756be521b49608368b119efaa4c08
+14:56:49 read-back /switch/gtavcs_nx/rhi-tests/gs_rt_reads.rt_texel.bin bytes=4096 sha256=2cbc048dfb2562bb6a666211a4b914284b99835841b54be94e5c22929957cce8
+14:56:49 read-back /switch/gtavcs_nx/rhi-tests/gs_tfx.grid.bin bytes=16384 sha256=a7d22929dc88e6400323e9bdc8742ae519324c367ff968ce74a24cf7f0cacdaa
+14:56:49 read-back /switch/gtavcs_nx/rhi-tests/gs_util.blit.bin bytes=8192 sha256=af8fba404aa185170fc840009f7353646f8f7c7c0330119176e0c0f630ee039c
+14:56:49 read-back /switch/gtavcs_nx/rhi-tests/gs_wrap.npot.bin bytes=18432 sha256=aa9a33847f3133244c6e0a66a07a0d2206f136abf99ea19f651592c0887b935c
+14:56:49 read-back /switch/gtavcs_nx/rhi-tests/gs_wrap.pot.bin bytes=18432 sha256=6a303cb0762c7569da30f15f27dff515d75b0a498fe9739c539253abe20b96a0
+14:56:49 read-back /switch/gtavcs_nx/rhi-tests/index.tsv bytes=8167 sha256=93835d94ba0a8d3834c1c929c182382b83b2436642173c52f20aff139ccb51c0
+14:56:49 read-back /switch/gtavcs_nx/rhi-tests/log.txt bytes=7311 sha256=49263191c69d681211e95056ef13f424c79d26c2a8c686cdbb8a2a8b41061f1b
+14:56:49 read-back /switch/gtavcs_nx/rhi-tests/mips.generated_1.bin bytes=4096 sha256=98719a5f7ef82020ee3d4ba4eee7eb5a2e61c0b44309e7df177f1dd699b7bdf3
+14:56:49 read-back /switch/gtavcs_nx/rhi-tests/mips.generated_3.bin bytes=256 sha256=5bf73e87205317575d5288eda144408c420952acd235f0e0ea4d0875cdc95f90
+14:56:49 read-back /switch/gtavcs_nx/rhi-tests/mips.level_0.bin bytes=16384 sha256=0bcc07de1631aa0395013f35790f719bd754f61e4bb2847a86fdc2365d3d8d63
+14:56:49 read-back /switch/gtavcs_nx/rhi-tests/mips.level_1.bin bytes=4096 sha256=56419a079049271b37eea3515c12bbafb46578e6ac4db012c61395ef8b2e5a68
+14:56:49 read-back /switch/gtavcs_nx/rhi-tests/mips.level_2.bin bytes=1024 sha256=3fb5701c6e0bed57fa2f6dae58d0a486aa1889245c022dc6917814179c8088c4
+14:56:49 read-back /switch/gtavcs_nx/rhi-tests/mips.level_3.bin bytes=256 sha256=95b955e50330dfa31fbe29cfc3d2b1b68cf9c46bb369bfa126f01741c152fd52
+14:56:49 read-back /switch/gtavcs_nx/rhi-tests/mips.level_4.bin bytes=64 sha256=385de322da44675357bbf5f11fdea39ce238d8e172c1c52ffdd4e33588b68a80
+14:56:49 read-back /switch/gtavcs_nx/rhi-tests/mips.level_5.bin bytes=16 sha256=1e9d4133111b4fede2d49c35c4106dc9bb9f68dc79913dc7c8a0cc1ba7f1ea37
+14:56:49 read-back /switch/gtavcs_nx/rhi-tests/mips.level_6.bin bytes=4 sha256=79dfad351f79ef0e65a11fff0a9ed44bf628f9390ff06b92ee4ee5e2477616ea
+14:56:49 read-back /switch/gtavcs_nx/rhi-tests/mips.rt_level3.bin bytes=64 sha256=06341afce585c3b4c410c811cc08e829dca1f6886713745e97fc3214cb06f225
+14:56:49 read-back /switch/gtavcs_nx/rhi-tests/msaa.resolved.bin bytes=4096 sha256=b730a0cb69f5a6ec0120407b365b2eec8301b07c5de97a52ef79cc79f8e9575c
+14:56:49 read-back /switch/gtavcs_nx/rhi-tests/passes.depth_only.bin bytes=4096 sha256=fcecc0ea796842c76c5131eb0be88463e11d56d525fe26d4391b507d4250b101
+14:56:49 read-back /switch/gtavcs_nx/rhi-tests/passes.viewport_scissor.bin bytes=16384 sha256=cb2ea4a368772e4e4535d155006c576a30d8b7299f0c7fbe141e6233ce43b399
+14:56:49 read-back /switch/gtavcs_nx/rhi-tests/pixel_centre.sprites.bin bytes=12288 sha256=b356c2febef1f3e4f5ce5caf8a87e4485d9c6a6a015ed9256e873b1929dbfaf5
+14:56:49 read-back /switch/gtavcs_nx/rhi-tests/pixel_centre.triangle_lines_points_copy.bin bytes=12288 sha256=606624774ac4642fafbc219529bc78e1bb30371ff70b65dfaab0b26e6b2dc223
+14:56:49 read-back /switch/gtavcs_nx/rhi-tests/present_ui.letterbox.bin bytes=12288 sha256=00cf773f2384f55e073d22d0afa06ee41013a6b36280207de796ebe65dce8a19
+14:56:49 read-back /switch/gtavcs_nx/rhi-tests/present_ui.ui.bin bytes=12288 sha256=568ffaecbb22ac231e64dd73248dd6dd76bf90131a99ced12bdd1e3e4b7618d6
+14:56:50 read-back /switch/gtavcs_nx/rhi-tests/samplers.anisotropic_16.bin bytes=16384 sha256=450552eebfb70be53acb4d89340b370791bfdf36d80cce2745a9b4de8a37e697
+14:56:50 read-back /switch/gtavcs_nx/rhi-tests/samplers.linear_clamp.bin bytes=4096 sha256=8a7b50664d4cb2c5e055a76db3bd9856b2ea3a22b490bb67823a0da2bda6a955
+14:56:50 read-back /switch/gtavcs_nx/rhi-tests/samplers.linear_repeat.bin bytes=4096 sha256=d50ca9bdba7b77ce49ca48e43607bc34aa57011d622b7658de3fa6de2667832e
+14:56:50 read-back /switch/gtavcs_nx/rhi-tests/samplers.nearest_clamp.bin bytes=4096 sha256=b7753949fc1c1d9b854a0aa6b18b3a35241ca01e462a4e518ae3799ffe5456c7
+14:56:50 read-back /switch/gtavcs_nx/rhi-tests/samplers.nearest_mixed.bin bytes=4096 sha256=aa0e7b767cbaf705a525b8b87e512fa843b77992a2e8fcc99ef6c1fbe2b206e0
+14:56:50 read-back /switch/gtavcs_nx/rhi-tests/samplers.nearest_repeat.bin bytes=4096 sha256=3feae4e14818cd79d62b4f978b19a13598d805c87fb61544b727fe623a353c41
+14:56:50 read-back /switch/gtavcs_nx/rhi-tests/samplers.trilinear.bin bytes=16384 sha256=78ca8292989cc2755013b4f1ace7f5bf0d594ea038f30314d7de01882487a43f
+14:56:50 read-back /switch/gtavcs_nx/rhi-tests/scenes.txt bytes=2274 sha256=fb4928b749fbaece5e0209c94b22fbaa91f4801ed5897aa837a303651cabc678
+14:56:50 read-back /switch/gtavcs_nx/rhi-tests/summary.txt bytes=224 sha256=7c5d1a070c32de4d26769c0520396a88bc58273a9c98e6a4987a9962e9c07c6e
+14:56:50 read-back /switch/gtavcs_nx/rhi-tests/textures.r32f.bin bytes=1024 sha256=63230840e272e6d2eae9d06e5039ada6308eae1b1a7a9ea679613672702d198b
+14:56:50 read-back /switch/gtavcs_nx/rhi-tests/textures.updated.bin bytes=3404 sha256=a608d36bfe9153d63911b5a1bb6c89817e58001d8f05119575929aa95943b8de
+14:56:50 read-back /switch/gtavcs_nx/rhi-tests/textures.upload.bin bytes=3404 sha256=231d56122e426939ba47657bfe481e2eb6a814e5c45f57f2be58cb6d1df7b42d
+14:56:50 read-back /switch/gtavcs_nx/rhi-tests/topology.lines.bin bytes=4096 sha256=5af9b8afd1830bfb7d0d5e3eab63e2785e96bd934be655e76116199a2556c548
+14:56:50 read-back /switch/gtavcs_nx/rhi-tests/topology.points.bin bytes=4096 sha256=4a4d1b657c8b1a80befefe4c985f4a6880eefd47ead3e5bc11b7057ddf35be4b
+14:56:50 read-back /switch/gtavcs_nx/rhi-tests/topology.strip.bin bytes=4096 sha256=63f409d5e5b809018e2d4e030039dca751e4738cbef54b610f8fe96efef57c70
+14:56:50 read-back /switch/gtavcs_nx/rhi-tests/topology.triangles.bin bytes=4096 sha256=7eb071280b515781b9696e066d52f8dde7a0b9650ee9bcbf7a8a589cfb04df41
+14:56:50 read-back /switch/gtavcs_nx/rhi-tests/window.tsv bytes=9376 sha256=26b86434168bee181c77cfdce94bbf5a66ad6a4091ae31802f95dfa388e1e9f2
+14:56:50 read-back /switch/gtavcs_nx/rhi-tests/write_mask.masks.bin bytes=4096 sha256=bc115d8d1c365b9b31a28d2bf64e5dcc239723ca8c2a6ef8dea8eb60d02adc0e
+14:56:52 rhi-docked2: summary=['DONE', 'images 127', 'failed_checks 0'] compare_exit=0 compare_tail=['127 images, 101 byte-identical, 0 failures'] sd_matches_local=True new_crashes=[]
+14:56:52 RESULT rhi PASS
+14:57:00 == m05-gl: profile=m05-gl nro sha256=39071cedcf7b41b3c07a62651ceabb42c59c4e41b70f475c4f68e45769eb856e
+14:57:02 tree /switch/gtavcs_nx/gamefolder/userdata entries=129 file=userdata-before-m05-gl.txt
+14:57:02 deleted /switch/gtavcs_nx/gamefolder/gtavcs.log
+14:57:02 deleted /switch/gtavcs_nx/gamefolder/userdata/tests/m05-gl/nxrun-results.txt
+14:57:02 wrote /switch/gtavcs_nx/gamefolder/userdata/nxrun.cfg bytes=1022 sha256=8c383ced753d197e0282539e23310ca9ade0577ec287005cf1eb5fb2c13cbb89
+14:57:07 nxlink attempt=1 exit=0 output='Sending /switch/gtavcs_nx/gtavcs.nro, 54110405 bytes\n19864199 sent (36.71%), 1590 blocks'
+15:01:23 ftp back after 256s: the payload has ended
+15:01:26 deleted /switch/gtavcs_nx/gamefolder/userdata/nxrun.cfg
+15:01:26 read-back /switch/gtavcs_nx/gamefolder/gtavcs.log bytes=75711 sha256=7e7bcd4ce008d6ac6623fa07f3726fc498644c6dbf5cd588529b61a3343226d2
+15:01:26 read-back /switch/gtavcs_nx/gtavcs-boot.log bytes=62 sha256=3dfe21382f340edd44bac1bf1dd0af6377ec3f03f87b166979ec89c9759bba4b
+15:01:26 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m05-gl/nxrun-results.txt bytes=47737 sha256=796d4d6e087046b467a2b11304e08a82cf39e5c37634773386005beb4b70e387
+15:01:28 tree /switch/gtavcs_nx/gamefolder/userdata entries=129 file=userdata-after-m05-gl.txt
+15:01:33 m05-gl: clean_exit_line=True results_tail=['stop t=240.006 reason=seconds frames=11533', 'shutdown t=240.006 frames=11533', 'audit t=240.006 file_opens=155 iso_opens=0 first_iso="" threads_created=6'] sd_matches_local=True new_crashes=[]
+15:01:33 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m05-gl/shot-008.png bytes=285356 sha256=4e8d6daeb7d51ef00ece74815650ccdfdadaac2d18bc6565c70f0ad83631d892
+15:01:33 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m05-gl/shot-020.png bytes=21775 sha256=b7e0e3e5a893086163e63d406c2a2c7613f5e79319a456c19ac1a2228b71b0c7
+15:01:34 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m05-gl/shot-040.png bytes=280940 sha256=3c96c7d4c20faa14698c6d05a89ec7e53913cb74b0c020371fff6e966dd3aec1
+15:01:34 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m05-gl/shot-060.png bytes=275392 sha256=324577a1d6b057cb7258edf1a804a4fe48d158f66ea0be62da89baba7eb721d6
+15:01:34 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m05-gl/shot-090.png bytes=262472 sha256=0372a3106105a54f605e3d43fc10db555da8ebc31c6282c4c2afdd7a903c1797
+15:01:34 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m05-gl/shot-120.png bytes=257472 sha256=3587aceb677418359d44c8b570153fd467822bca3eaeb324f10b7f7b76812218
+15:01:34 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m05-gl/shot-150.png bytes=266241 sha256=c9f1b47dd72cab690ba95e4c30573e7ab3ab235b0cabfc17cd26d7f282828bad
+15:01:34 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m05-gl/shot-180.png bytes=271588 sha256=d47b034aa08c54ba764ca2a806129bb80a445f8cd17b609ac18b7ffea8c9ba12
+15:01:34 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m05-gl/shot-210.png bytes=277498 sha256=e79ec00604b1a8d8f38795634387c01c998a4a10da1762c620d0a71cb0df78b8
+15:01:34 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m05-gl/shot-230.png bytes=282415 sha256=d81a82d052126b21551e80d6b13118c659a0452ef8e1ca36f7cb0489e2952f7f
+15:01:34 screenshots read back: 15 to build/evidence/M05/screenshots/m05-gl (private)
+15:01:34 RESULT game PASS
+15:01:34 == m05-gl-worker: profile=m05-gl-worker nro sha256=39071cedcf7b41b3c07a62651ceabb42c59c4e41b70f475c4f68e45769eb856e
+15:01:36 tree /switch/gtavcs_nx/gamefolder/userdata entries=129 file=userdata-before-m05-gl-worker.txt
+15:01:36 deleted /switch/gtavcs_nx/gamefolder/gtavcs.log
+15:01:36 deleted /switch/gtavcs_nx/gamefolder/userdata/tests/m05-gl-worker/nxrun-results.txt
+15:01:36 wrote /switch/gtavcs_nx/gamefolder/userdata/nxrun.cfg bytes=1070 sha256=0610600162eb497ea87c7c2b7c41e11d2d0449f86ab818f3749977b4759ba311
+15:01:41 nxlink attempt=1 exit=0 output='Sending /switch/gtavcs_nx/gtavcs.nro, 54110405 bytes\n19864199 sent (36.71%), 1590 blocks'
+15:05:57 ftp back after 256s: the payload has ended
+15:06:00 deleted /switch/gtavcs_nx/gamefolder/userdata/nxrun.cfg
+15:06:00 read-back /switch/gtavcs_nx/gamefolder/gtavcs.log bytes=76243 sha256=a918d389586c4f4d29b929a790e7accc354dd9e00daebe6ad6bb1f3b398e482e
+15:06:00 read-back /switch/gtavcs_nx/gtavcs-boot.log bytes=62 sha256=3dfe21382f340edd44bac1bf1dd0af6377ec3f03f87b166979ec89c9759bba4b
+15:06:00 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m05-gl-worker/nxrun-results.txt bytes=47835 sha256=7abaa8ecc764644dfeb498f0fbcfbffd61ae64f3857413a82eddecf9206f3f11
+15:06:02 tree /switch/gtavcs_nx/gamefolder/userdata entries=129 file=userdata-after-m05-gl-worker.txt
+15:06:08 m05-gl-worker: clean_exit_line=True results_tail=['stop t=240.001 reason=seconds frames=9674', 'shutdown t=240.001 frames=9674', 'audit t=240.001 file_opens=155 iso_opens=0 first_iso="" threads_created=7'] sd_matches_local=True new_crashes=[]
+15:06:08 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m05-gl-worker/shot-008.png bytes=275860 sha256=124b9307aa9be2e52cd71286a15da5515ed7dd5152481006415111c99d2b5314
+15:06:08 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m05-gl-worker/shot-020.png bytes=19477 sha256=6dc98d23372c977db1a4338f0a2a6f8c1a5b111040321f3847613017337eb721
+15:06:08 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m05-gl-worker/shot-040.png bytes=278416 sha256=521acf8b02a2d42dee7b03a37773a117742803fb2124d772703fc74c8e63b0c0
+15:06:08 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m05-gl-worker/shot-060.png bytes=273417 sha256=57ba727cc3e35698d43388ef1433a569efffc58821c8af7a7f02023bb972a306
+15:06:08 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m05-gl-worker/shot-090.png bytes=260629 sha256=0c2ccf30ec7ec1decd74642f32e1c976289de2ea8c9ddc959ab1cea7a5b0fd6f
+15:06:08 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m05-gl-worker/shot-120.png bytes=256605 sha256=235940a8540e45d891c21ae17389e9ecfd71942266b6823303263a7f7f9575e2
+15:06:08 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m05-gl-worker/shot-150.png bytes=265175 sha256=401c1369855f7b5c3ede13bfa2437dd4a6c2978fb3a5dfebbfa7dd7c2db51918
+15:06:08 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m05-gl-worker/shot-180.png bytes=267257 sha256=47c23aa16b9226f3a847f3393a8b5c61d81a62056513403a0fb72761824bc21e
+15:06:08 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m05-gl-worker/shot-210.png bytes=277362 sha256=f21a5d32d8bbbc9ca6aaa3512702e7978cffc2864b2b75841eeb23ebfc4fe902
+15:06:09 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m05-gl-worker/shot-230.png bytes=279681 sha256=0c69fb19c169ced755b3783cbd7d74c8b7137336328bcbfdadc7a2e8b3fc72e6
+15:06:09 screenshots read back: 15 to build/evidence/M05/screenshots/m05-gl-worker (private)
+15:06:09 RESULT game PASS
+15:06:09 == m05-null: profile=m05-null nro sha256=39071cedcf7b41b3c07a62651ceabb42c59c4e41b70f475c4f68e45769eb856e
+15:06:10 tree /switch/gtavcs_nx/gamefolder/userdata entries=129 file=userdata-before-m05-null.txt
+15:06:10 deleted /switch/gtavcs_nx/gamefolder/gtavcs.log
+15:06:11 deleted /switch/gtavcs_nx/gamefolder/userdata/tests/m05-null/nxrun-results.txt
+15:06:11 wrote /switch/gtavcs_nx/gamefolder/userdata/nxrun.cfg bytes=212 sha256=9d7866269e119719a4f2362e5ed61df3295d9a5cbf5521dc7c979c8509b39023
+15:06:15 nxlink attempt=1 exit=0 output='Sending /switch/gtavcs_nx/gtavcs.nro, 54110405 bytes\n19864199 sent (36.71%), 1590 blocks'
+15:07:20 ftp back after 65s: the payload has ended
+15:07:24 deleted /switch/gtavcs_nx/gamefolder/userdata/nxrun.cfg
+15:07:24 read-back /switch/gtavcs_nx/gamefolder/gtavcs.log bytes=18034 sha256=137b4f25a0d73215b4da6c063fd038dd60772d74e6a0c900667572d0f61cccbe
+15:07:24 read-back /switch/gtavcs_nx/gtavcs-boot.log bytes=62 sha256=3dfe21382f340edd44bac1bf1dd0af6377ec3f03f87b166979ec89c9759bba4b
+15:07:24 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m05-null/nxrun-results.txt bytes=9770 sha256=f3346e66f2124ada7c198fb9c861cde477aa539f7bc66c077785e45d745e3d2c
+15:07:25 tree /switch/gtavcs_nx/gamefolder/userdata entries=129 file=userdata-after-m05-null.txt
+15:07:30 m05-null: clean_exit_line=True results_tail=['stop t=60.008 reason=seconds frames=3600', 'shutdown t=60.008 frames=3600', 'audit t=60.008 file_opens=142 iso_opens=0 first_iso="" threads_created=6'] sd_matches_local=True new_crashes=[]
+15:07:30 screenshots read back: 5 to build/evidence/M05/screenshots/m05-null (private)
+15:07:30 RESULT game PASS
+15:12:28 == m05-dock: profile=m05-dock nro sha256=39071cedcf7b41b3c07a62651ceabb42c59c4e41b70f475c4f68e45769eb856e
+15:12:30 tree /switch/gtavcs_nx/gamefolder/userdata entries=129 file=userdata-before-m05-dock.txt
+15:12:30 deleted /switch/gtavcs_nx/gamefolder/gtavcs.log
+15:12:30 deleted /switch/gtavcs_nx/gamefolder/userdata/tests/m05-dock/nxrun-results.txt
+15:12:30 wrote /switch/gtavcs_nx/gamefolder/userdata/nxrun.cfg bytes=1000 sha256=8b11a782a079fc4e209504a53da0f8cf4d070def25c95021d8c81896bc8e0e8f
+15:12:34 nxlink attempt=1 exit=0 output='Sending /switch/gtavcs_nx/gtavcs.nro, 54110405 bytes\n19864199 sent (36.71%), 1590 blocks'
+15:16:00 ftp back after 205s: the payload has ended
+15:16:03 deleted /switch/gtavcs_nx/gamefolder/userdata/nxrun.cfg
+15:16:03 read-back /switch/gtavcs_nx/gamefolder/gtavcs.log bytes=56847 sha256=d7c87d73bf9d5d53e523a71450b902afeffedba9a94cf5f9bf03e3dd123eaf30
+15:16:03 read-back /switch/gtavcs_nx/gtavcs-boot.log bytes=62 sha256=3dfe21382f340edd44bac1bf1dd0af6377ec3f03f87b166979ec89c9759bba4b
+15:16:03 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m05-dock/nxrun-results.txt bytes=32610 sha256=021eed80077ce68e59165f6dbac0c29cfbabff2d57089f0943efae1edc68c237
+15:16:05 tree /switch/gtavcs_nx/gamefolder/userdata entries=129 file=userdata-after-m05-dock.txt
+15:16:10 m05-dock: clean_exit_line=True results_tail=['stop t=180.014 reason=seconds frames=6295', 'shutdown t=180.014 frames=6295', 'audit t=180.014 file_opens=156 iso_opens=0 first_iso="" threads_created=6'] sd_matches_local=True new_crashes=[]
+15:16:10 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m05-dock/shot-015.png bytes=28506 sha256=a93f34704d97685917b23061754e972fea17715e331934fbe65ce8a989c7a210
+15:16:11 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m05-dock/shot-030.png bytes=1047585 sha256=53a59823bf0985e39687d33a2f37ebd0c98bf95ad00047b83f388084e9fde8b2
+15:16:11 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m05-dock/shot-045.png bytes=1048271 sha256=2549681c0223700a77c712f778a6cb8e758dc18495e1fe5d11c7c03345a625bf
+15:16:12 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m05-dock/shot-060.png bytes=555185 sha256=a05da7ceabe49f47a1ba0c534aaa6c6ac4992336d02f1a8ac44b8c6d93b1e23c
+15:16:13 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m05-dock/shot-075.png bytes=538774 sha256=f836dbe2a7c7dfd491428156c832b12e860879484f08e4e018f3cd9daf3438c8
+15:16:13 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m05-dock/shot-090.png bytes=967136 sha256=9018836d496ce15f8a82ccaa7e899c990a069a149ad5bbac00c2c55aec61c0a3
+15:16:14 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m05-dock/shot-105.png bytes=517113 sha256=2265dc89b22b7e7dbe0feeeb846ed873bb4fc9dce50b0c0dc8ee73bb934fdab6
+15:16:14 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m05-dock/shot-120.png bytes=518837 sha256=83ebcb5887934b2230fe331cd8773931ef91d8c91e06ee25a1afc41a55ac476a
+15:16:14 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m05-dock/shot-135.png bytes=950706 sha256=a6a10ba1427ec2e4b5f894cd32df573eed01971f4bc7993692ffd16d1095b347
+15:16:15 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m05-dock/shot-150.png bytes=957097 sha256=59593c84a62e04824f39d9aff14429acee1427b49ce08d84dc57327563c5fb58
+15:16:16 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m05-dock/shot-165.png bytes=973102 sha256=66d8d14bd6f0e2b494bb5aa5ab28aec2d1e7b37cda91b838cf5be53cb1f55e14
+15:16:16 screenshots read back: 16 to build/evidence/M05/screenshots/m05-dock (private)
+15:16:16 RESULT game PASS
+15:19:19 == rhi-dock-repro: rhi tests nro sha256=4457de9ef5b237fa75ffe1f10d6a79d6eaf1d7c7fcd31ee8daef74b73c3cdc79
+15:19:21 cleared /switch/gtavcs_nx/rhi-tests
+15:19:22 nxlink attempt=1 exit=0 output='Sending /switch/gtavcs_nx/gtavcs_rhi_tests.nro, 7264453 bytes\n2740415 sent (37.72%), 234 blocks'
+15:22:08 ftp back after 166s: the payload has ended
+15:22:11 read-back /switch/gtavcs_nx/rhi-tests/bench.tsv bytes=280 sha256=69058ed6291924ac51af7d0ec97cc554e0a99a8c96e095d167ef55c97314831c
+15:22:11 read-back /switch/gtavcs_nx/rhi-tests/blend.add_alpha.bin bytes=16384 sha256=51249cd46934f31990323cdba4cf7b3a99d7d74ead93b63f59a23c2753636ec2
+15:22:11 read-back /switch/gtavcs_nx/rhi-tests/blend.add_color.bin bytes=16384 sha256=326df90c6c4cfd705f61b4c9b532ec8f7a4dc91bb983e3b1b6f0ce16904f9159
+15:22:12 read-back /switch/gtavcs_nx/rhi-tests/blend.max_alpha.bin bytes=16384 sha256=12706b597c123eb8acdcddf2c390b448094cad9df22bc42d879a4ce045b895a5
+15:22:12 read-back /switch/gtavcs_nx/rhi-tests/blend.max_color.bin bytes=16384 sha256=696366e6e8308725fdec4d436fbd50f643a1ab336434877034c1a135fa0e8dbc
+15:22:12 read-back /switch/gtavcs_nx/rhi-tests/blend.min_alpha.bin bytes=16384 sha256=3b09fe47615df16ab3dd20651a8823b83ccd33413701c0bba6a4037180159362
+15:22:12 read-back /switch/gtavcs_nx/rhi-tests/blend.min_color.bin bytes=16384 sha256=39e251ddba681f819d09772885f35325829666c629f2d3b186cf2129e6c0b544
+15:22:12 read-back /switch/gtavcs_nx/rhi-tests/blend.reverse_subtract_alpha.bin bytes=16384 sha256=23d146f113083be232f506727fb0bce413060d7c3bb25123a5a2114efc4e287a
+15:22:12 read-back /switch/gtavcs_nx/rhi-tests/blend.reverse_subtract_color.bin bytes=16384 sha256=50031bbffd61dcaa413c611cf1bce51c124e9f923f05433b559326b31c716511
+15:22:12 read-back /switch/gtavcs_nx/rhi-tests/blend.subtract_alpha.bin bytes=16384 sha256=b74577b17b2add04740998e749d2ca035eb4a07c3207aa041bdac2188adc1bde
+15:22:12 read-back /switch/gtavcs_nx/rhi-tests/blend.subtract_color.bin bytes=16384 sha256=c0c54bef1c3842d31b1a6469484c5faeedf14daae1b46026b67b6f9abd2a842a
+15:22:12 read-back /switch/gtavcs_nx/rhi-tests/buffers.result.bin bytes=16384 sha256=8e1ab1fc6ba000d016343c0f1b14b44d208528bfc41c50dab3781c75ba48b2cd
+15:22:12 read-back /switch/gtavcs_nx/rhi-tests/caps.txt bytes=394 sha256=1627f6e0f8fdef35566b492f9574fb2aea0eced50f4521fa8aa5a02e3d80c55c
+15:22:12 read-back /switch/gtavcs_nx/rhi-tests/checks.tsv bytes=3297 sha256=f628636a37e9d4db039d8ec677f382134dd35f11969cd55b0aba93473a0ab077
+15:22:12 read-back /switch/gtavcs_nx/rhi-tests/conventions.origin_color.bin bytes=2048 sha256=ee7d890be6a5c9970c899b861350c4d6bd7d20dec661e8ef630fda1097714d8e
+15:22:12 read-back /switch/gtavcs_nx/rhi-tests/conventions.origin_depth.bin bytes=2048 sha256=e53c2c63b7f4a81c04f06217e1dc504621c5a9afaff01fe90cab95e8dc925abf
+15:22:12 read-back /switch/gtavcs_nx/rhi-tests/copies.color.bin bytes=4800 sha256=101ff5c8b5b7c303e327641728a0dd4e7e7d3ad183e57685c2db50b9b0e1b503
+15:22:12 read-back /switch/gtavcs_nx/rhi-tests/copies.depth.bin bytes=4096 sha256=ccd3cab9dce44c0b1b82fdb06805997a01db8361c518027206cc926c85f55e06
+15:22:12 read-back /switch/gtavcs_nx/rhi-tests/depth.raster_depth_color.bin bytes=12288 sha256=edf1be95b0c15ac0683900b91a1e4c97b2e4ef6a0cc036a35519c01caa0c24c1
+15:22:12 read-back /switch/gtavcs_nx/rhi-tests/depth.raster_depth_depth.bin bytes=12288 sha256=13c78b0f2dc931d396972f75c212484eaf521a90dd173a558f4b1f6c1398d4ff
+15:22:12 read-back /switch/gtavcs_nx/rhi-tests/depth.shader_depth_color.bin bytes=12288 sha256=edf1be95b0c15ac0683900b91a1e4c97b2e4ef6a0cc036a35519c01caa0c24c1
+15:22:12 read-back /switch/gtavcs_nx/rhi-tests/depth.shader_depth_depth.bin bytes=12288 sha256=13c78b0f2dc931d396972f75c212484eaf521a90dd173a558f4b1f6c1398d4ff
+15:22:12 read-back /switch/gtavcs_nx/rhi-tests/depth.write_test_color.bin bytes=1024 sha256=31567dbfea32559462037fbec6d8cba43f4c09243b51509659a1bee23ecb5c98
+15:22:12 read-back /switch/gtavcs_nx/rhi-tests/depth.write_test_depth.bin bytes=1024 sha256=2f2ea29782ead15c79ee522e0283e14db594e997214015ede5ddc91dd884a139
+15:22:12 read-back /switch/gtavcs_nx/rhi-tests/dual_source.mode_0.bin bytes=16384 sha256=209812dda1ce55b6777c150995efbee66e3efc0edff6f1b2e0ca3255c40ed7a7
+15:22:12 read-back /switch/gtavcs_nx/rhi-tests/dual_source.mode_1.bin bytes=16384 sha256=209812dda1ce55b6777c150995efbee66e3efc0edff6f1b2e0ca3255c40ed7a7
+15:22:12 read-back /switch/gtavcs_nx/rhi-tests/dual_source.mode_2.bin bytes=16384 sha256=209812dda1ce55b6777c150995efbee66e3efc0edff6f1b2e0ca3255c40ed7a7
+15:22:13 read-back /switch/gtavcs_nx/rhi-tests/dual_source.mode_3.bin bytes=16384 sha256=209812dda1ce55b6777c150995efbee66e3efc0edff6f1b2e0ca3255c40ed7a7
+15:22:13 read-back /switch/gtavcs_nx/rhi-tests/dual_source.mode_4.bin bytes=16384 sha256=209812dda1ce55b6777c150995efbee66e3efc0edff6f1b2e0ca3255c40ed7a7
+15:22:13 read-back /switch/gtavcs_nx/rhi-tests/dual_source.mode_5.bin bytes=16384 sha256=209812dda1ce55b6777c150995efbee66e3efc0edff6f1b2e0ca3255c40ed7a7
+15:22:13 read-back /switch/gtavcs_nx/rhi-tests/dual_source.mode_6.bin bytes=16384 sha256=209812dda1ce55b6777c150995efbee66e3efc0edff6f1b2e0ca3255c40ed7a7
+15:22:13 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode0.bin bytes=5120 sha256=8a7aa01a16e3e9cae4bafcf8ddee0719d711e0fb3ea8fd0c3efe0eefe909acab
+15:22:13 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode0_depth.bin bytes=5120 sha256=477320ba75c7e0d7a32402cd4554de93d483ce6fb8b7eb951ce33eaefcf5ff50
+15:22:13 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode0_dual.bin bytes=5120 sha256=0c27882b2a1fdc1f47688bb9a40fc68acf6bc28d405d9902a16544f58ff3ceed
+15:22:13 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode0_dual_depth.bin bytes=5120 sha256=477320ba75c7e0d7a32402cd4554de93d483ce6fb8b7eb951ce33eaefcf5ff50
+15:22:13 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode0_dual_noz.bin bytes=5120 sha256=0c27882b2a1fdc1f47688bb9a40fc68acf6bc28d405d9902a16544f58ff3ceed
+15:22:13 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode0_dual_noz_depth.bin bytes=5120 sha256=477320ba75c7e0d7a32402cd4554de93d483ce6fb8b7eb951ce33eaefcf5ff50
+15:22:13 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode0_noz.bin bytes=5120 sha256=8a7aa01a16e3e9cae4bafcf8ddee0719d711e0fb3ea8fd0c3efe0eefe909acab
+15:22:13 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode0_noz_depth.bin bytes=5120 sha256=477320ba75c7e0d7a32402cd4554de93d483ce6fb8b7eb951ce33eaefcf5ff50
+15:22:13 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode1.bin bytes=5120 sha256=150935873189cf1c54a2292a8d698fa045de3ca23e910fa895aa9e0a4da3744e
+15:22:13 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode1_depth.bin bytes=5120 sha256=0ec03fb584d3829f04934c6d90f234833bbaabb6e68263d5e0e1013dc0e0bc71
+15:22:13 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode1_dual.bin bytes=5120 sha256=b9b50a47f2aa3737cb7e232663611d37f0c789f1ad49ec34ce613e7880ff3d63
+15:22:13 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode1_dual_depth.bin bytes=5120 sha256=0ec03fb584d3829f04934c6d90f234833bbaabb6e68263d5e0e1013dc0e0bc71
+15:22:13 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode1_dual_noz.bin bytes=5120 sha256=b9b50a47f2aa3737cb7e232663611d37f0c789f1ad49ec34ce613e7880ff3d63
+15:22:13 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode1_dual_noz_depth.bin bytes=5120 sha256=0ec03fb584d3829f04934c6d90f234833bbaabb6e68263d5e0e1013dc0e0bc71
+15:22:13 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode1_noz.bin bytes=5120 sha256=150935873189cf1c54a2292a8d698fa045de3ca23e910fa895aa9e0a4da3744e
+15:22:13 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode1_noz_depth.bin bytes=5120 sha256=0ec03fb584d3829f04934c6d90f234833bbaabb6e68263d5e0e1013dc0e0bc71
+15:22:13 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode2.bin bytes=5120 sha256=f15e741785f2f7a23116de3abf9994ce860de1c598b69e8b43aab0034162be4d
+15:22:13 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode2_depth.bin bytes=5120 sha256=0ec03fb584d3829f04934c6d90f234833bbaabb6e68263d5e0e1013dc0e0bc71
+15:22:13 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode2_dual.bin bytes=5120 sha256=abfac55c67cf7340ea56b8ccb4951145ed794a2f7cb958b8fc28e90de2e8d048
+15:22:13 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode2_dual_depth.bin bytes=5120 sha256=0ec03fb584d3829f04934c6d90f234833bbaabb6e68263d5e0e1013dc0e0bc71
+15:22:13 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode2_dual_noz.bin bytes=5120 sha256=abfac55c67cf7340ea56b8ccb4951145ed794a2f7cb958b8fc28e90de2e8d048
+15:22:13 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode2_dual_noz_depth.bin bytes=5120 sha256=0ec03fb584d3829f04934c6d90f234833bbaabb6e68263d5e0e1013dc0e0bc71
+15:22:14 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode2_noz.bin bytes=5120 sha256=f15e741785f2f7a23116de3abf9994ce860de1c598b69e8b43aab0034162be4d
+15:22:14 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode2_noz_depth.bin bytes=5120 sha256=0ec03fb584d3829f04934c6d90f234833bbaabb6e68263d5e0e1013dc0e0bc71
+15:22:14 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode3.bin bytes=5120 sha256=bc0a51178e5e3675ab053885a17b4fc767ede941b077c40461730514e2973a71
+15:22:14 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode3_depth.bin bytes=5120 sha256=0ec03fb584d3829f04934c6d90f234833bbaabb6e68263d5e0e1013dc0e0bc71
+15:22:14 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode3_dual.bin bytes=5120 sha256=d3f6733cde4d994ba7b29c1f09a2769e143207ad82425b309b59ae8ed2ad9d18
+15:22:14 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode3_dual_depth.bin bytes=5120 sha256=0ec03fb584d3829f04934c6d90f234833bbaabb6e68263d5e0e1013dc0e0bc71
+15:22:14 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode3_dual_noz.bin bytes=5120 sha256=d3f6733cde4d994ba7b29c1f09a2769e143207ad82425b309b59ae8ed2ad9d18
+15:22:14 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode3_dual_noz_depth.bin bytes=5120 sha256=0ec03fb584d3829f04934c6d90f234833bbaabb6e68263d5e0e1013dc0e0bc71
+15:22:14 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode3_noz.bin bytes=5120 sha256=bc0a51178e5e3675ab053885a17b4fc767ede941b077c40461730514e2973a71
+15:22:14 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode3_noz_depth.bin bytes=5120 sha256=0ec03fb584d3829f04934c6d90f234833bbaabb6e68263d5e0e1013dc0e0bc71
+15:22:14 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode4.bin bytes=5120 sha256=f15e741785f2f7a23116de3abf9994ce860de1c598b69e8b43aab0034162be4d
+15:22:14 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode4_depth.bin bytes=5120 sha256=0ec03fb584d3829f04934c6d90f234833bbaabb6e68263d5e0e1013dc0e0bc71
+15:22:14 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode4_dual.bin bytes=5120 sha256=abfac55c67cf7340ea56b8ccb4951145ed794a2f7cb958b8fc28e90de2e8d048
+15:22:14 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode4_dual_depth.bin bytes=5120 sha256=0ec03fb584d3829f04934c6d90f234833bbaabb6e68263d5e0e1013dc0e0bc71
+15:22:14 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode4_dual_noz.bin bytes=5120 sha256=abfac55c67cf7340ea56b8ccb4951145ed794a2f7cb958b8fc28e90de2e8d048
+15:22:14 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode4_dual_noz_depth.bin bytes=5120 sha256=0ec03fb584d3829f04934c6d90f234833bbaabb6e68263d5e0e1013dc0e0bc71
+15:22:14 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode4_noz.bin bytes=5120 sha256=f15e741785f2f7a23116de3abf9994ce860de1c598b69e8b43aab0034162be4d
+15:22:14 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode4_noz_depth.bin bytes=5120 sha256=0ec03fb584d3829f04934c6d90f234833bbaabb6e68263d5e0e1013dc0e0bc71
+15:22:14 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode5.bin bytes=5120 sha256=bc0a51178e5e3675ab053885a17b4fc767ede941b077c40461730514e2973a71
+15:22:14 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode5_depth.bin bytes=5120 sha256=0ec03fb584d3829f04934c6d90f234833bbaabb6e68263d5e0e1013dc0e0bc71
+15:22:14 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode5_dual.bin bytes=5120 sha256=d3f6733cde4d994ba7b29c1f09a2769e143207ad82425b309b59ae8ed2ad9d18
+15:22:14 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode5_dual_depth.bin bytes=5120 sha256=0ec03fb584d3829f04934c6d90f234833bbaabb6e68263d5e0e1013dc0e0bc71
+15:22:14 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode5_dual_noz.bin bytes=5120 sha256=d3f6733cde4d994ba7b29c1f09a2769e143207ad82425b309b59ae8ed2ad9d18
+15:22:14 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode5_dual_noz_depth.bin bytes=5120 sha256=0ec03fb584d3829f04934c6d90f234833bbaabb6e68263d5e0e1013dc0e0bc71
+15:22:14 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode5_noz.bin bytes=5120 sha256=bc0a51178e5e3675ab053885a17b4fc767ede941b077c40461730514e2973a71
+15:22:14 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode5_noz_depth.bin bytes=5120 sha256=0ec03fb584d3829f04934c6d90f234833bbaabb6e68263d5e0e1013dc0e0bc71
+15:22:14 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode6.bin bytes=5120 sha256=f15e741785f2f7a23116de3abf9994ce860de1c598b69e8b43aab0034162be4d
+15:22:15 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode6_depth.bin bytes=5120 sha256=0ec03fb584d3829f04934c6d90f234833bbaabb6e68263d5e0e1013dc0e0bc71
+15:22:15 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode6_dual.bin bytes=5120 sha256=abfac55c67cf7340ea56b8ccb4951145ed794a2f7cb958b8fc28e90de2e8d048
+15:22:15 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode6_dual_depth.bin bytes=5120 sha256=0ec03fb584d3829f04934c6d90f234833bbaabb6e68263d5e0e1013dc0e0bc71
+15:22:15 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode6_dual_noz.bin bytes=5120 sha256=abfac55c67cf7340ea56b8ccb4951145ed794a2f7cb958b8fc28e90de2e8d048
+15:22:15 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode6_dual_noz_depth.bin bytes=5120 sha256=0ec03fb584d3829f04934c6d90f234833bbaabb6e68263d5e0e1013dc0e0bc71
+15:22:15 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode6_noz.bin bytes=5120 sha256=f15e741785f2f7a23116de3abf9994ce860de1c598b69e8b43aab0034162be4d
+15:22:15 read-back /switch/gtavcs_nx/rhi-tests/gs_modes.mode6_noz_depth.bin bytes=5120 sha256=0ec03fb584d3829f04934c6d90f234833bbaabb6e68263d5e0e1013dc0e0bc71
+15:22:15 read-back /switch/gtavcs_nx/rhi-tests/gs_native.color.bin bytes=8192 sha256=901c10871fab4126a6e71bedd7b1cbf34cc22293e95f2f4c28c7bbea07f249a7
+15:22:15 read-back /switch/gtavcs_nx/rhi-tests/gs_native.depth.bin bytes=8192 sha256=14a9bae8973c24ab1c07ccce8c76e3a043f16003fc369b9f37e340495f96af66
+15:22:15 read-back /switch/gtavcs_nx/rhi-tests/gs_rt_reads.rt_filtered.bin bytes=4096 sha256=49ea06a3dc52a8a422d56ede4df7451d3c836616697aad48eef58f78e42f429b
+15:22:15 read-back /switch/gtavcs_nx/rhi-tests/gs_rt_reads.rt_full_linear.bin bytes=4096 sha256=dfd0db1a94b87ef45f1a4787d15a6a72c74ca65e55a91ad41c5a4e9f05ec4a93
+15:22:15 read-back /switch/gtavcs_nx/rhi-tests/gs_rt_reads.rt_full_mode0.bin bytes=4096 sha256=dfd0db1a94b87ef45f1a4787d15a6a72c74ca65e55a91ad41c5a4e9f05ec4a93
+15:22:15 read-back /switch/gtavcs_nx/rhi-tests/gs_rt_reads.rt_full_nearest.bin bytes=4096 sha256=1d3058613f5f789516ee93b3568a0c115f2756be521b49608368b119efaa4c08
+15:22:15 read-back /switch/gtavcs_nx/rhi-tests/gs_rt_reads.rt_texel.bin bytes=4096 sha256=2cbc048dfb2562bb6a666211a4b914284b99835841b54be94e5c22929957cce8
+15:22:15 read-back /switch/gtavcs_nx/rhi-tests/gs_tfx.grid.bin bytes=16384 sha256=a7d22929dc88e6400323e9bdc8742ae519324c367ff968ce74a24cf7f0cacdaa
+15:22:15 read-back /switch/gtavcs_nx/rhi-tests/gs_util.blit.bin bytes=8192 sha256=af8fba404aa185170fc840009f7353646f8f7c7c0330119176e0c0f630ee039c
+15:22:15 read-back /switch/gtavcs_nx/rhi-tests/gs_wrap.npot.bin bytes=18432 sha256=aa9a33847f3133244c6e0a66a07a0d2206f136abf99ea19f651592c0887b935c
+15:22:15 read-back /switch/gtavcs_nx/rhi-tests/gs_wrap.pot.bin bytes=18432 sha256=6a303cb0762c7569da30f15f27dff515d75b0a498fe9739c539253abe20b96a0
+15:22:15 read-back /switch/gtavcs_nx/rhi-tests/index.tsv bytes=8167 sha256=93835d94ba0a8d3834c1c929c182382b83b2436642173c52f20aff139ccb51c0
+15:22:15 read-back /switch/gtavcs_nx/rhi-tests/log.txt bytes=7819 sha256=cb0adfbd8fb703dd079dd170a259d6645d6a0e9aaea682229534df834bb4ddf7
+15:22:15 read-back /switch/gtavcs_nx/rhi-tests/mips.generated_1.bin bytes=4096 sha256=98719a5f7ef82020ee3d4ba4eee7eb5a2e61c0b44309e7df177f1dd699b7bdf3
+15:22:15 read-back /switch/gtavcs_nx/rhi-tests/mips.generated_3.bin bytes=256 sha256=5bf73e87205317575d5288eda144408c420952acd235f0e0ea4d0875cdc95f90
+15:22:15 read-back /switch/gtavcs_nx/rhi-tests/mips.level_0.bin bytes=16384 sha256=0bcc07de1631aa0395013f35790f719bd754f61e4bb2847a86fdc2365d3d8d63
+15:22:15 read-back /switch/gtavcs_nx/rhi-tests/mips.level_1.bin bytes=4096 sha256=56419a079049271b37eea3515c12bbafb46578e6ac4db012c61395ef8b2e5a68
+15:22:15 read-back /switch/gtavcs_nx/rhi-tests/mips.level_2.bin bytes=1024 sha256=3fb5701c6e0bed57fa2f6dae58d0a486aa1889245c022dc6917814179c8088c4
+15:22:16 read-back /switch/gtavcs_nx/rhi-tests/mips.level_3.bin bytes=256 sha256=95b955e50330dfa31fbe29cfc3d2b1b68cf9c46bb369bfa126f01741c152fd52
+15:22:16 read-back /switch/gtavcs_nx/rhi-tests/mips.level_4.bin bytes=64 sha256=385de322da44675357bbf5f11fdea39ce238d8e172c1c52ffdd4e33588b68a80
+15:22:16 read-back /switch/gtavcs_nx/rhi-tests/mips.level_5.bin bytes=16 sha256=1e9d4133111b4fede2d49c35c4106dc9bb9f68dc79913dc7c8a0cc1ba7f1ea37
+15:22:16 read-back /switch/gtavcs_nx/rhi-tests/mips.level_6.bin bytes=4 sha256=79dfad351f79ef0e65a11fff0a9ed44bf628f9390ff06b92ee4ee5e2477616ea
+15:22:16 read-back /switch/gtavcs_nx/rhi-tests/mips.rt_level3.bin bytes=64 sha256=06341afce585c3b4c410c811cc08e829dca1f6886713745e97fc3214cb06f225
+15:22:16 read-back /switch/gtavcs_nx/rhi-tests/msaa.resolved.bin bytes=4096 sha256=b730a0cb69f5a6ec0120407b365b2eec8301b07c5de97a52ef79cc79f8e9575c
+15:22:16 read-back /switch/gtavcs_nx/rhi-tests/passes.depth_only.bin bytes=4096 sha256=fcecc0ea796842c76c5131eb0be88463e11d56d525fe26d4391b507d4250b101
+15:22:16 read-back /switch/gtavcs_nx/rhi-tests/passes.viewport_scissor.bin bytes=16384 sha256=cb2ea4a368772e4e4535d155006c576a30d8b7299f0c7fbe141e6233ce43b399
+15:22:16 read-back /switch/gtavcs_nx/rhi-tests/pixel_centre.sprites.bin bytes=12288 sha256=b356c2febef1f3e4f5ce5caf8a87e4485d9c6a6a015ed9256e873b1929dbfaf5
+15:22:16 read-back /switch/gtavcs_nx/rhi-tests/pixel_centre.triangle_lines_points_copy.bin bytes=12288 sha256=606624774ac4642fafbc219529bc78e1bb30371ff70b65dfaab0b26e6b2dc223
+15:22:16 read-back /switch/gtavcs_nx/rhi-tests/present_ui.letterbox.bin bytes=12288 sha256=00cf773f2384f55e073d22d0afa06ee41013a6b36280207de796ebe65dce8a19
+15:22:16 read-back /switch/gtavcs_nx/rhi-tests/present_ui.ui.bin bytes=12288 sha256=568ffaecbb22ac231e64dd73248dd6dd76bf90131a99ced12bdd1e3e4b7618d6
+15:22:16 read-back /switch/gtavcs_nx/rhi-tests/samplers.anisotropic_16.bin bytes=16384 sha256=450552eebfb70be53acb4d89340b370791bfdf36d80cce2745a9b4de8a37e697
+15:22:16 read-back /switch/gtavcs_nx/rhi-tests/samplers.linear_clamp.bin bytes=4096 sha256=8a7b50664d4cb2c5e055a76db3bd9856b2ea3a22b490bb67823a0da2bda6a955
+15:22:16 read-back /switch/gtavcs_nx/rhi-tests/samplers.linear_repeat.bin bytes=4096 sha256=d50ca9bdba7b77ce49ca48e43607bc34aa57011d622b7658de3fa6de2667832e
+15:22:16 read-back /switch/gtavcs_nx/rhi-tests/samplers.nearest_clamp.bin bytes=4096 sha256=b7753949fc1c1d9b854a0aa6b18b3a35241ca01e462a4e518ae3799ffe5456c7
+15:22:16 read-back /switch/gtavcs_nx/rhi-tests/samplers.nearest_mixed.bin bytes=4096 sha256=aa0e7b767cbaf705a525b8b87e512fa843b77992a2e8fcc99ef6c1fbe2b206e0
+15:22:16 read-back /switch/gtavcs_nx/rhi-tests/samplers.nearest_repeat.bin bytes=4096 sha256=3feae4e14818cd79d62b4f978b19a13598d805c87fb61544b727fe623a353c41
+15:22:16 read-back /switch/gtavcs_nx/rhi-tests/samplers.trilinear.bin bytes=16384 sha256=78ca8292989cc2755013b4f1ace7f5bf0d594ea038f30314d7de01882487a43f
+15:22:16 read-back /switch/gtavcs_nx/rhi-tests/scenes.txt bytes=2274 sha256=7c641a6ca64bbf745780de732399f9ba59f63c572198eb8869b9774dcb4d5557
+15:22:16 read-back /switch/gtavcs_nx/rhi-tests/summary.txt bytes=224 sha256=f0f3fd6804c42ed75b7da50efd22b3c4e92fdc8e7b2d92fb95624279932811c3
+15:22:16 read-back /switch/gtavcs_nx/rhi-tests/textures.r32f.bin bytes=1024 sha256=63230840e272e6d2eae9d06e5039ada6308eae1b1a7a9ea679613672702d198b
+15:22:17 read-back /switch/gtavcs_nx/rhi-tests/textures.updated.bin bytes=3404 sha256=a608d36bfe9153d63911b5a1bb6c89817e58001d8f05119575929aa95943b8de
+15:22:17 read-back /switch/gtavcs_nx/rhi-tests/textures.upload.bin bytes=3404 sha256=231d56122e426939ba47657bfe481e2eb6a814e5c45f57f2be58cb6d1df7b42d
+15:22:17 read-back /switch/gtavcs_nx/rhi-tests/topology.lines.bin bytes=4096 sha256=5af9b8afd1830bfb7d0d5e3eab63e2785e96bd934be655e76116199a2556c548
+15:22:17 read-back /switch/gtavcs_nx/rhi-tests/topology.points.bin bytes=4096 sha256=4a4d1b657c8b1a80befefe4c985f4a6880eefd47ead3e5bc11b7057ddf35be4b
+15:22:17 read-back /switch/gtavcs_nx/rhi-tests/topology.strip.bin bytes=4096 sha256=63f409d5e5b809018e2d4e030039dca751e4738cbef54b610f8fe96efef57c70
+15:22:17 read-back /switch/gtavcs_nx/rhi-tests/topology.triangles.bin bytes=4096 sha256=7eb071280b515781b9696e066d52f8dde7a0b9650ee9bcbf7a8a589cfb04df41
+15:22:17 read-back /switch/gtavcs_nx/rhi-tests/window.tsv bytes=10091 sha256=1052559c0597434fb7c16d226e29420a1218c3ab82812971f813dadff68b577f
+15:22:17 read-back /switch/gtavcs_nx/rhi-tests/write_mask.masks.bin bytes=4096 sha256=bc115d8d1c365b9b31a28d2bf64e5dcc239723ca8c2a6ef8dea8eb60d02adc0e
+15:22:18 rhi-dock-repro: summary=['DONE', 'images 127', 'failed_checks 0'] compare_exit=0 compare_tail=['127 images, 101 byte-identical, 0 failures'] sd_matches_local=True new_crashes=[]
+15:22:18 RESULT rhi PASS

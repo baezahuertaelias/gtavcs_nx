@@ -7,6 +7,8 @@
 //   - The desktop window placement, full screen, mouse capture and cursor hiding have no Switch counterpart: they
 //     are accepted and remembered so the settings registry keeps working, and logged once.
 //   - Vulkan entry points report unavailable (the Switch baseline is OpenGL through SDL2/EGL; no Vulkan driver).
+//   - The OpenGL renderer (rhi::GlWindow, M05) gets main.c's context through SDL: its entry points, the swap, the
+//     drawable size and the swap interval. Nothing here makes a context or surface.
 //   - SDL2 game controllers: buttons by physical position (SDL_HINT_GAMECONTROLLER_USE_BUTTON_LABELS=0), so
 //     south = Cross on every controller (platform.h's contract).
 //   - Audio: SDL2's callback device (SDL owns audren), pulled from upstream's producer ring by AudioFill on SDL's
@@ -14,6 +16,7 @@
 // Thread rules are platform.h's: the main thread pumps events and owns the frame calls; queries read a snapshot.
 #include "platform/platform.h"
 #include "platform/platform_switch.h"
+#include "platform/gl_loader_egl.h"
 
 #include <SDL.h>
 
@@ -243,6 +246,9 @@ namespace platform
         io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;
         ImGui::StyleColorsDark();
         g_imgui = ImGui_ImplSDL2_InitForOpenGL(g_window, SDL_GL_GetCurrentContext());
+        // M05-09's second threading prototype: a loader context for the OpenGL RHI's free-threaded textures
+        if (const char *e = std::getenv("PS2X_GL_WORKER_CONTEXT"); e && *e && *e != '0')
+            gl_loader::create();
         if (!g_imgui)
             std::fprintf(stderr, "[platform] Dear ImGui SDL2 input backend failed\n");
         int w = 0, h = 0;
@@ -274,6 +280,7 @@ namespace platform
         }
         g_gamepad = nullptr;
         g_padConnected.store(false, std::memory_order_relaxed);
+        gl_loader::destroy(); // the presenter's device (its only user) is gone by now
         g_window = nullptr; // main.c destroys it, after the core has shut down
         std::fprintf(stderr, "[platform] shut down (window, context and SDL left to main.c)\n");
     }
@@ -295,6 +302,28 @@ namespace platform
         unsupportedOnce("Vulkan");
         return false;
     }
+
+    // the OpenGL renderer: main.c's one SDL GL context, current on the main thread (rhi::GlWindow)
+    void *glGetProcAddress(const char *name) { return SDL_GL_GetProcAddress(name); }
+
+    void glSwapWindow()
+    {
+        if (g_window)
+            SDL_GL_SwapWindow(g_window);
+    }
+
+    void glDrawableSize(uint32_t *width, uint32_t *height)
+    {
+        int w = 0, h = 0;
+        if (g_window)
+            SDL_GL_GetDrawableSize(g_window, &w, &h);
+        *width = static_cast<uint32_t>(std::max(w, 0));
+        *height = static_cast<uint32_t>(std::max(h, 0));
+    }
+
+    bool glSetSwapInterval(int interval) { return SDL_GL_SetSwapInterval(interval) == 0; }
+    bool glLoaderAvailable() { return gl_loader::available(); }
+    bool glMakeLoaderCurrent(bool current) { return gl_loader::makeCurrent(current); }
 
     namespace
     {

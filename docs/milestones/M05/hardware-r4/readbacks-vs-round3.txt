@@ -1,0 +1,13 @@
+# Round 4 RHI readbacks (SHA-256 from the session transcripts) against round 3's, which passed the comparison
+# with upstream's Vulkan backend on ANV and on lavapipe (hardware-r2/rhi-r2*/rhi-r2*-compare*.json).
+# Generated from hardware-r2/transcript.txt and hardware-r4/transcript.txt.
+rhi-fixedwin-handheld (nro 43d6a930) vs rhi-r2 (nro e0ba4541): 127 / 127 images, 127 byte-identical, 0 differ
+rhi-fixedwin-handheld (nro 43d6a930) vs rhi-r2-docked (nro e0ba4541): 127 / 127 images, 127 byte-identical, 0 differ
+rhi-fixedwin (nro 43d6a930) vs rhi-r2 (nro e0ba4541): 127 / 127 images, 127 byte-identical, 0 differ
+rhi-fixedwin (nro 43d6a930) vs rhi-r2-docked (nro e0ba4541): 127 / 127 images, 127 byte-identical, 0 differ
+rhi-noresizable (nro 58c458b0) vs rhi-r2 (nro e0ba4541): 127 / 127 images, 127 byte-identical, 0 differ
+rhi-noresizable (nro 58c458b0) vs rhi-r2-docked (nro e0ba4541): 127 / 127 images, 127 byte-identical, 0 differ
+rhi-noresizable-docked (nro 58c458b0) vs rhi-r2 (nro e0ba4541): 127 / 127 images, 127 byte-identical, 0 differ
+rhi-noresizable-docked (nro 58c458b0) vs rhi-r2-docked (nro e0ba4541): 127 / 127 images, 127 byte-identical, 0 differ
+rhi-noresizable-docked2 (nro 58c458b0) vs rhi-r2 (nro e0ba4541): 127 / 127 images, 127 byte-identical, 0 differ
+rhi-noresizable-docked2 (nro 58c458b0) vs rhi-r2-docked (nro e0ba4541): 127 / 127 images, 127 byte-identical, 0 differ

@@ -1,0 +1,186 @@
+[rhi-tests] start; HOS 00160500 applet 0
+[gl-loader] loader context made (config 5, shares the window context)
+[rhi] GL debug output on (KHR_debug, synchronous)
+[rhi] OpenGL 4.3: clip_control 1, viewport_array 1, anisotropy 1 (max 16), KHR_debug 1, dual-source draw buffers 1, samples 8/8/8, max texture 16384, framebuffer encoding 0x2601
+[rhi] OpenGL free-threaded texture creation on a loader context (PS2X_GL_WORKER_CONTEXT)
+[rhi-tests] NV120 (4.3 (Core Profile) Mesa 20.1.0-rc3; GLSL 4.30); loader context 1; free-threaded 1
+[rhi-tests] scene textures
+[rhi-tests] covers createTexture updateTexture readTexture Format::RGBA8 Format::R32F UsageDynamic
+[rhi-tests] scene mips
+[rhi-tests] covers createTextureLevels createTexture(mipLevels=0) generateMips
+[rhi-tests] scene samplers
+[rhi-tests] covers createSampler Filter::Nearest Filter::Linear Wrap::Clamp Wrap::Repeat anisotropy
+[rhi] gl debug (type 0x8251 id 2 severity 0x9146): 0:266(17): warning: `g_pixel' used uninitialized
+[rhi-tests] scene buffers
+[rhi-tests] covers createBuffer updateBuffer setVertexBuffer(offset) setIndexBuffer(16,32) drawIndexed(firstIndex,baseVertex) setConstants
+[rhi] gl debug (type 0x8251 id 3 severity 0x9146): 0:266(17): warning: `g_pixel' used uninitialized
+[rhi-tests] scene topology
+[rhi-tests] covers Topology::Triangles Topology::TriangleStrip Topology::Lines Topology::Points
+[rhi-tests] scene blend
+[rhi-tests] covers BlendState BlendFactor BlendOp setBlendConstant
+[rhi-tests] scene dual_source
+[rhi-tests] covers BlendFactor::Src1Alpha BlendFactor::InvSrc1Alpha gs_draw DUAL_SOURCE=1
+[rhi] gl debug (type 0x8251 id 4 severity 0x9146): 0:266(17): warning: `g_pixel' used uninitialized
+[rhi] gl debug (type 0x8251 id 5 severity 0x9146): 0:266(17): warning: `g_pixel' used uninitialized
+[rhi] gl debug (type 0x8251 id 6 severity 0x9146): 0:266(17): warning: `g_pixel' used uninitialized
+[rhi] gl debug (type 0x8251 id 7 severity 0x9146): 0:266(17): warning: `g_pixel' used uninitialized
+[rhi] gl debug (type 0x8251 id 8 severity 0x9146): 0:266(17): warning: `g_pixel' used uninitialized
+[rhi] gl debug (type 0x8251 id 9 severity 0x9146): 0:266(17): warning: `g_pixel' used uninitialized
+[rhi] gl debug (type 0x8251 id 10 severity 0x9146): 0:266(17): warning: `g_pixel' used uninitialized
+[rhi] gl debug (type 0x8251 id 11 severity 0x9146): 0:266(17): warning: `g_pixel' used uninitialized
+[rhi] gl debug (type 0x8251 id 12 severity 0x9146): 0:266(17): warning: `g_pixel' used uninitialized
+[rhi] gl debug (type 0x8251 id 13 severity 0x9146): 0:266(17): warning: `g_pixel' used uninitialized
+[rhi] gl debug (type 0x8251 id 14 severity 0x9146): 0:266(17): warning: `g_pixel' used uninitialized
+[rhi] gl debug (type 0x8251 id 15 severity 0x9146): 0:266(17): warning: `g_pixel' used uninitialized
+[rhi] gl debug (type 0x8251 id 16 severity 0x9146): 0:266(17): warning: `g_pixel' used uninitialized
+[rhi] gl debug (type 0x8251 id 17 severity 0x9146): 0:266(17): warning: `g_pixel' used uninitialized
+[rhi-tests] scene write_mask
+[rhi-tests] covers BlendState::writeMask
+[rhi-tests] scene depth
+[rhi-tests] covers DepthState Compare Format::D32F clearDepth readTexture(D32F) depthClip SHADER_DEPTH
+[rhi] gl debug (type 0x8251 id 18 severity 0x9146): 0:266(17): warning: `g_pixel' used uninitialized
+[rhi-tests] scene passes
+[rhi-tests] covers beginPass endPass setViewport setScissor PassDesc::clearColor PassDesc::clearDepth PassDesc::depthOnly pushMarker popMarker
+[rhi-tests] scene copies
+[rhi-tests] covers copyTexture(RGBA8) copyTexture(D32F)
+[rhi-tests] scene msaa
+[rhi-tests] covers TextureDesc::samples resolveTexture
+[rhi-tests] scene conventions
+[rhi-tests] covers conventions: Y origin, clip depth, pixel centres, UNORM encode
+[rhi-tests] scene present_ui
+[rhi-tests] covers present VS/PS ui VS/PS VertexFormat::Float2 VertexFormat::UByte4Norm
+[rhi-tests] scene gs_util
+[rhi-tests] covers gs_quad VS gs_blit PS gs_fill_color PS gs_fill_depth PS
+[rhi-tests] scene gs_modes
+[rhi-tests] covers gs_draw VS gs_draw PS modes 0-6 (x dual x NoZ)
+[rhi] gl debug (type 0x8251 id 19 severity 0x9146): 0:266(17): warning: `g_pixel' used uninitialized
+[rhi] gl debug (type 0x8251 id 20 severity 0x9146): 0:266(17): warning: `g_pixel' used uninitialized
+[rhi] gl debug (type 0x8251 id 21 severity 0x9146): 0:266(17): warning: `g_pixel' used uninitialized
+[rhi] gl debug (type 0x8251 id 22 severity 0x9146): 0:266(17): warning: `g_pixel' used uninitialized
+[rhi] gl debug (type 0x8251 id 23 severity 0x9146): 0:266(17): warning: `g_pixel' used uninitialized
+[rhi] gl debug (type 0x8251 id 24 severity 0x9146): 0:266(17): warning: `g_pixel' used uninitialized
+[rhi] gl debug (type 0x8251 id 25 severity 0x9146): 0:266(17): warning: `g_pixel' used uninitialized
+[rhi] gl debug (type 0x8251 id 26 severity 0x9146): 0:266(17): warning: `g_pixel' used uninitialized
+[rhi] gl debug (type 0x8251 id 27 severity 0x9146): 0:266(17): warning: `g_pixel' used uninitialized
+[rhi] gl debug (type 0x8251 id 28 severity 0x9146): 0:266(17): warning: `g_pixel' used uninitialized
+[rhi] gl debug (type 0x8251 id 29 severity 0x9146): 0:266(17): warning: `g_pixel' used uninitialized
+[rhi-tests] scene gs_tfx
+[rhi-tests] covers gs_draw TFX TCC IIP FGE ATST AFAIL FST STQ premultiply
+[rhi-tests] scene gs_wrap
+[rhi-tests] covers gs_draw wrapc REPEAT CLAMP REGION_CLAMP REGION_REPEAT non-power-of-two
+[rhi-tests] scene gs_rt_reads
+[rhi-tests] covers gs_draw texIsRt 1/2/3 rtScale rtOrigin filterSize filterDest gl_FragCoord
+[rhi-tests] scene gs_native
+[rhi-tests] covers gs_world VS gs_lit VS VertexFormat::UInt1 VertexFormat::Float3 setConstants(slot 1) depthClip=false clip distances
+[rhi-tests] scene gl_checks
+[rhi-tests] covers GL bounds / hazard / owner-thread refusals
+[rhi] refused: updateTexture: 8x8 at 4,4 outside 'bounds' (8x8), no data, multisampled or depth
+[rhi] refused: readTexture: 9x1 at 0,0 outside 'bounds', no destination or multisampled (resolve first)
+[rhi] refused: updateBuffer: 64 bytes into 'small' of 16: clamped
+[rhi] refused: draw 'blit': texture 'bounds' is sampled while it is the pass's target
+[rhi] refused: draw 'gs draw': 3 vertices of 32 bytes from offset 0 past 'small' (16 bytes)
+[rhi-tests] scene free_threaded
+[rhi-tests] covers freeThreadedCreation createTexture/createTextureLevels off the owner thread
+[rhi-tests] freeThreadedCreation 1
+[rhi] gl debug (type 0x824c id 30 severity 0x9146): GL_INVALID_VALUE in glWaitSync (not a valid sync object)
+[rhi] gl debug (type 0x824c id 30 severity 0x9146): GL_INVALID_VALUE in glDeleteSync (not a valid sync object)
+[rhi] gl debug (type 0x824c id 30 severity 0x9146): GL_INVALID_OPERATION in glBindTexture(non-gen name)
+[rhi] GL_INVALID_VALUE after readTexture
+FAIL free_threaded/read_worker copy readTexture failed
+[rhi] gl debug (type 0x824c id 30 severity 0x9146): GL_INVALID_VALUE in glWaitSync (not a valid sync object)
+[rhi] gl debug (type 0x824c id 30 severity 0x9146): GL_INVALID_VALUE in glDeleteSync (not a valid sync object)
+[rhi] gl debug (type 0x824c id 30 severity 0x9146): GL_INVALID_OPERATION in glBindTexture(non-gen name)
+[rhi] GL_INVALID_VALUE after readTexture
+FAIL free_threaded/read_worker copy readTexture failed
+[rhi] gl debug (type 0x824c id 30 severity 0x9146): GL_INVALID_VALUE in glWaitSync (not a valid sync object)
+[rhi] gl debug (type 0x824c id 30 severity 0x9146): GL_INVALID_VALUE in glDeleteSync (not a valid sync object)
+[rhi] gl debug (type 0x824c id 30 severity 0x9146): GL_INVALID_OPERATION in glBindTexture(non-gen name)
+[rhi] GL_INVALID_VALUE after readTexture
+FAIL free_threaded/read_worker copy readTexture failed
+[rhi] gl debug (type 0x824c id 30 severity 0x9146): GL_INVALID_VALUE in glWaitSync (not a valid sync object)
+[rhi] gl debug (type 0x824c id 30 severity 0x9146): GL_INVALID_VALUE in glDeleteSync (not a valid sync object)
+[rhi] gl debug (type 0x824c id 30 severity 0x9146): GL_INVALID_OPERATION in glBindTexture(non-gen name)
+[rhi] GL_INVALID_VALUE after readTexture
+FAIL free_threaded/read_worker copy readTexture failed
+[rhi] gl debug (type 0x824c id 30 severity 0x9146): GL_INVALID_VALUE in glWaitSync (not a valid sync object)
+[rhi] gl debug (type 0x824c id 30 severity 0x9146): GL_INVALID_VALUE in glDeleteSync (not a valid sync object)
+[rhi] gl debug (type 0x824c id 30 severity 0x9146): GL_INVALID_OPERATION in glBindTexture(non-gen name)
+[rhi] GL_INVALID_VALUE after readTexture
+FAIL free_threaded/read_worker copy readTexture failed
+[rhi] gl debug (type 0x824c id 30 severity 0x9146): GL_INVALID_VALUE in glWaitSync (not a valid sync object)
+[rhi] gl debug (type 0x824c id 30 severity 0x9146): GL_INVALID_VALUE in glDeleteSync (not a valid sync object)
+[rhi] gl debug (type 0x824c id 30 severity 0x9146): GL_INVALID_OPERATION in glBindTexture(non-gen name)
+[rhi] GL_INVALID_VALUE after readTexture
+FAIL free_threaded/read_worker copy readTexture failed
+[rhi] gl debug (type 0x824c id 30 severity 0x9146): GL_INVALID_VALUE in glWaitSync (not a valid sync object)
+[rhi] gl debug (type 0x824c id 30 severity 0x9146): GL_INVALID_VALUE in glDeleteSync (not a valid sync object)
+[rhi] gl debug (type 0x824c id 30 severity 0x9146): GL_INVALID_OPERATION in glBindTexture(non-gen name)
+[rhi] GL_INVALID_VALUE after readTexture
+FAIL free_threaded/read_worker copy readTexture failed
+[rhi] gl debug (type 0x824c id 30 severity 0x9146): GL_INVALID_VALUE in glWaitSync (not a valid sync object)
+[rhi] GL_INVALID_VALUE after readTexture
+FAIL free_threaded/read_worker copy readTexture failed
+[rhi] GL_INVALID_VALUE after readTexture
+FAIL free_threaded/read_worker copy readTexture failed
+[rhi] GL_INVALID_VALUE after readTexture
+FAIL free_threaded/read_worker copy readTexture failed
+[rhi] GL_INVALID_VALUE after readTexture
+FAIL free_threaded/read_worker copy readTexture failed
+[rhi] GL_INVALID_VALUE after readTexture
+FAIL free_threaded/read_worker copy readTexture failed
+[rhi] GL_INVALID_VALUE after readTexture
+FAIL free_threaded/read_worker copy readTexture failed
+[rhi] GL_INVALID_VALUE after readTexture
+FAIL free_threaded/read_worker copy readTexture failed
+[rhi] GL_INVALID_VALUE after readTexture
+FAIL free_threaded/read_worker copy readTexture failed
+[rhi] GL_INVALID_VALUE after readTexture
+FAIL free_threaded/read_worker copy readTexture failed
+[rhi] GL_INVALID_VALUE after readTexture
+FAIL free_threaded/read_worker copy readTexture failed
+[rhi] GL_INVALID_VALUE after readTexture
+FAIL free_threaded/read_worker copy readTexture failed
+[rhi] GL_INVALID_VALUE after readTexture
+FAIL free_threaded/read_worker copy readTexture failed
+[rhi] GL_INVALID_VALUE after readTexture
+FAIL free_threaded/read_worker copy readTexture failed
+[rhi] GL_INVALID_VALUE after readTexture
+FAIL free_threaded/read_worker copy readTexture failed
+[rhi] GL_INVALID_VALUE after readTexture
+FAIL free_threaded/read_worker copy readTexture failed
+[rhi] GL_INVALID_VALUE after readTexture
+FAIL free_threaded/read_worker copy readTexture failed
+[rhi] GL_INVALID_VALUE after readTexture
+FAIL free_threaded/read_worker copy readTexture failed
+FAIL free_threaded/sampled_by_owner content 0 content 1 content 2 content 3 content 4 content 5 content 6 content 7 content 8 content 9 content 10 content 11 content 12 content 13 content 14 content 15 content 16 content 17 content 18 content 19 content 20 content 21 content 22 content 23 
+[rhi-tests] scene churn
+[rhi-tests] covers resource churn, deferred destruction, offscreen resize
+[rhi] back buffer 512x304 -> 1920x1080 (the window's drawable)
+[rhi] back buffer 384x272 -> 1920x1080 (the window's drawable)
+[rhi] back buffer 576x240 -> 1920x1080 (the window's drawable)
+[rhi] back buffer 448x304 -> 1920x1080 (the window's drawable)
+[rhi] back buffer 320x272 -> 1920x1080 (the window's drawable)
+[rhi] back buffer 512x240 -> 1920x1080 (the window's drawable)
+[rhi] back buffer 384x304 -> 1920x1080 (the window's drawable)
+[rhi] back buffer 576x272 -> 1920x1080 (the window's drawable)
+[rhi] back buffer 448x240 -> 1920x1080 (the window's drawable)
+[rhi] back buffer 320x304 -> 1920x1080 (the window's drawable)
+[rhi] back buffer 512x272 -> 1920x1080 (the window's drawable)
+[rhi] back buffer 384x240 -> 1920x1080 (the window's drawable)
+[rhi] back buffer 576x304 -> 1920x1080 (the window's drawable)
+[rhi] back buffer 448x272 -> 1920x1080 (the window's drawable)
+[rhi] back buffer 320x240 -> 1920x1080 (the window's drawable)
+[rhi] back buffer 512x304 -> 1920x1080 (the window's drawable)
+[rhi] back buffer 384x272 -> 1920x1080 (the window's drawable)
+[rhi] back buffer 576x240 -> 1920x1080 (the window's drawable)
+[rhi] back buffer 448x304 -> 1920x1080 (the window's drawable)
+[rhi] back buffer 320x272 -> 1920x1080 (the window's drawable)
+[rhi] back buffer 512x240 -> 1920x1080 (the window's drawable)
+[rhi] back buffer 384x304 -> 1920x1080 (the window's drawable)
+[rhi] back buffer 576x272 -> 1920x1080 (the window's drawable)
+[rhi] back buffer 448x240 -> 1920x1080 (the window's drawable)
+[rhi] back buffer 640x448 -> 1920x1080 (the window's drawable)
+[rhi-tests] churn: process memory 3339763712 -> 3339763712 bytes, peak 3339763712
+[rhi-tests] conformance: 125 images, 25 failed checks, 7.7 s
+[bench] A_owner	0	256	691.352	691.352	726.770	30	0.359	702.008	ok
+[bench] fences waited 0 (use 11.201 ms)

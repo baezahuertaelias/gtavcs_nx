@@ -1,0 +1,453 @@
+{
+ "variants": [
+  {
+   "name": "kPresentVS",
+   "hlsl": "shaders/present.hlsl",
+   "glsl": "src/render/glsl/present.glsl",
+   "entry": "vs_main",
+   "stage": "vertex",
+   "defines": [],
+   "sha256": "80ecacba110c484bd4ec4c935fc05ebc50bfa5bdec8afb837ca29b9a2f3321e1"
+  },
+  {
+   "name": "kPresentPS",
+   "hlsl": "shaders/present.hlsl",
+   "glsl": "src/render/glsl/present.glsl",
+   "entry": "ps_main",
+   "stage": "fragment",
+   "defines": [],
+   "sha256": "e2545128a39557570a7e2ef5afba3b36dc00e43a77c1a30df43746010f195763"
+  },
+  {
+   "name": "kGsDrawVS",
+   "hlsl": "shaders/gs_draw.hlsl",
+   "glsl": "src/render/glsl/gs_draw.glsl",
+   "entry": "vs_main",
+   "stage": "vertex",
+   "defines": [],
+   "sha256": "9a60819dcb3ed1a4924982dfbfdc08537a6e8fc947eafbf41ec2fb34440aef93"
+  },
+  {
+   "name": "kGsWorldVS",
+   "hlsl": "shaders/gs_draw.hlsl",
+   "glsl": "src/render/glsl/gs_draw.glsl",
+   "entry": "vs_world",
+   "stage": "vertex",
+   "defines": [],
+   "sha256": "2977d219d176322fb20170d1fd53950796eaeb1159bdb9629c8a1e748d330632"
+  },
+  {
+   "name": "kGsLitVS",
+   "hlsl": "shaders/gs_draw.hlsl",
+   "glsl": "src/render/glsl/gs_draw.glsl",
+   "entry": "vs_lit",
+   "stage": "vertex",
+   "defines": [],
+   "sha256": "1761a4ba2563767d03413173d255a52fbc7c12e2e8d83180e13c8aa18e33e96e"
+  },
+  {
+   "name": "kGsDrawPS0",
+   "hlsl": "shaders/gs_draw.hlsl",
+   "glsl": "src/render/glsl/gs_draw.glsl",
+   "entry": "ps_main",
+   "stage": "fragment",
+   "defines": [
+    "DUAL_SOURCE=0",
+    "SAMPLE_MODE=0"
+   ],
+   "sha256": "5565576f900506930e6fb65a8f1380500fcda97d1d9de012eb087da2fc2612f5"
+  },
+  {
+   "name": "kGsDrawPS0Dual",
+   "hlsl": "shaders/gs_draw.hlsl",
+   "glsl": "src/render/glsl/gs_draw.glsl",
+   "entry": "ps_main",
+   "stage": "fragment",
+   "defines": [
+    "DUAL_SOURCE=1",
+    "SAMPLE_MODE=0"
+   ],
+   "sha256": "eed981c878aab6902475b1e6efabfa84f7b4c185a7c3a8e75e92f33bf182e59d"
+  },
+  {
+   "name": "kGsDrawPS0NoZ",
+   "hlsl": "shaders/gs_draw.hlsl",
+   "glsl": "src/render/glsl/gs_draw.glsl",
+   "entry": "ps_main",
+   "stage": "fragment",
+   "defines": [
+    "DUAL_SOURCE=0",
+    "SAMPLE_MODE=0",
+    "SHADER_DEPTH=0"
+   ],
+   "sha256": "b26b75881828ab7297f26070c78511316a9d622d1783baa3994fdccd47a8d966"
+  },
+  {
+   "name": "kGsDrawPS0DualNoZ",
+   "hlsl": "shaders/gs_draw.hlsl",
+   "glsl": "src/render/glsl/gs_draw.glsl",
+   "entry": "ps_main",
+   "stage": "fragment",
+   "defines": [
+    "DUAL_SOURCE=1",
+    "SAMPLE_MODE=0",
+    "SHADER_DEPTH=0"
+   ],
+   "sha256": "b1dae8d2fada2ee30ae0fb6fd80bfc9792dbc28b47f29714af2fb78afff9a53d"
+  },
+  {
+   "name": "kGsDrawPS1",
+   "hlsl": "shaders/gs_draw.hlsl",
+   "glsl": "src/render/glsl/gs_draw.glsl",
+   "entry": "ps_main",
+   "stage": "fragment",
+   "defines": [
+    "DUAL_SOURCE=0",
+    "SAMPLE_MODE=1"
+   ],
+   "sha256": "fade8b9effbde27bfa40da2a9a6b1d4b3268058baf1e72775f4f888196550097"
+  },
+  {
+   "name": "kGsDrawPS1Dual",
+   "hlsl": "shaders/gs_draw.hlsl",
+   "glsl": "src/render/glsl/gs_draw.glsl",
+   "entry": "ps_main",
+   "stage": "fragment",
+   "defines": [
+    "DUAL_SOURCE=1",
+    "SAMPLE_MODE=1"
+   ],
+   "sha256": "174e73922401199ee1a2000c14af21106a71bde082d798c7dd082b14d4a55fa1"
+  },
+  {
+   "name": "kGsDrawPS1NoZ",
+   "hlsl": "shaders/gs_draw.hlsl",
+   "glsl": "src/render/glsl/gs_draw.glsl",
+   "entry": "ps_main",
+   "stage": "fragment",
+   "defines": [
+    "DUAL_SOURCE=0",
+    "SAMPLE_MODE=1",
+    "SHADER_DEPTH=0"
+   ],
+   "sha256": "ceea4b1c99b5c6da7a2802a394ac4865d1a4b34495c8f9371df1b2b9b2814fe3"
+  },
+  {
+   "name": "kGsDrawPS1DualNoZ",
+   "hlsl": "shaders/gs_draw.hlsl",
+   "glsl": "src/render/glsl/gs_draw.glsl",
+   "entry": "ps_main",
+   "stage": "fragment",
+   "defines": [
+    "DUAL_SOURCE=1",
+    "SAMPLE_MODE=1",
+    "SHADER_DEPTH=0"
+   ],
+   "sha256": "1e84f5c45b9b559fc3106e0cd9afda07f6282bc98293ba12d88315b4b90dae69"
+  },
+  {
+   "name": "kGsDrawPS2",
+   "hlsl": "shaders/gs_draw.hlsl",
+   "glsl": "src/render/glsl/gs_draw.glsl",
+   "entry": "ps_main",
+   "stage": "fragment",
+   "defines": [
+    "DUAL_SOURCE=0",
+    "SAMPLE_MODE=2"
+   ],
+   "sha256": "9411fc0d5634cd5547dc50729fa895c7ecf65198f874de1c4700943e32d4d409"
+  },
+  {
+   "name": "kGsDrawPS2Dual",
+   "hlsl": "shaders/gs_draw.hlsl",
+   "glsl": "src/render/glsl/gs_draw.glsl",
+   "entry": "ps_main",
+   "stage": "fragment",
+   "defines": [
+    "DUAL_SOURCE=1",
+    "SAMPLE_MODE=2"
+   ],
+   "sha256": "3c66205c4c49d50550bae74f44877f41b18ad130e9c396d70d7e7c29791c879d"
+  },
+  {
+   "name": "kGsDrawPS2NoZ",
+   "hlsl": "shaders/gs_draw.hlsl",
+   "glsl": "src/render/glsl/gs_draw.glsl",
+   "entry": "ps_main",
+   "stage": "fragment",
+   "defines": [
+    "DUAL_SOURCE=0",
+    "SAMPLE_MODE=2",
+    "SHADER_DEPTH=0"
+   ],
+   "sha256": "0ea57bb2d38c4071e64da448dbcb956e3190a31bf8f534dccfbf72a9b042aa07"
+  },
+  {
+   "name": "kGsDrawPS2DualNoZ",
+   "hlsl": "shaders/gs_draw.hlsl",
+   "glsl": "src/render/glsl/gs_draw.glsl",
+   "entry": "ps_main",
+   "stage": "fragment",
+   "defines": [
+    "DUAL_SOURCE=1",
+    "SAMPLE_MODE=2",
+    "SHADER_DEPTH=0"
+   ],
+   "sha256": "e0ea748c4cb8bfed2ec47dfd33bce10e8b27cb398ab2ea1d162f80efe5efec5b"
+  },
+  {
+   "name": "kGsDrawPS3",
+   "hlsl": "shaders/gs_draw.hlsl",
+   "glsl": "src/render/glsl/gs_draw.glsl",
+   "entry": "ps_main",
+   "stage": "fragment",
+   "defines": [
+    "DUAL_SOURCE=0",
+    "SAMPLE_MODE=3"
+   ],
+   "sha256": "db81d77a1adaa64032f72f8c5c4976f3de48747668353a803c6c183b4ffa853b"
+  },
+  {
+   "name": "kGsDrawPS3Dual",
+   "hlsl": "shaders/gs_draw.hlsl",
+   "glsl": "src/render/glsl/gs_draw.glsl",
+   "entry": "ps_main",
+   "stage": "fragment",
+   "defines": [
+    "DUAL_SOURCE=1",
+    "SAMPLE_MODE=3"
+   ],
+   "sha256": "5e671f7eede03d6daac6e548c7507b8c9513936f9eed79913d307804bca0c368"
+  },
+  {
+   "name": "kGsDrawPS3NoZ",
+   "hlsl": "shaders/gs_draw.hlsl",
+   "glsl": "src/render/glsl/gs_draw.glsl",
+   "entry": "ps_main",
+   "stage": "fragment",
+   "defines": [
+    "DUAL_SOURCE=0",
+    "SAMPLE_MODE=3",
+    "SHADER_DEPTH=0"
+   ],
+   "sha256": "8b65b236d632d37f9db96c062d6ec723d4f1334b39c1ad2d3a4ea433f660916b"
+  },
+  {
+   "name": "kGsDrawPS3DualNoZ",
+   "hlsl": "shaders/gs_draw.hlsl",
+   "glsl": "src/render/glsl/gs_draw.glsl",
+   "entry": "ps_main",
+   "stage": "fragment",
+   "defines": [
+    "DUAL_SOURCE=1",
+    "SAMPLE_MODE=3",
+    "SHADER_DEPTH=0"
+   ],
+   "sha256": "ffc22b17573871b64bbee0871475a42b59d60c2ec314aba41001160b9d92c077"
+  },
+  {
+   "name": "kGsDrawPS4",
+   "hlsl": "shaders/gs_draw.hlsl",
+   "glsl": "src/render/glsl/gs_draw.glsl",
+   "entry": "ps_main",
+   "stage": "fragment",
+   "defines": [
+    "DUAL_SOURCE=0",
+    "SAMPLE_MODE=4"
+   ],
+   "sha256": "78d63fba644c05dfa332a85a841dd8b3ab156b9b4e5f587a4d28be96aa4bc42a"
+  },
+  {
+   "name": "kGsDrawPS4Dual",
+   "hlsl": "shaders/gs_draw.hlsl",
+   "glsl": "src/render/glsl/gs_draw.glsl",
+   "entry": "ps_main",
+   "stage": "fragment",
+   "defines": [
+    "DUAL_SOURCE=1",
+    "SAMPLE_MODE=4"
+   ],
+   "sha256": "9e508189fd45625c1fc77a54a947fe37dad147304665290f0c3c2a9c6460ef1b"
+  },
+  {
+   "name": "kGsDrawPS4NoZ",
+   "hlsl": "shaders/gs_draw.hlsl",
+   "glsl": "src/render/glsl/gs_draw.glsl",
+   "entry": "ps_main",
+   "stage": "fragment",
+   "defines": [
+    "DUAL_SOURCE=0",
+    "SAMPLE_MODE=4",
+    "SHADER_DEPTH=0"
+   ],
+   "sha256": "7c889c71d31aa9261f26f6f640536ec686f898736383fe75529e30789e9a4a74"
+  },
+  {
+   "name": "kGsDrawPS4DualNoZ",
+   "hlsl": "shaders/gs_draw.hlsl",
+   "glsl": "src/render/glsl/gs_draw.glsl",
+   "entry": "ps_main",
+   "stage": "fragment",
+   "defines": [
+    "DUAL_SOURCE=1",
+    "SAMPLE_MODE=4",
+    "SHADER_DEPTH=0"
+   ],
+   "sha256": "e3fbda7bb148fa98513286263e9c9a14e846c901b103e119b527f09c406d51bf"
+  },
+  {
+   "name": "kGsDrawPS5",
+   "hlsl": "shaders/gs_draw.hlsl",
+   "glsl": "src/render/glsl/gs_draw.glsl",
+   "entry": "ps_main",
+   "stage": "fragment",
+   "defines": [
+    "DUAL_SOURCE=0",
+    "SAMPLE_MODE=5"
+   ],
+   "sha256": "bcc9def6bd0d92bddc1257dd4a5017826ea216914b70b3d81d532e22eedc1dfd"
+  },
+  {
+   "name": "kGsDrawPS5Dual",
+   "hlsl": "shaders/gs_draw.hlsl",
+   "glsl": "src/render/glsl/gs_draw.glsl",
+   "entry": "ps_main",
+   "stage": "fragment",
+   "defines": [
+    "DUAL_SOURCE=1",
+    "SAMPLE_MODE=5"
+   ],
+   "sha256": "68ae3357df9829b4935bf0be05fcb9ec09a9cc010aa4d2e19dd5384db3de0fb1"
+  },
+  {
+   "name": "kGsDrawPS5NoZ",
+   "hlsl": "shaders/gs_draw.hlsl",
+   "glsl": "src/render/glsl/gs_draw.glsl",
+   "entry": "ps_main",
+   "stage": "fragment",
+   "defines": [
+    "DUAL_SOURCE=0",
+    "SAMPLE_MODE=5",
+    "SHADER_DEPTH=0"
+   ],
+   "sha256": "e09337ab4d3d6791e9746e9facdc2e3dd5442b2b97f0ff11e52f80aa18c44692"
+  },
+  {
+   "name": "kGsDrawPS5DualNoZ",
+   "hlsl": "shaders/gs_draw.hlsl",
+   "glsl": "src/render/glsl/gs_draw.glsl",
+   "entry": "ps_main",
+   "stage": "fragment",
+   "defines": [
+    "DUAL_SOURCE=1",
+    "SAMPLE_MODE=5",
+    "SHADER_DEPTH=0"
+   ],
+   "sha256": "d4a59d691b9d53838057714c47cf67b9a30056b5b8c461a066ae2bf70ec9d9d4"
+  },
+  {
+   "name": "kGsDrawPS6",
+   "hlsl": "shaders/gs_draw.hlsl",
+   "glsl": "src/render/glsl/gs_draw.glsl",
+   "entry": "ps_main",
+   "stage": "fragment",
+   "defines": [
+    "DUAL_SOURCE=0",
+    "SAMPLE_MODE=6"
+   ],
+   "sha256": "6139541a4595f52f069c8b040d040556bde7779421f1ef1b9fe25ff936bb445c"
+  },
+  {
+   "name": "kGsDrawPS6Dual",
+   "hlsl": "shaders/gs_draw.hlsl",
+   "glsl": "src/render/glsl/gs_draw.glsl",
+   "entry": "ps_main",
+   "stage": "fragment",
+   "defines": [
+    "DUAL_SOURCE=1",
+    "SAMPLE_MODE=6"
+   ],
+   "sha256": "dfb2f33804945973d5232341e8750ea76fa64fd60a071a0abd6417402cb0cfe7"
+  },
+  {
+   "name": "kGsDrawPS6NoZ",
+   "hlsl": "shaders/gs_draw.hlsl",
+   "glsl": "src/render/glsl/gs_draw.glsl",
+   "entry": "ps_main",
+   "stage": "fragment",
+   "defines": [
+    "DUAL_SOURCE=0",
+    "SAMPLE_MODE=6",
+    "SHADER_DEPTH=0"
+   ],
+   "sha256": "02455653ade8c71411dbc9bd398252e73abb109e8a72e1c23138b296406bbf53"
+  },
+  {
+   "name": "kGsDrawPS6DualNoZ",
+   "hlsl": "shaders/gs_draw.hlsl",
+   "glsl": "src/render/glsl/gs_draw.glsl",
+   "entry": "ps_main",
+   "stage": "fragment",
+   "defines": [
+    "DUAL_SOURCE=1",
+    "SAMPLE_MODE=6",
+    "SHADER_DEPTH=0"
+   ],
+   "sha256": "c050a6b37942fefda1924830d5ffb13a0309d84cb01d813bb9e7d9df1820a062"
+  },
+  {
+   "name": "kGsQuadVS",
+   "hlsl": "shaders/gs_util.hlsl",
+   "glsl": "src/render/glsl/gs_util.glsl",
+   "entry": "vs_main",
+   "stage": "vertex",
+   "defines": [],
+   "sha256": "6e952e0599fc285fc928575c9e7c4a93c96500adf742ef5740e5363a546616f9"
+  },
+  {
+   "name": "kGsBlitPS",
+   "hlsl": "shaders/gs_util.hlsl",
+   "glsl": "src/render/glsl/gs_util.glsl",
+   "entry": "ps_blit",
+   "stage": "fragment",
+   "defines": [],
+   "sha256": "2e9656b9971cdb95aa9772c0f74255e4bdd28a032a066bc1f6d9faa5994dfd33"
+  },
+  {
+   "name": "kGsFillColorPS",
+   "hlsl": "shaders/gs_util.hlsl",
+   "glsl": "src/render/glsl/gs_util.glsl",
+   "entry": "ps_fill_color",
+   "stage": "fragment",
+   "defines": [],
+   "sha256": "431f448de28d6098085a7dde29f12df38724e2f2e030419ba1c504bc764f065f"
+  },
+  {
+   "name": "kGsFillDepthPS",
+   "hlsl": "shaders/gs_util.hlsl",
+   "glsl": "src/render/glsl/gs_util.glsl",
+   "entry": "ps_fill_depth",
+   "stage": "fragment",
+   "defines": [],
+   "sha256": "b16bd402df2820963e6f94b485823fbb47af756e6a967d2b7a5a759fe1ab6e0f"
+  },
+  {
+   "name": "kUiVS",
+   "hlsl": "shaders/ui.hlsl",
+   "glsl": "src/render/glsl/ui.glsl",
+   "entry": "vs_main",
+   "stage": "vertex",
+   "defines": [],
+   "sha256": "e4e59c0c307b06e3bc38d1bfef9110b499beccc4893594e45c4d49b203d83387"
+  },
+  {
+   "name": "kUiPS",
+   "hlsl": "shaders/ui.hlsl",
+   "glsl": "src/render/glsl/ui.glsl",
+   "entry": "ps_main",
+   "stage": "fragment",
+   "defines": [],
+   "sha256": "7b41343894db90e4a6781ac6d673141d2f889a6bd864f41f931706f4a3f832b9"
+  }
+ ]
+}

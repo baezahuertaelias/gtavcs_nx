@@ -1,0 +1,7 @@
+17:10:53 == rhi-run2: rhi tests nro sha256=3eb9a53eda3d087b70532a11581970d842aae3be43b7c6e775e9746434989ffe
+17:10:54 cleared /switch/gtavcs_nx/rhi-tests
+17:10:55 nxlink attempt=1 exit=0 output='Sending /switch/gtavcs_nx/gtavcs_rhi_tests.nro, 7243973 bytes\n2731754 sent (37.71%), 234 blocks'
+17:11:10 ACTION FOR THE PERSON AT THE SWITCH: Watch the screen. After the test scenes and a short benchmark a card appears: red top-left, green top-right, blue bottom-left, white bottom-right, yellow border. About 12 s after it appears: dock (or undock), wait 10 s, change again, wait 10 s, change again, wait 10 s, change again. Then leave it; it exits by itself about 75 s after the card appeared.
+17:12:30 ftp back after 95s: the payload has ended
+17:12:39 rhi-run2: summary=['DONE', 'images 125', 'failed_checks 0'] compare_exit=0 compare_tail=['125 images, 99 byte-identical, 0 failures'] sd_matches_local=True new_crashes=[]
+17:12:39 RESULT rhi PASS

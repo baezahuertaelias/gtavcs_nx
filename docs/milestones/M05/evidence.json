@@ -1,0 +1,242 @@
+{
+ "M05-01": [
+  {
+   "path": "patches/upstream/0008-opengl-backend-seam.patch",
+   "result": "Backend::OpenGL after Null, built only with VCS_HAVE_OPENGL (no desktop build defines it); desktop defaults unchanged"
+  },
+  {
+   "path": "docs/milestones/M05/hardware-r1/m05-gl-log-excerpt.txt",
+   "result": "Game NRO 39071ced (75fd248) on the Switch: '[present] OpenGL on NV120 (4.3 Core Mesa 20.1)', 0 GL errors, clean exit"
+  },
+  {
+   "path": "docs/milestones/M05/hardware-r1/m05-null-log-excerpt.txt",
+   "result": "VCS_RHI=null on the Switch: '[present] null on none', clean exit"
+  }
+ ],
+ "M05-02": [
+  {
+   "path": "docs/milestones/M05/hardware-r1/rhi-docked2/checks.tsv",
+   "result": "textures/mips/samplers checks PASS on the Switch docked, incl. trilinear/anisotropic_16_uses_mips"
+  },
+  {
+   "path": "docs/milestones/M05/hardware-r1/rhi-r1-handheld/checks.tsv",
+   "result": "the same checks PASS handheld; all 127 readbacks byte-identical to the docked runs"
+  },
+  {
+   "path": "docs/milestones/M05/hardware-r1/rhi-docked2/rhi-docked2-compare.json",
+   "result": "textures and mips byte-identical to upstream Vulkan; linear +-1; trilinear/anisotropic within bands:8,mean:3,stdev:8 (1.0 / 4.5)"
+  },
+  {
+   "path": "docs/milestones/M05/hardware-r2/band-spread-pairs.txt",
+   "result": "Band spreads between every pair of ANV, lavapipe, iris, nouveau: means within 1.0, spreads within 8.5; tolerance stdev:16"
+  },
+  {
+   "path": "docs/milestones/M05/hardware-r2/rhi-r2/checks.tsv",
+   "result": "uses_mips_negative_control PASS on the Switch: far band 109 without mips vs 0 / 17 with them"
+  }
+ ],
+ "M05-03": [
+  {
+   "path": "docs/milestones/M05/hardware-r1/rhi-docked2/checks.tsv",
+   "result": "buffers checks PASS (in-pass discard, static update + offset, 16/32-bit indices with firstIndex/baseVertex); gl_checks refusals counted without GL errors"
+  },
+  {
+   "path": "src/rhi/gl/rhi_gl.cpp",
+   "result": "bounds / alignment / size / owner checks, orphaning updates, UBO size vs block size per draw"
+  }
+ ],
+ "M05-04": [
+  {
+   "path": "docs/milestones/M05/hardware-r1/rhi-docked2/rhi-docked2-compare.json",
+   "result": "topology, depth (every Compare, shader vs raster depth), write masks, native world/lit byte-identical to upstream Vulkan; blend +-1 rounding"
+  },
+  {
+   "path": "docs/milestones/M05/HARDWARE_RESULTS.md",
+   "result": "Pixel / depth comparison: every difference classified"
+  }
+ ],
+ "M05-05": [
+  {
+   "path": "docs/milestones/M05/hardware-r1/rhi-docked2/summary.txt",
+   "result": "DONE, 127 images, 0 failed checks, 0 GL errors, 0 incomplete framebuffers"
+  },
+  {
+   "path": "docs/milestones/M05/hardware-r1/rhi-docked2/rhi-docked2-compare.json",
+   "result": "passes/copies byte-identical except viewport_scissor (half-pixel viewport origin, 20 px of 24) and msaa/resolved (+-1, 127.5 rounding)"
+  },
+  {
+   "path": "docs/milestones/M05/REVIEW1_RESPONSE.md",
+   "result": "Findings 1, 3, 7: viewport origin explained, resolve classified, copy FBOs detached"
+  },
+  {
+   "path": "docs/milestones/M05/REVIEW2_RESPONSE.md",
+   "result": "Review 2 finding 2: setViewport callers (beginPass, UiRenderer) both use origin (0,0); viewport difference explained"
+  }
+ ],
+ "M05-06": [
+  {
+   "path": "docs/milestones/M05/host/shader-manifest.json",
+   "result": "39 GLSL variants, one per upstream vcs_shader variant (tools/glsl_shaders.py reads upstream's list)"
+  },
+  {
+   "path": "docs/milestones/M05/hardware-r1/rhi-docked2/log.txt",
+   "result": "every variant compiled and linked by Mesa 20.1 nouveau: 0 compile failures, 0 debug messages; all drawn"
+  }
+ ],
+ "M05-07": [
+  {
+   "path": "docs/milestones/M05/hardware-r1/rhi-docked2/caps.txt",
+   "result": "max_dual_source_draw_buffers 1: dual-source supported, no fallback needed"
+  },
+  {
+   "path": "docs/milestones/M05/hardware-r1/rhi-docked2/rhi-docked2-compare.json",
+   "result": "dual_source modes 0-6 and gs_modes *_dual within +-1 of upstream Vulkan (blend rounding)"
+  }
+ ],
+ "M05-08": [
+  {
+   "path": "docs/milestones/M05/hardware-r1/rhi-docked2/checks.tsv",
+   "result": "conventions (row0_is_top, left_is_x0, clip_depth_0_to_1, unorm_no_srgb) and pixel_centre (top-left rule, 1:1 copy) PASS with upper-left clip control"
+  },
+  {
+   "path": "docs/milestones/M05/hardware-r1/rhi-docked2/rhi-docked2-compare.json",
+   "result": "pixel_centre sprites and triangle/lines/points/copy byte-identical to upstream Vulkan (the game's half-pixel configuration)"
+  },
+  {
+   "path": "docs/milestones/M05/HARDWARE_RESULTS.md",
+   "result": "The user saw the orientation card correct ('Everything looks right', 'I've saw those colors', 2026-11-16)"
+  },
+  {
+   "path": "docs/milestones/M05/host/compare-vulkan_hw-opengl-PS2X_GL_NO_CLIP_CONTROL.json",
+   "result": "the shader flip / depth remap fallback byte-identical to upstream Vulkan on the host (127/127)"
+  }
+ ],
+ "M05-09": [
+  {
+   "path": "docs/milestones/M05/HARDWARE_RESULTS.md",
+   "result": "Threading decision: A (main thread owns GL); B's shared context shares nothing on the Switch (EGL and SDL attempts) and crashed when forced: A adopted"
+  },
+  {
+   "path": "docs/milestones/M05/hardware/rhi-run2/bench.tsv",
+   "result": "A: 256-texture burst on the owner, contents ok; B refused by the sharing check"
+  },
+  {
+   "path": "docs/milestones/M05/hardware-r1/m05-gl-worker-log-excerpt.txt",
+   "result": "PS2X_GL_WORKER_CONTEXT=1 game run on 75fd248: sharing check fails, textures on the owner, 0 GL errors, clean exit"
+  },
+  {
+   "path": "docs/milestones/M05/hardware-r1/rhi-docked2/checks.tsv",
+   "result": "churn: objects, bytes and pending deletions return (deferred destruction; copy FBOs detached)"
+  }
+ ],
+ "M05-10": [
+  {
+   "path": "docs/milestones/M05/hardware-r4/rhi-noresizable/window.tsv",
+   "result": "Fixed-size window (dcda9e1), handheld start: 7 dock changes by hand, window and drawable 1280x720 at each, heap 554,110,688-554,122,688 across them"
+  },
+  {
+   "path": "docs/milestones/M05/hardware-r5/rhi-docked-start/window.tsv",
+   "result": "Docked start: 4 dock changes by hand, window and drawable 1920x1080 at each, heap 732,736,304-732,738,368 across them"
+  },
+  {
+   "path": "docs/milestones/M05/hardware-r4/rhi-noresizable-docked2/checks.tsv",
+   "result": "Docked start: window 1920x1080, window/back_buffer_equals_texture 0 px and half_pixel_edges_top_left_rule PASS"
+  },
+  {
+   "path": "docs/milestones/M05/hardware-r5/m05-dock-log-excerpt.txt",
+   "result": "Game, docked start: drawable and window 1920x1080 at four dock changes, 0 GL errors, orderly stop"
+  },
+  {
+   "path": "docs/milestones/M05/hardware-r4/m05-dock-log-excerpt.txt",
+   "result": "Game: drawable and window 1280x720 at four dock changes, heap logged at each, 0 GL errors, orderly stop"
+  },
+  {
+   "path": "docs/milestones/M05/hardware-r4/rhi-fixedwin/window.tsv",
+   "result": "Negative control: a window created resizable is still resized at every dock change after SDL_SetWindowResizable(false) (+44.1 MB per dock)"
+  },
+  {
+   "path": "docs/milestones/M05/hardware-r1/rhi-docked2/window.tsv",
+   "result": "Present probe: Immediate 119.6/s, Vsync 60.0/s in every device step; interval 2 -> 1 now applied (60/s at 55.6 s)"
+  }
+ ],
+ "M05-11": [
+  {
+   "path": "docs/milestones/M05/hardware-r1/rhi-docked2/checks.tsv",
+   "result": "window/back_buffer_equals_texture PASS: the UI pipeline with its clip scissor read back from the window, 0 differing pixels at 1920x1080"
+  },
+  {
+   "path": "docs/milestones/M05/hardware-r1/rhi-r1-handheld/checks.tsv",
+   "result": "the same at 1280x720 handheld"
+  },
+  {
+   "path": "docs/milestones/M05/hardware-r1/rhi-docked2/rhi-docked2-compare.json",
+   "result": "present_ui/ui within +-2 of upstream Vulkan (bilinear weights)"
+  },
+  {
+   "path": "docs/milestones/M05/hardware-r2/rhi-r2/checks.tsv",
+   "result": "window readback with pixel-centre edges and half-pixel UI quads: 0 differing pixels at 1280x720 handheld"
+  }
+ ],
+ "M05-12": [
+  {
+   "path": "docs/milestones/M05/hardware-r1/rhi-docked2/scenes.txt",
+   "result": "24 scenes cover every Device method and variant (covers lines); plus the window readback"
+  },
+  {
+   "path": "docs/milestones/M05/hardware-r1/rhi-docked2/summary.txt",
+   "result": "127 readbacks, 0 failed checks docked"
+  },
+  {
+   "path": "docs/milestones/M05/hardware-r1/rhi-r1-handheld/summary.txt",
+   "result": "127 readbacks, 0 failed checks handheld"
+  },
+  {
+   "path": "docs/milestones/M05/hardware-r2/rhi-r2/summary.txt",
+   "result": "Round 3 handheld: 127 readbacks, 0 failed checks (incl. the negative control and window ties)"
+  }
+ ],
+ "M05-13": [
+  {
+   "path": "docs/milestones/M05/hardware-r1/rhi-docked2/rhi-docked2-compare.json",
+   "result": "127/127 within tolerance of upstream Vulkan on the host GPU, 101 byte-identical; 26 differences all classified"
+  },
+  {
+   "path": "docs/milestones/M05/HARDWARE_RESULTS.md",
+   "result": "Each difference class with its images and size; every round-2 run the same 26"
+  },
+  {
+   "path": "docs/milestones/M05/REVIEW1_RESPONSE.md",
+   "result": "Review 1 findings 1, 3, 4 resolved"
+  },
+  {
+   "path": "docs/milestones/M05/hardware-r2/rhi-r2/rhi-r2-compare-lavapipe.json",
+   "result": "Switch vs lavapipe (a second conformant reference): 127 within tolerance, 0 failures"
+  },
+  {
+   "path": "docs/milestones/M05/REVIEW2_RESPONSE.md",
+   "result": "Review 2 findings 1-4 resolved"
+  }
+ ],
+ "M05-14": [
+  {
+   "path": "docs/milestones/M05/hardware-r3/rhi-leak/window.tsv",
+   "result": "Resize probe: every SDL_SetWindowSize leaks the surface's buffers (+44.1 MB to 1080p, +5.4 MB to 720p, +15.2 MB same size); RHI objects return to zero"
+  },
+  {
+   "path": "docs/milestones/M05/hardware-r4/rhi-noresizable/window.tsv",
+   "result": "With the fix no growth per dock change (within 12 KB over 7 changes, handheld start)"
+  },
+  {
+   "path": "docs/milestones/M05/hardware-r5/rhi-docked-start/window.tsv",
+   "result": "Docked start: no growth per dock change (within 2,064 bytes over 4 changes)"
+  },
+  {
+   "path": "docs/milestones/M05/hardware-r1/rhi-docked2/checks.tsv",
+   "result": "churn/objects_return, bytes_return, framebuffers_bounded, programs_bounded, memory_budget (+2.5 MiB of 8 MiB) PASS"
+  },
+  {
+   "path": "docs/milestones/M05/hardware-r1/m05-gl-log-excerpt.txt",
+   "result": "rhi-stats: 0 GL errors / debug / incomplete over 240 s; texture cache near its 3000 cap (2987 / 210 MiB), evicting"
+  }
+ ]
+}
