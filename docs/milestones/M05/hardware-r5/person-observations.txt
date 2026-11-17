@@ -1,0 +1,2 @@
+2026-11-17 rhi-docked-start (RHI tests NRO 58c458b0..., dcda9e1, started docked: window 1920x1080; undock ~12 s, dock ~23 s, undock ~33 s, dock ~43 s) and m05-dock (game NRO af94eee1..., started docked; undock/dock four times):
+  person: "looks good but 4:3" (handheld screen after undocking: full picture, sharp; the game's 4:3 picture pillarboxed as designed, widescreen is a later milestone).

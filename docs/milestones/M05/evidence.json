@@ -132,11 +132,19 @@
  "M05-10": [
   {
    "path": "docs/milestones/M05/hardware-r4/rhi-noresizable/window.tsv",
-   "result": "Fixed-size window (dcda9e1): 9 dock changes by hand, window and drawable 1280x720 at every change, heap 554,110,688-554,122,864 across them, Vsync 60/s"
+   "result": "Fixed-size window (dcda9e1), handheld start: 7 dock changes by hand, window and drawable 1280x720 at each, heap 554,110,688-554,122,688 across them"
+  },
+  {
+   "path": "docs/milestones/M05/hardware-r5/rhi-docked-start/window.tsv",
+   "result": "Docked start: 4 dock changes by hand, window and drawable 1920x1080 at each, heap 732,736,304-732,738,368 across them"
   },
   {
    "path": "docs/milestones/M05/hardware-r4/rhi-noresizable-docked2/checks.tsv",
    "result": "Docked start: window 1920x1080, window/back_buffer_equals_texture 0 px and half_pixel_edges_top_left_rule PASS"
+  },
+  {
+   "path": "docs/milestones/M05/hardware-r5/m05-dock-log-excerpt.txt",
+   "result": "Game, docked start: drawable and window 1920x1080 at four dock changes, 0 GL errors, orderly stop"
   },
   {
    "path": "docs/milestones/M05/hardware-r4/m05-dock-log-excerpt.txt",
@@ -216,7 +224,11 @@
   },
   {
    "path": "docs/milestones/M05/hardware-r4/rhi-noresizable/window.tsv",
-   "result": "With the fix no growth per dock change (within 12 KB over 9 changes)"
+   "result": "With the fix no growth per dock change (within 12 KB over 7 changes, handheld start)"
+  },
+  {
+   "path": "docs/milestones/M05/hardware-r5/rhi-docked-start/window.tsv",
+   "result": "Docked start: no growth per dock change (within 2 KB over 4 changes)"
   },
   {
    "path": "docs/milestones/M05/hardware-r1/rhi-docked2/checks.tsv",

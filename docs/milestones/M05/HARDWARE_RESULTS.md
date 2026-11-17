@@ -1,6 +1,6 @@
 # M05 hardware results
 
-Console: the user's Switch at 192.168.1.91 (192.168.1.107 in round 4), Sphaira by title override (full application memory), FTP + nxlink;
+Console: the user's Switch at 192.168.1.91 (192.168.1.107 in rounds 4-5), Sphaira by title override (full application memory), FTP + nxlink;
 `tools/switch_m05_session.py`. Driver as the console reports it (`hardware-r1/*/caps.txt`): **Mesa 20.1.0-rc3 nouveau,
 renderer NV120, OpenGL 4.3 core profile, GLSL 4.30** (asked for 3.3 core): `ARB_clip_control`, viewport arrays,
 anisotropy (max 16), KHR_debug, 1 dual-source draw buffer, 8 samples, max texture 16384, max uniform block 65536,
@@ -8,14 +8,33 @@ window framebuffer encoding GL_LINEAR. Reference for every comparison: upstream'
 (`build/m05/host/vulkan_hw`: Intel ADL-N, Mesa ANV; `tools/rhi_host_tests.py`); round 3 also against lavapipe (`build/m05/host/vulkan`). Game screenshots stay private under
 build/; their SHA-256 are in `*-screenshot-sha256.txt`.
 
-Four rounds. **Round 1** (2026-11-15/16, [hardware/](hardware/)) was the first review's candidate `cb70b74`; the
+Five rounds. **Round 1** (2026-11-15/16, [hardware/](hardware/)) was the first review's candidate `cb70b74`; the
 independent review requested changes ([REVIEW1_RESPONSE.md](REVIEW1_RESPONSE.md)). **Round 2** (2026-11-16,
 [hardware-r1/](hardware-r1/)) is the evidence for the game and backend code `75fd248` (game NRO `39071ced…`; unchanged
 since). The second independent review requested changes to tests and records ([REVIEW2_RESPONSE.md](REVIEW2_RESPONSE.md));
 **round 3** ([hardware-r2/](hardware-r2/)) ran the changed RHI tests (`e0ba4541…`, `9cb098a`). The third review
 found the heap growing at every window size change; the probe that measured it is [hardware-r3/rhi-leak](hardware-r3/rhi-leak),
 and **round 4** (2026-11-16/17, [hardware-r4/](hardware-r4/)) is the evidence for the fix `dcda9e1`
-([REVIEW3_RESPONSE.md](REVIEW3_RESPONSE.md)).
+([REVIEW3_RESPONSE.md](REVIEW3_RESPONSE.md)). The fourth review asked for a docked start with undocking and record
+corrections; **round 5** (2026-11-17, [hardware-r5/](hardware-r5/)) ran it ([REVIEW4_RESPONSE.md](REVIEW4_RESPONSE.md)).
+
+## Round 5 runs (review 4: docked start, then undock; code unchanged since `dcda9e1`)
+
+| Run | NRO | Mode | Result |
+|---|---|---|---|
+| `rhi-docked-start` | tests `58c458b0` (`dcda9e1`) | **started docked** (`operation_mode_start 1`), 4 dock changes by hand after the card (undock 12.3 s, dock 23.1 s, undock 33.3 s, dock 43.3 s) | DONE, 127 images, 0 failed checks, 0 GL errors; window 1920x1080, `window/back_buffer_equals_texture` 1920x1080 0 px; **window and drawable 1920x1080 at every change, heap 732,736,304-732,738,368 across them**; `resizable 0`; no new crash |
+| `m05-dock` | game `af94eee1` (`dcda9e1`) | **started docked**, 4 dock changes by hand (mode 1 → 0 → 1 → 0 → 1) | PASS: `[video] drawable=1920x1080 window=1920x1080` at all four changes, 0 GL errors, orderly stop after 6,895 frames, no crash; `game_fps=27.6 frame_ms=36.2` at t=180.0 s |
+
+The user, after undocking in both runs: "looks good but 4:3": the picture full-screen and sharp on the handheld screen;
+the game's 4:3 picture pillarboxed as designed (widescreen is M09). All 127 readbacks byte-identical to round 3's
+([hardware-r5/readbacks-vs-round3.txt](hardware-r5/readbacks-vs-round3.txt)); the compare step's failure is the
+missing host reference, as in round 4 (`hardware-r5/rhi-docked-start-compare.txt`).
+
+**Output size (limitation, owned by M06-20).** The window keeps the starting mode's size for the whole session: a
+handheld start outputs 1280x720 that the compositor upscales on the TV (round 4); a docked start renders 1920x1080 that
+the compositor downscales on the panel (round 5), at 2.25 times the pixels of the panel. The AGENTS.md output targets
+(1280x720 handheld / 1920x1080 docked) therefore hold only in the starting mode. M06-20 owns mode-appropriate output
+without the leak; M06-13 depends on it.
 
 ## Round 4 runs (review 3: the window resize leak; fix `dcda9e1`)
 
@@ -23,10 +42,10 @@ and **round 4** (2026-11-16/17, [hardware-r4/](hardware-r4/)) is the evidence fo
 |---|---|---|---|
 | `rhi-fixedwin-handheld` | tests `43d6a930` (`2e7df71`: window created resizable, `SDL_SetWindowResizable(false)` before the docking stretch) | handheld throughout | DONE, 127 images, 0 failed checks, 0 GL errors; resize probe as in round 3 (+44.1 MB per resize to 1920x1080, +5.4 MB to 1280x720, +15.2 MB same size; releasing the context: no change); heap flat to the byte (552,004,592) over 40 s without resizes; the program's own `SDL_SetWindowSize` still leaks (+44.1 / +18.2 / +15.2 MB) |
 | `rhi-fixedwin` | tests `43d6a930` | from handheld, 4 dock changes by hand | **the window was still resized** at every dock change (1280x720 ↔ 1920x1080; +44.1 MB per dock, +5.4 MB per undock): `SDL_SetWindowResizable(false)` did not clear the flag |
-| `rhi-noresizable` | tests `58c458b0` (`dcda9e1`: created without `SDL_WINDOW_RESIZABLE`) | from handheld, 9 dock changes by hand (11-60 s) | DONE, 127, 0 failed checks, 0 GL errors; **window and drawable 1280x720 at every change, heap 554,110,688-554,122,864 across them** (no growth per change); `resizable 0` |
+| `rhi-noresizable` | tests `58c458b0` (`dcda9e1`: created without `SDL_WINDOW_RESIZABLE`) | from handheld, 7 dock changes by hand (11.5-49.9 s), 1 more at 59.5 s after the program's own resizes | DONE, 127, 0 failed checks, 0 GL errors; **window and drawable 1280x720 at the 7 changes, heap 554,110,688-554,122,688 across them** (no growth per change; the change at 59.5 s kept the program's 960x540); `resizable 0` |
 | `rhi-noresizable-docked` | tests `58c458b0` | not docked (the console was not seated; `operation_mode_start 0`) | DONE, 127, 0 failed checks; counts as a handheld run |
 | `rhi-noresizable-docked2` | tests `58c458b0` | docked throughout (`operation_mode_start 1`) | DONE, 127, 0 failed checks, 0 GL errors; window 1920x1080, `window/back_buffer_equals_texture` 1920x1080 0 px; heap 731,154,496-731,154,512 over the first 40 s of the window phase |
-| `m05-dock` | game `af94eee1` (`dcda9e1`) | from handheld, 4 dock changes by hand | PASS: `[video] drawable=1280x720 window=1280x720` at all four changes (mode 0 → 1 → 0 → 1 → 0), 0 GL errors, orderly stop after 5,320 frames, no crash; `game_fps=21.4 frame_ms=46.8` at 176 s |
+| `m05-dock` | game `af94eee1` (`dcda9e1`) | from handheld, 4 dock changes by hand | PASS: `[video] drawable=1280x720 window=1280x720` at all four changes (mode 0 → 1 → 0 → 1 → 0), 0 GL errors, orderly stop after 5,320 frames, no crash; `game_fps=21.4 frame_ms=46.8` at t=180.0 s |
 
 **Cause** (switch-sdl2 2.28.5-4, the locked package; source `devkitPro/SDL` branch `switch-sdl-2.28`,
 `src/video/switch/SDL_switchvideo.c`): `SWITCH_PumpEvents` calls `SDL_SetWindowSize(1280x720 / 1920x1080)` at an
@@ -35,14 +54,19 @@ surface, calls `nwindowSetDimensions` and creates a new surface every time (also
 resize (round 3 probe) is the old surface's buffers inside SDL / Mesa; the RHI's own objects return to zero. SDL core
 changes the flag in `SDL_SetWindowResizable` only through a backend hook, which the Switch backend lacks, hence
 `rhi-fixedwin`. **Fix:** the game and the test program create the window at the starting mode's size without the
-flag (1280x720 handheld, 1920x1080 docked) and never call `SDL_SetWindowSize`; the compositor scales the window to the
-panel or the TV. The user saw the card and the game full-screen and sharp on the TV and the handheld screen after the
+flag (1280x720 handheld, 1920x1080 docked); the game never calls `SDL_SetWindowSize`, the test program still calls it
+on purpose in its resize probes and its 55-64 s stretch (so its later heap figures include those leaks: 148.6 + 148.6 + 91.4 MB from the
+probe before its docking stretch); the compositor scales the window to the panel or the TV. The user saw the card and the game full-screen and sharp on the TV and the handheld screen after the
 changes ([hardware-r4/person-observations.txt](hardware-r4/person-observations.txt)).
 
-**Heap in the game.** `[video]` now logs the heap at every change: 194 MB at the start, 447 / 534 / 572 / 593 MB at
-the four changes; the growth follows the texture cache (26 textures at start, 2,966 / 172 MiB before its first
-eviction to 2,289, 2,972 / 203 MiB before the second to 2,317), not the changes, and `heap_in_use` at shutdown is 485 MB. A dock change itself adds nothing (the
-test program, above, to within 12 KB).
+**Heap in the game** (sampled only at the dock changes; inference, not proof). `[video]` logs the heap at every change:
+round 4 (handheld start) 194 MB at the start, 447 / 534 / 572 / 593 MB at the four changes; round 5 (docked start)
+223, then 493 / 529 / 569 / 584 MB. The first interval (+253 / +271 MB) is mostly the game loading (the RHI's objects
+grow by ~56 / ~67 MiB in it); later intervals shrink (+86 / +38 / +21 MB in round 4, +35 / +41 / +15 MB in round 5) while
+the texture cache fills toward its 3,000-entry cap and evicts (round 4: 2,966 / 172 MiB before its first eviction to
+2,289). The last sample is ~130 s into the run, so a plateau is not shown. `heap_in_use` at shutdown (485 / 503 MB) is
+logged before the GL context is deleted and is not evidence either way. That a dock change itself adds nothing rests
+on the test program (round 4 within 12 KB over 7 changes, round 5 within 2 KB over 4) and on the churn budget.
 
 **Readbacks.** The host Vulkan reference was not rebuilt on the round-4 host (Windows; `tools/rhi_host_tests.py` needs
 EGL / a Linux Vulkan driver), so the session's compare step failed for lack of `build/m05/host/vulkan_hw/index.tsv`.

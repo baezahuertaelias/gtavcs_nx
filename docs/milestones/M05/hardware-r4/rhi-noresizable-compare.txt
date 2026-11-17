@@ -1,0 +1,17 @@
+Traceback (most recent call last):
+  File "C:\Users\Gamer\Documents\gtavcs_nx\tools\rhi_compare.py", line 154, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "C:\Users\Gamer\Documents\gtavcs_nx\tools\rhi_compare.py", line 116, in main
+    ref = load_index(a.reference)
+          ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Gamer\Documents\gtavcs_nx\tools\rhi_compare.py", line 29, in load_index
+    for line in (folder / "index.tsv").read_text().splitlines():
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Gamer\AppData\Local\Programs\Python\Python312\Lib\pathlib.py", line 1027, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Gamer\AppData\Local\Programs\Python\Python312\Lib\pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\Gamer\\Documents\\gtavcs_nx\\build\\m05\\host\\vulkan_hw\\index.tsv'

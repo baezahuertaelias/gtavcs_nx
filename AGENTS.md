@@ -215,6 +215,8 @@ Switch build command. See the checklist before attempting ARM64 core compilation
   scales the fixed window to the panel or TV. Still query drawable pixels and
   rebuild render targets on size changes.
   1280x720 handheld / 1920x1080 docked are output targets, not measured performance.
+  Until M06-20 they hold only in the starting mode: a handheld start upscales 720p
+  on the TV, a docked start renders 1080p and downscales it on the panel.
   Keep render scale distinct from drawable size and keep HUD aspect correct.
 - Snapshot controller state once per event pump; publish a synchronized snapshot
   to the future game thread. Handle hotplug, disconnect-to-neutral, dead zones,
@@ -270,7 +272,7 @@ Final acceptance (M10/M15) includes a controllable ingame route with audible
    busy route. Record median/p95 frame time, audio underruns, memory and CPU/GPU
    timing at stock clocks in both modes. Intro/title FPS is not gameplay proof.
 
-Current verification status (2026-11-16): the pinned container pipeline also runs
+Current verification status (2026-11-17): the pinned container pipeline also runs
 on a Linux host with Docker's engine (no local devkitPro). The game NRO links the
 private generated core, the game layer and the SDL2 platform; on an actual Switch
 it boots the real runtime from the folder disc, reaches the game's outdoor state
@@ -279,7 +281,7 @@ sleep, close and startup-failure checks (M04 evidence). The M05 OpenGL backend
 runs on the Switch's Mesa 20.1 nouveau (GL 4.3 core): 127/127 conformance
 readbacks within tolerance of upstream's Vulkan backend (101 identical), the real
 game drawn through it with 0 GL errors, the fixed-size window kept across docking
-with no heap growth per change; every GL call stays on
+from either starting mode with no heap growth per change (output size: M06-20); every GL call stays on
 the main thread (a shared worker context shares nothing on this driver, M05-09).
 No gameplay, beta or frame-rate acceptance is claimed (M06, M10). Full paired wireless/Pro
 controller and docking acceptance remain open.
