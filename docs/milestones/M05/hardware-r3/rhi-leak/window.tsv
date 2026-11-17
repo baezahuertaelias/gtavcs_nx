@@ -1,0 +1,201 @@
+t	event	a	b	detail
+0	window_readback	1280	720	1280x720, 0 differing pixels
+probe	0	119.6 per s	SDL interval 0	device Immediate (median 16.366 ms)
+probe	1	60.0 per s	SDL interval 1	device Vsync (median 16.665 ms)
+probe	2	119.6 per s	SDL interval 0	device Immediate (median 16.346 ms)
+probe	3	60.0 per s	SDL interval 1	device Vsync (median 16.665 ms)
+probe	4	30.0 per s	SDL interval 2	direct 2, device Vsync (median 33.331 ms)
+probe	5	119.6 per s	SDL interval 0	device Immediate (median 16.395 ms)
+probe	6	60.0 per s	SDL interval 1	device Vsync (median 16.665 ms)
+probe	7	60.0 per s	SDL interval 1	window resized, device Vsync (median 16.665 ms)
+probe	8	119.6 per s	SDL interval 0	device Immediate (median 16.317 ms)
+probe	9	60.0 per s	SDL interval 1	device Vsync (median 16.666 ms)
+resize	A_resize	0	1920	heap 193834000 (+44117104 since the variant began)
+resize	A_resize	1	1280	heap 199243856 (+49526960 since the variant began)
+resize	A_resize	2	1920	heap 243361120 (+93644224 since the variant began)
+resize	A_resize	3	1280	heap 248770992 (+99054096 since the variant began)
+resize	A_resize	4	1920	heap 292888176 (+143171280 since the variant began)
+resize	A_resize	5	1280	heap 298298016 (+148581120 since the variant began)
+resize	A_resize	6	1920	heap 342415312 (+192698416 since the variant began)
+resize	A_resize	7	1280	heap 347825152 (+198108256 since the variant began)
+resize	A_resize	8	1920	heap 391942320 (+242225424 since the variant began)
+resize	A_resize	9	1280	heap 397352160 (+247635264 since the variant began)
+resize	A_resize	10	1920	heap 441469312 (+291752416 since the variant began)
+resize	A_resize	11	1280	heap 446879152 (+297162256 since the variant began)
+resize	A_resize	12	1920	heap 490996320 (+341279424 since the variant began)
+resize	A_resize	13	1280	heap 496406160 (+346689264 since the variant began)
+resize	A_resize	14	1920	heap 540523888 (+390806992 since the variant began)
+resize	A_resize	15	1280	heap 545933728 (+396216832 since the variant began)
+resize	A_resize	16	1920	heap 590050896 (+440334000 since the variant began)
+resize	A_resize	17	1280	heap 595460736 (+445743840 since the variant began)
+resize	A_resize	18	1920	heap 639577888 (+489860992 since the variant began)
+resize	A_resize	19	1280	heap 644987728 (+495270832 since the variant began)
+resize	B_resize_released	0	1920	heap 689104896 (+44117168 since the variant began)
+resize	B_resize_released	1	1280	heap 694514736 (+49527008 since the variant began)
+resize	B_resize_released	2	1920	heap 738631888 (+93644160 since the variant began)
+resize	B_resize_released	3	1280	heap 744041728 (+99054000 since the variant began)
+resize	B_resize_released	4	1920	heap 788158896 (+143171168 since the variant began)
+resize	B_resize_released	5	1280	heap 793568736 (+148581008 since the variant began)
+resize	B_resize_released	6	1920	heap 837685888 (+192698160 since the variant began)
+resize	B_resize_released	7	1280	heap 843095728 (+198108000 since the variant began)
+resize	B_resize_released	8	1920	heap 887212896 (+242225168 since the variant began)
+resize	B_resize_released	9	1280	heap 892622736 (+247635008 since the variant began)
+resize	B_resize_released	10	1920	heap 936740608 (+291752880 since the variant began)
+resize	B_resize_released	11	1280	heap 942150448 (+297162720 since the variant began)
+resize	B_resize_released	12	1920	heap 986267600 (+341279872 since the variant began)
+resize	B_resize_released	13	1280	heap 991677440 (+346689712 since the variant began)
+resize	B_resize_released	14	1920	heap 1035794544 (+390806816 since the variant began)
+resize	B_resize_released	15	1280	heap 1041204384 (+396216656 since the variant began)
+resize	B_resize_released	16	1920	heap 1085321504 (+440333776 since the variant began)
+resize	B_resize_released	17	1280	heap 1090731344 (+445743616 since the variant began)
+resize	B_resize_released	18	1920	heap 1134848448 (+489860720 since the variant began)
+resize	B_resize_released	19	1280	heap 1140258288 (+495270560 since the variant began)
+resize	C_same_size	0	1280	heap 1155498576 (+15240288 since the variant began)
+resize	C_same_size	1	1280	heap 1170738864 (+30480576 since the variant began)
+resize	C_same_size	2	1280	heap 1185979152 (+45720864 since the variant began)
+resize	C_same_size	3	1280	heap 1201219440 (+60961152 since the variant began)
+resize	C_same_size	4	1280	heap 1216459728 (+76201440 since the variant began)
+resize	C_same_size	5	1280	heap 1231700016 (+91441728 since the variant began)
+resize	C_same_size	6	1280	heap 1246940304 (+106682016 since the variant began)
+resize	C_same_size	7	1280	heap 1262180592 (+121922304 since the variant began)
+resize	C_same_size	8	1280	heap 1277420880 (+137162592 since the variant began)
+resize	C_same_size	9	1280	heap 1292661168 (+152402880 since the variant began)
+resize	C_same_size	10	1280	heap 1307901456 (+167643168 since the variant began)
+resize	C_same_size	11	1280	heap 1323141744 (+182883456 since the variant began)
+resize	C_same_size	12	1280	heap 1338382032 (+198123744 since the variant began)
+resize	C_same_size	13	1280	heap 1353622320 (+213364032 since the variant began)
+resize	C_same_size	14	1280	heap 1368862608 (+228604320 since the variant began)
+resize	C_same_size	15	1280	heap 1384102896 (+243844608 since the variant began)
+resize	C_same_size	16	1280	heap 1399343184 (+259084896 since the variant began)
+resize	C_same_size	17	1280	heap 1414583472 (+274325184 since the variant began)
+resize	C_same_size	18	1280	heap 1429823760 (+289565472 since the variant began)
+resize	C_same_size	19	1280	heap 1445064048 (+304805760 since the variant began)
+1.1908e-05	hand	0	0	dock / undock by hand (0-40 s), nothing resized by the program
+1.1908e-05	mode	1280	720	operation mode 0 (was -1)
+1.1908e-05	drawable	1280	720	operation mode 0
+1.01583	interval	62	1	median_ms 16.6684 max_ms 16.9046 mode 0 phase 0 heap 1460329120
+2.01587	interval	60	1	median_ms 16.6637 max_ms 16.7315 mode 0 phase 0 heap 1460329104
+3.0325	interval	61	1	median_ms 16.6653 max_ms 16.7101 mode 0 phase 0 heap 1460329104
+4.04917	interval	61	1	median_ms 16.6646 max_ms 16.7319 mode 0 phase 0 heap 1460329104
+5.04919	interval	60	1	median_ms 16.6664 max_ms 16.7414 mode 0 phase 0 heap 1460329104
+6.06584	interval	61	1	median_ms 16.6661 max_ms 16.7171 mode 0 phase 0 heap 1460329104
+7.0825	interval	61	1	median_ms 16.6659 max_ms 16.7293 mode 0 phase 0 heap 1460329104
+8.0825	interval	60	1	median_ms 16.6664 max_ms 16.7302 mode 0 phase 0 heap 1460329104
+9.09918	interval	61	1	median_ms 16.6652 max_ms 16.7161 mode 0 phase 0 heap 1460329104
+10.1158	interval	61	1	median_ms 16.6653 max_ms 16.7344 mode 0 phase 0 heap 1460329104
+11.1325	interval	61	1	median_ms 16.6646 max_ms 16.7382 mode 0 phase 0 heap 1460329104
+12.1492	interval	61	1	median_ms 16.6668 max_ms 16.7351 mode 0 phase 0 heap 1460329104
+13.1659	interval	61	1	median_ms 16.6664 max_ms 16.7238 mode 0 phase 0 heap 1460329104
+14.1825	interval	61	1	median_ms 16.6659 max_ms 16.7146 mode 0 phase 0 heap 1460329104
+15.1825	interval	60	1	median_ms 16.6674 max_ms 16.7079 mode 0 phase 0 heap 1460329104
+16.1825	interval	60	1	median_ms 16.6646 max_ms 16.7121 mode 0 phase 0 heap 1460329104
+17.1992	interval	61	1	median_ms 16.6685 max_ms 16.7419 mode 0 phase 0 heap 1460329104
+18.2158	interval	61	1	median_ms 16.6652 max_ms 16.7211 mode 0 phase 0 heap 1460329104
+19.2159	interval	60	1	median_ms 16.6662 max_ms 16.7305 mode 0 phase 0 heap 1460329104
+20.2325	interval	61	1	median_ms 16.6664 max_ms 16.7071 mode 0 phase 0 heap 1460329104
+21.2492	interval	61	1	median_ms 16.665 max_ms 16.7289 mode 0 phase 0 heap 1460329104
+22.2492	interval	60	1	median_ms 16.6636 max_ms 16.7251 mode 0 phase 0 heap 1460329104
+23.2658	interval	61	1	median_ms 16.6658 max_ms 16.7569 mode 0 phase 0 heap 1460329104
+24.2658	interval	60	1	median_ms 16.6649 max_ms 16.736 mode 0 phase 0 heap 1460329104
+25.2659	interval	60	1	median_ms 16.6667 max_ms 16.7396 mode 0 phase 0 heap 1460329104
+26.2825	interval	61	1	median_ms 16.6644 max_ms 16.7338 mode 0 phase 0 heap 1460329104
+27.2825	interval	60	1	median_ms 16.6636 max_ms 16.719 mode 0 phase 0 heap 1460329104
+28.2825	interval	60	1	median_ms 16.6649 max_ms 16.7099 mode 0 phase 0 heap 1460329104
+29.2992	interval	61	1	median_ms 16.6646 max_ms 16.7057 mode 0 phase 0 heap 1460329104
+30.3158	interval	61	1	median_ms 16.6636 max_ms 16.7343 mode 0 phase 0 heap 1460329104
+31.3159	interval	60	1	median_ms 16.6644 max_ms 16.7207 mode 0 phase 0 heap 1460329104
+32.3325	interval	61	1	median_ms 16.6603 max_ms 16.7147 mode 0 phase 0 heap 1460329104
+33.3325	interval	60	1	median_ms 16.6614 max_ms 16.7079 mode 0 phase 0 heap 1460329104
+34.3325	interval	60	1	median_ms 16.6634 max_ms 16.7219 mode 0 phase 0 heap 1460329104
+35.3492	interval	61	1	median_ms 16.6639 max_ms 16.7278 mode 0 phase 0 heap 1460329104
+36.3492	interval	60	1	median_ms 16.6685 max_ms 16.7425 mode 0 phase 0 heap 1460329104
+37.3659	interval	61	1	median_ms 16.6667 max_ms 20.73 mode 0 phase 0 heap 1460329104
+38.3825	interval	61	1	median_ms 16.6666 max_ms 16.7175 mode 0 phase 0 heap 1460329104
+39.3825	interval	60	1	median_ms 16.6645 max_ms 16.722 mode 0 phase 0 heap 1460329104
+40.0158	swap_interval	1	1	SDL_GL_SetSwapInterval / Get
+40.3825	interval	61	1	median_ms 16.6622 max_ms 16.7144 mode 0 phase 1 heap 1460329104
+41.3992	interval	61	1	median_ms 16.6634 max_ms 16.7012 mode 0 phase 1 heap 1460329632
+42.3992	interval	60	1	median_ms 16.6642 max_ms 16.7257 mode 0 phase 1 heap 1460330144
+43.3992	interval	60	1	median_ms 16.6609 max_ms 16.7357 mode 0 phase 1 heap 1460331168
+44.4158	interval	61	1	median_ms 16.6643 max_ms 16.712 mode 0 phase 1 heap 1460331168
+45.0158	swap_interval	0	0	SDL_GL_SetSwapInterval / Get
+45.416	interval	82	0	median_ms 16.4732 max_ms 16.721 mode 0 phase 2 heap 1460333904
+46.4161	interval	120	0	median_ms 10.5494 max_ms 16.4893 mode 0 phase 2 heap 1460335248
+47.4325	interval	121	0	median_ms 6.10548 max_ms 16.5138 mode 0 phase 2 heap 1460336464
+48.4327	interval	121	0	median_ms 16.3526 max_ms 16.517 mode 0 phase 2 heap 1460338320
+49.4327	interval	120	0	median_ms 10.6743 max_ms 16.5105 mode 0 phase 2 heap 1460338320
+50.0158	swap_interval	2	2	SDL_GL_SetSwapInterval / Get
+50.4659	interval	85	2	median_ms 16.4107 max_ms 33.3698 mode 0 phase 3 heap 1460342128
+51.4659	interval	30	2	median_ms 33.3299 max_ms 33.3917 mode 0 phase 3 heap 1460341968
+52.4659	interval	30	2	median_ms 33.3287 max_ms 33.3773 mode 0 phase 3 heap 1460342224
+53.4992	interval	31	2	median_ms 33.33 max_ms 33.3639 mode 0 phase 3 heap 1460342736
+54.5325	interval	31	2	median_ms 33.3327 max_ms 33.3595 mode 0 phase 3 heap 1460342736
+55.0325	set_window_size	1920	1080	SDL_SetWindowSize
+55.0325	mode	1920	1080	operation mode 0 (was 0)
+55.0325	drawable	1920	1080	operation mode 0
+55.5325	interval	45	1	median_ms 16.6742 max_ms 36.2254 mode 0 phase 4 heap 1504460944
+56.5325	interval	60	1	median_ms 16.6679 max_ms 16.7253 mode 0 phase 4 heap 1504461072
+57.5492	interval	61	1	median_ms 16.6645 max_ms 16.7292 mode 0 phase 4 heap 1504461072
+58.0158	set_window_size	960	540	SDL_SetWindowSize
+58.0158	mode	960	540	operation mode 0 (was 0)
+58.0158	drawable	960	540	operation mode 0
+58.5492	interval	61	1	median_ms 16.6633 max_ms 32.0189 mode 0 phase 5 heap 1500748944
+59.5492	interval	60	1	median_ms 16.6635 max_ms 16.7142 mode 0 phase 5 heap 1500748944
+60.5658	interval	61	1	median_ms 16.6649 max_ms 16.7119 mode 0 phase 5 heap 1500748944
+61.0158	set_window_size	1280	720	SDL_SetWindowSize
+61.0158	mode	1280	720	operation mode 0 (was 0)
+61.0158	drawable	1280	720	operation mode 0
+61.5659	interval	61	1	median_ms 16.6652 max_ms 31.594 mode 0 phase 6 heap 1518938320
+62.5659	interval	60	1	median_ms 16.6682 max_ms 16.7326 mode 0 phase 6 heap 1518938320
+63.5825	interval	61	1	median_ms 16.668 max_ms 16.7131 mode 0 phase 6 heap 1518938320
+64.0158	set_window_size	1280	720	SDL_SetWindowSize
+64.5825	interval	61	1	median_ms 16.6638 max_ms 27.4912 mode 0 phase 7 heap 1534178624
+65.5992	interval	61	1	median_ms 16.6672 max_ms 16.7145 mode 0 phase 7 heap 1534178624
+66.6158	interval	61	1	median_ms 16.6646 max_ms 16.733 mode 0 phase 7 heap 1534178624
+67.0158	hand	0	0	dock / undock by hand again (67-110 s), after the program's resizes
+67.6158	interval	60	1	median_ms 16.6671 max_ms 16.7293 mode 0 phase 8 heap 1534178624
+68.6159	interval	60	1	median_ms 16.6682 max_ms 16.7169 mode 0 phase 8 heap 1534178624
+69.6325	interval	61	1	median_ms 16.6643 max_ms 16.7275 mode 0 phase 8 heap 1534178624
+70.6325	interval	60	1	median_ms 16.666 max_ms 16.7158 mode 0 phase 8 heap 1534178624
+71.6325	interval	60	1	median_ms 16.6641 max_ms 16.7125 mode 0 phase 8 heap 1534178624
+72.6492	interval	61	1	median_ms 16.6651 max_ms 16.72 mode 0 phase 8 heap 1534178624
+73.6492	interval	60	1	median_ms 16.666 max_ms 16.7197 mode 0 phase 8 heap 1534178624
+74.6658	interval	61	1	median_ms 16.665 max_ms 16.7165 mode 0 phase 8 heap 1534178624
+75.6658	interval	60	1	median_ms 16.6651 max_ms 16.7928 mode 0 phase 8 heap 1534178624
+76.6659	interval	60	1	median_ms 16.6662 max_ms 16.7425 mode 0 phase 8 heap 1534178624
+77.6825	interval	61	1	median_ms 16.6653 max_ms 16.7142 mode 0 phase 8 heap 1534178624
+78.6992	interval	61	1	median_ms 16.6658 max_ms 16.7045 mode 0 phase 8 heap 1534178624
+79.6992	interval	60	1	median_ms 16.665 max_ms 16.7101 mode 0 phase 8 heap 1534178624
+80.7158	interval	61	1	median_ms 16.6642 max_ms 16.702 mode 0 phase 8 heap 1534178624
+81.7158	interval	60	1	median_ms 16.6654 max_ms 16.74 mode 0 phase 8 heap 1534178624
+82.7159	interval	60	1	median_ms 16.667 max_ms 16.7226 mode 0 phase 8 heap 1534178624
+83.7325	interval	61	1	median_ms 16.6629 max_ms 16.7051 mode 0 phase 8 heap 1534178624
+84.7492	interval	61	1	median_ms 16.6659 max_ms 16.714 mode 0 phase 8 heap 1534178624
+85.7492	interval	60	1	median_ms 16.6661 max_ms 16.7199 mode 0 phase 8 heap 1534178624
+86.7658	interval	61	1	median_ms 16.6638 max_ms 16.7346 mode 0 phase 8 heap 1534178624
+87.7825	interval	61	1	median_ms 16.6659 max_ms 16.7551 mode 0 phase 8 heap 1534178624
+88.7825	interval	60	1	median_ms 16.6645 max_ms 16.7329 mode 0 phase 8 heap 1534178624
+89.7992	interval	61	1	median_ms 16.663 max_ms 16.7259 mode 0 phase 8 heap 1534178624
+90.7992	interval	60	1	median_ms 16.6651 max_ms 16.7288 mode 0 phase 8 heap 1534178624
+91.7992	interval	60	1	median_ms 16.6639 max_ms 16.727 mode 0 phase 8 heap 1534178624
+92.8158	interval	61	1	median_ms 16.665 max_ms 16.7191 mode 0 phase 8 heap 1534178624
+93.8158	interval	60	1	median_ms 16.6632 max_ms 16.7235 mode 0 phase 8 heap 1534178624
+94.8159	interval	60	1	median_ms 16.668 max_ms 16.723 mode 0 phase 8 heap 1534178624
+95.8325	interval	61	1	median_ms 16.6635 max_ms 16.7257 mode 0 phase 8 heap 1534178624
+96.8325	interval	60	1	median_ms 16.6646 max_ms 16.7052 mode 0 phase 8 heap 1534178624
+97.8326	interval	60	1	median_ms 16.6666 max_ms 16.7175 mode 0 phase 8 heap 1534178624
+98.8492	interval	61	1	median_ms 16.6649 max_ms 16.7382 mode 0 phase 8 heap 1534178624
+99.8658	interval	61	1	median_ms 16.6631 max_ms 16.728 mode 0 phase 8 heap 1534178624
+100.866	interval	60	1	median_ms 16.6641 max_ms 16.7566 mode 0 phase 8 heap 1534178624
+101.883	interval	61	1	median_ms 16.6668 max_ms 16.7396 mode 0 phase 8 heap 1534178624
+102.899	interval	61	1	median_ms 16.663 max_ms 16.7148 mode 0 phase 8 heap 1534178624
+103.899	interval	60	1	median_ms 16.6652 max_ms 16.7083 mode 0 phase 8 heap 1534178624
+104.916	interval	61	1	median_ms 16.6624 max_ms 16.7124 mode 0 phase 8 heap 1534178624
+105.916	interval	60	1	median_ms 16.663 max_ms 16.7294 mode 0 phase 8 heap 1534178624
+106.933	interval	61	1	median_ms 16.6637 max_ms 16.7157 mode 0 phase 8 heap 1534178624
+107.949	interval	61	1	median_ms 16.6631 max_ms 16.7165 mode 0 phase 8 heap 1534178624
+108.949	interval	60	1	median_ms 16.6627 max_ms 16.7646 mode 0 phase 8 heap 1534178624
+109.949	interval	60	1	median_ms 16.6613 max_ms 16.7138 mode 0 phase 8 heap 1534178624
+summary	interval_1	swaps 270 in 4.50 s = 60.0 per s	median_ms 16.664 p95 16.701
+summary	interval_0	swaps 540 in 4.50 s = 120.0 per s	median_ms 10.573 p95 16.483
+summary	interval_2	swaps 136 in 4.53 s = 30.0 per s	median_ms 33.330 p95 33.364
