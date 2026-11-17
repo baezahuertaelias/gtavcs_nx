@@ -242,8 +242,11 @@ def summary(session, label, windows):
         out.append(stats(f"game frame {name} (t {a:g}-{b:g} s)", [v for t, v in perf if a <= t < b]))
         out.append(stats(f"host frame {name} (t {a:g}-{b:g} s)", [v for t, v in host if a <= t < b and v > 0]))
         out.append(stats(f"GPU present-to-present {name} (t {a:g}-{b:g} s)", [v for t, v in gpu if a <= t < b]))
-    out.append("GPU present-to-present: GL_TIME_ELAPSED from one present to the next; includes GPU idle time while the "
-               "CPU prepares the frame, so it bounds GPU busy time from above")
+    out.append("GPU present-to-present: GL_TIME_ELAPSED from just after one swap to just before the next (the swap "
+               "itself is outside); includes GPU idle time while the CPU prepares the frame, so it bounds GPU busy time "
+               "from above")
+    out.append("windows apply to perf.csv's t_s, the running sum of game frame times, which drifts a few seconds from "
+               "the run's clock (gameinfo, progress); GPU samples are placed by the run's clock")
     for pattern in (r"^\[video\].*$", r"^\[movie\].*$", r"^\[platform\] (?:gamepad|controller|focus|quit).*$",
                     r"^\[resources\].*$", r"^\[rhi\] GPU time.*$", r"^\[shutdown\].*$", r"^\[core\] orderly.*$",
                     r"^\[lifecycle\].*$"):

@@ -22,5 +22,14 @@ gpu.csv and the screenshots back. `summary <dir> <label>` writes `<label>-summar
 | 5 | `... game ... tests/switch/m06-play.cfg --label play-handheld-2` | skip S3 with Cross, play 5+ min, + twice, close from HOME | M06-16, M06-18 acceptance |
 | 6 | `... game ... tests/switch/m06-sticks.cfg --label sticks-handheld` | click each stick | M06-16 L3 / R3 |
 | 7 | `... game ... tests/switch/m06-soak.cfg --label soak-handheld` | do not touch (12 min) | M06-12 heap during play |
+| 8 | `... game ... tests/switch/m06-reference.cfg --label reference-handheld` | do not touch (3 min) | M06-01 the VU1 reference path (`PS2X_HLE=0`) |
+| 9, 10 | `... game ... tests/switch/m06-wireless.cfg --label wireless-handheld[-2]` | Joy-Cons detached; in S4 walk, turn the camera, + twice | M06-14 / M06-16 wireless |
+| 11 | `... game ... tests/switch/m06-soak30.cfg --label soak30-handheld` | do not touch (31 min planned) | M06-12 heap plateau |
+| - | `... clean-sd build/evidence/M06/accept` | (with the user's consent) | moves everything but `gtavcs.nro` and the disc files to `/switch/gtavcs_nx_backup/`, records each move |
+| 12, 13 | `... game build/evidence/M06/accept tests/switch/m06-play.cfg --label accept-clean[-2]` | B (Cross) skips S3; play 7 min; sync buttons, wait, reconnect; close from HOME | M06-18 acceptance on the clean card, M06-14 deliberate disconnect |
+| - | `... restore-sd build/evidence/M06/accept` | - | moves everything back (the run's own output kept beside the backup); the restored tree must equal the tree before cleaning |
+
+Buttons are by position (AGENTS.md): Cross is the bottom button, labelled **B** on the Switch; SDL's names in the
+`[input]` lines are positions too (`a` = bottom = B).
 
 Album captures (the Capture button) are read from Sphaira's `album_sd:` FTP mount, `/album_sd:/YYYY/MM/DD/`.
