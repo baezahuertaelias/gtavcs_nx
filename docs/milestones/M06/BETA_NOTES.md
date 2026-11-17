@@ -47,10 +47,10 @@ sound output at all. Disconnecting the Joy-Cons stops the player (input goes neu
 
 Measured frame times at Fort Baxter, handheld, internal resolution 1x (640x448), output 1280x720:
 
-| Run | Game frame median | Game frame p95 | GPU frame median |
-|---|---|---|---|
-| nobody touching (route) | 43.3 ms (about 19 fps on average) | 68.8 ms | 29.2 ms |
-| playing (acceptance run) | 66.8 ms | 267.5 ms | 26.5 ms |
+| Run | Game frame median | Game frame p95 |
+|---|---|---|
+| standing, nobody touching | 43.1 ms (about 19 fps on average) | 67.9 ms |
+| playing, on foot and on the bike | 66.6 ms | 264.1 ms |
 
 The frame rate is low. There is no frame-rate target in this beta; performance is milestone M10.
 

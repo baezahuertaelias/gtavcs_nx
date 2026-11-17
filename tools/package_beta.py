@@ -13,10 +13,12 @@ Takes the private game NRO (build/m04/private/gtavcs.nro, built by `python tools
 
 The NRO holds code compiled from the user's own disc: the package is private, for the user's console only. It never
 contains the ISO, extracted game files, generated C++, saves or screenshots; the tool refuses any other file and
-refuses a dirty working tree, so the commit in the name is the source of the NRO's port code.
+refuses a dirty working tree and an NRO whose build manifest names another commit or a dirty tree, so the commit in
+the name is the source of the NRO's port code.
 """
 import argparse
 import hashlib
+import json
 from pathlib import Path
 import shutil
 import subprocess
@@ -26,6 +28,7 @@ import zipfile
 ROOT = Path(__file__).resolve().parents[1]
 NRO = ROOT / "build/m04/private/gtavcs.nro"
 NOTES = ROOT / "docs/milestones/M06/BETA_NOTES.md"
+MANIFEST = ROOT / "build/m04/private/manifest.json"
 ALLOWED = {"switch/gtavcs_nx/gtavcs.nro", "switch/gtavcs_nx/gamefolder/PUT_DISC_FILES_HERE.txt", "BETA_NOTES.md",
            "SHA256SUMS"}
 PLACEHOLDER = """Put the files of your own extracted disc here (python tools/extract_disc.py extract <your.iso> <folder>,
@@ -51,9 +54,19 @@ def main():
     a = ap.parse_args()
     if git("status", "--porcelain"):
         sys.exit("FAIL working tree not clean: commit first, so the package names the NRO's source commit")
-    if not NRO.is_file() or not NOTES.is_file():
-        sys.exit(f"FAIL need {NRO.relative_to(ROOT)} (python tools/build_game.py) and {NOTES.relative_to(ROOT)}")
-    commit = git("rev-parse", "--short=12", "HEAD")
+    if not NRO.is_file() or not NOTES.is_file() or not MANIFEST.is_file():
+        sys.exit(f"FAIL need {NRO.relative_to(ROOT)} and its manifest.json (python tools/build_game.py) and "
+                 f"{NOTES.relative_to(ROOT)}")
+    # the NRO must be built from exactly this commit: build_game.py records the root commit and whether the tree was
+    # dirty, and the NRO's hash
+    manifest = json.loads(MANIFEST.read_text(encoding="utf-8"))
+    head = git("rev-parse", "HEAD")
+    if manifest.get("root_commit") != head or manifest.get("root_dirty") is not False:
+        sys.exit(f"FAIL the NRO was built from {manifest.get('root_commit')} (dirty={manifest.get('root_dirty')}), not "
+                 f"the clean HEAD {head}: run python tools/build_game.py first")
+    if manifest.get("nro_sha256") != sha256(NRO):
+        sys.exit("FAIL the NRO differs from the one its manifest.json describes: rebuild")
+    commit = head[:12]
     name = f"gtavcs_nx-beta-{commit}"
     folder = a.out / name
     if folder.exists():

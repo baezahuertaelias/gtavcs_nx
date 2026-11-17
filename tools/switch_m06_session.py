@@ -2,15 +2,15 @@
 
     python tools/switch_m06_session.py preflight <evidence-dir>
     python tools/switch_m06_session.py game <evidence-dir> <run.cfg> [--label NAME] [--prompt TEXT] [--keep-card]
-    python tools/switch_m06_session.py summary <evidence-dir> <label>
+    python tools/switch_m06_session.py summary <evidence-dir> <label> [--window NAME:FROM:TO ...]
     python tools/switch_m06_session.py cleanup <evidence-dir>
 
 `game` is switch_m04_session.py's game run with the private game NRO (build/m04/private/gtavcs.nro). Before the run it
 deletes the run's test profile (gamefolder/userdata/tests/<profile>) so the game starts from an empty test card, a
 new settings file and no cache, unless --keep-card. After it, every file the run left in that profile goes to
 <evidence-dir>/<label>/ except screenshots (PNG, game pictures: private, build/evidence/M06/screenshots/<label>) and
-the memory cards. `summary` reads a run's perf.csv / gpu.csv / log into <label>-summary.txt: median and p95 frame
-time per stage window (M06-11), heap / memory lines, GL errors, movie, controller and stage lines.
+the memory cards. `summary` reads a run's perf.csv / gpu.csv / log into <label>-summary.txt: the camera at each gameinfo answer
+(where the stages change) and median / p95 game, host and GPU frame time per --window NAME:FROM:TO (M06-11), heap / memory lines, GL errors, movie, controller and stage lines.
 NX_HOST names the console (default 192.168.1.107). Nothing here is sent anywhere but the console.
 """
 import argparse
@@ -126,14 +126,39 @@ def read_csv(path, key, time_key=None):
     return rows
 
 
-def summary(session, label):
+def stage_camera(log):
+    """(t, camera mode text) of every gameinfo answer: where each stage starts and ends in this run."""
+    return [(float(t), m.strip()) for t, m in
+            re.findall(r'^\[nxrun\] command t=([\d.]+) at=\S+ command="gameinfo" status=ok reply=".*?\[CAMERA  ([^]]*)\]',
+                       log, re.M)]
+
+
+def present_times(log):
+    """(t, presented frames so far) from the progress lines, to place gpu.csv's frame numbers in time."""
+    return [(float(t), int(n)) for t, n in re.findall(r"^\[nxrun\] progress t=([\d.]+) host_frames=(\d+)", log, re.M)]
+
+
+def frame_time(points, frame):
+    for (t0, n0), (t1, n1) in zip(points, points[1:]):
+        if n0 <= frame <= n1:
+            return t0 + (t1 - t0) * ((frame - n0) / (n1 - n0) if n1 > n0 else 0.0)
+    return None
+
+
+def summary(session, label, windows):
+    """windows: [(name, from_s, to_s)], chosen from the run's own stage_camera() transitions (printed first)."""
     run = session.evidence / label
-    log = (session.evidence / f"{label}-gtavcs.log").read_text(errors="replace") \
-        if (session.evidence / f"{label}-gtavcs.log").exists() else ""
-    out = [f"run {label}"]
+    log = (session.evidence / f"{label}-gtavcs.log").read_text(errors="replace")         if (session.evidence / f"{label}-gtavcs.log").exists() else ""
+    out = [f"run {label}", "camera at each gameinfo answer (stage transitions):"]
+    out.extend(f"  t={t:.0f} {mode}" for t, mode in stage_camera(log))
     perf = read_csv(run / "perf.csv", "frame_ms", "t_s")
     host = read_csv(run / "perf.csv", "host_ms", "t_s")
-    gpu = [v for _, v in read_csv(run / "gpu.csv", "gpu_ms")]
+    points = present_times(log)
+    gpu = []
+    for frame, ms in read_csv(run / "gpu.csv", "gpu_ms", "frame"):
+        t = frame_time(points, int(frame))
+        if t is not None:
+            gpu.append((t, ms))
 
     def stats(name, values):
         if not values:
@@ -142,17 +167,18 @@ def summary(session, label):
                 f"max={max(values):.1f} ms")
 
     out.append(stats("game frame (whole run)", [v for _, v in perf]))
-    windows = {"S2 flyover (t 3-38 s)": (3, 38), "S4 gameplay (t >= 100 s)": (100, 1e9)}
-    for name, (a, b) in windows.items():
-        out.append(stats(f"game frame {name}", [v for t, v in perf if a <= t < b]))
-        out.append(stats(f"host frame {name}", [v for t, v in host if a <= t < b and v > 0]))
-    out.append(stats("GPU frame (GL_TIME_ELAPSED, whole run)", gpu))
-    for pattern in (r"^\[video\].*$", r"^\[movie\].*$", r"^\[platform\] (gamepad|controller|focus|quit).*$",
+    for name, a, b in windows:
+        out.append(stats(f"game frame {name} (t {a:g}-{b:g} s)", [v for t, v in perf if a <= t < b]))
+        out.append(stats(f"host frame {name} (t {a:g}-{b:g} s)", [v for t, v in host if a <= t < b and v > 0]))
+        out.append(stats(f"GPU present-to-present {name} (t {a:g}-{b:g} s)", [v for t, v in gpu if a <= t < b]))
+    out.append("GPU present-to-present: GL_TIME_ELAPSED from one present to the next; includes GPU idle time while the "
+               "CPU prepares the frame, so it bounds GPU busy time from above")
+    for pattern in (r"^\[video\].*$", r"^\[movie\].*$", r"^\[platform\] (?:gamepad|controller|focus|quit).*$",
                     r"^\[resources\].*$", r"^\[rhi\] GPU time.*$", r"^\[shutdown\].*$", r"^\[core\] orderly.*$",
                     r"^\[lifecycle\].*$"):
         out.extend(re.findall(pattern, log, re.M))
     errors = re.findall(r"gl errors (\d+)", log)
-    out.append(f"last [rhi-stats] gl errors: {errors[-1] if errors else 'none reported'}")
+    out.append(f"last [rhi-stats] gl errors: {errors[-1] if errors else 'none reported (PS2X_RHI_STATS off)'}")
     info = re.findall(r'^\[nxrun\] command t=([\d.]+) at=\S+ command="(gameinfo|player)" status=(\w+) reply="(.*)"$',
                       log, re.M)
     out.append(f"gameinfo / player answers: {len(info)}")
@@ -172,6 +198,8 @@ def main():
     ap.add_argument("--label")
     ap.add_argument("--prompt")
     ap.add_argument("--keep-card", action="store_true")
+    ap.add_argument("--window", action="append", default=[], metavar="NAME:FROM:TO",
+                    help="summary: a stage window in seconds, from the run's camera transitions (repeatable)")
     a = ap.parse_args()
     session = m04.Session(a.evidence)
     try:
@@ -180,7 +208,7 @@ def main():
         elif a.command == "game":
             ok = game(session, a.config, a.label, a.prompt, a.keep_card)
         elif a.command == "summary":
-            ok = summary(session, a.config)
+            ok = summary(session, a.config, [(n, float(x), float(y)) for n, x, y in (w.rsplit(":", 2) for w in a.window)])
         else:
             m04.delete(session, f"{m04.GAME}/userdata/nxrun.cfg")
             ok = True

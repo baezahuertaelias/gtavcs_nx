@@ -324,7 +324,8 @@ namespace
             std::fprintf(stderr, "[core] PS2X_HLE=0: the world through the VU1 programs (reference path)\n");
         }
         else if (std::getenv("PS2X_HLE_VERIFY"))
-            std::fprintf(stderr, "[core] PS2X_HLE_VERIFY from nxrun.cfg is not applied (chosen at process start)\n");
+            std::fprintf(stderr, "[core] PS2X_HLE_VERIFY from nxrun.cfg is only partly applied: the RSL world hooks stay "
+                                 "off, the native MSCAL hooks chosen at process start stay on (no verification)\n");
         // upstream main: the hardware GS renderer unless PS2X_GS says otherwise; it draws through the OpenGL RHI
         // (VCS_RHI=null keeps the null backend for CPU-side bring-up)
         if (const char *gs = std::getenv("PS2X_GS"); !gs || !*gs)

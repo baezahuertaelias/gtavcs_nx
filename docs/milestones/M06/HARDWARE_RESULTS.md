@@ -8,38 +8,55 @@ transcript, crash-report lists before / after each run, person observations).
 
 Game NRO: `1854e2be…` (code of `98b023b`) for runs 1-6; `4a15e8…` (plus the heap fields of the progress line) for
 run 7; `4e4a8524…` (plus the PS2X_HLE fix below) for run 8. The later changes act only with a run configuration (the
-progress line) or with `PS2X_HLE` set (the fix); a player's launch runs the same code as runs 1-6. Every run: a new test profile (empty memory card, new settings), 0 GL errors in the last
-`[rhi-stats]` line, `[shutdown] core, context, window and SDL closed`, no new crash report, the NRO on the card equal
-to the local one (`sd_matches_local=True`).
+progress line) or with `PS2X_HLE` set (the fix); a player's launch runs the same code as runs 1-6. No build manifest
+was kept for `1854e2be` and `4a15e8`: that they match those commits is the build log's and transcript's word, not
+checkable now (the packaged NRO is checked against its manifest: tools/package_beta.py). Every run: a new test
+profile (empty memory card, new settings), `[shutdown] core, context, window and SDL closed`, no new crash report
+(transcript `new_crashes=[]`), the NRO on the card equal to the local one (`sd_matches_local=True`); 0 GL errors in
+the last `[rhi-stats]` line of every run that logs it (all but run 6, whose configuration does not set
+`PS2X_RHI_STATS`). Application mode: every run reports `mapped_total=3343908864` (3.34 GB), the full application
+memory pool, not applet mode's.
 
 ## Runs
 
 | # | Label | Configuration | Ended | Result |
 |---|---|---|---|---|
-| 1 | output-handheld | `m06-dock.cfg` (240 s, Cross schedule) | by `seconds` | PASS: `[video] output 1280x720 on the 1920x1080 surface, crop lower-left (00000000)`; the person: "It looks good and it has 4:3 ... nothing cut off" |
+| 1 | output-handheld | `m06-dock.cfg` (240 s, Cross schedule; used with no dock changes) | by `seconds` | PASS: `[video] output 1280x720 on the 1920x1080 surface, crop lower-left (00000000)`; the person: "It looks good and it has 4:3 ... nothing cut off" |
 | 2 | route-handheld | `m06-route.cfg` (300 s) | by `seconds` | PASS: S1-S4, 11 screenshots, perf / GPU per frame, both movies "built without FFmpeg, skipped" |
-| 3 | silent-handheld | `m06-silent.cfg` (360 s, `PS2X_AUDIO=0`, no input) | by `seconds` | PASS: no audio device; S3 cutscene from ~75 s to ~195 s, S4 by 225 s |
+| 3 | silent-handheld | `m06-silent.cfg` (360 s, `PS2X_AUDIO=0`, no input) | by `seconds` | PASS: no audio device; S2 flyover to ~45 s, S3 cutscene from before 60 s to after 195 s, S4 by 225 s |
 | 4 | play-handheld | `m06-play.cfg`, the person playing | HOME close | PASS as the Joy-Con connection-state run (gameplay ~3.5 min before the controller steps: not the acceptance run) |
 | 5 | play-handheld-2 | `m06-play.cfg`, the person playing | HOME close at 414 s | PASS: the acceptance run |
 | 6 | sticks-handheld | `m06-sticks.cfg` (90 s) | by `seconds` | PASS: L3 / R3 reported |
-| 7 | soak-handheld | `m06-soak.cfg` (720 s, no input after the Cross schedule) | by `seconds` | PASS: heap in use bounded over 10 min of S4 |
+| 7 | soak-handheld | `m06-soak.cfg` (720 s, no input after the Cross schedule) | by `seconds` | clean run; heap trend: see M06-12 |
 | 8 | reference-handheld | `m06-reference.cfg` (180 s, `PS2X_HLE=0`) | by `seconds` | PASS on the second attempt: the world through the recompiled VU1 programs (see M06-01 below) |
 
 A first attempt of run 1 stopped before launching (the session tool did not accept Sphaira's `450` reply for a
 missing folder; fixed in the tool) and a first attempt of run 5 stopped before launching (Docker Desktop not
-running); neither reached the console's game.
+running); neither reached the console's game. Runs 4 and 5 share the `m06-play` label, so run 5's crash-report and
+userdata lists overwrote run 4's, as run 8's second attempt overwrote its first; for those, the transcript's
+`new_crashes=[]` lines are the record.
 
-## Stages (route-handheld; screenshots private, hashes in `hardware/screenshot-sha256.txt`)
+## Stages (screenshots private, hashes in `hardware/screenshot-sha256.txt`)
+
+Where each stage starts and ends in a run comes from the camera in its `gameinfo` answers (every 30 s; listed at the
+top of each `hardware/*-summary.txt`) and the screenshots. Route (Cross every 4 s from 10 s): S2 skipped at 10 s, the
+cutscene camera at 15 s, S4 from about 25 s (the player standing at the S4 spot; HUD and the subtitle at 30 s).
+Silent (no input): flyover camera at 15 and 45 s, the S3 office scene at 60 s, the cutscene camera to 195 s, S4 from
+225 s.
 
 | Stage | Switch evidence |
 |---|---|
-| S1 legal / loading | `s1-002`: the legal screen with the title logo, 4:3 |
-| S2 flyover | `s2-006`: palms against the sky (the first 3D world picture); `s2-015` black: the Cross presses at 10 s and 14 s skip the flyover (a fade); `s2-030` the following script camera |
-| S3 cutscene | `s3-050`, `s3-070`; in the silent run `s3-060`..`s3-180`: the office scene, skinned characters, letterbox bars; camera `mode 17 flyby / cutscene` |
-| S4 gameplay | `s4-110`..`s4-290`: Fort Baxter, the player next to Martinez's bike, the HUD (clock, health, money), the radar with north and the mission marker, 4:3 pillarboxed; camera `mode 4 follow ped` |
+| S1 legal / loading | route `s1-002`: the legal screen with the title logo, 4:3 |
+| S2 flyover | route `s2-006`: palms against the sky (the first 3D world picture); silent `s2-030`: the flyover's army truck on a sunset road. Route `s2-015` is black: the transition after the Cross presses at 10 s and 14 s skipped the flyover |
+| S3 cutscene | silent `s3-060`, `s3-120`, `s3-180`, and reference `s4-120`, `s4-170` (named by schedule; still S3 in that slow run): the office scene, skinned characters, letterbox bars; camera `mode 17 flyby / cutscene` |
+| S4 gameplay | route `s2-030`, `s3-050`, `s3-070` (named by the planned schedule, taken in S4: the Cross presses skipped S2 and S3) and `s4-110`..`s4-290`; silent `s4-240`..`s4-350`: Fort Baxter, the player next to Martinez's bike, the HUD (clock, health, money), the radar with north and the mission marker, the mission subtitle ("Coge la moto del sargento Martinez."), 4:3 pillarboxed; camera `mode 4 follow ped` |
 
-The album captures of the play runs (15 screenshots, 4 clips) show S4 on foot and on the bike, the mission text
-("Ve a la terminal V.I.P. del aeropuerto.") and the button prompt; output 1280x720, 4:3, nothing cut off.
+Album captures (`hardware/album-sha256.txt`: 14 screenshots, 4 video clips; files private). The album's clock runs
+about 5-7 minutes ahead of the PC's (run 4 ended at 13:13:53 by the PC, its captures are stamped 13:15-13:18), so by
+time: the 10 screenshots stamped 13:15:41-13:18:14 are run 4; the screenshots 16:19:28, 16:19:57, 16:20:15 and the
+clips 16:20:34 and 16:21:03 (19.9 MB, 19.4 MB; the Switch records at most 30 s per clip) are run 5, the acceptance
+run; the clips 16:28:47, 16:28:55 and the screenshot 16:29:00 are run 6 (sticks). They show S4 on foot and on the
+bike, the mission text ("Ve a la terminal V.I.P. del aeropuerto.") and the button prompt, 4:3, nothing cut off.
 
 ## Guest state against the desktop reference (M06-09)
 
@@ -61,20 +78,26 @@ colours, orientation or HUD placement was seen. Not a pixel comparison (SCOPE_DE
 ## Timing (M06-11; handheld, stock clocks, internal 1x = 640x448, output 1280x720)
 
 From `perf.csv` (one row per game frame, `PS2X_PERF_LOG`) and `gpu.csv` (one row per presented frame,
-`GL_TIME_ELAPSED` from a present to the next, `PS2X_GL_GPU_TIME`). Reports: `hardware/*-perf-report.txt`.
+`PS2X_GL_GPU_TIME`), cut at each run's own stage boundaries (above; `tools/switch_m06_session.py summary --window`).
+GPU column: `GL_TIME_ELAPSED` from the query begun at one present to its end at the next, as the GPU reaches those
+points; it includes any GPU idle time in between, so it is an upper bound of the GPU's busy time per frame, not the
+busy time itself. gpu.csv's frame numbers are placed in time through the progress lines' `host_frames` (every 5-10 s).
+Summaries: `hardware/*-summary.txt`; whole-run reports: `hardware/*-perf-report.txt`.
 
-| Run, window | Game frame median / p95 | Host frame median / p95 | GPU frame median / p95 (whole run) |
+| Run, stage (window) | Game frame median / p95 | Host frame median / p95 | GPU present-to-present median / p95 |
 |---|---|---|---|
-| route, S2 (3-38 s) | 39.2 / 102.1 ms | 44.1 / 62.9 ms | 29.2 / 30.8 ms |
-| route, S4 (100-304 s) | 43.3 / 68.8 ms (19.0 fps mean) | 44.1 / 72.2 ms | (as above) |
-| silent, S4 (100-360 s) | 44.5 / 81.9 ms | 48.9 / 69.8 ms | not timed |
-| play-handheld-2, S2 | 48.2 / 205.1 ms | 37.4 / 95.7 ms | 26.5 / 67.8 ms |
-| play-handheld-2, S4 (playing, on foot and on the bike) | 66.8 / 267.5 ms | 55.0 / 110.9 ms | (as above) |
+| silent, S2 flyover (3-45 s) | 48.1 / 172.4 ms | 41.9 / 90.2 ms | not timed |
+| silent, S3 cutscene (60-195 s) | 49.2 / 129.5 ms | 50.0 / 85.5 ms | not timed |
+| silent, S4 standing (225-360 s) | 43.9 / 68.1 ms | 48.6 / 63.0 ms | not timed |
+| route, S4 standing (30-300 s) | 43.1 / 67.9 ms | 44.7 / 70.2 ms | 29.2 / 29.9 ms |
+| play-handheld-2, S2 flyover (3-30 s) | 45.2 / 180.1 ms | 37.1 / 93.4 ms | 20.9 / 54.2 ms |
+| play-handheld-2, S4 playing, on foot and on the bike (90-414 s) | 66.6 / 264.1 ms | 54.8 / 110.8 ms | 11.3 / 72.7 ms |
 
-In the route's S4 the EE thread spends 36.7 ms per frame in game code (70 %), 4.5 ms in render submission, 1.7 ms in
-the IOP and 9.7 ms waiting. The five worst route frames (590-790 ms) each fall about 2 s after a scheduled screenshot
-(`present::capture`): capture cost, not the game. Memory: the process has 3.34 GB mapped (`mapped_total`); the heap
-in use is 214-223 MB once running and 535-626 MB during S4 (soak). No FPS target (M10).
+The route's S2 lasts only until the Cross press at 10 s; the S2 rows come from the silent and play runs. In the
+route's S4 (perf_report from 100 s) the EE thread spends 36.7 ms per frame in game code (70 %), 4.5 ms in render
+submission, 1.7 ms in the IOP and 9.7 ms waiting. The five worst route frames (590-790 ms) each fall about 2 s after
+a scheduled screenshot (`present::capture`): capture cost, not the game. Memory: the process has 3.34 GB mapped
+(`mapped_total`); the heap in use is 214-223 MiB once running and 535-626 MiB during S4 (soak). No FPS target (M10).
 
 ## Heap during play and exit / restart (M06-12)
 
@@ -105,7 +128,8 @@ then) and is returned with the process.
   order. M01's observation is resolved: switch-sdl2 keeps a fixed joystick list, so the connection now comes from the
   HID npad style sets.
 - Run 5: buttons a 47, start 14, back 2, b, x, y, d-pad, leftshoulder; left stick 162 / 22 axis crossings, triggers;
-  Start opened the pause menu (`[menu] ...` lines); 5+ minutes of movement (the `player` answers move from
+  Start pressed 14 times (the log records SDL's events, not the game's menu; the run's two `[menu]` lines are
+  boot-time messages present in every run); 5+ minutes of movement (the `player` answers move from
   (-1621.8, -142.8) at 85 s to (-1142.7, -1087.2) at 405 s, through the bike at 150 s).
 - Run 6: `leftstick` 5 and `rightstick` 4 presses (L3 / R3).
 - Exit: HOME close is the deliberate exit (the smoke build's Plus-to-exit is not in the game build; Plus is Start).
@@ -116,7 +140,8 @@ The first attempt of run 8 set `PS2X_HLE=0` and still drew natively (`[hle] worl
 upstream's `vcs_hle_world.cpp` picks the world path in a static initializer, before the core applies nxrun.cfg's
 environment (the desktop sets it in the process environment). Fixed in `src/core/core.cpp`: after applying the run's
 environment, `PS2X_HLE=0` removes the MSCAL hooks again, as the initializer would have. Second attempt:
-`[core] PS2X_HLE=0: the world through the VU1 programs (reference path)`, no `[hle] world packets` line, 715-868
-VU1 programs per frame, 0 GL errors, clean exit; the S3 office scene drawn correctly through the OpenGL RHI
-(screenshots `reference-handheld/*`). The reference path runs at 2.4-2.9 fps here, so in 180 s it reached S3, not
-S4. `PS2X_HLE_VERIFY` from nxrun.cfg is not applied (its hooks are private to that file) and the core says so.
+`[core] PS2X_HLE=0: the world through the VU1 programs (reference path)`, no `[hle] world packets` line, 296-1,774
+VU1 programs per frame (the perf lines from 20 s), 0 GL errors, clean exit; the S3 office scene drawn correctly
+through the OpenGL RHI (screenshots `reference-handheld/*`). The reference path runs at 1.8-10.1 game fps here, so in
+180 s it reached S3, not S4. `PS2X_HLE_VERIFY` from nxrun.cfg is only partly applied (the RSL world hooks see it and
+stay off; the MSCAL verification hooks are private to vcs_hle_world.cpp) and the core says so.

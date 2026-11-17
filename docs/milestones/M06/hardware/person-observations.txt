@@ -7,9 +7,9 @@ What the user, at the Switch, reported during the M06 session (2026-11-17, handh
   as the controller connection-state run only.
 - play-handheld-2 (m06-play.cfg, the acceptance run): "done, closed it" (closed from HOME after the play).
 - sticks-handheld (m06-sticks.cfg): clicked each stick; the game stopped by itself after 90 s.
-- The user has no camera; they took Switch album captures (Capture button) during the runs instead: 15 screenshots
-  and 4 video clips of 2026-11-17, read back over FTP (album-sha256.txt; the files are game pictures and stay
-  private under build/evidence/M06/album). The screenshots show Sphaira's status overlay with the stock handheld
+- The user has no camera; they took Switch album captures (Capture button) during the runs instead: 14 screenshots
+  and 4 video clips (30 s at most each) of 2026-11-17, read back over FTP (album-sha256.txt; the files are game
+  pictures and stay private under build/evidence/M06/album); which run each belongs to: HARDWARE_RESULTS.md, Stages. The screenshots show Sphaira's status overlay with the stock handheld
   clocks: CPU 1020 MHz, GPU 307.2 MHz, memory 1331.1 MHz.
 - Decisions taken in the session are in ../SCOPE_DECISIONS.md (Pro Controller to M13-11, docked work to M10-13,
   picture comparison without a new desktop run).
