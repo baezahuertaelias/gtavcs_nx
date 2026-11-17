@@ -29,6 +29,9 @@ memory pool, not applet mode's.
 | 6 | sticks-handheld | `m06-sticks.cfg` (90 s) | by `seconds` | PASS: L3 / R3 reported |
 | 7 | soak-handheld | `m06-soak.cfg` (720 s, no input after the Cross schedule) | by `seconds` | clean run; heap trend: see M06-12 |
 | 8 | reference-handheld | `m06-reference.cfg` (180 s, `PS2X_HLE=0`) | by `seconds` | PASS on the second attempt: the world through the recompiled VU1 programs (see M06-01 below) |
+| 9 | wireless-handheld | `m06-wireless.cfg` (150 s), Joy-Cons detached | by `seconds` | no input logged (nothing pressed); resent |
+| 10 | wireless-handheld-2 | `m06-wireless.cfg` (150 s), Joy-Cons detached | by `seconds` | PASS: wireless sticks, A, Start, movement in S4 |
+| 11 | soak30-handheld | `m06-soak30.cfg` (1,860 s, no input after the Cross schedule) | by `seconds` | see M06-12 |
 
 A first attempt of run 1 stopped before launching (the session tool did not accept Sphaira's `450` reply for a
 missing folder; fixed in the tool) and a first attempt of run 5 stopped before launching (Docker Desktop not
@@ -101,19 +104,31 @@ a scheduled screenshot (`present::capture`): capture cost, not the game. Memory:
 
 ## Heap during play and exit / restart (M06-12)
 
-`soak-handheld-heap.tsv`, every 10 s: heap in use rises while S1-S4 load (296 MB at 0 s, 545 MB at 120 s) and then
-stays between 535 and 626 MB to 720 s, falling as well as rising; the renderer's objects stay bounded (textures at
-upstream's 3,000-entry cache cap, 2,854 / 194 MiB at the end; buffers ~11,500 / 37 MiB). No steady growth: no world
-leak in 10 minutes of S4. `heap_obtained` (what the allocator took from the system) grows from 573 MB at 120 s to
-828 MB at 720 s, more slowly over time (+160 MB in 120-360 s, +94 MB in 360-720 s): newlib does not return freed
-memory, so this is fragmentation, not live data. Recorded for M10-07's 30-minute soak.
+Run 7 (`soak-handheld-heap.tsv`, 720 s, every 10 s; MiB = 1,048,576 bytes): heap in use rises while S1-S4 load
+(296 MiB at 0 s, 545 MiB at 120 s) and from 120 s on still trends up, by about +7.9 MiB a minute (2-minute means
+552.5, 555.8, 577.9, 607.1, 608.0 MiB); review 1 found that "no world leak" did not follow from it. Run 11
+(`soak30-handheld-heap.tsv`, `m06-soak30.cfg`, NRO `9a9f7e12` from the clean `7a1f57d`) was planned for 1,860 s and
+ran 998 s of S4 before the console was suspended for 746.6 s (`[lifecycle] confirmed suspension_ns=746589037813`:
+sleep or HOME), after which the person closed it from HOME; the core stopped in order (`stop ... reason=runtime`, the
+applet's exit request; no crash report). Its heap in use, 2-minute means:
+
+| t (s) | 0-120 | 120-240 | 240-360 | 360-480 | 480-600 | 600-720 | 720-840 | 840-960 | 960-998 |
+|---|---|---|---|---|---|---|---|---|---|
+| mean MiB | 449.4 | 551.9 | 550.5 | 565.5 | 604.2 | 605.9 | 601.1 | 603.7 | 608.0 |
+
+Least-squares trend: +8.3 MiB/min over 120-600 s, **+0.02 MiB/min over 600-998 s**. The heap in use levels off at
+about 600 MiB once the area's models, textures and renderer buffers are resident (textures at upstream's 3,000-entry
+cache cap, 2,400-2,975 / 163-201 MiB; buffers 9,300-11,300 / 30-37 MiB): no world leak is seen in 16.6 minutes of
+standing in S4. `heap_obtained` (what the allocator took from the system; newlib does not give it back) still grows
+after the plateau, more slowly: 807 MiB by 600 s, 843 MiB by 998 s (about 4.5 MiB/min): fragmentation of freed
+memory, not live data. A longer soak, gameplay with movement and the growth of `heap_obtained` are M10-07's 30-minute
+soak; this is standing at one place, not a moving route.
 
 Exit with active streaming: run 5 was closed from HOME during play (the player moving through Fort Baxter, inputs to
 the last second, 2,993 textures in the cache; this run did not log stream reads, `VCS_STREAM_LOG` is off in
 m06-play.cfg). The main loop ended on the applet's exit request (`appletMainLoop()` false: no `stop` line, the
 results go straight to `shutdown`), then the game thread, the render worker, the stream reader, the runtime and
-the folder disc stopped in that order (`play-handheld-2-gtavcs.txt`, last 15 lines). Runs 1-7 each ended in order (the core's workers joined: `live_threads=2` at shutdown, as at boot) and the
-next launch started cleanly every time: seven consecutive launches, no hang, no crash report. The heap still in use at
+the folder disc stopped in that order (`play-handheld-2-gtavcs.txt`, last 15 lines). Runs 1-11 and run 8's first attempt (twelve game launches, back to back) each ended in order (the core's workers joined: `live_threads=2` at shutdown, as at boot, in every `*-gtavcs.txt`), the transcript records `new_crashes=[]` for all twelve, and the next launch started cleanly every time: no hang. Run 11 also resumed from a 746.6 s suspension and then closed from HOME in order. The heap still in use at
 the `shutdown` line (500-620 MB) is measured before main.c destroys the GL context (Mesa still holds the textures
 then) and is returned with the process.
 
@@ -132,6 +147,13 @@ then) and is returned with the process.
   boot-time messages present in every run); 5+ minutes of movement (the `player` answers move from
   (-1621.8, -142.8) at 85 s to (-1142.7, -1087.2) at 405 s, through the bike at 150 s).
 - Run 6: `leftstick` 5 and `rightstick` 4 presses (L3 / R3).
+- Run 4's wireless part is thin (review 1): the paired style appears just before a focus change at 281.9 s and the
+  run ends at 293 s, with one A press, a few stick moves and no Start. Wireless proof is runs 9 and 10
+  (`m06-wireless.cfg`, NRO `9a9f7e12` built from the clean `7a1f57d`, Joy-Cons detached from the start): style
+  `No1 styles 0x4 (paired Joy-Cons (dual), device type 0x30)` for the whole run. Run 9 logged no input at all (the
+  person did not press anything; resent at their request). Run 10: between 18 and 36 s (S4 from about 20 s) the
+  left stick (30 crossings), the right stick (33), A 8 and Start 4 events (two presses, 32.7 s and 33.6 s), and the
+  player walks from (-1616.0, -136.5) at 20 s to (-1624.8, -149.1) at 30 s; 0 GL errors, clean exit.
 - Exit: HOME close is the deliberate exit (the smoke build's Plus-to-exit is not in the game build; Plus is Start).
 
 ## The reference world path (M06-01)

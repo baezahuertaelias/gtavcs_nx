@@ -238,3 +238,69 @@
 17:04:13 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m06-reference/s4-170.png bytes=147414 sha256=17247f4a3137f98acf644ca103946a877478a224ad3d4303b16f21e56bf7b3eb
 17:04:13 reference-handheld: read back 4 files from /switch/gtavcs_nx/gamefolder/userdata/tests/m06-reference (screenshots private under build\evidence\M06\screenshots\reference-handheld)
 17:04:13 RESULT game PASS
+17:13:55 RESULT summary PASS
+17:13:55 RESULT summary PASS
+17:13:56 RESULT summary PASS
+17:13:56 RESULT summary FAIL
+17:14:14 RESULT summary PASS
+17:14:14 RESULT summary PASS
+17:14:14 RESULT summary PASS
+17:14:15 RESULT summary FAIL
+17:14:15 RESULT summary PASS
+17:14:15 RESULT summary FAIL
+17:14:15 RESULT summary FAIL
+17:14:15 RESULT summary FAIL
+17:21:20 nothing to delete at /switch/gtavcs_nx/gamefolder/userdata/tests/m06-wireless
+17:21:20 == m06-wireless: profile=m06-wireless nro sha256=9a9f7e12fcc2dbfefa73b18bb15cb22962225e17990d852083223344b2c67fc4
+17:21:24 tree /switch/gtavcs_nx/gamefolder/userdata entries=197 file=userdata-before-m06-wireless.txt
+17:21:24 deleted /switch/gtavcs_nx/gamefolder/gtavcs.log
+17:21:24 nothing to delete at /switch/gtavcs_nx/gamefolder/userdata/tests/m06-wireless/nxrun-results.txt
+17:21:24 wrote /switch/gtavcs_nx/gamefolder/userdata/nxrun.cfg bytes=606 sha256=d41b9970f0018063552603f817c14aaf97328141adb50a748311a32fe2d6ca39
+17:21:29 nxlink attempt=1 exit=0 output='Sending /switch/gtavcs_nx/gtavcs.nro, 54114501 bytes\n19866011 sent (36.71%), 1590 blocks'
+17:21:44 ACTION FOR THE PERSON AT THE SWITCH: Joy-Cons detached: at ~30 s walk (left stick), turn camera (right stick), + twice, A; then leave it
+17:24:13 ftp back after 164s: the payload has ended
+17:24:16 deleted /switch/gtavcs_nx/gamefolder/userdata/nxrun.cfg
+17:24:16 read-back /switch/gtavcs_nx/gamefolder/gtavcs.log bytes=38650 sha256=312bf15c2c1e47e3e24550a8172fb8d54e0a339d639629406b9030a45fd3d593
+17:24:16 read-back /switch/gtavcs_nx/gtavcs-boot.log bytes=62 sha256=3dfe21382f340edd44bac1bf1dd0af6377ec3f03f87b166979ec89c9759bba4b
+17:24:17 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m06-wireless/nxrun-results.txt bytes=18823 sha256=063ec9de66de492746446bbc78826da6af2409f5f9bdd8c3e13c681b72016bdb
+17:24:20 tree /switch/gtavcs_nx/gamefolder/userdata entries=203 file=userdata-after-m06-wireless.txt
+17:24:26 m06-wireless: clean_exit_line=True results_tail=['stop t=150.039 reason=seconds frames=3508', 'shutdown t=150.039 frames=3508', 'audit t=150.039 file_opens=145 iso_opens=0 first_iso="" threads_created=6'] sd_matches_local=True new_crashes=[]
+17:24:26 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m06-wireless/nxrun-results.txt bytes=18823 sha256=063ec9de66de492746446bbc78826da6af2409f5f9bdd8c3e13c681b72016bdb
+17:24:26 wireless-handheld: read back 1 files from /switch/gtavcs_nx/gamefolder/userdata/tests/m06-wireless (screenshots private under build\evidence\M06\screenshots\wireless-handheld)
+17:24:26 RESULT game PASS
+17:25:03 removed /switch/gtavcs_nx/gamefolder/userdata/tests/m06-wireless: files=1 folders=4
+17:25:03 == m06-wireless: profile=m06-wireless nro sha256=9a9f7e12fcc2dbfefa73b18bb15cb22962225e17990d852083223344b2c67fc4
+17:25:06 tree /switch/gtavcs_nx/gamefolder/userdata entries=197 file=userdata-before-m06-wireless.txt
+17:25:06 deleted /switch/gtavcs_nx/gamefolder/gtavcs.log
+17:25:06 nothing to delete at /switch/gtavcs_nx/gamefolder/userdata/tests/m06-wireless/nxrun-results.txt
+17:25:06 wrote /switch/gtavcs_nx/gamefolder/userdata/nxrun.cfg bytes=606 sha256=d41b9970f0018063552603f817c14aaf97328141adb50a748311a32fe2d6ca39
+17:25:12 nxlink attempt=1 exit=0 output='Sending /switch/gtavcs_nx/gtavcs.nro, 54114501 bytes\n19866011 sent (36.71%), 1590 blocks'
+17:25:27 ACTION FOR THE PERSON AT THE SWITCH: Joy-Cons detached: at ~30 s walk (left stick), turn camera (right stick), + twice, A; then leave it
+17:27:56 ftp back after 164s: the payload has ended
+17:27:59 deleted /switch/gtavcs_nx/gamefolder/userdata/nxrun.cfg
+17:28:00 read-back /switch/gtavcs_nx/gamefolder/gtavcs.log bytes=53631 sha256=b43b67d0966e4d4322df95bcf928bea019dfae2db7e89564b0b37413679cf3f4
+17:28:00 read-back /switch/gtavcs_nx/gtavcs-boot.log bytes=62 sha256=3dfe21382f340edd44bac1bf1dd0af6377ec3f03f87b166979ec89c9759bba4b
+17:28:00 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m06-wireless/nxrun-results.txt bytes=18866 sha256=fe87e90f41080e0c395d894a01272d73851cbed406cdd38eede0e9289be1b98a
+17:28:03 tree /switch/gtavcs_nx/gamefolder/userdata entries=203 file=userdata-after-m06-wireless.txt
+17:28:09 m06-wireless: clean_exit_line=True results_tail=['stop t=150.061 reason=seconds frames=3390', 'shutdown t=150.061 frames=3390', 'audit t=150.061 file_opens=145 iso_opens=0 first_iso="" threads_created=6'] sd_matches_local=True new_crashes=[]
+17:28:09 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m06-wireless/nxrun-results.txt bytes=18866 sha256=fe87e90f41080e0c395d894a01272d73851cbed406cdd38eede0e9289be1b98a
+17:28:09 wireless-handheld-2: read back 1 files from /switch/gtavcs_nx/gamefolder/userdata/tests/m06-wireless (screenshots private under build\evidence\M06\screenshots\wireless-handheld-2)
+17:28:09 RESULT game PASS
+17:28:34 nothing to delete at /switch/gtavcs_nx/gamefolder/userdata/tests/m06-soak30
+17:28:34 == m06-soak30: profile=m06-soak30 nro sha256=9a9f7e12fcc2dbfefa73b18bb15cb22962225e17990d852083223344b2c67fc4
+17:28:38 tree /switch/gtavcs_nx/gamefolder/userdata entries=203 file=userdata-before-m06-soak30.txt
+17:28:38 deleted /switch/gtavcs_nx/gamefolder/gtavcs.log
+17:28:38 nothing to delete at /switch/gtavcs_nx/gamefolder/userdata/tests/m06-soak30/nxrun-results.txt
+17:28:38 wrote /switch/gtavcs_nx/gamefolder/userdata/nxrun.cfg bytes=450 sha256=7b32cadf0661f2bed4c19e6ab3a129d7d6a7f82b674f2248101ab05a8faa8b23
+17:28:42 nxlink attempt=1 exit=0 output='Sending /switch/gtavcs_nx/gtavcs.nro, 54114501 bytes\n19866011 sent (36.71%), 1590 blocks'
+17:28:57 ACTION FOR THE PERSON AT THE SWITCH: do not touch (31 min)
+17:58:21 ftp back after 1778s: the payload has ended
+17:58:24 deleted /switch/gtavcs_nx/gamefolder/userdata/nxrun.cfg
+17:58:24 read-back /switch/gtavcs_nx/gamefolder/gtavcs.log bytes=174994 sha256=3fefc4cebeae0c56b6c6d38521ce536aeb39762396c525488f8bd1ba9015c246
+17:58:24 read-back /switch/gtavcs_nx/gtavcs-boot.log bytes=62 sha256=3dfe21382f340edd44bac1bf1dd0af6377ec3f03f87b166979ec89c9759bba4b
+17:58:24 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m06-soak30/nxrun-results.txt bytes=84610 sha256=ceadf27cdc25fcd430fb80f95d465ee6f6b9e10d0b930214fba3c4ae2d7eb53c
+17:58:27 tree /switch/gtavcs_nx/gamefolder/userdata entries=209 file=userdata-after-m06-soak30.txt
+17:58:34 m06-soak30: clean_exit_line=True results_tail=['stop t=998.092 reason=runtime frames=23198', 'shutdown t=998.092 frames=23198', 'audit t=998.092 file_opens=145 iso_opens=0 first_iso="" threads_created=6'] sd_matches_local=True new_crashes=[]
+17:58:34 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m06-soak30/nxrun-results.txt bytes=84610 sha256=ceadf27cdc25fcd430fb80f95d465ee6f6b9e10d0b930214fba3c4ae2d7eb53c
+17:58:34 soak30-handheld: read back 1 files from /switch/gtavcs_nx/gamefolder/userdata/tests/m06-soak30 (screenshots private under build\evidence\M06\screenshots\soak30-handheld)
+17:58:34 RESULT game PASS

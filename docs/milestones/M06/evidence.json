@@ -74,29 +74,37 @@
  "M06-11": [
   {
    "path": "docs/milestones/M06/HARDWARE_RESULTS.md",
-   "result": "Handheld, stock clocks, 1x: route S4 game 43.3/68.8 ms, host 44.1/72.2 ms, GPU 29.2/30.8 ms (median/p95); S2 and play figures; memory 3.34 GB mapped, heap 535-626 MB in S4"
+   "result": "Per stage, handheld, 1x: silent S2 48.1/172.4 ms, S3 49.2/129.5, S4 43.9/68.1; route S4 43.1/67.9 (GPU present-to-present 29.2/29.9); play S2 45.2/180.1, S4 66.6/264.1 (GPU 20.9/54.2, 11.3/72.7) median/p95"
   },
   {
-   "path": "docs/milestones/M06/hardware/route-handheld-perf-report.txt",
-   "result": "perf_report over S4: 19.0 fps, p50 43.3, p95 68.8 ms; EE game 36.7 ms, render 4.5, IOP 1.7, wait 9.7"
+   "path": "docs/milestones/M06/hardware/silent-handheld-summary.txt",
+   "result": "Stage windows from the run's own camera changes: S2 3-45 s, S3 60-195 s, S4 225-360 s"
   },
   {
    "path": "docs/milestones/M06/hardware/play-handheld-2-summary.txt",
-   "result": "Acceptance run while playing: S4 game 66.8/267.5 ms, GPU 26.5/67.8 ms"
+   "result": "S2 3-30 s and S4 90-414 s with GPU times placed through the progress lines' host_frames"
+  },
+  {
+   "path": "docs/milestones/M06/hardware/route-handheld-perf-report.txt",
+   "result": "perf_report over S4 from 100 s: EE game 36.7 ms, render 4.5, IOP 1.7, wait 9.7"
   }
  ],
  "M06-12": [
   {
-   "path": "docs/milestones/M06/hardware/soak-handheld-heap.tsv",
-   "result": "Heap in use 535-626 MB from 120 s to 720 s of S4, falling as well as rising: no world leak; heap_obtained 573 -> 828 MB (fragmentation, M10-07)"
+   "path": "docs/milestones/M06/hardware/soak30-handheld-heap.tsv",
+   "result": "Heap in use 2-minute means 604.2, 605.9, 601.1, 603.7, 608.0 MiB from 480 s; trend +0.02 MiB/min over 600-998 s of S4: levels off, no world leak seen"
+  },
+  {
+   "path": "docs/milestones/M06/hardware/soak30-handheld-gtavcs.txt",
+   "result": "998 s of S4, a 746.6 s suspension, resumed, closed from HOME in order (reason=runtime: the applet's exit request), live_threads=2, no crash"
   },
   {
    "path": "docs/milestones/M06/hardware/play-handheld-2-gtavcs.txt",
-   "result": "HOME close during play: game thread, render worker, stream reader, runtime and folder disc stopped in order, live_threads=2, clean shutdown"
+   "result": "HOME close during play: game thread, render worker, stream reader, runtime and folder disc stopped in order"
   },
   {
    "path": "docs/milestones/M06/hardware/transcript.txt",
-   "result": "Eight game runs launched back to back, each ending cleanly with no new crash report"
+   "result": "Twelve game launches back to back, each new_crashes=[] and a clean shutdown"
   }
  ],
  "M06-13": [
@@ -109,6 +117,10 @@
   {
    "path": "docs/milestones/M06/hardware/play-handheld-gtavcs.txt",
    "result": "Joy-Cons: handheld style at open, 'nothing connected for player 1, input neutral', then 'paired Joy-Cons (dual)', play, orderly HOME exit; M01 connected=1 resolved by HID style sets"
+  },
+  {
+   "path": "docs/milestones/M06/hardware/wireless-handheld-2-gtavcs.txt",
+   "result": "Joy-Cons detached: 'paired Joy-Cons (dual), device type 0x30' for the whole run; sticks, A and Start logged while the player walks in S4"
   },
   {
    "path": "src/platform/platform_switch_sdl2.cpp",
@@ -132,27 +144,31 @@
  "M06-16": [
   {
    "path": "docs/milestones/M06/hardware/play-handheld-2-gtavcs.txt",
-   "result": "SDL 'Switch Controller' a:b1 (south = Cross) by position; start 14 presses (pause menu), sticks, back (Select); HOME close as the exit"
+   "result": "Attached: SDL 'Switch Controller' a:b1 (south = Cross), start 14 presses, sticks, A, back (Select); HOME close as the exit; menu opening not logged"
   },
   {
    "path": "docs/milestones/M06/hardware/sticks-handheld-gtavcs.txt",
    "result": "leftstick 5 and rightstick 4 presses logged (L3/R3)"
+  },
+  {
+   "path": "docs/milestones/M06/hardware/wireless-handheld-2-gtavcs.txt",
+   "result": "Wireless: left stick 30 and right stick 33 crossings, A 8 and Start 4 events between 18 and 36 s; the player walks from (-1616.0, -136.5) to (-1624.8, -149.1)"
   }
  ],
  "M06-17": [
   {
    "path": "docs/milestones/M06/hardware/silent-handheld-gtavcs.txt",
-   "result": "PS2X_AUDIO=0, no audio device; S3 cutscene ~75-195 s without input, S4 (camera follow ped) by 225 s, clean exit; no audible-sound claim"
+   "result": "PS2X_AUDIO=0, no audio device; S3 cutscene from before 60 s to after 195 s without input, S4 (camera follow ped) by 225 s, clean exit; no audible-sound claim"
   }
  ],
  "M06-18": [
   {
    "path": "docs/milestones/M06/hardware/play-handheld-2-gtavcs.txt",
-   "result": "Empty test card, handheld, stock clocks: S1-S3 then gameplay from ~85 s to 414 s with the player moving ~700 m, closed from HOME in order, 0 GL errors, no crash"
+   "result": "Empty test card, handheld, application mode, stock clocks: S1-S3 then gameplay from ~85 s to 414 s with the player moving ~700 units, closed from HOME in order, 0 GL errors, no crash"
   },
   {
    "path": "docs/milestones/M06/hardware/album-sha256.txt",
-   "result": "15 album screenshots and 4 video clips from the console (files private)"
+   "result": "Album: 14 screenshots and 4 clips; run 5's are the clips 16:20:34 and 16:21:03 (30 s at most each) and three screenshots (attribution in HARDWARE_RESULTS.md); files private"
   },
   {
    "path": "docs/milestones/M06/hardware/person-observations.txt",
@@ -162,7 +178,7 @@
  "M06-19": [
   {
    "path": "tools/package_beta.py",
-   "result": "SD layout with the NRO, a disc-files placeholder, BETA_NOTES.md and SHA256SUMS; refuses other files and a dirty tree"
+   "result": "SD layout with the NRO, a disc-files placeholder, BETA_NOTES.md and SHA256SUMS; refuses other files, a dirty tree and an NRO whose manifest names another commit or a dirty tree"
   },
   {
    "path": "docs/milestones/M06/BETA_NOTES.md",
@@ -176,7 +192,7 @@
   },
   {
    "path": "docs/milestones/M06/hardware/person-observations.txt",
-   "result": "Upright, 4:3, nothing cut off on the panel"
+   "result": "The user: 'It looks good and it has 4:3 ... nothing cut off'"
   },
   {
    "path": "src/switch/output.c",
