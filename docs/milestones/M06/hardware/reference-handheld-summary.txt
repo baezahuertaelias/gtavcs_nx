@@ -1,0 +1,36 @@
+run reference-handheld
+camera at each gameinfo answer (stage transitions):
+  t=15 mode 15 fixed  (script camera)
+  t=45 mode 15 fixed  (script camera)
+  t=75 mode 17 flyby / cutscene  (script camera)
+  t=105 mode 17 flyby / cutscene  (script camera)
+  t=135 mode 17 flyby / cutscene  (script camera)
+  t=165 mode 17 flyby / cutscene  (script camera)
+game frame (whole run): no samples
+GPU present-to-present: GL_TIME_ELAPSED from one present to the next; includes GPU idle time while the CPU prepares the frame, so it bounds GPU busy time from above
+[video] output 1280x720 on the 1920x1080 surface, crop lower-left (00000000)
+[video] drawable=1920x1080 window=1920x1080 output=1280x720 mode=0 (was -1); 0 frames, 0.00 ms each since the last change; heap 222803776
+[movie] cdrom0:\MOVIES\STINGS.PSS;1: built without FFmpeg, skipped
+[movie] cdrom0:\MOVIES\INTRO.PSS;1: built without FFmpeg, skipped
+[platform] gamepad: Switch Controller (instance 0) mapping 000038f853776974636820436f6e7400,Switch Controller,a:b1,b:b0,back:b11,dpdown:b15,dpleft:b12,dpright:b14,dpup:b13,leftshoulder:b6,leftstick:b4,lefttrigger:b8,leftx:a0,lefty:a1,rightshoulder:b7,rightstick:b5,righttrigger:b9,rightx:a2,righty:a3,start:b10,x:b3,y:b2,crc:f838,platform:Unknown (see SDL_platform.h)
+[platform] focus lost: audio paused, pad neutral
+[platform] focus back: audio resumed, pad live
+[platform] controller physical: No1 styles 0x0 (none, device type 0x0), handheld styles 0x2 (Joy-Cons attached (handheld), device type 0xc)
+[resources] boot live_threads=2 (svc 00000000 via own)
+[resources] boot mapped_total=3343908864 mapped_used=3339763712 heap_in_use=145576896 heap_obtained=145608704 threads_created=1 default_thread_stack=8388608 file_opens=2 iso_opens=0
+[resources] running live_threads=4 (svc 00000000 via own)
+[resources] running mapped_total=3343908864 mapped_used=3339763712 heap_in_use=222802864 heap_obtained=225751040 threads_created=3 default_thread_stack=8388608 file_opens=12 iso_opens=0
+[resources] shutdown live_threads=2 (svc 00000000 via own)
+[resources] shutdown mapped_total=3343908864 mapped_used=3339763712 heap_in_use=311365376 heap_obtained=548433920 threads_created=6 default_thread_stack=8388608 file_opens=145 iso_opens=0
+[shutdown] core, context, window and SDL closed
+[core] orderly stop after 10192 frames
+[lifecycle] suspension_clock=1
+[lifecycle] resume=0 focus_notifications=1 focus=1
+last [rhi-stats] gl errors: 0
+gameinfo / player answers: 6
+  t=15.031 gameinfo ok: ok frames=133 | [PLAYER  ped 01d439c0  model 0  state  (0xc)] | pos    -1479.58   -314.62    15.08   heading  45.6 | health 100.0  armour   0.0  money $0 | weapons  none | [CAMERA  mode 15 fixed  (script camera)] | pos    -1522.05   -308.01    15.42   heading 248.8  pitch  -0.6  fov 70 | [WORLD] | c
+  t=45.027 gameinfo ok: ok frames=188 | [PLAYER  ped 01d439c0  model 0  state  (0xc)] | pos    -1521.12   -314.63    15.08   heading  45.6 | health 100.0  armour   0.0  money $0 | weapons  none | [CAMERA  mode 15 fixed  (script camera)] | pos    -1522.05   -308.01    15.42   heading 248.8  pitch  -0.6  fov 70 | [WORLD] | c
+  t=75.027 gameinfo ok: ok frames=264 | [PLAYER  ped 01d439c0  model 0  state on foot (0x1)] | pos    -1646.56   -139.23    14.82   heading  45.6 | health 100.0  armour   0.0  money $0 | weapons  none | [CAMERA  mode 17 flyby / cutscene  (script camera)] | pos    -1607.01   -126.44    15.69   heading  97.3  pitch  -4.1  fo
+  t=105.033 gameinfo ok: ok frames=327 | [PLAYER  ped 01d439c0  model 0  state on foot (0x1)] | pos    -1646.56   -139.23    14.82   heading  45.6 | health 100.0  armour   0.0  money $0 | weapons  none | [CAMERA  mode 17 flyby / cutscene  (script camera)] | pos    -1609.50   -126.52    15.42   heading 248.1  pitch   5.4  fo
+  t=135.020 gameinfo ok: ok frames=385 | [PLAYER  ped 01d439c0  model 0  state on foot (0x1)] | pos    -1646.56   -139.23    14.82   heading  45.6 | health 100.0  armour   0.0  money $0 | weapons  none | [CAMERA  mode 17 flyby / cutscene  (script camera)] | pos    -1609.37   -127.20    15.75   heading 240.8  pitch   2.3  fo
+  t=165.018 gameinfo ok: ok frames=444 | [PLAYER  ped 01d439c0  model 0  state on foot (0x1)] | pos    -1646.56   -139.23    14.82   heading  45.6 | health 100.0  armour   0.0  money $0 | weapons  none | [CAMERA  mode 17 flyby / cutscene  (script camera)] | pos    -1605.93   -126.26    16.07   heading 107.6  pitch  -8.1  fo

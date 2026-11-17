@@ -6,7 +6,7 @@
   },
   {
    "path": "docs/milestones/M06/hardware/reference-handheld-gtavcs.txt",
-   "result": "PS2X_HLE=0 after the core fix: '[core] PS2X_HLE=0: the world through the VU1 programs', no native world lines, 715-868 VU1 programs per frame, 0 GL errors, S3 drawn, clean exit"
+   "result": "PS2X_HLE=0 after the core fix: '[core] PS2X_HLE=0: the world through the VU1 programs', no native world lines, 296-1,774 VU1 programs per frame, 0 GL errors, S3 drawn, clean exit"
   },
   {
    "path": "src/core/core.cpp",
@@ -49,6 +49,10 @@
   {
    "path": "docs/milestones/M06/hardware/route-handheld-gtavcs.txt",
    "result": "'[gs-hw] ... scale 1x' (640x448 internal) with '[video] output 1280x720 on the 1920x1080 surface' in every run"
+  },
+  {
+   "path": "docs/milestones/M06/SCOPE_DECISIONS.md",
+   "result": "Recreating targets and camera state on docking moved to M10-13 with the user's dock decision; nothing claimed"
   }
  ],
  "M06-07": [
@@ -78,7 +82,7 @@
   },
   {
    "path": "docs/milestones/M06/hardware/silent-handheld-summary.txt",
-   "result": "Stage windows from the run's own camera changes: S2 3-45 s, S3 60-195 s, S4 225-360 s"
+   "result": "Stage windows from the run's own camera changes: S2 3-45 s, S3 60-195 s, S4 225-360 s (applied to perf.csv's t_s; caveats in HARDWARE_RESULTS.md)"
   },
   {
    "path": "docs/milestones/M06/hardware/play-handheld-2-summary.txt",
@@ -92,7 +96,7 @@
  "M06-12": [
   {
    "path": "docs/milestones/M06/hardware/soak30-handheld-heap.tsv",
-   "result": "Heap in use 2-minute means 604.2, 605.9, 601.1, 603.7, 608.0 MiB from 480 s; trend +0.02 MiB/min over 600-998 s of S4: levels off, no world leak seen"
+   "result": "Heap in use 2-minute means 604.2, 605.9, 601.1, 603.7 and 606.6 MiB (last bin 4 samples) from 480 s; trend -0.016 MiB/min over 600-992 s: levels off while standing; moving play's renderer objects bounded (run 5)"
   },
   {
    "path": "docs/milestones/M06/hardware/soak30-handheld-gtavcs.txt",
@@ -116,7 +120,7 @@
  "M06-14": [
   {
    "path": "docs/milestones/M06/hardware/play-handheld-gtavcs.txt",
-   "result": "Joy-Cons: handheld style at open, 'nothing connected for player 1, input neutral', then 'paired Joy-Cons (dual)', play, orderly HOME exit; M01 connected=1 resolved by HID style sets"
+   "result": "Joy-Cons: handheld style at open, then 'nothing connected for player 1, input neutral' for at most ~6.6 s (sliding them off the rails), then 'paired Joy-Cons (dual)', play, orderly HOME exit; M01 connected=1 resolved by HID style sets"
   },
   {
    "path": "docs/milestones/M06/hardware/wireless-handheld-2-gtavcs.txt",
@@ -129,6 +133,10 @@
   {
    "path": "docs/milestones/M06/SCOPE_DECISIONS.md",
    "result": "Pro Controller part moved to M13-11 by user decision"
+  },
+  {
+   "path": "docs/milestones/M06/hardware/accept/accept-clean-2-gtavcs.txt",
+   "result": "Sync-button disconnect of wireless Joy-Cons: dual, then 'nothing connected for player 1, input neutral' after 401.2 s with the player standing (405-415 s), then dual again and play to 455 s"
   }
  ],
  "M06-15": [
@@ -152,7 +160,7 @@
   },
   {
    "path": "docs/milestones/M06/hardware/wireless-handheld-2-gtavcs.txt",
-   "result": "Wireless: left stick 30 and right stick 33 crossings, A 8 and Start 4 events between 18 and 36 s; the player walks from (-1616.0, -136.5) to (-1624.8, -149.1)"
+   "result": "Wireless: in S4 left stick 30 and right stick 33 crossings and two Start presses while the player walks from (-1616.0, -136.5) to (-1624.8, -149.1); the A presses were during the cutscene skip"
   }
  ],
  "M06-17": [
@@ -163,16 +171,24 @@
  ],
  "M06-18": [
   {
-   "path": "docs/milestones/M06/hardware/play-handheld-2-gtavcs.txt",
-   "result": "Empty test card, handheld, application mode, stock clocks: S1-S3 then gameplay from ~85 s to 414 s with the player moving ~700 units, closed from HOME in order, 0 GL errors, no crash"
+   "path": "docs/milestones/M06/hardware/accept/accept-clean-2-gtavcs.txt",
+   "result": "Clean card, empty test card, handheld, application mode: S4 from 35 s to the HOME close at 455.6 s (~7 min), 931 units net on foot and on the bike, 0 GL errors, orderly stop, no crash"
+  },
+  {
+   "path": "docs/milestones/M06/hardware/accept/sd-tree-clean-2.txt",
+   "result": "The card before run 13: /switch/gtavcs_nx holds gtavcs.nro and gamefolder (disc files and .nxdisc) only"
+  },
+  {
+   "path": "docs/milestones/M06/hardware/accept/sd-tree-restored.txt",
+   "result": "After the run the card is restored; identical to sd-tree-before-clean.txt path for path and size for size"
   },
   {
    "path": "docs/milestones/M06/hardware/album-sha256.txt",
-   "result": "Album: 14 screenshots and 4 clips; run 5's are the clips 16:20:34 and 16:21:03 (30 s at most each) and three screenshots (attribution in HARDWARE_RESULTS.md); files private"
+   "result": "Video by the user's decision: run 5's two album clips (16:20:34, 16:21:03 by the album clock, 30 s at most each); files private"
   },
   {
-   "path": "docs/milestones/M06/hardware/person-observations.txt",
-   "result": "The user's report of the run"
+   "path": "docs/milestones/M06/SCOPE_DECISIONS.md",
+   "result": "User decision 2026-11-17: run 13's log with run 5's clips as the video record"
   }
  ],
  "M06-19": [

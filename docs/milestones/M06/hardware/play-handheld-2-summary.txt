@@ -1,18 +1,28 @@
 run play-handheld-2
+camera at each gameinfo answer (stage transitions):
+  t=30 mode 15 fixed  (script camera)
+  t=90 mode 4 follow ped
+  t=150 mode 18 behind vehicle
+  t=210 mode 4 follow ped
+  t=270 mode 4 follow ped
+  t=330 mode 4 follow ped
+  t=390 mode 4 follow ped
 game frame (whole run): n=5298 median=60.3 ms p95=209.9 ms max=1557.3 ms
-game frame S2 flyover (t 3-38 s): n=479 median=48.2 ms p95=205.1 ms max=1007.1 ms
-host frame S2 flyover (t 3-38 s): n=425 median=37.4 ms p95=95.7 ms max=190.5 ms
-game frame S4 gameplay (t >= 100 s): n=3601 median=66.8 ms p95=267.5 ms max=1557.3 ms
-host frame S4 gameplay (t >= 100 s): n=3256 median=55.0 ms p95=110.9 ms max=1472.1 ms
-GPU frame (GL_TIME_ELAPSED, whole run): n=9385 median=26.5 ms p95=67.8 ms max=517.2 ms
+game frame S2 flyover (t 3-30 s): n=387 median=45.2 ms p95=180.1 ms max=1007.1 ms
+host frame S2 flyover (t 3-30 s): n=348 median=37.1 ms p95=93.4 ms max=190.5 ms
+GPU present-to-present S2 flyover (t 3-30 s): n=725 median=20.9 ms p95=54.2 ms max=517.2 ms
+game frame S4 gameplay (t 90-414 s): n=3673 median=66.6 ms p95=264.1 ms max=1009.9 ms
+host frame S4 gameplay (t 90-414 s): n=3311 median=54.8 ms p95=110.8 ms max=556.1 ms
+GPU present-to-present S4 gameplay (t 90-414 s): n=7128 median=11.3 ms p95=72.7 ms max=342.2 ms
+GPU present-to-present: GL_TIME_ELAPSED from one present to the next; includes GPU idle time while the CPU prepares the frame, so it bounds GPU busy time from above
 [video] output 1280x720 on the 1920x1080 surface, crop lower-left (00000000)
 [video] drawable=1920x1080 window=1920x1080 output=1280x720 mode=0 (was -1); 0 frames, 0.00 ms each since the last change; heap 222819712
 [movie] cdrom0:\MOVIES\STINGS.PSS;1: built without FFmpeg, skipped
 [movie] cdrom0:\MOVIES\INTRO.PSS;1: built without FFmpeg, skipped
-gamepad
-focus
-focus
-controller
+[platform] gamepad: Switch Controller (instance 0) mapping 000038f853776974636820436f6e7400,Switch Controller,a:b1,b:b0,back:b11,dpdown:b15,dpleft:b12,dpright:b14,dpup:b13,leftshoulder:b6,leftstick:b4,lefttrigger:b8,leftx:a0,lefty:a1,rightshoulder:b7,rightstick:b5,righttrigger:b9,rightx:a2,righty:a3,start:b10,x:b3,y:b2,crc:f838,platform:Unknown (see SDL_platform.h)
+[platform] focus lost: audio paused, pad neutral
+[platform] focus back: audio resumed, pad live
+[platform] controller physical: No1 styles 0x0 (none, device type 0x0), handheld styles 0x2 (Joy-Cons attached (handheld), device type 0xc)
 [resources] boot live_threads=2 (svc 00000000 via own)
 [resources] boot mapped_total=3343908864 mapped_used=3339763712 heap_in_use=145576896 heap_obtained=145608704 threads_created=1 default_thread_stack=8388608 file_opens=2 iso_opens=0
 [resources] running live_threads=4 (svc 00000000 via own)

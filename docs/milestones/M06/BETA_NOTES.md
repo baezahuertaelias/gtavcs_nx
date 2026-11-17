@@ -32,7 +32,7 @@ Do not put the ISO on the card; the game reads only `gamefolder`. Check the file
 
 Start `gtavcs.nro` from the homebrew menu opened with full memory. The game shows the legal screen, the opening
 flyover and the intro cutscene, then gameplay at Fort Baxter. Controls are by button position, as on the PS2: the
-bottom face button is Cross (press it to skip the cutscene), **+** is Start (pause menu), **−** is Select, the sticks
+bottom face button (**B** on the Switch) is Cross (press it to skip the cutscene), the right one (A) is Circle, **+** is Start (pause menu), **−** is Select, the sticks
 and stick clicks are the PS2's. To quit, press **HOME** and close the software: the game shuts down in order.
 
 The log of the last run is `sdmc:/switch/gtavcs_nx/gamefolder/gtavcs.log`. Your saves and settings go to
@@ -43,7 +43,8 @@ The log of the last run is `sdmc:/switch/gtavcs_nx/gamefolder/gtavcs.log`. Your 
 On a real Switch in handheld mode, from an empty test memory card: the legal screen, the flyover, the intro cutscene
 and gameplay at Fort Baxter with the 3D world, the player, the HUD and the radar; more than 5 continuous minutes of
 play with paired Joy-Cons (on foot and on the bike); closing from HOME. The cutscene also plays to its end with no
-sound output at all. Disconnecting the Joy-Cons stops the player (input goes neutral) and reconnecting them works.
+sound output at all. When the console reports no controller, the player stops (input goes neutral), and play continues when the
+Joy-Cons connect again.
 
 Measured frame times at Fort Baxter, handheld, internal resolution 1x (640x448), output 1280x720:
 

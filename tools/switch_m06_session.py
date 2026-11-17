@@ -4,6 +4,7 @@
     python tools/switch_m06_session.py game <evidence-dir> <run.cfg> [--label NAME] [--prompt TEXT] [--keep-card]
     python tools/switch_m06_session.py summary <evidence-dir> <label> [--window NAME:FROM:TO ...]
     python tools/switch_m06_session.py cleanup <evidence-dir>
+    python tools/switch_m06_session.py clean-sd|restore-sd <evidence-dir>
 
 `game` is switch_m04_session.py's game run with the private game NRO (build/m04/private/gtavcs.nro). Before the run it
 deletes the run's test profile (gamefolder/userdata/tests/<profile>) so the game starts from an empty test card, a
@@ -56,6 +57,68 @@ def remove_tree(session, path):
     session.say(f"removed {path}: files={len(files)} folders={len(folders)}")
 
 
+BACKUP = "/switch/gtavcs_nx_backup"
+
+
+def clean_sd(session):
+    """M06-18's clean layout: move everything but the NRO and the disc files out of sdmc:/switch/gtavcs_nx into BACKUP
+    (renames, nothing deleted), listing each move in <evidence>/sd-moves.tsv for restore_sd."""
+    moves_file = session.evidence / "sd-moves.tsv"
+    if moves_file.exists():
+        session.say(f"refusing: {moves_file} exists (restore first)")
+        return False
+    ftp = m04.connect()
+    try:
+        top = m04.names(m04.listing(ftp, m04.SD))
+        game = m04.names(m04.listing(ftp, m04.GAME))
+        moves = [(f"{m04.SD}/{n}", f"{BACKUP}/{n}") for n in sorted(top) if n not in ("gtavcs.nro", "gamefolder")]
+        moves += [(f"{m04.GAME}/{n}", f"{BACKUP}/gamefolder/{n}") for n in ("userdata", "gtavcs.log", "mc0", "mc1") if n in game]
+        for folder in (BACKUP, f"{BACKUP}/gamefolder"):
+            try:
+                ftp.mkd(folder)
+            except ftplib.all_errors:
+                pass
+        done = []
+        for src, dst in moves:
+            ftp.rename(src, dst)
+            done.append((src, dst))
+            moves_file.write_text("".join(f"{a}\t{b}\n" for a, b in done), encoding="utf-8")
+            session.say(f"moved {src} -> {dst}")
+    finally:
+        ftp.quit()
+    m04.record_tree(session, m04.SD, "sd-tree-clean.txt")
+    return True
+
+
+def restore_sd(session):
+    moves_file = session.evidence / "sd-moves.tsv"
+    if not moves_file.exists():
+        session.say("nothing to restore")
+        return True
+    rows = [line.split("\t") for line in moves_file.read_text(encoding="utf-8").splitlines() if line]
+    ftp = m04.connect()
+    try:
+        game = m04.names(m04.listing(ftp, m04.GAME))
+        # the acceptance run made its own userdata (nxrun.cfg, the test profile) and log: keep them beside the backup
+        for name in ("userdata", "gtavcs.log"):
+            if name in game and any(src == f"{m04.GAME}/{name}" for src, _ in rows):
+                ftp.rename(f"{m04.GAME}/{name}", f"{BACKUP}/acceptance-{name}")
+                session.say(f"kept the acceptance run's {name} as {BACKUP}/acceptance-{name}")
+        for src, dst in reversed(rows):
+            parent, name = src.rsplit("/", 1)
+            if name in m04.names(m04.listing(ftp, parent)):
+                # the run made its own (the game creates gamefolder/mc0, mc1 at boot): keep it beside the backup
+                ftp.rename(src, f"{BACKUP}/acceptance-{parent.rsplit('/', 1)[1]}-{name}")
+                session.say(f"kept the acceptance run's {src} as {BACKUP}/acceptance-{parent.rsplit('/', 1)[1]}-{name}")
+            ftp.rename(dst, src)
+            session.say(f"restored {dst} -> {src}")
+    finally:
+        ftp.quit()
+    moves_file.rename(moves_file.with_name("sd-moves-restored.tsv"))
+    m04.record_tree(session, m04.SD, "sd-tree-restored.txt")
+    return True
+
+
 def game(session, config, label, prompt, keep_card):
     m04.NRO_LOCAL = ROOT / "build/m04/private/gtavcs.nro"
     text = Path(config).read_text()
@@ -66,6 +129,14 @@ def game(session, config, label, prompt, keep_card):
     folder = f"{m04.GAME}/userdata/tests/{profile}"
     if not keep_card:
         remove_tree(session, folder)
+    # a clean card (clean_sd) has no userdata yet: nxrun.cfg goes there
+    ftp = m04.connect()
+    try:
+        ftp.mkd(f"{m04.GAME}/userdata")
+        session.say(f"created {m04.GAME}/userdata")
+    except ftplib.all_errors:
+        pass
+    ftp.quit()
     ok = m04.game(session, config, prompt, None)
     # m04.game names repeated runs label-2, label-3, ...: find the label it used from the newest log
     logs = sorted(session.evidence.glob(f"{Path(config).stem}*-gtavcs.log"), key=lambda p: p.stat().st_mtime)
@@ -192,7 +263,7 @@ def summary(session, label, windows):
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("command", choices=["preflight", "game", "summary", "cleanup"])
+    ap.add_argument("command", choices=["preflight", "game", "summary", "cleanup", "clean-sd", "restore-sd"])
     ap.add_argument("evidence")
     ap.add_argument("config", nargs="?", help="game: the run.cfg; summary: the run's label")
     ap.add_argument("--label")
@@ -207,6 +278,10 @@ def main():
             ok = m04.preflight(session)
         elif a.command == "game":
             ok = game(session, a.config, a.label, a.prompt, a.keep_card)
+        elif a.command == "clean-sd":
+            ok = clean_sd(session)
+        elif a.command == "restore-sd":
+            ok = restore_sd(session)
         elif a.command == "summary":
             ok = summary(session, a.config, [(n, float(x), float(y)) for n, x, y in (w.rsplit(":", 2) for w in a.window)])
         else:

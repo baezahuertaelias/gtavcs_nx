@@ -25,13 +25,15 @@ memory pool, not applet mode's.
 | 2 | route-handheld | `m06-route.cfg` (300 s) | by `seconds` | PASS: S1-S4, 11 screenshots, perf / GPU per frame, both movies "built without FFmpeg, skipped" |
 | 3 | silent-handheld | `m06-silent.cfg` (360 s, `PS2X_AUDIO=0`, no input) | by `seconds` | PASS: no audio device; S2 flyover to ~45 s, S3 cutscene from before 60 s to after 195 s, S4 by 225 s |
 | 4 | play-handheld | `m06-play.cfg`, the person playing | HOME close | PASS as the Joy-Con connection-state run (gameplay ~3.5 min before the controller steps: not the acceptance run) |
-| 5 | play-handheld-2 | `m06-play.cfg`, the person playing | HOME close at 414 s | PASS: the acceptance run |
+| 5 | play-handheld-2 | `m06-play.cfg`, the person playing | HOME close at 414 s | PASS as a 5-minute play run (5.3 min); its card was not clean, so the acceptance is run 13 |
 | 6 | sticks-handheld | `m06-sticks.cfg` (90 s) | by `seconds` | PASS: L3 / R3 reported |
 | 7 | soak-handheld | `m06-soak.cfg` (720 s, no input after the Cross schedule) | by `seconds` | clean run; heap trend: see M06-12 |
 | 8 | reference-handheld | `m06-reference.cfg` (180 s, `PS2X_HLE=0`) | by `seconds` | PASS on the second attempt: the world through the recompiled VU1 programs (see M06-01 below) |
 | 9 | wireless-handheld | `m06-wireless.cfg` (150 s), Joy-Cons detached | by `seconds` | no input logged (nothing pressed); resent |
 | 10 | wireless-handheld-2 | `m06-wireless.cfg` (150 s), Joy-Cons detached | by `seconds` | PASS: wireless sticks, A, Start, movement in S4 |
 | 11 | soak30-handheld | `m06-soak30.cfg` (1,860 s, no input after the Cross schedule) | by `seconds` | see M06-12 |
+| 12 | accept-clean | `m06-play.cfg` on the cleaned card, the person playing | HOME close at 395 s | clean run, but only ~4.8 min of S4 (the cutscene ran until the person found Cross on B) and no disconnect logged: not the acceptance |
+| 13 | accept-clean-2 | `m06-play.cfg` on the cleaned card, the person playing | HOME close at 456 s | PASS: the acceptance run (below) |
 
 A first attempt of run 1 stopped before launching (the session tool did not accept Sphaira's `450` reply for a
 missing folder; fixed in the tool) and a first attempt of run 5 stopped before launching (Docker Desktop not
@@ -87,6 +89,13 @@ points; it includes any GPU idle time in between, so it is an upper bound of the
 busy time itself. gpu.csv's frame numbers are placed in time through the progress lines' `host_frames` (every 5-10 s).
 Summaries: `hardware/*-summary.txt`; whole-run reports: `hardware/*-perf-report.txt`.
 
+Method caveats: perf.csv's `t_s` is the running sum of game frame times and drifts from the run's clock (by about 3 s
+in the silent run, 4.5 s in the route, 7.4 s in play-handheld-2 and 25 s in run 4 at their ends); the stage windows
+come from `gameinfo` times on the run's clock and are applied to `t_s`, so their edges are a few seconds off, and the
+windows are kept clear of the transitions for that reason. GPU samples are placed by the run's clock. The GPU query
+begins after the swap and ends before the next swap (`rhi_gl.cpp`, `present`), so GPU work or waiting inside the swap
+itself is not in it: "present-to-present" means from just after one swap to just before the next.
+
 | Run, stage (window) | Game frame median / p95 | Host frame median / p95 | GPU present-to-present median / p95 |
 |---|---|---|---|
 | silent, S2 flyover (3-45 s) | 48.1 / 172.4 ms | 41.9 / 90.2 ms | not timed |
@@ -100,7 +109,7 @@ The route's S2 lasts only until the Cross press at 10 s; the S2 rows come from t
 route's S4 (perf_report from 100 s) the EE thread spends 36.7 ms per frame in game code (70 %), 4.5 ms in render
 submission, 1.7 ms in the IOP and 9.7 ms waiting. The five worst route frames (590-790 ms) each fall about 2 s after
 a scheduled screenshot (`present::capture`): capture cost, not the game. Memory: the process has 3.34 GB mapped
-(`mapped_total`); the heap in use is 214-223 MiB once running and 535-626 MiB during S4 (soak). No FPS target (M10).
+(`mapped_total`); the heap in use is 204-213 MiB once running and 535-626 MiB during S4 (soak). No FPS target (M10).
 
 ## Heap during play and exit / restart (M06-12)
 
@@ -112,21 +121,26 @@ ran 998 s of S4 before the console was suspended for 746.6 s (`[lifecycle] confi
 sleep or HOME), after which the person closed it from HOME; the core stopped in order (`stop ... reason=runtime`, the
 applet's exit request; no crash report). Its heap in use, 2-minute means:
 
-| t (s) | 0-120 | 120-240 | 240-360 | 360-480 | 480-600 | 600-720 | 720-840 | 840-960 | 960-998 |
+| t (s) | 0-120 | 120-240 | 240-360 | 360-480 | 480-600 | 600-720 | 720-840 | 840-960 | 960-992 |
 |---|---|---|---|---|---|---|---|---|---|
-| mean MiB | 449.4 | 551.9 | 550.5 | 565.5 | 604.2 | 605.9 | 601.1 | 603.7 | 608.0 |
+| mean MiB | 449.4 | 551.9 | 550.5 | 565.5 | 604.2 | 605.9 | 601.1 | 603.7 | 606.6 (4 samples) |
 
-Least-squares trend: +8.3 MiB/min over 120-600 s, **+0.02 MiB/min over 600-998 s**. The heap in use levels off at
-about 600 MiB once the area's models, textures and renderer buffers are resident (textures at upstream's 3,000-entry
-cache cap, 2,400-2,975 / 163-201 MiB; buffers 9,300-11,300 / 30-37 MiB): no world leak is seen in 16.6 minutes of
-standing in S4. `heap_obtained` (what the allocator took from the system; newlib does not give it back) still grows
-after the plateau, more slowly: 807 MiB by 600 s, 843 MiB by 998 s (about 4.5 MiB/min): fragmentation of freed
-memory, not live data. A longer soak, gameplay with movement and the growth of `heap_obtained` are M10-07's 30-minute
-soak; this is standing at one place, not a moving route.
+Least-squares trend: +8.3 MiB/min over 120-600 s, **-0.016 MiB/min over 600-992 s** (the last sample is at
+991.9 s). The heap in use levels off at about 600 MiB from about 480 s once the area's models, textures and renderer
+buffers are resident (textures at upstream's 3,000-entry cache cap, 2,400-2,975 / 163-201 MiB; buffers 9,300-11,300 /
+30-37 MiB): a plateau of about 8.5 minutes, within about 16 minutes of standing in S4 (the run's first ~25 s are
+S1-S3). No world leak is seen while standing. `heap_obtained` (what the allocator took from the system; newlib does
+not give it back) still grows after the plateau, more slowly: 807 MiB by 600 s, 843 MiB by 992 s (about 4.5
+MiB/min): fragmentation of freed memory, not live data.
 
-Exit with active streaming: run 5 was closed from HOME during play (the player moving through Fort Baxter, inputs to
-the last second, 2,993 textures in the cache; this run did not log stream reads, `VCS_STREAM_LOG` is off in
-m06-play.cfg). The main loop ended on the applet's exit request (`appletMainLoop()` false: no `stop` line, the
+While moving (run 5, played on foot and on the bike; that NRO had no heap fields on the progress line) the renderer's
+objects stay bounded: from the eleventh `[rhi-stats]` line on, textures 1,862-3,010 and buffers 4,227-11,934, no
+upward drift to the end. The heap itself was not sampled during moving play. That a moving-route heap soak is left to
+M10-07 (which already requires a 30-minute soak with streaming) is the implementer's choice, not a user decision.
+
+Exit during play: run 5 was closed from HOME while the player was moving through Fort Baxter (inputs to the last
+second, 2,993 textures in the cache). That streaming was active at that moment is inferred from the movement, not
+logged: `VCS_STREAM_LOG` is off in m06-play.cfg. The main loop ended on the applet's exit request (`appletMainLoop()` false: no `stop` line, the
 results go straight to `shutdown`), then the game thread, the render worker, the stream reader, the runtime and
 the folder disc stopped in that order (`play-handheld-2-gtavcs.txt`, last 15 lines). Runs 1-11 and run 8's first attempt (twelve game launches, back to back) each ended in order (the core's workers joined: `live_threads=2` at shutdown, as at boot, in every `*-gtavcs.txt`), the transcript records `new_crashes=[]` for all twelve, and the next launch started cleanly every time: no hang. Run 11 also resumed from a 746.6 s suspension and then closed from HOME in order. The heap still in use at
 the `shutdown` line (500-620 MB) is measured before main.c destroys the GL context (Mesa still holds the textures
@@ -137,10 +151,12 @@ then) and is returned with the process.
 - Identity at open: `controller physical: ... handheld styles 0x2 (Joy-Cons attached (handheld), device type 0xc)`;
   SDL's mapping `Switch Controller` with `a:b1, b:b0, x:b3, y:b2` under `SDL_HINT_GAMECONTROLLER_USE_BUTTON_LABELS=0`
   (physical positions: SDL's A = south = Cross).
-- Run 4: at 275 s `No1 styles 0x0 ... handheld styles 0x0: nothing connected for player 1, input neutral` (the
-  Joy-Cons disconnected; SDL still had its joystick open: the M01 `connected=1` observation), then
-  `No1 styles 0x4 (paired Joy-Cons (dual), device type 0x30)` (reconnected wireless), play continued, HOME close in
-  order. M01's observation is resolved: switch-sdl2 keeps a fixed joystick list, so the connection now comes from the
+- Run 4: one change sequence, handheld (0x2), then at about 275 s `No1 styles 0x0 ... handheld styles 0x0: nothing
+  connected for player 1, input neutral` for at most about 6.6 s (between the `player` answer at 275.2 s and the
+  progress line at 280.7 s), then `No1 styles 0x4 (paired Joy-Cons (dual), device type 0x30)`, play continued, HOME
+  close in order. That is consistent with sliding the Joy-Cons off the rails; no deliberate disconnect of wireless
+  Joy-Cons (dual, then none, then dual) is in this run. SDL still had its joystick open throughout: the M01
+  `connected=1` observation. M01's observation is resolved: switch-sdl2 keeps a fixed joystick list, so the connection now comes from the
   HID npad style sets.
 - Run 5: buttons a 47, start 14, back 2, b, x, y, d-pad, leftshoulder; left stick 162 / 22 axis crossings, triggers;
   Start pressed 14 times (the log records SDL's events, not the game's menu; the run's two `[menu]` lines are
@@ -149,11 +165,14 @@ then) and is returned with the process.
 - Run 6: `leftstick` 5 and `rightstick` 4 presses (L3 / R3).
 - Run 4's wireless part is thin (review 1): the paired style appears just before a focus change at 281.9 s and the
   run ends at 293 s, with one A press, a few stick moves and no Start. Wireless proof is runs 9 and 10
-  (`m06-wireless.cfg`, NRO `9a9f7e12` built from the clean `7a1f57d`, Joy-Cons detached from the start): style
-  `No1 styles 0x4 (paired Joy-Cons (dual), device type 0x30)` for the whole run. Run 9 logged no input at all (the
-  person did not press anything; resent at their request). Run 10: between 18 and 36 s (S4 from about 20 s) the
-  left stick (30 crossings), the right stick (33), A 8 and Start 4 events (two presses, 32.7 s and 33.6 s), and the
-  player walks from (-1616.0, -136.5) at 20 s to (-1624.8, -149.1) at 30 s; 0 GL errors, clean exit.
+  (`m06-wireless.cfg`, NRO `9a9f7e12` built from the clean `7a1f57d`; the person detached the Joy-Cons before the
+  launch, although the configuration's comment describes detaching them during the run): style `No1 styles 0x4
+  (paired Joy-Cons (dual), device type 0x30)` for the whole run. Run 9 logged no input at all (the person did not
+  press anything; resent at their request). Run 10: `[input]` lines carry SDL's event time, about 2.1 s ahead of the
+  run's `t`. The 8 A presses fall at run t about 16-18 s, while the scripted Cross presses skip the cutscene; in S4
+  (from about run t 20 s) the left stick (30 crossings) and right stick (33) move, Start is pressed twice (SDL time
+  32.7 s and 33.6 s, run t about 30.6 s and 31.5 s), and the player walks from (-1616.0, -136.5) at run t 20 s to
+  (-1624.8, -149.1) at 30 s; 0 GL errors, clean exit.
 - Exit: HOME close is the deliberate exit (the smoke build's Plus-to-exit is not in the game build; Plus is Start).
 
 ## The reference world path (M06-01)
@@ -167,3 +186,36 @@ VU1 programs per frame (the perf lines from 20 s), 0 GL errors, clean exit; the 
 through the OpenGL RHI (screenshots `reference-handheld/*`). The reference path runs at 1.8-10.1 game fps here, so in
 180 s it reached S3, not S4. `PS2X_HLE_VERIFY` from nxrun.cfg is only partly applied (the RSL world hooks see it and
 stay off; the MSCAL verification hooks are private to vcs_hle_world.cpp) and the core says so.
+
+## Clean-card acceptance (M06-18, M06-14; runs 12 and 13, review 2)
+
+Review 2: run 5's card also held old test NROs, logs, folders and the user's real save, so it was not "the NRO and
+gamefolder only". With the user's consent, `tools/switch_m06_session.py clean-sd` moved everything but `gtavcs.nro`
+and the disc files (the `.nxdisc` folder and the disc tree) into `/switch/gtavcs_nx_backup/` by FTP renames
+(`hardware/accept/sd-moves-restored.tsv`); the tree before (`sd-tree-before-clean.txt`) and the clean tree
+(`sd-tree-clean.txt`, re-cleaned before run 13: `sd-tree-clean-2.txt`, the game itself creates `gamefolder/mc0` and
+`mc1` at boot) are recorded. The session tool's own additions are `gamefolder/userdata/nxrun.cfg` (deleted after the
+run) and the run's test profile under `userdata/tests/m06-play` (an empty test card). After run 13,
+`restore-sd` moved everything back; `sd-tree-restored.txt` equals `sd-tree-before-clean.txt` path for path and size for
+size, the user's save included. NRO `9a9f7e12` (built from `7a1f57d`; byte-identical to the build from `f047894`).
+
+Run 13 (`hardware/accept/accept-clean-2-gtavcs.txt`): paired Joy-Cons detached from the start (`No1 styles 0x4 (paired
+Joy-Cons (dual), device type 0x30)`); application mode (`mapped_total=3343908864`); S1-S3, then the player at the S4
+spot at 35 s and gameplay to the HOME close at 455.6 s, about 7 continuous minutes: on foot and mostly on the bike
+(camera `behind vehicle` at 90-270 s and 390-450 s), 931 units net and 2,561 along the 10-second samples, from
+(-1614.2, -132.3) to (-738.6, 21.2). Inputs (SDL position names; SDL's `a` is the bottom button, labelled B on the
+Switch: Cross): a 53 presses, b 12, y 11, x 7, leftstick and rightstick 2 each, both sticks and both triggers. 0 GL
+errors; the game thread, render worker, stream reader, runtime and folder disc stopped in order; no crash report.
+S4 timing (40-450 s): `hardware/accept/accept-clean-2-summary.txt`.
+
+Deliberate disconnect of wireless Joy-Cons (the person pressed each Joy-Con's sync button): after the progress line
+at 401.2 s `nothing connected for player 1, input neutral`; the player stands (-701.3, 253.8) at 405 s and (-703.6,
+250.8) at 415 s; then `paired Joy-Cons (dual)` again before the focus change at 420.6 s, and play continues to the HOME
+close (the player at (-738.6, 21.2) at 455 s). So: dual, then none, then dual, with input neutral in between.
+
+Run 12 (`accept-clean-gtavcs.txt`) is kept as a clean run that did not meet the 5 minutes (S4 from between 85 and 105
+s to 391 s). The person first pressed A to skip the cutscene, as the session's instructions wrongly said: by position
+the bottom button, B on the Switch, is Cross (AGENTS.md), and the game behaved so.
+
+Video: no album clips were taken during run 13; by the user's decision (SCOPE_DECISIONS.md) M06-18's video is run 5's
+two clips.

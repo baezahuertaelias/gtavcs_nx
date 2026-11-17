@@ -26,13 +26,15 @@ mode only.
 
 What changes:
 
+- **M06-06** keeps the fixed internal scale independent of output; its clause "recreate targets and camera state
+  on docking" leaves M06.
 - **M06-11** measures S2 and S4 in handheld only.
 - **M06-13** (the deferred M01 docking check) leaves M06 entirely.
 - **M06-18** is the beta acceptance in handheld only.
 - **M06-20** proves, from a handheld start, that the 1280x720 output fills the panel through the crop of the fixed
   1920x1080 surface (src/switch/output.c), the right way up and with nothing cut off. The docked output, dock
   changes and the heap across them leave M06.
-- **M10-13** (new) owns all of it: M06-13's docking check, M06-20's docked output, dock changes from both start
+- **M10-13** (new) owns all of it: M06-06's target and camera recreation on docking, M06-13's docking check, M06-20's docked output, dock changes from both start
   modes with a flat heap, docked S2/S4 timing (M06-11) and the docked acceptance run (M06-18).
 
 What does not change: nothing is claimed for docked mode. The beta notes (M06-19) state that docked play, docking
@@ -52,3 +54,11 @@ chose "go with option 1". M06-09 is closed with what exists:
 
 No pixel comparison of S1-S4 between Switch and desktop is claimed. The RHI's pixel agreement with upstream's Vulkan
 backend is M05's conformance claim (127/127 within tolerance on the Switch).
+
+## M06-18's video (user decision, 2026-11-17)
+
+Review 2 found that the card of run 5 was not the clean layout M06-18 names. The user chose a clean-card rerun
+("Option A"): runs 12 and 13 on a card cleaned to the NRO and the disc files. Run 13 is the acceptance run; the person
+took no album clips during it. Offered (1) accepting run 13's log with run 5's two album clips as the video record or
+(2) another run with clips, the user chose "1". So M06-18's video is run 5's two clips (30 s at most each, the same
+handheld play with the same NRO family), not a recording of run 13; run 13's proof is its log.

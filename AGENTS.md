@@ -290,6 +290,6 @@ test card the game reaches S4 at Fort Baxter through S1-S3 with the world and HU
 drawn through OpenGL at 1x internal / 1280x720 output, the player controlled for
 5+ continuous minutes, closed from HOME in order; the S3 cutscene runs out without
 an audio device; Joy-Con disconnect/reconnect works through HID style sets. Measured
-route S4 game frame median 43.3 ms / p95 68.8 ms (about 19 fps); no FPS target (M10).
+route S4 game frame median 43.1 ms / p95 67.9 ms (about 19 fps); no FPS target (M10).
 Docked mode, docking and the Pro Controller are untested (user decisions: M10-13,
 M13-11).
