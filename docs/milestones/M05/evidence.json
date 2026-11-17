@@ -228,7 +228,7 @@
   },
   {
    "path": "docs/milestones/M05/hardware-r5/rhi-docked-start/window.tsv",
-   "result": "Docked start: no growth per dock change (within 2 KB over 4 changes)"
+   "result": "Docked start: no growth per dock change (within 2,064 bytes over 4 changes)"
   },
   {
    "path": "docs/milestones/M05/hardware-r1/rhi-docked2/checks.tsv",

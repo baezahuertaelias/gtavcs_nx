@@ -281,7 +281,9 @@ sleep, close and startup-failure checks (M04 evidence). The M05 OpenGL backend
 runs on the Switch's Mesa 20.1 nouveau (GL 4.3 core): 127/127 conformance
 readbacks within tolerance of upstream's Vulkan backend (101 identical), the real
 game drawn through it with 0 GL errors, the fixed-size window kept across docking
-from either starting mode with no heap growth per change (output size: M06-20); every GL call stays on
+from either starting mode in the game and the test program, with no heap growth
+per change shown in the test program (the game's heap is sampled at the changes
+only; output size: M06-20); every GL call stays on
 the main thread (a shared worker context shares nothing on this driver, M05-09).
 No gameplay, beta or frame-rate acceptance is claimed (M06, M10). Full paired wireless/Pro
 controller and docking acceptance remain open.

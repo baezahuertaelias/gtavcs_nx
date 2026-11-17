@@ -6,12 +6,13 @@ renderer NV120, OpenGL 4.3 core profile, GLSL 4.30** (asked for 3.3 core): `ARB_
 anisotropy (max 16), KHR_debug, 1 dual-source draw buffer, 8 samples, max texture 16384, max uniform block 65536,
 window framebuffer encoding GL_LINEAR. Reference for every comparison: upstream's Vulkan backend on the host GPU
 (`build/m05/host/vulkan_hw`: Intel ADL-N, Mesa ANV; `tools/rhi_host_tests.py`); round 3 also against lavapipe (`build/m05/host/vulkan`). Game screenshots stay private under
-build/; their SHA-256 are in `*-screenshot-sha256.txt`.
+build/; their SHA-256 are in `*-screenshot-sha256.txt` (rounds 1-3) or in the session transcripts' `read-back` lines
+(rounds 4-5: `hardware-r4/transcript.txt`, `hardware-r5/transcript.txt`).
 
 Five rounds. **Round 1** (2026-11-15/16, [hardware/](hardware/)) was the first review's candidate `cb70b74`; the
 independent review requested changes ([REVIEW1_RESPONSE.md](REVIEW1_RESPONSE.md)). **Round 2** (2026-11-16,
-[hardware-r1/](hardware-r1/)) is the evidence for the game and backend code `75fd248` (game NRO `39071ced…`; unchanged
-since). The second independent review requested changes to tests and records ([REVIEW2_RESPONSE.md](REVIEW2_RESPONSE.md));
+[hardware-r1/](hardware-r1/)) is the evidence for the game and backend code `75fd248` (game NRO `39071ced…`; the game
+NRO changed in round 4 to `af94eee1…`, `dcda9e1`: see below). The second independent review requested changes to tests and records ([REVIEW2_RESPONSE.md](REVIEW2_RESPONSE.md));
 **round 3** ([hardware-r2/](hardware-r2/)) ran the changed RHI tests (`e0ba4541…`, `9cb098a`). The third review
 found the heap growing at every window size change; the probe that measured it is [hardware-r3/rhi-leak](hardware-r3/rhi-leak),
 and **round 4** (2026-11-16/17, [hardware-r4/](hardware-r4/)) is the evidence for the fix `dcda9e1`
@@ -66,7 +67,7 @@ grow by ~56 / ~67 MiB in it); later intervals shrink (+86 / +38 / +21 MB in roun
 the texture cache fills toward its 3,000-entry cap and evicts (round 4: 2,966 / 172 MiB before its first eviction to
 2,289). The last sample is ~130 s into the run, so a plateau is not shown. `heap_in_use` at shutdown (485 / 503 MB) is
 logged before the GL context is deleted and is not evidence either way. That a dock change itself adds nothing rests
-on the test program (round 4 within 12 KB over 7 changes, round 5 within 2 KB over 4) and on the churn budget.
+on the test program (round 4 within 12 KB over 7 changes, round 5 within 2,064 bytes over 4) and on the churn budget.
 
 **Readbacks.** The host Vulkan reference was not rebuilt on the round-4 host (Windows; `tools/rhi_host_tests.py` needs
 EGL / a Linux Vulkan driver), so the session's compare step failed for lack of `build/m05/host/vulkan_hw/index.tsv`.
@@ -89,7 +90,14 @@ All 127 readbacks are byte-identical to round 2's (`rhi-docked2`). Band spreads 
 strings of a different length; found by review 2), so a recorded NRO hash identifies the binary that ran, not a
 rebuild; code identity is shown by comparing with the build ID masked.
 
-## Round 2 runs (game and backend code `75fd248`, the current game NRO)
+## Round 2 runs (game and backend code `75fd248`, game NRO `39071ced`)
+
+**Not repeated on the current game NRO.** Since `75fd248` the only change in the game's code is `src/main.c` in
+`dcda9e1` (`git diff --stat 75fd248 dcda9e1 -- src patches CMakeLists.txt cmake`: the other changed files are the
+RHI tests and the GLSL README): the window is created without `SDL_WINDOW_RESIZABLE` and the `[video]` line logs the
+heap. `m05-gl`, `m05-gl-worker` and `m05-null` (M05-01's OpenGL default and null path, M05-09's option B in the game,
+M05-11) ran on `39071ced` only; the backend selection, the worker-context sharing check and the null presenter do not
+depend on the window flag or the log line. The game runs on `af94eee1` are `m05-dock` in rounds 4 and 5.
 
 | Run | NRO | Mode | Result |
 |---|---|---|---|
