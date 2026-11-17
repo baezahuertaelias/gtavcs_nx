@@ -33,7 +33,11 @@ def remove_tree(session, path):
     """Delete a remote folder: files first, then folders, deepest first. A missing folder is nothing to do."""
     ftp = m04.connect()
     try:
-        if m04.listing(ftp, path) is None:
+        try:
+            missing = m04.listing(ftp, path) is None
+        except ftplib.error_temp:  # Sphaira answers a missing folder with 450
+            missing = True
+        if missing:
             session.say(f"nothing to delete at {path}")
             return
         tree = m04.walk(ftp, path, depth=16)

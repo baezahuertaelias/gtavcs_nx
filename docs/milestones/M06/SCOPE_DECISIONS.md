@@ -37,3 +37,18 @@ What changes:
 
 What does not change: nothing is claimed for docked mode. The beta notes (M06-19) state that docked play, docking
 and the TV output are untested. M10-04, M10-07 and M10-08 already require both modes and stay as written.
+
+## M06-09 without a new desktop run (user decision, 2026-11-17)
+
+A desktop reference run of `tests/switch/m06-route.cfg` was started on this host and stopped by the user: "it wont be
+a desktop reference". Offered (1) the existing references or (2) deferring the picture comparison to M14, the user
+chose "go with option 1". M06-09 is closed with what exists:
+
+- **Key guest state**, compared exactly: the M04 desktop reference (`build/evidence/M04/reference`, upstream's
+  desktop build at the pin, the same Cross schedule) against the Switch's route and silent runs.
+- **Pictures**, compared by description, not by pixels: the Switch's S1-S4 screenshots against M05's desktop record
+  of the same schedule through upstream's Vulkan backend and the port's OpenGL backend
+  (`docs/milestones/M05/desktop/README.md`; those desktop pictures stay on the host that made them).
+
+No pixel comparison of S1-S4 between Switch and desktop is claimed. The RHI's pixel agreement with upstream's Vulkan
+backend is M05's conformance claim (127/127 within tolerance on the Switch).

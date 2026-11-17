@@ -1,0 +1,70 @@
+run play-handheld
+game frame (whole run): n=4248 median=51.8 ms p95=176.5 ms max=2059.9 ms
+game frame S2 flyover (t 3-38 s): n=483 median=48.0 ms p95=193.7 ms max=1011.9 ms
+host frame S2 flyover (t 3-38 s): n=429 median=40.1 ms p95=93.4 ms max=185.9 ms
+game frame S4 gameplay (t >= 100 s): n=2748 median=59.0 ms p95=178.6 ms max=2059.9 ms
+host frame S4 gameplay (t >= 100 s): n=2305 median=49.8 ms p95=103.5 ms max=1815.4 ms
+GPU frame (GL_TIME_ELAPSED, whole run): n=6805 median=28.6 ms p95=59.0 ms max=518.6 ms
+[video] output 1280x720 on the 1920x1080 surface, crop lower-left (00000000)
+[video] drawable=1920x1080 window=1920x1080 output=1280x720 mode=0 (was -1); 0 frames, 0.00 ms each since the last change; heap 222819872
+[movie] cdrom0:\MOVIES\STINGS.PSS;1: built without FFmpeg, skipped
+[movie] cdrom0:\MOVIES\INTRO.PSS;1: built without FFmpeg, skipped
+gamepad
+focus
+focus
+controller
+controller
+controller
+focus
+focus
+focus
+focus
+[resources] boot live_threads=2 (svc 00000000 via own)
+[resources] boot mapped_total=3343908864 mapped_used=3339763712 heap_in_use=145576896 heap_obtained=145608704 threads_created=1 default_thread_stack=8388608 file_opens=2 iso_opens=0
+[resources] running live_threads=4 (svc 00000000 via own)
+[resources] running mapped_total=3343908864 mapped_used=3339763712 heap_in_use=222819040 heap_obtained=225779712 threads_created=3 default_thread_stack=8388608 file_opens=13 iso_opens=0
+[resources] shutdown live_threads=2 (svc 00000000 via own)
+[resources] shutdown mapped_total=3343908864 mapped_used=3339763712 heap_in_use=597488560 heap_obtained=823214080 threads_created=6 default_thread_stack=8388608 file_opens=150 iso_opens=0
+[rhi] GPU time per frame to userdata/tests/m06-play/gpu.csv
+[rhi] GPU time: 6805 frames, mean 23.94 ms, max 518.62 ms, 0 not timed
+[shutdown] core, context, window and SDL closed
+[lifecycle] suspension_clock=1
+[lifecycle] resume=0 focus_notifications=1 focus=1
+[lifecycle] resume=0 focus_notifications=1 focus=1
+[lifecycle] resume=0 focus_notifications=1 focus=1
+last [rhi-stats] gl errors: 0
+gameinfo / player answers: 34
+  t=5.024 player ok: ok 01d439c0 -1439.675 -314.627 14.414 1
+  t=15.132 player ok: ok 01d439c0 -1515.171 -314.625 15.083 1
+  t=25.101 player ok: ok 01d439c0 -1715.362 -292.350 15.014 1
+  t=30.034 gameinfo ok: ok frames=398 | [PLAYER  ped 01d439c0  model 0  state  (0xc)] | pos    -1715.85   -273.33    15.02   heading  45.6 | health 100.0  armour   0.0  money $0 | weapons  none | [CAMERA  mode 15 fixed  (script camera)] | pos    -1720.34   -277.76    14.54   heading 321.9  pitch   4.6  fov 70 | [WORLD] | c
+  t=35.048 player ok: ok 01d439c0 -1715.521 -206.107 15.014 1
+  t=45.054 player ok: ok 01d439c0 -1668.753 -138.265 14.999 1
+  t=55.026 player ok: ok 01d439c0 -1668.758 -138.281 14.997 1
+  t=65.084 player ok: ok 01d439c0 -1646.560 -139.230 14.820 1
+  t=75.127 player ok: ok 01d439c0 -1646.560 -139.230 14.820 1
+  t=85.054 player ok: ok 01d439c0 -1646.560 -139.230 14.820 1
+  t=90.091 gameinfo ok: ok frames=1313 | [PLAYER  ped 01d439c0  model 0  state on foot (0x1)] | pos    -1646.56   -139.23    14.82   heading  45.6 | health 100.0  armour   0.0  money $0 | weapons  none | [CAMERA  mode 17 flyby / cutscene  (script camera)] | pos    -1610.46   -123.20    15.53   heading 203.8  pitch   2.9  f
+  t=95.071 player ok: ok 01d439c0 -1646.560 -139.230 14.820 1
+  t=105.059 player ok: ok 01d439c0 -1646.560 -139.230 14.820 1
+  t=115.039 player ok: ok 01d439c0 -1646.560 -139.230 14.820 1
+  t=125.039 player ok: ok 01d439c0 -1646.560 -139.230 14.820 1
+  t=135.057 player ok: ok 01d439c0 -1646.560 -139.230 14.820 1
+  t=145.084 player ok: ok 01d439c0 -1596.730 -133.480 14.833 1
+  t=150.049 gameinfo ok: ok frames=2391 | [PLAYER  ped 01d439c0  model 0  state on foot (0x1)] | pos    -1614.15   -132.33    14.81   heading  58.0 | health 100.0  armour   0.0  money $0 | weapons  none | [CAMERA  mode 4 follow ped] | pos    -1610.34   -134.71    15.64   heading  58.0  pitch  -2.9  fov 70 | [WORLD] | clock 
+  t=155.086 player ok: ok 01d439c0 -1618.675 -129.070 14.844 1
+  t=165.028 player ok: ok 01d439c0 -1673.244 -147.916 14.606 1
+  t=175.025 player ok: ok 01d439c0 -1666.213 -146.108 14.601 1
+  t=185.213 player ok: ok 01d439c0 -1666.349 -196.475 14.590 1
+  t=195.151 player ok: ok 01d439c0 -1661.235 -247.268 14.846 1
+  t=205.207 player ok: ok 01d439c0 -1625.147 -255.064 14.573 1
+  t=210.021 gameinfo ok: ok frames=3117 | [PLAYER  ped 01d439c0  model 0  state on foot (0x1)] | pos    -1597.37   -256.41    14.59   heading 263.0 | health  98.7  armour   0.0  money $0 | weapons  none | [CAMERA  mode 4 follow ped] | pos    -1601.83   -255.86    15.45   heading 263.0  pitch  -3.3  fov 70 | [WORLD] | clock 
+  t=215.107 player ok: ok 01d439c0 -1593.174 -260.060 14.604 1
+  t=225.041 player ok: ok 01d439c0 -1617.292 -264.451 14.707 1
+  t=235.055 player ok: ok 01d439c0 -1715.278 -265.015 14.501 1
+  t=245.251 player ok: ok 01d439c0 -1798.895 -314.330 14.739 1
+  t=255.111 player ok: ok 01d439c0 -1824.265 -466.230 14.866 1
+  t=265.127 player ok: ok 01d439c0 -1824.639 -735.485 7.723 1
+  t=270.130 gameinfo ok: ok frames=3929 | [PLAYER  ped 01d439c0  model 0  state  (0x2d)] | pos    -1820.97   -762.58     7.95   heading 310.7 | health  95.8  armour   0.0  money $0 | weapons  none | [CAMERA  mode 4 follow ped] | pos    -1823.10   -758.66     9.11   heading 208.5  pitch  -7.1  fov 70 | [WORLD] | clock 09:04 
+  t=275.159 player ok: ok 01d439c0 -1820.972 -762.587 7.953 1
+  t=285.120 player ok: ok 01d439c0 -1820.989 -762.871 7.953 1

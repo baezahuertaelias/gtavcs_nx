@@ -1,0 +1,186 @@
+{
+ "M06-01": [
+  {
+   "path": "docs/milestones/M06/hardware/route-handheld-gtavcs.txt",
+   "result": "Route on the Switch: '[gs-hw] renderer ready (NV120 ... Mesa 20.1.0-rc3), scale 1x', native world packets drawn, VU fallback 0, 0 GL errors"
+  },
+  {
+   "path": "docs/milestones/M06/hardware/reference-handheld-gtavcs.txt",
+   "result": "PS2X_HLE=0 after the core fix: '[core] PS2X_HLE=0: the world through the VU1 programs', no native world lines, 715-868 VU1 programs per frame, 0 GL errors, S3 drawn, clean exit"
+  },
+  {
+   "path": "src/core/core.cpp",
+   "result": "After the run's environment, PS2X_HLE=0 removes the MSCAL hooks the static initializer installed before nxrun.cfg was read"
+  }
+ ],
+ "M06-02": [
+  {
+   "path": "docs/milestones/M06/hardware/route-handheld-gtavcs.txt",
+   "result": "'folder disc 1066336 sectors ... no disc image opened', iso_opens=0, [stream] reads (13.6 MB in the first 5 s, then a trickle); S1-S4 world, models and textures drawn"
+  },
+  {
+   "path": "docs/milestones/M06/hardware/screenshot-sha256.txt",
+   "result": "S1-S4 screenshots of the route, silent and reference runs (private files, hashes tracked)"
+  }
+ ],
+ "M06-03": [
+  {
+   "path": "docs/milestones/M06/HARDWARE_RESULTS.md",
+   "result": "S2-S4: opaque world, alpha-tested palms / fences, transparent marker, lighting and fog, HUD textures; nothing missing or miscoloured against M05's desktop record"
+  }
+ ],
+ "M06-04": [
+  {
+   "path": "docs/milestones/M06/HARDWARE_RESULTS.md",
+   "result": "S3 office cutscene with skinned, animated characters (native and VU1 paths); S4 player walking and riding the bike with shadow"
+  }
+ ],
+ "M06-05": [
+  {
+   "path": "docs/milestones/M06/HARDWARE_RESULTS.md",
+   "result": "4:3 pillarboxed at 1280x720, nothing cut off (person, screenshots, album); HUD clock/health/money, radar with north and marker, subtitles and prompts; camera follow ped / behind vehicle"
+  },
+  {
+   "path": "docs/milestones/M06/hardware/person-observations.txt",
+   "result": "The user: 'It looks good and it has 4:3 ... nothing cut off'; album captures with mission text"
+  }
+ ],
+ "M06-06": [
+  {
+   "path": "docs/milestones/M06/hardware/route-handheld-gtavcs.txt",
+   "result": "'[gs-hw] ... scale 1x' (640x448 internal) with '[video] output 1280x720 on the 1920x1080 surface' in every run"
+  }
+ ],
+ "M06-07": [
+  {
+   "path": "tests/switch/m06-route.cfg",
+   "result": "Repeatable route from an empty test card: Cross every 4 s from 10 s, player every 10 s, gameinfo every 30 s, screenshots per stage"
+  },
+  {
+   "path": "docs/milestones/M06/hardware/route-handheld-results.txt",
+   "result": "Timed answers: S4 standing at -1614.150 -132.330 14.811 from 25 s, heading 58.0; the silent run reaches the same state without input"
+  }
+ ],
+ "M06-09": [
+  {
+   "path": "docs/milestones/M06/HARDWARE_RESULTS.md",
+   "result": "Guest state identical to the M04 desktop reference (-1614.15, -132.33, 14.81, heading 58.0, camera follow ped); pictures compared by description with M05's desktop record"
+  },
+  {
+   "path": "docs/milestones/M06/SCOPE_DECISIONS.md",
+   "result": "User decision 2026-11-17: no new desktop run; no pixel comparison claimed"
+  }
+ ],
+ "M06-11": [
+  {
+   "path": "docs/milestones/M06/HARDWARE_RESULTS.md",
+   "result": "Handheld, stock clocks, 1x: route S4 game 43.3/68.8 ms, host 44.1/72.2 ms, GPU 29.2/30.8 ms (median/p95); S2 and play figures; memory 3.34 GB mapped, heap 535-626 MB in S4"
+  },
+  {
+   "path": "docs/milestones/M06/hardware/route-handheld-perf-report.txt",
+   "result": "perf_report over S4: 19.0 fps, p50 43.3, p95 68.8 ms; EE game 36.7 ms, render 4.5, IOP 1.7, wait 9.7"
+  },
+  {
+   "path": "docs/milestones/M06/hardware/play-handheld-2-summary.txt",
+   "result": "Acceptance run while playing: S4 game 66.8/267.5 ms, GPU 26.5/67.8 ms"
+  }
+ ],
+ "M06-12": [
+  {
+   "path": "docs/milestones/M06/hardware/soak-handheld-heap.tsv",
+   "result": "Heap in use 535-626 MB from 120 s to 720 s of S4, falling as well as rising: no world leak; heap_obtained 573 -> 828 MB (fragmentation, M10-07)"
+  },
+  {
+   "path": "docs/milestones/M06/hardware/play-handheld-2-gtavcs.txt",
+   "result": "HOME close during play: game thread, render worker, stream reader, runtime and folder disc stopped in order, live_threads=2, clean shutdown"
+  },
+  {
+   "path": "docs/milestones/M06/hardware/transcript.txt",
+   "result": "Eight game runs launched back to back, each ending cleanly with no new crash report"
+  }
+ ],
+ "M06-13": [
+  {
+   "path": "docs/milestones/M06/SCOPE_DECISIONS.md",
+   "result": "User decision 2026-11-17 (dock broken): docking check moved to M10-13; nothing claimed for docking"
+  }
+ ],
+ "M06-14": [
+  {
+   "path": "docs/milestones/M06/hardware/play-handheld-gtavcs.txt",
+   "result": "Joy-Cons: handheld style at open, 'nothing connected for player 1, input neutral', then 'paired Joy-Cons (dual)', play, orderly HOME exit; M01 connected=1 resolved by HID style sets"
+  },
+  {
+   "path": "src/platform/platform_switch_sdl2.cpp",
+   "result": "Physical connection from hidGetNpadStyleSet(No1 / Handheld); switch-sdl2 never removes a joystick"
+  },
+  {
+   "path": "docs/milestones/M06/SCOPE_DECISIONS.md",
+   "result": "Pro Controller part moved to M13-11 by user decision"
+  }
+ ],
+ "M06-15": [
+  {
+   "path": "docs/milestones/M06/hardware/route-handheld-gtavcs.txt",
+   "result": "'[movie] cdrom0:\\MOVIES\\STINGS.PSS;1: built without FFmpeg, skipped' and INTRO.PSS; S1-S4 reached"
+  },
+  {
+   "path": "docs/milestones/M06/BETA_NOTES.md",
+   "result": "Limitation recorded: no movies, the intro cutscene is not a movie and plays"
+  }
+ ],
+ "M06-16": [
+  {
+   "path": "docs/milestones/M06/hardware/play-handheld-2-gtavcs.txt",
+   "result": "SDL 'Switch Controller' a:b1 (south = Cross) by position; start 14 presses (pause menu), sticks, back (Select); HOME close as the exit"
+  },
+  {
+   "path": "docs/milestones/M06/hardware/sticks-handheld-gtavcs.txt",
+   "result": "leftstick 5 and rightstick 4 presses logged (L3/R3)"
+  }
+ ],
+ "M06-17": [
+  {
+   "path": "docs/milestones/M06/hardware/silent-handheld-gtavcs.txt",
+   "result": "PS2X_AUDIO=0, no audio device; S3 cutscene ~75-195 s without input, S4 (camera follow ped) by 225 s, clean exit; no audible-sound claim"
+  }
+ ],
+ "M06-18": [
+  {
+   "path": "docs/milestones/M06/hardware/play-handheld-2-gtavcs.txt",
+   "result": "Empty test card, handheld, stock clocks: S1-S3 then gameplay from ~85 s to 414 s with the player moving ~700 m, closed from HOME in order, 0 GL errors, no crash"
+  },
+  {
+   "path": "docs/milestones/M06/hardware/album-sha256.txt",
+   "result": "15 album screenshots and 4 video clips from the console (files private)"
+  },
+  {
+   "path": "docs/milestones/M06/hardware/person-observations.txt",
+   "result": "The user's report of the run"
+  }
+ ],
+ "M06-19": [
+  {
+   "path": "tools/package_beta.py",
+   "result": "SD layout with the NRO, a disc-files placeholder, BETA_NOTES.md and SHA256SUMS; refuses other files and a dirty tree"
+  },
+  {
+   "path": "docs/milestones/M06/BETA_NOTES.md",
+   "result": "Disc preparation, layout, controls, measured frame times, skipped movies, untested docked/Pro Controller, all non-claims"
+  }
+ ],
+ "M06-20": [
+  {
+   "path": "docs/milestones/M06/hardware/output-handheld-gtavcs.txt",
+   "result": "'[video] output 1280x720 on the 1920x1080 surface, crop lower-left (00000000)', 0 GL errors, clean exit"
+  },
+  {
+   "path": "docs/milestones/M06/hardware/person-observations.txt",
+   "result": "Upright, 4:3, nothing cut off on the panel"
+  },
+  {
+   "path": "src/switch/output.c",
+   "result": "Fixed 1920x1080 window cropped to the mode's output with nwindowSetCrop; docked part moved to M10-13"
+  }
+ ]
+}

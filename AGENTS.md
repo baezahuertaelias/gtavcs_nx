@@ -35,12 +35,13 @@ authorize general implementation delegation or additional user-owned chats.
 GitHub plan limitations on private branch protection must be recorded honestly;
 they do not relax these operating rules.
 
-**Current deliverable (M05: OpenGL RHI proven on the Switch, awaiting independent review).**
+**Current deliverable (M06: handheld beta proven on the Switch, awaiting independent review).**
 `python tools/build_game.py` links the private generated EE/VU archive, the
 overlaid upstream runtime/game layer, `src/core/core.cpp` behind the C ABI in
 `src/core.h`, the SDL2 platform adapter and the OpenGL 3.3 RHI backend
 (`src/rhi/gl`, GLSL ports in `src/render/glsl`); the RHI swaps the window, and
-`VCS_RHI=null` keeps the null backend. It also builds the public RHI conformance
+`VCS_RHI=null` keeps the null backend. The window is a fixed 1920x1080 surface cropped
+to the mode's output (`src/switch/output.c`, M06-20). It also builds the public RHI conformance
 NRO (`src/rhi_tests`). `--public` (CI) compiles every public library and links
 no game code. The C ABI is port-owned glue, not an upstream API. Do not describe
 a successful build as ingame validation.
@@ -285,5 +286,11 @@ from either starting mode in the game and the test program, with no heap growth
 per change shown in the test program (the game's heap is sampled at the changes
 only; output size: M06-20); every GL call stays on
 the main thread (a shared worker context shares nothing on this driver, M05-09).
-No gameplay, beta or frame-rate acceptance is claimed (M06, M10). Full paired wireless/Pro
-controller and docking acceptance remain open.
+M06 (2026-11-17, handheld only, paired Joy-Cons only, stock clocks): from an empty
+test card the game reaches S4 at Fort Baxter through S1-S3 with the world and HUD
+drawn through OpenGL at 1x internal / 1280x720 output, the player controlled for
+5+ continuous minutes, closed from HOME in order; the S3 cutscene runs out without
+an audio device; Joy-Con disconnect/reconnect works through HID style sets. Measured
+route S4 game frame median 43.3 ms / p95 68.8 ms (about 19 fps); no FPS target (M10).
+Docked mode, docking and the Pro Controller are untested (user decisions: M10-13,
+M13-11).

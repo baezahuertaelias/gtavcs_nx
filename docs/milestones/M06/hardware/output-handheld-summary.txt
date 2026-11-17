@@ -1,0 +1,27 @@
+run output-handheld
+game frame (whole run): no samples
+game frame S2 flyover (t 3-38 s): no samples
+host frame S2 flyover (t 3-38 s): no samples
+game frame S4 gameplay (t >= 100 s): no samples
+host frame S4 gameplay (t >= 100 s): no samples
+GPU frame (GL_TIME_ELAPSED, whole run): no samples
+[video] output 1280x720 on the 1920x1080 surface, crop lower-left (00000000)
+[video] drawable=1920x1080 window=1920x1080 output=1280x720 mode=0 (was -1); 0 frames, 0.00 ms each since the last change; heap 222804560
+[movie] cdrom0:\MOVIES\STINGS.PSS;1 skipped (Display > Intro movies)
+[movie] cdrom0:\MOVIES\INTRO.PSS;1 skipped (Display > Intro movies)
+gamepad
+focus
+focus
+controller
+[resources] boot live_threads=2 (svc 00000000 via own)
+[resources] boot mapped_total=3343908864 mapped_used=3339763712 heap_in_use=145576896 heap_obtained=145608704 threads_created=1 default_thread_stack=8388608 file_opens=2 iso_opens=0
+[resources] running live_threads=4 (svc 00000000 via own)
+[resources] running mapped_total=3343908864 mapped_used=3339763712 heap_in_use=222804336 heap_obtained=225603584 threads_created=3 default_thread_stack=8388608 file_opens=12 iso_opens=0
+[resources] shutdown live_threads=2 (svc 00000000 via own)
+[resources] shutdown mapped_total=3343908864 mapped_used=3339763712 heap_in_use=498519600 heap_obtained=770981888 threads_created=6 default_thread_stack=8388608 file_opens=144 iso_opens=0
+[shutdown] core, context, window and SDL closed
+[core] orderly stop after 5660 frames
+[lifecycle] suspension_clock=1
+[lifecycle] resume=0 focus_notifications=1 focus=1
+last [rhi-stats] gl errors: 0
+gameinfo / player answers: 0

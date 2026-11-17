@@ -1,0 +1,15 @@
+What the user, at the Switch, reported during the M06 session (2026-11-17, handheld, charging, stock clocks):
+
+- output-handheld (m06-dock.cfg, handheld start, nobody touching): "It looks good and it has 4:3, but not-so-great
+  fps. nothing cut off".
+- play-handheld (m06-play.cfg): played, then the Joy-Con detach / disconnect / reconnect steps, closed from HOME. The
+  session's 5-minute play requirement was not met by this run (gameplay ~3.5 min before the controller steps): kept
+  as the controller connection-state run only.
+- play-handheld-2 (m06-play.cfg, the acceptance run): "done, closed it" (closed from HOME after the play).
+- sticks-handheld (m06-sticks.cfg): clicked each stick; the game stopped by itself after 90 s.
+- The user has no camera; they took Switch album captures (Capture button) during the runs instead: 15 screenshots
+  and 4 video clips of 2026-11-17, read back over FTP (album-sha256.txt; the files are game pictures and stay
+  private under build/evidence/M06/album). The screenshots show Sphaira's status overlay with the stock handheld
+  clocks: CPU 1020 MHz, GPU 307.2 MHz, memory 1331.1 MHz.
+- Decisions taken in the session are in ../SCOPE_DECISIONS.md (Pro Controller to M13-11, docked work to M10-13,
+  picture comparison without a new desktop run).
