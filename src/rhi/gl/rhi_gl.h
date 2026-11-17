@@ -41,6 +41,8 @@ namespace rhi
         uint64_t compileFailures = 0;  // shaders or programs that did not compile / link
         uint64_t drawCalls = 0, passes = 0, presents = 0;
         uint64_t offOwnerCreated = 0, offOwnerRefused = 0, fencesWaited = 0; // PS2X_GL_WORKER_CONTEXT textures
+        // PS2X_GL_GPU_TIME=1 (M06-11): GL_TIME_ELAPSED from one present to the next, read back a few frames later
+        uint64_t gpuFrames = 0, gpuNs = 0, gpuMaxNs = 0, gpuDropped = 0;
     };
 
     bool openGLCaps(Device &device, GlCaps &out);   // false: not the OpenGL backend
