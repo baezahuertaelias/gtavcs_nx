@@ -2,6 +2,7 @@
 #include <SDL.h>
 #include <switch.h>
 #include <errno.h>
+#include <malloc.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -149,9 +150,12 @@ int main(int argc, char **argv)
         SDL_GL_SetAttribute(SDL_GL_STENCIL_SIZE, 8) < 0) goto sdl_error;
 
     const int docked = appletGetOperationMode() == AppletOperationMode_Console;
+    /* Fixed size, not SDL_WINDOW_RESIZABLE: switch-sdl2 2.28 resizes a resizable window at every dock change and
+     * each resize leaks the EGL surface's buffers (+44 MB to 1080p; M05 third review). The window keeps its starting
+     * size; the compositor scales it to the panel or TV. Never call SDL_SetWindowSize: it leaks the same way. */
     window = SDL_CreateWindow("GTA VCS NX", SDL_WINDOWPOS_UNDEFINED,
         SDL_WINDOWPOS_UNDEFINED, docked ? 1920 : 1280, docked ? 1080 : 720,
-        SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE | SDL_WINDOW_SHOWN);
+        SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN);
     if (!window) goto sdl_error;
     context = SDL_GL_CreateContext(window);
     if (!context || SDL_GL_MakeCurrent(window, context) < 0) goto sdl_error;
@@ -219,9 +223,10 @@ int main(int argc, char **argv)
         const int mode = appletGetOperationMode();
         if (width != previous_width || height != previous_height || mode != previous_mode) {
             const u64 now = armTicksToNs(armGetSystemTick());
-            diagnostic("[video] drawable=%dx%d window=%dx%d mode=%d (was %d); %llu frames, %.2f ms each since the last change\n",
+            diagnostic("[video] drawable=%dx%d window=%dx%d mode=%d (was %d); %llu frames, %.2f ms each since the last change; heap %zu\n",
                 width, height, window_w, window_h, mode, previous_mode, (unsigned long long)window_frames,
-                window_frames ? (double)(now - window_start) / 1e6 / (double)window_frames : 0.0);
+                window_frames ? (double)(now - window_start) / 1e6 / (double)window_frames : 0.0,
+                (size_t)mallinfo().uordblks);
             previous_width = width; previous_height = height; previous_mode = mode;
             window_frames = 0;
             window_start = now;

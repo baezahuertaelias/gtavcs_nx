@@ -631,11 +631,11 @@ namespace
             say("[window] set-up failed\n");
             return;
         }
-        // The window is made non-resizable for the docking stretch: SDL2's Switch backend then keeps its size (and
+        // The window was created without SDL_WINDOW_RESIZABLE (main()): SDL2's Switch backend then keeps its size (and
         // its buffers) when the console is docked or undocked; every SDL resize leaks the surface's buffers (the
         // resize probe above; third M05 review). The compositor scales the fixed-size picture to the display.
-        SDL_SetWindowResizable(g_window, SDL_FALSE);
-        out << "0\tresizable\t0\t0\tSDL_SetWindowResizable(false) before the docking stretch\n";
+        out << "0\tresizable\t" << ((SDL_GetWindowFlags(g_window) & SDL_WINDOW_RESIZABLE) != 0)
+            << "\t0\tSDL_WINDOW_RESIZABLE at the docking stretch (created without it)\n";
         const auto t0 = Clock::now();
         uint32_t lastW = 0, lastH = 0;
         int lastMode = -1, lastWinW = 0, lastWinH = 0, phase = -100;
@@ -784,8 +784,11 @@ int main(int, char **)
     SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
     SDL_GL_SetAttribute(SDL_GL_STENCIL_SIZE, 8);
     const int docked = appletGetOperationMode() == AppletOperationMode_Console;
+    // Not SDL_WINDOW_RESIZABLE: switch-sdl2 2.28 resizes only a window created resizable at a dock change, and every
+    // resize leaks the surface's buffers (the resize probe; third M05 review). SDL_SetWindowResizable cannot clear the
+    // flag later: the Switch backend has no SetWindowResizable hook, so SDL keeps it (round 4, rhi-fixedwin).
     g_window = SDL_CreateWindow("RHI tests", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, docked ? 1920 : 1280, docked ? 1080 : 720,
-                                SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE | SDL_WINDOW_SHOWN);
+                                SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN);
     SDL_GLContext context = g_window ? SDL_GL_CreateContext(g_window) : nullptr;
     if (!context || SDL_GL_MakeCurrent(g_window, context) < 0)
     {
