@@ -131,20 +131,24 @@
  ],
  "M05-10": [
   {
-   "path": "docs/milestones/M05/hardware-r1/m05-dock-log-excerpt.txt",
-   "result": "Game: drawable 1920x1080 <-> 1280x720 at four dock changes, presentation continued, 0 GL errors, clean exit"
+   "path": "docs/milestones/M05/hardware-r4/rhi-noresizable/window.tsv",
+   "result": "Fixed-size window (dcda9e1): 9 dock changes by hand, window and drawable 1280x720 at every change, heap 554,110,688-554,122,864 across them, Vsync 60/s"
   },
   {
-   "path": "docs/milestones/M05/hardware-r1/rhi-dock-repro/window.tsv",
-   "result": "Test program: seven dock changes incl. three after its own SDL_SetWindowSize; Vsync 60/s before and after each; no black-screen collapse"
+   "path": "docs/milestones/M05/hardware-r4/rhi-noresizable-docked2/checks.tsv",
+   "result": "Docked start: window 1920x1080, window/back_buffer_equals_texture 0 px and half_pixel_edges_top_left_rule PASS"
+  },
+  {
+   "path": "docs/milestones/M05/hardware-r4/m05-dock-log-excerpt.txt",
+   "result": "Game: drawable and window 1280x720 at four dock changes, heap logged at each, 0 GL errors, orderly stop"
+  },
+  {
+   "path": "docs/milestones/M05/hardware-r4/rhi-fixedwin/window.tsv",
+   "result": "Negative control: a window created resizable is still resized at every dock change after SDL_SetWindowResizable(false) (+44.1 MB per dock)"
   },
   {
    "path": "docs/milestones/M05/hardware-r1/rhi-docked2/window.tsv",
    "result": "Present probe: Immediate 119.6/s, Vsync 60.0/s in every device step; interval 2 -> 1 now applied (60/s at 55.6 s)"
-  },
-  {
-   "path": "docs/milestones/M05/hardware-r2/rhi-r2-docked/checks.tsv",
-   "result": "window/half_pixel_edges_top_left_rule and back_buffer_equals_texture PASS at 1920x1080 docked: the window's lower-left convention decides pixel-centre ties as the textures do"
   }
  ],
  "M05-11": [
@@ -207,16 +211,20 @@
  ],
  "M05-14": [
   {
+   "path": "docs/milestones/M05/hardware-r3/rhi-leak/window.tsv",
+   "result": "Resize probe: every SDL_SetWindowSize leaks the surface's buffers (+44.1 MB to 1080p, +5.4 MB to 720p, +15.2 MB same size); RHI objects return to zero"
+  },
+  {
+   "path": "docs/milestones/M05/hardware-r4/rhi-noresizable/window.tsv",
+   "result": "With the fix no growth per dock change (within 12 KB over 9 changes)"
+  },
+  {
    "path": "docs/milestones/M05/hardware-r1/rhi-docked2/checks.tsv",
    "result": "churn/objects_return, bytes_return, framebuffers_bounded, programs_bounded, memory_budget (+2.5 MiB of 8 MiB) PASS"
   },
   {
    "path": "docs/milestones/M05/hardware-r1/m05-gl-log-excerpt.txt",
    "result": "rhi-stats: 0 GL errors / debug / incomplete over 240 s; texture cache near its 3000 cap (2987 / 210 MiB), evicting"
-  },
-  {
-   "path": "docs/milestones/M05/hardware-r1/rhi-dock-repro/window.tsv",
-   "result": "Repeated resizes: 7 dock changes and 4 programmatic sizes with per-second present timing"
   }
  ]
 }

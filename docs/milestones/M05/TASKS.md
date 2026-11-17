@@ -35,9 +35,9 @@ Before the first commit, a host run found 21 differences that were test-design f
 boundaries, colours on rounding ties), fixed in the scenes. Intel follows D3D's tie rule even with the shader Y flip,
 so only the Switch distinguished it (review 1, finding 1).
 
-## Tasks (observed on the Switch: [HARDWARE_RESULTS.md](HARDWARE_RESULTS.md), round 2; review 1: [REVIEW1_RESPONSE.md](REVIEW1_RESPONSE.md))
+## Tasks (observed on the Switch: [HARDWARE_RESULTS.md](HARDWARE_RESULTS.md), rounds 2-4; reviews: [REVIEW1_RESPONSE.md](REVIEW1_RESPONSE.md), [REVIEW2_RESPONSE.md](REVIEW2_RESPONSE.md), [REVIEW3_RESPONSE.md](REVIEW3_RESPONSE.md))
 
-| Task | Implementation | Switch proof (round 2 unless noted) |
+| Task | Implementation | Switch proof (RHI scenes: round 3; game runs: round 2; unless noted) |
 |---|---|---|
 | M05-01 backend selection, desktop unchanged, null kept | patch 0008; `VCS_RHI=opengl\|null`; default OpenGL only where it is the only built backend | `m05-gl` on OpenGL, `m05-null` on `VCS_RHI=null` |
 | M05-02 textures, formats, pitch, mips, samplers | `textures`, `mips`, `samplers` | checks pass; identical but filtering (±1; trilinear / anisotropic within the band tolerance; `*_uses_mips`) |
@@ -48,8 +48,8 @@ so only the Switch distinguished it (review 1, finding 1).
 | M05-07 dual source | GL 3.3 core `SRC1` | `max_dual_source_draw_buffers 1`; dual variants ±1 |
 | M05-08 depth / Y / swizzle / sRGB conventions | upper-left clip control for textures, README | `conventions` and `pixel_centre` checks pass; pixel-centre readbacks identical; the user saw the orientation card correct (round 1) |
 | M05-09 hazards, fences, staging, deferred destruction; threading decision | owner-thread device, deferred destruction, copy FBOs detached; B opt-in with a sharing check | A adopted (round 1: B shares nothing on the Switch and crashed when forced); `m05-gl-worker` falls back safely |
-| M05-10 SDL back buffer, present, resize | `GlWindow`, drawable per frame, swap interval through 0 | game and test program follow every dock change; probe: Immediate 119.6/s, Vsync 60.0/s in every step |
+| M05-10 SDL back buffer, present, resize | `GlWindow`, drawable per frame, swap interval through 0; window fixed at the starting mode's size, not `SDL_WINDOW_RESIZABLE` (`dcda9e1`) | round 4: game and test program keep the window through every dock change, heap flat across them, picture full-screen and sharp on TV and handheld; probe: Immediate 119.6/s, Vsync 60.0/s in every step |
 | M05-11 UI through ImGui / RHI | `render::UiRenderer` (as on Vulkan) | `present_ui` within ±2; the UI pipeline and its clip scissor read back from the window identical to a texture |
 | M05-12 every Device method / variant on hardware | 24 scenes + window readback | 127 readbacks, 0 failed checks, handheld and docked |
 | M05-13 pixel / depth comparison with the desktop reference | `tools/rhi_compare.py` | 127/127 within tolerance, 101 identical; the 26 differences classified |
-| M05-14 GL diagnostics, churn, memory budgets | KHR_debug, counters, churn | 0 GL errors / debug messages; churn objects and bytes return; heap +2.5 MiB of 8 MiB |
+| M05-14 GL diagnostics, churn, memory budgets | KHR_debug, counters, churn; heap at every `[video]` change | 0 GL errors / debug messages; churn objects and bytes return; heap +2.5 MiB of 8 MiB; round 4: no growth per dock change (the SDL resize leak removed) |
