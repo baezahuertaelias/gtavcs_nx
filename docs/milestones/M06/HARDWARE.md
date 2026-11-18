@@ -26,7 +26,8 @@ gpu.csv and the screenshots back. `summary <dir> <label>` writes `<label>-summar
 | 9, 10 | `... game ... tests/switch/m06-wireless.cfg --label wireless-handheld[-2]` | Joy-Cons detached; in S4 walk, turn the camera, + twice | M06-14 / M06-16 wireless |
 | 11 | `... game ... tests/switch/m06-soak30.cfg --label soak30-handheld` | do not touch (31 min planned) | M06-12 heap plateau |
 | - | `... clean-sd build/evidence/M06/accept` | (with the user's consent) | moves everything but `gtavcs.nro` and the disc files to `/switch/gtavcs_nx_backup/`, records each move |
-| 12, 13 | `... game build/evidence/M06/accept tests/switch/m06-play.cfg --label accept-clean[-2]` | B (Cross) skips S3; play 7 min; sync buttons, wait, reconnect; close from HOME | M06-18 acceptance on the clean card, M06-14 deliberate disconnect |
+| 12, 13 | `... game build/evidence/M06/accept tests/switch/m06-play.cfg --label accept-clean[-2]` | (run 12 was told A, wrongly; run 13 B) B (Cross) skips S3; play 7 min; sync buttons, wait, reconnect; close from HOME | M06-18 acceptance on the clean card, M06-14 deliberate disconnect |
+| - | (between runs 12 and 13, by hand over FTP) | - | run 12's output moved to `/switch/gtavcs_nx_backup/accept1-*` to clean the card again |
 | - | `... restore-sd build/evidence/M06/accept` | - | moves everything back (the run's own output kept beside the backup); the restored tree must equal the tree before cleaning |
 
 Buttons are by position (AGENTS.md): Cross is the bottom button, labelled **B** on the Switch; SDL's names in the

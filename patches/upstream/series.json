@@ -32,6 +32,10 @@
     {
       "path": "0008-opengl-backend-seam.patch",
       "sha256": "43484df5498ff45a27f24f04c6d6d0983ea47cd638708d06f614ac347fe474d4"
+    },
+    {
+      "path": "0009-rsl-recordings-prune.patch",
+      "sha256": "f63defc3080fd1f3a21a14f9e0995630ca5cbdb3b5a07d48471e369b59a4f71b"
     }
   ]
 }

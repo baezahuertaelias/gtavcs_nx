@@ -52,6 +52,7 @@ Measured frame times at Fort Baxter, handheld, internal resolution 1x (640x448),
 |---|---|---|
 | standing, nobody touching | 43.1 ms (about 19 fps on average) | 67.9 ms |
 | playing, on foot and on the bike | 66.6 ms | 264.1 ms |
+| playing, mostly riding the bike across the map | 87.0 ms | 452.8 ms |
 
 The frame rate is low. There is no frame-rate target in this beta; performance is milestone M10.
 

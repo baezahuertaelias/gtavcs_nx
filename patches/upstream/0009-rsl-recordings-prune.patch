@@ -1,0 +1,90 @@
+diff --git a/docs/PERFORMANCE.md b/docs/PERFORMANCE.md
+index 9718ae8..e0165a5 100644
+--- a/docs/PERFORMANCE.md
++++ b/docs/PERFORMANCE.md
+@@ -289,7 +289,12 @@ city (1325, -325) 196 / 203 -> 216 / 222 (render worker 5.0 -> 3.3 ms), the othe
+   frame-rate-independent timing a smaller charge (1/16 instead of 1/4) changed nothing measurable.
+ - Memory grows while new places are visited (529 -> 1,587 MB over the 24-minute soak) and converges when they repeat
+   (three rounds of the same 8 spots: +260, +89, +45 MB): caches filling (texture and mesh caches are LRU-bounded; the
+-  RSL recordings ~115 MB of it), not a leak.
++  RSL recordings ~115 MB of it), not a leak. [gta-recomp] Corrected 2026-11-17 (the Switch port, M06-12): the RSL
++  recordings were not bounded. They are keyed by the block's guest address, and streaming puts a model elsewhere each
++  time its area comes back, so a loop over the same route kept adding them: `rig cruise` along `tools/routes/city.txt`
++  at 40 m/s for 21 minutes, `VCS_RHI=null`, private bytes +33 MB/min to the end (1,080 MB, 32,582 recordings). Now
++  recordings no chain used for 3,600 chains are dropped (`pruneRecordings`, `vcs_rsl_world.cpp`): +1.4 MB/min over
++  the last 9 minutes, 391 MB, 5,674 recordings; median game time 5.3 -> 6.7 ms from blocks recorded again.
+ 
+ ### 15. The helicopter's dust at high internal resolutions (2026-10-30)
+ 
+diff --git a/src/game/vcs_rsl_world.cpp b/src/game/vcs_rsl_world.cpp
+index 24c8d97..e725931 100644
+--- a/src/game/vcs_rsl_world.cpp
++++ b/src/game/vcs_rsl_world.cpp
+@@ -216,6 +216,7 @@ namespace vcs::rslworld
+             // by the packet path for the next `skip` hits, without hashing or recording
+             uint32_t changes = 0, skip = 0;
+             bool probe = false; // the skip ran out: record once more to see whether it settled
++            uint64_t lastSeq = 0; // [gta-recomp] the chain (ChainTable::seq) that last used it: pruneRecordings
+             bool replayable = false;
+             const char *refused = nullptr; // why not
+             std::vector<Op> ops;
+@@ -342,6 +343,29 @@ namespace vcs::rslworld
+         };
+ 
+         std::unordered_map<uint64_t, Recording> g_recordings; // by (kind, address, length)
++        uint64_t g_recordingsPrunedAt = 0, g_recordingsPruned = 0;
++
++        // [gta-recomp] A recording is keyed by where its block lies in guest RAM, and streaming puts a model somewhere else
++        // each time its area comes back: without pruning the map only grew while driving (desktop, the null renderer: ~35 MB
++        // a minute, 26,000 recordings after 16 minutes; the Switch's heap past 1 GB after 20). Every 1,024 chains,
++        // recordings no chain used in the last kRecordingAge are dropped. Only a cache: a block whose recording is gone is
++        // recorded again (handleBlock), or a skipped one taken from guest RAM (replaySkipped).
++        void pruneRecordings(uint64_t seq)
++        {
++            constexpr uint64_t kRecordingAge = 3600u; // chains: a minute at 60 fps, two at 30
++            if (seq < g_recordingsPrunedAt + 1024u || seq < kRecordingAge)
++                return;
++            g_recordingsPrunedAt = seq;
++            for (auto it = g_recordings.begin(); it != g_recordings.end();)
++                if (it->second.lastSeq + kRecordingAge < seq)
++                {
++                    it = g_recordings.erase(it);
++                    ++g_recordingsPruned;
++                }
++                else
++                    ++it;
++        }
++
+         struct Stats
+         {
+             uint64_t blocks = 0, replayed = 0, recorded = 0, notReplayable = 0, changing = 0;
+@@ -523,8 +547,9 @@ namespace vcs::rslworld
+                                  (unsigned long long)s.notReplayable, (unsigned long long)s.changing);
+                 g_stats[k] = Stats{};
+             }
+-            std::fprintf(stderr, "[rsl-world] %llu packets replayed, %llu marks without a length, %llu raster uploads named; %zu recordings\n",
+-                         (unsigned long long)g_packets, (unsigned long long)g_unmarked, (unsigned long long)g_rasterMarks, g_recordings.size());
++            std::fprintf(stderr, "[rsl-world] %llu packets replayed, %llu marks without a length, %llu raster uploads named; %zu recordings (%llu pruned)\n",
++                         (unsigned long long)g_packets, (unsigned long long)g_unmarked, (unsigned long long)g_rasterMarks, g_recordings.size(),
++                         (unsigned long long)g_recordingsPruned);
+             if (!g_refusals.empty())
+             {
+                 std::fprintf(stderr, "[rsl-world] not replayable:");
+@@ -627,6 +652,7 @@ namespace vcs::rslworld
+             if (it != g_recordings.end())
+             {
+                 Recording &rec = it->second;
++                rec.lastSeq = seq;
+                 if (!rec.ops.empty() && rec.replayable && rec.mode == memory.vif1_regs.mode && rec.cycle == memory.vif1_regs.cycle)
+                 {
+                     replay(memory, rec);
+@@ -783,7 +809,9 @@ namespace vcs::rslworld
+             }
+             Stats &stats = g_stats[d.kind];
+             ++stats.blocks;
++            pruneRecordings(seq); // (before the reference below is taken)
+             Recording &rec = g_recordings[(uint64_t(d.kind) << 56) | (uint64_t(d.addr & kRamMask) << 24) | units];
++            rec.lastSeq = seq;
+             if (rec.skip && !g_verify)
+             {
+                 --rec.skip;

@@ -104,6 +104,7 @@ itself is not in it: "present-to-present" means from just after one swap to just
 | route, S4 standing (30-300 s) | 43.1 / 67.9 ms | 44.7 / 70.2 ms | 29.2 / 29.9 ms |
 | play-handheld-2, S2 flyover (3-30 s) | 45.2 / 180.1 ms | 37.1 / 93.4 ms | 20.9 / 54.2 ms |
 | play-handheld-2, S4 playing, on foot and on the bike (90-414 s) | 66.6 / 264.1 ms | 54.8 / 110.8 ms | 11.3 / 72.7 ms |
+| accept-clean-2 (run 13, the acceptance), S4 playing, mostly on the bike across the map (40-450 s) | 87.0 / 452.8 ms | 49.5 / 157.1 ms | 1.8 / 92.3 ms |
 
 The route's S2 lasts only until the Cross press at 10 s; the S2 rows come from the silent and play runs. In the
 route's S4 (perf_report from 100 s) the EE thread spends 36.7 ms per frame in game code (70 %), 4.5 ms in render
@@ -143,7 +144,7 @@ second, 2,993 textures in the cache). That streaming was active at that moment i
 logged: `VCS_STREAM_LOG` is off in m06-play.cfg. The main loop ended on the applet's exit request (`appletMainLoop()` false: no `stop` line, the
 results go straight to `shutdown`), then the game thread, the render worker, the stream reader, the runtime and
 the folder disc stopped in that order (`play-handheld-2-gtavcs.txt`, last 15 lines). Runs 1-11 and run 8's first attempt (twelve game launches, back to back) each ended in order (the core's workers joined: `live_threads=2` at shutdown, as at boot, in every `*-gtavcs.txt`), the transcript records `new_crashes=[]` for all twelve, and the next launch started cleanly every time: no hang. Run 11 also resumed from a 746.6 s suspension and then closed from HOME in order. The heap still in use at
-the `shutdown` line (500-620 MB) is measured before main.c destroys the GL context (Mesa still holds the textures
+the `shutdown` line (297-645 MiB across the thirteen runs) is measured before main.c destroys the GL context (Mesa still holds the textures
 then) and is returned with the process.
 
 ## Controller (M06-14, M06-16; paired Joy-Cons only)
@@ -169,7 +170,7 @@ then) and is returned with the process.
   launch, although the configuration's comment describes detaching them during the run): style `No1 styles 0x4
   (paired Joy-Cons (dual), device type 0x30)` for the whole run. Run 9 logged no input at all (the person did not
   press anything; resent at their request). Run 10: `[input]` lines carry SDL's event time, about 2.1 s ahead of the
-  run's `t`. The 8 A presses fall at run t about 16-18 s, while the scripted Cross presses skip the cutscene; in S4
+  run's `t`. The 42 A presses all fall before run t about 18 s, while the scripted Cross presses skip the cutscene; in S4
   (from about run t 20 s) the left stick (30 crossings) and right stick (33) move, Start is pressed twice (SDL time
   32.7 s and 33.6 s, run t about 30.6 s and 31.5 s), and the player walks from (-1616.0, -136.5) at run t 20 s to
   (-1624.8, -149.1) at 30 s; 0 GL errors, clean exit.
@@ -201,21 +202,35 @@ size, the user's save included. NRO `9a9f7e12` (built from `7a1f57d`; byte-ident
 
 Run 13 (`hardware/accept/accept-clean-2-gtavcs.txt`): paired Joy-Cons detached from the start (`No1 styles 0x4 (paired
 Joy-Cons (dual), device type 0x30)`); application mode (`mapped_total=3343908864`); S1-S3, then the player at the S4
-spot at 35 s and gameplay to the HOME close at 455.6 s, about 7 continuous minutes: on foot and mostly on the bike
-(camera `behind vehicle` at 90-270 s and 390-450 s), 931 units net and 2,561 along the 10-second samples, from
-(-1614.2, -132.3) to (-738.6, 21.2). Inputs (SDL position names; SDL's `a` is the bottom button, labelled B on the
+spot at 35 s and gameplay to the HOME close at 455.6 s, about 7 continuous minutes (6.1 of them before the
+disconnect step): on foot and mostly on the bike (camera `behind vehicle` at 90-270 s and 390-450 s), from (-1614.2,
+-132.3) at 35 s to (-738.6, 21.2) at 455 s: 888.9 units net, 2,671.4 along the 10-second samples. Inputs (SDL position names; SDL's `a` is the bottom button, labelled B on the
 Switch: Cross): a 53 presses, b 12, y 11, x 7, leftstick and rightstick 2 each, both sticks and both triggers. 0 GL
 errors; the game thread, render worker, stream reader, runtime and folder disc stopped in order; no crash report.
 S4 timing (40-450 s): `hardware/accept/accept-clean-2-summary.txt`.
 
 Deliberate disconnect of wireless Joy-Cons (the person pressed each Joy-Con's sync button): after the progress line
-at 401.2 s `nothing connected for player 1, input neutral`; the player stands (-701.3, 253.8) at 405 s and (-703.6,
-250.8) at 415 s; then `paired Joy-Cons (dual)` again before the focus change at 420.6 s, and play continues to the HOME
+at 401.2 s `nothing connected for player 1, input neutral`; the progress line at 411.3 s reports `gamepad=0` and no
+`[input]` event is logged while disconnected; the player is on the bike (`state driving` at 390 s and 450 s), which
+comes to rest with neutral input: (-701.3, 253.8) at 405 s, (-703.6, 250.8) at 415 s, 0.3 units further at 425 s; then `paired Joy-Cons (dual)` again before the focus change at 420.6 s, and play continues to the HOME
 close (the player at (-738.6, 21.2) at 455 s). So: dual, then none, then dual, with input neutral in between.
 
 Run 12 (`accept-clean-gtavcs.txt`) is kept as a clean run that did not meet the 5 minutes (S4 from between 85 and 105
-s to 391 s). The person first pressed A to skip the cutscene, as the session's instructions wrongly said: by position
+s to 391 s). The session's instructions for run 12 said A for Cross; the person first pressed A: by position
 the bottom button, B on the Switch, is Cross (AGENTS.md), and the game behaved so.
 
 Video: no album clips were taken during run 13; by the user's decision (SCOPE_DECISIONS.md) M06-18's video is run 5's
 two clips.
+
+How run 13 differs from a player's launch: it was started through Sphaira's nxlink netloader (sockets and nxlink's
+stdout are open) and ran with nxrun.cfg's instrumentation (the test profile, perf / GPU logs, the input log, `player`
+every 10 s, `gameinfo` every 60 s), not from the homebrew menu as BETA_NOTES.md tells players. Stock clocks for run 13
+are inferred: the console's settings were not changed during the session, and the clock overlay is only in runs 4-6's
+album captures.
+
+Between runs 12 and 13 the card was cleaned again by hand over FTP, outside `clean-sd` (which refuses while a moves
+file exists): run 12's own output (`gtavcs-boot.log`, `gamefolder/userdata`, `gamefolder/gtavcs.log` and the game's
+`gamefolder/mc0`, `mc1`) moved to `/switch/gtavcs_nx_backup/accept1-*` (`hardware/accept/transcript.txt`,
+18:44:45-18:44:54). The first `restore-sd` stopped with `553 File exists` (the run's own `mc0`, `mc1`); the tool was fixed
+to move such leftovers aside and the second attempt passed. "Restored identically" is `/switch/gtavcs_nx`;
+`/switch/gtavcs_nx_backup` keeps the two clean runs' output for the user to delete.

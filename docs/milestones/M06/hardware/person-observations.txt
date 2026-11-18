@@ -5,7 +5,8 @@ What the user, at the Switch, reported during the M06 session (2026-11-17, handh
 - play-handheld (m06-play.cfg): played, then the Joy-Con detach / disconnect / reconnect steps, closed from HOME. The
   session's 5-minute play requirement was not met by this run (gameplay ~3.5 min before the controller steps): kept
   as the controller connection-state run only.
-- play-handheld-2 (m06-play.cfg, the acceptance run): "done, closed it" (closed from HOME after the play).
+- play-handheld-2 (m06-play.cfg; the acceptance run until review 2 found its card not clean): "done, closed it"
+  (closed from HOME after the play).
 - sticks-handheld (m06-sticks.cfg): clicked each stick; the game stopped by itself after 90 s.
 - The user has no camera; they took Switch album captures (Capture button) during the runs instead: 14 screenshots
   and 4 video clips (30 s at most each) of 2026-11-17, read back over FTP (album-sha256.txt; the files are game
@@ -13,3 +14,9 @@ What the user, at the Switch, reported during the M06 session (2026-11-17, handh
   clocks: CPU 1020 MHz, GPU 307.2 MHz, memory 1331.1 MHz.
 - Decisions taken in the session are in ../SCOPE_DECISIONS.md (Pro Controller to M13-11, docked work to M10-13,
   picture comparison without a new desktop run).
+- Review 2 follow-up (clean card, runs 12 and 13): the user chose "Option A" (clean the card, their save moved aside
+  and back). During run 12: "Button A isn't A. It's B. The layout isn't the appropriate" (the instructions had said A
+  for Cross; by position it is B). Asked whether the Joy-Cons must be attached: told no. Run 13 was played with the
+  Joy-Cons detached, with the sync-button disconnect and reconnect as instructed; the person did not report anything
+  wrong. Asked about video for run 13: "1" (run 5's clips).
+- Review 3 follow-up (run 14, m06-cruise.cfg): nobody touching the console.

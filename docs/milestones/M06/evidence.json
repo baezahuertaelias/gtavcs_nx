@@ -91,6 +91,10 @@
   {
    "path": "docs/milestones/M06/hardware/route-handheld-perf-report.txt",
    "result": "perf_report over S4 from 100 s: EE game 36.7 ms, render 4.5, IOP 1.7, wait 9.7"
+  },
+  {
+   "path": "docs/milestones/M06/hardware/accept/accept-clean-2-summary.txt",
+   "result": "The acceptance run's S4 (40-450 s), mostly on the bike: game 87.0/452.8 ms, host 49.5/157.1 ms, GPU present-to-present 1.8/92.3 ms"
   }
  ],
  "M06-12": [
@@ -100,7 +104,7 @@
   },
   {
    "path": "docs/milestones/M06/hardware/soak30-handheld-gtavcs.txt",
-   "result": "998 s of S4, a 746.6 s suspension, resumed, closed from HOME in order (reason=runtime: the applet's exit request), live_threads=2, no crash"
+   "result": "about 973 s of S4 (998 s of run), a 746.6 s suspension, resumed, closed from HOME in order (reason=runtime: the applet's exit request), live_threads=2, no crash"
   },
   {
    "path": "docs/milestones/M06/hardware/play-handheld-2-gtavcs.txt",
@@ -136,7 +140,7 @@
   },
   {
    "path": "docs/milestones/M06/hardware/accept/accept-clean-2-gtavcs.txt",
-   "result": "Sync-button disconnect of wireless Joy-Cons: dual, then 'nothing connected for player 1, input neutral' after 401.2 s with the player standing (405-415 s), then dual again and play to 455 s"
+   "result": "Sync-button disconnect of wireless Joy-Cons: dual, then 'nothing connected for player 1, input neutral' after 401.2 s with gamepad=0 and no input events; the bike comes to rest (405-425 s), then dual again and play to 455 s"
   }
  ],
  "M06-15": [
@@ -172,7 +176,7 @@
  "M06-18": [
   {
    "path": "docs/milestones/M06/hardware/accept/accept-clean-2-gtavcs.txt",
-   "result": "Clean card, empty test card, handheld, application mode: S4 from 35 s to the HOME close at 455.6 s (~7 min), 931 units net on foot and on the bike, 0 GL errors, orderly stop, no crash"
+   "result": "Clean card, empty test card, handheld, application mode: S4 from 35 s to the HOME close at 455.6 s (~7 min), 888.9 units net (35-455 s) on foot and on the bike, 0 GL errors, orderly stop, no crash"
   },
   {
    "path": "docs/milestones/M06/hardware/accept/sd-tree-clean-2.txt",
