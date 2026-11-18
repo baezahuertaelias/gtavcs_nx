@@ -7,8 +7,13 @@ run). Records: [hardware/](hardware/) (logs as `*-gtavcs.txt`, the runs' results
 transcript, crash-report lists before / after each run, person observations).
 
 Game NRO: `1854e2be…` (code of `98b023b`) for runs 1-6; `4a15e8…` (plus the heap fields of the progress line) for
-run 7; `4e4a8524…` (plus the PS2X_HLE fix below) for run 8. The later changes act only with a run configuration (the
-progress line) or with `PS2X_HLE` set (the fix); a player's launch runs the same code as runs 1-6. No build manifest
+run 7 and run 8's first attempt; `4e4a8524…` (plus the PS2X_HLE fix below) for run 8; `9a9f7e12…` (built from the
+clean `7a1f57d`) for runs 9-15; `9b89481c…` (built from the clean `b309413`: patch 0009, upstream's RSL recordings
+pruned, M06-12) for runs 16 and 17. Up to `9a9f7e12` the changes act only with a run configuration (the progress
+line) or with `PS2X_HLE` set (the fix); patch 0009 changes what every launch runs, so only runs 16 and 17 tested the
+code the beta ships. The packaged NRO, `03000b3b…` (built from the review-4 commit), differs from `9b89481c` in 40
+bytes only: the 20-byte GNU build ID and its copy (a byte compare of the two files; the build ID changes with the
+patch series' hash, which is in the overlay checkout's path); code and data are identical. No build manifest
 was kept for `1854e2be` and `4a15e8`: that they match those commits is the build log's and transcript's word, not
 checkable now (the packaged NRO is checked against its manifest: tools/package_beta.py). Every run: a new test
 profile (empty memory card, new settings), `[shutdown] core, context, window and SDL closed`, no new crash report
@@ -156,33 +161,45 @@ streamed in all the time. The heap in use rose to the end (2-minute means, MiB):
 | run 15 | 500.0 | 680.1 | 745.4 | 801.6 | 840.3 | 866.6 | 903.8 | 946.9 | 963.4 | 998.1 | 1029.5 |
 | run 16 (patched) | 498.0 | 675.6 | 740.0 | 801.8 | 830.1 | 831.0 | 830.8 | 843.5 | 831.3 | 837.5 | 820.7 |
 
-Run 15: +15.6 MiB/min over 700-1,260 s, and higher at the same route point on every loop (about 2,050 m: 641, 794,
-903, 1,001 MiB), so a leak, not a cache filling. The renderer's own objects stayed bounded (textures 2,058-3,014 /
+Run 15: +15.6 MiB/min over 700-1,260 s, and higher at the same route point on every loop (2,050 m: 641, 794, 904,
+1,015 MiB), so a leak, not a cache filling. Method for the route points: the time the car passes the point on each
+loop, interpolated between the `cruise status` answers (every 60 s; the distance unwrapped at the route's 5,736.1
+m), and the heap sample nearest that time; only passes between two answers are counted. The renderer's own objects stayed bounded (textures 2,058-3,014 /
 85-114 MiB, buffers 6,088-12,003 / 16-27 MiB from the eleventh `[rhi-stats]` line). The desktop reference (upstream's
 build at the pinned commit, `tools/m04_reference.py`, now recording its private bytes) ran the same schedule with
-the null renderer at 60 fps: +33.0 MB/min over 700-1,260 s, 1,080 MB at the end, and upstream's RSL recording cache
+the null renderer at 60 fps: +33.0 MiB/min over 700-1,260 s, 1,080 MiB at the end (the private bytes divided by
+1,048,576), and upstream's RSL recording cache
 (`g_recordings`, `src/game/vcs_rsl_world.cpp`) at 32,582 entries and still growing. A recording is keyed by its
 block's guest address and length and was never removed; streaming puts a model somewhere else each time its area
 comes back. Patch 0009 (`patches/upstream/0009-rsl-recordings-prune.patch`) drops recordings no chain used in the
 last 3,600 chains, every 1,024 chains; a dropped recording is only a cache miss (the block is recorded again, or a
-skipped one taken from guest RAM). Desktop with the patch: null renderer +1.4 MB/min over 700-1,260 s, 391 MB at
-the end (max 414), 5,674 recordings (76,041 dropped); Vulkan +2.7 MB/min, 784 MB, 7,864 recordings (an earlier
+skipped one taken from guest RAM). Desktop with the patch: null renderer +1.4 MiB/min over 700-1,260 s, 391 MiB at
+the end (max 414 MiB), 5,674 recordings (76,041 dropped); Vulkan +2.7 MiB/min, 784 MiB, 7,864 recordings (an earlier
 unpatched Vulkan run is not comparable: another program held the GPU and the reference ran at 2 fps). Results in
 `hardware/desktop/`. The cost: the desktop's median game time 5.3 -> 6.7 ms from blocks recorded again.
 
 Run 16 (the same schedule, NRO `9b89481c` built from `b309413` with patch 0009, clean tree): the heap in use levels
-off at about 830-845 MiB from about 480 s, **-0.5 MiB/min over 700-1,260 s** (`hardware/drive-handheld-2-heap.tsv`);
-at the same route points on later loops 814, 841, 855 MiB. The plateau is higher than run 11's standing 600 MiB
+off from about 480 s (two-minute means 820.7-843.5 MiB), **-0.5 MiB/min over 700-1,260 s**
+(`hardware/drive-handheld-2-heap.tsv`); at the same route point on each loop, by the method above, 2,050 m: 624,
+814, 801 MiB (t 121, 421, 812 s) and 4,000 m: 701, 836, 847 MiB (t 220, 556, 958 s), where run 15 kept rising. The plateau is higher than run 11's standing 600 MiB
 because more of the city is resident. `heap_obtained` still grows, more slowly as the run goes on (+51.2 MiB/min
 over 300-700 s, +17.1 over 700-1,260 s; 1,389 MiB of the 3,344 MB mapped at the end): fragmentation of freed
-memory, which newlib does not return; whether it levels off over a longer soak is for M10-07. 0 GL errors in every
-`[rhi-stats]` line, stopped in order at 1,260 s, no crash report. Runs 1-13 used NRO `9a9f7e12`, without patch 0009.
+memory, which newlib does not return; whether it levels off over a longer soak is for M10-07. The prune age is
+3,600 chains (one a game frame, by the patch's own reading): a minute at 60 fps, but on the Switch, driving at
+about 7 game fps (8,034 frames of cruise by 1,200 s, 3.24 loops: about 2,480 frames a loop), about 8.6 minutes,
+more than a loop. Run 16's 700-1,260 s window is therefore about one retention period; the route points above
+are flat across it. On the desktop, blocks the game thread still holds confirmed whose recording was dropped now
+take `replaySkipped`'s fallback from guest RAM (225 in the null-pruned run, 180 Vulkan-pruned, 0 unpatched; the
+Switch has no write watch, so no skipping there). Both are handed to M10-07. 0 GL errors in every
+`[rhi-stats]` line, stopped in order at 1,260 s, no crash report. Every run before 16 ran without patch 0009 (the
+NROs above).
 
 Exit during play: run 5 was closed from HOME while the player was moving through Fort Baxter (inputs to the last
 second, 2,993 textures in the cache). That streaming was active at that moment is inferred from the movement, not
 logged: `VCS_STREAM_LOG` is off in m06-play.cfg. The main loop ended on the applet's exit request (`appletMainLoop()` false: no `stop` line, the
 results go straight to `shutdown`), then the game thread, the render worker, the stream reader, the runtime and
-the folder disc stopped in that order (`play-handheld-2-gtavcs.txt`, last 15 lines). Runs 1-17 and run 8's first attempt (eighteen game launches) each ended in order (the core's workers joined: `live_threads=2` at shutdown, as at boot, in every `*-gtavcs.txt`), the transcript records `new_crashes=[]` for all eighteen, and the next launch started cleanly every time: no hang. Run 11 also resumed from a 746.6 s suspension and then closed from HOME in order. The heap still in use at
+the folder disc stopped in that order (`play-handheld-2-gtavcs.txt`, last 15 lines). Runs 1-17 and run 8's first attempt (eighteen game launches) each ended in order (the core's workers joined: `live_threads=2` at shutdown, as at boot, in every `*-gtavcs.txt`), the session transcripts record `new_crashes=[]` for all eighteen (runs 14-16: `hardware/session-*.txt`; run 17:
+`hardware/accept2/transcript.txt`), and the next launch started cleanly every time: no hang. Run 11 also resumed from a 746.6 s suspension and then closed from HOME in order. The heap still in use at
 the `shutdown` line (297-947 MiB across the seventeen runs) is measured before main.c destroys the GL context (Mesa still holds the textures
 then) and is returned with the process.
 

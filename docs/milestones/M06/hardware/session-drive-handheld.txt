@@ -1,0 +1,18 @@
+19:36:04 nothing to delete at /switch/gtavcs_nx/gamefolder/userdata/tests/m06-drive
+19:36:05 == m06-drive: profile=m06-drive nro sha256=9a9f7e12fcc2dbfefa73b18bb15cb22962225e17990d852083223344b2c67fc4
+19:36:08 tree /switch/gtavcs_nx/gamefolder/userdata entries=216 file=userdata-before-m06-drive.txt
+19:36:08 deleted /switch/gtavcs_nx/gamefolder/gtavcs.log
+19:36:08 nothing to delete at /switch/gtavcs_nx/gamefolder/userdata/tests/m06-drive/nxrun-results.txt
+19:36:08 wrote /switch/gtavcs_nx/gamefolder/userdata/nxrun.cfg bytes=1236 sha256=db5236996b359cc33e66d24462fd8dfc5e40da015defb6f17c190200eefb924e
+19:36:16 nxlink attempt=1 exit=0 output='Sending /switch/gtavcs_nx/gtavcs.nro, 54114501 bytes\n19866011 sent (36.71%), 1590 blocks'
+19:36:31 ACTION FOR THE PERSON AT THE SWITCH: do not touch (21 min), auto-sleep off
+19:58:57 ftp back after 1361s: the payload has ended
+19:59:01 deleted /switch/gtavcs_nx/gamefolder/userdata/nxrun.cfg
+19:59:01 read-back /switch/gtavcs_nx/gamefolder/gtavcs.log bytes=250945 sha256=2841e39ab8d0c4c350833c740c1cd68981ac316842f16fa6acd5f6b180deb171
+19:59:01 read-back /switch/gtavcs_nx/gtavcs-boot.log bytes=62 sha256=3dfe21382f340edd44bac1bf1dd0af6377ec3f03f87b166979ec89c9759bba4b
+19:59:01 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m06-drive/nxrun-results.txt bytes=123311 sha256=676ea05d4de5b21f4efcffff5abb12ecb4633acedd4cafa9fbda888499b8091a
+19:59:03 tree /switch/gtavcs_nx/gamefolder/userdata entries=222 file=userdata-after-m06-drive.txt
+19:59:08 m06-drive: clean_exit_line=True results_tail=['stop t=1260.052 reason=seconds frames=30618', 'shutdown t=1260.052 frames=30618', 'audit t=1260.052 file_opens=152 iso_opens=0 first_iso="" threads_created=6'] sd_matches_local=True new_crashes=[]
+19:59:08 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m06-drive/nxrun-results.txt bytes=123311 sha256=676ea05d4de5b21f4efcffff5abb12ecb4633acedd4cafa9fbda888499b8091a
+19:59:08 drive-handheld: read back 1 files from /switch/gtavcs_nx/gamefolder/userdata/tests/m06-drive (screenshots private under build\evidence\M06\screenshots\drive-handheld)
+19:59:08 RESULT game PASS

@@ -104,7 +104,7 @@
  "M06-12": [
   {
    "path": "docs/milestones/M06/hardware/drive-handheld-2-heap.tsv",
-   "result": "Patched NRO 9b89481c, car on the city route 21 min: heap in use 2-minute means 830.1-843.5 MiB from 480 s, trend -0.5 MiB/min over 700-1,260 s; heap_obtained +17.1 MiB/min (fragmentation, M10-07)"
+   "result": "Patched NRO 9b89481c, car on the city route 21 min: heap in use 2-minute means 820.7-843.5 MiB from 480 s, trend -0.5 MiB/min over 700-1,260 s, flat at the same route points; heap_obtained +17.1 MiB/min (fragmentation, M10-07)"
   },
   {
    "path": "docs/milestones/M06/hardware/drive-handheld-heap.tsv",
@@ -112,11 +112,11 @@
   },
   {
    "path": "docs/milestones/M06/hardware/desktop/desktop-null-results.txt",
-   "result": "Desktop reference, null renderer, the same drive: private bytes +33.0 MB/min over 700-1,260 s, 1,080 MB at the end"
+   "result": "Desktop reference, null renderer, the same drive: private bytes +33.0 MiB/min over 700-1,260 s, 1,080 MiB at the end"
   },
   {
    "path": "docs/milestones/M06/hardware/desktop/desktop-null-pruned-results.txt",
-   "result": "Desktop reference with patch 0009: +1.4 MB/min over 700-1,260 s, 391 MB at the end"
+   "result": "Desktop reference with patch 0009: +1.4 MiB/min over 700-1,260 s, 391 MiB at the end"
   },
   {
    "path": "patches/upstream/0009-rsl-recordings-prune.patch",
@@ -137,6 +137,14 @@
   {
    "path": "docs/milestones/M06/hardware/transcript.txt",
    "result": "Twelve game launches back to back, each new_crashes=[] and a clean shutdown"
+  },
+  {
+   "path": "docs/milestones/M06/hardware/session-drive-handheld-2.txt",
+   "result": "Run 16's session transcript: NRO sha256 9b89481c, RESULT game PASS, new_crashes=[]"
+  },
+  {
+   "path": "docs/milestones/M06/hardware/session-drive-handheld.txt",
+   "result": "Run 15's session transcript: NRO sha256 9a9f7e12 (without patch 0009), new_crashes=[]"
   }
  ],
  "M06-13": [
@@ -239,6 +247,10 @@
   {
    "path": "docs/milestones/M06/BETA_NOTES.md",
    "result": "Disc preparation, layout, controls, measured frame times, skipped movies, untested docked/Pro Controller, all non-claims"
+  },
+  {
+   "path": "docs/milestones/M06/BETA_NOTES.md",
+   "result": "Frame times per run with the NRO and date; run 17 on the patched NRO: 84.6 / 419.9 ms"
   }
  ],
  "M06-20": [

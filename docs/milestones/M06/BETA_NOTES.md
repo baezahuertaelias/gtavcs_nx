@@ -38,7 +38,7 @@ and stick clicks are the PS2's. To quit, press **HOME** and close the software: 
 The log of the last run is `sdmc:/switch/gtavcs_nx/gamefolder/gtavcs.log`. Your saves and settings go to
 `gamefolder/userdata`.
 
-## What was checked (2026-11-17, handheld, stock clocks)
+## What was checked (2026-11-17 and 2026-11-18, handheld, stock clocks)
 
 On a real Switch in handheld mode, from an empty test memory card: the legal screen, the flyover, the intro cutscene
 and gameplay at Fort Baxter with the 3D world, the player, the HUD and the radar; more than 5 continuous minutes of
@@ -50,9 +50,13 @@ Measured frame times at Fort Baxter, handheld, internal resolution 1x (640x448),
 
 | Run | Game frame median | Game frame p95 |
 |---|---|---|
-| standing, nobody touching | 43.1 ms (about 19 fps on average) | 67.9 ms |
-| playing, on foot and on the bike | 66.6 ms | 264.1 ms |
-| playing, mostly riding the bike across the map | 87.0 ms | 452.8 ms |
+| standing, nobody touching (2026-11-17, an earlier build) | 43.1 ms (about 19 fps on average) | 67.9 ms |
+| playing, on foot and on the bike (2026-11-17, an earlier build) | 66.6 ms | 264.1 ms |
+| playing, mostly riding the bike across the map (2026-11-17, an earlier build) | 87.0 ms | 452.8 ms |
+| playing, on foot and driving (2026-11-18, this beta's code) | 84.6 ms | 419.9 ms |
+
+The earlier builds lacked a memory fix this beta has (memory no longer grows while you drive around); the last
+row was measured with this beta's code.
 
 The frame rate is low. There is no frame-rate target in this beta; performance is milestone M10.
 

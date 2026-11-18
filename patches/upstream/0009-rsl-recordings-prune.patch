@@ -1,8 +1,8 @@
 diff --git a/docs/PERFORMANCE.md b/docs/PERFORMANCE.md
-index 9718ae8..e0165a5 100644
+index 9718ae8..9c44e69 100644
 --- a/docs/PERFORMANCE.md
 +++ b/docs/PERFORMANCE.md
-@@ -289,7 +289,12 @@ city (1325, -325) 196 / 203 -> 216 / 222 (render worker 5.0 -> 3.3 ms), the othe
+@@ -289,7 +289,15 @@ city (1325, -325) 196 / 203 -> 216 / 222 (render worker 5.0 -> 3.3 ms), the othe
    frame-rate-independent timing a smaller charge (1/16 instead of 1/4) changed nothing measurable.
  - Memory grows while new places are visited (529 -> 1,587 MB over the 24-minute soak) and converges when they repeat
    (three rounds of the same 8 spots: +260, +89, +45 MB): caches filling (texture and mesh caches are LRU-bounded; the
@@ -10,14 +10,17 @@ index 9718ae8..e0165a5 100644
 +  RSL recordings ~115 MB of it), not a leak. [gta-recomp] Corrected 2026-11-17 (the Switch port, M06-12): the RSL
 +  recordings were not bounded. They are keyed by the block's guest address, and streaming puts a model elsewhere each
 +  time its area comes back, so a loop over the same route kept adding them: `rig cruise` along `tools/routes/city.txt`
-+  at 40 m/s for 21 minutes, `VCS_RHI=null`, private bytes +33 MB/min to the end (1,080 MB, 32,582 recordings). Now
-+  recordings no chain used for 3,600 chains are dropped (`pruneRecordings`, `vcs_rsl_world.cpp`): +1.4 MB/min over
-+  the last 9 minutes, 391 MB, 5,674 recordings; median game time 5.3 -> 6.7 ms from blocks recorded again.
++  at 40 m/s for 21 minutes, `VCS_RHI=null`, private bytes +33.0 MiB/min to the end (1,080 MiB, 32,582 recordings).
++  Now recordings no chain used for 3,600 chains are dropped (`pruneRecordings`, `vcs_rsl_world.cpp`): +1.4 MiB/min over
++  the last 9 minutes, 391 MiB, 5,674 recordings; median game time 5.3 -> 6.7 ms from blocks recorded again. 3,600
++  chains are a minute at 60 fps; on the Switch, driving at about 7 game fps, about 8.6 minutes. Blocks still confirmed
++  for skipping whose recording was dropped now take `replaySkipped`'s fallback from guest RAM (225 in that run, none
++  before).
  
  ### 15. The helicopter's dust at high internal resolutions (2026-10-30)
  
 diff --git a/src/game/vcs_rsl_world.cpp b/src/game/vcs_rsl_world.cpp
-index 24c8d97..e725931 100644
+index 24c8d97..c1bce54 100644
 --- a/src/game/vcs_rsl_world.cpp
 +++ b/src/game/vcs_rsl_world.cpp
 @@ -216,6 +216,7 @@ namespace vcs::rslworld
@@ -41,7 +44,7 @@ index 24c8d97..e725931 100644
 +        // recorded again (handleBlock), or a skipped one taken from guest RAM (replaySkipped).
 +        void pruneRecordings(uint64_t seq)
 +        {
-+            constexpr uint64_t kRecordingAge = 3600u; // chains: a minute at 60 fps, two at 30
++            constexpr uint64_t kRecordingAge = 3600u; // chains (one a game frame): a minute at 60 fps; ~8.6 min at the Switch's ~7 driving
 +            if (seq < g_recordingsPrunedAt + 1024u || seq < kRecordingAge)
 +                return;
 +            g_recordingsPrunedAt = seq;
