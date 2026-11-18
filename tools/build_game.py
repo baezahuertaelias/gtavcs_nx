@@ -135,6 +135,9 @@ def inside(args, log):
         if stamp["source"]["commit"] != base:
             raise RuntimeError("Private code was not generated from the pinned source")
         options += [f"-DNX_PRIVATE_GENERATED_ARCHIVE={ARCHIVE}", "-DNX_PRIVATE_GENERATED_DIR=/cache/generated/ee"]
+        # the homebrew menu's icon: the ignored root icon.jpg when present (a local input, never committed)
+        icon = ROOT / "icon.jpg"
+        options.append(f"-DNX_GAME_ICON={icon.as_posix() if icon.is_file() else ''}")
     run(["cmake", "-S", "/work", "-B", build, "-G", "Ninja", *options], log)
     # the RHI conformance NRO (M05) is public: no game code, built in both modes
     targets = (["nx_core", "nx_self_registering", "nx_entry_check"] if args.public else ["gtavcs_nro"]) + ["gtavcs_rhi_tests_nro"]
@@ -213,7 +216,8 @@ def main():
                 manifest = json.loads((PRIVATE / "manifest-inside.json").read_text())
                 manifest.update({"root_commit": git(ROOT, "rev-parse", "HEAD"),
                                  "root_dirty": bool(git(ROOT, "status", "--porcelain")),
-                                 "overlay_series_sha256": digest(series), "overlay_checkout": source.name})
+                                 "overlay_series_sha256": digest(series), "overlay_checkout": source.name,
+                                 "icon_sha256": file_digest(ROOT / "icon.jpg") if (ROOT / "icon.jpg").is_file() else None})
                 (PRIVATE / "manifest.json").write_text(json.dumps(manifest, indent=2) + "\n")
         return 0
     except (OSError, RuntimeError, subprocess.CalledProcessError, ValueError, KeyError) as error:

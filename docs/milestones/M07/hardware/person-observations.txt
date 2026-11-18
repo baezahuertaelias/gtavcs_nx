@@ -5,3 +5,8 @@ What the user, at the Switch, reported during the M07 session (2026-11-18, handh
   1.6 s suspension and the applet's exit request at 75.2 s (stop reason=runtime), 60.8 s into INTRO.PSS: the game
   was closed during the intro, so INTRO.PSS is logged as skipped there and the run covers STINGS.PSS whole and the
   first 60.8 s of INTRO.PSS only.
+- movies-handheld-2 (m07-movies.cfg, the same NRO 19bd154c, sent with nxlink at the user's request): nobody
+  touching the console; stopped by itself at 240 s. STINGS.PSS 321 pictures, 0 dropped, 10.8 s; INTRO.PSS played to its
+  end, 2,527 pictures, 0 dropped, 84.3 s; then S3 / S4 (on foot). Between the
+  two runs gtavcs.nro and gtavcs_rhi_tests.nro were found missing from /switch/gtavcs_nx (not by the session tools);
+  gtavcs.nro was put back over FTP at the user's request (19bd154c, read back).

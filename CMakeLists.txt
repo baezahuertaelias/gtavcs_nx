@@ -245,6 +245,12 @@ target_link_libraries(gtavcs PRIVATE glad
 
 nx_generate_nacp(OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/gtavcs.nacp"
     NAME "GTA VCS NX" AUTHOR "gtavcs_nx contributors" VERSION "${PROJECT_VERSION}")
+# NX_GAME_ICON: a local 256x256 JPEG for the homebrew menu (tools/build_game.py passes the ignored root icon.jpg when
+# it exists); without it libnx's default icon.
+set(NX_GAME_ICON "" CACHE FILEPATH "256x256 JPEG icon for gtavcs.nro (local, not committed)")
+if(NX_GAME_ICON)
+    set(nx_game_icon ICON "${NX_GAME_ICON}")
+endif()
 nx_create_nro(gtavcs OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/gtavcs.nro"
-    NACP "${CMAKE_CURRENT_BINARY_DIR}/gtavcs.nacp")
+    NACP "${CMAKE_CURRENT_BINARY_DIR}/gtavcs.nacp" ${nx_game_icon})
 install(FILES "${CMAKE_CURRENT_BINARY_DIR}/gtavcs.nro" DESTINATION switch/gtavcs_nx)

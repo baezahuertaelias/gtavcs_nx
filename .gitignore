@@ -22,3 +22,8 @@ __pycache__/
 
 # Personal Claude Code settings
 .claude/settings.local.json
+
+# The NRO icon (M07): a local build input only, never committed (it may be third-party artwork). icon.jpg (256x256
+# JPEG, made from icon.png) is used by tools/build_game.py when present.
+/icon.png
+/icon.jpg
