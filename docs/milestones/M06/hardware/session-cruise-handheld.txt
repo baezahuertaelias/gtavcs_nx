@@ -1,0 +1,18 @@
+19:05:57 nothing to delete at /switch/gtavcs_nx/gamefolder/userdata/tests/m06-cruise
+19:05:57 == m06-cruise: profile=m06-cruise nro sha256=9a9f7e12fcc2dbfefa73b18bb15cb22962225e17990d852083223344b2c67fc4
+19:06:01 tree /switch/gtavcs_nx/gamefolder/userdata entries=210 file=userdata-before-m06-cruise.txt
+19:06:01 deleted /switch/gtavcs_nx/gamefolder/gtavcs.log
+19:06:01 nothing to delete at /switch/gtavcs_nx/gamefolder/userdata/tests/m06-cruise/nxrun-results.txt
+19:06:01 wrote /switch/gtavcs_nx/gamefolder/userdata/nxrun.cfg bytes=925 sha256=e9227ccac58e55b88810ed637078d60efe093069be44cc0f789d05e3d6a4e686
+19:06:06 nxlink attempt=1 exit=0 output='Sending /switch/gtavcs_nx/gtavcs.nro, 54114501 bytes\n19866011 sent (36.71%), 1590 blocks'
+19:06:21 ACTION FOR THE PERSON AT THE SWITCH: do not touch (26 min), auto-sleep off
+19:35:05 ftp back after 1738s: the payload has ended
+19:35:08 deleted /switch/gtavcs_nx/gamefolder/userdata/nxrun.cfg
+19:35:08 read-back /switch/gtavcs_nx/gamefolder/gtavcs.log bytes=291734 sha256=eceadf25c91f74abebfa665484c824720de4686c13676a096f4ba614e7632d20
+19:35:08 read-back /switch/gtavcs_nx/gtavcs-boot.log bytes=62 sha256=3dfe21382f340edd44bac1bf1dd0af6377ec3f03f87b166979ec89c9759bba4b
+19:35:08 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m06-cruise/nxrun-results.txt bytes=149749 sha256=c6acfc48ed7d810125930c155d3667e12f1d2e0b314ccf12da2da6fa70d21ad3
+19:35:11 tree /switch/gtavcs_nx/gamefolder/userdata entries=216 file=userdata-after-m06-cruise.txt
+19:35:16 m06-cruise: clean_exit_line=True results_tail=['stop t=1560.043 reason=seconds frames=26980', 'shutdown t=1560.043 frames=26980', 'audit t=1560.043 file_opens=148 iso_opens=0 first_iso="" threads_created=6'] sd_matches_local=True new_crashes=[]
+19:35:16 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m06-cruise/nxrun-results.txt bytes=149749 sha256=c6acfc48ed7d810125930c155d3667e12f1d2e0b314ccf12da2da6fa70d21ad3
+19:35:16 cruise-handheld: read back 1 files from /switch/gtavcs_nx/gamefolder/userdata/tests/m06-cruise (screenshots private under build\evidence\M06\screenshots\cruise-handheld)
+19:35:16 RESULT game PASS

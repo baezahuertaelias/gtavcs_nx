@@ -269,24 +269,24 @@ test card: S1 legal/loading, S2 opening flyover, S3 intro cutscene, S4 gameplay 
 Fort Baxter. The game has no title menu on an empty card. Bring up one stage at a
 time and compare each with the desktop reference.
 
-- [ ] M06-01 Connect presenter/GS/VIF/VU/native-world submission to OpenGL and ensure the authentic/reference path remains selectable.
-- [ ] M06-02 Validate GAME.DTZ, common models/textures and the LVZ/IMG streaming and relocation that S1-S4 actually use.
-- [ ] M06-03 Verify opaque/alpha-tested/transparent geometry, lighting, fog, texture palettes/mips and draw ordering in S2-S4.
-- [ ] M06-04 Verify the skinned characters, animation, shadows and transient effects that appear in S2-S4; wider coverage is M14-01.
-- [ ] M06-05 Verify camera, culling, HUD, radar and subtitles at the authentic 4:3 picture in S2-S4, pillarboxed without stretch or crop; widescreen is M09.
-- [ ] M06-06 Render at a fixed recorded internal scale independent of output dimensions; recreate targets and camera state on docking.
-- [ ] M06-07 Establish a repeatable procedure from cold boot with an empty test card to S4, with state/position evidence and input timestamps.
-- [ ] M06-09 Compare S1-S4 screenshots and key guest state with the desktop reference; resolve every unexplained material mismatch.
-- [ ] M06-11 Capture median/p95 frame time, memory and CPU/GPU timing in S2 and S4 at stock clocks in both modes; report them with no FPS target.
-- [ ] M06-12 Verify exit/load/restart with active streaming and eliminate world resource leaks or hangs.
-- [ ] M06-13 When the first real game boot reaches S2, the first real game picture, perform the user-deferred M01 docking check: dock/undock repeatedly and verify drawable pixels, viewport, 1280x720 handheld/1920x1080 docked output and ownership of one SDL GL context/surface. The M01 decision named the main menu; the game has no title menu on an empty card, so S2 is the equivalent trigger. Record actual hardware observations; this is not passed by the scaffold or a null-renderer boot.
-- [ ] M06-14 When the first real game boot reaches S2, complete the user-deferred Pro Controller and formal physical connection-state matrix: initial open, hotplug, full disconnect-to-neutral, reconnect and orderly application exit. Verify paired Joy-Con/Pro identity and physical connection reporting, investigate and resolve the M01 SDL connected=1 observation, and retain hardware logs. M01's user-confirmed Joy-Con result does not prove Pro compatibility or correct physical-disconnection metadata.
-- [ ] M06-15 Build without FFmpeg using vcs_movie's existing no-decoder path and an intro-skip setting; confirm on hardware that S1-S4 do not depend on the skipped PSS movies, and record the limitation.
-- [ ] M06-16 Provide the minimum real controller path for beta: SDL physical-position mapping for Cross, Start and on-foot sticks on paired Joy-Cons and Pro Controller, L3/R3 reported, Plus as Start; replace the smoke Plus-to-exit with a deliberate exit path.
-- [ ] M06-17 Run native sound/IOP against a bounded silent or muted sink and verify S1-S4 do not stall when no audible output exists, in particular S3 cutscene pacing; make no audible-sound claim.
-- [ ] M06-18 Beta acceptance on real Switch in application mode at stock clocks, from a clean SD layout with the NRO and gamefolder only and an empty test card: reach S4 through S1-S3, world and HUD visible, player moves, 5 continuous minutes without crash or hang, orderly exit, in handheld and docked. Retain logs and video.
-- [ ] M06-19 Package the beta privately: exact NRO SD layout, checksums, user disc-preparation instructions and honest notes listing skipped movies/cutscene, silence, measured frame times and all non-claims. No game data, generated code or ISO in any artifact.
-- [ ] M06-20 Restore mode-appropriate output at docking (1280x720 handheld / 1920x1080 docked) without the switch-sdl2 surface-resize leak: since M05 the window is fixed at the starting mode's size, so a handheld start outputs 720p upscaled on the TV and a docked start renders 1080p downscaled on the panel. Use a leak-free surface recreation (for example a patched switch-sdl2 in the locked toolchain) or a fixed drawable with a mode-appropriate render scale; prove heap flat across repeated dock changes in both start modes. M06-13 depends on it.
+- [x] M06-01 Connect presenter/GS/VIF/VU/native-world submission to OpenGL and ensure the authentic/reference path remains selectable.
+- [x] M06-02 Validate GAME.DTZ, common models/textures and the LVZ/IMG streaming and relocation that S1-S4 actually use.
+- [x] M06-03 Verify opaque/alpha-tested/transparent geometry, lighting, fog, texture palettes/mips and draw ordering in S2-S4.
+- [x] M06-04 Verify the skinned characters, animation, shadows and transient effects that appear in S2-S4; wider coverage is M14-01.
+- [x] M06-05 Verify camera, culling, HUD, radar and subtitles at the authentic 4:3 picture in S2-S4, pillarboxed without stretch or crop; widescreen is M09.
+- [x] M06-06 Render at a fixed recorded internal scale independent of output dimensions; recreate targets and camera state on docking (docking: M10-13, user decision 2026-11-17, docs/milestones/M06/SCOPE_DECISIONS.md).
+- [x] M06-07 Establish a repeatable procedure from cold boot with an empty test card to S4, with state/position evidence and input timestamps.
+- [x] M06-09 Compare S1-S4 screenshots and key guest state with the desktop reference; resolve every unexplained material mismatch.
+- [x] M06-11 Capture median/p95 frame time, memory and CPU/GPU timing in S2 and S4 at stock clocks in handheld mode (docked: M10-13, user decision 2026-11-17, docs/milestones/M06/SCOPE_DECISIONS.md); report them with no FPS target.
+- [x] M06-12 Verify exit/load/restart with active streaming and eliminate world resource leaks or hangs.
+- [x] M06-13 Moved to M10-13 by the user decision of 2026-11-17 (the dock is broken; docs/milestones/M06/SCOPE_DECISIONS.md): record the deferral and that nothing is claimed for docking; no docking test is part of M06. Original text: when the first real game boot reaches S2, the first real game picture, perform the user-deferred M01 docking check: dock/undock repeatedly and verify drawable pixels, viewport, 1280x720 handheld/1920x1080 docked output and ownership of one SDL GL context/surface. The M01 decision named the main menu; the game has no title menu on an empty card, so S2 is the equivalent trigger. Record actual hardware observations; this is not passed by the scaffold or a null-renderer boot.
+- [x] M06-14 When the first real game boot reaches S2, complete the user-deferred formal physical connection-state matrix on paired Joy-Cons (the Pro Controller part moved to M13-11 by the user decision of 2026-11-17, docs/milestones/M06/SCOPE_DECISIONS.md): initial open, hotplug, full disconnect-to-neutral, reconnect and orderly application exit. Verify paired Joy-Con identity and physical connection reporting, investigate and resolve the M01 SDL connected=1 observation, and retain hardware logs. M01's user-confirmed Joy-Con result does not prove Pro compatibility or correct physical-disconnection metadata.
+- [x] M06-15 Build without FFmpeg using vcs_movie's existing no-decoder path and an intro-skip setting; confirm on hardware that S1-S4 do not depend on the skipped PSS movies, and record the limitation.
+- [x] M06-16 Provide the minimum real controller path for beta: SDL physical-position mapping for Cross, Start and on-foot sticks on paired Joy-Cons, attached and wireless (Pro Controller: M13-11, user decision 2026-11-17), L3/R3 reported, Plus as Start; replace the smoke Plus-to-exit with a deliberate exit path.
+- [x] M06-17 Run native sound/IOP against a bounded silent or muted sink and verify S1-S4 do not stall when no audible output exists, in particular S3 cutscene pacing; make no audible-sound claim.
+- [x] M06-18 Beta acceptance on real Switch in application mode at stock clocks, from a clean SD layout with the NRO and gamefolder only and an empty test card: reach S4 through S1-S3, world and HUD visible, player moves, 5 continuous minutes without crash or hang, orderly exit, in handheld mode (docked: M10-13, user decision 2026-11-17, docs/milestones/M06/SCOPE_DECISIONS.md). Retain logs and video.
+- [x] M06-19 Package the beta privately: exact NRO SD layout, checksums, user disc-preparation instructions and honest notes listing skipped movies/cutscene, silence, measured frame times and all non-claims. No game data, generated code or ISO in any artifact.
+- [x] M06-20 In handheld mode (docked: M10-13, user decision 2026-11-17, docs/milestones/M06/SCOPE_DECISIONS.md), prove from a handheld start that the fixed-surface output (src/switch/output.c) shows the 1280x720 picture on the panel the right way up and uncut, with GL errors 0. Original scope, the docked part of which moved: restore mode-appropriate output at docking (1280x720 handheld / 1920x1080 docked) without the switch-sdl2 surface-resize leak: since M05 the window is fixed at the starting mode's size, so a handheld start outputs 720p upscaled on the TV and a docked start renders 1080p downscaled on the panel. Use a leak-free surface recreation (for example a patched switch-sdl2 in the locked toolchain) or a fixed drawable with a mode-appropriate render scale; prove heap flat across repeated dock changes in both start modes. M06-13 depends on it.
 
 Proof: S1-S4 screenshots and guest-state comparison, timing report, hardware
 logs and video. Tag the beta only after independent review and merge.
@@ -323,6 +323,7 @@ controller-only navigation, and the chord does not reach the game.
 - [ ] M08-14 Prevent chord leakage: withhold L3/R3 from the guest for a short recorded window until a chord is ruled in or out, so no L3/R3 edge reaches the game on open or close; prove R1-then-L3 free aim still works and report the added input latency.
 - [ ] M08-15 Reach the existing trainer, free camera, performance overlay and frame-time recording from the controller through the menu, with no keyboard or F-key dependency on Switch.
 - [ ] M08-16 Hardware acceptance on paired Joy-Cons, handheld and Pro Controller: repeated L3+R3 open/close in S2, S3, S4 and across suspend, with logged proof that no chord input reached the guest.
+- [ ] M08-17 Make Dear ImGui's touch and mouse positions agree with its display size on the fixed 1920x1080 surface (since M06-20 the display size is the mode's output, 1280x720 in handheld, while the SDL2 backend reports window coordinates); verify on hardware.
 
 ## M09 — Widescreen
 
@@ -351,11 +352,12 @@ Branch: `milestone/m10-stability-performance` <!-- M10 -->
 - [ ] M10-04 Establish 25+ FPS baseline on the busy route in both modes; report median/p95 frame time and sustained slow intervals at explicit internal/output scales.
 - [ ] M10-05 Attempt native 720p/1080p internal resolutions separately; report observed limits without relabelling scaled output as native rendering.
 - [ ] M10-06 Verify frame pacing and simulation/mission timer/audio cadence at 25/30/variable FPS; no guest-time manipulation to meet FPS target.
-- [ ] M10-07 Run 30-minute minimum continuous gameplay soak in both handheld and docked modes with streaming, combat, missions and interior transitions.
+- [ ] M10-07 Run 30-minute minimum continuous gameplay soak in both handheld and docked modes with streaming, combat, missions and interior transitions. From M06-12: heap_obtained still grew after the heap in use levelled off (fragmentation), and patch 0009's prune age measured 6.6-10.5 minutes on the Switch while driving; check both over the soak.
 - [ ] M10-08 Repeat docking/undocking, HOME, suspend/resume, controller loss and orderly exit under heavy streaming/audio/GPU work.
 - [ ] M10-09 Inject missing/corrupt assets, allocation/I/O failures and save interruptions safely; prove diagnostics and bounded recovery.
 - [ ] M10-10 Fix all crash/hang/leak/save/audio/visual findings and rerun the affected reference matrices; retain unresolved issues as unchecked tasks.
 - [ ] M10-11 Validate memory headroom and thermal/clock observations over the soak; no undocumented overclock requirement.
+- [ ] M10-13 Complete the docked work deferred from M06 by the user decision of 2026-11-17 (docs/milestones/M06/SCOPE_DECISIONS.md): M06-06's target and camera recreation on docking, M06-13's docking check, M06-20's docked 1920x1080 output and repeated dock changes from both start modes with a flat heap, docked S2/S4 timing (M06-11) and the docked beta acceptance run (M06-18), on hardware with logs and video.
 - [ ] M10-12 Produce a reproducible performance/stability report and final acceptance matrix tied to exact candidate SHA.
 
 25+ baseline is operationalized as >=25 measured presented gameplay frames/s over
@@ -407,6 +409,7 @@ Branch: `milestone/m13-controllers` <!-- M13 -->
 - [ ] M13-08 Preserve configurable bindings/presets and safe persistence; prevent overlay/game simultaneous input.
 - [ ] M13-09 Replay complete controller-only gameplay/menu route on each supported controller configuration and document unsupported layouts explicitly.
 - [ ] M13-10 Re-verify, after M06-16 removed smoke Plus-to-exit, ordinary Start/Select semantics and safe deliberate application exit.
+- [ ] M13-11 Complete the Pro Controller work deferred from M06-14/M06-16 by the user decision of 2026-11-17 (docs/milestones/M06/SCOPE_DECISIONS.md): identity, physical-position mapping, the physical connection-state matrix (initial open, hotplug, disconnect to neutral, reconnect, orderly exit) and play on a real Pro Controller, with hardware logs.
 
 Exit proof: hardware controller matrix and action-by-action route, not only device
 enumeration. Single sideways Joy-Con is not implicitly supported; decide via scope.

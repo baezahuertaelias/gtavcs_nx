@@ -342,6 +342,18 @@ namespace rhi
                 for (auto &s : m_shaders)
                     glDeleteShader(s.second);
                 m_offscreenBack.reset();
+                if (m_gpuTime)
+                {
+                    if (m_gpuActive)
+                        glEndQuery(GL_TIME_ELAPSED);
+                    glDeleteQueries(kGpuQueries, m_gpuQueries);
+                    std::fprintf(stderr, "[rhi] GPU time: %llu frames, mean %.2f ms, max %.2f ms, %llu not timed\n",
+                                 static_cast<unsigned long long>(m_stats.gpuFrames),
+                                 m_stats.gpuFrames ? m_stats.gpuNs / 1e6 / static_cast<double>(m_stats.gpuFrames) : 0.0,
+                                 m_stats.gpuMaxNs / 1e6, static_cast<unsigned long long>(m_stats.gpuDropped));
+                }
+                if (m_gpuLog)
+                    std::fclose(m_gpuLog);
                 drain();
                 std::lock_guard<std::mutex> lock(m_core->mutex);
                 m_core->alive = false;
@@ -371,6 +383,20 @@ namespace rhi
                     return false;
                 }
                 setUpDebug(desc.debug || envOn("PS2X_RHI_DEBUG"));
+                // GPU time per presented frame (M06-11): GL 3.3 core has timer queries (ARB_timer_query)
+                m_gpuTime = !m_offscreen && envOn("PS2X_GL_GPU_TIME");
+                if (m_gpuTime)
+                {
+                    glGenQueries(kGpuQueries, m_gpuQueries);
+                    if (const char *path = std::getenv("PS2X_GL_GPU_LOG"))
+                    {
+                        m_gpuLog = std::fopen(path, "w");
+                        if (m_gpuLog)
+                            std::fputs("frame,gpu_ms\n", m_gpuLog);
+                        std::fprintf(stderr, "[rhi] GPU time per frame to %s%s\n", path, m_gpuLog ? "" : ": cannot open");
+                    }
+                    beginGpuFrame();
+                }
                 m_freeThreaded = envOn("PS2X_GL_WORKER_CONTEXT") && m_window.loaderAvailable && m_window.makeLoaderCurrent &&
                                  m_window.loaderAvailable();
                 if (envOn("PS2X_GL_WORKER_CONTEXT") && !m_freeThreaded)
@@ -1131,9 +1157,13 @@ namespace rhi
                             std::fprintf(stderr, "[rhi] swap interval %d refused\n", interval);
                         m_swapInterval = interval;
                     }
+                    if (m_gpuTime)
+                        endGpuFrame();
                     m_window.swap();
                     m_pipelineStateValid = false; // the platform's swap may touch state
                     m_boundFramebuffer = ~0u;
+                    if (m_gpuTime)
+                        beginGpuFrame();
                 }
                 drain();
                 checkErrors("frame");
@@ -1901,6 +1931,54 @@ namespace rhi
                     glDeleteSync(f);
             }
 
+            // ---- GPU time per frame (PS2X_GL_GPU_TIME, M06-11) -----------------------------------------------------
+            // One GL_TIME_ELAPSED query spans a present to the next, so it holds every command of the frame; results are
+            // read without waiting when the GPU has them (a few frames later). A frame finding its slot still unread is
+            // not timed (gpuDropped).
+            void beginGpuFrame()
+            {
+                collectGpuFrames();
+                if (m_gpuPending[m_gpuNext])
+                {
+                    ++m_stats.gpuDropped;
+                    return;
+                }
+                glBeginQuery(GL_TIME_ELAPSED, m_gpuQueries[m_gpuNext]);
+                m_gpuActive = true;
+            }
+
+            void endGpuFrame()
+            {
+                if (!m_gpuActive)
+                    return;
+                glEndQuery(GL_TIME_ELAPSED);
+                m_gpuActive = false;
+                m_gpuPending[m_gpuNext] = true;
+                m_gpuFrame[m_gpuNext] = m_presents;
+                m_gpuNext = (m_gpuNext + 1u) % kGpuQueries;
+            }
+
+            void collectGpuFrames()
+            {
+                for (uint32_t i = 0; i < kGpuQueries; ++i)
+                {
+                    if (!m_gpuPending[i])
+                        continue;
+                    GLuint available = 0;
+                    glGetQueryObjectuiv(m_gpuQueries[i], GL_QUERY_RESULT_AVAILABLE, &available);
+                    if (!available)
+                        continue;
+                    GLuint64 ns = 0;
+                    glGetQueryObjectui64v(m_gpuQueries[i], GL_QUERY_RESULT, &ns);
+                    m_gpuPending[i] = false;
+                    ++m_stats.gpuFrames;
+                    m_stats.gpuNs += ns;
+                    m_stats.gpuMaxNs = std::max<uint64_t>(m_stats.gpuMaxNs, ns);
+                    if (m_gpuLog)
+                        std::fprintf(m_gpuLog, "%llu,%.3f\n", static_cast<unsigned long long>(m_gpuFrame[i]), ns / 1e6);
+                }
+            }
+
             void reportStats()
             {
                 static const bool on = envOn("PS2X_RHI_STATS");
@@ -1911,6 +1989,15 @@ namespace rhi
                     return;
                 m_lastReport = now;
                 const GlStats s = stats();
+                if (m_gpuTime)
+                {
+                    const uint64_t frames = s.gpuFrames - m_gpuReported[0], ns = s.gpuNs - m_gpuReported[1];
+                    std::fprintf(stderr, "[rhi-stats] gpu %llu frames timed, mean %.2f ms (run max %.2f ms, %llu not timed)\n",
+                                 static_cast<unsigned long long>(frames), frames ? ns / 1e6 / static_cast<double>(frames) : 0.0,
+                                 s.gpuMaxNs / 1e6, static_cast<unsigned long long>(s.gpuDropped));
+                    m_gpuReported[0] = s.gpuFrames;
+                    m_gpuReported[1] = s.gpuNs;
+                }
                 std::fprintf(stderr,
                              "[rhi-stats] textures %llu (%.1f MiB) buffers %llu (%.1f MiB) samplers %llu pipelines %llu programs %llu "
                              "fbos %llu pending %llu | draws %llu passes %llu presents %llu | gl errors %llu debug %llu incomplete %llu "
@@ -1958,6 +2045,15 @@ namespace rhi
             std::unordered_map<const void *, GLuint> m_shaders; // by source text
             uint64_t m_pipelineSerial = 0, m_pipelineSerialBound = 0;
             uint64_t m_bufferEpoch = 1, m_emptyVaoEpoch = 0;
+
+            static constexpr uint32_t kGpuQueries = 8;
+            bool m_gpuTime = false, m_gpuActive = false;
+            GLuint m_gpuQueries[kGpuQueries] = {};
+            bool m_gpuPending[kGpuQueries] = {};
+            uint64_t m_gpuFrame[kGpuQueries] = {};
+            uint32_t m_gpuNext = 0;
+            uint64_t m_gpuReported[2] = {0, 0}; // frames, ns at the last [rhi-stats] line
+            FILE *m_gpuLog = nullptr;             // PS2X_GL_GPU_LOG: frame,gpu_ms per timed frame
 
             bool m_inPass = false, m_passMarker = false, m_toWindow = false;
             GLuint m_passColor = 0, m_passDepth = 0;

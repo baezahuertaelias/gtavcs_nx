@@ -10,6 +10,7 @@
 #include <stdarg.h>
 #include <arpa/inet.h>
 #include "core.h"
+#include "switch/output.h"
 
 #define ASSET_ROOT "sdmc:/switch/gtavcs_nx/gamefolder"
 
@@ -149,12 +150,12 @@ int main(int argc, char **argv)
         SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24) < 0 ||
         SDL_GL_SetAttribute(SDL_GL_STENCIL_SIZE, 8) < 0) goto sdl_error;
 
-    const int docked = appletGetOperationMode() == AppletOperationMode_Console;
     /* Fixed size, not SDL_WINDOW_RESIZABLE: switch-sdl2 2.28 resizes a resizable window at every dock change and
-     * each resize leaks the EGL surface's buffers (+44 MB to 1080p; M05 third review). The window keeps its starting
-     * size; the compositor scales it to the panel or TV. Never call SDL_SetWindowSize: it leaks the same way. */
+     * each resize leaks the EGL surface's buffers (+44 MB to 1080p; M05 third review). Never call SDL_SetWindowSize:
+     * it leaks the same way. The window is the largest output, 1920x1080, in both modes; the picture is drawn at the
+     * mode's output size and the layer cropped to it (src/switch/output.c, M06-20). */
     window = SDL_CreateWindow("GTA VCS NX", SDL_WINDOWPOS_UNDEFINED,
-        SDL_WINDOWPOS_UNDEFINED, docked ? 1920 : 1280, docked ? 1080 : 720,
+        SDL_WINDOWPOS_UNDEFINED, GTAVCS_SURFACE_WIDTH, GTAVCS_SURFACE_HEIGHT,
         SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN);
     if (!window) goto sdl_error;
     context = SDL_GL_CreateContext(window);
@@ -164,6 +165,11 @@ int main(int argc, char **argv)
         goto cleanup;
     }
     diagnostic("[boot] GL %s; renderer %s\n", glGetString(GL_VERSION), glGetString(GL_RENDERER));
+    {
+        int surface_w, surface_h;
+        SDL_GL_GetDrawableSize(window, &surface_w, &surface_h);
+        gtavcs_output_update(surface_w, surface_h); /* before the core: the renderer starts at the output size */
+    }
     /* The core paces host frames (platform::waitNextFrame, 60 Hz); the RHI sets the
      * interval from the Display > Vertical sync setting when it presents. */
     if (SDL_GL_SetSwapInterval(0) < 0)
@@ -221,10 +227,13 @@ int main(int argc, char **argv)
         /* Docking (M05-10): every operation-mode or drawable change, with the frames presented and their mean
          * interval since the last one (a dock change that stops presentation shows as a collapsed interval). */
         const int mode = appletGetOperationMode();
+        gtavcs_output_update(width, height);
+        int output_w, output_h;
+        gtavcs_output_size(&output_w, &output_h);
         if (width != previous_width || height != previous_height || mode != previous_mode) {
             const u64 now = armTicksToNs(armGetSystemTick());
-            diagnostic("[video] drawable=%dx%d window=%dx%d mode=%d (was %d); %llu frames, %.2f ms each since the last change; heap %zu\n",
-                width, height, window_w, window_h, mode, previous_mode, (unsigned long long)window_frames,
+            diagnostic("[video] drawable=%dx%d window=%dx%d output=%dx%d mode=%d (was %d); %llu frames, %.2f ms each since the last change; heap %zu\n",
+                width, height, window_w, window_h, output_w, output_h, mode, previous_mode, (unsigned long long)window_frames,
                 window_frames ? (double)(now - window_start) / 1e6 / (double)window_frames : 0.0,
                 (size_t)mallinfo().uordblks);
             previous_width = width; previous_height = height; previous_mode = mode;

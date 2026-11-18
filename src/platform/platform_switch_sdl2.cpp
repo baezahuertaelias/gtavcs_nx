@@ -8,17 +8,21 @@
 //     are accepted and remembered so the settings registry keeps working, and logged once.
 //   - Vulkan entry points report unavailable (the Switch baseline is OpenGL through SDL2/EGL; no Vulkan driver).
 //   - The OpenGL renderer (rhi::GlWindow, M05) gets main.c's context through SDL: its entry points, the swap, the
-//     drawable size and the swap interval. Nothing here makes a context or surface.
+//     swap interval and, as the drawable size, the operation mode's output region of the fixed 1920x1080 surface
+//     (src/switch/output.h, M06-20). Nothing here makes a context or surface.
 //   - SDL2 game controllers: buttons by physical position (SDL_HINT_GAMECONTROLLER_USE_BUTTON_LABELS=0), so
-//     south = Cross on every controller (platform.h's contract).
+//     south = Cross on every controller (platform.h's contract). Whether a controller is connected comes from HID's
+//     npad style sets, not SDL: switch-sdl2 never removes a joystick (M06-14).
 //   - Audio: SDL2's callback device (SDL owns audren), pulled from upstream's producer ring by AudioFill on SDL's
 //     audio thread. setFocus(false) pauses and resumes it across HOME / sleep.
 // Thread rules are platform.h's: the main thread pumps events and owns the frame calls; queries read a snapshot.
 #include "platform/platform.h"
 #include "platform/platform_switch.h"
 #include "platform/gl_loader_egl.h"
+#include "switch/output.h"
 
 #include <SDL.h>
+#include <switch.h>
 
 #include "imgui.h"
 #include "imgui_impl_sdl2.h"
@@ -100,6 +104,18 @@ namespace platform
             std::fprintf(stderr, "[platform] %s: not on the Switch (accepted, no effect)\n", what);
         }
 
+        // The window's back buffer as the renderer sees it: the operation mode's output region of the fixed surface
+        // (src/switch/output.c, M06-20), or the whole drawable before main.c set one.
+        void outputSize(int &width, int &height)
+        {
+            width = height = 0;
+            if (!g_window)
+                return;
+            gtavcs_output_size(&width, &height);
+            if (width <= 0 || height <= 0)
+                SDL_GL_GetDrawableSize(g_window, &width, &height);
+        }
+
         void openGamepad(int index)
         {
             if (g_gamepad || !SDL_IsGameController(index))
@@ -122,6 +138,45 @@ namespace platform
                 openGamepad(i);
         }
 
+        // Physical connection (M06-14). switch-sdl2 2.28's joystick driver keeps a fixed set of joysticks and never
+        // removes one, so SDL_GameControllerGetAttached stays 1 after the Joy-Cons disconnect (M01's connected=1
+        // observation). SDL's first joystick reads player 1, which is npad No1 or the handheld rail, so HID's style
+        // sets of those two are the truth: no style means nothing is connected for player 1.
+        uint32_t g_npadStyles = ~0u; // No1 | Handheld << 16 as last logged; ~0: not read yet
+        bool g_inputLog = false;     // VCS_NX_INPUT_LOG=1: every controller button / axis change to the log
+
+        const char *orUnknown(const char *name) { return name ? name : "?"; }
+
+        const char *styleName(uint32_t styles)
+        {
+            if (styles & HidNpadStyleTag_NpadFullKey)
+                return "Pro Controller (full key)";
+            if (styles & HidNpadStyleTag_NpadHandheld)
+                return "Joy-Cons attached (handheld)";
+            if (styles & HidNpadStyleTag_NpadJoyDual)
+                return "paired Joy-Cons (dual)";
+            if (styles & (HidNpadStyleTag_NpadJoyLeft | HidNpadStyleTag_NpadJoyRight))
+                return "single Joy-Con";
+            return styles ? "other" : "none";
+        }
+
+        bool playerOneConnected()
+        {
+            const uint32_t no1 = hidGetNpadStyleSet(HidNpadIdType_No1), handheld = hidGetNpadStyleSet(HidNpadIdType_Handheld);
+            const uint32_t now = (no1 & 0xFFFFu) | (handheld & 0xFFFFu) << 16;
+            if (now != g_npadStyles)
+            {
+                std::fprintf(stderr,
+                             "[platform] controller physical: No1 styles 0x%x (%s, device type 0x%x), handheld styles 0x%x (%s, "
+                             "device type 0x%x)%s\n",
+                             no1, styleName(no1), no1 ? hidGetNpadDeviceType(HidNpadIdType_No1) : 0u, handheld,
+                             styleName(handheld), handheld ? hidGetNpadDeviceType(HidNpadIdType_Handheld) : 0u,
+                             now ? "" : ": nothing connected for player 1, input neutral");
+                g_npadStyles = now;
+            }
+            return now != 0;
+        }
+
         void snapshotGamepad()
         {
             static constexpr SDL_GameControllerButton kButtons[GAMEPAD_BUTTON_COUNT] = {
@@ -136,8 +191,9 @@ namespace platform
                 SDL_CONTROLLER_AXIS_TRIGGERLEFT, SDL_CONTROLLER_AXIS_TRIGGERRIGHT,
             };
             // out of focus (HOME, sleep) or without a pad: neutral, so nothing stays held
-            const bool live = g_gamepad && g_focused && SDL_GameControllerGetAttached(g_gamepad);
-            g_padConnected.store(g_gamepad != nullptr, std::memory_order_relaxed);
+            const bool physical = playerOneConnected();
+            const bool live = g_gamepad && physical && g_focused && SDL_GameControllerGetAttached(g_gamepad);
+            g_padConnected.store(g_gamepad != nullptr && physical, std::memory_order_relaxed);
             for (int b = 0; b < GAMEPAD_BUTTON_COUNT; ++b)
                 g_padButtons[b].store(live && SDL_GameControllerGetButton(g_gamepad, kButtons[b]), std::memory_order_relaxed);
             for (int a = 0; a < AXIS_COUNT; ++a)
@@ -236,6 +292,9 @@ namespace platform
         g_quit = false;
         g_nextFrameNs = 0;
         SDL_SetHint(SDL_HINT_GAMECONTROLLER_USE_BUTTON_LABELS, "0"); // positions: south = Cross (platform.h)
+        if (const char *e = std::getenv("VCS_NX_INPUT_LOG"); e && *e && *e != '0')
+            g_inputLog = true;
+        g_npadStyles = ~0u;
         openFirstGamepad();
 
         IMGUI_CHECKVERSION();
@@ -315,8 +374,7 @@ namespace platform
     void glDrawableSize(uint32_t *width, uint32_t *height)
     {
         int w = 0, h = 0;
-        if (g_window)
-            SDL_GL_GetDrawableSize(g_window, &w, &h);
+        outputSize(w, h);
         *width = static_cast<uint32_t>(std::max(w, 0));
         *height = static_cast<uint32_t>(std::max(h, 0));
     }
@@ -357,6 +415,28 @@ namespace platform
                 break;
             case SDL_CONTROLLERDEVICEADDED:
                 openGamepad(e.cdevice.which);
+                break;
+            case SDL_CONTROLLERBUTTONDOWN:
+            case SDL_CONTROLLERBUTTONUP:
+                if (g_inputLog)
+                    std::fprintf(stderr, "[input] %u ms instance %d button %s %s\n", e.cbutton.timestamp, e.cbutton.which,
+                                 orUnknown(SDL_GameControllerGetStringForButton(static_cast<SDL_GameControllerButton>(e.cbutton.button))),
+                                 e.type == SDL_CONTROLLERBUTTONDOWN ? "down" : "up");
+                break;
+            case SDL_CONTROLLERAXISMOTION:
+                if (g_inputLog)
+                {
+                    // only crossings of half travel and the return to the centre: enough to show direction and sign
+                    static int8_t zone[SDL_CONTROLLER_AXIS_MAX] = {};
+                    const int8_t z = e.caxis.value > 16384 ? 1 : e.caxis.value < -16384 ? -1 : 0;
+                    if (e.caxis.axis < SDL_CONTROLLER_AXIS_MAX && z != zone[e.caxis.axis])
+                    {
+                        zone[e.caxis.axis] = z;
+                        std::fprintf(stderr, "[input] %u ms instance %d axis %s %d\n", e.caxis.timestamp, e.caxis.which,
+                                     orUnknown(SDL_GameControllerGetStringForAxis(static_cast<SDL_GameControllerAxis>(e.caxis.axis))),
+                                     e.caxis.value);
+                    }
+                }
                 break;
             case SDL_CONTROLLERDEVICEREMOVED:
                 if (g_gamepad && SDL_JoystickInstanceID(SDL_GameControllerGetJoystick(g_gamepad)) == e.cdevice.which)
@@ -402,6 +482,12 @@ namespace platform
         if (!g_imgui)
             return;
         ImGui_ImplSDL2_NewFrame();
+        // the backend measures the whole window; Dear ImGui draws on its output region (switch/output.h)
+        int w = 0, h = 0;
+        outputSize(w, h);
+        ImGuiIO &io = ImGui::GetIO();
+        io.DisplaySize = ImVec2(static_cast<float>(w), static_cast<float>(h));
+        io.DisplayFramebufferScale = ImVec2(1.0f, 1.0f);
         ImGui::NewFrame();
     }
 
@@ -461,12 +547,7 @@ namespace platform
     bool frameLeadRan() { return g_leadRan; }
     bool frameSlept() { return g_slept; }
 
-    void windowSize(int &width, int &height)
-    {
-        width = height = 0;
-        if (g_window)
-            SDL_GL_GetDrawableSize(g_window, &width, &height);
-    }
+    void windowSize(int &width, int &height) { outputSize(width, height); }
 
     bool windowFocused() { return g_window && !g_hiddenWindow && g_focused; }
 

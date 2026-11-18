@@ -23,6 +23,7 @@
 #include "runtime/ee_scheduler.h"
 #include "runtime/ps2_control.h"
 #include "runtime/ps2_disc_image.h"
+#include "runtime/ps2_hle_survey.h"
 #include "runtime/ps2_perf.h"
 
 #include "debug/crash.h"
@@ -184,15 +185,17 @@ namespace
                 ++waiting;
         }
         const platform_switch::Stats ps = platform_switch::stats();
+        const struct mallinfo heap = mallinfo(); // M06-12: the heap during play, not only at boot and shutdown
         char line[512];
         std::snprintf(line, sizeof(line),
                       "host_frames=%llu game_frames=%llu ee_cycle=%llu ee_threads=%zu ready=%zu waiting=%zu dormant=%zu running=%d "
-                      "pc=%08x ra=%08x pumps=%llu audio_callbacks=%llu audio_frames=%llu gamepad=%d",
+                      "pc=%08x ra=%08x pumps=%llu audio_callbacks=%llu audio_frames=%llu gamepad=%d heap_in_use=%zu heap_obtained=%zu",
                       static_cast<unsigned long long>(core.frames), static_cast<unsigned long long>(vcs::rig::gameFrames()),
                       static_cast<unsigned long long>(snap.eeCycle), snap.threads.size(), ready, waiting, dormant, snap.runningThreadId,
                       rt.m_debugPc.load(std::memory_order_relaxed), rt.m_debugRa.load(std::memory_order_relaxed),
                       static_cast<unsigned long long>(ps.pumps), static_cast<unsigned long long>(ps.audioCallbacks),
-                      static_cast<unsigned long long>(ps.audioFrames), ps.gamepad ? 1 : 0);
+                      static_cast<unsigned long long>(ps.audioFrames), ps.gamepad ? 1 : 0,
+                      static_cast<size_t>(heap.uordblks), static_cast<size_t>(heap.arena));
         result(core, "progress", line);
         result(core, "perf", quote(ps2perf::summaryLine()));
     }
@@ -311,6 +314,18 @@ namespace
             setenv(name.c_str(), value.c_str(), 1);
             std::fprintf(stderr, "[core] env %s=%s\n", name.c_str(), value.c_str());
         }
+        // vcs_hle_world.cpp chooses the world path in a static initializer, before this run's environment exists: on
+        // the desktop PS2X_HLE comes from the process environment, here from nxrun.cfg (M06-01, reference-handheld
+        // drew natively with PS2X_HLE=0). Apply the reference path's choice again: no MSCAL hooks = the recompiled
+        // VU1 programs draw the world. PS2X_HLE_VERIFY's hooks are private to that file: not selectable here.
+        if (const char *hle = std::getenv("PS2X_HLE"); hle && *hle == '0' && !std::getenv("PS2X_HLE_VERIFY"))
+        {
+            ps2hle::setMscalHooks(nullptr, nullptr);
+            std::fprintf(stderr, "[core] PS2X_HLE=0: the world through the VU1 programs (reference path)\n");
+        }
+        else if (std::getenv("PS2X_HLE_VERIFY"))
+            std::fprintf(stderr, "[core] PS2X_HLE_VERIFY from nxrun.cfg is only partly applied: the RSL world hooks stay "
+                                 "off, the native MSCAL hooks chosen at process start stay on (no verification)\n");
         // upstream main: the hardware GS renderer unless PS2X_GS says otherwise; it draws through the OpenGL RHI
         // (VCS_RHI=null keeps the null backend for CPU-side bring-up)
         if (const char *gs = std::getenv("PS2X_GS"); !gs || !*gs)

@@ -72,6 +72,32 @@ def send(command, timeout=70.0):
     return data.decode("utf-8", errors="replace").strip()
 
 
+def private_bytes(process):
+    """The reference's private bytes (Windows' commit charge of the process; None elsewhere): its heap, for M06-12."""
+    if os.name != "nt":
+        return None
+    import ctypes
+    from ctypes import wintypes
+
+    class Counters(ctypes.Structure):
+        _fields_ = [("cb", wintypes.DWORD), ("PageFaultCount", wintypes.DWORD)] + \
+                   [(name, ctypes.c_size_t) for name in ("PeakWorkingSetSize", "WorkingSetSize", "QuotaPeakPagedPoolUsage",
+                                                         "QuotaPagedPoolUsage", "QuotaPeakNonPagedPoolUsage",
+                                                         "QuotaNonPagedPoolUsage", "PagefileUsage", "PeakPagefileUsage",
+                                                         "PrivateUsage")]
+
+    handle = ctypes.windll.kernel32.OpenProcess(0x1000, False, process.pid)  # PROCESS_QUERY_LIMITED_INFORMATION
+    if not handle:
+        return None
+    try:
+        counters = Counters()
+        counters.cb = ctypes.sizeof(counters)
+        ok = ctypes.windll.psapi.GetProcessMemoryInfo(handle, ctypes.byref(counters), counters.cb)
+        return counters.PrivateUsage if ok else None
+    finally:
+        ctypes.windll.kernel32.CloseHandle(handle)
+
+
 def quote(text):
     return '"' + text.replace("\\", "\\\\").replace('"', '\\"').replace("\n", " ") + '"'
 
@@ -131,7 +157,9 @@ def main():
                 break
             if now >= next_report:
                 frames = send("frames")
-                result(now, "progress", "game_frames=" + frames.split()[-1] if frames.startswith("ok") else frames)
+                used = private_bytes(process)
+                result(now, "progress", ("game_frames=" + frames.split()[-1] if frames.startswith("ok") else frames) +
+                       ("" if used is None else f" private_bytes={used}"))
                 result(now, "perf", quote(send("perf")))
                 next_report = now + config["report"]
             while pending and pending[0][0] <= now:

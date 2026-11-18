@@ -35,12 +35,13 @@ authorize general implementation delegation or additional user-owned chats.
 GitHub plan limitations on private branch protection must be recorded honestly;
 they do not relax these operating rules.
 
-**Current deliverable (M05: OpenGL RHI proven on the Switch, awaiting independent review).**
+**Current deliverable (M06: handheld beta proven on the Switch, awaiting independent review).**
 `python tools/build_game.py` links the private generated EE/VU archive, the
 overlaid upstream runtime/game layer, `src/core/core.cpp` behind the C ABI in
 `src/core.h`, the SDL2 platform adapter and the OpenGL 3.3 RHI backend
 (`src/rhi/gl`, GLSL ports in `src/render/glsl`); the RHI swaps the window, and
-`VCS_RHI=null` keeps the null backend. It also builds the public RHI conformance
+`VCS_RHI=null` keeps the null backend. The window is a fixed 1920x1080 surface cropped
+to the mode's output (`src/switch/output.c`, M06-20). It also builds the public RHI conformance
 NRO (`src/rhi_tests`). `--public` (CI) compiles every public library and links
 no game code. The C ABI is port-owned glue, not an upstream API. Do not describe
 a successful build as ingame validation.
@@ -209,15 +210,14 @@ Switch build command. See the checklist before attempting ARM64 core compilation
 ## Runtime ownership and developer guidelines
 
 - The main thread owns SDL events, window/context, GL calls and presentation.
-  The window is created at the starting mode's size without SDL_WINDOW_RESIZABLE:
+  The window is a fixed 1920x1080 surface without SDL_WINDOW_RESIZABLE:
   switch-sdl2 2.28 resizes a resizable window at dock changes and every resize
-  (also SDL_SetWindowSize) leaks the EGL surface's buffers (M05). The compositor
-  scales the fixed window to the panel or TV. Still query drawable pixels and
-  rebuild render targets on size changes.
-  1280x720 handheld / 1920x1080 docked are output targets, not measured performance.
-  Until M06-20 they hold only in the starting mode: a handheld start upscales 720p
-  on the TV, a docked start renders 1080p and downscales it on the panel.
-  Keep render scale distinct from drawable size and keep HUD aspect correct.
+  (also SDL_SetWindowSize) leaks the EGL surface's buffers (M05). The picture is
+  drawn at the operation mode's output size (1280x720 handheld, 1920x1080 docked)
+  and the layer cropped to it (src/switch/output.c, M06-20); the renderer sees the
+  output size as its back buffer. Proven in handheld only; docked output and dock
+  changes are M10-13. Output sizes are targets, not measured performance.
+  Keep render scale distinct from output size and keep HUD aspect correct.
 - Snapshot controller state once per event pump; publish a synchronized snapshot
   to the future game thread. Handle hotplug, disconnect-to-neutral, dead zones,
   signed axis extremes, triggers and rumble. Map physical positions:
@@ -285,5 +285,15 @@ from either starting mode in the game and the test program, with no heap growth
 per change shown in the test program (the game's heap is sampled at the changes
 only; output size: M06-20); every GL call stays on
 the main thread (a shared worker context shares nothing on this driver, M05-09).
-No gameplay, beta or frame-rate acceptance is claimed (M06, M10). Full paired wireless/Pro
-controller and docking acceptance remain open.
+M06 (2026-11-17, handheld only, paired Joy-Cons only, stock clocks): from an empty
+test card the game reaches S4 at Fort Baxter through S1-S3 with the world and HUD
+drawn through OpenGL at 1x internal / 1280x720 output, the player controlled for
+5+ continuous minutes, closed from HOME in order; the S3 cutscene runs out without
+an audio device; Joy-Con disconnect/reconnect works through HID style sets. Measured
+route S4 game frame median 43.1 ms / p95 67.9 ms (about 19 fps); no FPS target (M10).
+Review 3 (2026-11-18): a 21-minute drive found a host heap leak in upstream's RSL
+recording cache; root patch 0009 prunes it and the heap levels off while driving
+(M06-12). The acceptance was repeated on the patched code (run 17: about 6 minutes
+of play, game frame median 84.6 ms / p95 419.9 ms while moving).
+Docked mode, docking and the Pro Controller are untested (user decisions: M10-13,
+M13-11).

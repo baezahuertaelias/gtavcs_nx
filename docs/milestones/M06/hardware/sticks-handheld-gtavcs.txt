@@ -1,0 +1,321 @@
+[boot] checked chdir succeeded: sdmc:/switch/gtavcs_nx/gamefolder
+[boot] SDL Switch; audio switch
+[boot] GL 4.3 (Core Profile) Mesa 20.1.0-rc3; renderer NV120
+[video] output 1280x720 on the 1920x1080 surface, crop lower-left (00000000)
+[resources] boot live_threads=2 (svc 00000000 via own)
+[resources] boot mapped_total=3343908864 mapped_used=3339763712 heap_in_use=145576896 heap_obtained=145608704 threads_created=1 default_thread_stack=8388608 file_opens=2 iso_opens=0
+[core] root=/switch/gtavcs_nx/gamefolder userdata=/switch/gtavcs_nx/gamefolder/userdata/tests/m06-sticks settings=/switch/gtavcs_nx/gamefolder/userdata/tests/m06-sticks/vcs.ini mc0=/switch/gtavcs_nx/gamefolder/userdata/tests/m06-sticks/mc0 mc1=/switch/gtavcs_nx/gamefolder/userdata/tests/m06-sticks/mc1 backups=/switch/gtavcs_nx/gamefolder/userdata/tests/m06-sticks/backups cache=/switch/gtavcs_nx/gamefolder/userdata/tests/m06-sticks/cache elf=/switch/gtavcs_nx/gamefolder/SLUS_215.90 profile=m06-sticks
+[nxrun] config t=0.000 profile="m06-sticks" seconds=90.000000 commands=0 env=1 verify_files=0
+[core] env VCS_NX_INPUT_LOG=1
+[settings] display aspect 1.333, HUD 4:3
+[settings] display aspect 1.333, HUD 4:3
+[framerate] cap 30.00 fps (independent timing)
+[framerate] cap 60.00 fps (independent timing)
+[core] /switch/gtavcs_nx/gamefolder/SLUS_215.90 sha1 d1832508caf0990c2291c0f255c96a889cce9f88: GTA: Vice City Stories - USA (SLUS-21590) v1.00
+[core] folder disc 1066336 sectors, 0 mods applied; no disc image opened
+[gs] hardware GS renderer (OpenGL)
+[render-worker] on: render submission runs on its own thread
+[render-worker] GS stage on: the GS front end and frame building on a second thread
+[platform] gamepad: Switch Controller (instance 0) mapping 000038f853776974636820436f6e7400,Switch Controller,a:b1,b:b0,back:b11,dpdown:b15,dpleft:b12,dpright:b14,dpup:b13,leftshoulder:b6,leftstick:b4,lefttrigger:b8,leftx:a0,lefty:a1,rightshoulder:b7,rightstick:b5,righttrigger:b9,rightx:a2,righty:a3,start:b10,x:b3,y:b2,crc:f838,platform:Unknown (see SDL_platform.h)
+[platform] SDL2 2.28.5 adopted main.c's window 1920x1080 (asked 640x448); ImGui on
+[rhi] OpenGL 4.3: clip_control 1, viewport_array 1, anisotropy 1 (max 16), KHR_debug 1, dual-source draw buffers 1, samples 8/8/8, max texture 16384, framebuffer encoding 0x2601
+[present] OpenGL on NV120 (4.3 (Core Profile) Mesa 20.1.0-rc3; GLSL 4.30)
+[platform] audio device 2: 48000 Hz, 2 channels, 1024 frames (switch)
+[menu] pause menu: Enter selects, Escape goes back, the mouse points and clicks
+[sound] native sound driver (CDSTREAM's servers on the host)
+[iop] emulated IOP off: no IRX module loaded or run (PS2X_IOP=1 runs it)
+[core] io elf=/switch/gtavcs_nx/gamefolder/SLUS_215.90 host=/switch/gtavcs_nx/gamefolder cd=/switch/gtavcs_nx/gamefolder mc=/switch/gtavcs_nx/gamefolder/userdata/tests/m06-sticks/mc0 cdImage=(none)
+[input] player bindings
+[core] desktop watchdog and sampling profiler not started (detached desktop threads; progress comes from the run's report lines)
+[resources] running live_threads=4 (svc 00000000 via own)
+[resources] running mapped_total=3343908864 mapped_used=3339763712 heap_in_use=222801696 heap_obtained=225751040 threads_created=3 default_thread_stack=8388608 file_opens=12 iso_opens=0
+[lifecycle] suspension_clock=1
+[lifecycle] resume=0 focus_notifications=1 focus=1
+[platform] focus lost: audio paused, pad neutral
+[nxrun] focus t=0.000 state=out
+[platform] focus back: audio resumed, pad live
+[nxrun] focus t=0.000 state=in
+[video] drawable=1920x1080 window=1920x1080 output=1280x720 mode=0 (was -1); 0 frames, 0.00 ms each since the last change; heap 222802000
+[platform] controller physical: No1 styles 0x0 (none, device type 0x0), handheld styles 0x2 (Joy-Cons attached (handheld), device type 0xc)
+[gs-hw] renderer ready (NV120 (4.3 (Core Profile) Mesa 20.1.0-rc3; GLSL 4.30)), scale 1x
+[present] display aspect 1.333
+[platform] mouse capture: not on the Switch (accepted, no effect)
+[nxrun] progress t=0.000 host_frames=1 game_frames=0 ee_cycle=9830624 ee_threads=1 ready=1 waiting=0 dormant=0 running=1 pc=0021c8f0 ra=0021c8f0 pumps=1 audio_callbacks=20 audio_frames=20480 gamepad=1
+[nxrun] perf t=0.000 "game_fps=26.5 frame_ms=37.7 vblank_per_s=26.5 game_ms=36.4 render_ms=0.1 iop_ms=1.1 wait_ms=0.0 draws=0 verts=0 tex_uploads=0 dma_tags=0 vu1_programs=0 host_fps=0 gl_ms=0.0 audio_ms=43 black_frames=0 dip_frames=0 probed_frames=0 worker_ms=0.1 gs_ms=0.0 gs_draws=0.0 gs_verts=0.0 gs_vu1=0.0 gs_hle=0.0 gs_path2=0.0 gs_path3=0.0 native_draws=0.0 hud_draws=0.0 post_draws=0.0 packed_draws=0.0 packed_verts=0.0 tex_create_us=0.0 tex_kb=0.0 tex_decode_us=0.0"
+[movie] cdrom0:\MOVIES\STINGS.PSS;1: built without FFmpeg, skipped
+[movie] cdrom0:\MOVIES\INTRO.PSS;1: built without FFmpeg, skipped
+[gs-hw] a draw samples its own render target: reading a copy
+[menu] the Display page's Widescreen row hidden (2 focus moves past it, 4 rows up 27)
+[vu0native] running VCS VU0 segment vs triangle (0x020) natively (VU0 0x0020, 1960 bytes)
+[vu0native] running VCS VU0 sphere vs triangle (0x3A0) natively (VU0 0x03a0, 1960 bytes)
+[vu0native] running VCS VU0 store vf1..vf12 (0x0E30) natively (VU0 0x0e30, 104 bytes)
+[vu0native] running VCS VU0 3x matrix product (0x0E98) natively (VU0 0x0e98, 272 bytes)
+[vu0native] running VCS VU0 3x matrix product (0x0EB8) natively (VU0 0x0eb8, 240 bytes)
+[vu0native] running VCS VU0 sector box clip (0x0CF8) natively (VU0 0x0cf8, 312 bytes)
+[vu0native] running VCS VU0 sphere vs three plane sets (0x0C10) natively (VU0 0x0c10, 216 bytes)
+[vu0native] running VCS VU0 segment vs triangle, float inputs (0x068) natively (VU0 0x0068, 1960 bytes)
+[hle] world packets 4405: culled 966, drawn 2423 + 0 GPU-clipped (149194 vertices), 1016 C++-clipped, VU fallback 0
+[vu1compiled] running VU1 program 10 (ELF 0x2ac130) compiled (254 pairs at VU 0x0000)
+[vu1compiled] running VU1 program 11 (ELF 0x2ac920) compiled (84 pairs at VU 0x07f0)
+[vu1compiled] running VU1 program 12 (ELF 0x2acbc0) compiled (40 pairs at VU 0x0a90)
+[vu1compiled] running VU1 program 13 (ELF 0x2acd00) compiled (10 pairs at VU 0x0bd0)
+[vu1compiled] running VU1 program 14 (ELF 0x2acd50) compiled (3 pairs at VU 0x0c20)
+[vu1compiled] running VU1 program 15 (ELF 0x2acd68) compiled (88 pairs at VU 0x0c38)
+[vu1compiled] running VU1 program 16 (ELF 0x2ad028) compiled (30 pairs at VU 0x0ef8)
+[vu1compiled] running VU1 program 18 (ELF 0x2ad168) compiled (129 pairs at VU 0x1038)
+[vu1compiled] running VU1 program 19 (ELF 0x2ad570) compiled (38 pairs at VU 0x1440)
+[vu1compiled] running VU1 program 20 (ELF 0x2ad6a0) compiled (4 pairs at VU 0x1570)
+[vu1compiled] running VU1 program 21 (ELF 0x2ad6c0) compiled (558 pairs at VU 0x1590)
+[vu1compiled] running VU1 program 22 (ELF 0x2d08f0) compiled (112 pairs at VU 0x2bf0)
+[vu1compiled] running VU1 program 26 (ELF 0x2f13d0) compiled (18 pairs at VU 0x2700)
+[vu1compiled] running VU1 program 27 (ELF 0x2f1460) compiled (36 pairs at VU 0x2790)
+[vu1compiled] running VU1 program 28 (ELF 0x2f1580) compiled (48 pairs at VU 0x28b0)
+[vu1compiled] running VU1 program 29 (ELF 0x2f1700) compiled (30 pairs at VU 0x2a30)
+[vu1compiled] running VU1 program 30 (ELF 0x2f17f0) compiled (6 pairs at VU 0x2b20)
+[vu1compiled] running VU1 program 31 (ELF 0x2f1820) compiled (20 pairs at VU 0x2b50)
+[vu1compiled] running VU1 program 32 (ELF 0x2f18c0) compiled (18 pairs at VU 0x2700)
+[vu1compiled] running VU1 program 38 (ELF 0x368730) compiled (84 pairs at VU 0x07f0)
+[vu1compiled] running VU1 program 39 (ELF 0x3689d0) compiled (40 pairs at VU 0x0a90)
+[vu1compiled] running VU1 program 40 (ELF 0x368b10) compiled (10 pairs at VU 0x0bd0)
+[vu1compiled] running VU1 program 41 (ELF 0x368b60) compiled (88 pairs at VU 0x0c38)
+[vu1compiled] running VU1 program 42 (ELF 0x368e20) compiled (30 pairs at VU 0x0ef8)
+[vu1compiled] running VU1 program 43 (ELF 0x368f10) compiled (10 pairs at VU 0x0fe8)
+[vu1compiled] running VU1 program 44 (ELF 0x368f60) compiled (38 pairs at VU 0x1440)
+[vu1compiled] running VU1 program 45 (ELF 0x369090) compiled (4 pairs at VU 0x1570)
+[nxrun] progress t=10.019 host_frames=404 game_frames=137 ee_cycle=1758892817 ee_threads=1 ready=1 waiting=0 dormant=0 running=1 pc=0021ebfc ra=0021ebfc pumps=404 audio_callbacks=518 audio_frames=530432 gamepad=1
+[nxrun] perf t=10.019 "game_fps=11.1 frame_ms=90.4 vblank_per_s=40.6 game_ms=36.7 render_ms=7.4 iop_ms=3.1 wait_ms=43.2 draws=1146 verts=68016 tex_uploads=11 dma_tags=308 vu1_programs=75 host_fps=42 gl_ms=19.1 audio_ms=326 black_frames=0 dip_frames=0 probed_frames=0 worker_ms=58.5 gs_ms=47.7 gs_draws=38.3 gs_verts=13180.0 gs_vu1=38.3 gs_hle=0.0 gs_path2=0.0 gs_path3=0.0 native_draws=963.2 hud_draws=0.0 post_draws=13.3 packed_draws=23.2 packed_verts=2071.5 tex_create_us=11323.5 tex_kb=125.3 tex_decode_us=765.3"
+[hle] world packets 133572: culled 4811, drawn 125418 + 0 GPU-clipped (5734200 vertices), 3343 C++-clipped, VU fallback 0
+[nxrun] progress t=20.053 host_frames=663 game_frames=274 ee_cycle=3740542541 ee_threads=1 ready=1 waiting=0 dormant=0 running=1 pc=0021ec2c ra=0021ec2c pumps=663 audio_callbacks=991 audio_frames=1014784 gamepad=1
+[nxrun] perf t=20.053 "game_fps=20.6 frame_ms=48.5 vblank_per_s=42.3 game_ms=25.7 render_ms=2.0 iop_ms=1.4 wait_ms=19.3 draws=818 verts=54776 tex_uploads=0 dma_tags=229 vu1_programs=0 host_fps=23 gl_ms=27.2 audio_ms=292 black_frames=0 dip_frames=0 probed_frames=0 worker_ms=22.3 gs_ms=30.6 gs_draws=0.0 gs_verts=0.0 gs_vu1=0.0 gs_hle=0.0 gs_path2=0.0 gs_path3=0.0 native_draws=723.9 hud_draws=0.0 post_draws=16.8 packed_draws=77.1 packed_verts=9559.1 tex_create_us=0.0 tex_kb=0.0 tex_decode_us=0.0"
+[hle] world packets 281766: culled 9491, drawn 260042 + 0 GPU-clipped (12885081 vertices), 12233 C++-clipped, VU fallback 0
+[nxrun] progress t=30.191 host_frames=855 game_frames=399 ee_cycle=5663743461 ee_threads=1 ready=1 waiting=0 dormant=0 running=1 pc=0021ebfc ra=0021ebfc pumps=855 audio_callbacks=1465 audio_frames=1500160 gamepad=1
+[nxrun] perf t=30.191 "game_fps=4.7 frame_ms=214.9 vblank_per_s=27.1 game_ms=42.1 render_ms=98.0 iop_ms=6.1 wait_ms=68.7 draws=1743 verts=101100 tex_uploads=38 dma_tags=700 vu1_programs=0 host_fps=23 gl_ms=71.6 audio_ms=131 black_frames=0 dip_frames=0 probed_frames=0 worker_ms=171.3 gs_ms=183.4 gs_draws=0.0 gs_verts=0.0 gs_vu1=0.0 gs_hle=0.0 gs_path2=0.0 gs_path3=0.0 native_draws=1850.0 hud_draws=0.0 post_draws=18.7 packed_draws=187.5 packed_verts=28323.0 tex_create_us=70837.3 tex_kb=761.8 tex_decode_us=2404.2"
+[input] 36650 ms instance 0 button b down
+[input] 36745 ms instance 0 button b up
+[input] 37192 ms instance 0 button a down
+[input] 37325 ms instance 0 button a up
+[input] 38992 ms instance 0 button rightshoulder down
+[input] 39142 ms instance 0 button rightshoulder up
+[hle] world packets 404347: culled 14248, drawn 368136 + 0 GPU-clipped (18165551 vertices), 21963 C++-clipped, VU fallback 0
+[nxrun] progress t=40.225 host_frames=1111 game_frames=530 ee_cycle=7635047064 ee_threads=1 ready=1 waiting=0 dormant=0 running=1 pc=00109428 ra=00109428 pumps=1111 audio_callbacks=1937 audio_frames=1983488 gamepad=1
+[nxrun] perf t=40.225 "game_fps=10.7 frame_ms=93.0 vblank_per_s=38.1 game_ms=40.8 render_ms=11.1 iop_ms=2.6 wait_ms=38.5 draws=1494 verts=75210 tex_uploads=1 dma_tags=120 vu1_programs=0 host_fps=21 gl_ms=53.5 audio_ms=294 black_frames=0 dip_frames=0 probed_frames=0 worker_ms=67.4 gs_ms=66.5 gs_draws=0.0 gs_verts=0.0 gs_vu1=0.0 gs_hle=0.0 gs_path2=0.0 gs_path3=0.0 native_draws=1478.9 hud_draws=0.0 post_draws=17.5 packed_draws=122.6 packed_verts=20874.3 tex_create_us=3247.0 tex_kb=78.5 tex_decode_us=229.8"
+[input] 44855 ms instance 0 button b down
+[input] 44957 ms instance 0 button b up
+[input] 45220 ms instance 0 button a down
+[input] 45376 ms instance 0 button a up
+[input] 46609 ms instance 0 button b down
+[input] 46774 ms instance 0 button b up
+[hle] world packets 530741: culled 27627, drawn 469290 + 0 GPU-clipped (22650811 vertices), 33824 C++-clipped, VU fallback 0
+[input] 49606 ms instance 0 button b down
+[input] 49806 ms instance 0 button b up
+[input] 50373 ms instance 0 button a down
+[input] 50606 ms instance 0 button a up
+[nxrun] progress t=50.237 host_frames=1387 game_frames=742 ee_cycle=9863685444 ee_threads=1 ready=1 waiting=0 dormant=0 running=1 pc=0011ad4c ra=0011ad4c pumps=1387 audio_callbacks=2406 audio_frames=2463744 gamepad=1
+[nxrun] perf t=50.237 "game_fps=33.8 frame_ms=29.6 vblank_per_s=49.2 game_ms=13.7 render_ms=0.3 iop_ms=0.9 wait_ms=14.7 draws=73 verts=5398 tex_uploads=1 dma_tags=52 vu1_programs=0 host_fps=51 gl_ms=5.0 audio_ms=217 black_frames=0 dip_frames=0 probed_frames=0 worker_ms=3.9 gs_ms=7.9 gs_draws=0.0 gs_verts=0.0 gs_vu1=0.0 gs_hle=0.0 gs_path2=0.0 gs_path3=0.0 native_draws=60.7 hud_draws=1.1 post_draws=4.0 packed_draws=11.5 packed_verts=1541.5 tex_create_us=1144.1 tex_kb=13.8 tex_decode_us=49.3"
+[input] 54273 ms instance 0 axis leftx -29615
+[input] 55256 ms instance 0 axis leftx -312
+[input] 55640 ms instance 0 button leftstick down
+[input] 55873 ms instance 0 button leftstick up
+[input] 56306 ms instance 0 button leftstick down
+[input] 56456 ms instance 0 button leftstick up
+[input] 56990 ms instance 0 button leftstick down
+[input] 57173 ms instance 0 button leftstick up
+[input] 57606 ms instance 0 button rightstick down
+[input] 57807 ms instance 0 button rightstick up
+[input] 58240 ms instance 0 button rightstick down
+[input] 58433 ms instance 0 button rightstick up
+[input] 58864 ms instance 0 button rightstick down
+[input] 59057 ms instance 0 button rightstick up
+[hle] world packets 602954: culled 34518, drawn 524789 + 0 GPU-clipped (25760147 vertices), 43647 C++-clipped, VU fallback 0
+[input] 59540 ms instance 0 button leftstick down
+[input] 59724 ms instance 0 button leftstick up
+[input] 59952 ms instance 0 button rightstick down
+[input] 60107 ms instance 0 button rightstick up
+[input] 60276 ms instance 0 button leftstick down
+[input] 60386 ms instance 0 axis lefty -17550
+[input] 60386 ms instance 0 button leftstick up
+[input] 60506 ms instance 0 axis lefty -7649
+[input] 60789 ms instance 0 axis righttrigger 32767
+[input] 60890 ms instance 0 axis lefttrigger 32767
+[input] 61356 ms instance 0 axis righttrigger 0
+[input] 61406 ms instance 0 axis lefttrigger 0
+[input] 61539 ms instance 0 axis lefttrigger 32767
+[input] 61956 ms instance 0 axis righttrigger 32767
+[input] 62008 ms instance 0 axis lefttrigger 0
+[input] 62139 ms instance 0 axis righttrigger 0
+[input] 62240 ms instance 0 button leftshoulder down
+[nxrun] progress t=60.241 host_frames=1610 game_frames=941 ee_cycle=12249141903 ee_threads=1 ready=1 waiting=0 dormant=0 running=1 pc=0021ec2c ra=0021ec2c pumps=1610 audio_callbacks=2876 audio_frames=2945024 gamepad=1
+[nxrun] perf t=60.241 "game_fps=21.6 frame_ms=46.4 vblank_per_s=49.0 game_ms=31.4 render_ms=1.8 iop_ms=1.5 wait_ms=11.8 draws=610 verts=38448 tex_uploads=2 dma_tags=201 vu1_programs=0 host_fps=23 gl_ms=23.4 audio_ms=194 black_frames=0 dip_frames=0 probed_frames=0 worker_ms=23.4 gs_ms=22.7 gs_draws=0.0 gs_verts=0.0 gs_vu1=0.0 gs_hle=0.0 gs_path2=0.0 gs_path3=0.0 native_draws=532.0 hud_draws=15.0 post_draws=16.0 packed_draws=43.0 packed_verts=5935.4 tex_create_us=0.0 tex_kb=0.0 tex_decode_us=262.0"
+[input] 62560 ms instance 0 button rightshoulder down
+[input] 62912 ms instance 0 button leftshoulder up
+[input] 62912 ms instance 0 button rightshoulder up
+[input] 63418 ms instance 0 axis lefty -16581
+[input] 63747 ms instance 0 axis lefty 0
+[input] 64026 ms instance 0 button dpup down
+[input] 64305 ms instance 0 button dpup up
+[input] 64305 ms instance 0 button dpright down
+[input] 64507 ms instance 0 button dpdown down
+[input] 64606 ms instance 0 button dpright up
+[input] 64658 ms instance 0 button dpleft down
+[input] 64756 ms instance 0 button dpup down
+[input] 64756 ms instance 0 button dpdown up
+[input] 64906 ms instance 0 button dpleft up
+[input] 64957 ms instance 0 button dpright down
+[input] 65039 ms instance 0 button dpup up
+[input] 65090 ms instance 0 button dpright up
+[input] 65190 ms instance 0 button y down
+[input] 65290 ms instance 0 button b down
+[input] 65290 ms instance 0 button a down
+[input] 65390 ms instance 0 button x down
+[input] 65490 ms instance 0 button b up
+[input] 65523 ms instance 0 button y up
+[input] 65723 ms instance 0 button b down
+[input] 65723 ms instance 0 button y down
+[input] 65723 ms instance 0 button x up
+[input] 65856 ms instance 0 button b up
+[input] 65906 ms instance 0 button y up
+[input] 65906 ms instance 0 button x down
+[input] 66089 ms instance 0 button a up
+[input] 66089 ms instance 0 button x up
+[input] 66423 ms instance 0 axis lefty -25334
+[input] 66573 ms instance 0 axis leftx 18704
+[input] 66623 ms instance 0 axis lefty -9875
+[input] 66674 ms instance 0 axis leftx -628
+[input] 66674 ms instance 0 axis lefty 32760
+[input] 66724 ms instance 0 axis rightx 30317
+[input] 66756 ms instance 0 axis leftx -22259
+[input] 66806 ms instance 0 axis lefty -12854
+[input] 66856 ms instance 0 axis leftx -6211
+[input] 66856 ms instance 0 axis lefty -32172
+[input] 66906 ms instance 0 axis leftx 17631
+[input] 66906 ms instance 0 axis rightx -19874
+[input] 66906 ms instance 0 axis righty 26051
+[input] 66956 ms instance 0 axis lefty -7480
+[input] 67006 ms instance 0 axis lefty 16884
+[input] 67056 ms instance 0 axis leftx -14598
+[input] 67106 ms instance 0 axis leftx -28956
+[input] 67106 ms instance 0 axis lefty 15335
+[input] 67106 ms instance 0 axis rightx -7792
+[input] 67106 ms instance 0 axis righty -11254
+[input] 67158 ms instance 0 axis righty -32766
+[input] 67206 ms instance 0 axis leftx -3896
+[input] 67206 ms instance 0 axis lefty -32534
+[input] 67315 ms instance 0 axis leftx 22047
+[input] 67315 ms instance 0 axis lefty 24240
+[input] 67315 ms instance 0 axis righty 0
+[input] 67356 ms instance 0 axis leftx -2533
+[input] 67456 ms instance 0 axis leftx -17223
+[input] 67506 ms instance 0 axis lefty 5160
+[input] 67556 ms instance 0 axis lefty -27710
+[input] 67606 ms instance 0 axis leftx 1356
+[input] 67706 ms instance 0 axis leftx 31825
+[input] 67706 ms instance 0 axis lefty -7798
+[input] 67706 ms instance 0 axis rightx -22917
+[input] 67706 ms instance 0 axis righty 23419
+[input] 67757 ms instance 0 axis lefty 21357
+[input] 67806 ms instance 0 axis leftx 1117
+[input] 67906 ms instance 0 axis leftx -32653
+[input] 67906 ms instance 0 axis lefty 2724
+[input] 67956 ms instance 0 axis lefty -22837
+[input] 68006 ms instance 0 axis leftx -9013
+[input] 68106 ms instance 0 axis leftx 32357
+[input] 68106 ms instance 0 axis lefty -5165
+[input] 68156 ms instance 0 axis lefty 22737
+[input] 68206 ms instance 0 axis leftx 3036
+[input] 68206 ms instance 0 axis rightx -15139
+[input] 68206 ms instance 0 axis righty 10058
+[input] 68256 ms instance 0 axis righty -31988
+[input] 68308 ms instance 0 axis leftx -22983
+[input] 68339 ms instance 0 axis lefty 10688
+[input] 68339 ms instance 0 axis rightx 16499
+[input] 68389 ms instance 0 axis lefty -22678
+[input] 68439 ms instance 0 axis leftx -3010
+[input] 68439 ms instance 0 axis rightx 2408
+[input] 68439 ms instance 0 axis righty 1573
+[input] 68490 ms instance 0 axis righty 32005
+[input] 68539 ms instance 0 axis leftx 23687
+[input] 68589 ms instance 0 axis lefty -5691
+[input] 68639 ms instance 0 axis lefty 26702
+[input] 68689 ms instance 0 axis leftx -8780
+[input] 68689 ms instance 0 axis righty -8990
+[input] 68739 ms instance 0 axis righty -32577
+[input] 68839 ms instance 0 axis leftx -27523
+[input] 68890 ms instance 0 axis leftx 1200
+[input] 68890 ms instance 0 axis lefty -5933
+[input] 68939 ms instance 0 axis righty 0
+[hle] world packets 693192: culled 38447, drawn 602543 + 0 GPU-clipped (30198325 vertices), 52202 C++-clipped, VU fallback 0
+[input] 69673 ms instance 0 axis lefty 32656
+[input] 69673 ms instance 0 axis righty 17841
+[input] 69924 ms instance 0 axis righty 13332
+[input] 69975 ms instance 0 axis lefty 0
+[input] 70306 ms instance 0 axis lefty 32760
+[input] 70506 ms instance 0 axis righty 29669
+[input] 70556 ms instance 0 axis lefty 12985
+[input] 70706 ms instance 0 axis lefty -32742
+[input] 70706 ms instance 0 axis righty 10922
+[input] 70806 ms instance 0 axis righty -28448
+[input] 71006 ms instance 0 axis lefty 0
+[input] 71107 ms instance 0 axis lefty 32750
+[input] 71208 ms instance 0 axis righty -12214
+[input] 71339 ms instance 0 axis rightx -22604
+[input] 71339 ms instance 0 axis righty 23721
+[input] 71539 ms instance 0 axis lefty 0
+[input] 71639 ms instance 0 axis lefty -25133
+[input] 71740 ms instance 0 axis rightx -12368
+[input] 71790 ms instance 0 axis righty 0
+[input] 71891 ms instance 0 axis righty -30624
+[input] 72173 ms instance 0 axis lefty 0
+[input] 72223 ms instance 0 axis lefty 32756
+[input] 72273 ms instance 0 axis righty -669
+[nxrun] progress t=70.291 host_frames=1825 game_frames=1140 ee_cycle=14618776029 ee_threads=1 ready=1 waiting=0 dormant=0 running=1 pc=0021ec24 ra=0021ec24 pumps=1825 audio_callbacks=3348 audio_frames=3428352 gamepad=1
+[nxrun] perf t=70.291 "game_fps=20.4 frame_ms=49.1 vblank_per_s=48.5 game_ms=33.5 render_ms=1.4 iop_ms=1.6 wait_ms=12.5 draws=348 verts=29124 tex_uploads=1 dma_tags=223 vu1_programs=0 host_fps=21 gl_ms=23.1 audio_ms=127 black_frames=0 dip_frames=0 probed_frames=0 worker_ms=19.6 gs_ms=19.1 gs_draws=0.0 gs_verts=0.0 gs_vu1=0.0 gs_hle=0.0 gs_path2=0.0 gs_path3=0.0 native_draws=239.0 hud_draws=15.0 post_draws=16.0 packed_draws=78.0 packed_verts=13555.4 tex_create_us=2747.5 tex_kb=64.0 tex_decode_us=290.5"
+[input] 72624 ms instance 0 axis righty 32710
+[input] 73489 ms instance 0 axis lefty 0
+[input] 73489 ms instance 0 axis righty 0
+[lifecycle] confirmed suspension_ns=2257316406
+[lifecycle] resume=1 focus_notifications=0 focus=1
+[platform] focus lost: audio paused, pad neutral
+[nxrun] focus t=73.674 state=out
+[platform] focus back: audio resumed, pad live
+[nxrun] focus t=73.674 state=in
+[input] 78723 ms instance 0 axis righty 32597
+[input] 79223 ms instance 0 axis righty 0
+[input] 79456 ms instance 0 axis righty -32031
+[hle] world packets 733291: culled 49250, drawn 623599 + 0 GPU-clipped (31484433 vertices), 60442 C++-clipped, VU fallback 0
+[input] 80490 ms instance 0 axis righty 0
+[input] 81190 ms instance 0 axis righty 21053
+[input] 81889 ms instance 0 axis righty 0
+[input] 83323 ms instance 0 axis rightx -19334
+[nxrun] progress t=80.333 host_frames=2065 game_frames=1353 ee_cycle=17031028210 ee_threads=1 ready=1 waiting=0 dormant=0 running=1 pc=0021ebfc ra=0021ebfc pumps=2065 audio_callbacks=3819 audio_frames=3910656 gamepad=1
+[nxrun] perf t=80.333 "game_fps=17.4 frame_ms=57.4 vblank_per_s=45.5 game_ms=36.1 render_ms=2.5 iop_ms=1.7 wait_ms=17.0 draws=771 verts=46401 tex_uploads=7 dma_tags=258 vu1_programs=0 host_fps=20 gl_ms=40.5 audio_ms=284 black_frames=0 dip_frames=0 probed_frames=0 worker_ms=31.5 gs_ms=30.1 gs_draws=0.0 gs_verts=0.0 gs_vu1=0.0 gs_hle=0.0 gs_path2=0.0 gs_path3=0.0 native_draws=596.6 hud_draws=15.0 post_draws=16.0 packed_draws=53.2 packed_verts=7858.0 tex_create_us=8248.0 tex_kb=52.2 tex_decode_us=734.0"
+[input] 84943 ms instance 0 axis rightx 0
+[input] 86166 ms instance 0 axis rightx 30523
+[input] 86166 ms instance 0 button leftshoulder down
+[input] 86469 ms instance 0 button leftshoulder up
+[input] 87031 ms instance 0 axis rightx 0
+[input] 88812 ms instance 0 axis rightx 20262
+[input] 88979 ms instance 0 axis rightx 6445
+[hle] world packets 831037: culled 60430, drawn 699939 + 0 GPU-clipped (35129159 vertices), 70668 C++-clipped, VU fallback 0
+[input] 90011 ms instance 0 axis rightx 24219
+[input] 92322 ms instance 0 axis rightx 0
+[input] 93040 ms instance 0 axis lefty -30542
+[input] 93275 ms instance 0 axis leftx -16534
+[input] 93323 ms instance 0 axis rightx -31060
+[input] 93723 ms instance 0 axis rightx -15367
+[input] 94240 ms instance 0 axis leftx -14470
+[input] 94340 ms instance 0 axis lefty 0
+[nxrun] progress t=90.038 host_frames=2276 game_frames=1480 ee_cycle=19005755062 ee_threads=1 ready=1 waiting=0 dormant=0 running=1 pc=002c02c0 ra=002c02c0 pumps=2276 audio_callbacks=4275 audio_frames=4377600 gamepad=1
+[nxrun] perf t=90.038 "game_fps=19.7 frame_ms=50.9 vblank_per_s=47.2 game_ms=34.8 render_ms=2.1 iop_ms=1.5 wait_ms=12.4 draws=691 verts=42795 tex_uploads=0 dma_tags=229 vu1_programs=0 host_fps=19 gl_ms=32.8 audio_ms=277 black_frames=0 dip_frames=0 probed_frames=0 worker_ms=31.6 gs_ms=27.6 gs_draws=0.0 gs_verts=0.0 gs_vu1=0.0 gs_hle=0.0 gs_path2=0.0 gs_path3=0.0 native_draws=536.5 hud_draws=14.2 post_draws=15.2 packed_draws=52.2 packed_verts=7799.1 tex_create_us=0.0 tex_kb=0.0 tex_decode_us=0.0"
+[nxrun] stop t=90.038 reason=seconds frames=2276
+[core] orderly stop after 2275 frames
+[nxrun] shutdown t=90.038 frames=2276
+[platform] audio closed after 4291 callbacks, 4393984 frames
+[platform] shut down (window, context and SDL left to main.c)
+[core] game thread joined, render worker and platform stopped
+[stream] reader stopped
+[core] runtime destroyed
+[core] folder disc closed
+[nxrun] audit t=90.038 file_opens=145 iso_opens=0 first_iso="" threads_created=6
+[resources] shutdown live_threads=2 (svc 00000000 via own)
+[resources] shutdown mapped_total=3343908864 mapped_used=3339763712 heap_in_use=458800512 heap_obtained=593420288 threads_created=6 default_thread_stack=8388608 file_opens=145 iso_opens=0
+[shutdown] core, context, window and SDL closed
