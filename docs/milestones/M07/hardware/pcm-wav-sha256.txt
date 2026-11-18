@@ -1,0 +1,2 @@
+117b90e886573188e734447dcf1f788db6698f87d8a4e4484a52fbfda5bc6776 *build/evidence/M07/hw/pcm-handheld/game.wav
+1bb1f8041e39aa67abc66c8cac9871cee3aa6ae3e8cbb4d68e73321d3d8ea2aa *build/evidence/M07/desktop-pcm/reference.wav

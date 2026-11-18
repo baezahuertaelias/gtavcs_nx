@@ -47,6 +47,7 @@
 #include <cstring>
 #include <deque>
 #include <exception>
+#include <thread>
 #include <future>
 #include <memory>
 #include <string>
@@ -200,6 +201,33 @@ namespace
         result(core, "perf", quote(ps2perf::summaryLine()));
     }
 
+    // M07-03: deliberate stalls for a run schedule only. `stall main <ms>` blocks the main thread (events, GL, present:
+    // the frame) inside its command handler; `stall game <ms>` blocks the game thread (the guest, which produces the
+    // sound) from a job run there. The audio consumer (SDL's thread) is never blocked; the ring's underruns and fill
+    // (PS2X_AUDIO_STATS) show what each stall costs. Capped at 5 s.
+    void registerStall()
+    {
+        ps2control::addCommand("stall", [](const std::string &args, ps2control::Reply reply) {
+            char which[8] = {};
+            unsigned ms = 0;
+            if (std::sscanf(args.c_str(), "%7s %u", which, &ms) != 2 || ms == 0 || ms > 5000 ||
+                (std::strcmp(which, "main") != 0 && std::strcmp(which, "game") != 0))
+                return reply("error usage: stall main|game <ms 1-5000>");
+            const auto start = Clock::now();
+            if (std::strcmp(which, "main") == 0)
+            {
+                std::this_thread::sleep_for(std::chrono::milliseconds(ms));
+                return reply("ok main " + std::to_string(std::chrono::duration_cast<std::chrono::milliseconds>(Clock::now() - start).count()));
+            }
+            vcs::rig::runOnGameThread([ms, start, reply](uint8_t *, R5900Context *, PS2Runtime *) {
+                const auto begun = Clock::now();
+                std::this_thread::sleep_for(std::chrono::milliseconds(ms));
+                reply("ok game " + std::to_string(std::chrono::duration_cast<std::chrono::milliseconds>(Clock::now() - begun).count()) +
+                      " after " + std::to_string(std::chrono::duration_cast<std::chrono::milliseconds>(begun - start).count()));
+            });
+        });
+    }
+
     // control-channel commands of the run: sent when due, answers collected without blocking the frame
     void runCommands(Core &core)
     {
@@ -308,6 +336,7 @@ namespace
                                        " commands=" + std::to_string(core.config.commands.size()) +
                                        " env=" + std::to_string(core.config.env.size()) +
                                        " verify_files=" + (core.config.verifyFiles ? "1" : "0"));
+            registerStall();
         }
         for (const auto &[name, value] : core.config.env)
         {
