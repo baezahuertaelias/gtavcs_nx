@@ -11,11 +11,12 @@ run 7 and run 8's first attempt; `4e4a8524…` (plus the PS2X_HLE fix below) for
 clean `7a1f57d`) for runs 9-15; `9b89481c…` (built from the clean `b309413`: patch 0009, upstream's RSL recordings
 pruned, M06-12) for runs 16 and 17. Up to `9a9f7e12` the changes act only with a run configuration (the progress
 line) or with `PS2X_HLE` set (the fix); patch 0009 changes what every launch runs, so only runs 16 and 17 tested the
-code the beta ships. The packaged NRO, `bf18fd1f…` (built from the review-5 commit), differs from `9b89481c` only in
+code the beta ships. The packaged NRO, `5c2b558f…` (built from the review-6 commit), differs from `9b89481c` only in
 the 20-byte build ID at 0x40-0x53 (the NRO header) and its copy in the GNU build-ID note at 0x331e5b0-0x331e5c3
-(a byte compare of the two files: 38 bytes differ, all inside those ranges); code and data are identical. The build
+(a byte compare of the two files: 40 bytes differ, all inside those ranges); code and data are identical. The build
 ID changes with the patch series' hash, which is in the overlay checkout's path, so every edit to patch 0009's
-comment or text gives a new one (review 4's `03000b3b` the same way). No build manifest
+comment or text gives a new one (reviews 4 and 5's `03000b3b` and `bf18fd1f` the same way); the patch now states the
+prune age without Switch figures, which live here. No build manifest
 was kept for `1854e2be` and `4a15e8`: that they match those commits is the build log's and transcript's word, not
 checkable now (the packaged NRO is checked against its manifest: tools/package_beta.py). Every run: a new test
 profile (empty memory card, new settings), `[shutdown] core, context, window and SDL closed`, no new crash report
@@ -44,7 +45,7 @@ memory pool, not applet mode's.
 | 14 | cruise-handheld | `m06-cruise.cfg` (1,560 s, no input; review 3) | by `seconds` | clean run, but not the test it was meant to be: the Triangle presses did not put the player on the bike, so the route moved nothing |
 | 15 | drive-handheld | `m06-drive.cfg` (1,260 s, no input; NRO `9a9f7e12`) | by `seconds` | clean run; heap in use rose to the end: the leak (M06-12) |
 | 16 | drive-handheld-2 | `m06-drive.cfg` (1,260 s, no input; NRO `9b89481c` from `b309413`, patch 0009) | by `seconds` | PASS: heap in use levels off while driving (M06-12) |
-| 17 | accept-clean-3 | `m06-play.cfg` on the re-cleaned card, the person playing; NRO `9b89481c` | HOME close at 390 s | PASS: the acceptance on the shipped code (below; the packaged `bf18fd1f` differs only in its build ID) |
+| 17 | accept-clean-3 | `m06-play.cfg` on the re-cleaned card, the person playing; NRO `9b89481c` | HOME close at 390 s | PASS: the acceptance on the shipped code (below; the packaged `5c2b558f` differs only in its build ID) |
 
 A first attempt of run 1 stopped before launching (the session tool did not accept Sphaira's `450` reply for a
 missing folder; fixed in the tool) and a first attempt of run 5 stopped before launching (Docker Desktop not
@@ -188,10 +189,13 @@ because more of the city is resident. `heap_obtained` still grows, more slowly a
 over 300-700 s, +17.1 over 700-1,260 s; 1,389 MiB of the 3,189 MiB mapped at the end): fragmentation of freed
 memory, which newlib does not return; whether it levels off over a longer soak is for M10-07. The prune age is
 3,600 chains (one a game frame, by the patch's own reading; not traced on the Switch, whose logs have no
-`[rsl-world]` lines): a minute at 60 fps, but on the Switch while driving 8.6-10.4 minutes: 8.6 at run 16's
-whole-run rate (8,034 cruise frames from 44 s to 1,200 s, 6.95 a second; 3.24 loops, about 2,480 frames a loop),
-10.4 inside the 700-1,260 s window (5.76 a second between the answers at 720 s and 1,200 s; run 15: 7.42 a second
-over the run). That window (560 s) is therefore somewhat shorter than one retention period (about 0.9); across it
+`[rsl-world]` lines): a minute at 60 fps, but on the Switch while driving measured at **6.6-10.5 minutes**: the real time for
+3,600 cruise frames counted from each `cruise status` answer (interpolated between answers), 6.7 (from 44 s) to
+10.5 minutes (from 480 s) in run 16 and 6.6 to 9.3 in run 15, shortest early in the drive; the 60 s frame rates
+range 4.6-12.1 a second. As average-rate estimates for run 16: 8.6 minutes at the whole-run rate (8,034 cruise frames
+from 44 s to 1,200 s, 6.95 a second; 3.24 loops, about 2,480 frames a loop), 10.4 inside the 700-1,260 s window
+(5.76 a second between the answers at 720 s and 1,200 s). That window (560 s) is somewhat shorter than one
+retention period there (about 0.9); across it
 the route points above move little (2,050 m: 814 then 801 MiB; 4,000 m: 836 then 847 MiB). On the desktop, blocks the game thread still holds confirmed whose recording was dropped now
 take `replaySkipped`'s fallback from guest RAM (225 in the null-pruned run, 180 Vulkan-pruned, 0 unpatched; the
 Switch has no write watch, so no skipping there). Both are handed to M10-07. 0 GL errors in every
@@ -250,7 +254,7 @@ stay off; the MSCAL verification hooks are private to vcs_hle_world.cpp) and the
 
 ## Clean-card acceptance on the shipped code (M06-18; run 17, review 3)
 
-Patch 0009 changed the game NRO after run 13, so the acceptance was repeated on NRO `9b89481c`, the code the beta ships (the packaged `bf18fd1f` differs only in its
+Patch 0009 changed the game NRO after run 13, so the acceptance was repeated on NRO `9b89481c`, the code the beta ships (the packaged `5c2b558f` differs only in its
 build ID)
 (built from `b309413`, clean tree; the same bytes from `359c757`). With the user's consent `clean-sd` cleaned the card
 again (`hardware/accept2/sd-moves-restored.tsv`, `sd-tree-clean.txt`: 367 entries, only `gtavcs.nro` and the disc

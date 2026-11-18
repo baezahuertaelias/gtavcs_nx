@@ -208,7 +208,7 @@
  "M06-18": [
   {
    "path": "docs/milestones/M06/hardware/accept2/accept-clean-3-gtavcs.txt",
-   "result": "NRO 9b89481c (the shipped code; the packaged bf18fd1f differs only in its build ID), clean card, empty test card, handheld, application mode: S4 from 30 s to the HOME close at 390.4 s (~6.0 min), on foot and driving, 0 GL errors, orderly stop, no crash"
+   "result": "NRO 9b89481c (the shipped code; the packaged 5c2b558f differs only in its build ID), clean card, empty test card, handheld, application mode: S4 from 30 s to the HOME close at 390.4 s (~6.0 min), on foot and driving, 0 GL errors, orderly stop, no crash"
   },
   {
    "path": "docs/milestones/M06/hardware/accept2/sd-tree-clean.txt",
