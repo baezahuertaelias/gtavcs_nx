@@ -291,5 +291,9 @@ drawn through OpenGL at 1x internal / 1280x720 output, the player controlled for
 5+ continuous minutes, closed from HOME in order; the S3 cutscene runs out without
 an audio device; Joy-Con disconnect/reconnect works through HID style sets. Measured
 route S4 game frame median 43.1 ms / p95 67.9 ms (about 19 fps); no FPS target (M10).
+Review 3 (2026-11-18): a 21-minute drive found a host heap leak in upstream's RSL
+recording cache; root patch 0009 prunes it and the heap levels off while driving
+(M06-12). The acceptance was repeated on the patched code (run 17: about 6 minutes
+of play, game frame median 84.6 ms / p95 419.9 ms while moving).
 Docked mode, docking and the Pro Controller are untested (user decisions: M10-13,
 M13-11).

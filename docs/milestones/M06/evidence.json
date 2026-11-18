@@ -98,7 +98,7 @@
   },
   {
    "path": "docs/milestones/M06/hardware/accept2/accept-clean-3-summary.txt",
-   "result": "The acceptance on the shipped NRO, S4 (40-385 s): game 84.6/419.9 ms, host 59.7/146.3 ms, GPU present-to-present 2.0/87.1 ms"
+   "result": "The acceptance on NRO 9b89481c (the shipped code), S4 (40-385 s): game 84.6/419.9 ms, host 59.7/146.3 ms, GPU present-to-present 2.0/87.1 ms"
   }
  ],
  "M06-12": [
@@ -208,7 +208,7 @@
  "M06-18": [
   {
    "path": "docs/milestones/M06/hardware/accept2/accept-clean-3-gtavcs.txt",
-   "result": "Shipped NRO 9b89481c, clean card, empty test card, handheld, application mode: S4 from 30 s to the HOME close at 390.4 s (~6.0 min), on foot and driving, 0 GL errors, orderly stop, no crash"
+   "result": "NRO 9b89481c (the shipped code; the packaged bf18fd1f differs only in its build ID), clean card, empty test card, handheld, application mode: S4 from 30 s to the HOME close at 390.4 s (~6.0 min), on foot and driving, 0 GL errors, orderly stop, no crash"
   },
   {
    "path": "docs/milestones/M06/hardware/accept2/sd-tree-clean.txt",

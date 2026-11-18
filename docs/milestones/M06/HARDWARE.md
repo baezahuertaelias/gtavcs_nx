@@ -32,7 +32,7 @@ gpu.csv and the screenshots back. `summary <dir> <label>` writes `<label>-summar
 | 15 | `... game ... tests/switch/m06-drive.cfg --label drive-handheld` | do not touch (23 min) | review 3, M06-12 moving: the leak |
 | 16 | `... game ... tests/switch/m06-drive.cfg --label drive-handheld-2` (NRO with patch 0009) | do not touch (23 min) | M06-12 moving: heap levels off |
 | - | `... clean-sd build/evidence/M06/accept2` | (with the user's consent) | the card cleaned again for run 17 |
-| 17 | `... game build/evidence/M06/accept2 tests/switch/m06-play.cfg --label accept-clean-3` | B (Cross) skips S3; play 6+ min; close from HOME | M06-18 acceptance on the shipped NRO |
+| 17 | `... game build/evidence/M06/accept2 tests/switch/m06-play.cfg --label accept-clean-3` | B (Cross) skips S3; play 6+ min; close from HOME | M06-18 acceptance on NRO `9b89481c`, the shipped code |
 | - | `... restore-sd build/evidence/M06/accept2` | - | everything moved back; the run's own output kept as `/switch/gtavcs_nx_backup/acceptance-accept2-*` |
 | - | `python tools/m04_reference.py <cfg> <dir> --rhi null` or `vulkan` (the route path made absolute) | - | the same drive on the desktop reference, private bytes per progress line |
 | - | `... restore-sd build/evidence/M06/accept` | - | moves everything back (the run's own output kept beside the backup); the restored tree must equal the tree before cleaning |

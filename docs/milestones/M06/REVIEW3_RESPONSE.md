@@ -13,4 +13,4 @@ The review's own text was not kept in the repository; this lists the changes mad
 
 Patch 0009 changes the game NRO: every run before 16 ran without it (runs 9-15 on `9a9f7e12`, earlier runs on older
 NROs: HARDWARE_RESULTS.md), runs 16 and 17 on the patched `9b89481c`, whose code the beta ships. By the user's choice the clean-card acceptance was repeated on it: run 17, about 6.0 continuous minutes of S4,
-HOME close, 0 GL errors, no crash (HARDWARE_RESULTS.md, "Clean-card acceptance on the shipped NRO").
+HOME close, 0 GL errors, no crash (HARDWARE_RESULTS.md, "Clean-card acceptance on the shipped code").

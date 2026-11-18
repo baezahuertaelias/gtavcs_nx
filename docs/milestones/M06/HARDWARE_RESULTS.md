@@ -11,9 +11,11 @@ run 7 and run 8's first attempt; `4e4a8524…` (plus the PS2X_HLE fix below) for
 clean `7a1f57d`) for runs 9-15; `9b89481c…` (built from the clean `b309413`: patch 0009, upstream's RSL recordings
 pruned, M06-12) for runs 16 and 17. Up to `9a9f7e12` the changes act only with a run configuration (the progress
 line) or with `PS2X_HLE` set (the fix); patch 0009 changes what every launch runs, so only runs 16 and 17 tested the
-code the beta ships. The packaged NRO, `03000b3b…` (built from the review-4 commit), differs from `9b89481c` in 40
-bytes only: the 20-byte GNU build ID and its copy (a byte compare of the two files; the build ID changes with the
-patch series' hash, which is in the overlay checkout's path); code and data are identical. No build manifest
+code the beta ships. The packaged NRO, `bf18fd1f…` (built from the review-5 commit), differs from `9b89481c` only in
+the 20-byte build ID at 0x40-0x53 (the NRO header) and its copy in the GNU build-ID note at 0x331e5b0-0x331e5c3
+(a byte compare of the two files: 38 bytes differ, all inside those ranges); code and data are identical. The build
+ID changes with the patch series' hash, which is in the overlay checkout's path, so every edit to patch 0009's
+comment or text gives a new one (review 4's `03000b3b` the same way). No build manifest
 was kept for `1854e2be` and `4a15e8`: that they match those commits is the build log's and transcript's word, not
 checkable now (the packaged NRO is checked against its manifest: tools/package_beta.py). Every run: a new test
 profile (empty memory card, new settings), `[shutdown] core, context, window and SDL closed`, no new crash report
@@ -42,7 +44,7 @@ memory pool, not applet mode's.
 | 14 | cruise-handheld | `m06-cruise.cfg` (1,560 s, no input; review 3) | by `seconds` | clean run, but not the test it was meant to be: the Triangle presses did not put the player on the bike, so the route moved nothing |
 | 15 | drive-handheld | `m06-drive.cfg` (1,260 s, no input; NRO `9a9f7e12`) | by `seconds` | clean run; heap in use rose to the end: the leak (M06-12) |
 | 16 | drive-handheld-2 | `m06-drive.cfg` (1,260 s, no input; NRO `9b89481c` from `b309413`, patch 0009) | by `seconds` | PASS: heap in use levels off while driving (M06-12) |
-| 17 | accept-clean-3 | `m06-play.cfg` on the re-cleaned card, the person playing; NRO `9b89481c` | HOME close at 390 s | PASS: the acceptance run on the shipped NRO (below) |
+| 17 | accept-clean-3 | `m06-play.cfg` on the re-cleaned card, the person playing; NRO `9b89481c` | HOME close at 390 s | PASS: the acceptance on the shipped code (below; the packaged `bf18fd1f` differs only in its build ID) |
 
 A first attempt of run 1 stopped before launching (the session tool did not accept Sphaira's `450` reply for a
 missing folder; fixed in the tool) and a first attempt of run 5 stopped before launching (Docker Desktop not
@@ -114,7 +116,7 @@ itself is not in it: "present-to-present" means from just after one swap to just
 | play-handheld-2, S2 flyover (3-30 s) | 45.2 / 180.1 ms | 37.1 / 93.4 ms | 20.9 / 54.2 ms |
 | play-handheld-2, S4 playing, on foot and on the bike (90-414 s) | 66.6 / 264.1 ms | 54.8 / 110.8 ms | 11.3 / 72.7 ms |
 | accept-clean-2 (run 13, the acceptance on NRO `9a9f7e12`), S4 playing, mostly on the bike across the map (40-450 s) | 87.0 / 452.8 ms | 49.5 / 157.1 ms | 1.8 / 92.3 ms |
-| accept-clean-3 (run 17, the acceptance on the shipped NRO `9b89481c`), S4 playing, on foot and driving (40-385 s) | 84.6 / 419.9 ms | 59.7 / 146.3 ms | 2.0 / 87.1 ms |
+| accept-clean-3 (run 17, the acceptance on NRO `9b89481c`, the shipped code), S4 playing, on foot and driving (40-385 s) | 84.6 / 419.9 ms | 59.7 / 146.3 ms | 2.0 / 87.1 ms |
 
 The route's S2 lasts only until the Cross press at 10 s; the S2 rows come from the silent and play runs. In the
 route's S4 (perf_report from 100 s) the EE thread spends 36.7 ms per frame in game code (70 %), 4.5 ms in render
@@ -183,12 +185,14 @@ off from about 480 s (two-minute means 820.7-843.5 MiB), **-0.5 MiB/min over 700
 (`hardware/drive-handheld-2-heap.tsv`); at the same route point on each loop, by the method above, 2,050 m: 624,
 814, 801 MiB (t 121, 421, 812 s) and 4,000 m: 701, 836, 847 MiB (t 220, 556, 958 s), where run 15 kept rising. The plateau is higher than run 11's standing 600 MiB
 because more of the city is resident. `heap_obtained` still grows, more slowly as the run goes on (+51.2 MiB/min
-over 300-700 s, +17.1 over 700-1,260 s; 1,389 MiB of the 3,344 MB mapped at the end): fragmentation of freed
+over 300-700 s, +17.1 over 700-1,260 s; 1,389 MiB of the 3,189 MiB mapped at the end): fragmentation of freed
 memory, which newlib does not return; whether it levels off over a longer soak is for M10-07. The prune age is
-3,600 chains (one a game frame, by the patch's own reading): a minute at 60 fps, but on the Switch, driving at
-about 7 game fps (8,034 frames of cruise by 1,200 s, 3.24 loops: about 2,480 frames a loop), about 8.6 minutes,
-more than a loop. Run 16's 700-1,260 s window is therefore about one retention period; the route points above
-are flat across it. On the desktop, blocks the game thread still holds confirmed whose recording was dropped now
+3,600 chains (one a game frame, by the patch's own reading; not traced on the Switch, whose logs have no
+`[rsl-world]` lines): a minute at 60 fps, but on the Switch while driving 8.6-10.4 minutes: 8.6 at run 16's
+whole-run rate (8,034 cruise frames from 44 s to 1,200 s, 6.95 a second; 3.24 loops, about 2,480 frames a loop),
+10.4 inside the 700-1,260 s window (5.76 a second between the answers at 720 s and 1,200 s; run 15: 7.42 a second
+over the run). That window (560 s) is therefore somewhat shorter than one retention period (about 0.9); across it
+the route points above move little (2,050 m: 814 then 801 MiB; 4,000 m: 836 then 847 MiB). On the desktop, blocks the game thread still holds confirmed whose recording was dropped now
 take `replaySkipped`'s fallback from guest RAM (225 in the null-pruned run, 180 Vulkan-pruned, 0 unpatched; the
 Switch has no write watch, so no skipping there). Both are handed to M10-07. 0 GL errors in every
 `[rhi-stats]` line, stopped in order at 1,260 s, no crash report. Every run before 16 ran without patch 0009 (the
@@ -244,9 +248,10 @@ through the OpenGL RHI (screenshots `reference-handheld/*`). The reference path 
 180 s it reached S3, not S4. `PS2X_HLE_VERIFY` from nxrun.cfg is only partly applied (the RSL world hooks see it and
 stay off; the MSCAL verification hooks are private to vcs_hle_world.cpp) and the core says so.
 
-## Clean-card acceptance on the shipped NRO (M06-18; run 17, review 3)
+## Clean-card acceptance on the shipped code (M06-18; run 17, review 3)
 
-Patch 0009 changed the game NRO after run 13, so the acceptance was repeated on the NRO the beta ships, `9b89481c`
+Patch 0009 changed the game NRO after run 13, so the acceptance was repeated on NRO `9b89481c`, the code the beta ships (the packaged `bf18fd1f` differs only in its
+build ID)
 (built from `b309413`, clean tree; the same bytes from `359c757`). With the user's consent `clean-sd` cleaned the card
 again (`hardware/accept2/sd-moves-restored.tsv`, `sd-tree-clean.txt`: 367 entries, only `gtavcs.nro` and the disc
 files); `restore-sd` now names what the run made after its evidence folder (`/switch/gtavcs_nx_backup/acceptance-
