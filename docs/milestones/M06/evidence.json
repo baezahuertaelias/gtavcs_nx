@@ -99,6 +99,26 @@
  ],
  "M06-12": [
   {
+   "path": "docs/milestones/M06/hardware/drive-handheld-2-heap.tsv",
+   "result": "Patched NRO 9b89481c, car on the city route 21 min: heap in use 2-minute means 830.1-843.5 MiB from 480 s, trend -0.5 MiB/min over 700-1,260 s; heap_obtained +17.1 MiB/min (fragmentation, M10-07)"
+  },
+  {
+   "path": "docs/milestones/M06/hardware/drive-handheld-heap.tsv",
+   "result": "Unpatched NRO 9a9f7e12, the same drive: heap in use +15.6 MiB/min over 700-1,260 s, 1,035 MiB at the end: the leak"
+  },
+  {
+   "path": "docs/milestones/M06/hardware/desktop/desktop-null-results.txt",
+   "result": "Desktop reference, null renderer, the same drive: private bytes +33.0 MB/min over 700-1,260 s, 1,080 MB at the end"
+  },
+  {
+   "path": "docs/milestones/M06/hardware/desktop/desktop-null-pruned-results.txt",
+   "result": "Desktop reference with patch 0009: +1.4 MB/min over 700-1,260 s, 391 MB at the end"
+  },
+  {
+   "path": "patches/upstream/0009-rsl-recordings-prune.patch",
+   "result": "RSL recordings unused for 3,600 chains dropped every 1,024 chains"
+  },
+  {
    "path": "docs/milestones/M06/hardware/soak30-handheld-heap.tsv",
    "result": "Heap in use 2-minute means 604.2, 605.9, 601.1, 603.7 and 606.6 MiB (last bin 4 samples) from 480 s; trend -0.016 MiB/min over 600-992 s: levels off while standing; moving play's renderer objects bounded (run 5)"
   },

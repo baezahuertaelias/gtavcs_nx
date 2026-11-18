@@ -19,4 +19,6 @@ What the user, at the Switch, reported during the M06 session (2026-11-17, handh
   for Cross; by position it is B). Asked whether the Joy-Cons must be attached: told no. Run 13 was played with the
   Joy-Cons detached, with the sync-button disconnect and reconnect as instructed; the person did not report anything
   wrong. Asked about video for run 13: "1" (run 5's clips).
-- Review 3 follow-up (run 14, m06-cruise.cfg): nobody touching the console.
+- Review 3 follow-up (runs 14-16, m06-cruise.cfg / m06-drive.cfg): nobody touching the console. During the desktop
+  runs the user reported another program using the PC's GPU ("The host is running a game that uses full GPU"),
+  later freed.

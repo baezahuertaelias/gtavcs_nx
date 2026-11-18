@@ -28,6 +28,10 @@ gpu.csv and the screenshots back. `summary <dir> <label>` writes `<label>-summar
 | - | `... clean-sd build/evidence/M06/accept` | (with the user's consent) | moves everything but `gtavcs.nro` and the disc files to `/switch/gtavcs_nx_backup/`, records each move |
 | 12, 13 | `... game build/evidence/M06/accept tests/switch/m06-play.cfg --label accept-clean[-2]` | (run 12 was told A, wrongly; run 13 B) B (Cross) skips S3; play 7 min; sync buttons, wait, reconnect; close from HOME | M06-18 acceptance on the clean card, M06-14 deliberate disconnect |
 | - | (between runs 12 and 13, by hand over FTP) | - | run 12's output moved to `/switch/gtavcs_nx_backup/accept1-*` to clean the card again |
+| 14 | `... game build/evidence/M06/hw tests/switch/m06-cruise.cfg --label cruise-handheld` | do not touch (27 min) | review 3, M06-12 moving: did not move (Triangle did not seat the player) |
+| 15 | `... game ... tests/switch/m06-drive.cfg --label drive-handheld` | do not touch (23 min) | review 3, M06-12 moving: the leak |
+| 16 | `... game ... tests/switch/m06-drive.cfg --label drive-handheld-2` (NRO with patch 0009) | do not touch (23 min) | M06-12 moving: heap levels off |
+| - | `python tools/m04_reference.py <cfg> <dir> --rhi null` or `vulkan` (the route path made absolute) | - | the same drive on the desktop reference, private bytes per progress line |
 | - | `... restore-sd build/evidence/M06/accept` | - | moves everything back (the run's own output kept beside the backup); the restored tree must equal the tree before cleaning |
 
 Buttons are by position (AGENTS.md): Cross is the bottom button, labelled **B** on the Switch; SDL's names in the

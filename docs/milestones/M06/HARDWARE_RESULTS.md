@@ -34,6 +34,9 @@ memory pool, not applet mode's.
 | 11 | soak30-handheld | `m06-soak30.cfg` (1,860 s, no input after the Cross schedule) | by `seconds` | see M06-12 |
 | 12 | accept-clean | `m06-play.cfg` on the cleaned card, the person playing | HOME close at 395 s | clean run, but only ~4.8 min of S4 (the cutscene ran until the person found Cross on B) and no disconnect logged: not the acceptance |
 | 13 | accept-clean-2 | `m06-play.cfg` on the cleaned card, the person playing | HOME close at 456 s | PASS: the acceptance run (below) |
+| 14 | cruise-handheld | `m06-cruise.cfg` (1,560 s, no input; review 3) | by `seconds` | clean run, but not the test it was meant to be: the Triangle presses did not put the player on the bike, so the route moved nothing |
+| 15 | drive-handheld | `m06-drive.cfg` (1,260 s, no input; NRO `9a9f7e12`) | by `seconds` | clean run; heap in use rose to the end: the leak (M06-12) |
+| 16 | drive-handheld-2 | `m06-drive.cfg` (1,260 s, no input; NRO `9b89481c` from `b309413`, patch 0009) | by `seconds` | PASS: heap in use levels off while driving (M06-12) |
 
 A first attempt of run 1 stopped before launching (the session tool did not accept Sphaira's `450` reply for a
 missing folder; fixed in the tool) and a first attempt of run 5 stopped before launching (Docker Desktop not
@@ -139,12 +142,46 @@ objects stay bounded: from the eleventh `[rhi-stats]` line on, textures 1,862-3,
 upward drift to the end. The heap itself was not sampled during moving play. That a moving-route heap soak is left to
 M10-07 (which already requires a 30-minute soak with streaming) is the implementer's choice, not a user decision.
 
+**Moving play (review 3; runs 14-16).** Review 3 asked for the heap during moving play with streaming. Run 14
+(`m06-cruise.cfg`) did not move: its Triangle presses did not seat the player on the bike. Run 15 (`m06-drive.cfg`,
+NRO `9a9f7e12`) makes a car beside the S4 spot with upstream's rig script, seats the player in it and lets the rig's
+`cruise` drive it along upstream's `tools/routes/city.txt` (5,736 m over the busiest cells on both sides of the bay)
+at 40 m/s in a loop, nobody touching the console, `VCS_STREAM_LOG=1`: the car went round 3.5 times and new areas
+streamed in all the time. The heap in use rose to the end (2-minute means, MiB):
+
+| t (s) | 0-120 | 120-240 | 240-360 | 360-480 | 480-600 | 600-720 | 720-840 | 840-960 | 960-1080 | 1080-1200 | 1200-1260 |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| run 15 | 500.0 | 680.1 | 745.4 | 801.6 | 840.3 | 866.6 | 903.8 | 946.9 | 963.4 | 998.1 | 1029.5 |
+| run 16 (patched) | 498.0 | 675.6 | 740.0 | 801.8 | 830.1 | 831.0 | 830.8 | 843.5 | 831.3 | 837.5 | 820.7 |
+
+Run 15: +15.6 MiB/min over 700-1,260 s, and higher at the same route point on every loop (about 2,050 m: 641, 794,
+903, 1,001 MiB), so a leak, not a cache filling. The renderer's own objects stayed bounded (textures 2,058-3,014 /
+85-114 MiB, buffers 6,088-12,003 / 16-27 MiB from the eleventh `[rhi-stats]` line). The desktop reference (upstream's
+build at the pinned commit, `tools/m04_reference.py`, now recording its private bytes) ran the same schedule with
+the null renderer at 60 fps: +33.0 MB/min over 700-1,260 s, 1,080 MB at the end, and upstream's RSL recording cache
+(`g_recordings`, `src/game/vcs_rsl_world.cpp`) at 32,582 entries and still growing. A recording is keyed by its
+block's guest address and length and was never removed; streaming puts a model somewhere else each time its area
+comes back. Patch 0009 (`patches/upstream/0009-rsl-recordings-prune.patch`) drops recordings no chain used in the
+last 3,600 chains, every 1,024 chains; a dropped recording is only a cache miss (the block is recorded again, or a
+skipped one taken from guest RAM). Desktop with the patch: null renderer +1.4 MB/min over 700-1,260 s, 391 MB at
+the end (max 414), 5,674 recordings (76,041 dropped); Vulkan +2.7 MB/min, 784 MB, 7,864 recordings (an earlier
+unpatched Vulkan run is not comparable: another program held the GPU and the reference ran at 2 fps). Results in
+`hardware/desktop/`. The cost: the desktop's median game time 5.3 -> 6.7 ms from blocks recorded again.
+
+Run 16 (the same schedule, NRO `9b89481c` built from `b309413` with patch 0009, clean tree): the heap in use levels
+off at about 830-845 MiB from about 480 s, **-0.5 MiB/min over 700-1,260 s** (`hardware/drive-handheld-2-heap.tsv`);
+at the same route points on later loops 814, 841, 855 MiB. The plateau is higher than run 11's standing 600 MiB
+because more of the city is resident. `heap_obtained` still grows, more slowly as the run goes on (+51.2 MiB/min
+over 300-700 s, +17.1 over 700-1,260 s; 1,389 MiB of the 3,344 MB mapped at the end): fragmentation of freed
+memory, which newlib does not return; whether it levels off over a longer soak is for M10-07. 0 GL errors in every
+`[rhi-stats]` line, stopped in order at 1,260 s, no crash report. Runs 1-13 used NRO `9a9f7e12`, without patch 0009.
+
 Exit during play: run 5 was closed from HOME while the player was moving through Fort Baxter (inputs to the last
 second, 2,993 textures in the cache). That streaming was active at that moment is inferred from the movement, not
 logged: `VCS_STREAM_LOG` is off in m06-play.cfg. The main loop ended on the applet's exit request (`appletMainLoop()` false: no `stop` line, the
 results go straight to `shutdown`), then the game thread, the render worker, the stream reader, the runtime and
-the folder disc stopped in that order (`play-handheld-2-gtavcs.txt`, last 15 lines). Runs 1-11 and run 8's first attempt (twelve game launches, back to back) each ended in order (the core's workers joined: `live_threads=2` at shutdown, as at boot, in every `*-gtavcs.txt`), the transcript records `new_crashes=[]` for all twelve, and the next launch started cleanly every time: no hang. Run 11 also resumed from a 746.6 s suspension and then closed from HOME in order. The heap still in use at
-the `shutdown` line (297-645 MiB across the thirteen runs) is measured before main.c destroys the GL context (Mesa still holds the textures
+the folder disc stopped in that order (`play-handheld-2-gtavcs.txt`, last 15 lines). Runs 1-16 and run 8's first attempt (seventeen game launches) each ended in order (the core's workers joined: `live_threads=2` at shutdown, as at boot, in every `*-gtavcs.txt`), the transcript records `new_crashes=[]` for all seventeen, and the next launch started cleanly every time: no hang. Run 11 also resumed from a 746.6 s suspension and then closed from HOME in order. The heap still in use at
+the `shutdown` line (297-947 MiB across the sixteen runs) is measured before main.c destroys the GL context (Mesa still holds the textures
 then) and is returned with the process.
 
 ## Controller (M06-14, M06-16; paired Joy-Cons only)
