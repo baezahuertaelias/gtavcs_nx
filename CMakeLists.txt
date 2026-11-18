@@ -57,6 +57,10 @@ pkg_check_modules(NX_SDL2 REQUIRED sdl2>=2.0.7)
 pkg_check_modules(NX_GL REQUIRED glapi)
 pkg_check_modules(NX_EGL REQUIRED egl)
 pkg_check_modules(NX_ZLIB REQUIRED zlib)
+# Movies (M07-06): the locked image's switch-ffmpeg 7.1 (a static target build, --enable-gpl, docs/milestones/M01/
+# package-lock.txt), the 7.1 line upstream's desktop build pins; only the three libraries the movie player and the
+# runtime's MPEG decoder include.
+pkg_check_modules(NX_FFMPEG REQUIRED libavcodec>=61 libavutil>=59 libswscale>=8)
 find_library(NX_LIBRARY NAMES nx PATHS "${DEVKITPRO}/libnx/lib" NO_DEFAULT_PATH REQUIRED)
 execute_process(COMMAND dkp-pacman -Q libnx OUTPUT_VARIABLE NX_PACKAGE
     OUTPUT_STRIP_TRAILING_WHITESPACE COMMAND_ERROR_IS_FATAL ANY)
@@ -136,16 +140,17 @@ target_include_directories(nx_core PRIVATE "${upstream}/src" "${runtime}/src/lib
 add_dependencies(nx_core nx_glsl)
 # the OpenGL RHI (src/rhi/gl) is the Switch's renderer; the null backend stays selectable (VCS_RHI=null)
 target_compile_definitions(nx_core PUBLIC VCS_HAVE_OPENGL=1)
-# Movies (FFmpeg) are M07: vcs_movie.cpp keys them on __has_include, so the portlibs' include folder (which holds
-# FFmpeg's headers) stays off this library; only the platform layer below sees SDL2 and zlib.
-target_compile_definitions(nx_core PRIVATE PS2X_HAS_FFMPEG=0 PS2X_ENABLE_IOP_RPC_TRACE=0 _POSIX_C_SOURCE=200809L
+# Movies (M07): vcs_movie.cpp keys them on __has_include and the runtime's MPEG decoder on PS2X_HAS_FFMPEG, so
+# FFmpeg's include folder goes on with the switch (one value in every library that holds runtime or game code).
+target_include_directories(nx_core PRIVATE ${NX_FFMPEG_INCLUDE_DIRS})
+target_compile_definitions(nx_core PRIVATE PS2X_HAS_FFMPEG=1 PS2X_ENABLE_IOP_RPC_TRACE=0 _POSIX_C_SOURCE=200809L
     VCS_LAUNCHER_NO_MAIN)
 target_link_libraries(nx_core PUBLIC ps2_iop nx_imgui nx_platform glad)
 
 add_library(nx_self_registering STATIC ${self_registering_sources})
 nx_cpu_options(nx_self_registering)
 target_include_directories(nx_self_registering PRIVATE "${upstream}/src" "${runtime}/src/lib")
-target_compile_definitions(nx_self_registering PRIVATE PS2X_HAS_FFMPEG=0 PS2X_ENABLE_IOP_RPC_TRACE=0
+target_compile_definitions(nx_self_registering PRIVATE PS2X_HAS_FFMPEG=1 PS2X_ENABLE_IOP_RPC_TRACE=0
     _POSIX_C_SOURCE=200809L)
 target_link_libraries(nx_self_registering PUBLIC nx_core)
 
@@ -205,7 +210,7 @@ endif()
 add_library(nx_game_private STATIC ${private_game_sources})
 nx_cpu_options(nx_game_private)
 target_include_directories(nx_game_private PRIVATE "${upstream}/src" "${runtime}/src/lib" "${NX_PRIVATE_GENERATED_DIR}")
-target_compile_definitions(nx_game_private PRIVATE PS2X_HAS_FFMPEG=0 PS2X_ENABLE_IOP_RPC_TRACE=0
+target_compile_definitions(nx_game_private PRIVATE PS2X_HAS_FFMPEG=1 PS2X_ENABLE_IOP_RPC_TRACE=0
     _POSIX_C_SOURCE=200809L)
 target_link_libraries(nx_game_private PUBLIC nx_core)
 
@@ -235,6 +240,7 @@ target_link_libraries(gtavcs PRIVATE glad
     $<TARGET_FILE:nx_self_registering> -Wl,--no-whole-archive
     -Wl,--start-group nx_game_private nx_self_registering nx_core nx_platform nx_imgui ps2_iop
     ${NX_SDL2_STATIC_LIBRARIES} ${NX_GL_STATIC_LIBRARIES} ${NX_EGL_STATIC_LIBRARIES} ${NX_ZLIB_STATIC_LIBRARIES}
+    ${NX_FFMPEG_STATIC_LIBRARIES}
     "${NX_LIBRARY}" m -Wl,--end-group)
 
 nx_generate_nacp(OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/gtavcs.nacp"
