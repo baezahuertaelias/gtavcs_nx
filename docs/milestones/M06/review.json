@@ -1,0 +1,35 @@
+{
+ "milestone": "M06",
+ "candidate_commit": "ac242614c76fd7d5a8bd8fbe4b6d1f4de1bc80d0",
+ "verdict": "APPROVE",
+ "reviewer_id": "m06-review7-cobalt",
+ "independent": true,
+ "unresolved_findings": [],
+ "checks": [
+  "Earlier independent reviews of M06 requested changes: reviews 1-3 (responses REVIEW1-3_RESPONSE.md), 4 (856af57), 5 (3d36559) and 6 (e03b04e) (reports REVIEW4-6.md, responses REVIEW4-6_RESPONSE.md). This seventh, fresh reviewer (Claude Opus 5.5 subagent, read-only) reviewed candidate ac24261; the tree was clean before and after.",
+  "Review-6 changes: prune-age span recomputed from the cruise status answers (time to start + 3,600 cruise frames): run 16 6.66-10.49 min, run 15 6.60-9.32 min, 60 s rates 4.57-12.10 frames/s, matching HARDWARE_RESULTS.md, TASKS.md M06-12 and MILESTONES.md M10-07; 8.6 / 10.4 labelled as average-rate estimates; 0.9 retention ratio (560 / 624 s) correct; no stale '8.6-10.4' or '5.8-7' outside the REVIEW files",
+  "Patch 0009 in the applied checkout: comment 'a minute at 60 fps, longer at lower frame rates' and the matching PERFORMANCE.md text; prune every 1,024 chains with age 3,600 before the rec reference; replaySkipped and handleBlock set lastSeq; replaySkipped does not use rec after the fallback",
+  "M06-18 cites the actual heading 'Clean-card acceptance on the shipped code'",
+  "NRO bytes: build/m04/private/gtavcs.nro and the ac242614c76f package's NRO both 5c2b558f, the tested NRO in the 856af57 package 9b89481c, 54,114,501 bytes each; 40 bytes differ, none outside 0x40-0x53 and 0x331e5b0-0x331e5c3 (GNU note header at 0x331e5a0); build IDs internally consistent; manifest root_commit ac24261, root_dirty false, generated_linked true; the package passes sha256sum -c SHA256SUMS and its BETA_NOTES.md equals the tracked one",
+  "Run 17 (M06-18): the tracked log's sha256 1e5660b9 equals the transcript read-back and the raw copy (perf.csv 1f965bde too); NRO 9b89481c, clean_exit_line=True, new_crashes=[], shutdown at 390.370 s; clean card 367 entries, restored 766; mapped_total=3343908864; continuous control from about 35 s to 390 s; S4 40-385 s from the raw perf.csv n=2489, median 84.6 ms, p95 420.6 nearest-rank vs the tool's interpolated 419.9",
+  "0 GL errors in every [rhi-stats] line of all 17 tracked logs (run 6 has none, as disclosed); all 17 logs live_threads=2 and 'core, context, window and SDL closed' at shutdown; 18 new_crashes=[] entries",
+  "Heap: run 16 two-minute means 820.7-843.5 MiB from 480 s, -0.47 MiB/min over 700-1,260 s, heap_obtained +51.2 / +17.1 MiB/min, 1,389 MiB; run 15 +15.6 MiB/min; desktop null +33.0 MiB/min (1,080 MiB), null-pruned +1.4 (391, max 414), Vulkan-pruned +2.7 (784)",
+  "BETA_NOTES rows 43.1/67.9, 66.6/264.1, 87.0/452.8 and 84.6/419.9 match the tracked summaries; route 43.1/67.9 also from the raw perf.csv; silent run (M06-17) PS2X_AUDIO=0, audio_callbacks=0, S4 at 225 s; run 13 disconnect 'nothing connected for player 1, input neutral' then gamepad=0 at 411.3 s",
+  "Spot-checked src/switch/output.c crop logic against the 1280x720 handheld log line, the HOME exit lock in src/main.c, and package_beta.py's refusals (dirty tree, mismatched manifest commit, unexpected files)"
+ ],
+ "limitations": [
+  "Hardware judged from the tracked records and the ignored raw copies under build/evidence/M06; no console run, rebuild or desktop run by the reviewer",
+  "ELF sections not compared, only NRO bytes",
+  "One RSL chain per game frame on the Switch is untraced (disclosed); the measured prune-age span rests on cruise frames",
+  "M06-01..07, 09, 11, 14-16 and 20 checked against logs and summaries, not exhaustively against the private album media",
+  "Handheld-only, Joy-Con-only and the docking deferrals are user decisions in SCOPE_DECISIONS.md; nothing waived beyond them",
+  "Non-blocking, left so the reviewed candidate stays unchanged: TASKS.md M06-19 says BETA_NOTES.md's frame times 'name their NRO and date', but BETA_NOTES names the build ('an earlier build' / 'this beta's code') and date, not NRO hashes"
+ ],
+ "observed_test_results": [
+  "python tools/milestone_gate.py M06 -> 'PASS M06: eligible to request independent review'",
+  "python tools/test_upstream_overlay.py -> 4 tests OK",
+  "python tools/test_milestone_gate.py -> 13 tests OK",
+  "python tools/validate_project.py -> 'PASS foundation: 183 unique tasks, 16 milestones'",
+  "python tools/upstream_overlay.py build/review7/checkout -> PASS applied 9 patches; patch 0009 sha256 be41e128 matches series.json; series.json sha256 8d61ace8 matches the manifest's overlay_series_sha256 and game-source-8d61ace8606d2e80"
+ ]
+}
