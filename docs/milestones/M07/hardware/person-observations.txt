@@ -1,0 +1,7 @@
+What the user, at the Switch, reported during the M07 session (2026-11-18, handheld, stock clocks):
+
+- movies-handheld (m07-movies.cfg, NRO 19bd154c from 5c13f7d, the first build with switch-ffmpeg): "Everything runs
+  good" (asked to watch and listen to the boot movies: picture, colours, aspect, sound, sync). The log shows a
+  1.6 s suspension and the applet's exit request at 75.2 s (stop reason=runtime), 60.8 s into INTRO.PSS: the game
+  was closed during the intro, so INTRO.PSS is logged as skipped there and the run covers STINGS.PSS whole and the
+  first 60.8 s of INTRO.PSS only.
