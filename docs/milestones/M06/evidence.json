@@ -95,6 +95,10 @@
   {
    "path": "docs/milestones/M06/hardware/accept/accept-clean-2-summary.txt",
    "result": "The acceptance run's S4 (40-450 s), mostly on the bike: game 87.0/452.8 ms, host 49.5/157.1 ms, GPU present-to-present 1.8/92.3 ms"
+  },
+  {
+   "path": "docs/milestones/M06/hardware/accept2/accept-clean-3-summary.txt",
+   "result": "The acceptance on the shipped NRO, S4 (40-385 s): game 84.6/419.9 ms, host 59.7/146.3 ms, GPU present-to-present 2.0/87.1 ms"
   }
  ],
  "M06-12": [
@@ -194,6 +198,18 @@
   }
  ],
  "M06-18": [
+  {
+   "path": "docs/milestones/M06/hardware/accept2/accept-clean-3-gtavcs.txt",
+   "result": "Shipped NRO 9b89481c, clean card, empty test card, handheld, application mode: S4 from 30 s to the HOME close at 390.4 s (~6.0 min), on foot and driving, 0 GL errors, orderly stop, no crash"
+  },
+  {
+   "path": "docs/milestones/M06/hardware/accept2/sd-tree-clean.txt",
+   "result": "The re-cleaned card: 367 entries, gtavcs.nro and the disc files only"
+  },
+  {
+   "path": "docs/milestones/M06/hardware/accept2/sd-moves-restored.tsv",
+   "result": "Every move of the clean, all restored"
+  },
   {
    "path": "docs/milestones/M06/hardware/accept/accept-clean-2-gtavcs.txt",
    "result": "Clean card, empty test card, handheld, application mode: S4 from 35 s to the HOME close at 455.6 s (~7 min), 888.9 units net (35-455 s) on foot and on the bike, 0 GL errors, orderly stop, no crash"

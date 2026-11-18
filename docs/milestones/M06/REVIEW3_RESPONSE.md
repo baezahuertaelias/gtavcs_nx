@@ -11,5 +11,6 @@ The review's own text was not kept in the repository; this lists the changes mad
 | M06-16: run 10's presses | All 42 A presses fall before run t about 18 s (in the cutscene skip). |
 | M06-18: run 13's distances and provenance | 888.9 units net / 2,671.4 along the samples over 35-455 s; launched through nxlink with nxrun.cfg's instrumentation, not from the homebrew menu; stock clocks inferred; the card cleaned again by hand over FTP between runs 12 and 13 and the first `restore-sd` failure (fixed) recorded; run 12's wrong button instruction stated as the session's. |
 
-Patch 0009 changes the game NRO: runs 1-13 (the acceptance included) used NRO `9a9f7e12`, runs 16 and later the
-patched `9b89481c`.
+Patch 0009 changes the game NRO: runs 1-13 used NRO `9a9f7e12`, runs 16 and 17 the patched `9b89481c`, which the beta
+ships. By the user's choice the clean-card acceptance was repeated on it: run 17, about 6.0 continuous minutes of S4,
+HOME close, 0 GL errors, no crash (HARDWARE_RESULTS.md, "Clean-card acceptance on the shipped NRO").

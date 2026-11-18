@@ -37,6 +37,7 @@ memory pool, not applet mode's.
 | 14 | cruise-handheld | `m06-cruise.cfg` (1,560 s, no input; review 3) | by `seconds` | clean run, but not the test it was meant to be: the Triangle presses did not put the player on the bike, so the route moved nothing |
 | 15 | drive-handheld | `m06-drive.cfg` (1,260 s, no input; NRO `9a9f7e12`) | by `seconds` | clean run; heap in use rose to the end: the leak (M06-12) |
 | 16 | drive-handheld-2 | `m06-drive.cfg` (1,260 s, no input; NRO `9b89481c` from `b309413`, patch 0009) | by `seconds` | PASS: heap in use levels off while driving (M06-12) |
+| 17 | accept-clean-3 | `m06-play.cfg` on the re-cleaned card, the person playing; NRO `9b89481c` | HOME close at 390 s | PASS: the acceptance run on the shipped NRO (below) |
 
 A first attempt of run 1 stopped before launching (the session tool did not accept Sphaira's `450` reply for a
 missing folder; fixed in the tool) and a first attempt of run 5 stopped before launching (Docker Desktop not
@@ -107,7 +108,8 @@ itself is not in it: "present-to-present" means from just after one swap to just
 | route, S4 standing (30-300 s) | 43.1 / 67.9 ms | 44.7 / 70.2 ms | 29.2 / 29.9 ms |
 | play-handheld-2, S2 flyover (3-30 s) | 45.2 / 180.1 ms | 37.1 / 93.4 ms | 20.9 / 54.2 ms |
 | play-handheld-2, S4 playing, on foot and on the bike (90-414 s) | 66.6 / 264.1 ms | 54.8 / 110.8 ms | 11.3 / 72.7 ms |
-| accept-clean-2 (run 13, the acceptance), S4 playing, mostly on the bike across the map (40-450 s) | 87.0 / 452.8 ms | 49.5 / 157.1 ms | 1.8 / 92.3 ms |
+| accept-clean-2 (run 13, the acceptance on NRO `9a9f7e12`), S4 playing, mostly on the bike across the map (40-450 s) | 87.0 / 452.8 ms | 49.5 / 157.1 ms | 1.8 / 92.3 ms |
+| accept-clean-3 (run 17, the acceptance on the shipped NRO `9b89481c`), S4 playing, on foot and driving (40-385 s) | 84.6 / 419.9 ms | 59.7 / 146.3 ms | 2.0 / 87.1 ms |
 
 The route's S2 lasts only until the Cross press at 10 s; the S2 rows come from the silent and play runs. In the
 route's S4 (perf_report from 100 s) the EE thread spends 36.7 ms per frame in game code (70 %), 4.5 ms in render
@@ -180,8 +182,8 @@ Exit during play: run 5 was closed from HOME while the player was moving through
 second, 2,993 textures in the cache). That streaming was active at that moment is inferred from the movement, not
 logged: `VCS_STREAM_LOG` is off in m06-play.cfg. The main loop ended on the applet's exit request (`appletMainLoop()` false: no `stop` line, the
 results go straight to `shutdown`), then the game thread, the render worker, the stream reader, the runtime and
-the folder disc stopped in that order (`play-handheld-2-gtavcs.txt`, last 15 lines). Runs 1-16 and run 8's first attempt (seventeen game launches) each ended in order (the core's workers joined: `live_threads=2` at shutdown, as at boot, in every `*-gtavcs.txt`), the transcript records `new_crashes=[]` for all seventeen, and the next launch started cleanly every time: no hang. Run 11 also resumed from a 746.6 s suspension and then closed from HOME in order. The heap still in use at
-the `shutdown` line (297-947 MiB across the sixteen runs) is measured before main.c destroys the GL context (Mesa still holds the textures
+the folder disc stopped in that order (`play-handheld-2-gtavcs.txt`, last 15 lines). Runs 1-17 and run 8's first attempt (eighteen game launches) each ended in order (the core's workers joined: `live_threads=2` at shutdown, as at boot, in every `*-gtavcs.txt`), the transcript records `new_crashes=[]` for all eighteen, and the next launch started cleanly every time: no hang. Run 11 also resumed from a 746.6 s suspension and then closed from HOME in order. The heap still in use at
+the `shutdown` line (297-947 MiB across the seventeen runs) is measured before main.c destroys the GL context (Mesa still holds the textures
 then) and is returned with the process.
 
 ## Controller (M06-14, M06-16; paired Joy-Cons only)
@@ -224,6 +226,28 @@ VU1 programs per frame (the perf lines from 20 s), 0 GL errors, clean exit; the 
 through the OpenGL RHI (screenshots `reference-handheld/*`). The reference path runs at 1.8-10.1 game fps here, so in
 180 s it reached S3, not S4. `PS2X_HLE_VERIFY` from nxrun.cfg is only partly applied (the RSL world hooks see it and
 stay off; the MSCAL verification hooks are private to vcs_hle_world.cpp) and the core says so.
+
+## Clean-card acceptance on the shipped NRO (M06-18; run 17, review 3)
+
+Patch 0009 changed the game NRO after run 13, so the acceptance was repeated on the NRO the beta ships, `9b89481c`
+(built from `b309413`, clean tree; the same bytes from `359c757`). With the user's consent `clean-sd` cleaned the card
+again (`hardware/accept2/sd-moves-restored.tsv`, `sd-tree-clean.txt`: 367 entries, only `gtavcs.nro` and the disc
+files); `restore-sd` now names what the run made after its evidence folder (`/switch/gtavcs_nx_backup/acceptance-
+accept2-*`), so run 13's kept output there keeps its names. After the run `sd-tree-restored.txt` (766 entries) equals
+the tree before cleaning; it differs from run 16's preflight tree only in run 16's own `gamefolder/gtavcs.log` and
+`m06-drive/nxrun-results.txt`, written after that listing. No separate before-clean listing was taken this time:
+`sd-moves-restored.tsv` lists every move.
+
+Run 17 (`hardware/accept2/accept-clean-3-gtavcs.txt`): Joy-Cons attached (`handheld styles 0x2 (Joy-Cons attached
+(handheld), device type 0xc)`), application mode (`mapped_total=3343908864`), an empty test card; S1-S3 (the
+cutscene skipped with B, which is Cross), the player at the S4 spot at 30 s (-1596.7, -133.5, on foot), then on foot
+and driving (`state driving` at 90-150 s and 270-390 s) to (-687.2, -1383.4) at 365 s, until the HOME close at
+390.4 s: about **6.0 continuous minutes of S4**. Inputs (SDL position names): a 66, b 12, y 12, x 10, left shoulder 2,
+both sticks. 0 GL errors in all 81 `[rhi-stats]` lines; the game thread, render worker, stream reader, runtime and
+folder disc stopped in order (`live_threads=2`); `new_crashes=[]`. S4 timing (40-385 s): game 84.6 / 419.9 ms, host
+59.7 / 146.3 ms, GPU present-to-present 2.0 / 87.1 ms (`hardware/accept2/accept-clean-3-summary.txt`). Like run 13, it
+was started through Sphaira's nxlink netloader with nxrun.cfg's instrumentation; stock clocks are inferred (the
+console's settings were not changed). Video: run 5's clips by the user's decision (SCOPE_DECISIONS.md).
 
 ## Clean-card acceptance (M06-18, M06-14; runs 12 and 13, review 2)
 

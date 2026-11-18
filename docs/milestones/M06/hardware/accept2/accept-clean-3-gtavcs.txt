@@ -1,0 +1,977 @@
+[boot] checked chdir succeeded: sdmc:/switch/gtavcs_nx/gamefolder
+[boot] SDL Switch; audio switch
+[boot] GL 4.3 (Core Profile) Mesa 20.1.0-rc3; renderer NV120
+[video] output 1280x720 on the 1920x1080 surface, crop lower-left (00000000)
+[resources] boot live_threads=2 (svc 00000000 via own)
+[resources] boot mapped_total=3343908864 mapped_used=3339763712 heap_in_use=145576896 heap_obtained=145608704 threads_created=1 default_thread_stack=8388608 file_opens=2 iso_opens=0
+[core] root=/switch/gtavcs_nx/gamefolder userdata=/switch/gtavcs_nx/gamefolder/userdata/tests/m06-play settings=/switch/gtavcs_nx/gamefolder/userdata/tests/m06-play/vcs.ini mc0=/switch/gtavcs_nx/gamefolder/userdata/tests/m06-play/mc0 mc1=/switch/gtavcs_nx/gamefolder/userdata/tests/m06-play/mc1 backups=/switch/gtavcs_nx/gamefolder/userdata/tests/m06-play/backups cache=/switch/gtavcs_nx/gamefolder/userdata/tests/m06-play/cache elf=/switch/gtavcs_nx/gamefolder/SLUS_215.90 profile=m06-play
+[nxrun] config t=0.000 profile="m06-play" seconds=0.000000 commands=240 env=5 verify_files=0
+[core] env PS2X_RHI_STATS=1
+[core] env PS2X_GL_GPU_TIME=1
+[core] env PS2X_GL_GPU_LOG=userdata/tests/m06-play/gpu.csv
+[core] env PS2X_PERF_LOG=userdata/tests/m06-play/perf.csv
+[core] env VCS_NX_INPUT_LOG=1
+[settings] display aspect 1.333, HUD 4:3
+[settings] display aspect 1.333, HUD 4:3
+[framerate] cap 30.00 fps (independent timing)
+[framerate] cap 60.00 fps (independent timing)
+[core] /switch/gtavcs_nx/gamefolder/SLUS_215.90 sha1 d1832508caf0990c2291c0f255c96a889cce9f88: GTA: Vice City Stories - USA (SLUS-21590) v1.00
+[core] folder disc 1066336 sectors, 0 mods applied; no disc image opened
+[gs] hardware GS renderer (OpenGL)
+[render-worker] on: render submission runs on its own thread
+[render-worker] GS stage on: the GS front end and frame building on a second thread
+[platform] gamepad: Switch Controller (instance 0) mapping 000038f853776974636820436f6e7400,Switch Controller,a:b1,b:b0,back:b11,dpdown:b15,dpleft:b12,dpright:b14,dpup:b13,leftshoulder:b6,leftstick:b4,lefttrigger:b8,leftx:a0,lefty:a1,rightshoulder:b7,rightstick:b5,righttrigger:b9,rightx:a2,righty:a3,start:b10,x:b3,y:b2,crc:f838,platform:Unknown (see SDL_platform.h)
+[platform] SDL2 2.28.5 adopted main.c's window 1920x1080 (asked 640x448); ImGui on
+[rhi] GPU time per frame to userdata/tests/m06-play/gpu.csv
+[rhi] OpenGL 4.3: clip_control 1, viewport_array 1, anisotropy 1 (max 16), KHR_debug 1, dual-source draw buffers 1, samples 8/8/8, max texture 16384, framebuffer encoding 0x2601
+[present] OpenGL on NV120 (4.3 (Core Profile) Mesa 20.1.0-rc3; GLSL 4.30)
+[platform] audio device 2: 48000 Hz, 2 channels, 1024 frames (switch)
+[menu] pause menu: Enter selects, Escape goes back, the mouse points and clicks
+[sound] native sound driver (CDSTREAM's servers on the host)
+[iop] emulated IOP off: no IRX module loaded or run (PS2X_IOP=1 runs it)
+[core] io elf=/switch/gtavcs_nx/gamefolder/SLUS_215.90 host=/switch/gtavcs_nx/gamefolder cd=/switch/gtavcs_nx/gamefolder mc=/switch/gtavcs_nx/gamefolder/userdata/tests/m06-play/mc0 cdImage=(none)
+[input] player bindings
+[core] desktop watchdog and sampling profiler not started (detached desktop threads; progress comes from the run's report lines)
+[resources] running live_threads=4 (svc 00000000 via own)
+[resources] running mapped_total=3343908864 mapped_used=3339763712 heap_in_use=222819408 heap_obtained=225779712 threads_created=3 default_thread_stack=8388608 file_opens=13 iso_opens=0
+[lifecycle] suspension_clock=1
+[lifecycle] resume=0 focus_notifications=1 focus=1
+[platform] focus lost: audio paused, pad neutral
+[nxrun] focus t=0.000 state=out
+[platform] focus back: audio resumed, pad live
+[nxrun] focus t=0.000 state=in
+[video] drawable=1920x1080 window=1920x1080 output=1280x720 mode=0 (was -1); 0 frames, 0.00 ms each since the last change; heap 222819712
+[platform] controller physical: No1 styles 0x0 (none, device type 0x0), handheld styles 0x2 (Joy-Cons attached (handheld), device type 0xc)
+[gs-hw] renderer ready (NV120 (4.3 (Core Profile) Mesa 20.1.0-rc3; GLSL 4.30)), scale 1x
+[present] display aspect 1.333
+[platform] mouse capture: not on the Switch (accepted, no effect)
+[perf] recording to userdata/tests/m06-play/perf.csv
+[nxrun] progress t=0.000 host_frames=1 game_frames=0 ee_cycle=9830624 ee_threads=1 ready=1 waiting=0 dormant=0 running=1 pc=0021c8f0 ra=0021c8f0 pumps=1 audio_callbacks=19 audio_frames=19456 gamepad=1 heap_in_use=310458176 heap_obtained=312479744
+[nxrun] perf t=0.000 "game_fps=26.5 frame_ms=37.7 vblank_per_s=26.5 game_ms=36.4 render_ms=0.1 iop_ms=1.1 wait_ms=0.0 draws=0 verts=0 tex_uploads=0 dma_tags=0 vu1_programs=0 host_fps=0 gl_ms=0.0 audio_ms=48 black_frames=0 dip_frames=0 probed_frames=0 worker_ms=0.1 gs_ms=36.8 gs_draws=0.0 gs_verts=0.0 gs_vu1=0.0 gs_hle=0.0 gs_path2=0.0 gs_path3=0.0 native_draws=0.0 hud_draws=0.0 post_draws=0.0 packed_draws=0.0 packed_verts=0.0 tex_create_us=0.0 tex_kb=0.0 tex_decode_us=0.0"
+[movie] cdrom0:\MOVIES\STINGS.PSS;1: built without FFmpeg, skipped
+[movie] cdrom0:\MOVIES\INTRO.PSS;1: built without FFmpeg, skipped
+[gs-hw] a draw samples its own render target: reading a copy
+[menu] the Display page's Widescreen row hidden (2 focus moves past it, 4 rows up 27)
+[vu0native] running VCS VU0 segment vs triangle (0x020) natively (VU0 0x0020, 1960 bytes)
+[vu0native] running VCS VU0 sphere vs triangle (0x3A0) natively (VU0 0x03a0, 1960 bytes)
+[input] 4686 ms instance 0 axis rightx -18394
+[input] 4703 ms instance 0 axis righty -19061
+[input] 4853 ms instance 0 axis rightx 0
+[input] 4853 ms instance 0 axis righty 0
+[vu0native] running VCS VU0 store vf1..vf12 (0x0E30) natively (VU0 0x0e30, 104 bytes)
+[vu0native] running VCS VU0 3x matrix product (0x0E98) natively (VU0 0x0e98, 272 bytes)
+[vu0native] running VCS VU0 3x matrix product (0x0EB8) natively (VU0 0x0eb8, 240 bytes)
+[vu0native] running VCS VU0 sector box clip (0x0CF8) natively (VU0 0x0cf8, 312 bytes)
+[vu0native] running VCS VU0 sphere vs three plane sets (0x0C10) natively (VU0 0x0c10, 216 bytes)
+[vu0native] running VCS VU0 segment vs triangle, float inputs (0x068) natively (VU0 0x0068, 1960 bytes)
+[perf] t=5s game 11.8 fps (avg 84.8 p95 422.6 max 1049.4 ms) vbl 19.0/s | ee game 60.9 render 10.0 iop 1.7 wait 12.1 ms | 5 draws 0k verts 0 tex 11 tags 0 vu1 | host 58 fps gl 1.1 ms | audio 48 ms 2 underruns
+[rhi-stats] gpu 225 frames timed, mean 1.61 ms (run max 48.30 ms, 0 not timed)
+[rhi-stats] textures 26 (24.5 MiB) buffers 23 (1.5 MiB) samplers 9 pipelines 23 programs 15 fbos 16 pending 0 | draws 775 passes 448 presents 226 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[input] 6576 ms instance 0 button a down
+[gs-hw] input delay by stage: input -> queued 1323.0 ms (game, render worker, GS stage), queued -> taken 31.1 ms
+[input] 6673 ms instance 0 button a up
+[input] 6757 ms instance 0 button a down
+[input] 6823 ms instance 0 button a up
+[input] 6923 ms instance 0 button a down
+[input] 7007 ms instance 0 button a up
+[input] 7090 ms instance 0 button a down
+[nxrun] command t=5.023 at=5.000000 command="player" status=ok reply="ok 01d439c0 -1439.644 -314.627 14.392 1"
+[input] 7190 ms instance 0 button a up
+[input] 7290 ms instance 0 button a down
+[input] 7406 ms instance 0 button a up
+[hle] world packets 2059: culled 538, drawn 1063 + 0 GPU-clipped (66038 vertices), 458 C++-clipped, VU fallback 0
+[input] 8273 ms instance 0 button a down
+[input] 8440 ms instance 0 button a up
+[input] 8507 ms instance 0 button b down
+[input] 8657 ms instance 0 button b up
+[input] 8757 ms instance 0 button b down
+[input] 8856 ms instance 0 button b up
+[input] 9073 ms instance 0 button a down
+[input] 9190 ms instance 0 button a up
+[input] 9257 ms instance 0 button a down
+[input] 9323 ms instance 0 button a up
+[input] 9441 ms instance 0 button a down
+[input] 9507 ms instance 0 button a up
+[input] 9623 ms instance 0 button a down
+[input] 9723 ms instance 0 button a up
+[input] 9823 ms instance 0 button a down
+[input] 9923 ms instance 0 button a up
+[input] 10073 ms instance 0 button a down
+[input] 10157 ms instance 0 button a up
+[perf] t=10s game 20.0 fps (avg 50.1 p95 117.1 max 698.2 ms) vbl 42.5/s | ee game 23.3 render 9.4 iop 1.4 wait 16.0 ms | 144 draws 9k verts 5 tex 53 tags 0 vu1 | host 38 fps gl 5.1 ms | audio 122 ms 1 underruns
+[rhi-stats] gpu 172 frames timed, mean 16.99 ms (run max 512.49 ms, 0 not timed)
+[rhi-stats] textures 541 (33.2 MiB) buffers 1015 (3.8 MiB) samplers 9 pipelines 31 programs 16 fbos 16 pending 0 | draws 21794 passes 2881 presents 398 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[gs-hw] input delay by stage: input -> queued 216.6 ms (game, render worker, GS stage), queued -> taken 64.0 ms
+[nxrun] progress t=10.022 host_frames=412 game_frames=138 ee_cycle=1718468669 ee_threads=1 ready=1 waiting=0 dormant=0 running=1 pc=0021ef14 ra=0021ef14 pumps=412 audio_callbacks=533 audio_frames=545792 gamepad=1 heap_in_use=403585728 heap_obtained=421720064
+[nxrun] perf t=10.022 "game_fps=14.2 frame_ms=70.4 vblank_per_s=41.7 game_ms=44.3 render_ms=4.0 iop_ms=2.3 wait_ms=19.8 draws=1356 verts=69655 tex_uploads=1 dma_tags=121 vu1_programs=0 host_fps=18 gl_ms=54.6 audio_ms=337 black_frames=0 dip_frames=0 probed_frames=0 worker_ms=57.9 gs_ms=53.2 gs_draws=0.0 gs_verts=0.0 gs_vu1=0.0 gs_hle=0.0 gs_path2=0.0 gs_path3=0.0 native_draws=1141.1 hud_draws=1.6 post_draws=13.9 packed_draws=97.1 packed_verts=16273.4 tex_create_us=2363.1 tex_kb=66.3 tex_decode_us=298.4"
+[input] 15326 ms instance 0 button b down
+[input] 15491 ms instance 0 button b up
+[perf] t=15s game 12.1 fps (avg 82.4 p95 231.5 max 288.3 ms) vbl 40.2/s | ee game 42.0 render 8.1 iop 2.4 wait 29.9 ms | 1457 draws 73k verts 2 tex 120 tags 0 vu1 | host 25 fps gl 44.4 ms | audio 367 ms 0 underruns
+[rhi-stats] gpu 113 frames timed, mean 24.96 ms (run max 512.49 ms, 0 not timed)
+[rhi-stats] textures 637 (37.3 MiB) buffers 1032 (3.8 MiB) samplers 9 pipelines 31 programs 16 fbos 16 pending 0 | draws 115407 passes 4602 presents 511 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[gs-hw] input delay by stage: input -> queued 103.8 ms (game, render worker, GS stage), queued -> taken 23.0 ms
+[nxrun] command t=15.101 at=15.000000 command="player" status=ok reply="ok 01d439c0 -1646.560 -139.230 14.820 1"
+[hle] world packets 115107: culled 11730, drawn 92570 + 0 GPU-clipped (4041011 vertices), 10807 C++-clipped, VU fallback 0
+[perf] t=20s game 14.3 fps (avg 69.8 p95 129.0 max 229.3 ms) vbl 41.0/s | ee game 36.7 render 5.8 iop 2.3 wait 25.1 ms | 1218 draws 62k verts 1 tex 138 tags 0 vu1 | host 23 fps gl 42.9 ms | audio 295 ms 0 underruns
+[rhi-stats] gpu 104 frames timed, mean 28.65 ms (run max 512.49 ms, 0 not timed)
+[rhi-stats] textures 742 (42.1 MiB) buffers 1194 (4.1 MiB) samplers 9 pipelines 31 programs 16 fbos 16 pending 0 | draws 204767 passes 6646 presents 616 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[gs-hw] input delay by stage: input -> queued 82.1 ms (game, render worker, GS stage), queued -> taken 24.9 ms
+[nxrun] progress t=20.028 host_frames=631 game_frames=276 ee_cycle=3720517956 ee_threads=1 ready=1 waiting=0 dormant=0 running=1 pc=0021ec2c ra=0021ec2c pumps=631 audio_callbacks=1001 audio_frames=1025024 gamepad=1 heap_in_use=418307936 heap_obtained=434970624
+[nxrun] perf t=20.028 "game_fps=20.6 frame_ms=48.5 vblank_per_s=43.2 game_ms=24.4 render_ms=1.5 iop_ms=1.3 wait_ms=21.3 draws=413 verts=22569 tex_uploads=0 dma_tags=172 vu1_programs=0 host_fps=22 gl_ms=11.4 audio_ms=292 black_frames=0 dip_frames=0 probed_frames=0 worker_ms=17.6 gs_ms=23.9 gs_draws=0.0 gs_verts=0.0 gs_vu1=0.0 gs_hle=0.0 gs_path2=0.0 gs_path3=0.0 native_draws=362.5 hud_draws=0.0 post_draws=16.8 packed_draws=53.4 packed_verts=5333.4 tex_create_us=0.0 tex_kb=0.0 tex_decode_us=0.0"
+[input] 24053 ms instance 0 button leftshoulder down
+[input] 24583 ms instance 0 button leftshoulder up
+[input] 24773 ms instance 0 button b down
+[input] 25035 ms instance 0 button b up
+[input] 25708 ms instance 0 button b down
+[input] 25765 ms instance 0 button a down
+[input] 25917 ms instance 0 button b up
+[input] 25917 ms instance 0 button a up
+[input] 26072 ms instance 0 button a down
+[input] 26200 ms instance 0 button a up
+[input] 26397 ms instance 0 button a down
+[input] 26489 ms instance 0 button a up
+[perf] t=25s game 16.1 fps (avg 62.0 p95 135.7 max 278.2 ms) vbl 42.1/s | ee game 31.4 render 5.4 iop 1.8 wait 23.5 ms | 878 draws 46k verts 1 tex 153 tags 0 vu1 | host 22 fps gl 28.5 ms | audio 280 ms 0 underruns
+[rhi-stats] gpu 104 frames timed, mean 28.59 ms (run max 512.49 ms, 0 not timed)
+[rhi-stats] textures 811 (44.7 MiB) buffers 1224 (4.2 MiB) samplers 9 pipelines 31 programs 16 fbos 16 pending 0 | draws 280172 passes 8862 presents 719 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[gs-hw] input delay by stage: input -> queued 76.9 ms (game, render worker, GS stage), queued -> taken 39.1 ms
+[nxrun] command t=25.029 at=25.000000 command="player" status=ok reply="ok 01d439c0 -1646.560 -139.230 14.598 1"
+[hle] world packets 241337: culled 32138, drawn 183345 + 0 GPU-clipped (8183440 vertices), 25854 C++-clipped, VU fallback 0
+[perf] t=30s game 25.3 fps (avg 39.5 p95 68.1 max 181.6 ms) vbl 47.9/s | ee game 23.8 render 1.2 iop 1.2 wait 13.3 ms | 319 draws 20k verts 0 tex 148 tags 0 vu1 | host 39 fps gl 13.4 ms | audio 255 ms 0 underruns
+[rhi-stats] gpu 146 frames timed, mean 18.14 ms (run max 512.49 ms, 0 not timed)
+[rhi-stats] textures 853 (46.4 MiB) buffers 1313 (4.4 MiB) samplers 9 pipelines 36 programs 17 fbos 17 pending 0 | draws 339905 passes 11220 presents 866 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[gs-hw] input delay by stage: input -> queued 45.7 ms (game, render worker, GS stage), queued -> taken 29.1 ms
+[nxrun] command t=30.062 at=30.000000 command="gameinfo" status=ok reply="ok frames=483 | [PLAYER  ped 01d439c0  model 0  state on foot (0x1)] | pos    -1596.73   -133.48    14.83   heading  45.6 | health 100.0  armour   0.0  money $0 | weapons  none | [CAMERA  mode 15 fixed  (script camera)] | pos    -1600.27   -143.72    23.17   heading  56.5  pitch -21.8  fov 70 | [WORLD] | clock 06:46  area 2 (interior)  level 2 MAINLA | game time 20.4 s  frame 547  step 1.650 | player controls off | pools  peds 3/70  vehicles 6/40 | [SCRIPTS  32 active  mission running] | mission  ch_jerr @acde | newest  ch_jerr @acde  ambtaxi @37af5  warpspo @3763c  carpark @37222 | rampage usj facepla jandw metalde ammunat exportb exportc srangeh | safehou ga_laga ga_imp1 ga_arm2 ga_arm1 shopmon id19 zonemo id17  +10 more"
+[nxrun] progress t=30.062 host_frames=881 game_frames=483 ee_cycle=5942223876 ee_threads=1 ready=1 waiting=0 dormant=0 running=1 pc=0021ebfc ra=0021ebfc pumps=881 audio_callbacks=1472 audio_frames=1507328 gamepad=1 heap_in_use=429343296 heap_obtained=444473344
+[nxrun] perf t=30.062 "game_fps=20.7 frame_ms=48.4 vblank_per_s=45.3 game_ms=29.9 render_ms=1.4 iop_ms=1.6 wait_ms=15.5 draws=414 verts=28597 tex_uploads=0 dma_tags=232 vu1_programs=0 host_fps=21 gl_ms=22.2 audio_ms=226 black_frames=0 dip_frames=0 probed_frames=0 worker_ms=20.5 gs_ms=21.5 gs_draws=0.0 gs_verts=0.0 gs_vu1=0.0 gs_hle=0.0 gs_path2=0.0 gs_path3=0.0 native_draws=338.0 hud_draws=0.0 post_draws=16.0 packed_draws=59.9 packed_verts=8237.4 tex_create_us=77.8 tex_kb=3.0 tex_decode_us=10.5"
+[perf] t=35s game 20.7 fps (avg 48.2 p95 68.1 max 127.4 ms) vbl 46.8/s | ee game 30.2 render 1.4 iop 1.6 wait 15.0 ms | 421 draws 31k verts 1 tex 247 tags 0 vu1 | host 22 fps gl 24.0 ms | audio 224 ms 0 underruns
+[rhi-stats] gpu 106 frames timed, mean 29.13 ms (run max 512.49 ms, 0 not timed)
+[rhi-stats] textures 927 (51.0 MiB) buffers 1314 (4.4 MiB) samplers 9 pipelines 36 programs 17 fbos 17 pending 0 | draws 408384 passes 14030 presents 972 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[gs-hw] input delay by stage: input -> queued 49.5 ms (game, render worker, GS stage), queued -> taken 46.0 ms
+[nxrun] command t=35.095 at=35.000000 command="player" status=ok reply="ok 01d439c0 -1596.730 -133.480 14.833 1"
+[input] 37973 ms instance 0 button b down
+[input] 38106 ms instance 0 button b up
+[hle] world packets 297846: culled 44018, drawn 217476 + 0 GPU-clipped (10254933 vertices), 36352 C++-clipped, VU fallback 0
+[input] 38257 ms instance 0 button a down
+[input] 38407 ms instance 0 button a up
+[perf] t=40s game 23.6 fps (avg 42.3 p95 68.6 max 100.6 ms) vbl 47.5/s | ee game 25.5 render 1.1 iop 1.3 wait 14.4 ms | 292 draws 23k verts 1 tex 177 tags 0 vu1 | host 33 fps gl 17.0 ms | audio 226 ms 0 underruns
+[rhi-stats] gpu 131 frames timed, mean 21.87 ms (run max 512.49 ms, 0 not timed)
+[rhi-stats] textures 1030 (56.8 MiB) buffers 1379 (4.6 MiB) samplers 9 pipelines 38 programs 17 fbos 17 pending 0 | draws 466253 passes 16826 presents 1103 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[gs-hw] input delay by stage: input -> queued 42.6 ms (game, render worker, GS stage), queued -> taken 36.7 ms
+[nxrun] progress t=40.063 host_frames=1116 game_frames=705 ee_cycle=8267532925 ee_threads=1 ready=1 waiting=0 dormant=0 running=1 pc=0021ec24 ra=0021ec24 pumps=1116 audio_callbacks=1940 audio_frames=1986560 gamepad=1 heap_in_use=442645920 heap_obtained=458227712
+[nxrun] perf t=40.063 "game_fps=20.4 frame_ms=49.1 vblank_per_s=46.6 game_ms=31.1 render_ms=1.6 iop_ms=1.4 wait_ms=15.1 draws=342 verts=28444 tex_uploads=1 dma_tags=210 vu1_programs=0 host_fps=20 gl_ms=24.5 audio_ms=171 black_frames=0 dip_frames=0 probed_frames=0 worker_ms=22.4 gs_ms=22.9 gs_draws=0.0 gs_verts=0.0 gs_vu1=0.0 gs_hle=0.0 gs_path2=0.0 gs_path3=0.0 native_draws=233.0 hud_draws=18.0 post_draws=16.0 packed_draws=75.0 packed_verts=12573.0 tex_create_us=1715.4 tex_kb=64.0 tex_decode_us=358.1"
+[input] 42481 ms instance 0 axis leftx -19827
+[input] 42590 ms instance 0 axis lefty -22174
+[input] 42640 ms instance 0 axis leftx -15452
+[input] 42840 ms instance 0 button y down
+[input] 42990 ms instance 0 button y up
+[input] 43423 ms instance 0 axis lefty -7080
+[input] 44140 ms instance 0 axis rightx -32623
+[input] 44739 ms instance 0 axis rightx -9162
+[input] 45660 ms instance 0 button a down
+[input] 46295 ms instance 0 axis leftx 31670
+[perf] t=45s game 15.8 fps (avg 63.2 p95 117.1 max 432.3 ms) vbl 43.3/s | ee game 36.5 render 7.1 iop 2.0 wait 17.6 ms | 553 draws 40k verts 4 tex 269 tags 0 vu1 | host 21 fps gl 32.5 ms | audio 180 ms 1 underruns
+[rhi-stats] gpu 107 frames timed, mean 27.05 ms (run max 512.49 ms, 0 not timed)
+[rhi-stats] textures 1371 (66.7 MiB) buffers 2650 (7.7 MiB) samplers 9 pipelines 40 programs 18 fbos 17 pending 0 | draws 534020 passes 19598 presents 1209 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[gs-hw] input delay by stage: input -> queued 101.9 ms (game, render worker, GS stage), queued -> taken 42.3 ms
+[input] the game vibrates the pad (small 0, large 204)
+[nxrun] command t=45.093 at=45.000000 command="player" status=ok reply="ok 01d439c0 -1623.106 -136.416 14.267 1"
+[input] 47614 ms instance 0 axis leftx 0
+[hle] world packets 357707: culled 49319, drawn 262732 + 0 GPU-clipped (12813795 vertices), 45656 C++-clipped, VU fallback 0
+[input] 48873 ms instance 0 axis leftx 32765
+[input] 49074 ms instance 0 axis leftx 427
+[input] 49106 ms instance 0 button a up
+[input] 49341 ms instance 0 axis leftx -29373
+[input] 51325 ms instance 0 button a down
+[input] 51459 ms instance 0 axis leftx 0
+[perf] t=50s game 19.7 fps (avg 50.8 p95 73.0 max 176.6 ms) vbl 47.3/s | ee game 36.0 render 2.2 iop 2.2 wait 10.4 ms | 615 draws 41k verts 1 tex 250 tags 0 vu1 | host 23 fps gl 27.9 ms | audio 298 ms 0 underruns
+[rhi-stats] gpu 110 frames timed, mean 28.04 ms (run max 512.49 ms, 0 not timed)
+[rhi-stats] textures 1476 (70.5 MiB) buffers 4978 (14.9 MiB) samplers 9 pipelines 41 programs 18 fbos 17 pending 0 | draws 615248 passes 22811 presents 1319 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[gs-hw] input delay by stage: input -> queued 59.0 ms (game, render worker, GS stage), queued -> taken 34.5 ms
+[input] 52114 ms instance 0 axis leftx 20287
+[input] 52114 ms instance 0 axis lefty -21445
+[input] 52274 ms instance 0 axis lefty -13239
+[nxrun] progress t=50.068 host_frames=1337 game_frames=878 ee_cycle=10481766784 ee_threads=1 ready=1 waiting=0 dormant=0 running=1 pc=0021e9d8 ra=0021e9d8 pumps=1337 audio_callbacks=2410 audio_frames=2467840 gamepad=1 heap_in_use=495982960 heap_obtained=502403072
+[nxrun] perf t=50.068 "game_fps=16.8 frame_ms=59.7 vblank_per_s=45.3 game_ms=34.3 render_ms=6.8 iop_ms=2.5 wait_ms=16.1 draws=631 verts=41963 tex_uploads=2 dma_tags=341 vu1_programs=0 host_fps=31 gl_ms=25.7 audio_ms=228 black_frames=0 dip_frames=0 probed_frames=0 worker_ms=40.6 gs_ms=40.9 gs_draws=0.0 gs_verts=0.0 gs_vu1=0.0 gs_hle=0.0 gs_path2=0.0 gs_path3=0.0 native_draws=516.0 hud_draws=16.9 post_draws=15.1 packed_draws=71.3 packed_verts=10957.6 tex_create_us=4523.1 tex_kb=86.1 tex_decode_us=331.5"
+[input] 52688 ms instance 0 axis leftx 13193
+[input] 53144 ms instance 0 axis leftx -32765
+[input] 53452 ms instance 0 axis leftx 0
+[input] 54057 ms instance 0 axis leftx 30607
+[input] 55432 ms instance 0 axis leftx 0
+[input] 56514 ms instance 0 button a up
+[input] 56608 ms instance 0 axis leftx 32396
+[perf] t=55s game 11.1 fps (avg 90.0 p95 285.5 max 378.3 ms) vbl 38.3/s | ee game 39.0 render 14.9 iop 3.6 wait 32.6 ms | 1295 draws 75k verts 6 tex 269 tags 0 vu1 | host 23 fps gl 52.1 ms | audio 225 ms 0 underruns
+[rhi-stats] gpu 109 frames timed, mean 25.60 ms (run max 512.49 ms, 0 not timed)
+[rhi-stats] textures 1792 (80.4 MiB) buffers 7083 (21.3 MiB) samplers 9 pipelines 41 programs 18 fbos 17 pending 0 | draws 702083 passes 25001 presents 1428 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[input] 56844 ms instance 0 axis leftx 0
+[gs-hw] input delay by stage: input -> queued 129.0 ms (game, render worker, GS stage), queued -> taken 32.1 ms
+[input] 57319 ms instance 0 axis leftx 29176
+[nxrun] command t=55.110 at=55.000000 command="player" status=ok reply="ok 01d439c0 -1670.133 -235.094 14.608 1"
+[input] 57656 ms instance 0 axis leftx 0
+[input] 57817 ms instance 0 axis leftx 20319
+[hle] world packets 467607: culled 54004, drawn 356828 + 0 GPU-clipped (17655526 vertices), 56775 C++-clipped, VU fallback 0
+[input] 58688 ms instance 0 axis leftx 5234
+[input] 58982 ms instance 0 axis leftx 32283
+[input] 59320 ms instance 0 axis leftx 0
+[input] 59506 ms instance 0 axis leftx -27660
+[input] 59506 ms instance 0 button a down
+[input] 59924 ms instance 0 button a up
+[input] 60724 ms instance 0 axis leftx -6893
+[input] 60945 ms instance 0 axis leftx 31835
+[input] 61702 ms instance 0 button a down
+[rhi-stats] gpu 119 frames timed, mean 24.74 ms (run max 512.49 ms, 0 not timed)
+[rhi-stats] textures 1818 (81.4 MiB) buffers 10966 (33.9 MiB) samplers 9 pipelines 41 programs 18 fbos 17 pending 0 | draws 792799 passes 27683 presents 1547 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[perf] t=60s game 17.2 fps (avg 58.1 p95 89.4 max 302.1 ms) vbl 44.9/s | ee game 38.8 render 4.2 iop 2.7 wait 12.4 ms | 808 draws 54k verts 0 tex 291 tags 0 vu1 | host 28 fps gl 39.6 ms | audio 203 ms 0 underruns
+[input] 61907 ms instance 0 axis leftx 0
+[gs-hw] input delay by stage: input -> queued 77.1 ms (game, render worker, GS stage), queued -> taken 23.8 ms
+[nxrun] command t=60.122 at=60.000000 command="perf" status=ok reply="ok game_fps=15.9 frame_ms=62.8 vblank_per_s=43.8 game_ms=43.6 render_ms=3.2 iop_ms=2.6 wait_ms=13.4 draws=853 verts=63463 tex_uploads=0 dma_tags=350 vu1_programs=0 host_fps=26 gl_ms=54.8 audio_ms=181 black_frames=0 dip_frames=0 probed_frames=0 worker_ms=43.5 gs_ms=44.4 gs_draws=0.0 gs_verts=0.0 gs_vu1=0.0 gs_hle=0.0 gs_path2=0.0 gs_path3=0.0 native_draws=602.6 hud_draws=16.0 post_draws=16.0 packed_draws=217.2 packed_verts=31138.6 tex_create_us=191.4 tex_kb=1.0 tex_decode_us=3.8"
+[nxrun] progress t=60.122 host_frames=1559 game_frames=1022 ee_cycle=12543843048 ee_threads=1 ready=1 waiting=0 dormant=0 running=1 pc=0021ec2c ra=0021ec2c pumps=1559 audio_callbacks=2882 audio_frames=2951168 gamepad=1 heap_in_use=548189728 heap_obtained=557174784
+[nxrun] perf t=60.122 "game_fps=15.9 frame_ms=62.8 vblank_per_s=43.8 game_ms=43.6 render_ms=3.2 iop_ms=2.6 wait_ms=13.4 draws=853 verts=63463 tex_uploads=0 dma_tags=350 vu1_programs=0 host_fps=26 gl_ms=54.8 audio_ms=181 black_frames=0 dip_frames=0 probed_frames=0 worker_ms=43.5 gs_ms=44.4 gs_draws=0.0 gs_verts=0.0 gs_vu1=0.0 gs_hle=0.0 gs_path2=0.0 gs_path3=0.0 native_draws=602.6 hud_draws=16.0 post_draws=16.0 packed_draws=217.2 packed_verts=31138.6 tex_create_us=191.4 tex_kb=1.0 tex_decode_us=3.8"
+[input] 62589 ms instance 0 button a up
+[input] 63198 ms instance 0 button x down
+[input] 63590 ms instance 0 axis leftx -32429
+[input] 63633 ms instance 0 button x up
+[input] 63946 ms instance 0 button a down
+[input] 64274 ms instance 0 axis leftx 0
+[input] 64461 ms instance 0 axis leftx -24559
+[input] 64849 ms instance 0 axis leftx 0
+[input] 65331 ms instance 0 axis leftx -17888
+[rhi-stats] gpu 111 frames timed, mean 26.60 ms (run max 512.49 ms, 0 not timed)
+[rhi-stats] textures 1973 (85.2 MiB) buffers 10172 (32.2 MiB) samplers 9 pipelines 41 programs 18 fbos 17 pending 0 | draws 885143 passes 30110 presents 1658 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[perf] t=66s game 14.8 fps (avg 67.6 p95 107.6 max 276.9 ms) vbl 42.4/s | ee game 43.1 render 4.2 iop 3.1 wait 17.1 ms | 877 draws 59k verts 2 tex 349 tags 0 vu1 | host 26 fps gl 39.4 ms | audio 189 ms 0 underruns
+[gs-hw] input delay by stage: input -> queued 77.7 ms (game, render worker, GS stage), queued -> taken 26.2 ms
+[input] 67107 ms instance 0 axis leftx 0
+[nxrun] command t=65.061 at=65.000000 command="player" status=ok reply="ok 01d439c0 -1703.165 -319.892 14.461 1"
+[input] 68180 ms instance 0 axis leftx -32760
+[hle] world packets 554439: culled 58671, drawn 429646 + 0 GPU-clipped (21219690 vertices), 66122 C++-clipped, VU fallback 0
+[input] 68749 ms instance 0 axis leftx 0
+[input] 69067 ms instance 0 axis leftx -32766
+[input] 69154 ms instance 0 axis leftx 0
+[input] 69275 ms instance 0 axis leftx -17210
+[input] 69852 ms instance 0 axis leftx 0
+[input] 69940 ms instance 0 axis leftx -32738
+[input] 70268 ms instance 0 axis leftx 0
+[input] 70472 ms instance 0 axis leftx -32753
+[rhi-stats] gpu 92 frames timed, mean 32.36 ms (run max 512.49 ms, 0 not timed)
+[rhi-stats] textures 2367 (90.8 MiB) buffers 9603 (29.0 MiB) samplers 9 pipelines 41 programs 18 fbos 17 pending 0 | draws 971885 passes 31776 presents 1750 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[gs-hw] input delay by stage: input -> queued 144.2 ms (game, render worker, GS stage), queued -> taken 40.6 ms
+[perf] t=71s game 8.7 fps (avg 114.7 p95 317.3 max 392.1 ms) vbl 35.3/s | ee game 44.9 render 18.0 iop 5.3 wait 46.5 ms | 1593 draws 84k verts 10 tex 268 tags 0 vu1 | host 22 fps gl 67.1 ms | audio 190 ms 3 underruns
+[nxrun] progress t=70.128 host_frames=1761 game_frames=1135 ee_cycle=14440458988 ee_threads=1 ready=1 waiting=0 dormant=0 running=1 pc=0021ec2c ra=0021ec2c pumps=1761 audio_callbacks=3348 audio_frames=3428352 gamepad=1 heap_in_use=577613072 heap_obtained=587595776
+[nxrun] perf t=70.128 "game_fps=4.8 frame_ms=206.5 vblank_per_s=27.1 game_ms=39.3 render_ms=82.9 iop_ms=7.3 wait_ms=77.0 draws=1619 verts=83816 tex_uploads=20 dma_tags=377 vu1_programs=0 host_fps=25 gl_ms=67.0 audio_ms=0 black_frames=0 dip_frames=0 probed_frames=0 worker_ms=140.7 gs_ms=184.8 gs_draws=0.0 gs_verts=0.0 gs_vu1=0.0 gs_hle=0.0 gs_path2=0.0 gs_path3=0.0 native_draws=2085.6 hud_draws=21.0 post_draws=22.4 packed_draws=137.0 packed_verts=23490.2 tex_create_us=71226.2 tex_kb=454.8 tex_decode_us=1534.6"
+[input] 72651 ms instance 0 axis leftx 0
+[input] 73403 ms instance 0 axis leftx 32604
+[input] 74851 ms instance 0 axis leftx 0
+[input] 75323 ms instance 0 axis leftx 17834
+[input] 75952 ms instance 0 axis leftx 0
+[input] 76393 ms instance 0 axis leftx 22851
+[input] 76608 ms instance 0 axis leftx 0
+[rhi-stats] gpu 138 frames timed, mean 16.95 ms (run max 512.49 ms, 0 not timed)
+[rhi-stats] textures 2537 (93.4 MiB) buffers 11311 (33.6 MiB) samplers 9 pipelines 41 programs 18 fbos 17 pending 0 | draws 1037180 passes 33381 presents 1888 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[input] 76965 ms instance 0 axis leftx -32760
+[input] 77123 ms instance 0 axis leftx 0
+[gs-hw] input delay by stage: input -> queued 201.2 ms (game, render worker, GS stage), queued -> taken 27.4 ms
+[perf] t=76s game 7.7 fps (avg 129.8 p95 334.2 max 424.3 ms) vbl 35.0/s | ee game 39.6 render 34.7 iop 5.7 wait 49.8 ms | 1516 draws 78k verts 3 tex 456 tags 0 vu1 | host 37 fps gl 26.4 ms | audio 272 ms 1 underruns
+[nxrun] command t=75.104 at=75.000000 command="player" status=ok reply="ok 01d439c0 -1558.635 -324.427 14.886 1"
+[hle] world packets 674659: culled 62973, drawn 538091 + 0 GPU-clipped (25914243 vertices), 73595 C++-clipped, VU fallback 0
+[input] 79117 ms instance 0 axis leftx -32767
+[input] 79265 ms instance 0 axis leftx -4638
+[input] 81207 ms instance 0 axis leftx 23731
+[input] 81511 ms instance 0 axis leftx 0
+[rhi-stats] gpu 135 frames timed, mean 17.87 ms (run max 512.49 ms, 0 not timed)
+[rhi-stats] textures 2571 (94.2 MiB) buffers 10960 (32.5 MiB) samplers 9 pipelines 41 programs 18 fbos 17 pending 0 | draws 1118758 passes 34902 presents 2023 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[gs-hw] input delay by stage: input -> queued 193.4 ms (game, render worker, GS stage), queued -> taken 25.5 ms
+[nxrun] progress t=80.131 host_frames=2029 game_frames=1208 ee_cycle=16118997322 ee_threads=1 ready=1 waiting=0 dormant=0 running=1 pc=0021ec2c ra=0021ec2c pumps=2029 audio_callbacks=3817 audio_frames=3908608 gamepad=1 heap_in_use=609811920 heap_obtained=630177792
+[nxrun] perf t=80.131 "game_fps=8.5 frame_ms=117.2 vblank_per_s=37.0 game_ms=48.4 render_ms=6.1 iop_ms=8.6 wait_ms=54.1 draws=1846 verts=103291 tex_uploads=1 dma_tags=350 vu1_programs=0 host_fps=25 gl_ms=71.8 audio_ms=287 black_frames=0 dip_frames=0 probed_frames=0 worker_ms=74.5 gs_ms=89.5 gs_draws=0.0 gs_verts=0.0 gs_vu1=0.0 gs_hle=0.0 gs_path2=0.0 gs_path3=0.0 native_draws=1387.3 hud_draws=11.7 post_draws=12.4 packed_draws=198.3 packed_verts=30860.1 tex_create_us=3159.9 tex_kb=20.0 tex_decode_us=85.3"
+[perf] t=81s game 6.9 fps (avg 144.7 p95 362.2 max 408.0 ms) vbl 33.6/s | ee game 44.9 render 36.1 iop 6.2 wait 57.6 ms | 2065 draws 114k verts 0 tex 292 tags 0 vu1 | host 29 fps gl 47.3 ms | audio 302 ms 0 underruns
+[input] 82887 ms instance 0 axis leftx -29568
+[input] 83174 ms instance 0 axis leftx 0
+[input] 84624 ms instance 0 axis leftx 32766
+[input] 84898 ms instance 0 axis leftx 0
+[input] 85907 ms instance 0 axis leftx -23245
+[input] 86160 ms instance 0 axis leftx 0
+[input] 86667 ms instance 0 axis leftx -32765
+[input] 86809 ms instance 0 axis leftx -9874
+[rhi-stats] gpu 105 frames timed, mean 25.20 ms (run max 512.49 ms, 0 not timed)
+[rhi-stats] textures 2678 (97.8 MiB) buffers 11783 (34.2 MiB) samplers 9 pipelines 41 programs 18 fbos 17 pending 0 | draws 1201204 passes 36240 presents 2128 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[gs-hw] input delay by stage: input -> queued 217.0 ms (game, render worker, GS stage), queued -> taken 35.3 ms
+[nxrun] command t=85.242 at=85.000000 command="player" status=ok reply="ok 01d439c0 -1394.894 -324.282 11.789 1"
+[perf] t=86s game 6.6 fps (avg 151.1 p95 353.0 max 451.1 ms) vbl 32.9/s | ee game 51.2 render 32.3 iop 8.0 wait 59.6 ms | 2012 draws 116k verts 3 tex 360 tags 0 vu1 | host 25 fps gl 64.7 ms | audio 286 ms 1 underruns
+[input] 87853 ms instance 0 axis leftx -32760
+[input] 88128 ms instance 0 axis leftx 0
+[hle] world packets 777828: culled 63930, drawn 636360 + 0 GPU-clipped (29893131 vertices), 77538 C++-clipped, VU fallback 0
+[input] 88664 ms instance 0 axis leftx -28271
+[input] 88914 ms instance 0 axis leftx 0
+[input] 89889 ms instance 0 axis leftx 32510
+[input] 89979 ms instance 0 axis leftx 0
+[input] 90561 ms instance 0 axis leftx 31961
+[input] 90891 ms instance 0 axis leftx 0
+[input] 91204 ms instance 0 axis leftx 32688
+[input] 91574 ms instance 0 axis leftx 0
+[rhi-stats] gpu 104 frames timed, mean 23.99 ms (run max 512.49 ms, 0 not timed)
+[rhi-stats] textures 2878 (105.4 MiB) buffers 11362 (32.5 MiB) samplers 9 pipelines 41 programs 18 fbos 17 pending 0 | draws 1277033 passes 37504 presents 2232 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[gs-hw] input delay by stage: input -> queued 173.8 ms (game, render worker, GS stage), queued -> taken 50.4 ms
+[nxrun] command t=90.018 at=90.000000 command="gameinfo" status=ok reply="ok frames=1271 | [PLAYER  ped 01d439c0  model 0  state driving (0x37)] | pos   in the vehicle (the ped's own matrix is relative) | health 100.0  armour   0.0  money $0 | weapons  none | [VEHICLE  01d80e00  model 252 STREETF] | pos    -1320.33   -317.31    12.88   heading 270.1 | health 1000.0  speed 116.8 km/h | [CAMERA  mode 18 behind vehicle] | pos    -1326.48   -317.60    13.44   heading 272.7  pitch   2.4  fov 87 | [WORLD] | clock 07:26  area 0 (outdoors)  level 2 MAINLA | game time 60.2 s  frame 1356  step 3.333 | pools  peds 6/70  vehicles 9/40 | [SCRIPTS  32 active  mission running] | mission  ch_jerr @4067c | newest  ch_jerr @4067c  ambtaxi @37af5  warpspo @3763c  carpark @37222 | rampage usj facepla jandw metalde ammunat exportb exportc srangeh | safehou ga_laga ga_imp1 ga_arm2 ga_arm1 shopmon id19 zonemo id17  +10 more"
+[perf] t=91s game 5.7 fps (avg 174.0 p95 338.0 max 775.7 ms) vbl 31.7/s | ee game 51.5 render 40.7 iop 7.9 wait 73.9 ms | 1937 draws 122k verts 7 tex 473 tags 0 vu1 | host 32 fps gl 66.3 ms | audio 272 ms 1 underruns
+[nxrun] progress t=90.135 host_frames=2252 game_frames=1272 ee_cycle=17774001841 ee_threads=1 ready=1 waiting=0 dormant=0 running=1 pc=0021ebfc ra=0021ebfc pumps=2252 audio_callbacks=4301 audio_frames=4404224 gamepad=1 heap_in_use=648794960 heap_obtained=680075264
+[nxrun] perf t=90.135 "game_fps=1.9 frame_ms=533.5 vblank_per_s=17.8 game_ms=48.7 render_ms=363.7 iop_ms=9.3 wait_ms=111.8 draws=3766 verts=216795 tex_uploads=74 dma_tags=1164 vu1_programs=0 host_fps=10 gl_ms=120.5 audio_ms=0 black_frames=0 dip_frames=0 probed_frames=0 worker_ms=587.0 gs_ms=524.1 gs_draws=0.0 gs_verts=0.0 gs_vu1=0.0 gs_hle=0.0 gs_path2=0.0 gs_path3=0.0 native_draws=4195.5 hud_draws=24.0 post_draws=32.0 packed_draws=381.0 packed_verts=80714.0 tex_create_us=197272.0 tex_kb=2928.0 tex_decode_us=3313.0"
+[rhi-stats] gpu 105 frames timed, mean 25.19 ms (run max 512.49 ms, 0 not timed)
+[rhi-stats] textures 2406 (76.1 MiB) buffers 11853 (34.0 MiB) samplers 9 pipelines 41 programs 18 fbos 17 pending 0 | draws 1341117 passes 38617 presents 2337 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[input] 97472 ms instance 0 button a up
+[gs-hw] input delay by stage: input -> queued 368.4 ms (game, render worker, GS stage), queued -> taken 125.5 ms
+[input] 97580 ms instance 0 axis lefty -32754
+[perf] t=96s game 5.4 fps (avg 184.5 p95 638.8 max 1040.2 ms) vbl 28.1/s | ee game 48.6 render 64.5 iop 7.5 wait 63.9 ms | 1922 draws 107k verts 10 tex 315 tags 0 vu1 | host 24 fps gl 93.5 ms | audio 315 ms 2 underruns
+[hle] world packets 865740: culled 64675, drawn 721614 + 0 GPU-clipped (33638550 vertices), 79451 C++-clipped, VU fallback 0
+[nxrun] command t=95.202 at=95.000000 command="player" status=ok reply="ok 01d439c0 -1290.253 -319.755 12.355 1"
+[input] 99627 ms instance 0 button a down
+[input] 101182 ms instance 0 button a up
+[rhi-stats] gpu 120 frames timed, mean 21.13 ms (run max 512.49 ms, 0 not timed)
+[rhi-stats] textures 2444 (78.4 MiB) buffers 9929 (28.4 MiB) samplers 9 pipelines 41 programs 18 fbos 17 pending 0 | draws 1423938 passes 40183 presents 2457 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[gs-hw] input delay by stage: input -> queued 202.2 ms (game, render worker, GS stage), queued -> taken 34.8 ms
+[input] 102709 ms instance 0 button a down
+[perf] t=101s game 6.7 fps (avg 148.3 p95 357.0 max 442.6 ms) vbl 34.5/s | ee game 44.6 render 31.2 iop 5.9 wait 66.6 ms | 1695 draws 94k verts 1 tex 253 tags 0 vu1 | host 30 fps gl 58.2 ms | audio 122 ms 0 underruns
+[nxrun] progress t=100.146 host_frames=2488 game_frames=1338 ee_cycle=19450643923 ee_threads=1 ready=1 waiting=0 dormant=0 running=1 pc=0021ec2c ra=0021ec2c pumps=2488 audio_callbacks=4810 audio_frames=4925440 gamepad=1 heap_in_use=622347216 heap_obtained=700715008
+[nxrun] perf t=100.146 "game_fps=7.6 frame_ms=131.6 vblank_per_s=36.1 game_ms=47.3 render_ms=13.1 iop_ms=4.0 wait_ms=67.1 draws=1704 verts=94890 tex_uploads=1 dma_tags=259 vu1_programs=0 host_fps=32 gl_ms=64.7 audio_ms=300 black_frames=0 dip_frames=0 probed_frames=0 worker_ms=78.9 gs_ms=122.1 gs_draws=0.0 gs_verts=0.0 gs_vu1=0.0 gs_hle=0.0 gs_path2=0.0 gs_path3=0.0 native_draws=1189.0 hud_draws=13.5 post_draws=12.0 packed_draws=64.1 packed_verts=12009.2 tex_create_us=3098.2 tex_kb=48.0 tex_decode_us=276.4"
+[input] 107325 ms instance 0 axis leftx -16544
+[rhi-stats] gpu 109 frames timed, mean 23.32 ms (run max 512.49 ms, 0 not timed)
+[rhi-stats] textures 2484 (80.7 MiB) buffers 11438 (32.9 MiB) samplers 9 pipelines 41 programs 18 fbos 17 pending 0 | draws 1503810 passes 41764 presents 2566 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[gs-hw] input delay by stage: input -> queued 184.3 ms (game, render worker, GS stage), queued -> taken 41.4 ms
+[perf] t=107s game 6.4 fps (avg 157.4 p95 385.4 max 479.3 ms) vbl 33.2/s | ee game 52.1 render 34.9 iop 5.3 wait 65.1 ms | 1677 draws 91k verts 3 tex 480 tags 0 vu1 | host 28 fps gl 66.8 ms | audio 238 ms 1 underruns
+[hle] world packets 969519: culled 66327, drawn 821798 + 0 GPU-clipped (38401034 vertices), 81394 C++-clipped, VU fallback 0
+[nxrun] command t=105.033 at=105.000000 command="player" status=ok reply="ok 01d439c0 -1267.138 -319.095 12.355 1"
+[input] 108577 ms instance 0 axis leftx -12978
+[input] 109422 ms instance 0 axis leftx 18712
+[input] 110999 ms instance 0 axis leftx 5630
+[input] 111650 ms instance 0 axis leftx -16476
+[input] 112238 ms instance 0 button a up
+[rhi-stats] gpu 129 frames timed, mean 18.33 ms (run max 512.49 ms, 0 not timed)
+[rhi-stats] textures 2779 (88.2 MiB) buffers 11983 (34.4 MiB) samplers 9 pipelines 41 programs 18 fbos 17 pending 0 | draws 1563329 passes 43107 presents 2695 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[gs-hw] input delay by stage: input -> queued 232.3 ms (game, render worker, GS stage), queued -> taken 53.5 ms
+[perf] t=112s game 6.1 fps (avg 162.9 p95 449.2 max 881.9 ms) vbl 30.5/s | ee game 52.2 render 47.4 iop 5.4 wait 58.0 ms | 1743 draws 92k verts 8 tex 368 tags 0 vu1 | host 28 fps gl 61.1 ms | audio 330 ms 1 underruns
+[input] 113150 ms instance 0 axis leftx 1883
+[input] 113426 ms instance 0 axis lefty 0
+[nxrun] progress t=110.151 host_frames=2712 game_frames=1398 ee_cycle=20982638232 ee_threads=1 ready=1 waiting=0 dormant=0 running=1 pc=0021ec2c ra=0021ec2c pumps=2712 audio_callbacks=5295 audio_frames=5422080 gamepad=1 heap_in_use=657062096 heap_obtained=727138304
+[nxrun] perf t=110.151 "game_fps=7.6 frame_ms=131.4 vblank_per_s=31.4 game_ms=54.3 render_ms=27.2 iop_ms=3.6 wait_ms=46.4 draws=1700 verts=89353 tex_uploads=16 dma_tags=343 vu1_programs=0 host_fps=9 gl_ms=113.9 audio_ms=76 black_frames=0 dip_frames=0 probed_frames=0 worker_ms=85.1 gs_ms=100.5 gs_draws=0.0 gs_verts=0.0 gs_vu1=0.0 gs_hle=0.0 gs_path2=0.0 gs_path3=0.0 native_draws=1790.0 hud_draws=18.0 post_draws=18.0 packed_draws=93.8 packed_verts=12371.4 tex_create_us=14346.1 tex_kb=86.5 tex_decode_us=2039.2"
+[input] 115635 ms instance 0 button y down
+[input] 115759 ms instance 0 button y up
+[input] 117259 ms instance 0 button y down
+[input] 117424 ms instance 0 button y up
+[rhi-stats] gpu 93 frames timed, mean 27.87 ms (run max 512.49 ms, 0 not timed)
+[rhi-stats] textures 2952 (94.2 MiB) buffers 9133 (26.7 MiB) samplers 9 pipelines 41 programs 18 fbos 17 pending 0 | draws 1628975 passes 44541 presents 2788 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[gs-hw] input delay by stage: input -> queued 265.3 ms (game, render worker, GS stage), queued -> taken 59.6 ms
+[input] 118177 ms instance 0 axis leftx 22102
+[input] 118177 ms instance 0 axis lefty -24189
+[perf] t=117s game 6.7 fps (avg 148.7 p95 384.8 max 712.1 ms) vbl 32.1/s | ee game 44.4 render 36.5 iop 4.8 wait 63.0 ms | 1582 draws 87k verts 5 tex 225 tags 0 vu1 | host 23 fps gl 67.6 ms | audio 76 ms 1 underruns
+[input] 118392 ms instance 0 axis leftx 0
+[input] 118392 ms instance 0 axis lefty 0
+[hle] world packets 1066495: culled 69287, drawn 911109 + 0 GPU-clipped (42383208 vertices), 86099 C++-clipped, VU fallback 0
+[nxrun] command t=115.018 at=115.000000 command="player" status=ok reply="ok 01d439c0 -1250.313 -315.993 10.953 1"
+[input] 121040 ms instance 0 button y down
+[input] 121238 ms instance 0 button y up
+[rhi-stats] gpu 105 frames timed, mean 22.90 ms (run max 512.49 ms, 0 not timed)
+[rhi-stats] textures 2277 (77.7 MiB) buffers 9152 (26.8 MiB) samplers 9 pipelines 41 programs 18 fbos 17 pending 0 | draws 1700183 passes 46080 presents 2893 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[gs-hw] input delay by stage: input -> queued 134.8 ms (game, render worker, GS stage), queued -> taken 43.2 ms
+[perf] t=122s game 7.5 fps (avg 133.2 p95 279.3 max 790.0 ms) vbl 32.6/s | ee game 45.4 render 30.7 iop 4.6 wait 52.5 ms | 1563 draws 84k verts 2 tex 208 tags 0 vu1 | host 26 fps gl 59.0 ms | audio 316 ms 1 underruns
+[nxrun] command t=120.217 at=120.000000 command="perf" status=ok reply="ok game_fps=7.8 frame_ms=128.2 vblank_per_s=35.1 game_ms=44.9 render_ms=25.3 iop_ms=4.3 wait_ms=53.7 draws=1652 verts=84024 tex_uploads=1 dma_tags=205 vu1_programs=0 host_fps=25 gl_ms=66.0 audio_ms=300 black_frames=0 dip_frames=0 probed_frames=0 worker_ms=82.0 gs_ms=100.2 gs_draws=0.0 gs_verts=0.0 gs_vu1=0.0 gs_hle=0.0 gs_path2=0.0 gs_path3=0.0 native_draws=1511.2 hud_draws=15.0 post_draws=16.0 packed_draws=106.2 packed_verts=13651.4 tex_create_us=4415.2 tex_kb=64.0 tex_decode_us=250.1"
+[nxrun] progress t=120.217 host_frames=2930 game_frames=1480 ee_cycle=22725307450 ee_threads=1 ready=1 waiting=0 dormant=0 running=1 pc=0021ec2c ra=0021ec2c pumps=2930 audio_callbacks=5787 audio_frames=5925888 gamepad=1 heap_in_use=637573632 heap_obtained=735907840
+[nxrun] perf t=120.217 "game_fps=7.8 frame_ms=128.2 vblank_per_s=35.1 game_ms=44.9 render_ms=25.3 iop_ms=4.3 wait_ms=53.7 draws=1652 verts=84024 tex_uploads=1 dma_tags=205 vu1_programs=0 host_fps=25 gl_ms=66.0 audio_ms=300 black_frames=0 dip_frames=0 probed_frames=0 worker_ms=82.0 gs_ms=100.2 gs_draws=0.0 gs_verts=0.0 gs_vu1=0.0 gs_hle=0.0 gs_path2=0.0 gs_path3=0.0 native_draws=1511.2 hud_draws=15.0 post_draws=16.0 packed_draws=106.2 packed_verts=13651.4 tex_create_us=4415.2 tex_kb=64.0 tex_decode_us=250.1"
+[input] 125124 ms instance 0 button a down
+[rhi-stats] gpu 116 frames timed, mean 22.04 ms (run max 512.49 ms, 0 not timed)
+[rhi-stats] textures 2322 (80.4 MiB) buffers 9156 (26.8 MiB) samplers 9 pipelines 41 programs 18 fbos 17 pending 0 | draws 1772841 passes 47680 presents 3009 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[gs-hw] input delay by stage: input -> queued 190.6 ms (game, render worker, GS stage), queued -> taken 47.7 ms
+[input] 128047 ms instance 0 axis leftx -32045
+[perf] t=127s game 7.6 fps (avg 131.3 p95 335.0 max 434.5 ms) vbl 34.8/s | ee game 42.8 render 29.7 iop 4.4 wait 54.4 ms | 1674 draws 87k verts 1 tex 206 tags 0 vu1 | host 30 fps gl 51.2 ms | audio 363 ms 0 underruns
+[hle] world packets 1175739: culled 72008, drawn 1012128 + 0 GPU-clipped (46845828 vertices), 91603 C++-clipped, VU fallback 0
+[input] 128874 ms instance 0 axis leftx 0
+[input] 129195 ms instance 0 axis leftx 32712
+[nxrun] command t=125.101 at=125.000000 command="player" status=ok reply="ok 01d439c0 -1241.533 -311.573 11.020 1"
+[input] 130113 ms instance 0 axis leftx 0
+[input] 130639 ms instance 0 axis leftx 32617
+[input] 130964 ms instance 0 axis leftx 8233
+[input] 131294 ms instance 0 axis leftx 24428
+[input] 131592 ms instance 0 axis leftx 11204
+[input] 132057 ms instance 0 axis leftx 24757
+[input] 132612 ms instance 0 axis leftx 0
+[rhi-stats] gpu 143 frames timed, mean 15.96 ms (run max 512.49 ms, 0 not timed)
+[rhi-stats] textures 2348 (81.5 MiB) buffers 10576 (31.1 MiB) samplers 9 pipelines 42 programs 18 fbos 17 pending 0 | draws 1844220 passes 49269 presents 3152 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[gs-hw] input delay by stage: input -> queued 166.0 ms (game, render worker, GS stage), queued -> taken 28.4 ms
+[perf] t=132s game 7.7 fps (avg 129.6 p95 298.9 max 386.8 ms) vbl 35.8/s | ee game 44.3 render 17.7 iop 4.1 wait 63.4 ms | 1632 draws 88k verts 1 tex 213 tags 0 vu1 | host 32 fps gl 49.2 ms | audio 360 ms 0 underruns
+[nxrun] progress t=130.453 host_frames=3184 game_frames=1554 ee_cycle=24454582389 ee_threads=1 ready=1 waiting=0 dormant=0 running=1 pc=0021ec2c ra=0021ec2c pumps=3184 audio_callbacks=6277 audio_frames=6427648 gamepad=1 heap_in_use=658215520 heap_obtained=747241472
+[nxrun] perf t=130.453 "game_fps=5.6 frame_ms=177.2 vblank_per_s=25.4 game_ms=46.2 render_ms=86.4 iop_ms=6.8 wait_ms=37.9 draws=1520 verts=82882 tex_uploads=27 dma_tags=576 vu1_programs=0 host_fps=30 gl_ms=38.0 audio_ms=352 black_frames=0 dip_frames=0 probed_frames=0 worker_ms=143.2 gs_ms=141.1 gs_draws=0.0 gs_verts=0.0 gs_vu1=0.0 gs_hle=0.0 gs_path2=0.0 gs_path3=0.0 native_draws=1605.7 hud_draws=17.0 post_draws=16.0 packed_draws=92.8 packed_verts=12173.0 tex_create_us=37844.7 tex_kb=554.0 tex_decode_us=4754.3"
+[rhi-stats] gpu 109 frames timed, mean 23.01 ms (run max 512.49 ms, 0 not timed)
+[rhi-stats] textures 2537 (87.7 MiB) buffers 9671 (29.3 MiB) samplers 9 pipelines 42 programs 18 fbos 17 pending 0 | draws 1914166 passes 50526 presents 3261 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[gs-hw] input delay by stage: input -> queued 242.4 ms (game, render worker, GS stage), queued -> taken 54.5 ms
+[perf] t=137s game 6.2 fps (avg 161.7 p95 638.9 max 647.9 ms) vbl 29.9/s | ee game 46.1 render 56.7 iop 6.3 wait 52.6 ms | 1873 draws 104k verts 6 tex 488 tags 0 vu1 | host 27 fps gl 56.5 ms | audio 324 ms 2 underruns
+[hle] world packets 1277338: culled 74087, drawn 1108932 + 0 GPU-clipped (51447157 vertices), 94319 C++-clipped, VU fallback 0
+[nxrun] command t=135.188 at=135.000000 command="player" status=ok reply="ok 01d439c0 -1128.173 -299.402 11.096 1"
+[input] 141150 ms instance 0 axis leftx -32756
+[input] 141460 ms instance 0 axis leftx 0
+[input] 141978 ms instance 0 axis leftx -32750
+[input] 141978 ms instance 0 button a up
+[input] 142188 ms instance 0 axis leftx 0
+[rhi-stats] gpu 77 frames timed, mean 33.48 ms (run max 512.49 ms, 0 not timed)
+[rhi-stats] textures 2714 (93.6 MiB) buffers 9623 (28.9 MiB) samplers 9 pipelines 42 programs 18 fbos 17 pending 0 | draws 1992152 passes 51850 presents 3338 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[input] 143093 ms instance 0 axis leftx -31991
+[gs-hw] input delay by stage: input -> queued 193.8 ms (game, render worker, GS stage), queued -> taken 66.5 ms
+[perf] t=142s game 7.0 fps (avg 143.8 p95 390.9 max 621.9 ms) vbl 31.2/s | ee game 49.2 render 40.4 iop 6.2 wait 48.0 ms | 1714 draws 98k verts 5 tex 373 tags 0 vu1 | host 16 fps gl 88.3 ms | audio 356 ms 1 underruns
+[input] 144191 ms instance 0 axis leftx 0
+[nxrun] progress t=140.554 host_frames=3388 game_frames=1628 ee_cycle=26076790580 ee_threads=1 ready=1 waiting=0 dormant=0 running=1 pc=0021ef14 ra=0021ef14 pumps=3388 audio_callbacks=6769 audio_frames=6931456 gamepad=1 heap_in_use=679311472 heap_obtained=767868928
+[nxrun] perf t=140.554 "game_fps=6.6 frame_ms=150.7 vblank_per_s=28.4 game_ms=47.4 render_ms=52.1 iop_ms=5.8 wait_ms=45.4 draws=2094 verts=122125 tex_uploads=0 dma_tags=332 vu1_programs=0 host_fps=18 gl_ms=76.3 audio_ms=333 black_frames=0 dip_frames=0 probed_frames=0 worker_ms=90.8 gs_ms=136.7 gs_draws=0.0 gs_verts=0.0 gs_vu1=0.0 gs_hle=0.0 gs_path2=0.0 gs_path3=0.0 native_draws=1774.1 hud_draws=17.0 post_draws=16.0 packed_draws=122.8 packed_verts=17295.0 tex_create_us=30267.5 tex_kb=274.5 tex_decode_us=10.9"
+[input] 145520 ms instance 0 axis leftx 21099
+[input] 145695 ms instance 0 button a down
+[input] 145798 ms instance 0 axis leftx 0
+[rhi-stats] gpu 77 frames timed, mean 31.58 ms (run max 512.49 ms, 0 not timed)
+[rhi-stats] textures 2387 (83.2 MiB) buffers 11299 (34.1 MiB) samplers 9 pipelines 42 programs 18 fbos 17 pending 0 | draws 2051712 passes 52856 presents 3415 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[gs-hw] input delay by stage: input -> queued 313.1 ms (game, render worker, GS stage), queued -> taken 113.3 ms
+[perf] t=147s game 5.1 fps (avg 195.1 p95 680.4 max 875.8 ms) vbl 24.6/s | ee game 49.6 render 88.5 iop 7.8 wait 49.3 ms | 1890 draws 110k verts 16 tex 335 tags 0 vu1 | host 24 fps gl 77.2 ms | audio 355 ms 4 underruns
+[hle] world packets 1366006: culled 76322, drawn 1193290 + 0 GPU-clipped (55743190 vertices), 96394 C++-clipped, VU fallback 0
+[input] 150127 ms instance 0 axis leftx 32722
+[input] 150453 ms instance 0 axis leftx 9021
+[nxrun] command t=145.030 at=145.000000 command="player" status=ok reply="ok 01d439c0 -978.279 -284.030 10.505 1"
+[input] 151194 ms instance 0 axis leftx 32745
+[input] 151452 ms instance 0 axis leftx 0
+[input] 152519 ms instance 0 axis leftx 32636
+[input] 152703 ms instance 0 axis leftx 6135
+[rhi-stats] gpu 103 frames timed, mean 27.30 ms (run max 512.49 ms, 0 not timed)
+[rhi-stats] textures 2400 (83.6 MiB) buffers 10301 (32.7 MiB) samplers 9 pipelines 43 programs 19 fbos 17 pending 0 | draws 2135873 passes 54565 presents 3518 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[gs-hw] input delay by stage: input -> queued 237.2 ms (game, render worker, GS stage), queued -> taken 106.8 ms
+[perf] t=152s game 10.1 fps (avg 99.3 p95 221.8 max 363.5 ms) vbl 37.3/s | ee game 43.4 render 12.8 iop 4.4 wait 38.7 ms | 1461 draws 83k verts 0 tex 233 tags 0 vu1 | host 19 fps gl 66.3 ms | audio 357 ms 0 underruns
+[input] 153941 ms instance 0 axis leftx -22898
+[input] 154186 ms instance 0 axis leftx 0
+[input] 155632 ms instance 0 axis leftx -22866
+[nxrun] command t=150.029 at=150.000000 command="gameinfo" status=ok reply="ok frames=1706 | [PLAYER  ped 01d439c0  model 0  state driving (0x37)] | pos   in the vehicle (the ped's own matrix is relative) | health  63.0  armour   0.0  money $0 | weapons  none | [VEHICLE  01d80e00  model 252 STREETF] | pos     -879.56   -288.07    10.14   heading 266.3 | health 1000.0  speed 129.1 km/h | [CAMERA  mode 18 behind vehicle] | pos     -885.67   -287.67    11.67   heading 266.3  pitch  -6.8  fov 84 | [WORLD] | clock 07:52  area 0 (outdoors)  level 2 MAINLA | game time 85.8 s  frame 1742  step 2.300 | pools  peds 4/70  vehicles 8/40 | [SCRIPTS  32 active  mission running] | mission  ch_jerr @4067c | newest  ch_jerr @4067c  ambtaxi @37af5  warpspo @3763c  carpark @37222 | rampage usj facepla jandw metalde ammunat exportb exportc srangeh | safehou ga_laga ga_imp1 ga_arm2 ga_arm1 shopmon id19 zonemo id17  +10 more"
+[input] 155814 ms instance 0 button a up
+[input] 156260 ms instance 0 button x down
+[nxrun] progress t=150.787 host_frames=3594 game_frames=1713 ee_cycle=27855042098 ee_threads=1 ready=1 waiting=0 dormant=0 running=1 pc=0021ec2c ra=0021ec2c pumps=3594 audio_callbacks=7290 audio_frames=7464960 gamepad=1 heap_in_use=675020448 heap_obtained=779313152
+[nxrun] perf t=150.787 "game_fps=8.1 frame_ms=123.4 vblank_per_s=36.0 game_ms=41.1 render_ms=27.1 iop_ms=6.8 wait_ms=48.5 draws=1349 verts=97779 tex_uploads=6 dma_tags=343 vu1_programs=0 host_fps=24 gl_ms=58.0 audio_ms=276 black_frames=0 dip_frames=0 probed_frames=0 worker_ms=79.7 gs_ms=98.5 gs_draws=0.0 gs_verts=0.0 gs_vu1=0.0 gs_hle=0.0 gs_path2=0.0 gs_path3=0.0 native_draws=981.8 hud_draws=16.0 post_draws=16.0 packed_draws=132.9 packed_verts=27663.0 tex_create_us=6426.3 tex_kb=99.6 tex_decode_us=1203.7"
+[gs-hw] input delay by stage: input -> queued 207.9 ms (game, render worker, GS stage), queued -> taken 37.7 ms
+[rhi-stats] gpu 122 frames timed, mean 19.63 ms (run max 512.49 ms, 0 not timed)
+[rhi-stats] textures 2530 (88.5 MiB) buffers 10122 (32.0 MiB) samplers 9 pipelines 43 programs 19 fbos 17 pending 0 | draws 2197268 passes 56104 presents 3640 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[hle] world packets 1469355: culled 78734, drawn 1292500 + 0 GPU-clipped (61025654 vertices), 98121 C++-clipped, VU fallback 0
+[perf] t=157s game 7.9 fps (avg 125.8 p95 359.7 max 489.6 ms) vbl 34.4/s | ee game 41.5 render 31.4 iop 6.2 wait 46.6 ms | 1300 draws 95k verts 3 tex 303 tags 0 vu1 | host 30 fps gl 48.3 ms | audio 326 ms 1 underruns
+[input] 159822 ms instance 0 button x up
+[input] 160078 ms instance 0 button a down
+[nxrun] command t=155.103 at=155.000000 command="player" status=ok reply="ok 01d439c0 -834.272 -282.506 10.967 1"
+[input] 162338 ms instance 0 axis leftx 0
+[gs-hw] input delay by stage: input -> queued 189.6 ms (game, render worker, GS stage), queued -> taken 70.4 ms
+[rhi-stats] gpu 78 frames timed, mean 34.04 ms (run max 512.49 ms, 0 not timed)
+[rhi-stats] textures 2796 (94.8 MiB) buffers 11559 (35.5 MiB) samplers 9 pipelines 43 programs 19 fbos 17 pending 0 | draws 2257680 passes 57569 presents 3718 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[perf] t=162s game 7.7 fps (avg 129.9 p95 471.4 max 732.6 ms) vbl 31.9/s | ee game 40.2 render 34.3 iop 5.6 wait 49.9 ms | 1231 draws 100k verts 8 tex 343 tags 0 vu1 | host 14 fps gl 86.9 ms | audio 294 ms 1 underruns
+[input] 164282 ms instance 0 axis leftx 23741
+[input] 166158 ms instance 0 axis leftx 0
+[nxrun] progress t=160.791 host_frames=3787 game_frames=1791 ee_cycle=29440872486 ee_threads=1 ready=1 waiting=0 dormant=0 running=1 pc=0021e9d8 ra=0021e9d8 pumps=3787 audio_callbacks=7757 audio_frames=7943168 gamepad=1 heap_in_use=699144288 heap_obtained=798851072
+[nxrun] perf t=160.791 "game_fps=7.2 frame_ms=138.1 vblank_per_s=32.6 game_ms=44.1 render_ms=28.2 iop_ms=5.0 wait_ms=60.8 draws=1639 verts=91434 tex_uploads=1 dma_tags=271 vu1_programs=0 host_fps=11 gl_ms=98.7 audio_ms=155 black_frames=0 dip_frames=0 probed_frames=0 worker_ms=81.9 gs_ms=124.5 gs_draws=0.0 gs_verts=0.0 gs_vu1=0.0 gs_hle=0.0 gs_path2=0.0 gs_path3=0.0 native_draws=1648.4 hud_draws=18.8 post_draws=20.0 packed_draws=142.8 packed_verts=23356.5 tex_create_us=6958.8 tex_kb=96.0 tex_decode_us=238.4"
+[input] 166887 ms instance 0 axis leftx -32766
+[input] 167324 ms instance 0 axis leftx 0
+[input] 168232 ms instance 0 button a up
+[gs-hw] input delay by stage: input -> queued 178.1 ms (game, render worker, GS stage), queued -> taken 43.5 ms
+[rhi-stats] gpu 103 frames timed, mean 24.23 ms (run max 512.49 ms, 0 not timed)
+[rhi-stats] textures 2921 (98.2 MiB) buffers 11114 (33.6 MiB) samplers 9 pipelines 43 programs 19 fbos 17 pending 0 | draws 2320674 passes 58975 presents 3821 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[hle] world packets 1550767: culled 83395, drawn 1366383 + 0 GPU-clipped (64602848 vertices), 100989 C++-clipped, VU fallback 0
+[perf] t=168s game 7.7 fps (avg 130.2 p95 265.2 max 365.3 ms) vbl 34.9/s | ee game 45.5 render 20.6 iop 5.9 wait 58.2 ms | 1442 draws 84k verts 2 tex 298 tags 0 vu1 | host 24 fps gl 67.8 ms | audio 372 ms 0 underruns
+[input] 170152 ms instance 0 button a down
+[nxrun] command t=165.031 at=165.000000 command="player" status=ok reply="ok 01d439c0 -838.329 -199.108 10.926 1"
+[input] 171067 ms instance 0 axis leftx -32767
+[input] 171279 ms instance 0 axis leftx 0
+[input] 171812 ms instance 0 axis leftx -21167
+[input] 172121 ms instance 0 axis leftx 0
+[input] 172710 ms instance 0 axis leftx -17012
+[input] 173061 ms instance 0 axis leftx 0
+[gs-hw] input delay by stage: input -> queued 159.1 ms (game, render worker, GS stage), queued -> taken 36.0 ms
+[rhi-stats] gpu 115 frames timed, mean 21.96 ms (run max 512.49 ms, 0 not timed)
+[rhi-stats] textures 2983 (101.0 MiB) buffers 11044 (32.6 MiB) samplers 9 pipelines 43 programs 19 fbos 17 pending 0 | draws 2383265 passes 60500 presents 3936 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[perf] t=173s game 8.1 fps (avg 122.8 p95 303.0 max 334.4 ms) vbl 36.5/s | ee game 45.4 render 18.2 iop 5.6 wait 53.7 ms | 1245 draws 83k verts 1 tex 262 tags 0 vu1 | host 27 fps gl 61.8 ms | audio 325 ms 0 underruns
+[input] 174896 ms instance 0 axis leftx 19027
+[input] 175355 ms instance 0 axis lefty -18207
+[input] 175374 ms instance 0 axis leftx 1460
+[input] 175374 ms instance 0 axis lefty -1140
+[input] 175648 ms instance 0 axis leftx 19766
+[input] 176655 ms instance 0 axis leftx 12148
+[nxrun] progress t=170.805 host_frames=4021 game_frames=1865 ee_cycle=31189023927 ee_threads=1 ready=1 waiting=0 dormant=0 running=1 pc=0021ec2c ra=0021ec2c pumps=4021 audio_callbacks=8245 audio_frames=8442880 gamepad=1 heap_in_use=676959872 heap_obtained=811053056
+[nxrun] perf t=170.805 "game_fps=1.8 frame_ms=546.0 vblank_per_s=19.2 game_ms=65.8 render_ms=344.8 iop_ms=19.3 wait_ms=116.1 draws=1279 verts=83227 tex_uploads=1 dma_tags=316 vu1_programs=0 host_fps=30 gl_ms=23.8 audio_ms=251 black_frames=0 dip_frames=0 probed_frames=0 worker_ms=379.8 gs_ms=454.4 gs_draws=0.0 gs_verts=0.0 gs_vu1=0.0 gs_hle=0.0 gs_path2=0.0 gs_path3=0.0 native_draws=2166.5 hud_draws=36.0 post_draws=32.0 packed_draws=400.0 packed_verts=63765.0 tex_create_us=47771.5 tex_kb=448.0 tex_decode_us=215.5"
+[input] 177010 ms instance 0 axis leftx 32558
+[input] 177540 ms instance 0 axis leftx 13594
+[input] 177772 ms instance 0 axis leftx 24376
+[input] 178082 ms instance 0 axis leftx 0
+[input] 178155 ms instance 0 axis leftx 32580
+[gs-hw] input delay by stage: input -> queued 210.0 ms (game, render worker, GS stage), queued -> taken 62.0 ms
+[input] 178323 ms instance 0 axis leftx 8400
+[rhi-stats] gpu 121 frames timed, mean 17.39 ms (run max 512.49 ms, 0 not timed)
+[rhi-stats] textures 2348 (81.4 MiB) buffers 10483 (30.7 MiB) samplers 9 pipelines 43 programs 19 fbos 17 pending 0 | draws 2433143 passes 61786 presents 4057 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[hle] world packets 1614910: culled 88865, drawn 1421601 + 0 GPU-clipped (67117930 vertices), 104444 C++-clipped, VU fallback 0
+[perf] t=178s game 5.4 fps (avg 183.6 p95 421.5 max 839.2 ms) vbl 29.2/s | ee game 51.1 render 59.4 iop 7.6 wait 65.5 ms | 1308 draws 89k verts 4 tex 319 tags 0 vu1 | host 35 fps gl 36.7 ms | audio 237 ms 2 underruns
+[input] 179766 ms instance 0 axis leftx 30203
+[input] 181056 ms instance 0 axis leftx 0
+[nxrun] command t=175.145 at=175.000000 command="player" status=ok reply="ok 01d439c0 -826.035 -70.792 10.707 1"
+[input] 181538 ms instance 0 axis leftx 19816
+[input] 182118 ms instance 0 axis leftx 0
+[input] 182308 ms instance 0 axis leftx -31959
+[input] 182414 ms instance 0 axis leftx 0
+[input] 182622 ms instance 0 axis leftx 31118
+[input] 183033 ms instance 0 axis leftx 4538
+[gs-hw] input delay by stage: input -> queued 167.0 ms (game, render worker, GS stage), queued -> taken 35.8 ms
+[rhi-stats] gpu 130 frames timed, mean 18.17 ms (run max 512.49 ms, 0 not timed)
+[rhi-stats] textures 2442 (84.8 MiB) buffers 10415 (31.1 MiB) samplers 9 pipelines 43 programs 19 fbos 17 pending 0 | draws 2490329 passes 63099 presents 4187 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[input] 183557 ms instance 0 axis leftx 26180
+[perf] t=183s game 5.8 fps (avg 172.2 p95 589.2 max 613.5 ms) vbl 30.6/s | ee game 54.1 render 49.4 iop 8.8 wait 60.0 ms | 1447 draws 101k verts 6 tex 419 tags 0 vu1 | host 34 fps gl 39.3 ms | audio 303 ms 2 underruns
+[input] 185518 ms instance 0 axis leftx 0
+[input] 186037 ms instance 0 axis leftx -22721
+[nxrun] command t=180.174 at=180.000000 command="perf" status=ok reply="ok game_fps=5.8 frame_ms=172.5 vblank_per_s=29.9 game_ms=55.7 render_ms=49.9 iop_ms=12.9 wait_ms=54.0 draws=1418 verts=101764 tex_uploads=1 dma_tags=356 vu1_programs=0 host_fps=29 gl_ms=53.9 audio_ms=314 black_frames=0 dip_frames=0 probed_frames=0 worker_ms=110.9 gs_ms=132.6 gs_draws=0.0 gs_verts=0.0 gs_vu1=0.0 gs_hle=0.0 gs_path2=0.0 gs_path3=0.0 native_draws=1149.2 hud_draws=18.0 post_draws=16.0 packed_draws=243.7 packed_verts=40430.0 tex_create_us=7784.3 tex_kb=80.0 tex_decode_us=308.2"
+[input] 187163 ms instance 0 axis leftx 0
+[nxrun] progress t=180.837 host_frames=4268 game_frames=1928 ee_cycle=32754751501 ee_threads=1 ready=1 waiting=0 dormant=0 running=1 pc=003babd0 ra=003babd0 pumps=4268 audio_callbacks=8728 audio_frames=8937472 gamepad=1 heap_in_use=694329360 heap_obtained=820264960
+[nxrun] perf t=180.837 "game_fps=6.6 frame_ms=150.9 vblank_per_s=32.2 game_ms=55.6 render_ms=29.5 iop_ms=8.5 wait_ms=57.3 draws=1484 verts=108613 tex_uploads=2 dma_tags=405 vu1_programs=0 host_fps=30 gl_ms=42.7 audio_ms=275 black_frames=0 dip_frames=0 probed_frames=0 worker_ms=107.1 gs_ms=125.2 gs_draws=0.0 gs_verts=0.0 gs_vu1=0.0 gs_hle=0.0 gs_path2=0.0 gs_path3=0.0 native_draws=993.9 hud_draws=15.4 post_draws=13.7 packed_draws=240.1 packed_verts=40760.1 tex_create_us=6441.0 tex_kb=62.6 tex_decode_us=249.3"
+[input] 187526 ms instance 0 axis leftx 32664
+[gs-hw] input delay by stage: input -> queued 261.6 ms (game, render worker, GS stage), queued -> taken 42.9 ms
+[rhi-stats] gpu 114 frames timed, mean 20.74 ms (run max 512.49 ms, 0 not timed)
+[rhi-stats] textures 2575 (88.9 MiB) buffers 10873 (32.3 MiB) samplers 9 pipelines 43 programs 19 fbos 17 pending 0 | draws 2545170 passes 64367 presents 4301 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[hle] world packets 1672234: culled 92550, drawn 1471665 + 0 GPU-clipped (69565893 vertices), 108019 C++-clipped, VU fallback 0
+[input] 189000 ms instance 0 axis leftx 0
+[input] 189091 ms instance 0 axis leftx -32754
+[perf] t=188s game 5.9 fps (avg 169.0 p95 447.0 max 464.5 ms) vbl 31.8/s | ee game 57.4 render 37.9 iop 11.9 wait 61.8 ms | 1453 draws 102k verts 2 tex 376 tags 0 vu1 | host 31 fps gl 50.0 ms | audio 315 ms 0 underruns
+[nxrun] command t=185.120 at=185.000000 command="player" status=ok reply="ok 01d439c0 -757.678 45.750 10.774 1"
+[input] 191887 ms instance 0 axis leftx 0
+[gs-hw] input delay by stage: input -> queued 312.1 ms (game, render worker, GS stage), queued -> taken 46.6 ms
+[rhi-stats] gpu 117 frames timed, mean 19.06 ms (run max 512.49 ms, 0 not timed)
+[rhi-stats] textures 2765 (94.1 MiB) buffers 11070 (32.8 MiB) samplers 9 pipelines 43 programs 19 fbos 17 pending 0 | draws 2590008 passes 65459 presents 4418 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[input] 193524 ms instance 0 axis leftx -23822
+[input] 193771 ms instance 0 axis leftx 0
+[perf] t=193s game 5.0 fps (avg 200.0 p95 643.1 max 649.1 ms) vbl 27.6/s | ee game 60.3 render 71.7 iop 10.1 wait 58.0 ms | 1373 draws 96k verts 8 tex 461 tags 0 vu1 | host 39 fps gl 31.7 ms | audio 312 ms 3 underruns
+[input] 194431 ms instance 0 axis leftx 32041
+[input] 194633 ms instance 0 axis leftx 0
+[input] 196279 ms instance 0 axis leftx 32074
+[input] 196364 ms instance 0 button a up
+[input] 197154 ms instance 0 axis leftx 0
+[nxrun] progress t=190.915 host_frames=4514 game_frames=1981 ee_cycle=34259109090 ee_threads=1 ready=1 waiting=0 dormant=0 running=1 pc=0021ebfc ra=0021ebfc pumps=4514 audio_callbacks=9215 audio_frames=9436160 gamepad=1 heap_in_use=706034976 heap_obtained=835473408
+[nxrun] perf t=190.915 "game_fps=6.3 frame_ms=157.8 vblank_per_s=34.4 game_ms=65.8 render_ms=21.8 iop_ms=11.3 wait_ms=59.0 draws=1327 verts=94000 tex_uploads=2 dma_tags=395 vu1_programs=0 host_fps=27 gl_ms=45.8 audio_ms=264 black_frames=0 dip_frames=0 probed_frames=0 worker_ms=80.8 gs_ms=100.6 gs_draws=0.0 gs_verts=0.0 gs_vu1=0.0 gs_hle=0.0 gs_path2=0.0 gs_path3=0.0 native_draws=1232.0 hud_draws=15.0 post_draws=16.0 packed_draws=276.1 packed_verts=47073.0 tex_create_us=10180.4 tex_kb=98.3 tex_decode_us=286.7"
+[gs-hw] input delay by stage: input -> queued 235.4 ms (game, render worker, GS stage), queued -> taken 33.2 ms
+[rhi-stats] gpu 126 frames timed, mean 18.03 ms (run max 512.49 ms, 0 not timed)
+[rhi-stats] textures 2819 (96.4 MiB) buffers 11598 (34.3 MiB) samplers 9 pipelines 43 programs 19 fbos 17 pending 0 | draws 2645412 passes 66673 presents 4544 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[hle] world packets 1720367: culled 95861, drawn 1513149 + 0 GPU-clipped (71534840 vertices), 111357 C++-clipped, VU fallback 0
+[input] 199299 ms instance 0 axis leftx 22700
+[input] 199299 ms instance 0 axis lefty -23055
+[perf] t=198s game 5.7 fps (avg 175.8 p95 508.3 max 663.9 ms) vbl 30.2/s | ee game 55.7 render 52.8 iop 10.5 wait 56.9 ms | 1499 draws 106k verts 2 tex 376 tags 0 vu1 | host 30 fps gl 49.6 ms | audio 286 ms 2 underruns
+[input] 199594 ms instance 0 axis lefty -15899
+[nxrun] command t=195.114 at=195.000000 command="player" status=ok reply="ok 01d439c0 -727.661 116.129 11.071 1"
+[gs-hw] input delay by stage: input -> queued 132.1 ms (game, render worker, GS stage), queued -> taken 39.3 ms
+[rhi-stats] gpu 108 frames timed, mean 21.96 ms (run max 512.49 ms, 0 not timed)
+[rhi-stats] textures 2862 (99.0 MiB) buffers 9095 (27.5 MiB) samplers 9 pipelines 43 programs 19 fbos 17 pending 0 | draws 2694553 passes 68157 presents 4652 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[perf] t=203s game 9.6 fps (avg 104.7 p95 208.4 max 352.8 ms) vbl 36.6/s | ee game 50.9 render 7.9 iop 6.8 wait 39.0 ms | 918 draws 71k verts 1 tex 238 tags 0 vu1 | host 23 fps gl 64.3 ms | audio 336 ms 0 underruns
+[input] 205421 ms instance 0 axis lefty -18107
+[gs-hw] input delay by stage: input -> queued 452.8 ms (game, render worker, GS stage), queued -> taken 187.6 ms
+[rhi-stats] gpu 68 frames timed, mean 34.72 ms (run max 512.49 ms, 0 not timed)
+[rhi-stats] textures 2624 (87.1 MiB) buffers 10552 (30.0 MiB) samplers 9 pipelines 43 programs 19 fbos 17 pending 0 | draws 2726892 passes 69178 presents 4720 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[nxrun] progress t=201.136 host_frames=4721 game_frames=2055 ee_cycle=35862383419 ee_threads=1 ready=1 waiting=0 dormant=0 running=1 pc=0021ebfc ra=0021ebfc pumps=4721 audio_callbacks=9735 audio_frames=9968640 gamepad=1 heap_in_use=700341696 heap_obtained=845955072
+[nxrun] perf t=201.136 "game_fps=1.8 frame_ms=541.3 vblank_per_s=16.6 game_ms=58.9 render_ms=358.4 iop_ms=35.4 wait_ms=88.6 draws=2538 verts=156468 tex_uploads=60 dma_tags=602 vu1_programs=0 host_fps=34 gl_ms=53.5 audio_ms=347 black_frames=0 dip_frames=0 probed_frames=0 worker_ms=421.0 gs_ms=536.5 gs_draws=0.0 gs_verts=0.0 gs_vu1=0.0 gs_hle=0.0 gs_path2=0.0 gs_path3=0.0 native_draws=2132.0 hud_draws=22.5 post_draws=24.0 packed_draws=310.5 packed_verts=55167.0 tex_create_us=241286.5 tex_kb=1401.0 tex_decode_us=3468.5"
+[hle] world packets 1775010: culled 100461, drawn 1560295 + 0 GPU-clipped (73856717 vertices), 114254 C++-clipped, VU fallback 0
+[perf] t=208s game 3.6 fps (avg 279.9 p95 890.2 max 1087.0 ms) vbl 20.9/s | ee game 53.1 render 154.0 iop 17.1 wait 55.8 ms | 1247 draws 87k verts 30 tex 624 tags 0 vu1 | host 22 fps gl 66.6 ms | audio 293 ms 4 underruns
+[input] 212707 ms instance 0 axis leftx 13807
+[nxrun] command t=205.026 at=205.000000 command="player" status=ok reply="ok 01d439c0 -731.412 107.654 10.917 1"
+[input] 213003 ms instance 0 axis leftx -18221
+[gs-hw] input delay by stage: input -> queued 340.7 ms (game, render worker, GS stage), queued -> taken 59.9 ms
+[rhi-stats] gpu 103 frames timed, mean 24.23 ms (run max 512.49 ms, 0 not timed)
+[rhi-stats] textures 2994 (93.5 MiB) buffers 9244 (25.9 MiB) samplers 9 pipelines 43 programs 19 fbos 17 pending 0 | draws 2772308 passes 70200 presents 4823 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[input] 213919 ms instance 0 axis lefty -14781
+[input] 214862 ms instance 0 button y down
+[perf] t=213s game 5.5 fps (avg 183.2 p95 591.3 max 613.0 ms) vbl 29.2/s | ee game 59.6 render 58.3 iop 11.0 wait 54.3 ms | 1779 draws 94k verts 11 tex 316 tags 0 vu1 | host 22 fps gl 89.0 ms | audio 330 ms 2 underruns
+[input] 215044 ms instance 0 axis leftx -4187
+[input] 215044 ms instance 0 button y up
+[nxrun] command t=210.066 at=210.000000 command="gameinfo" status=ok reply="ok frames=2108 | [PLAYER  ped 01d439c0  model 0  state  (0x18)] | pos     -734.23    100.99    10.92   heading 124.1 | health  61.5  armour   0.0  money $0 | weapons  none | [CAMERA  mode 4 follow ped] | pos     -731.09    104.20    11.85   heading 135.6  pitch  -4.2  fov 70 | [WORLD] | clock 08:16  area 0 (outdoors)  level 2 MAINLA | game time 109.7 s  frame 2186  step 3.333 | pools  peds 11/70  vehicles 12/40 | [SCRIPTS  32 active  mission running] | mission  ch_jerr @4067c | newest  ch_jerr @4067c  ambtaxi @37af5  warpspo @3763c  carpark @37222 | rampage usj facepla jandw metalde ammunat exportb exportc srangeh | safehou ga_laga ga_imp1 ga_arm2 ga_arm1 shopmon id19 zonemo id17  +10 more"
+[gs-hw] input delay by stage: input -> queued 215.0 ms (game, render worker, GS stage), queued -> taken 66.2 ms
+[rhi-stats] gpu 83 frames timed, mean 29.47 ms (run max 512.49 ms, 0 not timed)
+[rhi-stats] textures 2318 (70.6 MiB) buffers 10429 (29.6 MiB) samplers 9 pipelines 43 programs 19 fbos 17 pending 0 | draws 2843832 passes 71466 presents 4906 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[hle] world packets 1855627: culled 103511, drawn 1635776 + 0 GPU-clipped (77140824 vertices), 116340 C++-clipped, VU fallback 0
+[nxrun] progress t=211.192 host_frames=4917 game_frames=2115 ee_cycle=37377376494 ee_threads=1 ready=1 waiting=0 dormant=0 running=1 pc=0021ec2c ra=0021ec2c pumps=4917 audio_callbacks=10230 audio_frames=10475520 gamepad=1 heap_in_use=688184864 heap_obtained=858091520
+[nxrun] perf t=211.192 "game_fps=6.2 frame_ms=161.2 vblank_per_s=33.7 game_ms=57.1 render_ms=29.0 iop_ms=7.3 wait_ms=67.8 draws=1913 verts=100082 tex_uploads=2 dma_tags=290 vu1_programs=0 host_fps=27 gl_ms=48.9 audio_ms=272 black_frames=0 dip_frames=0 probed_frames=0 worker_ms=66.9 gs_ms=117.8 gs_draws=0.0 gs_verts=0.0 gs_vu1=0.0 gs_hle=0.0 gs_path2=0.0 gs_path3=0.0 native_draws=1961.7 hud_draws=17.1 post_draws=18.3 packed_draws=193.9 packed_verts=25112.1 tex_create_us=11008.4 tex_kb=80.0 tex_decode_us=297.3"
+[perf] t=219s game 6.6 fps (avg 151.7 p95 320.4 max 797.8 ms) vbl 31.8/s | ee game 56.9 render 33.9 iop 7.6 wait 53.2 ms | 1681 draws 94k verts 2 tex 265 tags 0 vu1 | host 23 fps gl 57.0 ms | audio 338 ms 1 underruns
+[nxrun] command t=215.024 at=215.000000 command="player" status=ok reply="ok 01d439c0 -736.147 100.153 10.901 1"
+[gs-hw] input delay by stage: input -> queued 190.7 ms (game, render worker, GS stage), queued -> taken 34.6 ms
+[rhi-stats] gpu 125 frames timed, mean 19.30 ms (run max 512.49 ms, 0 not timed)
+[rhi-stats] textures 2355 (72.0 MiB) buffers 11065 (31.5 MiB) samplers 9 pipelines 43 programs 19 fbos 17 pending 0 | draws 2926498 passes 72867 presents 5031 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[perf] t=224s game 5.8 fps (avg 171.5 p95 344.2 max 933.4 ms) vbl 29.7/s | ee game 52.2 render 53.0 iop 6.2 wait 60.1 ms | 1998 draws 103k verts 8 tex 330 tags 0 vu1 | host 26 fps gl 75.2 ms | audio 317 ms 2 underruns
+[gs-hw] input delay by stage: input -> queued 263.2 ms (game, render worker, GS stage), queued -> taken 100.4 ms
+[rhi-stats] gpu 101 frames timed, mean 24.86 ms (run max 512.49 ms, 0 not timed)
+[rhi-stats] textures 2622 (79.5 MiB) buffers 9110 (26.3 MiB) samplers 9 pipelines 43 programs 19 fbos 17 pending 0 | draws 2973378 passes 74214 presents 5132 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[hle] world packets 1932558: culled 107573, drawn 1705859 + 0 GPU-clipped (80215087 vertices), 119126 C++-clipped, VU fallback 0
+[nxrun] progress t=221.217 host_frames=5143 game_frames=2192 ee_cycle=39079452372 ee_threads=1 ready=1 waiting=0 dormant=0 running=1 pc=0021ec2c ra=0021ec2c pumps=5143 audio_callbacks=10727 audio_frames=10984448 gamepad=1 heap_in_use=702668528 heap_obtained=863776768
+[nxrun] perf t=221.217 "game_fps=10.3 frame_ms=97.1 vblank_per_s=38.8 game_ms=38.8 render_ms=9.5 iop_ms=3.8 wait_ms=45.1 draws=749 verts=70045 tex_uploads=1 dma_tags=242 vu1_programs=0 host_fps=19 gl_ms=62.7 audio_ms=305 black_frames=0 dip_frames=0 probed_frames=0 worker_ms=63.7 gs_ms=69.8 gs_draws=0.0 gs_verts=0.0 gs_vu1=0.0 gs_hle=0.0 gs_path2=0.0 gs_path3=0.0 native_draws=561.0 hud_draws=17.0 post_draws=16.0 packed_draws=217.0 packed_verts=45204.0 tex_create_us=5051.5 tex_kb=59.1 tex_decode_us=280.6"
+[perf] t=229s game 9.5 fps (avg 105.2 p95 225.4 max 523.4 ms) vbl 37.2/s | ee game 39.5 render 12.1 iop 4.5 wait 49.1 ms | 823 draws 76k verts 1 tex 295 tags 0 vu1 | host 21 fps gl 65.8 ms | audio 101 ms 0 underruns
+[gs-hw] input delay by stage: input -> queued 121.0 ms (game, render worker, GS stage), queued -> taken 48.5 ms
+[nxrun] command t=225.125 at=225.000000 command="player" status=ok reply="ok 01d439c0 -736.935 100.741 10.927 1"
+[rhi-stats] gpu 77 frames timed, mean 36.08 ms (run max 512.49 ms, 0 not timed)
+[rhi-stats] textures 2681 (83.2 MiB) buffers 10625 (31.0 MiB) samplers 9 pipelines 43 programs 19 fbos 17 pending 0 | draws 3033687 passes 76072 presents 5209 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[perf] t=234s game 11.9 fps (avg 84.0 p95 137.6 max 235.4 ms) vbl 40.3/s | ee game 38.1 render 3.0 iop 3.6 wait 39.4 ms | 819 draws 76k verts 1 tex 244 tags 0 vu1 | host 15 fps gl 74.8 ms | audio 326 ms 0 underruns
+[gs-hw] input delay by stage: input -> queued 126.9 ms (game, render worker, GS stage), queued -> taken 58.3 ms
+[rhi-stats] gpu 81 frames timed, mean 33.44 ms (run max 512.49 ms, 0 not timed)
+[rhi-stats] textures 2733 (86.4 MiB) buffers 9427 (28.7 MiB) samplers 9 pipelines 43 programs 19 fbos 17 pending 0 | draws 3093709 passes 77771 presents 5290 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[hle] world packets 1997021: culled 116704, drawn 1754590 + 0 GPU-clipped (82629107 vertices), 125727 C++-clipped, VU fallback 0
+[nxrun] progress t=231.274 host_frames=5305 game_frames=2300 ee_cycle=40995518693 ee_threads=1 ready=1 waiting=0 dormant=0 running=1 pc=0021ec2c ra=0021ec2c pumps=5305 audio_callbacks=11197 audio_frames=11465728 gamepad=1 heap_in_use=713887344 heap_obtained=876982272
+[nxrun] perf t=231.274 "game_fps=9.6 frame_ms=104.2 vblank_per_s=36.5 game_ms=44.3 render_ms=7.4 iop_ms=4.5 wait_ms=48.0 draws=1118 verts=97968 tex_uploads=1 dma_tags=319 vu1_programs=0 host_fps=24 gl_ms=64.4 audio_ms=218 black_frames=0 dip_frames=0 probed_frames=0 worker_ms=53.2 gs_ms=66.1 gs_draws=0.0 gs_verts=0.0 gs_vu1=0.0 gs_hle=0.0 gs_path2=0.0 gs_path3=0.0 native_draws=714.0 hud_draws=17.0 post_draws=16.0 packed_draws=269.0 packed_verts=51757.2 tex_create_us=4950.6 tex_kb=64.0 tex_decode_us=328.5"
+[perf] t=239s game 9.6 fps (avg 104.6 p95 234.9 max 369.5 ms) vbl 36.7/s | ee game 42.8 render 8.3 iop 5.0 wait 48.4 ms | 941 draws 83k verts 1 tex 298 tags 0 vu1 | host 20 fps gl 68.6 ms | audio 324 ms 0 underruns
+[input] 241305 ms instance 0 button a down
+[input] 241656 ms instance 0 axis leftx -20441
+[input] 243207 ms instance 0 axis leftx 0
+[input] 243416 ms instance 0 axis leftx 31795
+[gs-hw] input delay by stage: input -> queued 103.1 ms (game, render worker, GS stage), queued -> taken 53.4 ms
+[nxrun] command t=235.189 at=235.000000 command="player" status=ok reply="ok 01d439c0 -737.606 111.799 10.897 1"
+[rhi-stats] gpu 84 frames timed, mean 32.70 ms (run max 512.49 ms, 0 not timed)
+[rhi-stats] textures 2804 (90.1 MiB) buffers 9304 (27.8 MiB) samplers 9 pipelines 43 programs 19 fbos 17 pending 0 | draws 3161120 passes 79382 presents 5374 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[input] 244828 ms instance 0 axis leftx 13441
+[input] 245424 ms instance 0 axis leftx 32697
+[perf] t=244s game 9.6 fps (avg 103.7 p95 243.5 max 331.8 ms) vbl 37.0/s | ee game 45.1 render 9.5 iop 5.8 wait 43.3 ms | 1128 draws 79k verts 2 tex 324 tags 0 vu1 | host 18 fps gl 76.5 ms | audio 263 ms 0 underruns
+[input] 246230 ms instance 0 axis leftx 9369
+[input] 247187 ms instance 0 axis leftx -32759
+[input] 247501 ms instance 0 axis leftx 0
+[gs-hw] input delay by stage: input -> queued 129.0 ms (game, render worker, GS stage), queued -> taken 60.3 ms
+[nxrun] command t=240.214 at=240.000000 command="perf" status=ok reply="ok game_fps=7.3 frame_ms=136.2 vblank_per_s=35.8 game_ms=49.5 render_ms=18.5 iop_ms=5.0 wait_ms=63.2 draws=1352 verts=91949 tex_uploads=19 dma_tags=496 vu1_programs=0 host_fps=23 gl_ms=64.2 audio_ms=262 black_frames=0 dip_frames=0 probed_frames=0 worker_ms=80.7 gs_ms=91.1 gs_draws=0.0 gs_verts=0.0 gs_vu1=0.0 gs_hle=0.0 gs_path2=0.0 gs_path3=0.0 native_draws=1069.1 hud_draws=15.0 post_draws=16.0 packed_draws=189.5 packed_verts=33595.5 tex_create_us=22350.9 tex_kb=158.1 tex_decode_us=3082.4"
+[hle] world packets 2069873: culled 122973, drawn 1816433 + 0 GPU-clipped (85572845 vertices), 130467 C++-clipped, VU fallback 0
+[rhi-stats] gpu 80 frames timed, mean 34.51 ms (run max 512.49 ms, 0 not timed)
+[rhi-stats] textures 3006 (95.8 MiB) buffers 11944 (35.1 MiB) samplers 9 pipelines 43 programs 19 fbos 17 pending 0 | draws 3223855 passes 80902 presents 5454 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[nxrun] progress t=241.328 host_frames=5472 game_frames=2393 ee_cycle=42782111074 ee_threads=1 ready=1 waiting=0 dormant=0 running=1 pc=0021ec2c ra=0021ec2c pumps=5472 audio_callbacks=11680 audio_frames=11960320 gamepad=1 heap_in_use=731161152 heap_obtained=889180160
+[nxrun] perf t=241.328 "game_fps=6.2 frame_ms=161.7 vblank_per_s=27.8 game_ms=51.1 render_ms=56.8 iop_ms=5.0 wait_ms=48.7 draws=1495 verts=101615 tex_uploads=1 dma_tags=371 vu1_programs=0 host_fps=32 gl_ms=46.5 audio_ms=313 black_frames=0 dip_frames=0 probed_frames=0 worker_ms=105.8 gs_ms=134.5 gs_draws=0.0 gs_verts=0.0 gs_vu1=0.0 gs_hle=0.0 gs_path2=0.0 gs_path3=0.0 native_draws=1208.0 hud_draws=15.0 post_draws=16.0 packed_draws=245.4 packed_verts=39357.6 tex_create_us=34443.4 tex_kb=275.0 tex_decode_us=284.4"
+[perf] t=250s game 7.0 fps (avg 142.1 p95 318.8 max 792.5 ms) vbl 30.4/s | ee game 50.9 render 38.4 iop 4.7 wait 48.1 ms | 1343 draws 90k verts 5 tex 354 tags 0 vu1 | host 20 fps gl 69.6 ms | audio 290 ms 2 underruns
+[input] 251624 ms instance 0 button a up
+[input] 251641 ms instance 0 axis leftx -17042
+[input] 251728 ms instance 0 button x down
+[input] 253462 ms instance 0 button x up
+[input] 253715 ms instance 0 button a down
+[gs-hw] input delay by stage: input -> queued 230.4 ms (game, render worker, GS stage), queued -> taken 79.4 ms
+[nxrun] command t=245.056 at=245.000000 command="player" status=ok reply="ok 01d439c0 -719.050 228.765 10.951 1"
+[rhi-stats] gpu 92 frames timed, mean 25.19 ms (run max 512.49 ms, 0 not timed)
+[rhi-stats] textures 2299 (73.9 MiB) buffers 9299 (28.8 MiB) samplers 9 pipelines 43 programs 19 fbos 17 pending 0 | draws 3288806 passes 82213 presents 5546 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[perf] t=256s game 6.2 fps (avg 161.4 p95 420.6 max 830.4 ms) vbl 28.5/s | ee game 45.0 render 58.9 iop 8.7 wait 48.9 ms | 1270 draws 82k verts 12 tex 305 tags 0 vu1 | host 24 fps gl 64.0 ms | audio 272 ms 3 underruns
+[input] 258246 ms instance 0 axis leftx 0
+[input] 258534 ms instance 0 axis leftx -32766
+[gs-hw] input delay by stage: input -> queued 313.6 ms (game, render worker, GS stage), queued -> taken 107.4 ms
+[rhi-stats] gpu 87 frames timed, mean 29.33 ms (run max 512.49 ms, 0 not timed)
+[rhi-stats] textures 2976 (92.7 MiB) buffers 10993 (32.8 MiB) samplers 9 pipelines 43 programs 19 fbos 17 pending 0 | draws 3316881 passes 83131 presents 5633 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[hle] world packets 2122161: culled 125773, drawn 1863569 + 0 GPU-clipped (87808558 vertices), 132819 C++-clipped, VU fallback 0
+[input] 260867 ms instance 0 axis leftx 0
+[input] 261179 ms instance 0 axis leftx -18250
+[input] 262087 ms instance 0 axis leftx 0
+[nxrun] progress t=251.358 host_frames=5673 game_frames=2447 ee_cycle=44247046681 ee_threads=1 ready=1 waiting=0 dormant=0 running=1 pc=0021ec2c ra=0021ec2c pumps=5673 audio_callbacks=12245 audio_frames=12538880 gamepad=1 heap_in_use=730789040 heap_obtained=916275200
+[nxrun] perf t=251.358 "game_fps=4.4 frame_ms=228.9 vblank_per_s=15.8 game_ms=26.2 render_ms=152.7 iop_ms=8.3 wait_ms=41.6 draws=1050 verts=48365 tex_uploads=17 dma_tags=947 vu1_programs=0 host_fps=39 gl_ms=46.0 audio_ms=143 black_frames=0 dip_frames=0 probed_frames=0 worker_ms=196.3 gs_ms=210.2 gs_draws=0.0 gs_verts=0.0 gs_vu1=0.0 gs_hle=0.0 gs_path2=0.0 gs_path3=0.0 native_draws=1001.6 hud_draws=7.5 post_draws=8.0 packed_draws=61.5 packed_verts=7326.4 tex_create_us=66642.5 tex_kb=377.6 tex_decode_us=1287.5"
+[perf] t=261s game 3.4 fps (avg 290.3 p95 687.9 max 1037.4 ms) vbl 20.3/s | ee game 38.6 render 175.4 iop 12.4 wait 63.9 ms | 1360 draws 66k verts 33 tex 845 tags 0 vu1 | host 35 fps gl 48.9 ms | audio 123 ms 4 underruns
+[input] 263819 ms instance 0 axis leftx 30271
+[gs-hw] input delay by stage: input -> queued 493.0 ms (game, render worker, GS stage), queued -> taken 169.2 ms
+[rhi-stats] gpu 75 frames timed, mean 29.78 ms (run max 512.49 ms, 0 not timed)
+[rhi-stats] textures 2728 (88.0 MiB) buffers 9463 (27.7 MiB) samplers 9 pipelines 43 programs 19 fbos 17 pending 0 | draws 3351822 passes 83920 presents 5708 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[input] 264489 ms instance 0 axis leftx 0
+[nxrun] command t=255.038 at=255.000000 command="player" status=ok reply="ok 01d439c0 -733.288 179.902 11.259 1"
+[input] 266548 ms instance 0 axis leftx 21236
+[input] 266814 ms instance 0 axis leftx 0
+[perf] t=266s game 6.4 fps (avg 157.0 p95 364.9 max 811.0 ms) vbl 30.1/s | ee game 49.0 render 42.2 iop 6.5 wait 59.4 ms | 1512 draws 86k verts 7 tex 237 tags 0 vu1 | host 26 fps gl 66.9 ms | audio 379 ms 1 underruns
+[input] 267863 ms instance 0 axis leftx 32766
+[input] 268157 ms instance 0 axis leftx 0
+[rhi-stats] gpu 112 frames timed, mean 20.55 ms (run max 512.49 ms, 0 not timed)
+[rhi-stats] textures 2969 (95.0 MiB) buffers 10970 (31.7 MiB) samplers 9 pipelines 43 programs 19 fbos 17 pending 0 | draws 3409083 passes 85214 presents 5820 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[input] 269649 ms instance 0 axis leftx 32765
+[gs-hw] input delay by stage: input -> queued 195.8 ms (game, render worker, GS stage), queued -> taken 53.9 ms
+[input] 269851 ms instance 0 axis leftx 13034
+[hle] world packets 2193059: culled 128334, drawn 1929002 + 0 GPU-clipped (90633067 vertices), 135723 C++-clipped, VU fallback 0
+[nxrun] progress t=261.364 host_frames=5892 game_frames=2509 ee_cycle=45741219040 ee_threads=1 ready=1 waiting=0 dormant=0 running=1 pc=0021ec2c ra=0021ec2c pumps=5892 audio_callbacks=12740 audio_frames=13045760 gamepad=1 heap_in_use=746441376 heap_obtained=930131968
+[nxrun] perf t=261.364 "game_fps=6.3 frame_ms=159.8 vblank_per_s=31.3 game_ms=54.6 render_ms=45.3 iop_ms=6.3 wait_ms=53.6 draws=1567 verts=91997 tex_uploads=1 dma_tags=327 vu1_programs=0 host_fps=21 gl_ms=73.6 audio_ms=365 black_frames=0 dip_frames=0 probed_frames=0 worker_ms=102.1 gs_ms=125.1 gs_draws=0.0 gs_verts=0.0 gs_vu1=0.0 gs_hle=0.0 gs_path2=0.0 gs_path3=0.0 native_draws=1584.6 hud_draws=15.0 post_draws=16.0 packed_draws=214.1 packed_verts=35166.4 tex_create_us=5428.6 tex_kb=64.0 tex_decode_us=200.0"
+[perf] t=272s game 5.5 fps (avg 183.1 p95 692.4 max 719.8 ms) vbl 27.9/s | ee game 52.7 render 66.0 iop 5.8 wait 58.6 ms | 1754 draws 101k verts 9 tex 374 tags 0 vu1 | host 30 fps gl 56.6 ms | audio 336 ms 2 underruns
+[rhi-stats] gpu 98 frames timed, mean 23.89 ms (run max 512.49 ms, 0 not timed)
+[rhi-stats] textures 2274 (71.4 MiB) buffers 10655 (30.4 MiB) samplers 9 pipelines 43 programs 19 fbos 17 pending 0 | draws 3468679 passes 86359 presents 5918 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[gs-hw] input delay by stage: input -> queued 247.2 ms (game, render worker, GS stage), queued -> taken 69.7 ms
+[input] 276359 ms instance 0 axis leftx 24765
+[nxrun] command t=265.098 at=265.000000 command="player" status=ok reply="ok 01d439c0 -754.690 53.181 11.040 1"
+[input] 277127 ms instance 0 axis leftx 2047
+[input] 277742 ms instance 0 axis leftx 32766
+[perf] t=277s game 4.8 fps (avg 207.3 p95 569.3 max 962.1 ms) vbl 26.2/s | ee game 53.9 render 84.4 iop 9.0 wait 59.9 ms | 1918 draws 122k verts 2 tex 386 tags 0 vu1 | host 33 fps gl 42.1 ms | audio 342 ms 3 underruns
+[input] 278584 ms instance 0 axis leftx 0
+[input] 278915 ms instance 0 axis leftx 24082
+[rhi-stats] gpu 120 frames timed, mean 18.74 ms (run max 512.49 ms, 0 not timed)
+[rhi-stats] textures 2366 (73.6 MiB) buffers 11044 (31.1 MiB) samplers 9 pipelines 43 programs 19 fbos 17 pending 0 | draws 3525578 passes 87445 presents 6038 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[gs-hw] input delay by stage: input -> queued 329.4 ms (game, render worker, GS stage), queued -> taken 47.7 ms
+[hle] world packets 2267810: culled 131520, drawn 1997293 + 0 GPU-clipped (93566608 vertices), 138997 C++-clipped, VU fallback 0
+[input] 280260 ms instance 0 axis leftx 15230
+[input] 281384 ms instance 0 axis leftx -17705
+[input] 281973 ms instance 0 axis leftx 0
+[nxrun] command t=270.017 at=270.000000 command="gameinfo" status=ok reply="ok frames=2551 | [PLAYER  ped 01d439c0  model 0  state driving (0x37)] | pos   in the vehicle (the ped's own matrix is relative) | health  61.5  armour   0.0  money $0 | weapons  none | [VEHICLE  01d80e00  model 252 STREETF] | pos     -776.34      6.09    10.64   heading 146.4 | health 1000.0  speed 128.8 km/h | [CAMERA  mode 18 behind vehicle] | pos     -773.04     11.25    12.12   heading 147.4  pitch  -6.3  fov 84 | [WORLD] | clock 08:42  area 0 (outdoors)  level 2 MAINLA | game time 135.5 s  frame 2658  step 3.333 | pools  peds 17/70  vehicles 16/40 | [SCRIPTS  32 active  mission running] | mission  ch_jerr @4067c | newest  ch_jerr @4067c  ambtaxi @37af5  warpspo @3763c  carpark @37222 | rampage usj facepla jandw metalde ammunat exportb exportc srangeh | safehou ga_laga ga_imp1 ga_arm2 ga_arm1 shopmon id19 zonemo id17  +10 more"
+[input] 282857 ms instance 0 axis leftx -26065
+[perf] t=282s game 4.5 fps (avg 223.1 p95 575.0 max 617.9 ms) vbl 27.5/s | ee game 60.5 render 89.3 iop 13.6 wait 59.7 ms | 2001 draws 124k verts 4 tex 421 tags 0 vu1 | host 37 fps gl 39.3 ms | audio 336 ms 4 underruns
+[input] 283344 ms instance 0 axis leftx 0
+[nxrun] progress t=271.371 host_frames=6137 game_frames=2559 ee_cycle=47120107819 ee_threads=1 ready=1 waiting=0 dormant=0 running=1 pc=003baac8 ra=003baac8 pumps=6137 audio_callbacks=13234 audio_frames=13551616 gamepad=1 heap_in_use=727902576 heap_obtained=942002176
+[nxrun] perf t=271.371 "game_fps=4.8 frame_ms=210.2 vblank_per_s=31.4 game_ms=57.5 render_ms=72.4 iop_ms=11.7 wait_ms=68.6 draws=2022 verts=119791 tex_uploads=1 dma_tags=352 vu1_programs=0 host_fps=35 gl_ms=42.4 audio_ms=324 black_frames=0 dip_frames=0 probed_frames=0 worker_ms=149.2 gs_ms=210.9 gs_draws=0.0 gs_verts=0.0 gs_vu1=0.0 gs_hle=0.0 gs_path2=0.0 gs_path3=0.0 native_draws=1741.8 hud_draws=16.0 post_draws=16.0 packed_draws=248.6 packed_verts=41161.2 tex_create_us=6453.2 tex_kb=64.0 tex_decode_us=237.6"
+[input] 283906 ms instance 0 axis leftx -32766
+[input] 284080 ms instance 0 axis leftx -14653
+[rhi-stats] gpu 125 frames timed, mean 17.50 ms (run max 512.49 ms, 0 not timed)
+[rhi-stats] textures 2410 (75.5 MiB) buffers 11180 (31.5 MiB) samplers 9 pipelines 43 programs 19 fbos 17 pending 0 | draws 3582984 passes 88565 presents 6163 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[gs-hw] input delay by stage: input -> queued 328.6 ms (game, render worker, GS stage), queued -> taken 34.8 ms
+[input] 285075 ms instance 0 axis leftx -30395
+[input] 285265 ms instance 0 axis leftx 0
+[input] 286157 ms instance 0 axis leftx -26112
+[input] 286574 ms instance 0 axis leftx 0
+[nxrun] command t=275.018 at=275.000000 command="player" status=ok reply="ok 01d439c0 -809.539 -49.673 11.097 1"
+[perf] t=288s game 4.5 fps (avg 222.6 p95 592.9 max 1096.6 ms) vbl 25.9/s | ee game 58.1 render 93.1 iop 10.1 wait 61.3 ms | 1888 draws 110k verts 8 tex 498 tags 0 vu1 | host 35 fps gl 34.9 ms | audio 324 ms 2 underruns
+[rhi-stats] gpu 128 frames timed, mean 16.95 ms (run max 531.70 ms, 0 not timed)
+[rhi-stats] textures 2616 (81.6 MiB) buffers 10744 (30.2 MiB) samplers 9 pipelines 43 programs 19 fbos 17 pending 0 | draws 3626928 passes 89504 presents 6291 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[hle] world packets 2332581: culled 132265, drawn 2060325 + 0 GPU-clipped (96274474 vertices), 139991 C++-clipped, VU fallback 0
+[gs-hw] input delay by stage: input -> queued 340.1 ms (game, render worker, GS stage), queued -> taken 90.3 ms
+[perf] t=293s game 5.2 fps (avg 192.5 p95 499.6 max 1083.4 ms) vbl 24.2/s | ee game 42.6 render 88.1 iop 10.8 wait 51.0 ms | 1813 draws 98k verts 8 tex 539 tags 0 vu1 | host 33 fps gl 78.1 ms | audio 0 ms 2 underruns
+[input] 294323 ms instance 0 axis leftx -29046
+[input] 294645 ms instance 0 axis leftx 0
+[nxrun] progress t=281.405 host_frames=6393 game_frames=2607 ee_cycle=48518149409 ee_threads=1 ready=1 waiting=0 dormant=0 running=1 pc=0021ec2c ra=0021ec2c pumps=6393 audio_callbacks=13762 audio_frames=14092288 gamepad=1 heap_in_use=762254272 heap_obtained=965767168
+[nxrun] perf t=281.405 "game_fps=6.6 frame_ms=150.8 vblank_per_s=31.3 game_ms=54.8 render_ms=41.4 iop_ms=7.1 wait_ms=47.5 draws=2212 verts=116592 tex_uploads=1 dma_tags=297 vu1_programs=0 host_fps=31 gl_ms=52.8 audio_ms=335 black_frames=0 dip_frames=0 probed_frames=0 worker_ms=93.1 gs_ms=140.1 gs_draws=0.0 gs_verts=0.0 gs_vu1=0.0 gs_hle=0.0 gs_path2=0.0 gs_path3=0.0 native_draws=1777.6 hud_draws=13.7 post_draws=13.7 packed_draws=91.7 packed_verts=14966.1 tex_create_us=4825.7 tex_kb=54.9 tex_decode_us=179.3"
+[rhi-stats] gpu 103 frames timed, mean 22.31 ms (run max 531.70 ms, 0 not timed)
+[rhi-stats] textures 2841 (88.3 MiB) buffers 9664 (27.5 MiB) samplers 9 pipelines 43 programs 19 fbos 17 pending 0 | draws 3687109 passes 90470 presents 6394 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[gs-hw] input delay by stage: input -> queued 345.2 ms (game, render worker, GS stage), queued -> taken 72.4 ms
+[input] 294961 ms instance 0 axis leftx -29262
+[input] 295145 ms instance 0 axis leftx -9449
+[input] 295440 ms instance 0 axis leftx -16497
+[input] 295693 ms instance 0 axis leftx 0
+[input] 296449 ms instance 0 axis leftx -32766
+[input] 298073 ms instance 0 axis leftx 0
+[input] 298140 ms instance 0 axis leftx -22904
+[nxrun] command t=285.038 at=285.000000 command="player" status=ok reply="ok 01d439c0 -860.210 -163.303 10.643 1"
+[input] 298665 ms instance 0 axis leftx 0
+[perf] t=298s game 5.9 fps (avg 169.7 p95 462.1 max 486.8 ms) vbl 31.4/s | ee game 49.8 render 52.3 iop 6.4 wait 61.2 ms | 1923 draws 100k verts 4 tex 272 tags 0 vu1 | host 32 fps gl 38.5 ms | audio 330 ms 0 underruns
+[input] 299641 ms instance 0 axis leftx 31166
+[rhi-stats] gpu 138 frames timed, mean 16.41 ms (run max 531.70 ms, 0 not timed)
+[rhi-stats] textures 2953 (92.0 MiB) buffers 10807 (30.8 MiB) samplers 9 pipelines 43 programs 19 fbos 17 pending 0 | draws 3750315 passes 91813 presents 6532 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[hle] world packets 2428130: culled 134169, drawn 2151818 + 0 GPU-clipped (100503976 vertices), 142143 C++-clipped, VU fallback 0
+[gs-hw] input delay by stage: input -> queued 229.9 ms (game, render worker, GS stage), queued -> taken 32.7 ms
+[input] 300063 ms instance 0 axis leftx 0
+[input] 300391 ms instance 0 axis leftx -32767
+[input] 303110 ms instance 0 axis leftx 0
+[input] 303726 ms instance 0 axis leftx 32704
+[perf] t=303s game 4.3 fps (avg 235.1 p95 632.8 max 1002.8 ms) vbl 25.1/s | ee game 52.9 render 110.1 iop 8.3 wait 63.7 ms | 1812 draws 107k verts 9 tex 411 tags 0 vu1 | host 31 fps gl 71.4 ms | audio 293 ms 3 underruns
+[input] 304948 ms instance 0 axis leftx 2661
+[rhi-stats] gpu 101 frames timed, mean 21.20 ms (run max 531.70 ms, 0 not timed)
+[rhi-stats] textures 2398 (80.9 MiB) buffers 10378 (29.2 MiB) samplers 9 pipelines 43 programs 19 fbos 17 pending 0 | draws 3799034 passes 92842 presents 6633 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[gs-hw] input delay by stage: input -> queued 318.5 ms (game, render worker, GS stage), queued -> taken 121.1 ms
+[input] 305232 ms instance 0 axis leftx -32678
+[input] 305494 ms instance 0 axis leftx 0
+[nxrun] progress t=291.538 host_frames=6648 game_frames=2663 ee_cycle=50071539593 ee_threads=1 ready=1 waiting=0 dormant=0 running=1 pc=0021ec2c ra=0021ec2c pumps=6648 audio_callbacks=14280 audio_frames=14622720 gamepad=1 heap_in_use=759561360 heap_obtained=977371136
+[nxrun] perf t=291.538 "game_fps=6.6 frame_ms=152.5 vblank_per_s=30.9 game_ms=59.8 render_ms=40.4 iop_ms=7.3 wait_ms=45.0 draws=1710 verts=107504 tex_uploads=2 dma_tags=400 vu1_programs=0 host_fps=36 gl_ms=31.3 audio_ms=295 black_frames=0 dip_frames=0 probed_frames=0 worker_ms=95.3 gs_ms=106.9 gs_draws=0.0 gs_verts=0.0 gs_vu1=0.0 gs_hle=0.0 gs_path2=0.0 gs_path3=0.0 native_draws=1201.1 hud_draws=11.7 post_draws=11.4 packed_draws=207.0 packed_verts=31431.9 tex_create_us=11380.0 tex_kb=113.7 tex_decode_us=422.4"
+[input] 305966 ms instance 0 axis leftx 32755
+[input] 306163 ms instance 0 axis leftx 0
+[nxrun] command t=295.018 at=295.000000 command="player" status=ok reply="ok 01d439c0 -864.328 -305.842 10.923 1"
+[perf] t=308s game 6.2 fps (avg 162.0 p95 424.5 max 538.3 ms) vbl 32.3/s | ee game 55.5 render 42.6 iop 7.2 wait 56.7 ms | 1646 draws 97k verts 2 tex 391 tags 0 vu1 | host 31 fps gl 46.0 ms | audio 350 ms 0 underruns
+[rhi-stats] gpu 120 frames timed, mean 18.29 ms (run max 531.70 ms, 0 not timed)
+[rhi-stats] textures 2532 (86.5 MiB) buffers 10588 (29.8 MiB) samplers 9 pipelines 43 programs 19 fbos 17 pending 0 | draws 3859614 passes 94078 presents 6753 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[gs-hw] input delay by stage: input -> queued 239.1 ms (game, render worker, GS stage), queued -> taken 40.1 ms
+[hle] world packets 2500725: culled 138083, drawn 2216836 + 0 GPU-clipped (103499269 vertices), 145806 C++-clipped, VU fallback 0
+[input] 313678 ms instance 0 axis leftx -25065
+[input] 313861 ms instance 0 axis leftx -10746
+[perf] t=313s game 5.1 fps (avg 196.9 p95 626.2 max 1016.4 ms) vbl 26.0/s | ee game 50.5 render 82.7 iop 8.2 wait 55.6 ms | 1624 draws 90k verts 11 tex 343 tags 0 vu1 | host 36 fps gl 79.7 ms | audio 306 ms 3 underruns
+[input] 315115 ms instance 0 axis leftx -32765
+[nxrun] command t=300.270 at=300.000000 command="perf" status=ok reply="ok game_fps=5.5 frame_ms=181.6 vblank_per_s=29.4 game_ms=61.3 render_ms=54.5 iop_ms=7.1 wait_ms=58.7 draws=2060 verts=120521 tex_uploads=6 dma_tags=409 vu1_programs=0 host_fps=19 gl_ms=112.5 audio_ms=292 black_frames=0 dip_frames=0 probed_frames=0 worker_ms=106.2 gs_ms=167.9 gs_draws=0.0 gs_verts=0.0 gs_vu1=0.0 gs_hle=0.0 gs_path2=0.0 gs_path3=0.0 native_draws=1512.3 hud_draws=17.0 post_draws=16.0 packed_draws=203.0 packed_verts=29302.0 tex_create_us=21847.0 tex_kb=132.0 tex_decode_us=544.3"
+[input] 315252 ms instance 0 axis leftx 0
+[rhi-stats] gpu 101 frames timed, mean 26.91 ms (run max 531.70 ms, 0 not timed)
+[rhi-stats] textures 2748 (93.9 MiB) buffers 9616 (27.4 MiB) samplers 9 pipelines 43 programs 19 fbos 17 pending 0 | draws 3915199 passes 95168 presents 6854 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[gs-hw] input delay by stage: input -> queued 315.4 ms (game, render worker, GS stage), queued -> taken 99.3 ms
+[input] 316150 ms instance 0 axis leftx -32765
+[input] 316327 ms instance 0 axis leftx -11343
+[nxrun] progress t=301.567 host_frames=6879 game_frames=2721 ee_cycle=51630517377 ee_threads=1 ready=1 waiting=0 dormant=0 running=1 pc=0021ec2c ra=0021ec2c pumps=6879 audio_callbacks=14786 audio_frames=15140864 gamepad=1 heap_in_use=778600048 heap_obtained=990916608
+[nxrun] perf t=301.567 "game_fps=5.7 frame_ms=174.9 vblank_per_s=31.4 game_ms=57.6 render_ms=43.8 iop_ms=6.4 wait_ms=67.2 draws=1646 verts=97458 tex_uploads=1 dma_tags=379 vu1_programs=0 host_fps=32 gl_ms=49.0 audio_ms=123 black_frames=0 dip_frames=0 probed_frames=0 worker_ms=111.4 gs_ms=156.8 gs_draws=0.0 gs_verts=0.0 gs_vu1=0.0 gs_hle=0.0 gs_path2=0.0 gs_path3=0.0 native_draws=1641.7 hud_draws=19.8 post_draws=18.7 packed_draws=244.7 packed_verts=36505.5 tex_create_us=6396.2 tex_kb=74.7 tex_decode_us=213.7"
+[input] 316939 ms instance 0 axis leftx -32765
+[input] 317263 ms instance 0 axis leftx 0
+[input] 318008 ms instance 0 axis leftx -32765
+[input] 318265 ms instance 0 axis leftx 0
+[input] 318853 ms instance 0 axis leftx -30732
+[input] 319223 ms instance 0 axis leftx 0
+[input] 319557 ms instance 0 axis leftx -19219
+[input] 320040 ms instance 0 axis leftx 0
+[nxrun] command t=305.141 at=305.000000 command="player" status=ok reply="ok 01d439c0 -864.548 -448.505 10.822 1"
+[perf] t=319s game 5.3 fps (avg 189.9 p95 549.8 max 597.2 ms) vbl 29.2/s | ee game 58.5 render 63.8 iop 7.9 wait 59.8 ms | 1710 draws 109k verts 4 tex 417 tags 0 vu1 | host 30 fps gl 55.9 ms | audio 331 ms 4 underruns
+[rhi-stats] gpu 121 frames timed, mean 19.77 ms (run max 531.70 ms, 0 not timed)
+[rhi-stats] textures 2872 (98.9 MiB) buffers 9717 (28.1 MiB) samplers 9 pipelines 43 programs 19 fbos 17 pending 0 | draws 3972630 passes 96328 presents 6975 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[gs-hw] input delay by stage: input -> queued 270.2 ms (game, render worker, GS stage), queued -> taken 41.8 ms
+[hle] world packets 2573957: culled 141356, drawn 2282392 + 0 GPU-clipped (106412831 vertices), 150209 C++-clipped, VU fallback 0
+[input] 321547 ms instance 0 axis leftx -16622
+[input] 322074 ms instance 0 axis leftx 0
+[input] 323302 ms instance 0 axis leftx 32764
+[perf] t=324s game 4.7 fps (avg 211.6 p95 772.8 max 1036.2 ms) vbl 26.9/s | ee game 59.9 render 80.5 iop 11.3 wait 59.9 ms | 1543 draws 109k verts 10 tex 448 tags 0 vu1 | host 30 fps gl 78.8 ms | audio 315 ms 2 underruns
+[rhi-stats] gpu 104 frames timed, mean 19.46 ms (run max 531.70 ms, 0 not timed)
+[rhi-stats] textures 2378 (88.2 MiB) buffers 9079 (26.0 MiB) samplers 9 pipelines 43 programs 19 fbos 17 pending 0 | draws 4020619 passes 97308 presents 7079 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[gs-hw] input delay by stage: input -> queued 233.5 ms (game, render worker, GS stage), queued -> taken 77.3 ms
+[input] 326385 ms instance 0 axis leftx 0
+[input] 326775 ms instance 0 axis leftx 22018
+[input] 327612 ms instance 0 axis leftx 0
+[nxrun] progress t=311.599 host_frames=7140 game_frames=2773 ee_cycle=53120724112 ee_threads=1 ready=1 waiting=0 dormant=0 running=1 pc=00272050 ra=00272050 pumps=7140 audio_callbacks=15322 audio_frames=15689728 gamepad=1 heap_in_use=773503808 heap_obtained=1019289600
+[nxrun] perf t=311.599 "game_fps=5.3 frame_ms=188.4 vblank_per_s=33.6 game_ms=56.8 render_ms=49.4 iop_ms=14.3 wait_ms=67.9 draws=1588 verts=103428 tex_uploads=3 dma_tags=446 vu1_programs=0 host_fps=42 gl_ms=34.7 audio_ms=350 black_frames=0 dip_frames=0 probed_frames=0 worker_ms=131.0 gs_ms=160.9 gs_draws=0.0 gs_verts=0.0 gs_vu1=0.0 gs_hle=0.0 gs_path2=0.0 gs_path3=0.0 native_draws=1079.8 hud_draws=14.2 post_draws=13.3 packed_draws=209.7 packed_verts=34134.0 tex_create_us=12608.0 tex_kb=105.3 tex_decode_us=429.3"
+[input] 328123 ms instance 0 axis leftx 32755
+[input] 328582 ms instance 0 axis leftx 0
+[input] 329224 ms instance 0 axis leftx -32762
+[perf] t=330s game 5.6 fps (avg 179.3 p95 458.9 max 817.5 ms) vbl 29.6/s | ee game 56.4 render 55.6 iop 10.9 wait 56.4 ms | 1403 draws 85k verts 2 tex 383 tags 0 vu1 | host 31 fps gl 47.6 ms | audio 0 ms 1 underruns
+[rhi-stats] gpu 133 frames timed, mean 19.88 ms (run max 531.70 ms, 0 not timed)
+[rhi-stats] textures 2446 (90.8 MiB) buffers 11578 (32.7 MiB) samplers 9 pipelines 43 programs 19 fbos 17 pending 0 | draws 4076865 passes 98611 presents 7212 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[gs-hw] input delay by stage: input -> queued 485.3 ms (game, render worker, GS stage), queued -> taken 131.6 ms
+[hle] world packets 2628255: culled 143877, drawn 2330774 + 0 GPU-clipped (108574098 vertices), 153604 C++-clipped, VU fallback 0
+[nxrun] command t=315.032 at=315.000000 command="player" status=ok reply="ok 01d439c0 -854.953 -591.248 10.817 1"
+[input] 331710 ms instance 0 button a up
+[input] 332409 ms instance 0 axis leftx 0
+[input] 332507 ms instance 0 axis leftx 18666
+[input] 332540 ms instance 0 button a down
+[input] 333495 ms instance 0 axis leftx 0
+[input] 334095 ms instance 0 axis leftx -19180
+[input] 334828 ms instance 0 axis leftx 0
+[input] 335017 ms instance 0 axis leftx 32665
+[rhi-stats] gpu 108 frames timed, mean 21.16 ms (run max 531.70 ms, 0 not timed)
+[rhi-stats] textures 2494 (93.1 MiB) buffers 9054 (26.8 MiB) samplers 9 pipelines 43 programs 19 fbos 17 pending 0 | draws 4134233 passes 99857 presents 7320 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[gs-hw] input delay by stage: input -> queued 162.1 ms (game, render worker, GS stage), queued -> taken 42.6 ms
+[perf] t=335s game 6.3 fps (avg 158.0 p95 354.9 max 472.3 ms) vbl 32.9/s | ee game 57.6 render 29.6 iop 7.2 wait 63.6 ms | 1354 draws 100k verts 1 tex 406 tags 0 vu1 | host 29 fps gl 55.7 ms | audio 300 ms 1 underruns
+[input] 337177 ms instance 0 axis leftx 0
+[nxrun] progress t=321.638 host_frames=7364 game_frames=2832 ee_cycle=54707369093 ee_threads=1 ready=1 waiting=0 dormant=0 running=1 pc=0021ec2c ra=0021ec2c pumps=7364 audio_callbacks=15832 audio_frames=16211968 gamepad=1 heap_in_use=796386912 heap_obtained=1027723264
+[nxrun] perf t=321.638 "game_fps=1.7 frame_ms=590.8 vblank_per_s=16.9 game_ms=55.5 render_ms=391.2 iop_ms=27.8 wait_ms=116.3 draws=2714 verts=207466 tex_uploads=75 dma_tags=618 vu1_programs=0 host_fps=35 gl_ms=51.0 audio_ms=293 black_frames=0 dip_frames=0 probed_frames=0 worker_ms=459.0 gs_ms=558.2 gs_draws=0.0 gs_verts=0.0 gs_vu1=0.0 gs_hle=0.0 gs_path2=0.0 gs_path3=0.0 native_draws=2288.5 hud_draws=24.5 post_draws=24.0 packed_draws=555.5 packed_verts=96049.5 tex_create_us=290984.0 tex_kb=2876.5 tex_decode_us=8678.0"
+[input] 339006 ms instance 0 axis leftx -27321
+[input] 339399 ms instance 0 axis leftx 0
+[input] 340316 ms instance 0 axis leftx 26439
+[rhi-stats] gpu 97 frames timed, mean 25.37 ms (run max 531.70 ms, 0 not timed)
+[rhi-stats] textures 2839 (105.3 MiB) buffers 11666 (33.5 MiB) samplers 9 pipelines 43 programs 19 fbos 17 pending 0 | draws 4179083 passes 100842 presents 7417 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[gs-hw] input delay by stage: input -> queued 332.6 ms (game, render worker, GS stage), queued -> taken 104.0 ms
+[hle] world packets 2681690: culled 147341, drawn 2376952 + 0 GPU-clipped (110833431 vertices), 157397 C++-clipped, VU fallback 0
+[perf] t=340s game 4.4 fps (avg 228.8 p95 947.2 max 1037.7 ms) vbl 26.4/s | ee game 54.2 render 94.0 iop 11.9 wait 68.6 ms | 1585 draws 111k verts 16 tex 535 tags 0 vu1 | host 29 fps gl 62.8 ms | audio 320 ms 2 underruns
+[input] 341662 ms instance 0 axis leftx 0
+[input] 342032 ms instance 0 axis leftx -32758
+[nxrun] command t=325.022 at=325.000000 command="player" status=ok reply="ok 01d439c0 -827.209 -717.470 10.932 1"
+[input] 342990 ms instance 0 axis leftx 0
+[input] 343372 ms instance 0 axis leftx 31786
+[input] 343684 ms instance 0 axis leftx 0
+[input] 344335 ms instance 0 axis leftx 32298
+[input] 344938 ms instance 0 axis leftx 0
+[rhi-stats] gpu 101 frames timed, mean 24.83 ms (run max 531.70 ms, 0 not timed)
+[rhi-stats] textures 2886 (107.9 MiB) buffers 10689 (31.8 MiB) samplers 9 pipelines 43 programs 19 fbos 17 pending 0 | draws 4241944 passes 102314 presents 7519 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[gs-hw] input delay by stage: input -> queued 142.8 ms (game, render worker, GS stage), queued -> taken 41.6 ms
+[input] 346343 ms instance 0 axis leftx -28877
+[perf] t=345s game 8.6 fps (avg 116.7 p95 240.9 max 354.5 ms) vbl 36.7/s | ee game 46.6 render 10.3 iop 5.3 wait 54.5 ms | 1261 draws 83k verts 2 tex 356 tags 0 vu1 | host 22 fps gl 74.6 ms | audio 229 ms 0 underruns
+[input] 346878 ms instance 0 axis leftx -14415
+[nxrun] command t=330.084 at=330.000000 command="gameinfo" status=ok reply="ok frames=2897 | [PLAYER  ped 01d439c0  model 0  state driving (0x37)] | pos   in the vehicle (the ped's own matrix is relative) | health  61.5  armour   0.0  money $0 | weapons  none | [VEHICLE  01d80e00  model 252 STREETF] | pos     -823.36   -814.58    10.43   heading 180.3 | health 1000.0  speed 131.7 km/h | [CAMERA  mode 18 behind vehicle] | pos     -823.28   -808.46    11.97   heading 179.2  pitch  -6.8  fov 85 | [WORLD] | clock 09:02  area 0 (outdoors)  level 2 MAINLA | game time 156.3 s  frame 2960  step 3.333 | pools  peds 10/70  vehicles 12/40 | [SCRIPTS  32 active  mission running] | mission  ch_jerr @4067c | newest  ch_jerr @4067c  ambtaxi @37af5  warpspo @3763c  carpark @37222 | rampage usj facepla jandw metalde ammunat exportb exportc srangeh | safehou ga_laga ga_imp1 ga_arm2 ga_arm1 shopmon id19 zonemo id17  +10 more"
+[input] 347911 ms instance 0 axis leftx -17542
+[input] 348156 ms instance 0 axis leftx 0
+[nxrun] progress t=331.647 host_frames=7590 game_frames=2903 ee_cycle=56409992045 ee_threads=1 ready=1 waiting=0 dormant=0 running=1 pc=0021ec2c ra=0021ec2c pumps=7590 audio_callbacks=16349 audio_frames=16741376 gamepad=1 heap_in_use=793460064 heap_obtained=1048993792
+[nxrun] perf t=331.647 "game_fps=2.9 frame_ms=347.6 vblank_per_s=14.4 game_ms=47.7 render_ms=250.9 iop_ms=3.9 wait_ms=45.2 draws=1310 verts=85490 tex_uploads=37 dma_tags=403 vu1_programs=0 host_fps=32 gl_ms=167.7 audio_ms=0 black_frames=0 dip_frames=0 probed_frames=0 worker_ms=300.4 gs_ms=344.9 gs_draws=0.0 gs_verts=0.0 gs_vu1=0.0 gs_hle=0.0 gs_path2=0.0 gs_path3=0.0 native_draws=740.7 hud_draws=10.0 post_draws=10.7 packed_draws=93.7 packed_verts=15430.0 tex_create_us=122318.0 tex_kb=881.3 tex_decode_us=4560.3"
+[input] 349967 ms instance 0 axis leftx -30955
+[input] 350282 ms instance 0 axis leftx 0
+[rhi-stats] gpu 100 frames timed, mean 20.33 ms (run max 531.70 ms, 0 not timed)
+[rhi-stats] textures 2411 (96.5 MiB) buffers 9609 (29.0 MiB) samplers 9 pipelines 43 programs 19 fbos 17 pending 0 | draws 4276309 passes 103355 presents 7618 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[gs-hw] input delay by stage: input -> queued 513.9 ms (game, render worker, GS stage), queued -> taken 140.5 ms
+[perf] t=350s game 4.0 fps (avg 251.3 p95 760.6 max 901.4 ms) vbl 23.5/s | ee game 47.8 render 137.1 iop 8.5 wait 57.8 ms | 1335 draws 88k verts 13 tex 456 tags 0 vu1 | host 33 fps gl 57.0 ms | audio 16 ms 5 underruns
+[hle] world packets 2746389: culled 152251, drawn 2431525 + 0 GPU-clipped (113621550 vertices), 162613 C++-clipped, VU fallback 0
+[nxrun] command t=335.087 at=335.000000 command="player" status=ok reply="ok 01d439c0 -818.094 -890.214 10.942 1"
+[rhi-stats] gpu 102 frames timed, mean 23.81 ms (run max 531.70 ms, 0 not timed)
+[rhi-stats] textures 2505 (99.9 MiB) buffers 10329 (30.8 MiB) samplers 9 pipelines 43 programs 19 fbos 17 pending 0 | draws 4333394 passes 104711 presents 7720 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[gs-hw] input delay by stage: input -> queued 177.9 ms (game, render worker, GS stage), queued -> taken 49.6 ms
+[perf] t=355s game 6.7 fps (avg 148.3 p95 314.1 max 541.7 ms) vbl 32.7/s | ee game 48.8 render 34.4 iop 7.8 wait 57.5 ms | 1227 draws 91k verts 3 tex 479 tags 0 vu1 | host 22 fps gl 78.9 ms | audio 314 ms 1 underruns
+[nxrun] progress t=341.696 host_frames=7808 game_frames=2970 ee_cycle=58001183367 ee_threads=1 ready=1 waiting=0 dormant=0 running=1 pc=0021ef14 ra=0021ef14 pumps=7808 audio_callbacks=16824 audio_frames=17227776 gamepad=1 heap_in_use=804069376 heap_obtained=1049755648
+[nxrun] perf t=341.696 "game_fps=7.7 frame_ms=129.4 vblank_per_s=35.8 game_ms=51.1 render_ms=6.8 iop_ms=7.1 wait_ms=64.4 draws=1106 verts=82265 tex_uploads=1 dma_tags=414 vu1_programs=0 host_fps=18 gl_ms=81.2 audio_ms=300 black_frames=0 dip_frames=0 probed_frames=0 worker_ms=59.9 gs_ms=97.3 gs_draws=0.0 gs_verts=0.0 gs_vu1=0.0 gs_hle=0.0 gs_path2=0.0 gs_path3=0.0 native_draws=852.0 hud_draws=17.0 post_draws=16.0 packed_draws=249.6 packed_verts=41909.6 tex_create_us=10274.6 tex_kb=73.5 tex_decode_us=230.9"
+[rhi-stats] gpu 117 frames timed, mean 20.90 ms (run max 531.70 ms, 0 not timed)
+[rhi-stats] textures 2570 (102.7 MiB) buffers 9817 (29.1 MiB) samplers 9 pipelines 43 programs 19 fbos 17 pending 0 | draws 4384632 passes 106050 presents 7837 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[hle] world packets 2799410: culled 156913, drawn 2475581 + 0 GPU-clipped (115755231 vertices), 166916 C++-clipped, VU fallback 0
+[gs-hw] input delay by stage: input -> queued 231.5 ms (game, render worker, GS stage), queued -> taken 39.3 ms
+[perf] t=360s game 7.1 fps (avg 140.6 p95 351.5 max 437.5 ms) vbl 33.2/s | ee game 52.3 render 27.6 iop 7.7 wait 53.0 ms | 1164 draws 89k verts 2 tex 423 tags 0 vu1 | host 27 fps gl 53.6 ms | audio 357 ms 0 underruns
+[input] 362184 ms instance 0 axis leftx -32637
+[input] 362704 ms instance 0 axis leftx 0
+[nxrun] command t=345.126 at=345.000000 command="player" status=ok reply="ok 01d439c0 -795.890 -1065.088 11.121 1"
+[input] 364564 ms instance 0 axis leftx 20529
+[rhi-stats] gpu 113 frames timed, mean 21.49 ms (run max 531.70 ms, 0 not timed)
+[rhi-stats] textures 2835 (111.4 MiB) buffers 9706 (27.8 MiB) samplers 9 pipelines 43 programs 19 fbos 17 pending 0 | draws 4431741 passes 107417 presents 7950 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[gs-hw] input delay by stage: input -> queued 192.0 ms (game, render worker, GS stage), queued -> taken 62.4 ms
+[perf] t=366s game 6.1 fps (avg 164.2 p95 359.4 max 849.8 ms) vbl 28.3/s | ee game 50.4 render 53.8 iop 7.5 wait 52.5 ms | 1021 draws 80k verts 8 tex 485 tags 0 vu1 | host 28 fps gl 57.1 ms | audio 324 ms 2 underruns
+[input] 369405 ms instance 0 axis leftx 0
+[input] 369690 ms instance 0 axis leftx -18072
+[nxrun] progress t=351.710 host_frames=8046 game_frames=3040 ee_cycle=59636511508 ee_threads=1 ready=1 waiting=0 dormant=0 running=1 pc=003706c8 ra=00317a74 pumps=8046 audio_callbacks=17324 audio_frames=17739776 gamepad=1 heap_in_use=822929712 heap_obtained=1071116288
+[nxrun] perf t=351.710 "game_fps=6.9 frame_ms=144.9 vblank_per_s=31.6 game_ms=54.2 render_ms=44.9 iop_ms=8.1 wait_ms=37.8 draws=1475 verts=111856 tex_uploads=4 dma_tags=554 vu1_programs=0 host_fps=37 gl_ms=22.4 audio_ms=299 black_frames=0 dip_frames=0 probed_frames=0 worker_ms=91.7 gs_ms=112.7 gs_draws=0.0 gs_verts=0.0 gs_vu1=0.0 gs_hle=0.0 gs_path2=0.0 gs_path3=0.0 native_draws=949.7 hud_draws=12.9 post_draws=11.4 packed_draws=246.9 packed_verts=42237.4 tex_create_us=18919.6 tex_kb=161.7 tex_decode_us=941.0"
+[hle] world packets 2850326: culled 160330, drawn 2520433 + 0 GPU-clipped (118072270 vertices), 169563 C++-clipped, VU fallback 0
+[gs-hw] input delay by stage: input -> queued 253.6 ms (game, render worker, GS stage), queued -> taken 52.3 ms
+[rhi-stats] gpu 131 frames timed, mean 19.80 ms (run max 531.70 ms, 0 not timed)
+[rhi-stats] textures 2911 (114.6 MiB) buffers 9340 (26.7 MiB) samplers 9 pipelines 43 programs 19 fbos 17 pending 0 | draws 4488223 passes 108738 presents 8081 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[input] 372230 ms instance 0 axis leftx -7468
+[perf] t=371s game 6.1 fps (avg 163.0 p95 469.5 max 553.6 ms) vbl 32.3/s | ee game 52.6 render 45.3 iop 9.0 wait 56.1 ms | 1442 draws 108k verts 2 tex 475 tags 0 vu1 | host 35 fps gl 35.9 ms | audio 251 ms 2 underruns
+[input] 372549 ms instance 0 axis leftx 32705
+[input] 372857 ms instance 0 axis leftx 4975
+[input] 373523 ms instance 0 axis leftx -32749
+[input] 373698 ms instance 0 axis leftx -8440
+[nxrun] command t=355.029 at=355.000000 command="player" status=ok reply="ok 01d439c0 -754.023 -1199.101 11.090 1"
+[input] 376415 ms instance 0 axis leftx 32718
+[input] 376767 ms instance 0 axis leftx 0
+[rhi-stats] gpu 101 frames timed, mean 23.96 ms (run max 531.70 ms, 0 not timed)
+[rhi-stats] textures 2982 (117.7 MiB) buffers 9207 (27.0 MiB) samplers 9 pipelines 43 programs 19 fbos 17 pending 0 | draws 4540039 passes 110180 presents 8182 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[gs-hw] input delay by stage: input -> queued 189.3 ms (game, render worker, GS stage), queued -> taken 39.8 ms
+[perf] t=377s game 6.9 fps (avg 145.0 p95 313.4 max 904.0 ms) vbl 30.7/s | ee game 48.4 render 40.4 iop 6.0 wait 50.2 ms | 1067 draws 77k verts 4 tex 363 tags 0 vu1 | host 22 fps gl 73.6 ms | audio 330 ms 2 underruns
+[nxrun] command t=360.087 at=360.000000 command="perf" status=ok reply="ok game_fps=11.2 frame_ms=89.1 vblank_per_s=40.2 game_ms=44.6 render_ms=3.5 iop_ms=4.2 wait_ms=36.8 draws=962 verts=76644 tex_uploads=1 dma_tags=329 vu1_programs=0 host_fps=21 gl_ms=66.8 audio_ms=322 black_frames=0 dip_frames=0 probed_frames=0 worker_ms=55.6 gs_ms=57.5 gs_draws=0.0 gs_verts=0.0 gs_vu1=0.0 gs_hle=0.0 gs_path2=0.0 gs_path3=0.0 native_draws=693.8 hud_draws=15.0 post_draws=13.3 packed_draws=150.7 packed_verts=28237.2 tex_create_us=6434.8 tex_kb=53.3 tex_decode_us=348.1"
+[input] 380700 ms instance 0 axis leftx 32127
+[input] 380954 ms instance 0 axis leftx 0
+[hle] world packets 2911018: culled 167328, drawn 2567690 + 0 GPU-clipped (120657299 vertices), 176000 C++-clipped, VU fallback 0
+[nxrun] progress t=361.745 host_frames=8263 game_frames=3120 ee_cycle=61348243635 ee_threads=1 ready=1 waiting=0 dormant=0 running=1 pc=0021ec2c ra=0021ec2c pumps=8263 audio_callbacks=17849 audio_frames=18277376 gamepad=1 heap_in_use=807770144 heap_obtained=1088749568
+[nxrun] perf t=361.745 "game_fps=11.7 frame_ms=85.7 vblank_per_s=38.9 game_ms=43.1 render_ms=3.6 iop_ms=4.4 wait_ms=34.6 draws=971 verts=91583 tex_uploads=1 dma_tags=334 vu1_programs=0 host_fps=11 gl_ms=85.5 audio_ms=351 black_frames=0 dip_frames=0 probed_frames=0 worker_ms=45.2 gs_ms=45.8 gs_draws=0.0 gs_verts=0.0 gs_vu1=0.0 gs_hle=0.0 gs_path2=0.0 gs_path3=0.0 native_draws=677.2 hud_draws=16.0 post_draws=16.0 packed_draws=275.9 packed_verts=52164.2 tex_create_us=6941.6 tex_kb=58.7 tex_decode_us=246.3"
+[rhi-stats] gpu 89 frames timed, mean 23.61 ms (run max 531.70 ms, 0 not timed)
+[rhi-stats] textures 2372 (98.6 MiB) buffers 11126 (32.5 MiB) samplers 9 pipelines 43 programs 19 fbos 17 pending 0 | draws 4586427 passes 111527 presents 8271 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[gs-hw] input delay by stage: input -> queued 390.4 ms (game, render worker, GS stage), queued -> taken 150.7 ms
+[input] 382249 ms instance 0 axis leftx 19049
+[input] 383038 ms instance 0 axis leftx 13836
+[perf] t=382s game 9.3 fps (avg 107.3 p95 261.7 max 805.5 ms) vbl 35.1/s | ee game 42.0 render 20.5 iop 4.6 wait 40.2 ms | 915 draws 81k verts 1 tex 325 tags 0 vu1 | host 19 fps gl 63.9 ms | audio 0 ms 1 underruns
+[input] 383545 ms instance 0 axis leftx 32570
+[input] 384256 ms instance 0 axis leftx 14746
+[input] 384440 ms instance 0 axis leftx 26015
+[input] 384644 ms instance 0 axis leftx 0
+[input] 385049 ms instance 0 axis leftx 32310
+[input] 385207 ms instance 0 axis leftx 0
+[nxrun] command t=365.024 at=365.000000 command="player" status=ok reply="ok 01d439c0 -687.150 -1383.385 10.890 1"
+[input] 385307 ms instance 0 axis leftx 27361
+[input] 385513 ms instance 0 axis leftx 0
+[input] 385787 ms instance 0 axis leftx 19944
+[input] 386506 ms instance 0 axis leftx 0
+[input] 386814 ms instance 0 axis leftx 32660
+[rhi-stats] gpu 111 frames timed, mean 20.90 ms (run max 531.70 ms, 0 not timed)
+[rhi-stats] textures 2518 (103.4 MiB) buffers 10617 (31.8 MiB) samplers 9 pipelines 44 programs 19 fbos 17 pending 0 | draws 4627360 passes 113062 presents 8382 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[gs-hw] input delay by stage: input -> queued 219.9 ms (game, render worker, GS stage), queued -> taken 50.0 ms
+[input] 387476 ms instance 0 axis leftx 0
+[input] 388127 ms instance 0 axis leftx 32218
+[perf] t=387s game 7.2 fps (avg 138.1 p95 377.3 max 532.2 ms) vbl 32.1/s | ee game 42.5 render 37.4 iop 5.4 wait 52.8 ms | 824 draws 71k verts 4 tex 417 tags 0 vu1 | host 22 fps gl 64.4 ms | audio 333 ms 1 underruns
+[input] 389306 ms instance 0 axis leftx 0
+[input] 390940 ms instance 0 button a up
+[hle] world packets 2947002: culled 171419, drawn 2597441 + 0 GPU-clipped (122314013 vertices), 178142 C++-clipped, VU fallback 0
+[nxrun] progress t=371.793 host_frames=8466 game_frames=3215 ee_cycle=63105129982 ee_threads=1 ready=1 waiting=0 dormant=0 running=1 pc=0021ebfc ra=0021ebfc pumps=8466 audio_callbacks=18328 audio_frames=18767872 gamepad=1 heap_in_use=824148144 heap_obtained=1094533120
+[nxrun] perf t=371.793 "game_fps=13.4 frame_ms=74.4 vblank_per_s=39.4 game_ms=38.1 render_ms=3.0 iop_ms=4.1 wait_ms=29.2 draws=571 verts=62356 tex_uploads=1 dma_tags=309 vu1_programs=0 host_fps=13 gl_ms=73.0 audio_ms=294 black_frames=0 dip_frames=0 probed_frames=0 worker_ms=30.0 gs_ms=35.6 gs_draws=0.0 gs_verts=0.0 gs_vu1=0.0 gs_hle=0.0 gs_path2=0.0 gs_path3=0.0 native_draws=348.6 hud_draws=15.0 post_draws=16.0 packed_draws=191.3 packed_verts=40333.5 tex_create_us=7323.8 tex_kb=64.1 tex_decode_us=286.5"
+[rhi-stats] gpu 85 frames timed, mean 29.76 ms (run max 531.70 ms, 0 not timed)
+[rhi-stats] textures 2589 (107.0 MiB) buffers 10621 (32.7 MiB) samplers 9 pipelines 44 programs 19 fbos 17 pending 0 | draws 4674668 passes 114780 presents 8467 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[gs-hw] input delay by stage: input -> queued 139.4 ms (game, render worker, GS stage), queued -> taken 55.9 ms
+[input] 393334 ms instance 0 button y down
+[perf] t=392s game 11.3 fps (avg 88.2 p95 137.3 max 450.4 ms) vbl 37.6/s | ee game 40.0 render 9.0 iop 5.6 wait 33.6 ms | 603 draws 63k verts 1 tex 324 tags 0 vu1 | host 17 fps gl 67.3 ms | audio 357 ms 0 underruns
+[input] 393504 ms instance 0 button y up
+[nxrun] command t=375.152 at=375.000000 command="player" status=ok reply="ok 01d439c0 -684.857 -1456.188 11.383 1"
+[input] 396182 ms instance 0 axis leftx -32706
+[input] 396182 ms instance 0 button a down
+[rhi-stats] gpu 90 frames timed, mean 28.39 ms (run max 531.70 ms, 0 not timed)
+[rhi-stats] textures 2643 (110.4 MiB) buffers 9528 (30.2 MiB) samplers 9 pipelines 44 programs 19 fbos 17 pending 0 | draws 4716515 passes 116532 presents 8557 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[gs-hw] input delay by stage: input -> queued 147.7 ms (game, render worker, GS stage), queued -> taken 53.3 ms
+[perf] t=397s game 10.4 fps (avg 95.8 p95 139.3 max 367.2 ms) vbl 38.4/s | ee game 39.9 render 10.4 iop 4.6 wait 40.9 ms | 563 draws 53k verts 1 tex 294 tags 0 vu1 | host 15 fps gl 78.1 ms | audio 308 ms 0 underruns
+[hle] world packets 2975324: culled 174632, drawn 2620226 + 0 GPU-clipped (123583272 vertices), 180466 C++-clipped, VU fallback 0
+[rhi-stats] gpu 70 frames timed, mean 37.93 ms (run max 531.70 ms, 0 not timed)
+[rhi-stats] textures 2939 (118.1 MiB) buffers 11690 (35.7 MiB) samplers 9 pipelines 44 programs 19 fbos 17 pending 0 | draws 4752692 passes 117886 presents 8627 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[gs-hw] input delay by stage: input -> queued 215.7 ms (game, render worker, GS stage), queued -> taken 92.0 ms
+[nxrun] progress t=381.993 host_frames=8628 game_frames=3310 ee_cycle=64904899783 ee_threads=1 ready=1 waiting=0 dormant=0 running=1 pc=0021ec2c ra=0021ec2c pumps=8628 audio_callbacks=18817 audio_frames=19268608 gamepad=1 heap_in_use=843084304 heap_obtained=1112530944
+[nxrun] perf t=381.993 "game_fps=3.8 frame_ms=260.0 vblank_per_s=20.2 game_ms=38.1 render_ms=156.6 iop_ms=12.0 wait_ms=53.3 draws=840 verts=73531 tex_uploads=22 dma_tags=390 vu1_programs=0 host_fps=36 gl_ms=39.7 audio_ms=336 black_frames=0 dip_frames=0 probed_frames=0 worker_ms=233.2 gs_ms=246.3 gs_draws=0.0 gs_verts=0.0 gs_vu1=0.0 gs_hle=0.0 gs_path2=0.0 gs_path3=0.0 native_draws=640.0 hud_draws=12.8 post_draws=12.0 packed_draws=184.2 packed_verts=38388.8 tex_create_us=112526.5 tex_kb=804.2 tex_decode_us=3226.8"
+[perf] t=402s game 5.5 fps (avg 183.1 p95 717.8 max 1060.6 ms) vbl 24.1/s | ee game 37.7 render 85.1 iop 7.5 wait 52.7 ms | 722 draws 73k verts 14 tex 323 tags 0 vu1 | host 15 fps gl 81.0 ms | audio 297 ms 4 underruns
+[input] 404036 ms instance 0 button a up
+[input] 404124 ms instance 0 button x down
+[input] 404869 ms instance 0 button x up
+[input] 405252 ms instance 0 button a down
+[input] 406579 ms instance 0 button a up
+[input] 406745 ms instance 0 button x down
+[nxrun] command t=385.206 at=385.000000 command="player" status=ok reply="ok 01d439c0 -680.652 -1434.850 10.795 1"
+[rhi-stats] gpu 85 frames timed, mean 23.80 ms (run max 531.70 ms, 0 not timed)
+[rhi-stats] textures 2607 (99.9 MiB) buffers 10025 (30.0 MiB) samplers 9 pipelines 44 programs 19 fbos 17 pending 0 | draws 4779796 passes 118598 presents 8712 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[gs-hw] input delay by stage: input -> queued 500.2 ms (game, render worker, GS stage), queued -> taken 228.2 ms
+[input] 407701 ms instance 0 button x up
+[input] 407874 ms instance 0 button a down
+[perf] t=407s game 4.0 fps (avg 252.7 p95 716.3 max 760.1 ms) vbl 21.8/s | ee game 37.0 render 152.1 iop 15.3 wait 48.3 ms | 1339 draws 86k verts 18 tex 241 tags 0 vu1 | host 37 fps gl 39.1 ms | audio 0 ms 5 underruns
+[input] 411151 ms instance 0 button a up
+[nxrun] command t=390.029 at=390.000000 command="gameinfo" status=ok reply="ok frames=3339 | [PLAYER  ped 01d439c0  model 0  state driving (0x37)] | pos   in the vehicle (the ped's own matrix is relative) | health  59.8  armour   0.0  money $0 | weapons  none | [VEHICLE  01d80e00  model 252 STREETF] | pos     -698.57  -1432.86    10.44   heading 121.0 | health 1000.0  speed  64.4 km/h | [CAMERA  mode 18 behind vehicle] | pos     -692.47  -1432.63    12.06   heading  92.2  pitch  -7.6  fov 70 | [WORLD] | clock 09:28  area 0 (outdoors)  level 2 MAINLA | game time 182.1 s  frame 3417  step 3.333 | pools  peds 9/70  vehicles 13/40 | [SCRIPTS  32 active  mission running] | mission  ch_jerr @4067c | newest  ch_jerr @4067c  ambtaxi @37af5  warpspo @3763c  carpark @37222 | rampage usj facepla jandw metalde ammunat exportb exportc srangeh | safehou ga_laga ga_imp1 ga_arm2 ga_arm1 shopmon id19 zonemo id17  +10 more"
+[rhi-stats] gpu 117 frames timed, mean 18.39 ms (run max 531.70 ms, 0 not timed)
+[rhi-stats] textures 2840 (105.2 MiB) buffers 11349 (33.4 MiB) samplers 9 pipelines 44 programs 19 fbos 17 pending 0 | draws 4817390 passes 119679 presents 8829 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[nxrun] shutdown t=390.370 frames=8829
+[hle] world packets 3015203: culled 175757, drawn 2657167 + 0 GPU-clipped (125395827 vertices), 182279 C++-clipped, VU fallback 0
+[perf] recording saved: userdata/tests/m06-play/perf.csv (summarise with: python tools/perf_report.py userdata/tests/m06-play/perf.csv)
+[rhi] GPU time: 8828 frames, mean 22.70 ms, max 531.70 ms, 0 not timed
+[platform] audio closed after 19293 callbacks, 19756032 frames
+[platform] shut down (window, context and SDL left to main.c)
+[core] game thread joined, render worker and platform stopped
+[stream] reader stopped
+[core] runtime destroyed
+[core] folder disc closed
+[nxrun] audit t=390.370 file_opens=151 iso_opens=0 first_iso="" threads_created=6
+[resources] shutdown live_threads=2 (svc 00000000 via own)
+[resources] shutdown mapped_total=3343908864 mapped_used=3339763712 heap_in_use=674692112 heap_obtained=1115668480 threads_created=6 default_thread_stack=8388608 file_opens=151 iso_opens=0
+[shutdown] core, context, window and SDL closed

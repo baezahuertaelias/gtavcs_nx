@@ -22,3 +22,5 @@ What the user, at the Switch, reported during the M06 session (2026-11-17, handh
 - Review 3 follow-up (runs 14-16, m06-cruise.cfg / m06-drive.cfg): nobody touching the console. During the desktop
   runs the user reported another program using the PC's GPU ("The host is running a game that uses full GPU"),
   later freed.
+- Run 17 (accept-clean-3, the acceptance on the patched NRO): the user chose to repeat the acceptance before review
+  ("Repeat the acceptance first"), played with the Joy-Cons attached and closed from HOME; nothing reported wrong.

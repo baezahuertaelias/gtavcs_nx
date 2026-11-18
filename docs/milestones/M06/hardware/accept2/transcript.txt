@@ -1,0 +1,55 @@
+10:25:23 moved /switch/gtavcs_nx/cpu-tests-M02.log -> /switch/gtavcs_nx_backup/cpu-tests-M02.log
+10:25:23 moved /switch/gtavcs_nx/disc-tests-M03.log -> /switch/gtavcs_nx_backup/disc-tests-M03.log
+10:25:23 moved /switch/gtavcs_nx/gtavcs-boot.log -> /switch/gtavcs_nx_backup/gtavcs-boot.log
+10:25:23 moved /switch/gtavcs_nx/gtavcs_rhi_tests.nro -> /switch/gtavcs_nx_backup/gtavcs_rhi_tests.nro
+10:25:23 moved /switch/gtavcs_nx/private-core-M02.log -> /switch/gtavcs_nx_backup/private-core-M02.log
+10:25:23 moved /switch/gtavcs_nx/rhi-tests -> /switch/gtavcs_nx_backup/rhi-tests
+10:25:23 moved /switch/gtavcs_nx/runtime-tests-M02.log -> /switch/gtavcs_nx_backup/runtime-tests-M02.log
+10:25:23 moved /switch/gtavcs_nx/test-work-M02 -> /switch/gtavcs_nx_backup/test-work-M02
+10:25:23 moved /switch/gtavcs_nx/gamefolder/userdata -> /switch/gtavcs_nx_backup/gamefolder/userdata
+10:25:23 moved /switch/gtavcs_nx/gamefolder/gtavcs.log -> /switch/gtavcs_nx_backup/gamefolder/gtavcs.log
+10:25:23 moved /switch/gtavcs_nx/gamefolder/mc0 -> /switch/gtavcs_nx_backup/gamefolder/mc0
+10:25:23 moved /switch/gtavcs_nx/gamefolder/mc1 -> /switch/gtavcs_nx_backup/gamefolder/mc1
+10:25:24 tree /switch/gtavcs_nx entries=367 file=sd-tree-clean.txt
+10:25:24 RESULT clean-sd PASS
+10:25:40 nothing to delete at /switch/gtavcs_nx/gamefolder/userdata/tests/m06-play
+10:25:40 created /switch/gtavcs_nx/gamefolder/userdata
+10:25:40 == m06-play: profile=m06-play nro sha256=9b89481ca71057d945c93faa33de1e5a49f3e6d8af7e2178827ebbe27546db40
+10:25:40 tree /switch/gtavcs_nx/gamefolder/userdata entries=0 file=userdata-before-m06-play.txt
+10:25:40 nothing to delete at /switch/gtavcs_nx/gamefolder/gtavcs.log
+10:25:40 nothing to delete at /switch/gtavcs_nx/gamefolder/userdata/tests/m06-play/nxrun-results.txt
+10:25:40 wrote /switch/gtavcs_nx/gamefolder/userdata/nxrun.cfg bytes=822 sha256=a746ea48f467844e0ac3948fc3f1c95a9d0de84225bab467aa2948ec27862be2
+10:25:45 nxlink attempt=1 exit=0 output='Sending /switch/gtavcs_nx/gtavcs.nro, 54114501 bytes\n19866333 sent (36.71%), 1590 blocks'
+10:26:00 ACTION FOR THE PERSON AT THE SWITCH: B skips the cutscene; play 6+ min; close from HOME
+10:32:52 ftp back after 426s: the payload has ended
+10:32:55 deleted /switch/gtavcs_nx/gamefolder/userdata/nxrun.cfg
+10:32:55 read-back /switch/gtavcs_nx/gamefolder/gtavcs.log bytes=124373 sha256=1e5660b9c85ff9a09321d1b3af083ca714729025e9b15e36b20567836f12e7bb
+10:32:55 read-back /switch/gtavcs_nx/gtavcs-boot.log bytes=62 sha256=3dfe21382f340edd44bac1bf1dd0af6377ec3f03f87b166979ec89c9759bba4b
+10:32:55 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m06-play/nxrun-results.txt bytes=43540 sha256=0ad0801c58e6761514cb559c0ce4f3c32a602ba154d11f63fba0acc34a4ed458
+10:32:55 tree /switch/gtavcs_nx/gamefolder/userdata entries=13 file=userdata-after-m06-play.txt
+10:33:00 m06-play: clean_exit_line=True results_tail=['shutdown t=390.370 frames=8829', 'audit t=390.370 file_opens=151 iso_opens=0 first_iso="" threads_created=6'] sd_matches_local=True new_crashes=[]
+10:33:00 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m06-play/gpu.csv bytes=99494 sha256=7541b6ea8d0b874ff7db1c18c5635664bfbba7d195ca26748bbd512794c20da1
+10:33:00 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m06-play/nxrun-results.txt bytes=43540 sha256=0ad0801c58e6761514cb559c0ce4f3c32a602ba154d11f63fba0acc34a4ed458
+10:33:00 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m06-play/perf.csv bytes=456141 sha256=1f965bdedc6d6ddb4c3e27a9f2dbf696fb518347eb8c830a1724aeddf2b190cc
+10:33:00 accept-clean-3: read back 3 files from /switch/gtavcs_nx/gamefolder/userdata/tests/m06-play (screenshots private under build\evidence\M06\screenshots\accept-clean-3)
+10:33:00 RESULT game PASS
+10:33:24 kept the acceptance run's userdata as /switch/gtavcs_nx_backup/acceptance-accept2-userdata
+10:33:24 kept the acceptance run's gtavcs.log as /switch/gtavcs_nx_backup/acceptance-accept2-gtavcs.log
+10:33:24 kept the acceptance run's /switch/gtavcs_nx/gamefolder/mc1 as /switch/gtavcs_nx_backup/acceptance-accept2-gamefolder-mc1
+10:33:24 restored /switch/gtavcs_nx_backup/gamefolder/mc1 -> /switch/gtavcs_nx/gamefolder/mc1
+10:33:24 kept the acceptance run's /switch/gtavcs_nx/gamefolder/mc0 as /switch/gtavcs_nx_backup/acceptance-accept2-gamefolder-mc0
+10:33:24 restored /switch/gtavcs_nx_backup/gamefolder/mc0 -> /switch/gtavcs_nx/gamefolder/mc0
+10:33:24 restored /switch/gtavcs_nx_backup/gamefolder/gtavcs.log -> /switch/gtavcs_nx/gamefolder/gtavcs.log
+10:33:24 restored /switch/gtavcs_nx_backup/gamefolder/userdata -> /switch/gtavcs_nx/gamefolder/userdata
+10:33:24 restored /switch/gtavcs_nx_backup/test-work-M02 -> /switch/gtavcs_nx/test-work-M02
+10:33:24 restored /switch/gtavcs_nx_backup/runtime-tests-M02.log -> /switch/gtavcs_nx/runtime-tests-M02.log
+10:33:24 restored /switch/gtavcs_nx_backup/rhi-tests -> /switch/gtavcs_nx/rhi-tests
+10:33:24 restored /switch/gtavcs_nx_backup/private-core-M02.log -> /switch/gtavcs_nx/private-core-M02.log
+10:33:24 restored /switch/gtavcs_nx_backup/gtavcs_rhi_tests.nro -> /switch/gtavcs_nx/gtavcs_rhi_tests.nro
+10:33:24 kept the acceptance run's /switch/gtavcs_nx/gtavcs-boot.log as /switch/gtavcs_nx_backup/acceptance-accept2-gtavcs_nx-gtavcs-boot.log
+10:33:24 restored /switch/gtavcs_nx_backup/gtavcs-boot.log -> /switch/gtavcs_nx/gtavcs-boot.log
+10:33:24 restored /switch/gtavcs_nx_backup/disc-tests-M03.log -> /switch/gtavcs_nx/disc-tests-M03.log
+10:33:24 restored /switch/gtavcs_nx_backup/cpu-tests-M02.log -> /switch/gtavcs_nx/cpu-tests-M02.log
+10:33:29 tree /switch/gtavcs_nx entries=766 file=sd-tree-restored.txt
+10:33:29 RESULT restore-sd PASS
+10:33:36 RESULT summary PASS

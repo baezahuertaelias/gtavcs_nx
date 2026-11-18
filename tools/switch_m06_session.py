@@ -96,20 +96,22 @@ def restore_sd(session):
         session.say("nothing to restore")
         return True
     rows = [line.split("\t") for line in moves_file.read_text(encoding="utf-8").splitlines() if line]
+    # named after the evidence folder, so an earlier acceptance's leftovers in BACKUP keep their names
+    kept = f"{BACKUP}/acceptance-{session.evidence.name}-"
     ftp = m04.connect()
     try:
         game = m04.names(m04.listing(ftp, m04.GAME))
         # the acceptance run made its own userdata (nxrun.cfg, the test profile) and log: keep them beside the backup
         for name in ("userdata", "gtavcs.log"):
             if name in game and any(src == f"{m04.GAME}/{name}" for src, _ in rows):
-                ftp.rename(f"{m04.GAME}/{name}", f"{BACKUP}/acceptance-{name}")
-                session.say(f"kept the acceptance run's {name} as {BACKUP}/acceptance-{name}")
+                ftp.rename(f"{m04.GAME}/{name}", f"{kept}{name}")
+                session.say(f"kept the acceptance run's {name} as {kept}{name}")
         for src, dst in reversed(rows):
             parent, name = src.rsplit("/", 1)
             if name in m04.names(m04.listing(ftp, parent)):
                 # the run made its own (the game creates gamefolder/mc0, mc1 at boot): keep it beside the backup
-                ftp.rename(src, f"{BACKUP}/acceptance-{parent.rsplit('/', 1)[1]}-{name}")
-                session.say(f"kept the acceptance run's {src} as {BACKUP}/acceptance-{parent.rsplit('/', 1)[1]}-{name}")
+                ftp.rename(src, f"{kept}{parent.rsplit('/', 1)[1]}-{name}")
+                session.say(f"kept the acceptance run's {src} as {kept}{parent.rsplit('/', 1)[1]}-{name}")
             ftp.rename(dst, src)
             session.say(f"restored {dst} -> {src}")
     finally:

@@ -1,0 +1,82 @@
+run accept-clean-3
+camera at each gameinfo answer (stage transitions):
+  t=30 mode 15 fixed  (script camera)
+  t=90 mode 18 behind vehicle
+  t=150 mode 18 behind vehicle
+  t=210 mode 4 follow ped
+  t=270 mode 18 behind vehicle
+  t=330 mode 18 behind vehicle
+  t=390 mode 18 behind vehicle
+game frame (whole run): n=3401 median=76.9 ms p95=385.4 ms max=1236.9 ms
+game frame S4-playing (t 40-385 s): n=2489 median=84.6 ms p95=419.9 ms max=1096.6 ms
+host frame S4-playing (t 40-385 s): n=2212 median=59.7 ms p95=146.3 ms max=864.0 ms
+GPU present-to-present S4-playing (t 40-385 s): n=7514 median=2.0 ms p95=87.1 ms max=531.7 ms
+GPU present-to-present: GL_TIME_ELAPSED from just after one swap to just before the next (the swap itself is outside); includes GPU idle time while the CPU prepares the frame, so it bounds GPU busy time from above
+windows apply to perf.csv's t_s, the running sum of game frame times, which drifts a few seconds from the run's clock (gameinfo, progress); GPU samples are placed by the run's clock
+[video] output 1280x720 on the 1920x1080 surface, crop lower-left (00000000)
+[video] drawable=1920x1080 window=1920x1080 output=1280x720 mode=0 (was -1); 0 frames, 0.00 ms each since the last change; heap 222819712
+[movie] cdrom0:\MOVIES\STINGS.PSS;1: built without FFmpeg, skipped
+[movie] cdrom0:\MOVIES\INTRO.PSS;1: built without FFmpeg, skipped
+[platform] gamepad: Switch Controller (instance 0) mapping 000038f853776974636820436f6e7400,Switch Controller,a:b1,b:b0,back:b11,dpdown:b15,dpleft:b12,dpright:b14,dpup:b13,leftshoulder:b6,leftstick:b4,lefttrigger:b8,leftx:a0,lefty:a1,rightshoulder:b7,rightstick:b5,righttrigger:b9,rightx:a2,righty:a3,start:b10,x:b3,y:b2,crc:f838,platform:Unknown (see SDL_platform.h)
+[platform] focus lost: audio paused, pad neutral
+[platform] focus back: audio resumed, pad live
+[platform] controller physical: No1 styles 0x0 (none, device type 0x0), handheld styles 0x2 (Joy-Cons attached (handheld), device type 0xc)
+[resources] boot live_threads=2 (svc 00000000 via own)
+[resources] boot mapped_total=3343908864 mapped_used=3339763712 heap_in_use=145576896 heap_obtained=145608704 threads_created=1 default_thread_stack=8388608 file_opens=2 iso_opens=0
+[resources] running live_threads=4 (svc 00000000 via own)
+[resources] running mapped_total=3343908864 mapped_used=3339763712 heap_in_use=222819408 heap_obtained=225779712 threads_created=3 default_thread_stack=8388608 file_opens=13 iso_opens=0
+[resources] shutdown live_threads=2 (svc 00000000 via own)
+[resources] shutdown mapped_total=3343908864 mapped_used=3339763712 heap_in_use=674692112 heap_obtained=1115668480 threads_created=6 default_thread_stack=8388608 file_opens=151 iso_opens=0
+[rhi] GPU time per frame to userdata/tests/m06-play/gpu.csv
+[rhi] GPU time: 8828 frames, mean 22.70 ms, max 531.70 ms, 0 not timed
+[shutdown] core, context, window and SDL closed
+[lifecycle] suspension_clock=1
+[lifecycle] resume=0 focus_notifications=1 focus=1
+last [rhi-stats] gl errors: 0
+gameinfo / player answers: 46
+  t=5.023 player ok: ok 01d439c0 -1439.644 -314.627 14.392 1
+  t=15.101 player ok: ok 01d439c0 -1646.560 -139.230 14.820 1
+  t=25.029 player ok: ok 01d439c0 -1646.560 -139.230 14.598 1
+  t=30.062 gameinfo ok: ok frames=483 | [PLAYER  ped 01d439c0  model 0  state on foot (0x1)] | pos    -1596.73   -133.48    14.83   heading  45.6 | health 100.0  armour   0.0  money $0 | weapons  none | [CAMERA  mode 15 fixed  (script camera)] | pos    -1600.27   -143.72    23.17   heading  56.5  pitch -21.8  fov 70 | [WOR
+  t=35.095 player ok: ok 01d439c0 -1596.730 -133.480 14.833 1
+  t=45.093 player ok: ok 01d439c0 -1623.106 -136.416 14.267 1
+  t=55.110 player ok: ok 01d439c0 -1670.133 -235.094 14.608 1
+  t=65.061 player ok: ok 01d439c0 -1703.165 -319.892 14.461 1
+  t=75.104 player ok: ok 01d439c0 -1558.635 -324.427 14.886 1
+  t=85.242 player ok: ok 01d439c0 -1394.894 -324.282 11.789 1
+  t=90.018 gameinfo ok: ok frames=1271 | [PLAYER  ped 01d439c0  model 0  state driving (0x37)] | pos   in the vehicle (the ped's own matrix is relative) | health 100.0  armour   0.0  money $0 | weapons  none | [VEHICLE  01d80e00  model 252 STREETF] | pos    -1320.33   -317.31    12.88   heading 270.1 | health 1000.0  speed
+  t=95.202 player ok: ok 01d439c0 -1290.253 -319.755 12.355 1
+  t=105.033 player ok: ok 01d439c0 -1267.138 -319.095 12.355 1
+  t=115.018 player ok: ok 01d439c0 -1250.313 -315.993 10.953 1
+  t=125.101 player ok: ok 01d439c0 -1241.533 -311.573 11.020 1
+  t=135.188 player ok: ok 01d439c0 -1128.173 -299.402 11.096 1
+  t=145.030 player ok: ok 01d439c0 -978.279 -284.030 10.505 1
+  t=150.029 gameinfo ok: ok frames=1706 | [PLAYER  ped 01d439c0  model 0  state driving (0x37)] | pos   in the vehicle (the ped's own matrix is relative) | health  63.0  armour   0.0  money $0 | weapons  none | [VEHICLE  01d80e00  model 252 STREETF] | pos     -879.56   -288.07    10.14   heading 266.3 | health 1000.0  speed
+  t=155.103 player ok: ok 01d439c0 -834.272 -282.506 10.967 1
+  t=165.031 player ok: ok 01d439c0 -838.329 -199.108 10.926 1
+  t=175.145 player ok: ok 01d439c0 -826.035 -70.792 10.707 1
+  t=185.120 player ok: ok 01d439c0 -757.678 45.750 10.774 1
+  t=195.114 player ok: ok 01d439c0 -727.661 116.129 11.071 1
+  t=205.026 player ok: ok 01d439c0 -731.412 107.654 10.917 1
+  t=210.066 gameinfo ok: ok frames=2108 | [PLAYER  ped 01d439c0  model 0  state  (0x18)] | pos     -734.23    100.99    10.92   heading 124.1 | health  61.5  armour   0.0  money $0 | weapons  none | [CAMERA  mode 4 follow ped] | pos     -731.09    104.20    11.85   heading 135.6  pitch  -4.2  fov 70 | [WORLD] | clock 08:16 
+  t=215.024 player ok: ok 01d439c0 -736.147 100.153 10.901 1
+  t=225.125 player ok: ok 01d439c0 -736.935 100.741 10.927 1
+  t=235.189 player ok: ok 01d439c0 -737.606 111.799 10.897 1
+  t=245.056 player ok: ok 01d439c0 -719.050 228.765 10.951 1
+  t=255.038 player ok: ok 01d439c0 -733.288 179.902 11.259 1
+  t=265.098 player ok: ok 01d439c0 -754.690 53.181 11.040 1
+  t=270.017 gameinfo ok: ok frames=2551 | [PLAYER  ped 01d439c0  model 0  state driving (0x37)] | pos   in the vehicle (the ped's own matrix is relative) | health  61.5  armour   0.0  money $0 | weapons  none | [VEHICLE  01d80e00  model 252 STREETF] | pos     -776.34      6.09    10.64   heading 146.4 | health 1000.0  speed
+  t=275.018 player ok: ok 01d439c0 -809.539 -49.673 11.097 1
+  t=285.038 player ok: ok 01d439c0 -860.210 -163.303 10.643 1
+  t=295.018 player ok: ok 01d439c0 -864.328 -305.842 10.923 1
+  t=305.141 player ok: ok 01d439c0 -864.548 -448.505 10.822 1
+  t=315.032 player ok: ok 01d439c0 -854.953 -591.248 10.817 1
+  t=325.022 player ok: ok 01d439c0 -827.209 -717.470 10.932 1
+  t=330.084 gameinfo ok: ok frames=2897 | [PLAYER  ped 01d439c0  model 0  state driving (0x37)] | pos   in the vehicle (the ped's own matrix is relative) | health  61.5  armour   0.0  money $0 | weapons  none | [VEHICLE  01d80e00  model 252 STREETF] | pos     -823.36   -814.58    10.43   heading 180.3 | health 1000.0  speed
+  t=335.087 player ok: ok 01d439c0 -818.094 -890.214 10.942 1
+  t=345.126 player ok: ok 01d439c0 -795.890 -1065.088 11.121 1
+  t=355.029 player ok: ok 01d439c0 -754.023 -1199.101 11.090 1
+  t=365.024 player ok: ok 01d439c0 -687.150 -1383.385 10.890 1
+  t=375.152 player ok: ok 01d439c0 -684.857 -1456.188 11.383 1
+  t=385.206 player ok: ok 01d439c0 -680.652 -1434.850 10.795 1
+  t=390.029 gameinfo ok: ok frames=3339 | [PLAYER  ped 01d439c0  model 0  state driving (0x37)] | pos   in the vehicle (the ped's own matrix is relative) | health  59.8  armour   0.0  money $0 | weapons  none | [VEHICLE  01d80e00  model 252 STREETF] | pos     -698.57  -1432.86    10.44   heading 121.0 | health 1000.0  speed
