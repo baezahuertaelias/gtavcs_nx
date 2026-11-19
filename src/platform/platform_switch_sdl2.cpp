@@ -237,9 +237,10 @@ namespace platform
             }
         }
 
-        // Dear ImGui's display is the output region the panel shows (switch/output.h); SDL's mouse events are in the
-        // window's coordinates, the whole fixed surface. Scale them to the display, as the panel scales the region
-        // (M08-17; the touch screen comes through pollTouch: switch-sdl2 delivers none of it).
+        // Dear ImGui's display is the output region the panel shows (switch/output.h). A USB mouse (the touch screen comes
+        // through pollTouch: switch-sdl2 delivers none of it): this ASSUMES switch-sdl2 reports the pointer scaled from
+        // the screen to the window's 1920x1080, so it is scaled back to the display. If it reports surface pixels instead,
+        // the right mapping is the crop's offset without scaling. Unverified: no mouse was used (M16-04).
         void toUiCoordinates(SDL_Event &e)
         {
             int ww = 0, wh = 0, ow = 0, oh = 0;

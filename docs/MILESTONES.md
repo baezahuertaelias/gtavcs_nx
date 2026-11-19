@@ -328,7 +328,7 @@ controller-only navigation, and the chord does not reach the game.
 - [x] M08-14 Prevent chord leakage: withhold L3/R3 from the guest for a short recorded window until a chord is ruled in or out, so no L3/R3 edge reaches the game on open or close; prove R1-then-L3 free aim still works and report the added input latency.
 - [ ] M08-15 Reach the existing trainer, free camera, performance overlay and frame-time recording from the controller through the menu, with no keyboard or F-key dependency on Switch.
 - [x] M08-16 Hardware acceptance on paired Joy-Cons in handheld mode (Pro Controller: M16-02, user decision 2026-11-19, docs/milestones/M08/SCOPE_DECISIONS.md): repeated L3+R3 open/close in S2, S3, S4 and across suspend, with logged proof that no chord input reached the guest.
-- [ ] M08-17 Make Dear ImGui's touch and mouse positions agree with its display size on the fixed 1920x1080 surface (since M06-20 the display size is the mode's output, 1280x720 in handheld, while the SDL2 backend reports window coordinates); verify on hardware.
+- [ ] M08-17 Make Dear ImGui's touch and mouse positions agree with its display size on the fixed 1920x1080 surface (since M06-20 the display size is the mode's output, 1280x720 in handheld, while the SDL2 backend reports window coordinates); verify on hardware (touch screen; the USB mouse's hardware check: M16-04, user decision 2026-11-19, docs/milestones/M08/SCOPE_DECISIONS.md).
 
 ## M09 — Widescreen
 
@@ -434,7 +434,7 @@ reliable saves.
 - [ ] M14-06 Implement/verify save backups and atomic replacement/recovery; tests operate on disposable copies, never live user saves.
 - [ ] M14-07 Complete create/save/load/overwrite/delete/full-card/error flows through controller menus and verify mission/player state restored.
 - [ ] M14-08 Document player controls/SD layout/troubleshooting and reproduce a full controller-only start-to-save-to-reload session.
-- [ ] M14-09 Make every save test check the run's `userdata/trainer-used.txt` (written by the developer menu at a run's first trainer use, M08-09) and report a save made after trainer use as not a normal-release result, never silently passing it.
+- [ ] M14-09 Make every save test check the run's `trainer-used.txt` (`gamefolder/userdata/`, or `userdata/tests/<profile>/` for a test profile; written by the developer menu at a run's first trainer use, M08-09) and report a save made after trainer use as not a normal-release result, never silently passing it.
 
 ## M16 — Pro Controller and docked mode
 
@@ -447,6 +447,7 @@ Controller and a working dock.
 - [ ] M16-01 (was M10-13) Complete the docked work deferred from M06 by the user decision of 2026-11-17 (docs/milestones/M06/SCOPE_DECISIONS.md): M06-06's target and camera recreation on docking, M06-13's docking check, M06-20's docked 1920x1080 output and repeated dock changes from both start modes with a flat heap, docked S2/S4 timing (M06-11) and the docked beta acceptance run (M06-18), M07-11's docked audio drift and cutscene synchronization (user decision 2026-11-18, docs/milestones/M07/SCOPE_DECISIONS.md), and M08-02's docked developer-menu layout, including a dock change while the menu is open (user decision 2026-11-19, docs/milestones/M08/SCOPE_DECISIONS.md), on hardware with logs and video.
 - [ ] M16-02 (was M13-11) Complete the Pro Controller work deferred from M06-14/M06-16 by the user decision of 2026-11-17 (docs/milestones/M06/SCOPE_DECISIONS.md): identity, physical-position mapping, the physical connection-state matrix (initial open, hotplug, disconnect to neutral, reconnect, orderly exit) and play on a real Pro Controller, with hardware logs; and M08-16's L3+R3 developer-menu acceptance on the Pro Controller (user decision 2026-11-19, docs/milestones/M08/SCOPE_DECISIONS.md).
 - [ ] M16-03 Repeat in docked mode, and on the Pro Controller where a controller is involved, every docked or Pro Controller part that M09-M14 deferred here, each listed with its source task, on hardware with logs.
+- [ ] M16-04 (from M08-17) With a USB mouse on the Switch, verify that Dear ImGui's mouse position matches the pointer on the screen in handheld and docked output (src/platform/platform_switch_sdl2.cpp `toUiCoordinates`), and fix the mapping if switch-sdl2 reports surface pixels rather than panel-scaled positions; user decision 2026-11-19, docs/milestones/M08/SCOPE_DECISIONS.md.
 
 ## M15 — Final packaging, clean deployment and acceptance
 

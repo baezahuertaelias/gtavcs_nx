@@ -73,7 +73,8 @@ namespace devmenu
             log(why);
         }
 
-        // `other`: another menu takes over (it turns gamepad navigation on itself)
+        // `other`: the settings menu takes over (it turns Dear ImGui's gamepad navigation on, and off when it closes);
+        // the trainer reads the pad itself, so navigation is turned off for it (review 2)
         void closeMenu(const char *why, bool other = false)
         {
             if (!g_open)
@@ -207,7 +208,7 @@ namespace devmenu
                 {
                     act("trainer");
                     ui::openTrainerMenu();
-                    closeMenu("to the trainer", true);
+                    closeMenu("to the trainer");
                 }
                 else if (row(freecam ? "Free camera: ON (fly: sticks, ZL / ZR, D-pad zoom)" : "Free camera: off"))
                 {
@@ -392,7 +393,7 @@ namespace devmenu
             else if (args == "trainer")
             {
                 ui::openTrainerMenu();
-                closeMenu("to the trainer (control channel)", true);
+                closeMenu("to the trainer (control channel)");
             }
             else if (!args.empty() && args != "open")
                 return reply("error usage: devmenu [open|close|settings|trainer]");
@@ -409,14 +410,15 @@ namespace devmenu
         std::snprintf(line, sizeof(line),
                       "menu=%d settings=%d trainer=%d blocked=%d chords=%llu opens=%llu closes=%llu stick_presses=%llu "
                       "stick_delivered=%llu max_withheld_ms=%.1f touches=%llu trainer_used=%llu game_free_aim=%d "
-                      "game_free_aims=%llu last=\"%s\"",
+                      "game_free_aims=%llu nav=%d last=\"%s\"",
                       g_open ? 1 : 0, ui::settingsMenuOpen() ? 1 : 0, ui::trainerMenuOpen() ? 1 : 0,
                       ps2control::gameInputBlocked() ? 1 : 0, static_cast<unsigned long long>(s.chords),
                       static_cast<unsigned long long>(g_opens), static_cast<unsigned long long>(g_closes),
                       static_cast<unsigned long long>(s.stickPresses), static_cast<unsigned long long>(s.stickDelivered),
                       s.maxWithheldNs / 1e6, static_cast<unsigned long long>(s.touches),
                       static_cast<unsigned long long>(vcs::trainer::usedCount()), g_gameFreeAim ? 1 : 0,
-                      static_cast<unsigned long long>(g_gameFreeAims), g_lastAction.c_str());
+                      static_cast<unsigned long long>(g_gameFreeAims),
+                      (ImGui::GetIO().ConfigFlags & ImGuiConfigFlags_NavEnableGamepad) ? 1 : 0, g_lastAction.c_str());
         return line;
     }
 }

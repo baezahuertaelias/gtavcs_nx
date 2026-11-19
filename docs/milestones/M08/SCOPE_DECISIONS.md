@@ -27,3 +27,11 @@ Asked where it goes, the user chose "After M14, before release". So **M16 — Pr
 to docs/MILESTONES.md and runs after M14 and before M15. M10-13 (all docked work deferred from M06, M07 and M08) moves
 to M16-01 and M13-11 (all Pro Controller work deferred from M06 and M08) to M16-02; the two old IDs stay as "moved"
 records. M16-03 collects what M09-M14 defer to it. The deferrals above now land in M16.
+
+## The USB mouse check to M16-04 (user decision, 2026-11-19)
+
+M08-17 asks for touch and mouse positions to agree with Dear ImGui's display, verified on hardware. Review 2 found the
+mouse half unverified (no USB mouse was used) and the mapping in `toUiCoordinates` resting on an assumption about
+switch-sdl2's mouse coordinates. Asked "Do you have one, or should that part move to M16 (the hardware-we-lack
+milestone)?", the user chose "Move it to M16". M08-17 is accepted for the touch screen; **M16-04** verifies the USB
+mouse on hardware and fixes the mapping if needed. Nothing is claimed for a mouse in M08.
