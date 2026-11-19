@@ -1,0 +1,112 @@
+[boot] checked chdir succeeded: sdmc:/switch/gtavcs_nx/gamefolder
+[boot] SDL Switch; audio switch
+[boot] GL 4.3 (Core Profile) Mesa 20.1.0-rc3; renderer NV120
+[video] output 1280x720 on the 1920x1080 surface, crop lower-left (00000000)
+[resources] boot live_threads=2 (svc 00000000 via own)
+[resources] boot mapped_total=3343908864 mapped_used=3339763712 heap_in_use=145576896 heap_obtained=145608704 threads_created=1 default_thread_stack=8388608 file_opens=2 iso_opens=0
+[core] root=/switch/gtavcs_nx/gamefolder userdata=/switch/gtavcs_nx/gamefolder/userdata/tests/m08-settings settings=/switch/gtavcs_nx/gamefolder/userdata/tests/m08-settings/vcs.ini mc0=/switch/gtavcs_nx/gamefolder/userdata/tests/m08-settings/mc0 mc1=/switch/gtavcs_nx/gamefolder/userdata/tests/m08-settings/mc1 backups=/switch/gtavcs_nx/gamefolder/userdata/tests/m08-settings/backups cache=/switch/gtavcs_nx/gamefolder/userdata/tests/m08-settings/cache elf=/switch/gtavcs_nx/gamefolder/SLUS_215.90 profile=m08-settings
+[nxrun] config t=0.000 profile="m08-settings" seconds=25.000000 commands=0 env=1 verify_files=0
+[core] env VCS_SKIP_MOVIES=1
+[devmenu] 74 desktop-only settings hidden (Keyboard page, window, background)
+[settings] display aspect 1.333, HUD 4:3
+[settings] display aspect 1.333, HUD 4:3
+[framerate] cap 30.00 fps (independent timing)
+[framerate] cap 60.00 fps (independent timing)
+[settings] /switch/gtavcs_nx/gamefolder/userdata/tests/m08-settings/vcs.ini: 122 settings, 1 not at their default: display.skip_intro=1
+[core] /switch/gtavcs_nx/gamefolder/SLUS_215.90 sha1 d1832508caf0990c2291c0f255c96a889cce9f88: GTA: Vice City Stories - USA (SLUS-21590) v1.00
+[core] folder disc 1066336 sectors, 0 mods applied; no disc image opened
+[devmenu] L3 + R3 opens the developer menu; Back + Start / RB / LB chords off
+[gs] hardware GS renderer (OpenGL)
+[render-worker] on: render submission runs on its own thread
+[render-worker] GS stage on: the GS front end and frame building on a second thread
+[platform] gamepad: Switch Controller (instance 0) mapping 000038f853776974636820436f6e7400,Switch Controller,a:b1,b:b0,back:b11,dpdown:b15,dpleft:b12,dpright:b14,dpup:b13,leftshoulder:b6,leftstick:b4,lefttrigger:b8,leftx:a0,lefty:a1,rightshoulder:b7,rightstick:b5,righttrigger:b9,rightx:a2,righty:a3,start:b10,x:b3,y:b2,crc:f838,platform:Unknown (see SDL_platform.h)
+[chord] L3 + R3 opens the developer menu; every L3 / R3 press waits 100 ms for the other
+[platform] SDL2 2.28.5 adopted main.c's window 1920x1080 (asked 640x448); ImGui on
+[rhi] OpenGL 4.3: clip_control 1, viewport_array 1, anisotropy 1 (max 16), KHR_debug 1, dual-source draw buffers 1, samples 8/8/8, max texture 16384, framebuffer encoding 0x2601
+[present] OpenGL on NV120 (4.3 (Core Profile) Mesa 20.1.0-rc3; GLSL 4.30)
+[platform] audio device 2: 48000 Hz, 2 channels, 1024 frames (switch)
+[menu] pause menu: Enter selects, Escape goes back, the mouse points and clicks
+[sound] native sound driver (CDSTREAM's servers on the host)
+[iop] emulated IOP off: no IRX module loaded or run (PS2X_IOP=1 runs it)
+[core] io elf=/switch/gtavcs_nx/gamefolder/SLUS_215.90 host=/switch/gtavcs_nx/gamefolder cd=/switch/gtavcs_nx/gamefolder mc=/switch/gtavcs_nx/gamefolder/userdata/tests/m08-settings/mc0 cdImage=(none)
+[input] player bindings
+[core] desktop watchdog and sampling profiler not started (detached desktop threads; progress comes from the run's report lines)
+[resources] running live_threads=5 (svc 00000000 via own)
+[resources] running mapped_total=3343908864 mapped_used=3339763712 heap_in_use=231279680 heap_obtained=234086400 threads_created=4 default_thread_stack=8388608 file_opens=12 iso_opens=0
+[lifecycle] suspension_clock=1
+[lifecycle] resume=0 focus_notifications=1 focus=1
+[platform] focus lost: audio paused, pad neutral
+[nxrun] focus t=0.000 state=out
+[platform] focus back: audio resumed, pad live
+[nxrun] focus t=0.000 state=in
+[video] drawable=1920x1080 window=1920x1080 output=1280x720 mode=0 (was -1); 0 frames, 0.00 ms each since the last change; heap 231278864
+[platform] controller physical: No1 styles 0x0 (none, device type 0x0), handheld styles 0x2 (Joy-Cons attached (handheld), device type 0xc)
+[gs-hw] renderer ready (NV120 (4.3 (Core Profile) Mesa 20.1.0-rc3; GLSL 4.30)), scale 1x
+[present] display aspect 1.333
+[platform] mouse capture: not on the Switch (accepted, no effect)
+[nxrun] progress t=0.000 host_frames=1 game_frames=0 ee_cycle=9830624 ee_threads=1 ready=1 waiting=0 dormant=0 running=1 pc=0021c8f0 ra=0021c8f0 pumps=1 audio_callbacks=20 audio_frames=20480 gamepad=1 heap_in_use=318998256 heap_obtained=320991232
+[nxrun] perf t=0.000 "game_fps=22.8 frame_ms=43.9 vblank_per_s=22.8 game_ms=42.9 render_ms=0.1 iop_ms=0.9 wait_ms=0.0 draws=0 verts=0 tex_uploads=0 dma_tags=0 vu1_programs=0 host_fps=0 gl_ms=0.0 audio_ms=43 black_frames=0 dip_frames=0 probed_frames=0 worker_ms=0.1 gs_ms=37.9 gs_draws=0.0 gs_verts=0.0 gs_vu1=0.0 gs_hle=0.0 gs_path2=0.0 gs_path3=0.0 native_draws=0.0 hud_draws=0.0 post_draws=0.0 packed_draws=0.0 packed_verts=0.0 tex_create_us=0.0 tex_kb=0.0 tex_decode_us=0.0"
+[nxrun] devmenu t=0.000 menu=0 settings=0 trainer=0 blocked=0 chords=0 opens=0 closes=0 stick_presses=0 stick_delivered=0 max_withheld_ms=0.0 touches=0 trainer_used=0 last=""
+[movie] cdrom0:\MOVIES\STINGS.PSS;1 skipped (Display > Intro movies)
+[movie] cdrom0:\MOVIES\INTRO.PSS;1 skipped (Display > Intro movies)
+[gs-hw] a draw samples its own render target: reading a copy
+[menu] the Display page's Widescreen row hidden (2 focus moves past it, 4 rows up 27)
+[vu0native] running VCS VU0 segment vs triangle (0x020) natively (VU0 0x0020, 1960 bytes)
+[vu0native] running VCS VU0 sphere vs triangle (0x3A0) natively (VU0 0x03a0, 1960 bytes)
+[vu0native] running VCS VU0 store vf1..vf12 (0x0E30) natively (VU0 0x0e30, 104 bytes)
+[vu0native] running VCS VU0 3x matrix product (0x0E98) natively (VU0 0x0e98, 272 bytes)
+[vu0native] running VCS VU0 3x matrix product (0x0EB8) natively (VU0 0x0eb8, 240 bytes)
+[vu0native] running VCS VU0 sector box clip (0x0CF8) natively (VU0 0x0cf8, 312 bytes)
+[vu0native] running VCS VU0 sphere vs three plane sets (0x0C10) natively (VU0 0x0c10, 216 bytes)
+[vu0native] running VCS VU0 segment vs triangle, float inputs (0x068) natively (VU0 0x0068, 1960 bytes)
+[hle] world packets 4238: culled 943, drawn 2317 + 0 GPU-clipped (142729 vertices), 978 C++-clipped, VU fallback 0
+[vu1compiled] running VU1 program 10 (ELF 0x2ac130) compiled (254 pairs at VU 0x0000)
+[vu1compiled] running VU1 program 11 (ELF 0x2ac920) compiled (84 pairs at VU 0x07f0)
+[vu1compiled] running VU1 program 12 (ELF 0x2acbc0) compiled (40 pairs at VU 0x0a90)
+[vu1compiled] running VU1 program 13 (ELF 0x2acd00) compiled (10 pairs at VU 0x0bd0)
+[vu1compiled] running VU1 program 14 (ELF 0x2acd50) compiled (3 pairs at VU 0x0c20)
+[vu1compiled] running VU1 program 15 (ELF 0x2acd68) compiled (88 pairs at VU 0x0c38)
+[vu1compiled] running VU1 program 16 (ELF 0x2ad028) compiled (30 pairs at VU 0x0ef8)
+[vu1compiled] running VU1 program 18 (ELF 0x2ad168) compiled (129 pairs at VU 0x1038)
+[vu1compiled] running VU1 program 19 (ELF 0x2ad570) compiled (38 pairs at VU 0x1440)
+[vu1compiled] running VU1 program 20 (ELF 0x2ad6a0) compiled (4 pairs at VU 0x1570)
+[vu1compiled] running VU1 program 21 (ELF 0x2ad6c0) compiled (558 pairs at VU 0x1590)
+[vu1compiled] running VU1 program 22 (ELF 0x2d08f0) compiled (112 pairs at VU 0x2bf0)
+[vu1compiled] running VU1 program 26 (ELF 0x2f13d0) compiled (18 pairs at VU 0x2700)
+[vu1compiled] running VU1 program 27 (ELF 0x2f1460) compiled (36 pairs at VU 0x2790)
+[vu1compiled] running VU1 program 28 (ELF 0x2f1580) compiled (48 pairs at VU 0x28b0)
+[vu1compiled] running VU1 program 29 (ELF 0x2f1700) compiled (30 pairs at VU 0x2a30)
+[vu1compiled] running VU1 program 30 (ELF 0x2f17f0) compiled (6 pairs at VU 0x2b20)
+[vu1compiled] running VU1 program 31 (ELF 0x2f1820) compiled (20 pairs at VU 0x2b50)
+[vu1compiled] running VU1 program 32 (ELF 0x2f18c0) compiled (18 pairs at VU 0x2700)
+[vu1compiled] running VU1 program 38 (ELF 0x368730) compiled (84 pairs at VU 0x07f0)
+[vu1compiled] running VU1 program 39 (ELF 0x3689d0) compiled (40 pairs at VU 0x0a90)
+[vu1compiled] running VU1 program 40 (ELF 0x368b10) compiled (10 pairs at VU 0x0bd0)
+[vu1compiled] running VU1 program 41 (ELF 0x368b60) compiled (88 pairs at VU 0x0c38)
+[vu1compiled] running VU1 program 42 (ELF 0x368e20) compiled (30 pairs at VU 0x0ef8)
+[vu1compiled] running VU1 program 43 (ELF 0x368f10) compiled (10 pairs at VU 0x0fe8)
+[vu1compiled] running VU1 program 44 (ELF 0x368f60) compiled (38 pairs at VU 0x1440)
+[vu1compiled] running VU1 program 45 (ELF 0x369090) compiled (4 pairs at VU 0x1570)
+[nxrun] progress t=10.010 host_frames=405 game_frames=135 ee_cycle=1788252791 ee_threads=1 ready=1 waiting=0 dormant=0 running=1 pc=002401c0 ra=00240030 pumps=405 audio_callbacks=518 audio_frames=530432 gamepad=1 heap_in_use=412141888 heap_obtained=416485376
+[nxrun] perf t=10.010 "game_fps=9.7 frame_ms=102.7 vblank_per_s=39.0 game_ms=34.7 render_ms=14.8 iop_ms=1.9 wait_ms=51.3 draws=1245 verts=74017 tex_uploads=16 dma_tags=334 vu1_programs=82 host_fps=40 gl_ms=24.7 audio_ms=70 black_frames=0 dip_frames=0 probed_frames=0 worker_ms=74.9 gs_ms=58.5 gs_draws=50.6 gs_verts=17397.6 gs_vu1=50.6 gs_hle=0.0 gs_path2=0.0 gs_path3=0.0 native_draws=1255.4 hud_draws=0.0 post_draws=17.6 packed_draws=30.0 packed_verts=2635.2 tex_create_us=17826.4 tex_kb=260.7 tex_decode_us=943.3"
+[nxrun] devmenu t=10.010 menu=0 settings=0 trainer=0 blocked=0 chords=0 opens=0 closes=0 stick_presses=0 stick_delivered=0 max_withheld_ms=0.0 touches=0 trainer_used=0 last=""
+[hle] world packets 134712: culled 4828, drawn 126524 + 0 GPU-clipped (5783027 vertices), 3360 C++-clipped, VU fallback 0
+[nxrun] progress t=20.020 host_frames=668 game_frames=275 ee_cycle=3779481067 ee_threads=1 ready=1 waiting=0 dormant=0 running=1 pc=0021ebfc ra=0021ebfc pumps=668 audio_callbacks=990 audio_frames=1013760 gamepad=1 heap_in_use=434735888 heap_obtained=442331136
+[nxrun] perf t=20.020 "game_fps=21.3 frame_ms=47.0 vblank_per_s=43.5 game_ms=25.7 render_ms=2.0 iop_ms=1.4 wait_ms=17.9 draws=781 verts=52284 tex_uploads=0 dma_tags=229 vu1_programs=0 host_fps=22 gl_ms=26.7 audio_ms=76 black_frames=0 dip_frames=0 probed_frames=0 worker_ms=21.2 gs_ms=29.0 gs_draws=0.0 gs_verts=0.0 gs_vu1=0.0 gs_hle=0.0 gs_path2=0.0 gs_path3=0.0 native_draws=691.0 hud_draws=0.0 post_draws=16.0 packed_draws=73.7 packed_verts=9122.7 tex_create_us=0.0 tex_kb=0.0 tex_decode_us=0.0"
+[nxrun] devmenu t=20.020 menu=0 settings=0 trainer=0 blocked=0 chords=0 opens=0 closes=0 stick_presses=0 stick_delivered=0 max_withheld_ms=0.0 touches=0 trainer_used=0 last=""
+[nxrun] progress t=25.052 host_frames=775 game_frames=349 ee_cycle=4805181020 ee_threads=1 ready=1 waiting=0 dormant=0 running=1 pc=0021ebfc ra=0021ebfc pumps=775 audio_callbacks=1226 audio_frames=1255424 gamepad=1 heap_in_use=447943776 heap_obtained=455585792
+[nxrun] perf t=25.052 "game_fps=13.3 frame_ms=75.4 vblank_per_s=40.7 game_ms=38.9 render_ms=3.8 iop_ms=3.7 wait_ms=29.0 draws=1446 verts=80135 tex_uploads=0 dma_tags=173 vu1_programs=0 host_fps=18 gl_ms=55.1 audio_ms=78 black_frames=0 dip_frames=0 probed_frames=0 worker_ms=54.5 gs_ms=58.4 gs_draws=0.0 gs_verts=0.0 gs_vu1=0.0 gs_hle=0.0 gs_path2=0.0 gs_path3=0.0 native_draws=1247.2 hud_draws=0.0 post_draws=16.0 packed_draws=90.9 packed_verts=12691.0 tex_create_us=99.4 tex_kb=1.1 tex_decode_us=10.5"
+[nxrun] devmenu t=25.052 menu=0 settings=0 trainer=0 blocked=0 chords=0 opens=0 closes=0 stick_presses=0 stick_delivered=0 max_withheld_ms=0.0 touches=0 trainer_used=0 last=""
+[nxrun] stop t=25.052 reason=seconds frames=775
+[core] orderly stop after 774 frames
+[nxrun] shutdown t=25.052 frames=775
+[platform] audio closed after 1229 callbacks, 1258496 frames
+[platform] shut down (window, context and SDL left to main.c)
+[core] game thread joined, render worker and platform stopped
+[stream] reader stopped
+[core] runtime destroyed
+[core] folder disc closed
+[nxrun] audit t=25.052 file_opens=140 iso_opens=0 first_iso="" threads_created=7
+[resources] shutdown live_threads=2 (svc 00000000 via own)
+[resources] shutdown mapped_total=3343908864 mapped_used=3339763712 heap_in_use=325871744 heap_obtained=454864896 threads_created=7 default_thread_stack=8388608 file_opens=140 iso_opens=0
+[shutdown] core, context, window and SDL closed
