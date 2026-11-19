@@ -1,0 +1,22 @@
+22:47:22 nothing to delete at /switch/gtavcs_nx/gamefolder/userdata/tests/m07-volume
+22:47:22 wrote /switch/gtavcs_nx/gamefolder/userdata/tests/m07-volume/vcs.ini bytes=40 sha256=a6047807863ef3e4d4c40468a48968a0ee042554eaae2b57faafece90df341c2
+22:47:23 == m07-volume: profile=m07-volume nro sha256=4a4001d0f31a5989f515b8868cd23a73c33c78a0670d635090680d9c12d7280c
+22:47:26 tree /switch/gtavcs_nx/gamefolder/userdata entries=268 file=userdata-before-m07-volume.txt
+22:47:26 deleted /switch/gtavcs_nx/gamefolder/gtavcs.log
+22:47:26 nothing to delete at /switch/gtavcs_nx/gamefolder/userdata/tests/m07-volume/nxrun-results.txt
+22:47:26 wrote /switch/gtavcs_nx/gamefolder/userdata/nxrun.cfg bytes=548 sha256=3eaa1ee14f1b159ab43c7cb2c0f53817f8e4ca365123a547384ed32ed23139d4
+22:47:34 nxlink attempt=1 exit=0 output='Sending /switch/gtavcs_nx/gtavcs.nro, 66338040 bytes\n26178579 sent (39.46%), 2158 blocks'
+22:47:49 ACTION FOR THE PERSON AT THE SWITCH: do not touch (5 min)
+22:52:49 ftp back after 315s: the payload has ended
+22:52:52 deleted /switch/gtavcs_nx/gamefolder/userdata/nxrun.cfg
+22:52:52 read-back /switch/gtavcs_nx/gamefolder/gtavcs.log bytes=91590 sha256=61f30c9bde86efdda278210abcc303becaf19e331036e93f8de80cef7951c079
+22:52:52 read-back /switch/gtavcs_nx/gtavcs-boot.log bytes=62 sha256=3dfe21382f340edd44bac1bf1dd0af6377ec3f03f87b166979ec89c9759bba4b
+22:52:52 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m07-volume/nxrun-results.txt bytes=55920 sha256=83ec9679fc13c03da5e3d0f510c9699ef52a212b8eba9b23b4757d6ca709a5ed
+22:52:56 tree /switch/gtavcs_nx/gamefolder/userdata entries=274 file=userdata-after-m07-volume.txt
+22:52:56 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m07-volume/vcs.ini bytes=40 sha256=a6047807863ef3e4d4c40468a48968a0ee042554eaae2b57faafece90df341c2
+22:53:01 m07-volume: clean_exit_line=True results_tail=['stop t=300.017 reason=seconds frames=15356', 'shutdown t=300.017 frames=15356', 'audit t=300.017 file_opens=145 iso_opens=0 first_iso="" threads_created=7'] sd_matches_local=True new_crashes=[]
+22:53:05 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m07-volume/game.wav bytes=39529516 sha256=018afbeb740ad816d8e90e68b2b57b332152f8c3b78a31b96190c0000ab649b5
+22:53:05 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m07-volume/nxrun-results.txt bytes=55920 sha256=83ec9679fc13c03da5e3d0f510c9699ef52a212b8eba9b23b4757d6ca709a5ed
+22:53:05 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m07-volume/vcs.ini bytes=40 sha256=a6047807863ef3e4d4c40468a48968a0ee042554eaae2b57faafece90df341c2
+22:53:05 volume-handheld: read back 3 files from /switch/gtavcs_nx/gamefolder/userdata/tests/m07-volume (screenshots private under build\evidence\M06\screenshots\volume-handheld)
+22:53:05 RESULT game PASS
