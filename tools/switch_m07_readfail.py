@@ -45,14 +45,20 @@ def main():
                                      "--prompt", "do not touch (4 min)"]).returncode
     finally:
         # every step on its own: a failed one never skips the rest (only what this run created is removed)
+        try:
+            ftp.close()  # the first connection idles through the game run
+        except ftplib.all_errors:
+            pass
         ftp = m04.connect()
         for step, target in ((ftp.delete, MOD), (ftp.rmd, MOD_DIR), (ftp.rmd, MODS)):
             try:
                 step(target)
+                session.say(f"removed {target}")
             except ftplib.all_errors as error:
                 session.say(f"could not remove {target}: {error}")
         left = "mods" in m04.names(m04.listing(ftp, GAME))
-        session.say(f"removed {MOD}, {MOD_DIR}, {MODS}; mods left={left}")
+        ftp.quit()
+        session.say(f"mods left={left}")
         if left:
             returncode = returncode or 1
     return returncode

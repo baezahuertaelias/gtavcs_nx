@@ -12,7 +12,7 @@ index 81ebec5..12434fa 100644
  | `VCS_TEST_SAVE=s[:slot]` | save to slot 1 (or 1..8) through the game's code s seconds after boot (mid-script: prefer `tools/saves.py`) |
  | `VCS_TRACE_SECTORS=1`, `VCS_TRACE_CELL=1` | world sector draw / current hex cell vs camera |
 diff --git a/docs/PS2RECOMP_PATCHES.md b/docs/PS2RECOMP_PATCHES.md
-index 0ba3c12..9bf1b4a 100644
+index 0ba3c12..297aa30 100644
 --- a/docs/PS2RECOMP_PATCHES.md
 +++ b/docs/PS2RECOMP_PATCHES.md
 @@ -383,3 +383,9 @@ changes keep desktop behaviour: `main()` and `run()` take the same steps as befo
@@ -24,9 +24,9 @@ index 0ba3c12..9bf1b4a 100644
 +
 +| Where | What | Why |
 +|---|---|---|
-+| `ps2xRuntime/src/lib/ps2_audio_out.cpp`, `include/runtime/ps2_audio_out.h`; `src/game/vcs_sound.cpp` | `ps2AudioSetFiller`: a keeper thread (started in `ps2AudioInit`, joined in `ps2AudioShutdown`) asks the producer for more when the ring holds under 40 ms and nothing was pushed for 15 ms; the native sound driver's filler mixes the SPU2 ahead of EE time under its lock, and `clock()` mixes only past it. While not primed (at start, after an underrun) the keeper fills up to the target, in whole 256-frame blocks (the SPU2's hand-over size), so it cannot stop just short of priming; it is idle while a movie's sound is queued (the SPU2 is not mixed under a movie, as before). The runtime forgives an IOP lag over 1 s (runIopTime), so a stall's time beyond 1 s never reaches `clock()`; a filler lead over 1 s therefore moves the engine's EE time along, the EE repays the rest and `clock()` mixes again (without it the filler mixed everything after a 2 s stall). `runEnd` calls `ps2AudioShutdown` before `platform::shutdown` (the header's order): the keeper is joined before the device closes. The stats line gives the filled share. On by default on the Switch only (`__SWITCH__`); `PS2X_AUDIO_FILL=1` / `0` overrides; off with `PS2X_IOP_REALTIME=0` | The SPU2 was mixed only on the game thread: a frame longer than the target fill (60-250 ms) was a gap, and the catch-up burst after it overflowed the 400 ms cap and was dropped. On the Switch (frames of 0.5-1 s while driving) a 16-minute drive starved 54 s in 169 underruns |
++| `ps2xRuntime/src/lib/ps2_audio_out.cpp`, `include/runtime/ps2_audio_out.h`; `src/game/vcs_sound.cpp` | `ps2AudioSetFiller`: a keeper thread (started in `ps2AudioInit`, joined in `ps2AudioShutdown`) asks the producer for more when the ring holds under 40 ms and nothing was pushed for 15 ms; the native sound driver's filler mixes the SPU2 ahead of EE time under its lock, and `clock()` mixes only past it. While not primed (at start, after an underrun) the keeper fills up to the target, in whole 256-frame blocks (the SPU2's hand-over size), so it cannot stop just short of priming; it is idle while a movie's sound is queued (the SPU2 is not mixed under a movie, as before). The runtime forgives an IOP lag over 1 s (PS2Runtime::advanceIopEeCycles), so a stall's time beyond 1 s never reaches `clock()`; a filler lead over 1 s therefore moves the engine's EE time along, the EE repays the rest and `clock()` mixes again (without it the filler mixed everything after a 2 s stall). `runEnd` calls `ps2AudioShutdown` before `platform::shutdown` (the header's order): the keeper is joined before the device closes. The stats line gives the filled share. On by default on the Switch only (`__SWITCH__`); `PS2X_AUDIO_FILL=1` / `0` overrides; off with `PS2X_IOP_REALTIME=0` | The SPU2 was mixed only on the game thread: a frame longer than the target fill (60-250 ms) was a gap, and the catch-up burst after it overflowed the 400 ms cap and was dropped. On the Switch (frames of 0.5-1 s while driving) a 16-minute drive starved 54 s in 169 underruns |
 diff --git a/src/game/vcs_sound.cpp b/src/game/vcs_sound.cpp
-index eb8670f..f53fe45 100644
+index eb8670f..b6003ca 100644
 --- a/src/game/vcs_sound.cpp
 +++ b/src/game/vcs_sound.cpp
 @@ -194,7 +194,29 @@ namespace vcs
@@ -45,7 +45,7 @@ index eb8670f..f53fe45 100644
 +            {
 +                std::lock_guard<std::mutex> lock(m_mutex);
 +                advanceIop(m_iopCycle + static_cast<uint64_t>(frames) * Spu2::kCyclesPerSample);
-+                // The runtime forgives an IOP lag over 1 s (runIopTime): that part of the stall never reaches clock().
++                // The runtime forgives an IOP lag over 1 s (PS2Runtime::advanceIopEeCycles): that part of the stall never reaches clock().
 +                // The filler has mixed it all the same, so a lead over 1 s moves this engine's EE time along with it;
 +                // the EE then repays at most 1 s, and clock() mixes again once it has (else it never would).
 +                constexpr uint64_t kMaxLead = 36864000u; // IOP cycles: 1 s

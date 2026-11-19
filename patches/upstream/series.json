@@ -39,7 +39,11 @@
     },
     {
       "path": "0010-audio-starvation-filler.patch",
-      "sha256": "b88b1da7d8ba026016b7f5fed4af932b14f5d58dce36e675a8519e3429c58383"
+      "sha256": "4b4ee641ef72151b5e8a33fef3547412a53779d969d575f9a6204393da932d81"
+    },
+    {
+      "path": "0011-music-loop-unused.patch",
+      "sha256": "97e31bc32676a23b375a69d32d158f8b0222fb3dfae9ca00618e56b4b7238546"
     }
   ]
 }
