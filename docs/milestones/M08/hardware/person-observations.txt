@@ -15,4 +15,4 @@ R1-then-L3 free aim. Repeated on the final NRO.
 open / close pair before the trainer, at about 84 s, the camera in mode 17 flyby / cutscene at t=70). Free aim step:
 "Didn't do it". Touch step: "Tap worked", but the log has no touch event: the overlay row was chosen by the A button
 ([input] button b, the east position, just before "chose: performance overlay on"); switch-sdl2 delivered no
-SDL_FINGER* event either. Touch is read from HID from 7f... on (see git log).
+SDL_FINGER* event either. Touch is read from HID from 04a6b45 on.
