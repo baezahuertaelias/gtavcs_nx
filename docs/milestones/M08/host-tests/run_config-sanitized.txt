@@ -1,4 +1,4 @@
-commit 352b29b53f6942454f4e931c01b53eefa9b3a005 dirty=False
+commit 610817c0ff7b21cd22d5ce0d8add1167a654a3d5 dirty=False
 + docker run --rm --network=none --security-opt seccomp=unconfined --mount type=bind,source=C:\Users\Gamer\Documents\gtavcs_nx,target=/work gtavcs-nx-toolchain:m01 bash -c set -e; mkdir -p /tmp/t && cd /work && printf 'int runRunConfigTests();\nint main() { return runRunConfigTests() ? 1 : 0; }\n' > /tmp/t/driver.cpp && g++ --version | head -1 && g++ -std=c++20 -Wall -Wextra -O1 -g -fsanitize=address,undefined -fno-sanitize-recover=all -fno-omit-frame-pointer  -Isrc src/core/run_config.cpp tests/core/run_config_tests.cpp /tmp/t/driver.cpp -o /tmp/t/run_config && setarch -R timeout 600 /tmp/t/run_config
 g++ (Debian 12.2.0-14+deb12u1) 12.2.0
 PASS run-config full file parses
