@@ -1,0 +1,197 @@
+[devmenu] 74 desktop-only settings hidden (Keyboard page, window, background)
+[settings] display aspect 1.333, HUD 4:3
+[settings] display aspect 1.333, HUD 4:3
+[settings] /switch/gtavcs_nx/gamefolder/userdata/tests/m08-functions/vcs.ini: 122 settings, 1 not at their default: display.skip_intro=1
+[devmenu] L3 + R3 opens the developer menu; Back + Start / RB / LB chords off
+[chord] L3 + R3 opens the developer menu; every L3 / R3 press waits 100 ms for the other
+[platform] focus lost: audio paused, pad neutral
+[platform] focus back: audio resumed, pad live
+[platform] controller physical: No1 styles 0x0 (none, device type 0x0), handheld styles 0x2 (Joy-Cons attached (handheld), device type 0xc)
+[chord] 89.124 s R3 withheld: game sees L3=0 R3=0
+[chord] 89.172 s L3 chord after 0.0 ms: game sees L3=0 R3=0
+[chord] 89.172 s R3 chord after 48.1 ms: game sees L3=0 R3=0 (menu toggle)
+[devmenu] opened by L3 + R3: menu=1 settings=0 trainer=0 chords=1
+[chord] 89.329 s L3 suppressed-up: game sees L3=0 R3=0
+[chord] 89.359 s R3 suppressed-up: game sees L3=0 R3=0
+[chord] 90.207 s L3 withheld: game sees L3=0 R3=0
+[chord] 90.271 s L3 chord after 63.6 ms: game sees L3=0 R3=0
+[chord] 90.271 s R3 chord after 0.0 ms: game sees L3=0 R3=0 (menu toggle)
+[devmenu] closed by L3 + R3: menu=0 settings=0 trainer=0 chords=2
+[chord] 90.387 s L3 suppressed-up: game sees L3=0 R3=0
+[chord] 90.405 s R3 suppressed-up: game sees L3=0 R3=0
+[chord] 93.439 s L3 withheld: game sees L3=0 R3=0
+[chord] 93.456 s L3 chord after 17.1 ms: game sees L3=0 R3=0
+[chord] 93.456 s R3 chord after 0.0 ms: game sees L3=0 R3=0 (menu toggle)
+[devmenu] opened by L3 + R3: menu=1 settings=0 trainer=0 chords=3
+[chord] 93.598 s L3 suppressed-up: game sees L3=0 R3=0
+[chord] 93.598 s R3 suppressed-up: game sees L3=0 R3=0
+[chord] 93.881 s L3 withheld: game sees L3=0 R3=0
+[chord] 93.930 s L3 chord after 49.7 ms: game sees L3=0 R3=0
+[chord] 93.930 s R3 chord after 0.0 ms: game sees L3=0 R3=0 (menu toggle)
+[devmenu] closed by L3 + R3: menu=0 settings=0 trainer=0 chords=4
+[chord] 94.047 s L3 suppressed-up: game sees L3=0 R3=0
+[chord] 94.080 s R3 suppressed-up: game sees L3=0 R3=0
+[chord] 94.264 s R3 withheld: game sees L3=0 R3=0
+[chord] 94.283 s L3 chord after 0.0 ms: game sees L3=0 R3=0
+[chord] 94.283 s R3 chord after 19.3 ms: game sees L3=0 R3=0 (menu toggle)
+[devmenu] opened by L3 + R3: menu=1 settings=0 trainer=0 chords=5
+[chord] 94.416 s R3 suppressed-up: game sees L3=0 R3=0
+[chord] 94.447 s L3 suppressed-up: game sees L3=0 R3=0
+[chord] 94.644 s L3 chord after 0.0 ms: game sees L3=0 R3=0
+[chord] 94.644 s R3 chord after 0.0 ms: game sees L3=0 R3=0 (menu toggle)
+[devmenu] closed by L3 + R3: menu=0 settings=0 trainer=0 chords=6
+[chord] 94.760 s R3 suppressed-up: game sees L3=0 R3=0
+[chord] 94.806 s L3 suppressed-up: game sees L3=0 R3=0
+[chord] 94.959 s L3 chord after 0.0 ms: game sees L3=0 R3=0
+[chord] 94.959 s R3 chord after 0.0 ms: game sees L3=0 R3=0 (menu toggle)
+[devmenu] opened by L3 + R3: menu=1 settings=0 trainer=0 chords=7
+[chord] 95.109 s L3 suppressed-up: game sees L3=0 R3=0
+[chord] 95.109 s R3 suppressed-up: game sees L3=0 R3=0
+[chord] 95.310 s L3 chord after 0.0 ms: game sees L3=0 R3=0
+[chord] 95.310 s R3 chord after 0.0 ms: game sees L3=0 R3=0 (menu toggle)
+[devmenu] closed by L3 + R3: menu=0 settings=0 trainer=0 chords=8
+[chord] 95.463 s R3 suppressed-up: game sees L3=0 R3=0
+[chord] 95.506 s L3 suppressed-up: game sees L3=0 R3=0
+[chord] 95.693 s L3 chord after 0.0 ms: game sees L3=0 R3=0
+[chord] 95.693 s R3 chord after 0.0 ms: game sees L3=0 R3=0 (menu toggle)
+[devmenu] opened by L3 + R3: menu=1 settings=0 trainer=0 chords=9
+[chord] 95.843 s L3 suppressed-up: game sees L3=0 R3=0
+[chord] 95.843 s R3 suppressed-up: game sees L3=0 R3=0
+[chord] 96.041 s L3 withheld: game sees L3=0 R3=0
+[chord] 96.090 s L3 chord after 48.5 ms: game sees L3=0 R3=0
+[chord] 96.090 s R3 chord after 0.0 ms: game sees L3=0 R3=0 (menu toggle)
+[devmenu] closed by L3 + R3: menu=0 settings=0 trainer=0 chords=10
+[chord] 96.193 s L3 suppressed-up: game sees L3=0 R3=0
+[chord] 96.193 s R3 suppressed-up: game sees L3=0 R3=0
+[chord] 96.379 s L3 chord after 0.0 ms: game sees L3=0 R3=0
+[chord] 96.379 s R3 chord after 0.0 ms: game sees L3=0 R3=0 (menu toggle)
+[devmenu] opened by L3 + R3: menu=1 settings=0 trainer=0 chords=11
+[chord] 96.526 s L3 suppressed-up: game sees L3=0 R3=0
+[chord] 96.526 s R3 suppressed-up: game sees L3=0 R3=0
+[chord] 96.710 s L3 chord after 0.0 ms: game sees L3=0 R3=0
+[chord] 96.710 s R3 chord after 0.0 ms: game sees L3=0 R3=0 (menu toggle)
+[devmenu] closed by L3 + R3: menu=0 settings=0 trainer=0 chords=12
+[chord] 96.860 s L3 suppressed-up: game sees L3=0 R3=0
+[chord] 96.860 s R3 suppressed-up: game sees L3=0 R3=0
+[chord] 97.010 s L3 chord after 0.0 ms: game sees L3=0 R3=0
+[chord] 97.010 s R3 chord after 0.0 ms: game sees L3=0 R3=0 (menu toggle)
+[devmenu] opened by L3 + R3: menu=1 settings=0 trainer=0 chords=13
+[chord] 97.143 s L3 suppressed-up: game sees L3=0 R3=0
+[chord] 97.143 s R3 suppressed-up: game sees L3=0 R3=0
+[chord] 97.292 s R3 withheld: game sees L3=0 R3=0
+[chord] 97.344 s L3 chord after 0.0 ms: game sees L3=0 R3=0
+[chord] 97.344 s R3 chord after 52.4 ms: game sees L3=0 R3=0 (menu toggle)
+[devmenu] closed by L3 + R3: menu=0 settings=0 trainer=0 chords=14
+[chord] 97.439 s L3 suppressed-up: game sees L3=0 R3=0
+[chord] 97.472 s R3 suppressed-up: game sees L3=0 R3=0
+[chord] 98.691 s L3 withheld: game sees L3=0 R3=0
+[chord] 98.745 s L3 chord after 53.6 ms: game sees L3=0 R3=0
+[chord] 98.745 s R3 chord after 0.0 ms: game sees L3=0 R3=0 (menu toggle)
+[devmenu] opened by L3 + R3: menu=1 settings=0 trainer=0 chords=15
+[chord] 98.842 s L3 suppressed-up: game sees L3=0 R3=0
+[chord] 98.842 s R3 suppressed-up: game sees L3=0 R3=0
+[chord] 99.094 s L3 chord after 0.0 ms: game sees L3=0 R3=0
+[chord] 99.094 s R3 chord after 0.0 ms: game sees L3=0 R3=0 (menu toggle)
+[devmenu] closed by L3 + R3: menu=0 settings=0 trainer=0 chords=16
+[chord] 99.172 s R3 suppressed-up: game sees L3=0 R3=0
+[chord] 99.188 s L3 suppressed-up: game sees L3=0 R3=0
+[chord] 99.359 s L3 chord after 0.0 ms: game sees L3=0 R3=0
+[chord] 99.359 s R3 chord after 0.0 ms: game sees L3=0 R3=0 (menu toggle)
+[devmenu] opened by L3 + R3: menu=1 settings=0 trainer=0 chords=17
+[chord] 99.492 s L3 suppressed-up: game sees L3=0 R3=0
+[chord] 99.492 s R3 suppressed-up: game sees L3=0 R3=0
+[chord] 99.659 s L3 chord after 0.0 ms: game sees L3=0 R3=0
+[chord] 99.659 s R3 chord after 0.0 ms: game sees L3=0 R3=0 (menu toggle)
+[devmenu] closed by L3 + R3: menu=0 settings=0 trainer=0 chords=18
+[chord] 99.776 s L3 suppressed-up: game sees L3=0 R3=0
+[chord] 99.821 s R3 suppressed-up: game sees L3=0 R3=0
+[chord] 99.960 s L3 chord after 0.0 ms: game sees L3=0 R3=0
+[chord] 99.960 s R3 chord after 0.0 ms: game sees L3=0 R3=0 (menu toggle)
+[devmenu] opened by L3 + R3: menu=1 settings=0 trainer=0 chords=19
+[chord] 100.075 s L3 suppressed-up: game sees L3=0 R3=0
+[chord] 100.075 s R3 suppressed-up: game sees L3=0 R3=0
+[chord] 100.215 s L3 withheld: game sees L3=0 R3=0
+[chord] 100.257 s L3 chord after 42.5 ms: game sees L3=0 R3=0
+[chord] 100.257 s R3 chord after 0.0 ms: game sees L3=0 R3=0 (menu toggle)
+[devmenu] closed by L3 + R3: menu=0 settings=0 trainer=0 chords=20
+[chord] 100.408 s L3 suppressed-up: game sees L3=0 R3=0
+[chord] 100.408 s R3 suppressed-up: game sees L3=0 R3=0
+[chord] 100.558 s L3 chord after 0.0 ms: game sees L3=0 R3=0
+[chord] 100.558 s R3 chord after 0.0 ms: game sees L3=0 R3=0 (menu toggle)
+[devmenu] opened by L3 + R3: menu=1 settings=0 trainer=0 chords=21
+[chord] 100.658 s L3 suppressed-up: game sees L3=0 R3=0
+[chord] 100.658 s R3 suppressed-up: game sees L3=0 R3=0
+[chord] 100.860 s L3 chord after 0.0 ms: game sees L3=0 R3=0
+[chord] 100.860 s R3 chord after 0.0 ms: game sees L3=0 R3=0 (menu toggle)
+[devmenu] closed by L3 + R3: menu=0 settings=0 trainer=0 chords=22
+[chord] 101.009 s L3 suppressed-up: game sees L3=0 R3=0
+[chord] 101.009 s R3 suppressed-up: game sees L3=0 R3=0
+[chord] 101.142 s L3 chord after 0.0 ms: game sees L3=0 R3=0
+[chord] 101.142 s R3 chord after 0.0 ms: game sees L3=0 R3=0 (menu toggle)
+[devmenu] opened by L3 + R3: menu=1 settings=0 trainer=0 chords=23
+[chord] 101.239 s L3 suppressed-up: game sees L3=0 R3=0
+[chord] 101.290 s R3 suppressed-up: game sees L3=0 R3=0
+[chord] 101.442 s L3 chord after 0.0 ms: game sees L3=0 R3=0
+[chord] 101.442 s R3 chord after 0.0 ms: game sees L3=0 R3=0 (menu toggle)
+[devmenu] closed by L3 + R3: menu=0 settings=0 trainer=0 chords=24
+[chord] 101.577 s L3 suppressed-up: game sees L3=0 R3=0
+[chord] 101.577 s R3 suppressed-up: game sees L3=0 R3=0
+[chord] 101.693 s L3 withheld: game sees L3=0 R3=0
+[chord] 101.725 s L3 chord after 31.6 ms: game sees L3=0 R3=0
+[chord] 101.725 s R3 chord after 0.0 ms: game sees L3=0 R3=0 (menu toggle)
+[devmenu] opened by L3 + R3: menu=1 settings=0 trainer=0 chords=25
+[chord] 101.824 s L3 suppressed-up: game sees L3=0 R3=0
+[chord] 101.873 s R3 suppressed-up: game sees L3=0 R3=0
+[chord] 102.025 s L3 withheld: game sees L3=0 R3=0
+[chord] 102.072 s L3 chord after 47.5 ms: game sees L3=0 R3=0
+[chord] 102.072 s R3 chord after 0.0 ms: game sees L3=0 R3=0 (menu toggle)
+[devmenu] closed by L3 + R3: menu=0 settings=0 trainer=0 chords=26
+[chord] 102.174 s L3 suppressed-up: game sees L3=0 R3=0
+[chord] 102.174 s R3 suppressed-up: game sees L3=0 R3=0
+[chord] 112.841 s L3 chord after 0.0 ms: game sees L3=0 R3=0
+[chord] 112.841 s R3 chord after 0.0 ms: game sees L3=0 R3=0 (menu toggle)
+[devmenu] opened by L3 + R3: menu=1 settings=0 trainer=0 chords=27
+[chord] 113.041 s L3 suppressed-up: game sees L3=0 R3=0
+[chord] 113.094 s R3 suppressed-up: game sees L3=0 R3=0
+[devmenu] chose: trainer
+[devmenu] to the trainer: menu=0 settings=0 trainer=1 chords=27
+[devmenu] trainer used: 6 action(s) this run; a save made from now on may hold trainer changes (noted in /switch/gtavcs_nx/gamefolder/userdata/tests/m08-functions/trainer-used.txt)
+[chord] 127.905 s L3 withheld: game sees L3=0 R3=0
+[chord] 128.051 s L3 tap-delivered after 146.2 ms: game sees L3=1 R3=0
+[chord] 128.136 s L3 released: game sees L3=0 R3=0
+[chord] 128.208 s L3 withheld: game sees L3=0 R3=0
+[chord] 128.328 s L3 delivered after 120.3 ms: game sees L3=1 R3=0
+[chord] 128.433 s L3 released: game sees L3=0 R3=0
+[chord] 128.728 s L3 withheld: game sees L3=0 R3=0
+[chord] 128.832 s L3 delivered after 103.2 ms: game sees L3=1 R3=0
+[chord] 128.892 s L3 released: game sees L3=0 R3=0
+[chord] 129.349 s R3 withheld: game sees L3=0 R3=0
+[chord] 129.456 s R3 tap-delivered after 107.0 ms: game sees L3=0 R3=1
+[chord] 129.521 s R3 released: game sees L3=0 R3=0
+[chord] 132.373 s R3 withheld: game sees L3=0 R3=0
+[chord] 132.477 s R3 delivered after 104.3 ms: game sees L3=0 R3=1
+[chord] 132.652 s R3 released: game sees L3=0 R3=0
+[chord] 133.405 s L3 withheld: game sees L3=0 R3=0
+[chord] 133.590 s L3 tap-delivered after 185.3 ms: game sees L3=1 R3=0
+[chord] 133.764 s L3 released: game sees L3=0 R3=0
+[chord] 143.743 s L3 chord after 0.0 ms: game sees L3=0 R3=0
+[chord] 143.743 s R3 chord after 0.0 ms: game sees L3=0 R3=0 (menu toggle)
+[devmenu] opened by L3 + R3: menu=1 settings=0 trainer=0 chords=28
+[chord] 143.941 s L3 suppressed-up: game sees L3=0 R3=0
+[chord] 143.941 s R3 suppressed-up: game sees L3=0 R3=0
+[devmenu] chose: free camera on
+[devmenu] free camera on: the sticks fly it: menu=0 settings=0 trainer=0 chords=28
+[chord] 154.347 s L3 chord after 0.0 ms: game sees L3=0 R3=0
+[chord] 154.347 s R3 chord after 0.0 ms: game sees L3=0 R3=0 (menu toggle)
+[devmenu] opened by L3 + R3: menu=1 settings=0 trainer=0 chords=29
+[chord] 154.545 s L3 suppressed-up: game sees L3=0 R3=0
+[chord] 154.545 s R3 suppressed-up: game sees L3=0 R3=0
+[devmenu] chose: free camera off
+[devmenu] chose: performance overlay on
+[platform] focus lost: audio paused, pad neutral
+[platform] focus back: audio resumed, pad live
+[chord] 168.824 s L3 chord after 0.0 ms: game sees L3=0 R3=0
+[chord] 168.824 s R3 chord after 0.0 ms: game sees L3=0 R3=0 (menu toggle)
+[devmenu] closed by L3 + R3: menu=0 settings=0 trainer=0 chords=30
+[chord] 168.975 s L3 suppressed-up: game sees L3=0 R3=0
+[chord] 169.024 s R3 suppressed-up: game sees L3=0 R3=0

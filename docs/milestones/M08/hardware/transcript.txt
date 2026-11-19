@@ -287,3 +287,93 @@
 15:36:19 acceptance-final: read back 3 files from /switch/gtavcs_nx/gamefolder/userdata/tests/m08-functions (screenshots private under build\evidence\M06\screenshots\acceptance-final)
 15:36:19 acceptance-final: 58 chord / menu / touch / settings lines -> acceptance-final-m08.txt
 15:36:19 RESULT game PASS
+15:38:44 removed /switch/gtavcs_nx/gamefolder/userdata/tests/m08-settings: files=3 folders=5
+15:38:44 wrote /switch/gtavcs_nx/gamefolder/userdata/tests/m08-settings/vcs.ini bytes=206 sha256=17ce562d91117ccac9e16c42a09b6114e76158fa60237f127ceb8dfff5ff929e
+15:38:44 == m08-settings: profile=m08-settings nro sha256=f9aff8f1e9fe83cbb6e59fa4a8e6042e3c6543d940448f0587dfcdfb3a50572f
+15:38:49 tree /switch/gtavcs_nx/gamefolder/userdata entries=321 file=userdata-before-m08-settings.txt
+15:38:49 deleted /switch/gtavcs_nx/gamefolder/gtavcs.log
+15:38:49 nothing to delete at /switch/gtavcs_nx/gamefolder/userdata/tests/m08-settings/nxrun-results.txt
+15:38:49 wrote /switch/gtavcs_nx/gamefolder/userdata/nxrun.cfg bytes=957 sha256=a0fec01e1ecc50a8f13e24124d77b5a011d2c9c3f55376bd1edb60b86c8d8d06
+15:38:55 nxlink attempt=1 exit=0 output='Sending /switch/gtavcs_nx/gtavcs.nro, 66362616 bytes\n26192004 sent (39.47%), 2163 blocks'
+15:39:10 ACTION FOR THE PERSON AT THE SWITCH: nothing
+15:40:12 ftp back after 77s: the payload has ended
+15:40:16 deleted /switch/gtavcs_nx/gamefolder/userdata/nxrun.cfg
+15:40:16 read-back /switch/gtavcs_nx/gamefolder/gtavcs.log bytes=24832 sha256=bf183fb47ccafb77c3793dbec17d6517c13d08d02080e1378a154d9527b66bbd
+15:40:16 read-back /switch/gtavcs_nx/gtavcs-boot.log bytes=62 sha256=3dfe21382f340edd44bac1bf1dd0af6377ec3f03f87b166979ec89c9759bba4b
+15:40:16 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m08-settings/nxrun-results.txt bytes=9552 sha256=201b2771f8969282f10904eee13c1725fca4259a1844696c6be516e7d48a69a6
+15:40:20 tree /switch/gtavcs_nx/gamefolder/userdata entries=328 file=userdata-after-m08-settings.txt
+15:40:20 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m08-settings/vcs.ini bytes=201 sha256=0bae39f8000b4549db66e85d2d531455ef7aca94e86e4f3f8998c81871f40c6c
+15:40:26 m08-settings: clean_exit_line=True results_tail=['stop t=65.048 reason=seconds frames=1655', 'shutdown t=65.048 frames=1655', 'audit t=65.048 file_opens=149 iso_opens=0 first_iso="" threads_created=7'] sd_matches_local=True new_crashes=[]
+15:40:26 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m08-settings/nxrun-results.txt bytes=9552 sha256=201b2771f8969282f10904eee13c1725fca4259a1844696c6be516e7d48a69a6
+15:40:27 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m08-settings/perf/perf_20261119_154520.csv bytes=27501 sha256=8e278fd9ff198737b7a1257c80fe0f30a167f7fd7f7513939b2999b25aa5455e
+15:40:27 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m08-settings/vcs.ini bytes=201 sha256=0bae39f8000b4549db66e85d2d531455ef7aca94e86e4f3f8998c81871f40c6c
+15:40:27 settings-f9: read back 3 files from /switch/gtavcs_nx/gamefolder/userdata/tests/m08-settings (screenshots private under build\evidence\M06\screenshots\settings-f9)
+15:40:27 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m08-settings/perf/perf_20261119_154520.csv bytes=27501 sha256=8e278fd9ff198737b7a1257c80fe0f30a167f7fd7f7513939b2999b25aa5455e
+15:40:27 settings-f9: 20 chord / menu / touch / settings lines -> settings-f9-m08.txt
+15:40:27 RESULT game PASS
+15:40:27 == m08-relaunch: profile=m08-settings nro sha256=f9aff8f1e9fe83cbb6e59fa4a8e6042e3c6543d940448f0587dfcdfb3a50572f
+15:40:32 tree /switch/gtavcs_nx/gamefolder/userdata entries=328 file=userdata-before-m08-relaunch.txt
+15:40:32 deleted /switch/gtavcs_nx/gamefolder/gtavcs.log
+15:40:32 deleted /switch/gtavcs_nx/gamefolder/userdata/tests/m08-settings/nxrun-results.txt
+15:40:32 wrote /switch/gtavcs_nx/gamefolder/userdata/nxrun.cfg bytes=516 sha256=ed6fc15c880e1a70e364c37b5477cb92627fd5f876eb402ba3459f684ea27172
+15:40:38 nxlink attempt=1 exit=0 output='Sending /switch/gtavcs_nx/gtavcs.nro, 66362616 bytes\n26192004 sent (39.47%), 2163 blocks'
+15:40:53 ACTION FOR THE PERSON AT THE SWITCH: nothing
+15:41:30 ftp back after 52s: the payload has ended
+15:41:33 deleted /switch/gtavcs_nx/gamefolder/userdata/nxrun.cfg
+15:41:33 read-back /switch/gtavcs_nx/gamefolder/gtavcs.log bytes=14013 sha256=dc058b3d6fe6b73a16c2bbbe5a3dc8c95046adfda1e35274398ce5a5670f04ff
+15:41:34 read-back /switch/gtavcs_nx/gtavcs-boot.log bytes=62 sha256=3dfe21382f340edd44bac1bf1dd0af6377ec3f03f87b166979ec89c9759bba4b
+15:41:34 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m08-settings/nxrun-results.txt bytes=5121 sha256=79549a565f99e65a8200e50c8fcf9dae88ff41eb45dbaa6b2271e2d4c5c24968
+15:41:39 tree /switch/gtavcs_nx/gamefolder/userdata entries=328 file=userdata-after-m08-relaunch.txt
+15:41:39 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m08-settings/vcs.ini bytes=203 sha256=34d4806ae84f3842ab46d09fa53f5cf0d723f99c187cfa4dec3382cd3a6bda81
+15:41:45 m08-relaunch: clean_exit_line=True results_tail=['stop t=40.051 reason=seconds frames=1073', 'shutdown t=40.051 frames=1073', 'audit t=40.051 file_opens=148 iso_opens=0 first_iso="" threads_created=7'] sd_matches_local=True new_crashes=[]
+15:41:45 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m08-settings/nxrun-results.txt bytes=5121 sha256=79549a565f99e65a8200e50c8fcf9dae88ff41eb45dbaa6b2271e2d4c5c24968
+15:41:45 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m08-settings/perf/perf_20261119_154520.csv bytes=27501 sha256=8e278fd9ff198737b7a1257c80fe0f30a167f7fd7f7513939b2999b25aa5455e
+15:41:45 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m08-settings/vcs.ini bytes=203 sha256=34d4806ae84f3842ab46d09fa53f5cf0d723f99c187cfa4dec3382cd3a6bda81
+15:41:45 relaunch-f9: read back 3 files from /switch/gtavcs_nx/gamefolder/userdata/tests/m08-settings (screenshots private under build\evidence\M06\screenshots\relaunch-f9)
+15:41:45 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m08-settings/perf/perf_20261119_154520.csv bytes=27501 sha256=8e278fd9ff198737b7a1257c80fe0f30a167f7fd7f7513939b2999b25aa5455e
+15:41:45 relaunch-f9: 10 chord / menu / touch / settings lines -> relaunch-f9-m08.txt
+15:41:45 RESULT game PASS
+15:41:45 == m08-reset: profile=m08-settings nro sha256=f9aff8f1e9fe83cbb6e59fa4a8e6042e3c6543d940448f0587dfcdfb3a50572f
+15:41:51 tree /switch/gtavcs_nx/gamefolder/userdata entries=328 file=userdata-before-m08-reset.txt
+15:41:51 deleted /switch/gtavcs_nx/gamefolder/gtavcs.log
+15:41:51 deleted /switch/gtavcs_nx/gamefolder/userdata/tests/m08-settings/nxrun-results.txt
+15:41:51 wrote /switch/gtavcs_nx/gamefolder/userdata/nxrun.cfg bytes=196 sha256=3f6fd46b5e910d540633bd3cefd398629ddfb5dfd9ea5fa1fd837c736550c4c6
+15:41:57 nxlink attempt=1 exit=0 output='Sending /switch/gtavcs_nx/gtavcs.nro, 66362616 bytes\n26192004 sent (39.47%), 2163 blocks'
+15:42:12 ACTION FOR THE PERSON AT THE SWITCH: nothing
+15:42:37 ftp back after 40s: the payload has ended
+15:42:40 deleted /switch/gtavcs_nx/gamefolder/userdata/nxrun.cfg
+15:42:40 read-back /switch/gtavcs_nx/gamefolder/gtavcs.log bytes=12386 sha256=003f0196596041770e151a0bc6d945adab3072bb5d1a6d38ae71ebd22c8f707e
+15:42:40 read-back /switch/gtavcs_nx/gtavcs-boot.log bytes=62 sha256=3dfe21382f340edd44bac1bf1dd0af6377ec3f03f87b166979ec89c9759bba4b
+15:42:40 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m08-settings/nxrun-results.txt bytes=3905 sha256=a72881144d87ca8e7230db25fbba9288e2b556e3cdedf99587a0d5a07acd6cf4
+15:42:45 tree /switch/gtavcs_nx/gamefolder/userdata entries=328 file=userdata-after-m08-reset.txt
+15:42:45 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m08-settings/vcs.ini bytes=203 sha256=34d4806ae84f3842ab46d09fa53f5cf0d723f99c187cfa4dec3382cd3a6bda81
+15:42:50 m08-reset: clean_exit_line=True results_tail=['stop t=25.008 reason=seconds frames=762', 'shutdown t=25.008 frames=762', 'audit t=25.008 file_opens=140 iso_opens=0 first_iso="" threads_created=7'] sd_matches_local=True new_crashes=[]
+15:42:50 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m08-settings/nxrun-results.txt bytes=3905 sha256=a72881144d87ca8e7230db25fbba9288e2b556e3cdedf99587a0d5a07acd6cf4
+15:42:50 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m08-settings/perf/perf_20261119_154520.csv bytes=27501 sha256=8e278fd9ff198737b7a1257c80fe0f30a167f7fd7f7513939b2999b25aa5455e
+15:42:50 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m08-settings/vcs.ini bytes=203 sha256=34d4806ae84f3842ab46d09fa53f5cf0d723f99c187cfa4dec3382cd3a6bda81
+15:42:50 reset-f9: read back 3 files from /switch/gtavcs_nx/gamefolder/userdata/tests/m08-settings (screenshots private under build\evidence\M06\screenshots\reset-f9)
+15:42:50 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m08-settings/perf/perf_20261119_154520.csv bytes=27501 sha256=8e278fd9ff198737b7a1257c80fe0f30a167f7fd7f7513939b2999b25aa5455e
+15:42:50 reset-f9: 9 chord / menu / touch / settings lines -> reset-f9-m08.txt
+15:42:50 RESULT game PASS
+15:42:59 removed /switch/gtavcs_nx/gamefolder/userdata/tests/m08-functions: files=3 folders=4
+15:42:59 == m08-functions: profile=m08-functions nro sha256=f9aff8f1e9fe83cbb6e59fa4a8e6042e3c6543d940448f0587dfcdfb3a50572f
+15:43:04 tree /switch/gtavcs_nx/gamefolder/userdata entries=320 file=userdata-before-m08-functions.txt
+15:43:04 deleted /switch/gtavcs_nx/gamefolder/gtavcs.log
+15:43:04 nothing to delete at /switch/gtavcs_nx/gamefolder/userdata/tests/m08-functions/nxrun-results.txt
+15:43:04 wrote /switch/gtavcs_nx/gamefolder/userdata/nxrun.cfg bytes=862 sha256=ecbd91ffe1ea838b739ab6328f0f0c407c28974f903aed0e77871d4acacfede8
+15:43:11 nxlink attempt=1 exit=0 output='Sending /switch/gtavcs_nx/gtavcs.nro, 66362616 bytes\n26192004 sent (39.47%), 2163 blocks'
+15:43:26 ACTION FOR THE PERSON AT THE SWITCH: flyover, cutscene, trainer gun, R+L3, free camera, touch, HOME with menu open, close
+15:46:19 ftp back after 188s: the payload has ended
+15:46:22 deleted /switch/gtavcs_nx/gamefolder/userdata/nxrun.cfg
+15:46:22 read-back /switch/gtavcs_nx/gamefolder/gtavcs.log bytes=84478 sha256=e66b9e8bd012d439dda9539bcaa38c01b300cfc66486f833ec8367421d004ac3
+15:46:22 read-back /switch/gtavcs_nx/gtavcs-boot.log bytes=62 sha256=3dfe21382f340edd44bac1bf1dd0af6377ec3f03f87b166979ec89c9759bba4b
+15:46:22 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m08-functions/nxrun-results.txt bytes=37100 sha256=88aa12e65bd087479a9556f2e3f0981d752ca0ee63061a294117999af31372f2
+15:46:27 tree /switch/gtavcs_nx/gamefolder/userdata entries=328 file=userdata-after-m08-functions.txt
+15:46:27 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m08-functions/vcs.ini bytes=24 sha256=308992ea11138730293272ed254f87ba5915d364e7c63d4f6853fc89492b5920
+15:46:33 m08-functions: clean_exit_line=True results_tail=['shutdown t=165.303 frames=3907', 'audit t=165.303 file_opens=148 iso_opens=0 first_iso="" threads_created=7'] sd_matches_local=True new_crashes=[]
+15:46:33 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m08-functions/nxrun-results.txt bytes=37100 sha256=88aa12e65bd087479a9556f2e3f0981d752ca0ee63061a294117999af31372f2
+15:46:33 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m08-functions/trainer-used.txt bytes=86 sha256=d4a454f233e8ceb75e6374b480a470b9fcb3c331fb5d6e6c84b4721f1ed84fd6
+15:46:33 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m08-functions/vcs.ini bytes=24 sha256=308992ea11138730293272ed254f87ba5915d364e7c63d4f6853fc89492b5920
+15:46:33 acceptance-f9: read back 3 files from /switch/gtavcs_nx/gamefolder/userdata/tests/m08-functions (screenshots private under build\evidence\M06\screenshots\acceptance-f9)
+15:46:33 acceptance-f9: 197 chord / menu / touch / settings lines -> acceptance-f9-m08.txt
+15:46:33 RESULT game PASS

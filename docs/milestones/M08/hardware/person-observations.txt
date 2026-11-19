@@ -16,3 +16,7 @@ open / close pair before the trainer, at about 84 s, the camera in mode 17 flyby
 "Didn't do it". Touch step: "Tap worked", but the log has no touch event: the overlay row was chosen by the A button
 ([input] button b, the east position, just before "chose: performance overlay on"); switch-sdl2 delivered no
 SDL_FINGER* event either. Touch is read from HID from 04a6b45 on.
+2026-11-19, NRO f9aff8f1 (acceptance-f9): the user: "Everything worked". Asked about step 6 ("did you touch the screen
+with your finger on 'Performance overlay', or move there with the D-pad and press A?"): "Used D-pad and A" (touch not
+tried; the log has no [touch] line, touches=0). The chords came at about 88-102 s (26 open / close, the camera in mode 17
+flyby / cutscene at t=70), not in the flyover (mode 15 at t=10).
