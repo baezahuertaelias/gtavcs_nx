@@ -14,6 +14,7 @@ namespace devmenu
             {
                 m_slots[b] = {State::Withheld, nowNs, 0};
                 r.event[b] = Event::Withheld;
+                r.pressed[b] = true;
             }
 
         // both waiting and both down: a chord. Checked before a window can run out, so a slow pump (the second press

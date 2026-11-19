@@ -40,6 +40,7 @@ namespace devmenu
         {
             bool guest[kButtons] = {}; // what the game may see
             bool chord = false;        // the menu toggles (once per chord)
+            bool pressed[kButtons] = {}; // went down at this update (its event may already be Chord)
             Event event[kButtons] = {};
             uint64_t heldNs[kButtons] = {}; // Delivered / TapDelivered / Chord: how long the press was withheld
         };

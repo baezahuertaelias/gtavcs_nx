@@ -42,6 +42,9 @@ namespace devmenu
         std::chrono::steady_clock::time_point g_nextDiagnostics{};
         std::vector<std::string> g_diagnostics;
 
+        // Dear ImGui's cancel: B (the bottom button) with the Nintendo layout platform_switch_sdl2.cpp sets
+        ImGuiKey cancelKey() { return ImGui::GetIO().ConfigNavSwapGamepadButtons ? ImGuiKey_GamepadFaceDown : ImGuiKey_GamepadFaceRight; }
+
         bool anyPadButtonHeld()
         {
             for (int b = 0; b < platform::GAMEPAD_BUTTON_COUNT; ++b)
@@ -189,14 +192,14 @@ namespace devmenu
                 if (row("Settings...", true))
                 {
                     act("settings");
-                    closeMenu("to the settings menu", true);
                     ui::openSettingsMenu(""); // the page it was on last
+                    closeMenu("to the settings menu", true);
                 }
                 else if (row("Trainer..."))
                 {
                     act("trainer");
-                    closeMenu("to the trainer", true);
                     ui::openTrainerMenu();
+                    closeMenu("to the trainer", true);
                 }
                 else if (row(freecam ? "Free camera: ON (fly: sticks, ZL / ZR, D-pad zoom)" : "Free camera: off"))
                 {
@@ -233,7 +236,7 @@ namespace devmenu
                     for (const std::string &line : g_diagnostics)
                         ImGui::TextWrapped("%s", line.c_str());
                     ImGui::Separator();
-                    ImGui::TextDisabled("D-pad / stick: move   Cross: choose   Circle or L3 + R3: close");
+                    ImGui::TextDisabled("D-pad / stick: move   A: choose   B or L3 + R3: close");
                 }
             }
             ImGui::End();
@@ -278,8 +281,8 @@ namespace devmenu
                 else
                     openMenu("opened by L3 + R3");
             }
-            else if (g_open && ImGui::IsKeyPressed(ImGuiKey_GamepadFaceRight, false))
-                closeMenu("closed by Circle");
+            else if (g_open && ImGui::IsKeyPressed(cancelKey(), false))
+                closeMenu("closed by B");
             if (g_releaseWait && !anyPadButtonHeld())
                 g_releaseWait = false;
             if (g_open)
@@ -350,13 +353,13 @@ namespace devmenu
             }
             else if (args == "settings")
             {
-                closeMenu("to the settings menu (control channel)", true);
                 ui::openSettingsMenu("");
+                closeMenu("to the settings menu (control channel)", true);
             }
             else if (args == "trainer")
             {
-                closeMenu("to the trainer (control channel)", true);
                 ui::openTrainerMenu();
+                closeMenu("to the trainer (control channel)", true);
             }
             else if (!args.empty() && args != "open")
                 return reply("error usage: devmenu [open|close|settings|trainer]");

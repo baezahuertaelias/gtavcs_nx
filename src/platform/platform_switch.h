@@ -17,7 +17,7 @@ namespace platform_switch
         bool gamepad = false;
         // M08-14: the L3 + R3 chord filter (src/devmenu/chord.h) every L3 / R3 press goes through
         uint64_t chords = 0;          // L3 + R3 chords (none of them reached the game)
-        uint64_t stickPresses = 0;    // L3 / R3 presses withheld for the window
+        uint64_t stickPresses = 0;    // L3 / R3 presses (each withheld for the window, or part of a chord)
         uint64_t stickDelivered = 0;  // ... handed on to the game held (window ran out) or as a tap's pulse
         uint64_t maxWithheldNs = 0;   // the longest a delivered press waited: the added input latency
         uint64_t chordWindowNs = 0;

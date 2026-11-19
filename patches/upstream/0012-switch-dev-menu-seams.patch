@@ -13,10 +13,10 @@ index 297aa30..cd505a5 100644
 +|---|---|---|
 +| `ps2xRuntime/src/lib/ps2_perf.cpp`, `include/runtime/ps2_perf.h` | `ps2perf::setRecording` / `recording` / `recordingName`: F4's CSV recording started and stopped from a menu, into a given folder | The Switch has no F4: its developer menu (L3 + R3) starts and stops the frame-time recording, and writes it under the game folder's userdata instead of the working directory (the extracted disc) |
 diff --git a/docs/SETTINGS_MENU_WIDESCREEN.md b/docs/SETTINGS_MENU_WIDESCREEN.md
-index 8130ab6..5fa9e1a 100644
+index 8130ab6..8484040 100644
 --- a/docs/SETTINGS_MENU_WIDESCREEN.md
 +++ b/docs/SETTINGS_MENU_WIDESCREEN.md
-@@ -258,6 +258,18 @@ and **Alt+Enter** switches at any time, also with a menu open; the choice is sav
+@@ -258,6 +258,22 @@ and **Alt+Enter** switches at any time, also with a menu open; the choice is sav
    the setting to full screen and back, the game stays in gameplay both times (no pause menu), Enter alone still opens
    it; same with `VCS_FULLSCREEN=1` (switches for the run only); vcs.ini byte-identical afterwards.
  
@@ -28,6 +28,10 @@ index 8130ab6..5fa9e1a 100644
 +  Start, Back + RB, Back + LB; on the Switch Back is the game's Select, and the port's developer menu opens on
 +  L3 + R3). Its menu draws first in the UI hook (`vcs::launcher::setHostUi`) and blocks the game's input as these do;
 +  `ui::openTrainerMenu` / `closeTrainerMenu` open the trainer from it.
++- The settings menu's and the trainer's gamepad buttons follow Dear ImGui's `io.ConfigNavSwapGamepadButtons`: off,
++  south chooses and east goes back (Cross / Circle, the desktop's); on, the other way round (the Nintendo layout: A,
++  the right button, chooses and B, the bottom one, goes back - the Switch port's, at the user's request). The game's
++  own controls keep their physical positions either way.
 +- vcs.ini values must be whole decimal integers: `atoi` took `abc` or `1x` as a valid 0 or 1, so a damaged file
 +  switched toggles without a word; such a value is now ignored with the `[settings] ... ignoring` line, and the next
 +  save writes the key's real value over it.
@@ -228,7 +232,7 @@ index 6eaca01..858d2bd 100644
      int value(const std::string &key);         // the default for unknown keys / before load
      bool set(const std::string &key, int v);   // validates, saves vcs.ini, calls onChange (Live); false if refused
 diff --git a/src/ui/settings_menu.cpp b/src/ui/settings_menu.cpp
-index 1cfc37e..de74674 100644
+index 1cfc37e..1fcdfdc 100644
 --- a/src/ui/settings_menu.cpp
 +++ b/src/ui/settings_menu.cpp
 @@ -26,6 +26,7 @@ namespace ui
@@ -239,7 +243,27 @@ index 1cfc37e..de74674 100644
          bool g_popupWasOpen = false; // a combo's list: Escape / B close it, not the menu
          bool g_wasFocused = false;   // the menu window had focus last frame
          bool g_focusWindow = false;
-@@ -362,6 +363,8 @@ namespace ui
+@@ -102,6 +103,10 @@ namespace ui
+ 
+         bool gamepadDown(platform::GamepadButton b) { return platform::gamepadConnected() && platform::gamepadButton(b); }
+ 
++        // [gta-recomp] Dear ImGui's cancel button: east (B / Circle), or south with io.ConfigNavSwapGamepadButtons (the
++        // Nintendo layout the Switch port asks for, where the right button chooses and the bottom one goes back)
++        ImGuiKey cancelKey() { return ImGui::GetIO().ConfigNavSwapGamepadButtons ? ImGuiKey_GamepadFaceDown : ImGuiKey_GamepadFaceRight; }
++
+         bool anyInputHeld()
+         {
+             for (int k = 1; k < platform::KEY_COUNT; ++k)
+@@ -176,7 +181,7 @@ namespace ui
+                     return;
+                 }
+                 const bool clickedAway = !s.optional && ImGui::IsMouseClicked(ImGuiMouseButton_Left) && !ImGui::IsItemHovered();
+-                if (platform::keyPressed(platform::KEY_ESCAPE) || clickedAway || ImGui::IsKeyPressed(ImGuiKey_GamepadFaceRight, false))
++                if (platform::keyPressed(platform::KEY_ESCAPE) || clickedAway || ImGui::IsKeyPressed(cancelKey(), false))
+                 {
+                     g_capturing.clear();
+                     return;
+@@ -362,6 +367,8 @@ namespace ui
      }
      bool settingsMenuBlocksInput() { return g_open || g_releaseWait; }
      bool settingsMenuWaitingForKey() { return g_open && !g_capturing.empty(); }
@@ -248,7 +272,7 @@ index 1cfc37e..de74674 100644
  
      void drawSettingsMenu()
      {
-@@ -371,7 +374,7 @@ namespace ui
+@@ -371,7 +378,7 @@ namespace ui
              return;
          }
  
@@ -257,6 +281,15 @@ index 1cfc37e..de74674 100644
          const bool chordPressed = chord && !g_chordWasDown;
          g_chordWasDown = chord;
          // the physical key, or one injected over the control channel (scripted checks; physical input to the game is
+@@ -381,7 +388,7 @@ namespace ui
+         if (menuKey || chordPressed)
+             g_open ? close() : open();
+         else if (g_open && g_capturing.empty() && !g_popupWasOpen &&
+-                 (ImGui::IsKeyPressed(ImGuiKey_Escape, false) || ImGui::IsKeyPressed(ImGuiKey_GamepadFaceRight, false)))
++                 (ImGui::IsKeyPressed(ImGuiKey_Escape, false) || ImGui::IsKeyPressed(cancelKey(), false)))
+             close();
+ 
+         if (g_releaseWait && !anyInputHeld())
 diff --git a/src/ui/settings_menu.h b/src/ui/settings_menu.h
 index 2bd1a34..b9414b3 100644
 --- a/src/ui/settings_menu.h
@@ -273,10 +306,26 @@ index 2bd1a34..b9414b3 100644
 +    bool desktopGamepadChords();
  }
 diff --git a/src/ui/trainer_menu.cpp b/src/ui/trainer_menu.cpp
-index 4a50a23..843c591 100644
+index 4a50a23..bcd7680 100644
 --- a/src/ui/trainer_menu.cpp
 +++ b/src/ui/trainer_menu.cpp
-@@ -516,16 +516,27 @@ namespace ui
+@@ -138,9 +138,13 @@ namespace ui
+             in.left = dir(g_left, KEY_LEFT, KEY_KP_4, GAMEPAD_DPAD_LEFT);
+             in.right = dir(g_right, KEY_RIGHT, KEY_KP_6, GAMEPAD_DPAD_RIGHT);
+             const bool alt = heldKey(KEY_LEFT_ALT) || heldKey(KEY_RIGHT_ALT); // Alt+Enter is full screen
++            // [gta-recomp] south chooses and east goes back, swapped with Dear ImGui's io.ConfigNavSwapGamepadButtons (the
++            // Switch port's Nintendo layout, as the settings menu)
++            const bool swap = ImGui::GetIO().ConfigNavSwapGamepadButtons;
+             in.select = (!alt && (pressedKey(KEY_ENTER) || pressedKey(KEY_KP_ENTER))) || pressedKey(KEY_KP_5) ||
+-                        padPressed[GAMEPAD_SOUTH];
+-            in.back = pressedKey(KEY_BACKSPACE) || pressedKey(KEY_KP_0) || pressedKey(KEY_ESCAPE) || padPressed[GAMEPAD_EAST];
++                        padPressed[swap ? GAMEPAD_EAST : GAMEPAD_SOUTH];
++            in.back = pressedKey(KEY_BACKSPACE) || pressedKey(KEY_KP_0) || pressedKey(KEY_ESCAPE) ||
++                      padPressed[swap ? GAMEPAD_SOUTH : GAMEPAD_EAST];
+             return in;
+         }
+ 
+@@ -516,16 +520,27 @@ namespace ui
  
      bool trainerMenuOpen() { return g_open; }
      bool trainerMenuBlocksInput() { return g_open || g_releaseWait; }

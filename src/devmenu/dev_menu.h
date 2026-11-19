@@ -1,6 +1,6 @@
 // The Switch port's developer menu (M08): L3 + R3 opens and closes it from anywhere in the game (the chord never
 // reaches the game: src/devmenu/chord.h). Controller-only navigation through Dear ImGui: the D-pad or left stick moves,
-// south (Cross) chooses, east (Circle) closes; the touch screen works too. From it: upstream's settings menu (the
+// A (the right button) chooses, B (the bottom one) closes; the touch screen works too. From it: upstream's settings menu (the
 // settings registry: internal resolution, timing, audio, controller, diagnostics), the trainer, the free camera, the
 // performance overlay, the frame-time recording and the port's diagnostics.
 //

@@ -131,7 +131,8 @@ int runChordTests()
     {
         ChordFilter f;
         ChordFilter::Result r = f.update(true, false, 0);
-        check(r.event[ChordFilter::L3] == Event::Withheld && !r.guest[ChordFilter::L3], "event: withheld");
+        check(r.event[ChordFilter::L3] == Event::Withheld && r.pressed[ChordFilter::L3] && !r.guest[ChordFilter::L3],
+              "event: withheld, counted as a press");
         r = f.update(true, false, 100 * kMs);
         check(r.event[ChordFilter::L3] == Event::Delivered && r.heldNs[ChordFilter::L3] == 100 * kMs && r.guest[ChordFilter::L3],
               "event: delivered after exactly the window, held time reported");

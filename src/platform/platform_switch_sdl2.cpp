@@ -208,11 +208,11 @@ namespace platform
             static const char *const kNames[] = {"L3", "R3"};
             for (int b = 0; b < ChordFilter::kButtons; ++b)
             {
+                if (r.pressed[b])
+                    g_stickPresses.fetch_add(1, std::memory_order_relaxed);
                 const ChordFilter::Event e = r.event[b];
                 if (e == ChordFilter::Event::None)
                     continue;
-                if (e == ChordFilter::Event::Withheld)
-                    g_stickPresses.fetch_add(1, std::memory_order_relaxed);
                 if (e == ChordFilter::Event::Delivered || e == ChordFilter::Event::TapDelivered)
                 {
                     g_stickDelivered.fetch_add(1, std::memory_order_relaxed);
@@ -405,6 +405,9 @@ namespace platform
         io.IniFilename = nullptr;
         io.LogFilename = nullptr;
         io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;
+        // M08: the menus use the Nintendo layout, A (the right button) chooses and B (the bottom one) goes back (the
+        // user's report: the PS2 positions felt swapped in the menus); the game keeps the physical positions
+        io.ConfigNavSwapGamepadButtons = true;
         ImGui::StyleColorsDark();
         g_imgui = ImGui_ImplSDL2_InitForOpenGL(g_window, SDL_GL_GetCurrentContext());
         // M05-09's second threading prototype: a loader context for the OpenGL RHI's free-threaded textures
