@@ -340,7 +340,7 @@
 /switch/gtavcs_nx/gamefolder/userdata/tests/m08-settings/cache	d
 /switch/gtavcs_nx/gamefolder/userdata/tests/m08-settings/mc0	d
 /switch/gtavcs_nx/gamefolder/userdata/tests/m08-settings/mc1	d
-/switch/gtavcs_nx/gamefolder/userdata/tests/m08-settings/nxrun-results.txt	4037
+/switch/gtavcs_nx/gamefolder/userdata/tests/m08-settings/nxrun-results.txt	4064
 /switch/gtavcs_nx/gamefolder/userdata/tests/m08-settings/perf	d
-/switch/gtavcs_nx/gamefolder/userdata/tests/m08-settings/perf/perf_20261119_162857.csv	27660
+/switch/gtavcs_nx/gamefolder/userdata/tests/m08-settings/perf/perf_20261119_165921.csv	27775
 /switch/gtavcs_nx/gamefolder/userdata/tests/m08-settings/vcs.ini	203

@@ -34,3 +34,8 @@ steps (flyover x2, cutscene, play, trainer gun, R held then L3, recording starte
 on / off, finger on "Performance overlay" and "Close", HOME with the menu open, sleep with the menu open, close from
 HOME) and answered "Everything done". The user did not answer the aiming-circle question separately; the game's own
 free-aim flag is in the log ("[devmenu] the game's free aim on").
+2026-11-19, review 2: asked "Do you have [a USB mouse], or should that part move to M16 (the hardware-we-lack
+milestone)?", the user chose "Move it to M16" (docs/milestones/M08/SCOPE_DECISIONS.md, M16-04).
+2026-11-19, NRO 63360935 (navhand-r2): asked, in play, to open the menu with L3 + R3, go down with the D-pad to
+"Performance overlay", press A, close with B and close from HOME; done as the log shows (dpdown x4, chose: performance
+overlay on, closed by B).

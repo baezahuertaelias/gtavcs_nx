@@ -61,6 +61,10 @@
   {
    "path": "docs/milestones/M08/host-tests/settings-sanitized.txt",
    "result": "Registry host tests from 22bc86b, dirty=False: all PASS"
+  },
+  {
+   "path": "docs/milestones/M08/hardware/relaunch-r2b-gtavcs.txt",
+   "result": "NRO 63360935: 5 saved values loaded after relaunch, then Reset all"
   }
  ],
  "M08-08": [
@@ -71,6 +75,10 @@
   {
    "path": "docs/milestones/M08/hardware/final-r1/nxrun-results.txt",
    "result": "gameinfo camera modes every 5 s and devmenu chord counts give the stages"
+  },
+  {
+   "path": "docs/milestones/M08/hardware/nav-r2b/nxrun-results.txt",
+   "result": "NRO 63360935: nav=0 at boot, 1 with the developer or settings menu open, 0 with the trainer open and after closing"
   }
  ],
  "M08-09": [
@@ -109,6 +117,10 @@
   {
    "path": "docs/milestones/M08/hardware/final-r1/perf/perf_20261119_163459.csv",
    "result": "The recording's CSV, read back"
+  },
+  {
+   "path": "docs/milestones/M08/hardware/navhand-r2-gtavcs.txt",
+   "result": "NRO 63360935: D-pad down x4, A chose Performance overlay, B closed the menu"
   }
  ],
  "M08-16": [
@@ -137,6 +149,10 @@
   {
    "path": "docs/milestones/M08/hardware/person-observations.txt",
    "result": "The user: each touch hit the row under the finger"
+  },
+  {
+   "path": "docs/milestones/M08/SCOPE_DECISIONS.md",
+   "result": "USB mouse check moved to M16-04 by the user's decision"
   }
  ]
 }

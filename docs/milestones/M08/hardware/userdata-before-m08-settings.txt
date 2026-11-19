@@ -340,6 +340,6 @@
 /switch/gtavcs_nx/gamefolder/userdata/tests/m08-nav/cache	d
 /switch/gtavcs_nx/gamefolder/userdata/tests/m08-nav/mc0	d
 /switch/gtavcs_nx/gamefolder/userdata/tests/m08-nav/mc1	d
-/switch/gtavcs_nx/gamefolder/userdata/tests/m08-nav/nxrun-results.txt	8896
+/switch/gtavcs_nx/gamefolder/userdata/tests/m08-nav/nxrun-results.txt	8894
 /switch/gtavcs_nx/gamefolder/userdata/tests/m08-settings	d
 /switch/gtavcs_nx/gamefolder/userdata/tests/m08-settings/vcs.ini	206

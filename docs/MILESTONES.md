@@ -323,12 +323,12 @@ controller-only navigation, and the chord does not reach the game.
 - [x] M08-02 Open and close the menu with L3+R3 on Switch, replacing the desktop Back+Start chord only for this target; add gamepad navigation, focus/input capture and readable 720p handheld and 1080p docked layout (the 1080p layout checked in handheld with forced 1920x1080 output; docked: M16-01, user decision 2026-11-19, docs/milestones/M08/SCOPE_DECISIONS.md).
 - [x] M08-03 Expose renderer scale, timing, audio, controller settings and diagnostics through the upstream settings registry, without clutter in ordinary game menus.
 - [x] M08-04 Persist settings beneath gamefolder and verify defaults/reset/relaunch; recover from malformed config safely.
-- [ ] M08-08 Verify settings/menu close/reopen during gameplay, cutscene transitions and suspend without leaking input or GL state.
-- [ ] M08-09 Verify trainer/dev commands use guest scheduler-safe hooks and cannot invalidate normal release save tests silently.
+- [x] M08-08 Verify settings/menu close/reopen during gameplay, cutscene transitions and suspend without leaking input or GL state.
+- [x] M08-09 Verify trainer/dev commands use guest scheduler-safe hooks and cannot invalidate normal release save tests silently.
 - [x] M08-14 Prevent chord leakage: withhold L3/R3 from the guest for a short recorded window until a chord is ruled in or out, so no L3/R3 edge reaches the game on open or close; prove R1-then-L3 free aim still works and report the added input latency.
-- [ ] M08-15 Reach the existing trainer, free camera, performance overlay and frame-time recording from the controller through the menu, with no keyboard or F-key dependency on Switch.
+- [x] M08-15 Reach the existing trainer, free camera, performance overlay and frame-time recording from the controller through the menu, with no keyboard or F-key dependency on Switch.
 - [x] M08-16 Hardware acceptance on paired Joy-Cons in handheld mode (Pro Controller: M16-02, user decision 2026-11-19, docs/milestones/M08/SCOPE_DECISIONS.md): repeated L3+R3 open/close in S2, S3, S4 and across suspend, with logged proof that no chord input reached the guest.
-- [ ] M08-17 Make Dear ImGui's touch and mouse positions agree with its display size on the fixed 1920x1080 surface (since M06-20 the display size is the mode's output, 1280x720 in handheld, while the SDL2 backend reports window coordinates); verify on hardware (touch screen; the USB mouse's hardware check: M16-04, user decision 2026-11-19, docs/milestones/M08/SCOPE_DECISIONS.md).
+- [x] M08-17 Make Dear ImGui's touch and mouse positions agree with its display size on the fixed 1920x1080 surface (since M06-20 the display size is the mode's output, 1280x720 in handheld, while the SDL2 backend reports window coordinates); verify on hardware (touch screen; the USB mouse's hardware check: M16-04, user decision 2026-11-19, docs/milestones/M08/SCOPE_DECISIONS.md).
 
 ## M09 — Widescreen
 
