@@ -306,7 +306,7 @@ index 2bd1a34..b9414b3 100644
 +    bool desktopGamepadChords();
  }
 diff --git a/src/ui/trainer_menu.cpp b/src/ui/trainer_menu.cpp
-index 4a50a23..bcd7680 100644
+index 4a50a23..d18e9f0 100644
 --- a/src/ui/trainer_menu.cpp
 +++ b/src/ui/trainer_menu.cpp
 @@ -138,9 +138,13 @@ namespace ui
@@ -325,14 +325,19 @@ index 4a50a23..bcd7680 100644
              return in;
          }
  
-@@ -516,16 +520,27 @@ namespace ui
+@@ -516,16 +520,32 @@ namespace ui
  
      bool trainerMenuOpen() { return g_open; }
      bool trainerMenuBlocksInput() { return g_open || g_releaseWait; }
 +    void openTrainerMenu()
 +    {
++        // The button that chose this in the other menu is still down in this frame (the trainer draws after it): taken
++        // as already pressed, so it does not also choose the trainer's selected row (Switch port M08 review 3)
++        for (int b = 0; b < platform::GAMEPAD_BUTTON_COUNT; ++b)
++            g_padWas[b] = padDown(static_cast<platform::GamepadButton>(b));
 +        if (!g_open)
 +            open();
++        std::fprintf(stderr, "[trainer] opened from another menu, %zu page(s) deep, nothing chosen\n", g_stack.size());
 +    }
 +    void closeTrainerMenu()
 +    {
