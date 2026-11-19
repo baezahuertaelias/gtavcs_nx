@@ -11,3 +11,8 @@ happened" (no [touch] line in the log: switch-sdl2 makes no mouse events of fing
 aim: did you hold R and click the left stick in while holding it?": "Did it, circle". The log has no L3 press outside
 the two L3 + R3 chords ([input] leftstick only at 45.3 s), only R presses: the circle seen was R's lock-on, not proof of
 R1-then-L3 free aim. Repeated on the final NRO.
+2026-11-19, NRO 8e520298 (acceptance-final): the user missed the flyover ("Missed the flyover"; the log has one
+open / close pair before the trainer, at about 84 s, the camera in mode 17 flyby / cutscene at t=70). Free aim step:
+"Didn't do it". Touch step: "Tap worked", but the log has no touch event: the overlay row was chosen by the A button
+([input] button b, the east position, just before "chose: performance overlay on"); switch-sdl2 delivered no
+SDL_FINGER* event either. Touch is read from HID from 7f... on (see git log).
