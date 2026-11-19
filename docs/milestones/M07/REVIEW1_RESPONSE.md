@@ -1,0 +1,23 @@
+# M07 review 1 (candidate `b07f4f1`): REQUEST_CHANGES, and what was done
+
+Reopened M07-01, 03, 04, 05, 07, 08, 09, 11 (`9d8db7b`), fixed, rechecked on the Switch (handheld, stock clocks), ticked
+again.
+
+| # | Finding | Resolution |
+|---|---|---|
+| 1 | The keeper never primes (fills land just under the target); the "paused under the movie" state is this | Patch 0010: while not primed the keeper fills up to the target in whole 256-frame blocks plus one; idle while movie sound is queued (the SPU2 is not mixed under a movie, as on the desktop). On NRO `6976c8d7` the first windows after the movies show production resuming at once (53 %, then 100 %); the only underruns are the boot movies' own time (the game ring is not fed under a movie: 528,351 frames = STINGS.PSS, 121,816 = the 2.5 s of INTRO.PSS before the skip) and one 49-70 ms underrun at the movie hand-over |
+| 2 | After a stall over 1 s the filler mixes everything for good; filler on by default on the desktop | First fix (`475d823`): lead capped at 1 s. Measured on NRO `60c49e96`: `clock()` mixed again, but the cap left a gap after every block over 1 s (`stall-handheld-3` 0.96 s after the 2 s game stall; `drive-handheld-3` 21 underruns, 9.8 s, after boot). Second fix (`ec397f3`): no cap; a lead over 1 s moves the engine's EE time along (the runtime forgives the IOP lag beyond 1 s, `runIopTime`), so `clock()` mixes again once the EE has repaid the rest. NRO `6976c8d7`: `stall-handheld-4` 0 underruns after boot through every stall (100 ms - 2 s, both threads), the filled share falling back after the 2 s game stall (69, 17, 25 %); `drive-handheld-4` 16 minutes, 0 underruns, 0 dropped after boot, mean filled 52 %. The filler is on by default on `__SWITCH__` only (`PS2X_AUDIO_FILL=1` / `0` overrides; off with `PS2X_IOP_REALTIME=0`), recorded in PS2RECOMP_PATCHES.md and PROGRESS.md |
+| 3 | Shutdown order: the keeper joined after the device closed | `runEnd` calls `ps2AudioShutdown` before `platform::shutdown`; every run on `60c49e96` / `6976c8d7` logs `[platform] audio closed` before `[platform] shut down`. The "live_threads 2" claim removed as proof of the order |
+| 4 | The user's skip was Start, not B | M07-08 and evidence.json: four B presses at 43.0-44.3 s did not skip; Start at 45.5 s did |
+| 5 | Seeking / looping and the AUDIO lookup not evidenced | `radio-handheld` (`VCS_MUSIC_LOG=1`, 8-minute drive): 12 opens at start positions across 5 files, each ended by a stop, one cutscene preload / start. Looping: the game never sends 0x90500 (none logged; [loop-command.md](loop-command.md): a static ELF scan finds no code building it and no data word holding it; the 12 call sites of the music sender listed). The streams' disc lookup stays M06's folder-disc evidence |
+| 6 | Error recovery not evidenced | `noaudio-handheld` (`PS2X_AUDIO=0`: no device): movies whole on the host clock, S4, clean exit. `readfail-handheld`: an undecodable STINGS.PSS (a same-size mod of zeros, `tools/switch_m07_readfail.py`, the original untouched, the mod removed after): skipped without a log line, INTRO.PSS whole, S4, clean exit |
+| 7 | M07-04 / 07 / 11 overclaim | "Mission running" replaced by "the opening mission, active from S3, is the only mission covered"; "every bank is loaded and played" removed; simultaneous channels measured (`PS2X_TRACE_SPU2=1`: up to 32 voices at once while driving); a new session on NRO `6976c8d7` with the exact questions recorded (person-observations.txt): the intro cutscene's lips / speech / music "Yes, in sync"; several sounds at once "Yes, all clean"; "the user heard no gap" removed; the radio answer's wording stated as not recorded |
+| 8 | Minor | drive-1 starved 54.3 s; the pre-patch stall summary per stall (main 100 / 500 / 1000: 1, main 250 / 2000: 2; game 100: 0, 250 / 500: 1, 1000: 2, 2000: 3, counted to the next stall); all four WAVs hashed (pcm-wav-sha256.txt); M07-01 quotes the revised drive instead of the 6-underrun movies run |
+
+New hardware runs: on NRO `60c49e96` (`475d823`, lead cap) stall-handheld-3, noaudio-handheld, movie-sync-handheld-2,
+radio-handheld, drive-handheld-3; on NRO `6976c8d7` (`ec397f3`, the patch as committed) stall-handheld-4,
+drive-handheld-4, mission-handheld-2 (the user), readfail-handheld. The runs on `60c49e96` that rest on movies, no
+audio device or music commands (noaudio, movie-sync-2, radio) do not depend on the lead handling that changed after it.
+
+Not redone: M07-02's PCM comparison and volume runs (NRO `4a4001d0`, the first patch 0010): format, levels and the
+volume settings do not depend on the filler's timing.

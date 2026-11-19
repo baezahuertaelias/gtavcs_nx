@@ -24,3 +24,19 @@ What the user, at the Switch, reported during the M07 session (2026-11-18, handh
   (6.06 s before, 6.10 s after) and the next picture due within 0.01 s after; INTRO skipped at 33.2 s, 0 dropped;
   32 scripts active with a mission running, on foot and driving; 0 underruns in 27 stats windows; 0 GL errors;
   closed from HOME at 164 s.
+
+Review 1 follow-up (2026-11-19, handheld, stock clocks, NRO 6976c8d7 with the revised patch 0010):
+
+- mission-handheld-2 (m07-mission.cfg, PS2X_TRACE_SPU2=1): the user was asked to "watch the first mission's cutscene
+  (lips, speech, music), walk a busy street, close from HOME". The log: both boot movies played whole (STINGS.PSS 321
+  pictures, INTRO.PSS 2,527, 0 dropped), the in-engine intro cutscene (player state 0xc at 105-135 s), then on foot
+  and driving; up to 12 SPU2 voices sounding at once; closed from HOME at 375 s. Asked afterwards, with these exact
+  questions (multiple choice; the user picked the answer quoted):
+  - "In the cutscene you just watched (the first mission's intro, after the boot movies), did the characters' lip
+    movements match their speech, and did the music and sounds stay in time with the picture?" - "Yes, in sync"
+    (option text: "Speech matched the lips; music and sounds in time with the picture.").
+  - "While walking and driving, when several sounds played at once (traffic, footsteps, voices, music), did they all
+    play together without any sound cutting out, stopping early or crackling?" - "Yes, all clean" (option text:
+    "Several sounds together, none cut out, stopped early or crackled.").
+- The question wording of the 2026-11-18 radio answer ("Yes, it worked") was not recorded at the time; it is not
+  reconstructed here.
