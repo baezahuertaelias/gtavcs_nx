@@ -1,0 +1,211 @@
+diff --git a/docs/PROGRESS.md b/docs/PROGRESS.md
+index 81ebec5..d1f592d 100644
+--- a/docs/PROGRESS.md
++++ b/docs/PROGRESS.md
+@@ -936,7 +936,7 @@ Python scripts still usable on their own. docs/LAUNCHER.md has the whole of it;
+ | `PS2X_TRACE_SPU=1`, `PS2X_TRACE_IOP_DMA=1` | IOP SPU2/DMA/interrupt tracing |
+ | `PS2X_TRACE_SPU2=1` | SPU2 key-ons, DMA bytes, IRQs, peak level per 5 s; per core: wet input, reverb output, ESA/EEA, EVOL, PMON / NON use |
+ | `PS2X_SPU2_REVERB=0` | mute the SPU2 reverb (A/B listening) |
+-| `PS2X_AUDIO=0`, `PS2X_AUDIO_DUMP=f.wav`, `PS2X_AUDIO_STATS=1` | no audio output / record the SPU2 mix / underrun and fill stats |
++| `PS2X_AUDIO=0`, `PS2X_AUDIO_DUMP=f.wav`, `PS2X_AUDIO_STATS=1`, `PS2X_AUDIO_FILL=0` | no audio output / record the SPU2 mix / underrun and fill stats / no starvation filler (the SPU2 mixed on the game thread only) |
+ | `PS2X_IOP_REALTIME=0` | IOP time purely from EE cycles (audio slows with the game) |
+ | `VCS_TEST_SAVE=s[:slot]` | save to slot 1 (or 1..8) through the game's code s seconds after boot (mid-script: prefer `tools/saves.py`) |
+ | `VCS_TRACE_SECTORS=1`, `VCS_TRACE_CELL=1` | world sector draw / current hex cell vs camera |
+diff --git a/docs/PS2RECOMP_PATCHES.md b/docs/PS2RECOMP_PATCHES.md
+index 0ba3c12..409436e 100644
+--- a/docs/PS2RECOMP_PATCHES.md
++++ b/docs/PS2RECOMP_PATCHES.md
+@@ -383,3 +383,9 @@ changes keep desktop behaviour: `main()` and `run()` take the same steps as befo
+ | `ps2xRuntime/include/runtime/ps2_host_fs.h` (new), `Kernel/Stubs/MemoryCard.cpp`, `src/settings/settings.cpp` | `ps2x::replaceFile` (rename onto an existing file) and `ps2x::removeTree` (`remove_all`). Elsewhere these are the `std::filesystem` calls; on `__SWITCH__` they move the old file aside / walk the tree, because the Switch SD card fails `rename` onto a file with EEXIST and `remove_all` with EIO (measured on hardware, Switch port M03). Used for vcs.ini, card backup zips, card renames and card format / unformat. A format whose old files cannot be removed now fails with a log line instead of reporting success | Settings could not be saved twice, and a card format left the old saves while reporting a formatted card |
+ | `src/game/vcs_stream.cpp`, `vcs_stream.h` | The stream reader thread is kept (was detached) and `stopStreamReader()` finishes its queue and joins it; reads after the stop are refused with a log line | The Switch port releases the folder disc before the process ends; a detached reader could still copy from it |
+ | `ps2xRuntime/src/lib/ps2_control.cpp`, `include/runtime/ps2_control.h` | `ps2control::submit(line)`: a command queued as if from the socket, answered through a future | Scripted Switch runs have no socket client |
++
++## Audio through long game frames (Switch port M07-03, 2026-11-18)
++
++| Where | What | Why |
++|---|---|---|
++| `ps2xRuntime/src/lib/ps2_audio_out.cpp`, `include/runtime/ps2_audio_out.h`; `src/game/vcs_sound.cpp` | `ps2AudioSetFiller`: a keeper thread (started in `ps2AudioInit`, joined in `ps2AudioShutdown`) asks the producer for more when the ring holds under 40 ms and nothing was pushed for 15 ms; the native sound driver's filler mixes the SPU2 ahead of EE time under its lock, and `clock()` mixes only past it. The stats line gives the filled share. `PS2X_AUDIO_FILL=0` = before | The SPU2 was mixed only on the game thread: a frame longer than the target fill (60-250 ms) was a gap, and the catch-up burst after it overflowed the 400 ms cap and was dropped. On the Switch (frames of 0.5-1 s while driving) a 16-minute drive starved 54 s in 169 underruns |
+diff --git a/src/game/vcs_sound.cpp b/src/game/vcs_sound.cpp
+index eb8670f..22bbaba 100644
+--- a/src/game/vcs_sound.cpp
++++ b/src/game/vcs_sound.cpp
+@@ -194,7 +194,23 @@ namespace vcs
+             {
+                 std::lock_guard<std::mutex> lock(m_mutex);
+                 m_eeCycles += eeCycles;
+-                const uint64_t target = m_eeCycles / 8u;
++                advanceIop(m_eeCycles / 8u); // nothing when the filler has already mixed past it
++            }
++
++            // [gta-recomp] ps2AudioSetFiller (the output's keeper thread): the game thread is in a long frame and the
++            // output runs low - mix `frames` more now, ahead of EE time. clock() then mixes only past what this did,
++            // so the time is never mixed twice and no catch-up burst follows the frame. RPCs (key on / off, banks,
++            // music commands) still apply when they come; only the SPU2's time runs ahead of the EE's.
++            void fill(uint32_t frames)
++            {
++                std::lock_guard<std::mutex> lock(m_mutex);
++                advanceIop(m_iopCycle + static_cast<uint64_t>(frames) * Spu2::kCyclesPerSample);
++            }
++
++        private:
++            // (m_mutex) the SPU2, libsd's transfers and the music stream up to IOP cycle `target`
++            void advanceIop(uint64_t target)
++            {
+                 while (m_iopCycle < target)
+                 {
+                     // to the next transfer completion at the latest, so the stream's next step follows it in time
+@@ -207,7 +223,6 @@ namespace vcs
+                 }
+             }
+ 
+-        private:
+             static uint8_t *guest(uint8_t *rdram, uint32_t address, uint32_t size)
+             {
+                 address &= 0x1FFFFFFFu;
+@@ -1489,6 +1504,7 @@ namespace vcs
+         ps2_iop_native::registerServer(kSidMusic, [](uint8_t *rdram, const ps2x::iop::RpcRequest &r) { g_engine->call(rdram, r); });
+         ps2_iop_native::setEmulatedAudioMuted(true);
+         ps2_iop_native::setClock(&clockTick);
++        ps2AudioSetFiller([](uint32_t frames) { g_engine->fill(frames); }); // [gta-recomp] long game frames (M07-03)
+         std::fprintf(stderr, "[sound] native sound driver (CDSTREAM's servers on the host)\n");
+         return true;
+     }
+diff --git a/third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_audio_out.h b/third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_audio_out.h
+index 78ebc43..610a968 100644
+--- a/third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_audio_out.h
++++ b/third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_audio_out.h
+@@ -9,6 +9,13 @@ void ps2AudioShutdown(); // before platform::shutdown
+ float ps2AudioQueuedMs();          // audio waiting to be played (perf overlay)
+ uint64_t ps2AudioUnderrunCount();  // underruns since start
+ 
++// [gta-recomp] A producer's starvation filler: when the ring runs low and nothing has been pushed for a while (the
++// producer's thread stalled: a long game frame), the output's keeper thread asks it for `frames` more, which it
++// pushes through ps2AudioPush from that thread. The keeper starts in ps2AudioInit and is joined in ps2AudioShutdown;
++// it never holds the ring's lock while calling the filler. PS2X_AUDIO_FILL=0 disables it.
++using Ps2AudioFiller = void (*)(uint32_t frames);
++void ps2AudioSetFiller(Ps2AudioFiller filler);
++
+ // [gta-recomp] The player's audio settings (any thread, applied from the next audio callback): gains 0..1 for the
+ // whole output and for movie sound, the output mode (0 stereo, 1 mono, 2 left and right swapped), and a mute that
+ // keeps everything running (the window in the background).
+diff --git a/third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_audio_out.cpp b/third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_audio_out.cpp
+index c9da351..2992d6f 100644
+--- a/third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_audio_out.cpp
++++ b/third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_audio_out.cpp
+@@ -17,6 +17,7 @@
+ #include <cstdlib>
+ #include <cstring>
+ #include <mutex>
++#include <thread>
+ #include <vector>
+ #include "runtime/ps2_host_std.h"
+ 
+@@ -45,6 +46,50 @@ namespace
+     std::atomic<uint64_t> g_underrunsTotal{0};
+     std::atomic<float> g_queuedMs{0.0f};
+ 
++    // [gta-recomp] the starvation filler (ps2AudioSetFiller): a keeper thread asks the producer for more when the ring
++    // runs low while nothing is pushed - the producer's thread (the game thread, for the native sound driver) is in a
++    // long frame. Without it a hitch longer than the target fill was a gap, and the catch-up burst after it overflowed
++    // the latency cap and was dropped (the Switch port's M07-03: 169 underruns, 54 s starved in a 16-minute drive).
++    std::atomic<Ps2AudioFiller> g_filler{nullptr};
++    std::thread g_keeper;
++    std::atomic<bool> g_keeperStop{false};
++    std::atomic<int64_t> g_lastPushNs{0};
++    thread_local bool t_filling = false;
++    uint64_t g_filledFrames = 0; // (g_mutex) pushed by the filler, for the stats line
++    constexpr double kFillLowMs = 40.0;   // ask when the ring holds less than this ...
++    constexpr int64_t kFillIdleMs = 15;   // ... and nothing was pushed for this long
++
++    int64_t nowNs()
++    {
++        return std::chrono::duration_cast<std::chrono::nanoseconds>(ps2x::hostNow().time_since_epoch()).count();
++    }
++
++    void keeperLoop()
++    {
++        while (!g_keeperStop.load(std::memory_order_acquire))
++        {
++            std::this_thread::sleep_for(std::chrono::milliseconds(5));
++            const Ps2AudioFiller filler = g_filler.load(std::memory_order_acquire);
++            if (!filler)
++                continue;
++            if (nowNs() - g_lastPushNs.load(std::memory_order_relaxed) < kFillIdleMs * 1000000)
++                continue;
++            size_t queued;
++            double target;
++            {
++                std::lock_guard<std::mutex> lock(g_mutex);
++                queued = g_queued;
++                target = g_target;
++            }
++            if (queued * 1000.0 / kRate >= kFillLowMs)
++                continue;
++            const uint32_t want = static_cast<uint32_t>(std::clamp(target - static_cast<double>(queued), 256.0, kRate / 10.0));
++            t_filling = true; // never with g_mutex held: the filler takes its producer's lock, then pushes
++            filler(want);
++            t_filling = false;
++        }
++    }
++
+     // [gta-recomp] movie sound (g_mutex): mixed 1:1 after the SPU2 output
+     std::vector<int16_t> g_movieRing(kCapacityFrames * 2u);
+     size_t g_movieRead = 0, g_movieWrite = 0, g_movieQueued = 0;
+@@ -171,13 +216,13 @@ namespace
+             return;
+         const double secs = std::chrono::duration<double>(now - last).count();
+         last = now;
+-        std::fprintf(stderr, "[audio] produced %.0f%% of real time; played %llu, underruns %llu (%llu frames), dropped %llu; queued %.0f / target %.0f ms, rate %.4f (%.4f..%.4f)\n",
+-                     g_pushedFrames * 100.0 / (secs * kRate), static_cast<unsigned long long>(g_playedFrames),
++        std::fprintf(stderr, "[audio] produced %.0f%% of real time (filled %.0f%%); played %llu, underruns %llu (%llu frames), dropped %llu; queued %.0f / target %.0f ms, rate %.4f (%.4f..%.4f)\n",
++                     g_pushedFrames * 100.0 / (secs * kRate), g_filledFrames * 100.0 / (secs * kRate), static_cast<unsigned long long>(g_playedFrames),
+                      static_cast<unsigned long long>(g_underruns), static_cast<unsigned long long>(g_underrunFrames),
+                      static_cast<unsigned long long>(g_droppedFrames), g_queued * 1000.0 / kRate, g_target * 1000.0 / kRate, g_rate, g_minRate, g_maxRate);
+         g_minRate = 2.0;
+         g_maxRate = 0.0;
+-        g_playedFrames = g_underruns = g_underrunFrames = g_droppedFrames = g_pushedFrames = 0;
++        g_playedFrames = g_underruns = g_underrunFrames = g_droppedFrames = g_pushedFrames = g_filledFrames = 0;
+     }
+ }
+ 
+@@ -199,8 +244,16 @@ void ps2AudioInit()
+     if (g_started || muted || !platform::audioAvailable())
+         return;
+     g_started = platform::audioOpen(kRate, 1024, &callback);
++    const char *fill = std::getenv("PS2X_AUDIO_FILL");
++    if (g_started && !(fill && fill[0] == '0'))
++    {
++        g_keeperStop.store(false, std::memory_order_release);
++        g_keeper = std::thread(keeperLoop);
++    }
+ }
+ 
++void ps2AudioSetFiller(Ps2AudioFiller filler) { g_filler.store(filler, std::memory_order_release); }
++
+ void ps2AudioPush(const int16_t *stereo, uint32_t frames)
+ {
+     static const char *dumpPath = std::getenv("PS2X_AUDIO_DUMP");
+@@ -216,8 +269,11 @@ void ps2AudioPush(const int16_t *stereo, uint32_t frames)
+     }
+     if (!g_started)
+         return;
++    g_lastPushNs.store(nowNs(), std::memory_order_relaxed);
+     std::lock_guard<std::mutex> lock(g_mutex);
+     g_pushedFrames += frames;
++    if (t_filling)
++        g_filledFrames += frames;
+     for (uint32_t i = 0; i < frames; ++i)
+     {
+         g_ring[g_write * 2u] = stereo[i * 2u];
+@@ -241,6 +297,11 @@ void ps2AudioShutdown()
+ {
+     if (!g_started)
+         return;
++    if (g_keeper.joinable()) // before the device closes; the filler may be inside its producer
++    {
++        g_keeperStop.store(true, std::memory_order_release);
++        g_keeper.join();
++    }
+     platform::audioClose();
+     g_started = false;
+ }
