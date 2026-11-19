@@ -79,6 +79,14 @@
   {
    "path": "docs/milestones/M08/hardware/nav-r2b/nxrun-results.txt",
    "result": "NRO 63360935: nav=0 at boot, 1 with the developer or settings menu open, 0 with the trainer open and after closing"
+  },
+  {
+   "path": "docs/milestones/M08/hardware/trainer-r3-gtavcs.txt",
+   "result": "NRO 2a02c7b6: the trainer opened from the menu twice, 'nothing chosen', trainer_used=0"
+  },
+  {
+   "path": "docs/milestones/M08/hardware/nav-r3/nxrun-results.txt",
+   "result": "NRO 2a02c7b6: nav flags as before (0 at boot, 0 with the trainer)"
   }
  ],
  "M08-09": [
@@ -97,6 +105,10 @@
   {
    "path": "docs/MILESTONES.md",
    "result": "M14-09: every save test reads trainer-used.txt"
+  },
+  {
+   "path": "docs/milestones/M08/hardware/trainer-r3-gtavcs.txt",
+   "result": "NRO 2a02c7b6: reopening the trainer from the menu two pages deep chose nothing, no trainer use counted"
   }
  ],
  "M08-14": [
@@ -121,6 +133,10 @@
   {
    "path": "docs/milestones/M08/hardware/navhand-r2-gtavcs.txt",
    "result": "NRO 63360935: D-pad down x4, A chose Performance overlay, B closed the menu"
+  },
+  {
+   "path": "docs/milestones/M08/hardware/trainer-r3-gtavcs.txt",
+   "result": "NRO 2a02c7b6: trainer reached through the menu without the choosing button acting in it"
   }
  ],
  "M08-16": [

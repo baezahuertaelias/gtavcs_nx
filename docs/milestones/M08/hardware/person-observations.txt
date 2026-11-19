@@ -39,3 +39,6 @@ milestone)?", the user chose "Move it to M16" (docs/milestones/M08/SCOPE_DECISIO
 2026-11-19, NRO 63360935 (navhand-r2): asked, in play, to open the menu with L3 + R3, go down with the D-pad to
 "Performance overlay", press A, close with B and close from HOME; done as the log shows (dpdown x4, chose: performance
 overlay on, closed by B).
+2026-11-19, NRO 2a02c7b6 (trainer-r3, review 3): asked to open the trainer from the developer menu, enter the Player
+page, close everything with L3 + R3 without B, reopen the trainer from the menu and say whether anything turned on by
+itself: "It went great". Log: "[trainer] opened from another menu, 2 page(s) deep, nothing chosen", trainer_used=0.
