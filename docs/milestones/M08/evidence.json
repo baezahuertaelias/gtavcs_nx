@@ -87,6 +87,10 @@
   {
    "path": "docs/milestones/M08/hardware/nav-r3/nxrun-results.txt",
    "result": "NRO 2a02c7b6: nav flags as before (0 at boot, 0 with the trainer)"
+  },
+  {
+   "path": "docs/milestones/M08/hardware/trainer-r4c-gtavcs.txt",
+   "result": "NRO c81c7428: Right arrow and A held while opening the trainer: 2 buttons ignored until let go, trainer_used=0 (the trainer was on its main page)"
   }
  ],
  "M08-09": [
@@ -109,6 +113,10 @@
   {
    "path": "docs/milestones/M08/hardware/trainer-r3-gtavcs.txt",
    "result": "NRO 2a02c7b6: reopening the trainer from the menu two pages deep chose nothing, no trainer use counted"
+  },
+  {
+   "path": "docs/milestones/M08/hardware/trainer-r4c-gtavcs.txt",
+   "result": "NRO c81c7428: Right arrow and A held while opening the trainer: 2 buttons ignored until let go, trainer_used=0 (the trainer was on its main page)"
   }
  ],
  "M08-14": [
@@ -137,6 +145,10 @@
   {
    "path": "docs/milestones/M08/hardware/trainer-r3-gtavcs.txt",
    "result": "NRO 2a02c7b6: trainer reached through the menu without the choosing button acting in it"
+  },
+  {
+   "path": "docs/milestones/M08/hardware/trainer-r4c-gtavcs.txt",
+   "result": "NRO c81c7428: Right arrow and A held while opening the trainer: 2 buttons ignored until let go, trainer_used=0 (the trainer was on its main page)"
   }
  ],
  "M08-16": [

@@ -929,3 +929,4 @@
 18:00:48 nothing to delete at /switch/gtavcs_nx/gamefolder/userdata/tests/m08-chord/nxrun-results.txt
 18:00:48 wrote /switch/gtavcs_nx/gamefolder/userdata/nxrun.cfg bytes=959 sha256=da75e3adbf3b9315774939ecb3b8b34c735c44dc1822bd49ffe0a20d8ddf58a8
 18:00:59 nxlink attempt=1 exit=0 output='Sending /switch/gtavcs_nx/gtavcs.nro, 66362616 bytes\n26192497 sent (39.47%), 2163 blocks'
+18:01:14 ACTION FOR THE PERSON AT THE SWITCH: trainer, A on Player, L3+R3 close, reopen trainer holding Right + A, God mode unchanged, close
