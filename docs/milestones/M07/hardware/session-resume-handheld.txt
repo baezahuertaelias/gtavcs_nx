@@ -1,0 +1,19 @@
+12:02:15 nothing to delete at /switch/gtavcs_nx/gamefolder/userdata/tests/m07-resume
+12:02:15 == m07-resume: profile=m07-resume nro sha256=e3583aa2d5f36f3cd816f291dcad62a85791a59f4cdfabe5d17a98f7a6f40df8
+12:02:20 tree /switch/gtavcs_nx/gamefolder/userdata entries=299 file=userdata-before-m07-resume.txt
+12:02:20 deleted /switch/gtavcs_nx/gamefolder/gtavcs.log
+12:02:20 nothing to delete at /switch/gtavcs_nx/gamefolder/userdata/tests/m07-resume/nxrun-results.txt
+12:02:20 wrote /switch/gtavcs_nx/gamefolder/userdata/nxrun.cfg bytes=638 sha256=869aa60f28fa6d2761c5d43a5467022698ff71ebdffe4426de32f077b9133c44
+12:02:36 nxlink attempt=1 exit=1 output='Sending /switch/gtavcs_nx/gtavcs.nro, 66338040 bytes\n26178534 sent (39.46%), 2158 blocks\nFailed sending /switch/gtavcs_nx/gtavcs.nro'
+12:02:50 nxlink attempt=2 exit=0 output='Sending /switch/gtavcs_nx/gtavcs.nro, 66338040 bytes\n26178534 sent (39.46%), 2158 blocks'
+12:03:05 ACTION FOR THE PERSON AT THE SWITCH: 1) HOME during the opening movie, ~5 s, back in; 2) once walking: sleep (power button), ~5 s, wake; 3) close from HOME
+12:04:46 ftp back after 115s: the payload has ended
+12:04:49 deleted /switch/gtavcs_nx/gamefolder/userdata/nxrun.cfg
+12:04:49 read-back /switch/gtavcs_nx/gamefolder/gtavcs.log bytes=22661 sha256=d7935068718dff9d851eea3b93ec08a98d19f143933a6e65031bf0dd27d7787c
+12:04:49 read-back /switch/gtavcs_nx/gtavcs-boot.log bytes=62 sha256=3dfe21382f340edd44bac1bf1dd0af6377ec3f03f87b166979ec89c9759bba4b
+12:04:49 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m07-resume/nxrun-results.txt bytes=6549 sha256=cf36f55f6b51c8c8beb8221471f8b379f0b0fee450acfd7ab52024f4a6eb4584
+12:04:53 tree /switch/gtavcs_nx/gamefolder/userdata entries=305 file=userdata-after-m07-resume.txt
+12:04:58 m07-resume: clean_exit_line=True results_tail=['stop t=59.440 reason=runtime frames=2504', 'shutdown t=59.440 frames=2504', 'audit t=59.440 file_opens=146 iso_opens=0 first_iso="" threads_created=7'] sd_matches_local=True new_crashes=[]
+12:04:59 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m07-resume/nxrun-results.txt bytes=6549 sha256=cf36f55f6b51c8c8beb8221471f8b379f0b0fee450acfd7ab52024f4a6eb4584
+12:04:59 resume-handheld: read back 1 files from /switch/gtavcs_nx/gamefolder/userdata/tests/m07-resume (screenshots private under build\evidence\M06\screenshots\resume-handheld)
+12:04:59 RESULT game PASS

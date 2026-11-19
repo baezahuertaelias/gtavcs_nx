@@ -59,6 +59,10 @@
   {
    "path": "docs/milestones/M07/hardware/drive-handheld-2-gtavcs.txt",
    "result": "First patch 0010 (NRO 4a4001d0, before review 1): 0 underruns, 688,128 frames (14.3 s) starved in window 0 before priming, filler 86 %: the game thread out of the mixing path (review 1 finding 2); superseded by drive-handheld-4"
+  },
+  {
+   "path": "docs/milestones/M07/hardware/stall-handheld-4-gtavcs.txt",
+   "result": "Queue depth after windows 0-1: median 44 ms, 22-170 ms, at most 37-72 ms in the 15 s after each stall (drive-handheld-4: median 40 ms, 23-186 ms); target 60-129 ms; latency = ring + 21.3 ms device buffer"
   }
  ],
  "M07-04": [
@@ -95,6 +99,10 @@
   {
    "path": "docs/milestones/M07/hardware/drive-handheld-4-gtavcs.txt",
    "result": "16 minutes across both sides of the bay with VCS_STREAM_LOG on the revised patch: 0 underruns after windows 0-1"
+  },
+  {
+   "path": "patches/upstream/0011-music-loop-unused.patch",
+   "result": "The unused loop command and the 12 call sites recorded in upstream docs/game-internals.md"
   }
  ],
  "M07-06": [
@@ -140,7 +148,7 @@
  "M07-08": [
   {
    "path": "docs/milestones/M07/hardware/movie-sync-handheld-2-gtavcs.txt",
-   "result": "Scheduled Cross at 50.2 s skipped INTRO.PSS at 38.8 s; no movie sound after; one 2,339-frame (49 ms) underrun at the hand-over"
+   "result": "Scheduled Cross at 50.2 s skipped INTRO.PSS at 38.8 s; no movie sound after; the skip followed by one 2,339-frame (49 ms) underrun at the hand-over"
   },
   {
    "path": "docs/milestones/M07/hardware/mission-handheld-gtavcs.txt",
@@ -149,6 +157,10 @@
   {
    "path": "docs/milestones/M07/hardware/movies-handheld-gtavcs.txt",
    "result": "Closed from HOME 60.8 s into INTRO.PSS: orderly stop (stop reason=runtime)"
+  },
+  {
+   "path": "docs/milestones/M07/hardware/resume-handheld-gtavcs.txt",
+   "result": "Candidate NRO e3583aa2: suspensions of 7.1 s (STINGS.PSS) and 24.0 s (INTRO.PSS), the movie clock resumed where it stopped (7.04 -> 7.08 s, 9.54 -> 10.54 s), 0 dropped pictures"
   }
  ],
  "M07-09": [
@@ -158,7 +170,7 @@
   },
   {
    "path": "docs/milestones/M07/hardware/listen-handheld-gtavcs.txt",
-   "result": "Sleep during play (4.9 s suspension): audio paused and resumed, 0 underruns"
+   "result": "NRO 4a4001d0: sleep during play (4.9 s): audio paused and resumed, 0 underruns; 35,948 frames dropped after it, the ring at 175-288 ms for about 40 s"
   },
   {
    "path": "src/main.c",
@@ -166,7 +178,7 @@
   },
   {
    "path": "patches/upstream/0010-audio-starvation-filler.patch",
-   "result": "runEnd calls ps2AudioShutdown (joins the keeper) before platform::shutdown, after the game thread is joined; no log line shows the join (the \"audio closed\" line comes from platform::shutdown itself in every run)"
+   "result": "runEnd calls ps2AudioShutdown (joins the keeper) before platform::shutdown, after the game thread is joined; no log line shows the join (\"[platform] audio closed\" is printed by whichever call closes the device first)"
   },
   {
    "path": "docs/milestones/M07/hardware/noaudio-handheld-gtavcs.txt",
@@ -175,6 +187,10 @@
   {
    "path": "docs/milestones/M07/hardware/readfail-handheld-gtavcs.txt",
    "result": "Undecodable STINGS.PSS (same-size zero mod): skipped without a log line, INTRO.PSS whole, the S3 intro cutscene still running at the 240 s stop, clean exit; mod removed (session-readfail-handheld.txt)"
+  },
+  {
+   "path": "docs/milestones/M07/hardware/resume-handheld-gtavcs.txt",
+   "result": "Candidate NRO e3583aa2: four suspensions (7.1 / 24.0 s in the movies, 12.2 s on foot, 1.3 s before the close), audio paused / resumed each time, 0 underruns; after the on-foot one 41,706 frames (0.87 s) dropped once, the ring 200 / 165 / 141 ms; closed from HOME in order"
   }
  ],
  "M07-10": [
