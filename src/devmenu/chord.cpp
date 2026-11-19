@@ -8,7 +8,7 @@ namespace devmenu
         Result r;
         const bool raw[kButtons] = {rawL3, rawR3};
 
-        // new presses wait for the other button
+        // new presses wait for the other button (an ignored one has to be let go first)
         for (int b = 0; b < kButtons; ++b)
             if (m_slots[b].state == State::Up && raw[b])
             {
@@ -74,6 +74,10 @@ namespace devmenu
                     r.event[b] = Event::SuppressedUp;
                 }
                 break;
+            case State::Ignored:
+                if (!raw[b])
+                    s.state = State::Up; // a press from here on is a new one
+                break;
             case State::Up:
                 break;
             }
@@ -85,7 +89,7 @@ namespace devmenu
     void ChordFilter::reset()
     {
         for (Slot &s : m_slots)
-            s = {};
+            s = {State::Ignored, 0, 0};
     }
 
     const char *eventName(ChordFilter::Event e)

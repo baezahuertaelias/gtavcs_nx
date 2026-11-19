@@ -54,7 +54,8 @@ namespace devmenu
 
         // Once per event pump with the raw buttons and a monotonic time.
         Result update(bool rawL3, bool rawR3, uint64_t nowNs);
-        // Everything up and forgotten (focus lost, controller gone): nothing withheld is handed on later.
+        // Everything forgotten (focus lost, controller gone): nothing withheld is handed on later, and a button still
+        // held when updates resume is ignored until it has been let go (a chord held across HOME toggles nothing).
         void reset();
 
         uint64_t windowNs() const { return m_windowNs; }
@@ -67,6 +68,7 @@ namespace devmenu
             Delivered,
             Pulse,
             Suppressed,
+            Ignored, // after reset(): until seen up
         };
 
         struct Slot

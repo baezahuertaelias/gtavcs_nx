@@ -129,6 +129,33 @@ int runChordTests()
         check(!r.guest[ChordFilter::L3] && r.event[ChordFilter::L3] == Event::None, "reset: a withheld press is dropped");
     }
     {
+        // L3 + R3 held across a focus loss: no chord when updates resume, nothing to the game, until both are let go
+        ChordFilter f;
+        f.reset();
+        int chords = 0;
+        bool guest = false;
+        for (uint64_t t = 0; t <= 1000; t += 16)
+        {
+            const ChordFilter::Result r = f.update(true, true, t * kMs);
+            chords += r.chord ? 1 : 0;
+            guest = guest || r.guest[ChordFilter::L3] || r.guest[ChordFilter::R3];
+        }
+        check(chords == 0 && !guest, "reset with both held: no chord and nothing to the game while they stay held");
+        f.update(false, false, 1100 * kMs);
+        ChordFilter::Result r = f.update(true, false, 1200 * kMs);
+        r = f.update(true, true, 1220 * kMs);
+        check(r.chord, "reset: after both are let go a new chord counts");
+    }
+    {
+        // one button held across a focus loss is not handed on again
+        ChordFilter f;
+        f.reset();
+        bool guest = false;
+        for (uint64_t t = 0; t <= 1000; t += 16)
+            guest = guest || f.update(true, false, t * kMs).guest[ChordFilter::L3];
+        check(!guest, "reset with L3 held: not withheld and handed on again");
+    }
+    {
         ChordFilter f;
         ChordFilter::Result r = f.update(true, false, 0);
         check(r.event[ChordFilter::L3] == Event::Withheld && r.pressed[ChordFilter::L3] && !r.guest[ChordFilter::L3],

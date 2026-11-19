@@ -462,7 +462,7 @@ namespace
                      set.cdImage.empty() ? "(none)" : set.cdImage.string().c_str());
 
         vcs::launcher::installHooks(*core.runtime);
-        devmenu::installCommands();
+        devmenu::installCommands(core.runtime->memory().getRDRAM());
         vcs::runSelfTest(*core.runtime);
         std::fprintf(stderr, "[core] desktop watchdog and sampling profiler not started (detached desktop threads; "
                              "progress comes from the run's report lines)\n");

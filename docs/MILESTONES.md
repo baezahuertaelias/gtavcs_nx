@@ -434,6 +434,7 @@ reliable saves.
 - [ ] M14-06 Implement/verify save backups and atomic replacement/recovery; tests operate on disposable copies, never live user saves.
 - [ ] M14-07 Complete create/save/load/overwrite/delete/full-card/error flows through controller menus and verify mission/player state restored.
 - [ ] M14-08 Document player controls/SD layout/troubleshooting and reproduce a full controller-only start-to-save-to-reload session.
+- [ ] M14-09 Make every save test check the run's `userdata/trainer-used.txt` (written by the developer menu at a run's first trainer use, M08-09) and report a save made after trainer use as not a normal-release result, never silently passing it.
 
 ## M16 — Pro Controller and docked mode
 

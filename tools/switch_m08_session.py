@@ -6,7 +6,7 @@
 
 `game` is switch_m06_session.py's (empty test card unless --keep-card; --settings puts a vcs.ini into the profile
 first). Afterwards the frame-time recordings (userdata/tests/<profile>/perf/*.csv) are read back into
-<evidence-dir>/<label>/perf/ as well, and the run's log is summarised into <label>-m08.txt: the chord lines, the menu
+<evidence-dir>/<label>/perf/ as well, and the run's logs are renamed .txt (Git ignores *.log) and summarised into <label>-m08.txt: the chord lines, the menu
 lines, the touch lines, the settings lines and GL error counts. NX_HOST names the console (default 192.168.1.107).
 """
 import argparse
@@ -39,7 +39,10 @@ def command_count(text):
 
 
 def summarise(session, label):
-    log = session.evidence / f"{label}-gtavcs.log"
+    # *.log is ignored by Git: the run's logs are kept as .txt (review 1)
+    for path in session.evidence.glob(f"{label}-gtavcs*.log"):
+        path.replace(path.with_suffix(".txt"))
+    log = session.evidence / f"{label}-gtavcs.txt"
     if not log.exists():
         session.say(f"{label}: no log to summarise")
         return

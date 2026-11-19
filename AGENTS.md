@@ -93,6 +93,7 @@ gtavcs_nx/
     rhi/gl/                      OpenGL 3.3 core backend of upstream's rhi::Device (M05)
     render/glsl/                 GLSL 330 ports of upstream's HLSL shaders (README: conventions)
     rhi_tests/                   RHI conformance scenes: host runner, Switch NRO
+    devmenu/                     developer menu on L3+R3 and its chord filter (M08)
   third_party/glad/              generated GLAD 2.0.8, GL 3.3 core, no extensions
     include/{glad,KHR}/
     src/gl.c
@@ -245,8 +246,9 @@ Switch build command. See the checklist before attempting ARM64 core compilation
   cross setup. Do not claim devkitA64 GCC is already supported by the game.
 - Reuse upstream's ImGui context and RHI UI renderer. Replace its SDL3 backend
   with `imgui_impl_sdl2`, enable gamepad navigation and design an overlay chord
-  that consumes input without leaking it into gameplay. No ImGui implementation
-  or menu is included in the current smoke target.
+  that consumes input without leaking it into gameplay. Done in M08: one context
+  (platform layer), upstream's settings menu and trainer, and the port's developer
+  menu on L3+R3 (src/devmenu: the chord filter withholds every L3/R3 press 100 ms).
 - Preserve original source licenses and credit; no game ISO, ELF, extracted assets,
   saves, generated game C++ or copyrighted shader dumps in commits/releases.
   Keep generated GLAD notices. Record runtime modifications in upstream's

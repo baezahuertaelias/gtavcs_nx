@@ -196,7 +196,13 @@ namespace platform
             g_rawSticks[0] = l3;
             g_rawSticks[1] = r3;
             if (!live)
-                g_chord.reset(); // out of focus or no pad: nothing withheld comes out later
+            {
+                // out of focus or no pad: nothing withheld comes out later, and what is still held when the pad is live
+                // again counts only once let go (review 1: a chord held across HOME toggled the menu)
+                g_chord.reset();
+                l3 = r3 = false;
+                return;
+            }
             const uint64_t now = nowNs();
             const ChordFilter::Result r = g_chord.update(l3, r3, now);
             l3 = r.guest[ChordFilter::L3];

@@ -9,6 +9,7 @@
 // them while open and until the buttons that closed it are let go.
 #pragma once
 
+#include <cstdint>
 #include <string>
 
 namespace devmenu
@@ -21,8 +22,9 @@ namespace devmenu
     // the trainer note go (`userdata`, the run's own folder).
     void install(const std::string &userdata);
     // Main thread, after installHooks: the control-channel command `devmenu [open|close|settings|trainer]` (state, and
-    // the menu opened for scripted checks; the physical chord is the player's way).
-    void installCommands();
+    // the menu opened for scripted checks; the physical chord is the player's way). `rdram`: the EE RAM, read for the
+    // game's own free-aim flag (logged on every change: R1-then-L3 reaching the game, M08-14).
+    void installCommands(const uint8_t *rdram);
 
     bool open();
     // One line of the menus' and the chord's state for the run's report.

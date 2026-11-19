@@ -21,6 +21,7 @@
 #include <algorithm>
 #include <chrono>
 #include <cstdio>
+#include <cstring>
 #include <ctime>
 #include <string>
 #include <sys/stat.h>
@@ -37,6 +38,9 @@ namespace devmenu
         uint64_t g_opens = 0, g_closes = 0;
         uint64_t g_trainerUsedLogged = 0;
         std::string g_lastAction;
+        const uint8_t *g_rdram = nullptr; // installCommands
+        bool g_gameFreeAim = false;
+        uint64_t g_gameFreeAims = 0;
 
         // the diagnostics, refreshed once a second (mallinfo walks the heap)
         std::chrono::steady_clock::time_point g_nextDiagnostics{};
@@ -102,7 +106,11 @@ namespace devmenu
                          static_cast<unsigned long long>(used), g_userdata.c_str());
             if (!first || g_userdata.empty())
                 return;
-            if (std::FILE *f = std::fopen((g_userdata + "/trainer-used.txt").c_str(), "a"))
+            std::FILE *f = std::fopen((g_userdata + "/trainer-used.txt").c_str(), "a");
+            if (!f)
+                std::fprintf(stderr, "[devmenu] could not write %s/trainer-used.txt: save tests cannot see this run's trainer use\n",
+                             g_userdata.c_str());
+            else
             {
                 const std::time_t now = std::time(nullptr);
                 char when[32] = "";
@@ -264,10 +272,34 @@ namespace devmenu
             ImGui::PopFont();
         }
 
+        // The game's own free aim (R1 held, then L3; game-internals.md 12c): bit 51 of the player ped's flags at +0xCC8,
+        // the word at +0xCCC bit 19 (as src/game/vcs_aim.cpp reads it). Read on the main thread while the game thread
+        // runs: a diagnostic, one aligned word, logged on every change.
+        void noteGameFreeAim()
+        {
+            if (!g_rdram)
+                return;
+            constexpr uint32_t kRamMask = 0x01FFFFFFu, kPlayerPed = 0x004E4910u, kFlags = 0xCCCu, kFreeAimBit = 0x00080000u;
+            auto rd32 = [](uint32_t a) {
+                uint32_t v = 0;
+                std::memcpy(&v, g_rdram + (a & kRamMask & ~3u), 4);
+                return v;
+            };
+            const uint32_t ped = rd32(kPlayerPed);
+            const bool on = ped && (rd32(ped + kFlags) & kFreeAimBit);
+            if (on == g_gameFreeAim)
+                return;
+            g_gameFreeAim = on;
+            g_gameFreeAims += on ? 1 : 0;
+            std::fprintf(stderr, "[devmenu] the game's free aim %s (player ped %08x, flags +0xCCC bit 19)\n", on ? "on" : "off",
+                         ped);
+        }
+
         // upstream's UI hook, first each host frame (vcs::launcher::setHostUi): true while the game's input is ours
         bool hostUi()
         {
             noteTrainerUse();
+            noteGameFreeAim();
             if (platform_switch::takeMenuChord())
             {
                 if (g_open)
@@ -338,8 +370,9 @@ namespace devmenu
         std::fprintf(stderr, "[devmenu] L3 + R3 opens the developer menu; Back + Start / RB / LB chords off\n");
     }
 
-    void installCommands()
+    void installCommands(const uint8_t *rdram)
     {
+        g_rdram = rdram;
         // devmenu [open|close|settings|trainer] -> ok menu=<0|1> settings=<0|1> trainer=<0|1> blocked=<0|1> chords=<n>
         // opens=<n> closes=<n> trainer_used=<n>
         ps2control::addCommand("devmenu", [](const std::string &args, ps2control::Reply reply) {
@@ -372,16 +405,18 @@ namespace devmenu
     std::string reportLine()
     {
         const platform_switch::Stats s = platform_switch::stats();
-        char line[320];
+        char line[400];
         std::snprintf(line, sizeof(line),
                       "menu=%d settings=%d trainer=%d blocked=%d chords=%llu opens=%llu closes=%llu stick_presses=%llu "
-                      "stick_delivered=%llu max_withheld_ms=%.1f touches=%llu trainer_used=%llu last=\"%s\"",
+                      "stick_delivered=%llu max_withheld_ms=%.1f touches=%llu trainer_used=%llu game_free_aim=%d "
+                      "game_free_aims=%llu last=\"%s\"",
                       g_open ? 1 : 0, ui::settingsMenuOpen() ? 1 : 0, ui::trainerMenuOpen() ? 1 : 0,
                       ps2control::gameInputBlocked() ? 1 : 0, static_cast<unsigned long long>(s.chords),
                       static_cast<unsigned long long>(g_opens), static_cast<unsigned long long>(g_closes),
                       static_cast<unsigned long long>(s.stickPresses), static_cast<unsigned long long>(s.stickDelivered),
                       s.maxWithheldNs / 1e6, static_cast<unsigned long long>(s.touches),
-                      static_cast<unsigned long long>(vcs::trainer::usedCount()), g_lastAction.c_str());
+                      static_cast<unsigned long long>(vcs::trainer::usedCount()), g_gameFreeAim ? 1 : 0,
+                      static_cast<unsigned long long>(g_gameFreeAims), g_lastAction.c_str());
         return line;
     }
 }
