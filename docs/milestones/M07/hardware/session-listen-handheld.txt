@@ -1,0 +1,18 @@
+22:22:45 nothing to delete at /switch/gtavcs_nx/gamefolder/userdata/tests/m07-listen
+22:22:45 == m07-listen: profile=m07-listen nro sha256=4a4001d0f31a5989f515b8868cd23a73c33c78a0670d635090680d9c12d7280c
+22:22:49 tree /switch/gtavcs_nx/gamefolder/userdata entries=254 file=userdata-before-m07-listen.txt
+22:22:49 deleted /switch/gtavcs_nx/gamefolder/gtavcs.log
+22:22:49 nothing to delete at /switch/gtavcs_nx/gamefolder/userdata/tests/m07-listen/nxrun-results.txt
+22:22:49 wrote /switch/gtavcs_nx/gamefolder/userdata/nxrun.cfg bytes=631 sha256=8d52d693efd55ff9a8c4cf9c51dd6cfaaf08dbd7fbb552b8bafaca3feab44241
+22:22:55 nxlink attempt=1 exit=0 output='Sending /switch/gtavcs_nx/gtavcs.nro, 66338040 bytes\n26178579 sent (39.46%), 2158 blocks'
+22:23:10 ACTION FOR THE PERSON AT THE SWITCH: listening session; close from HOME when done
+22:31:32 ftp back after 517s: the payload has ended
+22:31:35 deleted /switch/gtavcs_nx/gamefolder/userdata/nxrun.cfg
+22:31:35 read-back /switch/gtavcs_nx/gamefolder/gtavcs.log bytes=114606 sha256=8459d88612699b29c78da398918e773700f3a826c918654a66221e6f563bf2a2
+22:31:35 read-back /switch/gtavcs_nx/gtavcs-boot.log bytes=62 sha256=3dfe21382f340edd44bac1bf1dd0af6377ec3f03f87b166979ec89c9759bba4b
+22:31:35 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m07-listen/nxrun-results.txt bytes=52654 sha256=df30233b8870a75734e6158ce82c53c830da4a35dcdfec80e10fed838dfe0ac7
+22:31:39 tree /switch/gtavcs_nx/gamefolder/userdata entries=260 file=userdata-after-m07-listen.txt
+22:31:44 m07-listen: clean_exit_line=True results_tail=['shutdown t=477.208 frames=20080', 'audit t=477.208 file_opens=149 iso_opens=0 first_iso="" threads_created=7'] sd_matches_local=True new_crashes=[]
+22:31:44 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m07-listen/nxrun-results.txt bytes=52654 sha256=df30233b8870a75734e6158ce82c53c830da4a35dcdfec80e10fed838dfe0ac7
+22:31:44 listen-handheld: read back 1 files from /switch/gtavcs_nx/gamefolder/userdata/tests/m07-listen (screenshots private under build\evidence\M06\screenshots\listen-handheld)
+22:31:44 RESULT game PASS

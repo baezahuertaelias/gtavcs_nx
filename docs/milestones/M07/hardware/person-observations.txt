@@ -10,3 +10,9 @@ What the user, at the Switch, reported during the M07 session (2026-11-18, handh
   end, 2,527 pictures, 0 dropped, 84.3 s; then S3 / S4 (on foot). Between the
   two runs gtavcs.nro and gtavcs_rhi_tests.nro were found missing from /switch/gtavcs_nx (not by the session tools);
   gtavcs.nro was put back over FTP at the user's request (19bd154c, read back).
+- listen-handheld (m07-listen.cfg, NRO 4a4001d0 with patch 0010, from d72b431): the user was asked to press HOME during
+  the opening movie and skip it with B, play on foot, drive with the radio and change stations, check a sound's side
+  (left / right), sleep and wake, then close from HOME. The user: "Everything went well, fps is laggy. Sound is good".
+  The log shows: no focus change during the movies (INTRO.PSS played whole, 2,527 pictures, 0 dropped: the HOME and B
+  steps during the movie are not in this run); on foot and driving in S4; one suspension of 4.9 s at 419 s (sleep or
+  HOME) with audio paused and resumed; 0 underruns in 78 stats windows; 0 GL errors; closed from HOME at 477 s.
