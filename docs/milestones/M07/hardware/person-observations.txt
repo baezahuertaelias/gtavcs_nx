@@ -16,3 +16,5 @@ What the user, at the Switch, reported during the M07 session (2026-11-18, handh
   The log shows: no focus change during the movies (INTRO.PSS played whole, 2,527 pictures, 0 dropped: the HOME and B
   steps during the movie are not in this run); on foot and driving in S4; one suspension of 4.9 s at 419 s (sleep or
   HOME) with audio paused and resumed; 0 underruns in 78 stats windows; 0 GL errors; closed from HOME at 477 s.
+  Asked afterwards: the left / right check: "Yes, correct side" (the sound came from the side it was on); the radio
+  in the vehicle: "Yes, it worked" (played, stations changed, no breaks).
