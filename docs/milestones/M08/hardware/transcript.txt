@@ -135,3 +135,21 @@
 15:14:05 chord-handheld-2: read back 1 files from /switch/gtavcs_nx/gamefolder/userdata/tests/m08-chord (screenshots private under build\evidence\M06\screenshots\chord-handheld-2)
 15:14:05 chord-handheld-2: 53 chord / menu / touch / settings lines -> chord-handheld-2-m08.txt
 15:14:05 RESULT game PASS
+15:15:13 nothing to delete at /switch/gtavcs_nx/gamefolder/userdata/tests/m08-functions
+15:15:13 == m08-functions: profile=m08-functions nro sha256=022522af9117cc528953210fa85cdb79a40c305a8ad23b5d8b1baf6a38e8a638
+15:15:18 tree /switch/gtavcs_nx/gamefolder/userdata entries=320 file=userdata-before-m08-functions.txt
+15:15:18 deleted /switch/gtavcs_nx/gamefolder/gtavcs.log
+15:15:18 nothing to delete at /switch/gtavcs_nx/gamefolder/userdata/tests/m08-functions/nxrun-results.txt
+15:15:18 wrote /switch/gtavcs_nx/gamefolder/userdata/nxrun.cfg bytes=862 sha256=b439880ffb55163399aa7c2bdb6ecb0c00a2983f0bf59d921e722d729c250ddf
+15:15:27 nxlink attempt=1 exit=0 output='Sending /switch/gtavcs_nx/gtavcs.nro, 66362616 bytes\n26191877 sent (39.47%), 2163 blocks'
+15:15:42 ACTION FOR THE PERSON AT THE SWITCH: trainer gun, R+L3 free aim, free camera, touch a row, close from HOME
+15:15:42 ftp back after 15s: the payload has ended
+15:15:45 deleted /switch/gtavcs_nx/gamefolder/userdata/nxrun.cfg
+15:15:45 read-back /switch/gtavcs_nx/gamefolder/gtavcs.log bytes=999 sha256=25e8e271138c6b1c4f2350a0063922e2297dc66148824862edd479a1c59a32bf
+15:15:45 read-back /switch/gtavcs_nx/gtavcs-boot.log bytes=62 sha256=3dfe21382f340edd44bac1bf1dd0af6377ec3f03f87b166979ec89c9759bba4b
+15:15:45 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m08-functions/nxrun-results.txt missing (550 Requested action not taken, No such file or directory Failed to open path: /switch/gtavcs_nx/gamefolder/userdata/tests/m08-functions/nxrun-results.txt.)
+15:15:50 tree /switch/gtavcs_nx/gamefolder/userdata entries=320 file=userdata-after-m08-functions.txt
+15:15:56 m08-functions: clean_exit_line=False results_tail=[] sd_matches_local=True new_crashes=[]
+15:15:56 functions-handheld: read back 0 files from /switch/gtavcs_nx/gamefolder/userdata/tests/m08-functions (screenshots private under build\evidence\M06\screenshots\functions-handheld)
+15:15:56 functions-handheld: 0 chord / menu / touch / settings lines -> functions-handheld-m08.txt
+15:15:56 RESULT game FAIL

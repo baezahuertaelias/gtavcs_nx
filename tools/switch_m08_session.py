@@ -25,6 +25,19 @@ PATTERNS = re.compile(r"\[(chord|devmenu|touch|settings|perf\] recording|trainer
                       r"focus (lost|back)|quit requested|controller physical")
 
 
+def command_count(text):
+    """The control-channel commands a run file schedules (run_config.cpp refuses more than 512 at boot)."""
+    count = 0
+    for line in text.splitlines():
+        words = line.split("#", 1)[0].split()
+        if words[:1] == ["at"]:
+            count += 1
+        elif words[:1] == ["every"] and len(words) >= 5:
+            period, start, end = (float(w) for w in words[1:4])
+            count += int((end - start) // period) + 1
+    return count
+
+
 def summarise(session, label):
     log = session.evidence / f"{label}-gtavcs.log"
     if not log.exists():
@@ -51,6 +64,10 @@ def main():
         ok = m04.preflight(session)
     else:
         label = a.label or Path(a.config).stem
+        scheduled = command_count(Path(a.config).read_text())
+        if scheduled > 512:
+            session.say(f"{a.config} schedules {scheduled} commands: more than nxrun.cfg's 512, the game would refuse it")
+            return 1
         ok = m06.game(session, a.config, label, a.prompt, a.keep_card, a.settings)
         folder = f"{m04.GAME}/userdata/tests/{m04.profile_of(Path(a.config).read_text())}/perf"
         ftp = m04.connect()
