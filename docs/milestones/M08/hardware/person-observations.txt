@@ -4,3 +4,10 @@ are inverted" (the menus followed the PS2 positions: south = choose). Fixed in 3
 open/close pairs at about 66 s, 72 s and 84 s after the game started, then the HOME one." The user chose: "Flyover,
 cutscene, play" ("First pair during the flyover, second during the cutscene, third in play, then the HOME one in
 play"). The run's config had no gameinfo (stage) query; later runs add one.
+2026-11-19, NRO 022522af (functions-handheld): the user closed the game from HOME after the trainer step, before
+the other steps ("I closed it early").
+2026-11-19, NRO 022522af (functions-handheld-2): asked "Did tapping the screen do anything in the menu?": "Nothing
+happened" (no [touch] line in the log: switch-sdl2 makes no mouse events of fingers; fixed in 0a7694f). Asked "For free
+aim: did you hold R and click the left stick in while holding it?": "Did it, circle". The log has no L3 press outside
+the two L3 + R3 chords ([input] leftstick only at 45.3 s), only R presses: the circle seen was R's lock-on, not proof of
+R1-then-L3 free aim. Repeated on the final NRO.
