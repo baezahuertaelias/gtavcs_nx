@@ -1,0 +1,35 @@
+{
+ "milestone": "M07",
+ "candidate_commit": "5f8b68a8e67226e6a9ee072ffdb36de2c868f4a7",
+ "verdict": "APPROVE",
+ "reviewer_id": "m07-review5-flint",
+ "independent": true,
+ "unresolved_findings": [],
+ "checks": [
+  "Earlier independent reviews of M07 requested changes: review 1 (b07f4f1), 2 (f820d89), 3 (40a03c3) and 4 (5afb432) (reports REVIEW1-4.md, responses REVIEW1-4_RESPONSE.md). This fifth, fresh reviewer (Claude Opus 5.5 subagent, read-only) reviewed candidate 5f8b68a; the tree was clean before and after; every finding of reviews 1-4 checked against the current text",
+  "Patch 0010 in an applied overlay against the owning sources: lock order m_mutex then g_mutex only, the keeper releases g_mutex before the filler, callback g_mutex only; t_filling thread_local; kMaxLead 36,864,000 IOP cycles = 1 s, consistent with advanceIopEeCycles' 1 s forgiveness; priming in whole 256-frame blocks plus one, idle while movie sound is queued; runEnd joins the game thread, then ps2AudioShutdown joins the keeper, then platform::shutdown, before stopStreamReader and the disc unset; filler off on the desktop by default; no file I/O in the callback. No defect found",
+  "NRO provenance: build/m04/private/gtavcs.nro sha256 e3583aa2, 66,338,040 bytes, root_commit 8f4f337, root_dirty true (f5eca27 adds only tests/switch/m07-resume.cfg); series.json sha256 08a801a8 = the manifest; ec397f3's series 085c59f1; between ec397f3 and 8f4f337 only 0010's comment / PS2RECOMP row and the new 0011; nothing build-relevant after 8f4f337; game-source-08a801a89bd07492 162 times in gtavcs.elf",
+  "All 22 hardware runs: each tracked gtavcs.log and results file matches the sha256 its session tool read back; session NROs as TASKS states except one attribution (limitations)",
+  "Audio recomputed: drive-4 203 windows, 3 underruns all in windows 0-1 (528,351 + 121,816 frames), 0 dropped, filled 52.0 %, queue median 40 ms (23-186), target 60-129; stall-4 0 underruns after windows 0-1, median 44 ms (22-170), filled 69 / 17 / 25 % after the 2 s game stall; drive-3 21 after windows 0-1 (9.85 s); drive-1 169 underruns, 42.1 s dropped; drive-2 14.3 s starved in window 0; hand-overs 3,375 / 2,339 frames; listen 76,927 dropped, 35,948 after the sleep; resume 3 underruns in windows 0-2, 41,706 dropped in window 7, queue 200 / 165 / 141 ms",
+  "Movies: margins 0.00-0.07 s in every VCS_MOVIE_LOG run, never negative; STINGS.PSS 321 pictures, INTRO.PSS 2,527 / 84.3 s; skips at 38.8 / 33.2 / 36.3 s, 0 dropped; resume clocks 7.04 -> 7.08 and 9.54 -> 10.54 s; suspensions 7.14 / 23.99 / 12.22 / 1.30 s (resume), 7.56 s (mission), 4.91 s (listen); the resume skip from SDL a (USE_BUTTON_LABELS=0: south = Cross)",
+  "SPU2 voices at once 32 / 26 / 29 / 12; 0 GL errors in every log; readfail: 1 mod applied, still in the S3 cutscene at the stop, mods left=False; radio: 168 commands, 12 opens across 5 files (3 at 0), 12 stops (11 ending opens, 1 the cutscene preload), the last open playing at exit, no 0x905xx",
+  "Own scan of the local ELF (nothing copied out): 12 jal 0x10DD50 sites; no lui 9 + ori/addiu 0x500; no data word 0x00090500",
+  "switch-ffmpeg 7.1-5 and switch-dav1d 1.5.0-1 in the M01 lock; 1,095 decoder references in the map; no audren call and no SDL_QueueAudio in src/; tools/switch_m07_readfail.py cleanup guarded"
+ ],
+ "limitations": [
+  "No hardware run, listening, desktop build or race detector by the reviewer; queue depth sampled at 5 s window ends; heap figures and the person's quotes accepted as recorded; 6976c8d7's binary not compared (no local copy), its equivalence rests on the source diff",
+  "Handheld-only and the docked deferral (M10-13) are user decisions in SCOPE_DECISIONS.md; nothing waived beyond them",
+  "Non-blocking, left so the reviewed candidate stays unchanged: TASKS.md M07-07 gives movies-handheld-2's NRO as 4a4001d0; its session shows 19bd154c (the quoted figures are correct)",
+  "Non-blocking, left unchanged: TASKS.md M07-02 / evidence.json say 'with patch 0010' for pcm-compare-2 and the volume runs; they ran on 4a4001d0, the first patch 0010 (the filler changes when the SPU2 mixes, not what)",
+  "Non-blocking, left unchanged: AGENTS.md's M07 status sets drive-handheld's 169 underruns (its total) against drive-4's 0 after the boot movies; drive-handheld's count after windows 0-1 is 168",
+  "Notes: the volume settings are proven at 0 only (upstream's unchanged scaling otherwise); resume-handheld's 'audio paused / resumed' lines are printed together after each suspension; the keeper does about half of all mixing in steady state, so the engine lock can hold game-thread RPCs behind a fill of up to ~100 ms (not measured; for M10); m07-listen / mission / drive.cfg changed in ec397f3 after their earlier runs (those runs' configs match d72b431, 24c7d44, af0cd14)"
+ ],
+ "observed_test_results": [
+  "python tools/milestone_gate.py M07 -> PASS",
+  "python tools/validate_project.py -> 'PASS foundation: 183 unique tasks, 16 milestones'",
+  "python tools/test_milestone_gate.py -> 13 tests OK",
+  "python tools/test_upstream_overlay.py -> 4 tests OK",
+  "python tools/test_glsl_shaders.py -> 3 OK, 1 skipped",
+  "python tools/upstream_overlay.py build/review5-overlay -> 11 patches applied; series.json sha256 08a801a8 = the manifest's overlay_series_sha256"
+ ]
+}
