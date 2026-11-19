@@ -1,5 +1,5 @@
 diff --git a/docs/PROGRESS.md b/docs/PROGRESS.md
-index 81ebec5..d1f592d 100644
+index 81ebec5..12434fa 100644
 --- a/docs/PROGRESS.md
 +++ b/docs/PROGRESS.md
 @@ -936,7 +936,7 @@ Python scripts still usable on their own. docs/LAUNCHER.md has the whole of it;
@@ -7,12 +7,12 @@ index 81ebec5..d1f592d 100644
  | `PS2X_TRACE_SPU2=1` | SPU2 key-ons, DMA bytes, IRQs, peak level per 5 s; per core: wet input, reverb output, ESA/EEA, EVOL, PMON / NON use |
  | `PS2X_SPU2_REVERB=0` | mute the SPU2 reverb (A/B listening) |
 -| `PS2X_AUDIO=0`, `PS2X_AUDIO_DUMP=f.wav`, `PS2X_AUDIO_STATS=1` | no audio output / record the SPU2 mix / underrun and fill stats |
-+| `PS2X_AUDIO=0`, `PS2X_AUDIO_DUMP=f.wav`, `PS2X_AUDIO_STATS=1`, `PS2X_AUDIO_FILL=0` | no audio output / record the SPU2 mix / underrun and fill stats / no starvation filler (the SPU2 mixed on the game thread only) |
++| `PS2X_AUDIO=0`, `PS2X_AUDIO_DUMP=f.wav`, `PS2X_AUDIO_STATS=1`, `PS2X_AUDIO_FILL=0/1` | no audio output / record the SPU2 mix / underrun and fill stats / the starvation filler off or on (default: on on the Switch only; off with `PS2X_IOP_REALTIME=0`) |
  | `PS2X_IOP_REALTIME=0` | IOP time purely from EE cycles (audio slows with the game) |
  | `VCS_TEST_SAVE=s[:slot]` | save to slot 1 (or 1..8) through the game's code s seconds after boot (mid-script: prefer `tools/saves.py`) |
  | `VCS_TRACE_SECTORS=1`, `VCS_TRACE_CELL=1` | world sector draw / current hex cell vs camera |
 diff --git a/docs/PS2RECOMP_PATCHES.md b/docs/PS2RECOMP_PATCHES.md
-index 0ba3c12..409436e 100644
+index 0ba3c12..5eddd50 100644
 --- a/docs/PS2RECOMP_PATCHES.md
 +++ b/docs/PS2RECOMP_PATCHES.md
 @@ -383,3 +383,9 @@ changes keep desktop behaviour: `main()` and `run()` take the same steps as befo
@@ -24,12 +24,12 @@ index 0ba3c12..409436e 100644
 +
 +| Where | What | Why |
 +|---|---|---|
-+| `ps2xRuntime/src/lib/ps2_audio_out.cpp`, `include/runtime/ps2_audio_out.h`; `src/game/vcs_sound.cpp` | `ps2AudioSetFiller`: a keeper thread (started in `ps2AudioInit`, joined in `ps2AudioShutdown`) asks the producer for more when the ring holds under 40 ms and nothing was pushed for 15 ms; the native sound driver's filler mixes the SPU2 ahead of EE time under its lock, and `clock()` mixes only past it. The stats line gives the filled share. `PS2X_AUDIO_FILL=0` = before | The SPU2 was mixed only on the game thread: a frame longer than the target fill (60-250 ms) was a gap, and the catch-up burst after it overflowed the 400 ms cap and was dropped. On the Switch (frames of 0.5-1 s while driving) a 16-minute drive starved 54 s in 169 underruns |
++| `ps2xRuntime/src/lib/ps2_audio_out.cpp`, `include/runtime/ps2_audio_out.h`; `src/game/vcs_sound.cpp` | `ps2AudioSetFiller`: a keeper thread (started in `ps2AudioInit`, joined in `ps2AudioShutdown`) asks the producer for more when the ring holds under 40 ms and nothing was pushed for 15 ms; the native sound driver's filler mixes the SPU2 ahead of EE time under its lock, and `clock()` mixes only past it. While not primed (at start, after an underrun) the keeper fills up to the target, in whole 256-frame blocks (the SPU2's hand-over size), so it cannot stop just short of priming; it is idle while a movie's sound is queued (the SPU2 is not mixed under a movie, as before). The filler runs at most 1 s ahead of EE time, the runtime's own forgiveness limit (runIopTime), so the lead is always repaid and `clock()` mixes again. `runEnd` calls `ps2AudioShutdown` before `platform::shutdown` (the header's order): the keeper is joined before the device closes. The stats line gives the filled share. On by default on the Switch only (`__SWITCH__`); `PS2X_AUDIO_FILL=1` / `0` overrides; off with `PS2X_IOP_REALTIME=0` | The SPU2 was mixed only on the game thread: a frame longer than the target fill (60-250 ms) was a gap, and the catch-up burst after it overflowed the 400 ms cap and was dropped. On the Switch (frames of 0.5-1 s while driving) a 16-minute drive starved 54 s in 169 underruns |
 diff --git a/src/game/vcs_sound.cpp b/src/game/vcs_sound.cpp
-index eb8670f..22bbaba 100644
+index eb8670f..61bdcda 100644
 --- a/src/game/vcs_sound.cpp
 +++ b/src/game/vcs_sound.cpp
-@@ -194,7 +194,23 @@ namespace vcs
+@@ -194,7 +194,29 @@ namespace vcs
              {
                  std::lock_guard<std::mutex> lock(m_mutex);
                  m_eeCycles += eeCycles;
@@ -44,7 +44,13 @@ index eb8670f..22bbaba 100644
 +            void fill(uint32_t frames)
 +            {
 +                std::lock_guard<std::mutex> lock(m_mutex);
-+                advanceIop(m_iopCycle + static_cast<uint64_t>(frames) * Spu2::kCyclesPerSample);
++                // at most 1 s ahead of EE time: the runtime forgives an IOP lag over 1 s (runIopTime), so a lead beyond
++                // that would never be repaid and clock() would never mix again
++                constexpr uint64_t kMaxLead = 36864000u; // IOP cycles: 1 s
++                const uint64_t limit = m_eeCycles / 8u + kMaxLead;
++                const uint64_t want = m_iopCycle + static_cast<uint64_t>(frames) * Spu2::kCyclesPerSample;
++                if (m_iopCycle < limit)
++                    advanceIop(std::min(want, limit));
 +            }
 +
 +        private:
@@ -54,7 +60,7 @@ index eb8670f..22bbaba 100644
                  while (m_iopCycle < target)
                  {
                      // to the next transfer completion at the latest, so the stream's next step follows it in time
-@@ -207,7 +223,6 @@ namespace vcs
+@@ -207,7 +229,6 @@ namespace vcs
                  }
              }
  
@@ -62,7 +68,7 @@ index eb8670f..22bbaba 100644
              static uint8_t *guest(uint8_t *rdram, uint32_t address, uint32_t size)
              {
                  address &= 0x1FFFFFFFu;
-@@ -1489,6 +1504,7 @@ namespace vcs
+@@ -1489,6 +1510,7 @@ namespace vcs
          ps2_iop_native::registerServer(kSidMusic, [](uint8_t *rdram, const ps2x::iop::RpcRequest &r) { g_engine->call(rdram, r); });
          ps2_iop_native::setEmulatedAudioMuted(true);
          ps2_iop_native::setClock(&clockTick);
@@ -71,17 +77,18 @@ index eb8670f..22bbaba 100644
          return true;
      }
 diff --git a/third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_audio_out.h b/third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_audio_out.h
-index 78ebc43..610a968 100644
+index 78ebc43..dfb1a62 100644
 --- a/third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_audio_out.h
 +++ b/third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_audio_out.h
-@@ -9,6 +9,13 @@ void ps2AudioShutdown(); // before platform::shutdown
+@@ -9,6 +9,14 @@ void ps2AudioShutdown(); // before platform::shutdown
  float ps2AudioQueuedMs();          // audio waiting to be played (perf overlay)
  uint64_t ps2AudioUnderrunCount();  // underruns since start
  
 +// [gta-recomp] A producer's starvation filler: when the ring runs low and nothing has been pushed for a while (the
 +// producer's thread stalled: a long game frame), the output's keeper thread asks it for `frames` more, which it
 +// pushes through ps2AudioPush from that thread. The keeper starts in ps2AudioInit and is joined in ps2AudioShutdown;
-+// it never holds the ring's lock while calling the filler. PS2X_AUDIO_FILL=0 disables it.
++// it never holds the ring's lock while calling the filler, and it is idle while a movie's sound is queued. On by
++// default on the Switch only; PS2X_AUDIO_FILL=1 / 0 overrides; off with PS2X_IOP_REALTIME=0.
 +using Ps2AudioFiller = void (*)(uint32_t frames);
 +void ps2AudioSetFiller(Ps2AudioFiller filler);
 +
@@ -89,7 +96,7 @@ index 78ebc43..610a968 100644
  // whole output and for movie sound, the output mode (0 stereo, 1 mono, 2 left and right swapped), and a mute that
  // keeps everything running (the window in the background).
 diff --git a/third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_audio_out.cpp b/third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_audio_out.cpp
-index c9da351..2992d6f 100644
+index c9da351..b9d1e23 100644
 --- a/third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_audio_out.cpp
 +++ b/third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_audio_out.cpp
 @@ -17,6 +17,7 @@
@@ -100,9 +107,9 @@ index c9da351..2992d6f 100644
  #include <vector>
  #include "runtime/ps2_host_std.h"
  
-@@ -45,6 +46,50 @@ namespace
-     std::atomic<uint64_t> g_underrunsTotal{0};
-     std::atomic<float> g_queuedMs{0.0f};
+@@ -50,6 +51,60 @@ namespace
+     size_t g_movieRead = 0, g_movieWrite = 0, g_movieQueued = 0;
+     std::atomic<uint64_t> g_moviePlayed{0};
  
 +    // [gta-recomp] the starvation filler (ps2AudioSetFiller): a keeper thread asks the producer for more when the ring
 +    // runs low while nothing is pushed - the producer's thread (the game thread, for the native sound driver) is in a
@@ -132,26 +139,36 @@ index c9da351..2992d6f 100644
 +                continue;
 +            if (nowNs() - g_lastPushNs.load(std::memory_order_relaxed) < kFillIdleMs * 1000000)
 +                continue;
-+            size_t queued;
++            size_t queued, movie;
 +            double target;
++            bool primed;
 +            {
 +                std::lock_guard<std::mutex> lock(g_mutex);
 +                queued = g_queued;
 +                target = g_target;
++                primed = g_primed;
++                movie = g_movieQueued;
 +            }
-+            if (queued * 1000.0 / kRate >= kFillLowMs)
++            // Under a movie the game thread is in the movie player, as on the desktop: the SPU2 is not mixed then (its
++            // time is made up after the movie, as before). Otherwise fill when low; and while the ring is not primed
++            // (at start, after an underrun) up to the target, or playback would wait for the game thread.
++            if (movie > 0u || (primed ? queued * 1000.0 / kRate >= kFillLowMs : static_cast<double>(queued) >= target))
 +                continue;
-+            const uint32_t want = static_cast<uint32_t>(std::clamp(target - static_cast<double>(queued), 256.0, kRate / 10.0));
++            // the SPU2 hands its output over in blocks of 256 frames: whole blocks, one more than the gap, so a fill
++            // never stops just short of the priming target
++            constexpr uint32_t kBlock = 256u;
++            const double gap = std::clamp(target - static_cast<double>(queued), 0.0, kRate / 10.0);
++            const uint32_t want = (static_cast<uint32_t>(gap) / kBlock + 1u) * kBlock;
 +            t_filling = true; // never with g_mutex held: the filler takes its producer's lock, then pushes
 +            filler(want);
 +            t_filling = false;
 +        }
 +    }
 +
-     // [gta-recomp] movie sound (g_mutex): mixed 1:1 after the SPU2 output
-     std::vector<int16_t> g_movieRing(kCapacityFrames * 2u);
-     size_t g_movieRead = 0, g_movieWrite = 0, g_movieQueued = 0;
-@@ -171,13 +216,13 @@ namespace
+     // [gta-recomp] player settings (ps2AudioSetVolume / SetOutputMode / SetMuted): gains in 1/65536
+     std::atomic<int> g_masterGain{65536}, g_movieGain{65536};
+     std::atomic<int> g_outputMode{0};
+@@ -171,13 +226,13 @@ namespace
              return;
          const double secs = std::chrono::duration<double>(now - last).count();
          last = now;
@@ -168,12 +185,22 @@ index c9da351..2992d6f 100644
      }
  }
  
-@@ -199,8 +244,16 @@ void ps2AudioInit()
+@@ -199,8 +254,26 @@ void ps2AudioInit()
      if (g_started || muted || !platform::audioAvailable())
          return;
      g_started = platform::audioOpen(kRate, 1024, &callback);
-+    const char *fill = std::getenv("PS2X_AUDIO_FILL");
-+    if (g_started && !(fill && fill[0] == '0'))
++    // the filler: the Switch port's default (its game frames reach 0.5-1 s); elsewhere off unless PS2X_AUDIO_FILL=1;
++    // never with PS2X_IOP_REALTIME=0 (IOP time then follows the EE alone, and the filler would run ahead of it)
++#if defined(__SWITCH__)
++    bool useFill = true;
++#else
++    bool useFill = false;
++#endif
++    if (const char *fill = std::getenv("PS2X_AUDIO_FILL"); fill && *fill)
++        useFill = fill[0] != '0';
++    if (const char *realtime = std::getenv("PS2X_IOP_REALTIME"); realtime && realtime[0] == '0')
++        useFill = false;
++    if (g_started && useFill)
 +    {
 +        g_keeperStop.store(false, std::memory_order_release);
 +        g_keeper = std::thread(keeperLoop);
@@ -185,7 +212,7 @@ index c9da351..2992d6f 100644
  void ps2AudioPush(const int16_t *stereo, uint32_t frames)
  {
      static const char *dumpPath = std::getenv("PS2X_AUDIO_DUMP");
-@@ -216,8 +269,11 @@ void ps2AudioPush(const int16_t *stereo, uint32_t frames)
+@@ -216,8 +289,11 @@ void ps2AudioPush(const int16_t *stereo, uint32_t frames)
      }
      if (!g_started)
          return;
@@ -197,11 +224,11 @@ index c9da351..2992d6f 100644
      for (uint32_t i = 0; i < frames; ++i)
      {
          g_ring[g_write * 2u] = stereo[i * 2u];
-@@ -241,6 +297,11 @@ void ps2AudioShutdown()
+@@ -241,6 +317,11 @@ void ps2AudioShutdown()
  {
      if (!g_started)
          return;
-+    if (g_keeper.joinable()) // before the device closes; the filler may be inside its producer
++    if (g_keeper.joinable()) // before the device closes (runEnd calls this before platform::shutdown)
 +    {
 +        g_keeperStop.store(true, std::memory_order_release);
 +        g_keeper.join();
@@ -209,3 +236,15 @@ index c9da351..2992d6f 100644
      platform::audioClose();
      g_started = false;
  }
+diff --git a/third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_runtime.cpp b/third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_runtime.cpp
+index 39c9f56..891fdba 100644
+--- a/third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_runtime.cpp
++++ b/third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_runtime.cpp
+@@ -3502,6 +3502,7 @@ void PS2Runtime::runEnd()
+     loop.frameTex = {};
+     loop.shownTex = {};
+     present::shutdown();
++    ps2AudioShutdown(); // [gta-recomp] its header's order: the output (and its keeper thread) before the platform
+     platform::shutdown();
+ 
+     RUNTIME_LOG("[run] exiting loop");
