@@ -366,7 +366,7 @@
 /switch/gtavcs_nx/gamefolder/SPLASH/SPLASH8.XTX	66764
 /switch/gtavcs_nx/gamefolder/SPLASH/SPLASH9.XTX	66764
 /switch/gtavcs_nx/gamefolder/SYSTEM.CNF	57
-/switch/gtavcs_nx/gamefolder/gtavcs.log	54712
+/switch/gtavcs_nx/gamefolder/gtavcs.log	12541
 /switch/gtavcs_nx/gamefolder/mc0	d
 /switch/gtavcs_nx/gamefolder/mc1	d
 /switch/gtavcs_nx/gamefolder/userdata	d
@@ -680,8 +680,7 @@
 /switch/gtavcs_nx/gamefolder/userdata/tests/m08-chord/cache	d
 /switch/gtavcs_nx/gamefolder/userdata/tests/m08-chord/mc0	d
 /switch/gtavcs_nx/gamefolder/userdata/tests/m08-chord/mc1	d
-/switch/gtavcs_nx/gamefolder/userdata/tests/m08-chord/nxrun-results.txt	31717
-/switch/gtavcs_nx/gamefolder/userdata/tests/m08-chord/vcs.ini	24
+/switch/gtavcs_nx/gamefolder/userdata/tests/m08-chord/nxrun-results.txt	23372
 /switch/gtavcs_nx/gamefolder/userdata/tests/m08-final	d
 /switch/gtavcs_nx/gamefolder/userdata/tests/m08-final/backups	d
 /switch/gtavcs_nx/gamefolder/userdata/tests/m08-final/cache	d
@@ -712,15 +711,15 @@
 /switch/gtavcs_nx/gamefolder/userdata/tests/m08-nav/cache	d
 /switch/gtavcs_nx/gamefolder/userdata/tests/m08-nav/mc0	d
 /switch/gtavcs_nx/gamefolder/userdata/tests/m08-nav/mc1	d
-/switch/gtavcs_nx/gamefolder/userdata/tests/m08-nav/nxrun-results.txt	8894
+/switch/gtavcs_nx/gamefolder/userdata/tests/m08-nav/nxrun-results.txt	8896
 /switch/gtavcs_nx/gamefolder/userdata/tests/m08-settings	d
 /switch/gtavcs_nx/gamefolder/userdata/tests/m08-settings/backups	d
 /switch/gtavcs_nx/gamefolder/userdata/tests/m08-settings/cache	d
 /switch/gtavcs_nx/gamefolder/userdata/tests/m08-settings/mc0	d
 /switch/gtavcs_nx/gamefolder/userdata/tests/m08-settings/mc1	d
-/switch/gtavcs_nx/gamefolder/userdata/tests/m08-settings/nxrun-results.txt	4063
+/switch/gtavcs_nx/gamefolder/userdata/tests/m08-settings/nxrun-results.txt	4060
 /switch/gtavcs_nx/gamefolder/userdata/tests/m08-settings/perf	d
-/switch/gtavcs_nx/gamefolder/userdata/tests/m08-settings/perf/perf_20261119_170538.csv	28084
+/switch/gtavcs_nx/gamefolder/userdata/tests/m08-settings/perf/perf_20261119_172451.csv	28187
 /switch/gtavcs_nx/gamefolder/userdata/tests/m08-settings/vcs.ini	203
 /switch/gtavcs_nx/gtavcs-boot.log	62
 /switch/gtavcs_nx/gtavcs.nro	66362616

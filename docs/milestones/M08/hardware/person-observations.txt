@@ -42,3 +42,10 @@ overlay on, closed by B).
 2026-11-19, NRO 2a02c7b6 (trainer-r3, review 3): asked to open the trainer from the developer menu, enter the Player
 page, close everything with L3 + R3 without B, reopen the trainer from the menu and say whether anything turned on by
 itself: "It went great". Log: "[trainer] opened from another menu, 2 page(s) deep, nothing chosen", trainer_used=0.
+2026-11-19, NRO c81c7428 (trainer-r4, review 4): the user: "Its broken"; asked what: "When choosing trainer, the
+window closed itself", then "Trainer showed and the window to choose trainer or free cam, that closed" (the developer
+menu closes when the trainer opens, as designed; the log: "[trainer] opened from another menu, 1 page(s) deep; 1
+button(s) held now ignored until let go", trainer=1 at t=511). For step 3 (hold D-pad Right, press A on Trainer...) the
+user said the developer menu "Closed on its own"; the log has no D-pad event in that time and both sticks down at the
+same millisecond (528673 ms leftstick / rightstick down -> "closed by L3 + R3"), so the trainer was not reopened and
+step 3 was not done. The retry (trainer-r4b) was sent but the user was away from the console; not done.

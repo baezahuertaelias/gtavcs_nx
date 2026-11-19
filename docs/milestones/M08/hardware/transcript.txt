@@ -860,3 +860,35 @@
 17:22:25 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m08-settings/perf/perf_20261119_172451.csv bytes=28187 sha256=0d4d36bed8032dcde82d28a32eeccdbcae996c4b6424429610204e73d7c67da8
 17:22:25 reset-r3: 9 chord / menu / touch / settings lines -> reset-r3-m08.txt
 17:22:25 RESULT game PASS
+17:36:23 ftp 192.168.1.107:5000 reachable
+17:36:30 tree /switch/gtavcs_nx entries=894 file=sd-tree-preflight.txt
+17:36:30 disc images under /switch/gtavcs_nx: none
+17:36:30 folder disc manifest present=True elf present=True
+17:36:30 RESULT preflight PASS
+17:36:37 removed /switch/gtavcs_nx/gamefolder/userdata/tests/m08-chord: files=1 folders=4
+17:36:37 == m08-chord: profile=m08-chord nro sha256=c81c7428a71b286cc4011311af4cf376e4c792c3f4e240ed8ef3977f203a994d
+17:36:43 tree /switch/gtavcs_nx/gamefolder/userdata entries=345 file=userdata-before-m08-chord.txt
+17:36:43 deleted /switch/gtavcs_nx/gamefolder/gtavcs.log
+17:36:43 nothing to delete at /switch/gtavcs_nx/gamefolder/userdata/tests/m08-chord/nxrun-results.txt
+17:36:43 wrote /switch/gtavcs_nx/gamefolder/userdata/nxrun.cfg bytes=959 sha256=da75e3adbf3b9315774939ecb3b8b34c735c44dc1822bd49ffe0a20d8ddf58a8
+17:36:49 nxlink attempt=1 exit=0 output='Sending /switch/gtavcs_nx/gtavcs.nro, 66362616 bytes\n26192497 sent (39.47%), 2163 blocks'
+17:37:04 ACTION FOR THE PERSON AT THE SWITCH: trainer, Player, L3+R3 close, reopen trainer with D-pad Right held + A, nothing changes, close
+17:46:00 ftp back after 550s: the payload has ended
+17:46:03 deleted /switch/gtavcs_nx/gamefolder/userdata/nxrun.cfg
+17:46:03 read-back /switch/gtavcs_nx/gamefolder/gtavcs.log bytes=163194 sha256=5f6676bf54325f6e0babe68cfa8c50a0c8abb464874704cedd52efc8b06a41ae
+17:46:03 read-back /switch/gtavcs_nx/gtavcs-boot.log bytes=62 sha256=3dfe21382f340edd44bac1bf1dd0af6377ec3f03f87b166979ec89c9759bba4b
+17:46:03 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m08-chord/nxrun-results.txt bytes=106476 sha256=7989af96778a168208a87ba030e1424b153da01bbfb6648027d261afeffdf90e
+17:46:09 tree /switch/gtavcs_nx/gamefolder/userdata entries=351 file=userdata-after-m08-chord.txt
+17:46:15 m08-chord: clean_exit_line=True results_tail=['shutdown t=524.845 frames=13308', 'audit t=524.845 file_opens=145 iso_opens=0 first_iso="" threads_created=7'] sd_matches_local=True new_crashes=[]
+17:46:15 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m08-chord/nxrun-results.txt bytes=106476 sha256=7989af96778a168208a87ba030e1424b153da01bbfb6648027d261afeffdf90e
+17:46:15 trainer-r4: read back 1 files from /switch/gtavcs_nx/gamefolder/userdata/tests/m08-chord (screenshots private under build\evidence\M06\screenshots\trainer-r4)
+17:46:15 trainer-r4: 36 chord / menu / touch / settings lines -> trainer-r4-m08.txt
+17:46:15 RESULT game PASS
+17:48:36 removed /switch/gtavcs_nx/gamefolder/userdata/tests/m08-chord: files=1 folders=4
+17:48:36 == m08-chord: profile=m08-chord nro sha256=c81c7428a71b286cc4011311af4cf376e4c792c3f4e240ed8ef3977f203a994d
+17:48:41 tree /switch/gtavcs_nx/gamefolder/userdata entries=345 file=userdata-before-m08-chord.txt
+17:48:41 deleted /switch/gtavcs_nx/gamefolder/gtavcs.log
+17:48:42 nothing to delete at /switch/gtavcs_nx/gamefolder/userdata/tests/m08-chord/nxrun-results.txt
+17:48:42 wrote /switch/gtavcs_nx/gamefolder/userdata/nxrun.cfg bytes=959 sha256=da75e3adbf3b9315774939ecb3b8b34c735c44dc1822bd49ffe0a20d8ddf58a8
+17:48:52 nxlink attempt=1 exit=0 output='Sending /switch/gtavcs_nx/gtavcs.nro, 66362616 bytes\n26192497 sent (39.47%), 2163 blocks'
+17:49:07 ACTION FOR THE PERSON AT THE SWITCH: trainer, Player, L3+R3 close, reopen trainer holding the Right arrow + A, nothing changes, close
