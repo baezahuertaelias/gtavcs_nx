@@ -1,0 +1,34 @@
+[devmenu] 74 desktop-only settings hidden (Keyboard page, window, background)
+[settings] display aspect 1.333, HUD 4:3
+[settings] display aspect 1.333, HUD 4:3
+[settings] /switch/gtavcs_nx/gamefolder/userdata/tests/m08-functions/vcs.ini: 122 settings, 1 not at their default: display.skip_intro=1
+[devmenu] L3 + R3 opens the developer menu; Back + Start / RB / LB chords off
+[chord] L3 + R3 opens the developer menu; every L3 / R3 press waits 100 ms for the other
+[platform] focus lost: audio paused, pad neutral
+[platform] focus back: audio resumed, pad live
+[platform] controller physical: No1 styles 0x0 (none, device type 0x0), handheld styles 0x2 (Joy-Cons attached (handheld), device type 0xc)
+[chord] 94.279 s L3 chord after 0.0 ms: game sees L3=0 R3=0
+[chord] 94.279 s R3 chord after 0.0 ms: game sees L3=0 R3=0 (menu toggle)
+[devmenu] opened by L3 + R3: menu=1 settings=0 trainer=0 chords=1
+[chord] 94.421 s L3 suppressed-up: game sees L3=0 R3=0
+[chord] 94.468 s R3 suppressed-up: game sees L3=0 R3=0
+[devmenu] closed by B: menu=0 settings=0 trainer=0 chords=1
+[chord] 98.651 s R3 withheld: game sees L3=0 R3=0
+[chord] 98.698 s L3 chord after 0.0 ms: game sees L3=0 R3=0
+[chord] 98.698 s R3 chord after 47.0 ms: game sees L3=0 R3=0 (menu toggle)
+[devmenu] opened by L3 + R3: menu=1 settings=0 trainer=0 chords=2
+[chord] 98.921 s L3 suppressed-up: game sees L3=0 R3=0
+[chord] 98.921 s R3 suppressed-up: game sees L3=0 R3=0
+[devmenu] chose: trainer
+[devmenu] to the trainer: menu=0 settings=0 trainer=1 chords=2
+[devmenu] trainer used: 1 action(s) this run; a save made from now on may hold trainer changes (noted in /switch/gtavcs_nx/gamefolder/userdata/tests/m08-functions/trainer-used.txt)
+[devmenu] trainer used: 2 action(s) this run; a save made from now on may hold trainer changes (noted in /switch/gtavcs_nx/gamefolder/userdata/tests/m08-functions/trainer-used.txt)
+[devmenu] trainer used: 3 action(s) this run; a save made from now on may hold trainer changes (noted in /switch/gtavcs_nx/gamefolder/userdata/tests/m08-functions/trainer-used.txt)
+[devmenu] trainer used: 4 action(s) this run; a save made from now on may hold trainer changes (noted in /switch/gtavcs_nx/gamefolder/userdata/tests/m08-functions/trainer-used.txt)
+[devmenu] trainer used: 10 action(s) this run; a save made from now on may hold trainer changes (noted in /switch/gtavcs_nx/gamefolder/userdata/tests/m08-functions/trainer-used.txt)
+[devmenu] trainer used: 11 action(s) this run; a save made from now on may hold trainer changes (noted in /switch/gtavcs_nx/gamefolder/userdata/tests/m08-functions/trainer-used.txt)
+[devmenu] trainer used: 12 action(s) this run; a save made from now on may hold trainer changes (noted in /switch/gtavcs_nx/gamefolder/userdata/tests/m08-functions/trainer-used.txt)
+[devmenu] trainer used: 13 action(s) this run; a save made from now on may hold trainer changes (noted in /switch/gtavcs_nx/gamefolder/userdata/tests/m08-functions/trainer-used.txt)
+[devmenu] trainer used: 14 action(s) this run; a save made from now on may hold trainer changes (noted in /switch/gtavcs_nx/gamefolder/userdata/tests/m08-functions/trainer-used.txt)
+[devmenu] trainer used: 15 action(s) this run; a save made from now on may hold trainer changes (noted in /switch/gtavcs_nx/gamefolder/userdata/tests/m08-functions/trainer-used.txt)
+[devmenu] trainer used: 16 action(s) this run; a save made from now on may hold trainer changes (noted in /switch/gtavcs_nx/gamefolder/userdata/tests/m08-functions/trainer-used.txt)

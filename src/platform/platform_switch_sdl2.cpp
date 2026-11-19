@@ -15,8 +15,9 @@
 //     npad style sets, not SDL: switch-sdl2 never removes a joystick (M06-14).
 //   - L3 and R3 reach the game only through the developer menu's chord filter (src/devmenu/chord.h, M08-14): each press
 //     waits VCS_NX_CHORD_MS (100 ms) for the other one; L3 + R3 together toggle the menu and never reach the game.
-//   - Touch: SDL reports the touch screen in window coordinates (the fixed 1920x1080 surface); Dear ImGui's display is
-//     the output region the panel shows (1280x720 in handheld), so its mouse events are scaled to it (M08-17).
+//   - Touch: switch-sdl2 reports fingers as fractions of the panel and never as mouse events (no window), so they go
+//     to Dear ImGui directly, scaled to its display, the output region the panel shows (1280x720 in handheld, M08-17).
+//     Mouse events (a USB mouse) are scaled from the window's coordinates, the fixed 1920x1080 surface, the same way.
 //   - Audio: SDL2's callback device (SDL owns audren), pulled from upstream's producer ring by AudioFill on SDL's
 //     audio thread. setFocus(false) pauses and resumes it across HOME / sleep.
 // Thread rules are platform.h's: the main thread pumps events and owns the frame calls; queries read a snapshot.
@@ -230,9 +231,9 @@ namespace platform
             }
         }
 
-        // Dear ImGui's display is the output region the panel shows (switch/output.h); SDL's mouse events (the touch
-        // screen's, SDL_TOUCH_MOUSEID) are in the window's coordinates, the whole fixed surface. Scale them to the
-        // display, as the panel scales the region (M08-17).
+        // Dear ImGui's display is the output region the panel shows (switch/output.h); SDL's mouse events are in the
+        // window's coordinates, the whole fixed surface. Scale them to the display, as the panel scales the region
+        // (M08-17; the touch screen comes through touchToUi, switch-sdl2 makes no mouse events of it).
         void toUiCoordinates(SDL_Event &e)
         {
             int ww = 0, wh = 0, ow = 0, oh = 0;
@@ -261,6 +262,38 @@ namespace platform
                                  e.button.which == SDL_TOUCH_MOUSEID ? "touch" : "mouse", x, y, e.button.x, e.button.y, ww,
                                  wh, ow, oh);
                 }
+            }
+        }
+
+        // The touch screen (M08-17). switch-sdl2 2.28 reports fingers without a window (SDL_SendTouch with no window), so
+        // SDL never turns them into mouse events (the first touch run: no press reached Dear ImGui). The finger's position
+        // is a fraction of the panel, which shows the output region: Dear ImGui's display. Fed to it as a touch screen
+        // mouse, the first finger only.
+        void touchToUi(const SDL_TouchFingerEvent &f, Uint32 type)
+        {
+            static SDL_FingerID active = -1;
+            if (type == SDL_FINGERDOWN && active == -1)
+                active = f.fingerId;
+            if (f.fingerId != active)
+                return;
+            int ow = 0, oh = 0;
+            outputSize(ow, oh);
+            const float x = std::clamp(f.x, 0.0f, 1.0f) * static_cast<float>(ow);
+            const float y = std::clamp(f.y, 0.0f, 1.0f) * static_cast<float>(oh);
+            ImGuiIO &io = ImGui::GetIO();
+            io.AddMouseSourceEvent(ImGuiMouseSource_TouchScreen);
+            io.AddMousePosEvent(x, y);
+            if (type == SDL_FINGERDOWN)
+            {
+                io.AddMouseButtonEvent(ImGuiMouseButton_Left, true);
+                g_touches.fetch_add(1, std::memory_order_relaxed);
+                std::fprintf(stderr, "[touch] finger down at panel %.3f,%.3f -> display %.0f,%.0f (display %dx%d)\n", f.x, f.y, x,
+                             y, ow, oh);
+            }
+            else if (type == SDL_FINGERUP)
+            {
+                io.AddMouseButtonEvent(ImGuiMouseButton_Left, false);
+                active = -1;
             }
         }
 
@@ -521,6 +554,12 @@ namespace platform
                 if (!g_quit)
                     std::fprintf(stderr, "[platform] quit requested (applet exit request): stopping in order\n");
                 g_quit = true;
+                break;
+            case SDL_FINGERDOWN:
+            case SDL_FINGERMOTION:
+            case SDL_FINGERUP:
+                if (g_imgui)
+                    touchToUi(e.tfinger, e.type);
                 break;
             case SDL_CONTROLLERDEVICEADDED:
                 openGamepad(e.cdevice.which);
