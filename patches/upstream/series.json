@@ -44,6 +44,10 @@
     {
       "path": "0011-music-loop-unused.patch",
       "sha256": "97e31bc32676a23b375a69d32d158f8b0222fb3dfae9ca00618e56b4b7238546"
+    },
+    {
+      "path": "0012-switch-dev-menu-seams.patch",
+      "sha256": "6f6cbaebed98e1d0e0b548cac17003f0f548efa8a85c9dc23630bdaa55736e60"
     }
   ]
 }

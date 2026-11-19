@@ -1,0 +1,371 @@
+diff --git a/docs/PS2RECOMP_PATCHES.md b/docs/PS2RECOMP_PATCHES.md
+index 297aa30..cd505a5 100644
+--- a/docs/PS2RECOMP_PATCHES.md
++++ b/docs/PS2RECOMP_PATCHES.md
+@@ -389,3 +389,9 @@ changes keep desktop behaviour: `main()` and `run()` take the same steps as befo
+ | Where | What | Why |
+ |---|---|---|
+ | `ps2xRuntime/src/lib/ps2_audio_out.cpp`, `include/runtime/ps2_audio_out.h`; `src/game/vcs_sound.cpp` | `ps2AudioSetFiller`: a keeper thread (started in `ps2AudioInit`, joined in `ps2AudioShutdown`) asks the producer for more when the ring holds under 40 ms and nothing was pushed for 15 ms; the native sound driver's filler mixes the SPU2 ahead of EE time under its lock, and `clock()` mixes only past it. While not primed (at start, after an underrun) the keeper fills up to the target, in whole 256-frame blocks (the SPU2's hand-over size), so it cannot stop just short of priming; it is idle while a movie's sound is queued (the SPU2 is not mixed under a movie, as before). The runtime forgives an IOP lag over 1 s (PS2Runtime::advanceIopEeCycles), so a stall's time beyond 1 s never reaches `clock()`; a filler lead over 1 s therefore moves the engine's EE time along, the EE repays the rest and `clock()` mixes again (without it the filler mixed everything after a 2 s stall). `runEnd` calls `ps2AudioShutdown` before `platform::shutdown` (the header's order): the keeper is joined before the device closes. The stats line gives the filled share. On by default on the Switch only (`__SWITCH__`); `PS2X_AUDIO_FILL=1` / `0` overrides; off with `PS2X_IOP_REALTIME=0` | The SPU2 was mixed only on the game thread: a frame longer than the target fill (60-250 ms) was a gap, and the catch-up burst after it overflowed the 400 ms cap and was dropped. On the Switch (frames of 0.5-1 s while driving) a 16-minute drive starved 54 s in 169 underruns |
++
++## The Switch port's developer menu (Switch port M08, 2026-11-19)
++
++| Where | What | Why |
++|---|---|---|
++| `ps2xRuntime/src/lib/ps2_perf.cpp`, `include/runtime/ps2_perf.h` | `ps2perf::setRecording` / `recording` / `recordingName`: F4's CSV recording started and stopped from a menu, into a given folder | The Switch has no F4: its developer menu (L3 + R3) starts and stops the frame-time recording, and writes it under the game folder's userdata instead of the working directory (the extracted disc) |
+diff --git a/docs/SETTINGS_MENU_WIDESCREEN.md b/docs/SETTINGS_MENU_WIDESCREEN.md
+index 8130ab6..5fa9e1a 100644
+--- a/docs/SETTINGS_MENU_WIDESCREEN.md
++++ b/docs/SETTINGS_MENU_WIDESCREEN.md
+@@ -258,6 +258,18 @@ and **Alt+Enter** switches at any time, also with a menu open; the choice is sav
+   the setting to full screen and back, the game stays in gameplay both times (no pause menu), Enter alone still opens
+   it; same with `VCS_FULLSCREEN=1` (switches for the run only); vcs.ini byte-identical afterwards.
+ 
++## Other hosts (Switch port M08, 2026-11-19)
++
++- A host without a keyboard, a mouse or a desktop window hides their rows (`settings::setHidden`): the values are
++  still loaded, saved and reset, and a page left with no row has no tab (`settings::pages`).
++- A host with its own way to the menus turns the desktop's gamepad chords off (`ui::setDesktopGamepadChords`: Back +
++  Start, Back + RB, Back + LB; on the Switch Back is the game's Select, and the port's developer menu opens on
++  L3 + R3). Its menu draws first in the UI hook (`vcs::launcher::setHostUi`) and blocks the game's input as these do;
++  `ui::openTrainerMenu` / `closeTrainerMenu` open the trainer from it.
++- vcs.ini values must be whole decimal integers: `atoi` took `abc` or `1x` as a valid 0 or 1, so a damaged file
++  switched toggles without a word; such a value is now ignored with the `[settings] ... ignoring` line, and the next
++  save writes the key's real value over it.
++
+ ## Player settings (2026-10-28): controls, sound, presets
+ 
+ Asked for by the user ("substantially flexible settings that players can change"). Pages now: Display, Graphics,
+diff --git a/src/game/vcs_trainer.cpp b/src/game/vcs_trainer.cpp
+index 58f442d..1146a3d 100644
+--- a/src/game/vcs_trainer.cpp
++++ b/src/game/vcs_trainer.cpp
+@@ -359,13 +359,24 @@ namespace vcs::trainer
+                 g_notices.pop_front();
+         }
+ 
+-        void queue(std::function<bool(uint8_t *, Scm &, std::string &)> build, ps2control::Reply reply = {},
+-                   std::vector<int> models = {})
++        std::atomic<uint64_t> g_used{0}; // [gta-recomp] usedCount
++
++        // [gta-recomp] queue() without counting it as a use: the switches (setToggle counts those it should) and the
++        // control channel's wait for what was queued before
++        void enqueue(std::function<bool(uint8_t *, Scm &, std::string &)> build, ps2control::Reply reply = {},
++                     std::vector<int> models = {})
+         {
+             std::lock_guard<std::mutex> lock(g_actionsMutex);
+             g_actions.push_back({std::move(build), std::move(reply), std::move(models)});
+         }
+ 
++        void queue(std::function<bool(uint8_t *, Scm &, std::string &)> build, ps2control::Reply reply = {},
++                   std::vector<int> models = {})
++        {
++            g_used.fetch_add(1, std::memory_order_relaxed);
++            enqueue(std::move(build), std::move(reply), std::move(models));
++        }
++
+         bool modelLoaded(const uint8_t *ram, int model)
+         {
+             const uint32_t streaming = rd32(ram, kStreaming);
+@@ -612,7 +623,7 @@ namespace vcs::trainer
+         // What turning a toggle on or off does at once.
+         void applyToggle(Toggle t, bool on)
+         {
+-            queue([t, on](uint8_t *ram, Scm &code, std::string &notice) {
++            enqueue([t, on](uint8_t *ram, Scm &code, std::string &notice) {
+                 static const char *const names[ToggleCount] = {"God mode", "Never wanted", "Unlimited ammo", "No reload",
+                                                                "Infinite sprint", "Fast reload", "Police ignore you",
+                                                                "Everyone ignores you", "Vehicle invincibility",
+@@ -836,7 +847,7 @@ namespace vcs::trainer
+             // answers once everything queued before has run
+             // answers once everything queued before has run, with the newest notice (what was done, or why not)
+             auto answerWhenDone = [&reply] {
+-                queue([](uint8_t *, Scm &, std::string &) { return true; }, [reply](const std::string &) {
++                enqueue([](uint8_t *, Scm &, std::string &) { return true; }, [reply](const std::string &) {
+                     const std::vector<Notice> n = notices(5.0);
+                     reply("ok " + (n.empty() ? std::string() : n.back().text));
+                 });
+@@ -1013,9 +1024,13 @@ namespace vcs::trainer
+     {
+         if (t < 0 || t >= ToggleCount || g_toggles[t].exchange(on) == on)
+             return;
++        if (on && t != FreeCamera && t != HideHud)
++            g_used.fetch_add(1, std::memory_order_relaxed);
+         applyToggle(t, on);
+     }
+ 
++    uint64_t usedCount() { return g_used.load(std::memory_order_relaxed); }
++
+     bool ready() { return g_ready.load(std::memory_order_relaxed); }
+     bool inVehicle() { return g_inVehicle.load(std::memory_order_relaxed); }
+ 
+diff --git a/src/game/vcs_trainer.h b/src/game/vcs_trainer.h
+index 6afe174..a1ab8ab 100644
+--- a/src/game/vcs_trainer.h
++++ b/src/game/vcs_trainer.h
+@@ -97,6 +97,10 @@ namespace vcs::trainer
+         bool screenshot = false; // from the screenshot key: left out of the next shot (ui::hideScreenshotNotices)
+     };
+     std::vector<Notice> notices(double maxAgeSeconds);
++    // [gta-recomp] Trainer actions queued and switches turned on in this run, the free camera and the hidden HUD (which
++    // change only the view) left out: a save made after any of them can hold what they did. The Switch port records it,
++    // so that a save test cannot pass over a trainer-made state without a word. Any thread.
++    uint64_t usedCount();
+     double now(); // the notices' clock
+     void notifyScreenshot(const std::string &text); // the screenshot key's notice (src/main.cpp); any thread
+ }
+diff --git a/src/launcher.h b/src/launcher.h
+index 4a04269..2c26ef4 100644
+--- a/src/launcher.h
++++ b/src/launcher.h
+@@ -18,5 +18,11 @@ namespace vcs::launcher
+     // Where the screenshot key saves (main(): screenshots next to vcs.exe, or VCS_SCREENSHOT_DIR).
+     void setScreenshotDirectory(const std::filesystem::path &dir);
+     void setUiCallbacks(PS2Runtime &runtime);
++    // [gta-recomp] A host's own UI (the Switch port's developer menu), drawn first in the UI hook every host frame,
++    // inside the Dear ImGui frame and before the settings and trainer menus, so it can open or close them in the same
++    // frame. It returns whether it has the input: the game's input is then blocked as for those menus. Main thread;
++    // before setUiCallbacks. nullptr (the default): none.
++    using HostUi = bool (*)();
++    void setHostUi(HostUi ui);
+     void installHooks(PS2Runtime &runtime);
+ }
+diff --git a/src/main.cpp b/src/main.cpp
+index c187a2c..a5c9173 100644
+--- a/src/main.cpp
++++ b/src/main.cpp
+@@ -830,6 +830,9 @@ namespace vcs::launcher
+     void restoreWindowPlacement() { ::restoreWindowPlacement(); }
+     void setScreenshotDirectory(const fs::path &dir) { g_screenshotDir = dir; }
+ 
++    HostUi g_hostUi = nullptr; // [gta-recomp] setHostUi
++    void setHostUi(HostUi ui) { g_hostUi = ui; }
++
+     void setUiCallbacks(PS2Runtime &runtime)
+     {
+         // the settings menu draws in the runtime's UI hook (registered before initialize(), which runs the init hook)
+@@ -838,10 +841,11 @@ namespace vcs::launcher
+                                         altEnter();
+                                         screenshotKey();
+                                         followWindowAspect();
++                                        const bool host = g_hostUi && g_hostUi(); // [gta-recomp] the host's own menu first
+                                         ui::drawSettingsMenu();
+                                         ui::drawTrainerMenu();
+-                                        ps2control::setGameInputBlocked(ui::settingsMenuBlocksInput() || ui::trainerMenuBlocksInput());
+-                                        vcs::input::onHostFrame(ui::settingsMenuOpen() || ui::trainerMenuBlocksInput());
++                                        ps2control::setGameInputBlocked(host || ui::settingsMenuBlocksInput() || ui::trainerMenuBlocksInput());
++                                        vcs::input::onHostFrame(host || ui::settingsMenuOpen() || ui::trainerMenuBlocksInput());
+                                         vcs::volume::onHostFrame();
+                                         drawFrameRateCounter();
+                                     },
+diff --git a/src/settings/settings.cpp b/src/settings/settings.cpp
+index 63db0ff..aad00f5 100644
+--- a/src/settings/settings.cpp
++++ b/src/settings/settings.cpp
+@@ -5,6 +5,8 @@
+ 
+ #include <algorithm>
+ #include <atomic>
++#include <cerrno>
++#include <climits>
+ #include <cstdio>
+ #include <cstdlib>
+ #include <fstream>
+@@ -126,11 +128,20 @@ namespace settings
+     {
+         std::vector<std::string> out;
+         for (const Spec &s : g_specs)
+-            if (std::find(out.begin(), out.end(), s.page) == out.end())
++            if (!s.hidden && std::find(out.begin(), out.end(), s.page) == out.end()) // [gta-recomp] no empty tabs
+                 out.push_back(s.page);
+         return out;
+     }
+ 
++    bool setHidden(const std::string &key, bool hidden)
++    {
++        auto it = g_index.find(key);
++        if (it == g_index.end())
++            return false;
++        g_specs[it->second].hidden = hidden;
++        return true;
++    }
++
+     int value(const std::string &key)
+     {
+         std::lock_guard<std::mutex> lock(g_mutex);
+@@ -183,8 +194,15 @@ namespace settings
+             }
+         }
+         auto take = [](const Spec &s, const std::string &text, const char *from) {
+-            const int v = std::atoi(text.c_str());
+-            if (!valid(s, v))
++            // [gta-recomp] the whole text must be a decimal integer: atoi read "abc" or "1x" as a valid 0 or 1, so a
++            // damaged file set toggles without a word (the end is the string's, not a NUL inside it)
++            char *end = nullptr;
++            errno = 0;
++            const long parsed = std::strtol(text.c_str(), &end, 10);
++            const bool number = !text.empty() && end == text.c_str() + text.size() && errno == 0 && parsed >= INT_MIN &&
++                                parsed <= INT_MAX;
++            const int v = number ? static_cast<int>(parsed) : 0;
++            if (!number || !valid(s, v))
+             {
+                 std::fprintf(stderr, "[settings] %s: ignoring %s=%s\n", from, s.key.c_str(), text.c_str());
+                 return;
+diff --git a/src/settings/settings.h b/src/settings/settings.h
+index 6eaca01..858d2bd 100644
+--- a/src/settings/settings.h
++++ b/src/settings/settings.h
+@@ -75,7 +75,11 @@ namespace settings
+ 
+     void add(Spec spec);
+     const std::vector<Spec> &all();
+-    std::vector<std::string> pages(); // in registration order
++    std::vector<std::string> pages(); // in registration order; [gta-recomp] only pages with a row that is not hidden
++    // [gta-recomp] Hides a registered setting's row (a host without what it controls: the Switch port hides the
++    // keyboard, the mouse and the desktop window). Its value is still loaded, saved and reset. False for an unknown
++    // key. Main thread, before the menu opens.
++    bool setHidden(const std::string &key, bool hidden);
+ 
+     int value(const std::string &key);         // the default for unknown keys / before load
+     bool set(const std::string &key, int v);   // validates, saves vcs.ini, calls onChange (Live); false if refused
+diff --git a/src/ui/settings_menu.cpp b/src/ui/settings_menu.cpp
+index 1cfc37e..de74674 100644
+--- a/src/ui/settings_menu.cpp
++++ b/src/ui/settings_menu.cpp
+@@ -26,6 +26,7 @@ namespace ui
+         bool g_open = false;
+         bool g_releaseWait = false;  // closed, but the keys / buttons that closed it are still down
+         bool g_chordWasDown = false; // Back + Start
++        bool g_desktopChords = true; // [gta-recomp] setDesktopGamepadChords
+         bool g_popupWasOpen = false; // a combo's list: Escape / B close it, not the menu
+         bool g_wasFocused = false;   // the menu window had focus last frame
+         bool g_focusWindow = false;
+@@ -362,6 +363,8 @@ namespace ui
+     }
+     bool settingsMenuBlocksInput() { return g_open || g_releaseWait; }
+     bool settingsMenuWaitingForKey() { return g_open && !g_capturing.empty(); }
++    void setDesktopGamepadChords(bool on) { g_desktopChords = on; }
++    bool desktopGamepadChords() { return g_desktopChords; }
+ 
+     void drawSettingsMenu()
+     {
+@@ -371,7 +374,7 @@ namespace ui
+             return;
+         }
+ 
+-        const bool chord = gamepadDown(platform::GAMEPAD_BACK) && gamepadDown(platform::GAMEPAD_START);
++        const bool chord = g_desktopChords && gamepadDown(platform::GAMEPAD_BACK) && gamepadDown(platform::GAMEPAD_START);
+         const bool chordPressed = chord && !g_chordWasDown;
+         g_chordWasDown = chord;
+         // the physical key, or one injected over the control channel (scripted checks; physical input to the game is
+diff --git a/src/ui/settings_menu.h b/src/ui/settings_menu.h
+index 2bd1a34..b9414b3 100644
+--- a/src/ui/settings_menu.h
++++ b/src/ui/settings_menu.h
+@@ -18,4 +18,10 @@ namespace ui
+     bool settingsMenuOpen();
+     bool settingsMenuBlocksInput(); // open, or its keys still held after closing (main.cpp blocks the game's input)
+     bool settingsMenuWaitingForKey(); // a key setting waits for the key to bind (the screenshot key does nothing then)
++
++    // [gta-recomp] The desktop's gamepad chords: Back + Start (this menu), Back + RB (the trainer), Back + LB (the free
++    // camera). On by default; a host with its own way to reach the menus (the Switch port's L3 + R3 developer menu,
++    // where Back is the game's Select) turns them off. Main thread.
++    void setDesktopGamepadChords(bool on);
++    bool desktopGamepadChords();
+ }
+diff --git a/src/ui/trainer_menu.cpp b/src/ui/trainer_menu.cpp
+index 4a50a23..843c591 100644
+--- a/src/ui/trainer_menu.cpp
++++ b/src/ui/trainer_menu.cpp
+@@ -516,16 +516,27 @@ namespace ui
+ 
+     bool trainerMenuOpen() { return g_open; }
+     bool trainerMenuBlocksInput() { return g_open || g_releaseWait; }
++    void openTrainerMenu()
++    {
++        if (!g_open)
++            open();
++    }
++    void closeTrainerMenu()
++    {
++        if (g_open)
++            close();
++    }
+     void hideScreenshotNotices() { g_hideShotNotices = true; }
+ 
+     void drawTrainerMenu()
+     {
+-        const bool chord = padDown(platform::GAMEPAD_BACK) && padDown(platform::GAMEPAD_RIGHT_SHOULDER);
++        const bool desktopChords = desktopGamepadChords(); // [gta-recomp] off on the Switch (settings_menu.h)
++        const bool chord = desktopChords && padDown(platform::GAMEPAD_BACK) && padDown(platform::GAMEPAD_RIGHT_SHOULDER);
+         const bool chordPressed = chord && !g_chordWasDown;
+         g_chordWasDown = chord;
+         const int key = settings::value("controls.trainer_key");
+         // the free camera's own hotkey (any time, the trainer open or not)
+-        const bool camChord = padDown(platform::GAMEPAD_BACK) && padDown(platform::GAMEPAD_LEFT_SHOULDER);
++        const bool camChord = desktopChords && padDown(platform::GAMEPAD_BACK) && padDown(platform::GAMEPAD_LEFT_SHOULDER);
+         const bool camChordPressed = camChord && !g_camChordWasDown;
+         g_camChordWasDown = camChord;
+         if (!settingsMenuOpen() && (pressedKey(settings::value("controls.freecam_key")) || camChordPressed))
+diff --git a/src/ui/trainer_menu.h b/src/ui/trainer_menu.h
+index 0333a54..574e37a 100644
+--- a/src/ui/trainer_menu.h
++++ b/src/ui/trainer_menu.h
+@@ -12,6 +12,9 @@ namespace ui
+     void drawTrainerMenu();
+     bool trainerMenuOpen();
+     bool trainerMenuBlocksInput(); // open, or its keys still held after closing
++    // [gta-recomp] Opens or closes it from another menu (the Switch port's developer menu). Main thread.
++    void openTrainerMenu();
++    void closeTrainerMenu();
+     // Before drawTrainerMenu, on a frame the screenshot key captures: the notices of earlier shots stay out of it.
+     void hideScreenshotNotices();
+ }
+diff --git a/third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_perf.h b/third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_perf.h
+index 804efc2..0a23a8b 100644
+--- a/third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_perf.h
++++ b/third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_perf.h
+@@ -97,6 +97,11 @@ namespace ps2perf
+     // [gta-recomp] Main thread: the F3 overlay's state (settings menu).
+     void setOverlay(bool on);
+     bool overlayOn();
++    // [gta-recomp] Main thread: F4's CSV recording from a menu (the Switch port's developer menu, which has no F4). On
++    // starts a file named as F4 names it in `directory` (empty: the working directory, as F4); off saves it.
++    void setRecording(bool on, const std::string &directory = {});
++    bool recording();
++    std::string recordingName(); // the file being written; empty when not recording
+     // [gta-recomp] A second F3 panel under the perf numbers with the game's state (player, vehicle, camera, scripts):
+     // the game-specific code fills `lines` (main thread, each host frame while the overlay is on). `color` is an
+     // IM_COL32 value (0 = the panel's default); `header` lines start a section (drawn dim, a little apart).
+diff --git a/third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_perf.cpp b/third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_perf.cpp
+index 3773543..ef4dec8 100644
+--- a/third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_perf.cpp
++++ b/third_party/PS2Recomp/ps2xRuntime/src/lib/ps2_perf.cpp
+@@ -732,6 +732,28 @@ namespace ps2perf
+ 
+     bool overlayOn() { return g_overlay; }
+ 
++    void setRecording(bool on, const std::string &directory)
++    {
++        std::lock_guard<std::mutex> lock(g_mutex);
++        g_logFromEnv = true; // as F4: a manual toggle wins over PS2X_PERF_LOG
++        if (!on)
++            closeCsv();
++        else if (!g_csv)
++            openCsv(directory.empty() ? timestampedName() : directory + "/" + timestampedName());
++    }
++
++    bool recording()
++    {
++        std::lock_guard<std::mutex> lock(g_mutex);
++        return g_csv != nullptr;
++    }
++
++    std::string recordingName()
++    {
++        std::lock_guard<std::mutex> lock(g_mutex);
++        return g_csv ? g_csvName : std::string();
++    }
++
+     void setInfoProvider(InfoProvider provider) { g_infoProvider = std::move(provider); }
+ 
+     std::string summaryLine()

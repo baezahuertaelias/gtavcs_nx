@@ -2,8 +2,10 @@
 
     python tools/run_core_host_tests.py <evidence-dir>
 
-Suites: src/core/run_config.cpp (tests/core/run_config_tests.cpp) and the Switch branch of the overlay's
-runtime/ps2_host_fs.h compiled with -D__SWITCH__ (tests/core/host_fs_logic_tests.cpp). Each is built with the
+Suites: src/core/run_config.cpp (tests/core/run_config_tests.cpp), the Switch branch of the overlay's
+runtime/ps2_host_fs.h compiled with -D__SWITCH__ (tests/core/host_fs_logic_tests.cpp), the developer menu's L3 + R3
+chord filter src/devmenu/chord.cpp (tests/core/chord_tests.cpp, M08-14) and the overlay's settings registry
+src/settings/settings.cpp (tests/core/settings_tests.cpp, M08-04). Each is built with the
 container's host g++ twice - AddressSanitizer + UndefinedBehaviorSanitizer, and -O2 - and run with address
 randomization off, as tools/run_folder_disc_tests.py does. Logs, commands and the source commit go to <evidence-dir>.
 """
@@ -24,6 +26,9 @@ VARIANTS = {
 SUITES = {
     "run_config": ("src/core/run_config.cpp tests/core/run_config_tests.cpp", "-Isrc", "runRunConfigTests", ""),
     "host_fs_logic": ("tests/core/host_fs_logic_tests.cpp", "-I{runtime}/include", "runHostFsLogicTests", "-D__SWITCH__"),
+    "chord": ("src/devmenu/chord.cpp tests/core/chord_tests.cpp", "-Isrc", "runChordTests", ""),
+    "settings": ("{source}/src/settings/settings.cpp tests/core/settings_tests.cpp", "-I{source}/src -I{runtime}/include",
+                 "runSettingsTests", ""),
 }
 
 
@@ -35,7 +40,8 @@ def main():
     series = (ROOT / "patches/upstream/series.json").read_bytes()
     source = ROOT / ("build/m04/game-source-" + hashlib.sha256(series).hexdigest()[:16])
     prepare(source)
-    runtime = "/work/" + source.relative_to(ROOT).as_posix() + "/third_party/PS2Recomp/ps2xRuntime"
+    overlay = "/work/" + source.relative_to(ROOT).as_posix()
+    runtime = overlay + "/third_party/PS2Recomp/ps2xRuntime"
     commit = subprocess.check_output(["git", "-C", str(ROOT), "rev-parse", "HEAD"], text=True).strip()
     dirty = bool(subprocess.check_output(["git", "-C", str(ROOT), "status", "--porcelain"], text=True).strip())
     ok = True
@@ -44,7 +50,8 @@ def main():
         for name, flags in VARIANTS.items():
             script = (
                 f"set -e; mkdir -p /tmp/t && cd /work && printf '{driver}' > /tmp/t/driver.cpp && g++ --version | head -1 && "
-                f"g++ -std=c++20 -Wall -Wextra {flags} {defines} {include.format(runtime=runtime)} {sources} "
+                f"g++ -std=c++20 -Wall -Wextra {flags} {defines} {include.format(runtime=runtime, source=overlay)} "
+                f"{sources.format(source=overlay)} "
                 f"/tmp/t/driver.cpp -o /tmp/t/{suite} && setarch -R timeout 600 /tmp/t/{suite}")
             command = ["docker", "run", "--rm", "--network=none", "--security-opt", "seccomp=unconfined",
                        "--mount", f"type=bind,source={ROOT},target=/work", IMAGE, "bash", "-c", script]

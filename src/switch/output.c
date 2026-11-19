@@ -2,6 +2,8 @@
 #include <switch.h>
 #include <stdatomic.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include "output.h"
 
 static atomic_int output_width, output_height;
@@ -9,7 +11,10 @@ static int crop_surface_width, crop_surface_height;
 
 int gtavcs_output_update(int surface_width, int surface_height)
 {
-    const int docked = appletGetOperationMode() == AppletOperationMode_Console;
+    /* M08-02: VCS_NX_OUTPUT=1080 (a run's nxrun.cfg) draws the docked 1920x1080 output in handheld too, scaled down by
+     * the panel: the menus' 1080p layout checked without a dock. Not a player setting. */
+    const char *forced = getenv("VCS_NX_OUTPUT");
+    const int docked = appletGetOperationMode() == AppletOperationMode_Console || (forced && strcmp(forced, "1080") == 0);
     int width = docked ? 1920 : 1280, height = docked ? 1080 : 720;
     if (width > surface_width) width = surface_width;
     if (height > surface_height) height = surface_height;

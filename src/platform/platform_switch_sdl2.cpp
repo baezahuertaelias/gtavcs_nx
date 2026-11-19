@@ -13,12 +13,17 @@
 //   - SDL2 game controllers: buttons by physical position (SDL_HINT_GAMECONTROLLER_USE_BUTTON_LABELS=0), so
 //     south = Cross on every controller (platform.h's contract). Whether a controller is connected comes from HID's
 //     npad style sets, not SDL: switch-sdl2 never removes a joystick (M06-14).
+//   - L3 and R3 reach the game only through the developer menu's chord filter (src/devmenu/chord.h, M08-14): each press
+//     waits VCS_NX_CHORD_MS (100 ms) for the other one; L3 + R3 together toggle the menu and never reach the game.
+//   - Touch: SDL reports the touch screen in window coordinates (the fixed 1920x1080 surface); Dear ImGui's display is
+//     the output region the panel shows (1280x720 in handheld), so its mouse events are scaled to it (M08-17).
 //   - Audio: SDL2's callback device (SDL owns audren), pulled from upstream's producer ring by AudioFill on SDL's
 //     audio thread. setFocus(false) pauses and resumes it across HOME / sleep.
 // Thread rules are platform.h's: the main thread pumps events and owns the frame calls; queries read a snapshot.
 #include "platform/platform.h"
 #include "platform/platform_switch.h"
 #include "platform/gl_loader_egl.h"
+#include "devmenu/chord.h"
 #include "switch/output.h"
 
 #include <SDL.h>
@@ -58,6 +63,11 @@ namespace platform
         std::array<std::atomic<float>, AXIS_COUNT> g_padAxes{};
         std::atomic<bool> g_padConnected{false};
         SDL_GameController *g_gamepad = nullptr;
+        devmenu::ChordFilter g_chord; // M08-14: L3 / R3 to the game (made again at init with the run's window)
+        bool g_rawSticks[2] = {};     // L3, R3 before the filter
+        bool g_menuChord = false;     // takeMenuChord
+        uint64_t g_initNs = 0;        // the chord log's clock
+        std::atomic<uint64_t> g_chords{0}, g_stickPresses{0}, g_stickDelivered{0}, g_maxWithheldNs{0}, g_touches{0};
 
         SDL_AudioDeviceID g_audio = 0;
         AudioFill g_audioFill = nullptr;
@@ -177,6 +187,83 @@ namespace platform
             return now != 0;
         }
 
+        // M08-14: L3 / R3 through the chord filter, in place. Every event is logged (stick clicks are rare): the log
+        // shows what the game was given for each press, and that a chord gave it nothing.
+        void filterSticks(bool &l3, bool &r3, bool live)
+        {
+            using devmenu::ChordFilter;
+            g_rawSticks[0] = l3;
+            g_rawSticks[1] = r3;
+            if (!live)
+                g_chord.reset(); // out of focus or no pad: nothing withheld comes out later
+            const uint64_t now = nowNs();
+            const ChordFilter::Result r = g_chord.update(l3, r3, now);
+            l3 = r.guest[ChordFilter::L3];
+            r3 = r.guest[ChordFilter::R3];
+            if (r.chord)
+            {
+                g_menuChord = true;
+                g_chords.fetch_add(1, std::memory_order_relaxed);
+            }
+            static const char *const kNames[] = {"L3", "R3"};
+            for (int b = 0; b < ChordFilter::kButtons; ++b)
+            {
+                const ChordFilter::Event e = r.event[b];
+                if (e == ChordFilter::Event::None)
+                    continue;
+                if (e == ChordFilter::Event::Withheld)
+                    g_stickPresses.fetch_add(1, std::memory_order_relaxed);
+                if (e == ChordFilter::Event::Delivered || e == ChordFilter::Event::TapDelivered)
+                {
+                    g_stickDelivered.fetch_add(1, std::memory_order_relaxed);
+                    for (uint64_t seen = g_maxWithheldNs.load(std::memory_order_relaxed);
+                         r.heldNs[b] > seen && !g_maxWithheldNs.compare_exchange_weak(seen, r.heldNs[b], std::memory_order_relaxed);)
+                    {
+                    }
+                }
+                char held[48] = "";
+                if (e == ChordFilter::Event::Delivered || e == ChordFilter::Event::TapDelivered || e == ChordFilter::Event::Chord)
+                    std::snprintf(held, sizeof(held), " after %.1f ms", r.heldNs[b] / 1e6);
+                std::fprintf(stderr, "[chord] %.3f s %s %s%s: game sees L3=%d R3=%d%s\n", (now - g_initNs) / 1e9, kNames[b],
+                             devmenu::eventName(e), held, l3 ? 1 : 0, r3 ? 1 : 0,
+                             e == ChordFilter::Event::Chord && b == ChordFilter::R3 ? " (menu toggle)" : "");
+            }
+        }
+
+        // Dear ImGui's display is the output region the panel shows (switch/output.h); SDL's mouse events (the touch
+        // screen's, SDL_TOUCH_MOUSEID) are in the window's coordinates, the whole fixed surface. Scale them to the
+        // display, as the panel scales the region (M08-17).
+        void toUiCoordinates(SDL_Event &e)
+        {
+            int ww = 0, wh = 0, ow = 0, oh = 0;
+            SDL_GetWindowSize(g_window, &ww, &wh);
+            outputSize(ow, oh);
+            if (ww <= 0 || wh <= 0 || ow <= 0 || oh <= 0)
+                return;
+            auto sx = [&](Sint32 v) { return static_cast<Sint32>(std::lround(static_cast<double>(v) * ow / ww)); };
+            auto sy = [&](Sint32 v) { return static_cast<Sint32>(std::lround(static_cast<double>(v) * oh / wh)); };
+            if (e.type == SDL_MOUSEMOTION)
+            {
+                e.motion.x = sx(e.motion.x);
+                e.motion.y = sy(e.motion.y);
+                e.motion.xrel = sx(e.motion.xrel);
+                e.motion.yrel = sy(e.motion.yrel);
+            }
+            else if (e.type == SDL_MOUSEBUTTONDOWN || e.type == SDL_MOUSEBUTTONUP)
+            {
+                const Sint32 x = e.button.x, y = e.button.y;
+                e.button.x = sx(x);
+                e.button.y = sy(y);
+                if (e.type == SDL_MOUSEBUTTONDOWN)
+                {
+                    g_touches.fetch_add(1, std::memory_order_relaxed);
+                    std::fprintf(stderr, "[touch] %s press at window %d,%d -> display %d,%d (window %dx%d, display %dx%d)\n",
+                                 e.button.which == SDL_TOUCH_MOUSEID ? "touch" : "mouse", x, y, e.button.x, e.button.y, ww,
+                                 wh, ow, oh);
+                }
+            }
+        }
+
         void snapshotGamepad()
         {
             static constexpr SDL_GameControllerButton kButtons[GAMEPAD_BUTTON_COUNT] = {
@@ -194,8 +281,12 @@ namespace platform
             const bool physical = playerOneConnected();
             const bool live = g_gamepad && physical && g_focused && SDL_GameControllerGetAttached(g_gamepad);
             g_padConnected.store(g_gamepad != nullptr && physical, std::memory_order_relaxed);
+            bool down[GAMEPAD_BUTTON_COUNT];
             for (int b = 0; b < GAMEPAD_BUTTON_COUNT; ++b)
-                g_padButtons[b].store(live && SDL_GameControllerGetButton(g_gamepad, kButtons[b]), std::memory_order_relaxed);
+                down[b] = live && SDL_GameControllerGetButton(g_gamepad, kButtons[b]);
+            filterSticks(down[GAMEPAD_LEFT_STICK], down[GAMEPAD_RIGHT_STICK], live);
+            for (int b = 0; b < GAMEPAD_BUTTON_COUNT; ++b)
+                g_padButtons[b].store(down[b], std::memory_order_relaxed);
             for (int a = 0; a < AXIS_COUNT; ++a)
             {
                 // SDL2 axes are -32768..32767 (triggers 0..32767); platform.h: sticks -1..1, triggers 0..1
@@ -296,6 +387,17 @@ namespace platform
             g_inputLog = true;
         g_npadStyles = ~0u;
         openFirstGamepad();
+        // M08-14: the chord window, from the run's environment (nxrun.cfg) when given
+        {
+            uint64_t ms = 100;
+            if (const char *e = std::getenv("VCS_NX_CHORD_MS"); e && *e)
+                ms = std::clamp<uint64_t>(std::strtoull(e, nullptr, 10), 20, 500);
+            g_chord = devmenu::ChordFilter(ms * 1000000ull);
+            g_initNs = nowNs();
+            g_menuChord = false;
+            std::fprintf(stderr, "[chord] L3 + R3 opens the developer menu; every L3 / R3 press waits %llu ms for the other\n",
+                         static_cast<unsigned long long>(ms));
+        }
 
         IMGUI_CHECKVERSION();
         ImGui::CreateContext();
@@ -403,7 +505,11 @@ namespace platform
         while (SDL_PollEvent(&e))
         {
             if (g_imgui)
-                ImGui_ImplSDL2_ProcessEvent(&e);
+            {
+                SDL_Event ui = e;
+                toUiCoordinates(ui);
+                ImGui_ImplSDL2_ProcessEvent(&ui);
+            }
             switch (e.type)
             {
             case SDL_QUIT:
@@ -728,6 +834,26 @@ namespace platform_switch
         s.audioCallbacks = g_audioCallbacks.load(std::memory_order_relaxed);
         s.audioFrames = g_audioFrames.load(std::memory_order_relaxed);
         s.gamepad = g_padConnected.load(std::memory_order_relaxed);
+        s.chords = g_chords.load(std::memory_order_relaxed);
+        s.stickPresses = g_stickPresses.load(std::memory_order_relaxed);
+        s.stickDelivered = g_stickDelivered.load(std::memory_order_relaxed);
+        s.maxWithheldNs = g_maxWithheldNs.load(std::memory_order_relaxed);
+        s.chordWindowNs = g_chord.windowNs();
+        s.touches = g_touches.load(std::memory_order_relaxed);
         return s;
+    }
+
+    bool takeMenuChord()
+    {
+        using namespace platform;
+        const bool chord = g_menuChord;
+        g_menuChord = false;
+        return chord;
+    }
+
+    bool rawStickButton(int which)
+    {
+        using namespace platform;
+        return which >= 0 && which < 2 && g_rawSticks[which];
     }
 }
