@@ -892,3 +892,40 @@
 17:48:42 wrote /switch/gtavcs_nx/gamefolder/userdata/nxrun.cfg bytes=959 sha256=da75e3adbf3b9315774939ecb3b8b34c735c44dc1822bd49ffe0a20d8ddf58a8
 17:48:52 nxlink attempt=1 exit=0 output='Sending /switch/gtavcs_nx/gtavcs.nro, 66362616 bytes\n26192497 sent (39.47%), 2163 blocks'
 17:49:07 ACTION FOR THE PERSON AT THE SWITCH: trainer, Player, L3+R3 close, reopen trainer holding the Right arrow + A, nothing changes, close
+17:51:24 ftp back after 152s: the payload has ended
+17:51:26 ftp 192.168.1.107:5000 reachable
+17:51:27 deleted /switch/gtavcs_nx/gamefolder/userdata/nxrun.cfg
+17:51:27 read-back /switch/gtavcs_nx/gamefolder/gtavcs.log bytes=38933 sha256=f60a5ee8510ada308cf6b5e26380ab56d09dd7022e7f0487711ee7eefbc26925
+17:51:27 read-back /switch/gtavcs_nx/gtavcs-boot.log bytes=62 sha256=3dfe21382f340edd44bac1bf1dd0af6377ec3f03f87b166979ec89c9759bba4b
+17:51:27 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m08-chord/nxrun-results.txt bytes=22477 sha256=fc1e10d8dcfb33caf052641d1de18e7de5f9550479a925d21a2bff6125db3433
+17:51:36 tree /switch/gtavcs_nx/gamefolder/userdata entries=351 file=userdata-after-m08-chord.txt
+17:51:36 tree /switch/gtavcs_nx entries=895 file=sd-tree-preflight.txt
+17:51:36 disc images under /switch/gtavcs_nx: none
+17:51:36 folder disc manifest present=True elf present=True
+17:51:36 RESULT preflight PASS
+17:51:44 removed /switch/gtavcs_nx/gamefolder/userdata/tests/m08-chord: files=1 folders=4
+17:51:44 == m08-chord-2: profile=m08-chord nro sha256=c81c7428a71b286cc4011311af4cf376e4c792c3f4e240ed8ef3977f203a994d
+17:51:47 m08-chord: clean_exit_line=False results_tail=[] sd_matches_local=True new_crashes=[]
+17:51:47 trainer-r4b: read back 0 files from /switch/gtavcs_nx/gamefolder/userdata/tests/m08-chord (screenshots private under build\evidence\M06\screenshots\trainer-r4b)
+17:51:47 trainer-r4b: 10 chord / menu / touch / settings lines -> trainer-r4b-m08.txt
+17:51:47 RESULT game FAIL
+17:51:54 tree /switch/gtavcs_nx/gamefolder/userdata entries=345 file=userdata-before-m08-chord-2.txt
+17:51:54 deleted /switch/gtavcs_nx/gamefolder/gtavcs.log
+17:51:54 nothing to delete at /switch/gtavcs_nx/gamefolder/userdata/tests/m08-chord/nxrun-results.txt
+17:51:54 wrote /switch/gtavcs_nx/gamefolder/userdata/nxrun.cfg bytes=959 sha256=da75e3adbf3b9315774939ecb3b8b34c735c44dc1822bd49ffe0a20d8ddf58a8
+17:52:02 nxlink attempt=1 exit=0 output='Sending /switch/gtavcs_nx/gtavcs.nro, 66362616 bytes\n26192497 sent (39.47%), 2163 blocks'
+17:52:17 ACTION FOR THE PERSON AT THE SWITCH: trainer, Player, L3+R3 close, reopen trainer holding the Right arrow + A, nothing changes, close
+17:55:01 ftp back after 179s: the payload has ended
+17:55:04 deleted /switch/gtavcs_nx/gamefolder/userdata/nxrun.cfg
+17:55:04 read-back /switch/gtavcs_nx/gamefolder/gtavcs.log bytes=63224 sha256=1b3cd6bb1de428b65e222343ed5f7b331fd3c9f46c50d417ddab06f2314e41ec
+17:55:05 read-back /switch/gtavcs_nx/gtavcs-boot.log bytes=62 sha256=3dfe21382f340edd44bac1bf1dd0af6377ec3f03f87b166979ec89c9759bba4b
+17:55:05 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m08-chord/nxrun-results.txt bytes=36382 sha256=ae8223425833be2b8bf37d1c66b8c4b0c33321a643d18c3debfd1c8ec501c787
+17:55:12 tree /switch/gtavcs_nx/gamefolder/userdata entries=351 file=userdata-after-m08-chord-2.txt
+17:55:24 m08-chord-2: clean_exit_line=True results_tail=['shutdown t=163.934 frames=6919', 'audit t=163.934 file_opens=145 iso_opens=0 first_iso="" threads_created=7'] sd_matches_local=True new_crashes=[]
+18:00:42 removed /switch/gtavcs_nx/gamefolder/userdata/tests/m08-chord: files=1 folders=4
+18:00:43 == m08-chord: profile=m08-chord nro sha256=c81c7428a71b286cc4011311af4cf376e4c792c3f4e240ed8ef3977f203a994d
+18:00:48 tree /switch/gtavcs_nx/gamefolder/userdata entries=345 file=userdata-before-m08-chord.txt
+18:00:48 deleted /switch/gtavcs_nx/gamefolder/gtavcs.log
+18:00:48 nothing to delete at /switch/gtavcs_nx/gamefolder/userdata/tests/m08-chord/nxrun-results.txt
+18:00:48 wrote /switch/gtavcs_nx/gamefolder/userdata/nxrun.cfg bytes=959 sha256=da75e3adbf3b9315774939ecb3b8b34c735c44dc1822bd49ffe0a20d8ddf58a8
+18:00:59 nxlink attempt=1 exit=0 output='Sending /switch/gtavcs_nx/gtavcs.nro, 66362616 bytes\n26192497 sent (39.47%), 2163 blocks'

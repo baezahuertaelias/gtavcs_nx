@@ -366,7 +366,7 @@
 /switch/gtavcs_nx/gamefolder/SPLASH/SPLASH8.XTX	66764
 /switch/gtavcs_nx/gamefolder/SPLASH/SPLASH9.XTX	66764
 /switch/gtavcs_nx/gamefolder/SYSTEM.CNF	57
-/switch/gtavcs_nx/gamefolder/gtavcs.log	12541
+/switch/gtavcs_nx/gamefolder/gtavcs.log	38933
 /switch/gtavcs_nx/gamefolder/mc0	d
 /switch/gtavcs_nx/gamefolder/mc1	d
 /switch/gtavcs_nx/gamefolder/userdata	d
@@ -383,6 +383,7 @@
 /switch/gtavcs_nx/gamefolder/userdata/mc0/BASLUS-21590GTA40001/icon.sys	964
 /switch/gtavcs_nx/gamefolder/userdata/mc0/BASLUS-21590GTA40001/vcsicon.ico	49990
 /switch/gtavcs_nx/gamefolder/userdata/mc1	d
+/switch/gtavcs_nx/gamefolder/userdata/nxrun.cfg	959
 /switch/gtavcs_nx/gamefolder/userdata/tests	d
 /switch/gtavcs_nx/gamefolder/userdata/tests/m03-disc	d
 /switch/gtavcs_nx/gamefolder/userdata/tests/m03-disc/backups	d
@@ -680,7 +681,7 @@
 /switch/gtavcs_nx/gamefolder/userdata/tests/m08-chord/cache	d
 /switch/gtavcs_nx/gamefolder/userdata/tests/m08-chord/mc0	d
 /switch/gtavcs_nx/gamefolder/userdata/tests/m08-chord/mc1	d
-/switch/gtavcs_nx/gamefolder/userdata/tests/m08-chord/nxrun-results.txt	23372
+/switch/gtavcs_nx/gamefolder/userdata/tests/m08-chord/nxrun-results.txt	22477
 /switch/gtavcs_nx/gamefolder/userdata/tests/m08-final	d
 /switch/gtavcs_nx/gamefolder/userdata/tests/m08-final/backups	d
 /switch/gtavcs_nx/gamefolder/userdata/tests/m08-final/cache	d

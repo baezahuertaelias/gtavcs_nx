@@ -49,3 +49,9 @@ button(s) held now ignored until let go", trainer=1 at t=511). For step 3 (hold 
 user said the developer menu "Closed on its own"; the log has no D-pad event in that time and both sticks down at the
 same millisecond (528673 ms leftstick / rightstick down -> "closed by L3 + R3"), so the trainer was not reopened and
 step 3 was not done. The retry (trainer-r4b) was sent but the user was away from the console; not done.
+2026-11-19, NRO c81c7428 (trainer-r4c; logs renamed from trainer-r4b-gtavcs.log / m08-chord-2-results.txt after a label
+clash with the stopped attempt, now trainer-r4-away-*): the user held the Right arrow and pressed A on "Trainer...":
+"[trainer] opened from another menu, 1 page(s) deep; 2 button(s) held now ignored until let go", Right held 3.6 s
+more, trainer_used=0 in every report. The trainer was on its main page (1 page deep), not on Player, so the case of a
+held Right toggling God mode was not reproduced. Asked for one more run with the Player page open, the user declined:
+"I won't do more test, this is enough". That run (trainer-r4d) was stopped unplayed.
