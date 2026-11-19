@@ -452,7 +452,8 @@ namespace platform
         ImGuiIO &io = ImGui::GetIO();
         io.IniFilename = nullptr;
         io.LogFilename = nullptr;
-        io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;
+        // gamepad navigation stays off until a menu opens (the developer and settings menus turn it on and off; on from
+        // here it stayed on through gameplay: M08 review 2)
         // M08: the menus use the Nintendo layout, A (the right button) chooses and B (the bottom one) goes back (the
         // user's report: the PS2 positions felt swapped in the menus); the game keeps the physical positions
         io.ConfigNavSwapGamepadButtons = true;
