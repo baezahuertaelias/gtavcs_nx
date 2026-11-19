@@ -299,11 +299,11 @@ Branch: `milestone/m07-audio-movies` <!-- M07 -->
 - [x] M07-02 Preserve sample rate, interpolation, stereo channel order, clipping/saturation and game volume settings against desktop reference.
 - [x] M07-03 Keep consumer timing independent of rendering; measure queue depth, latency, underruns and recovery from deliberate frame stalls.
 - [x] M07-04 Verify effects/voice/mission banks, ambient sounds, positional balance and simultaneous channels across representative scenes.
-- [ ] M07-05 Verify radio/music/mission streams, seeking/looping and world transitions using AUDIO lookup/SDT/VB/RAW metadata correctly.
+- [x] M07-05 Verify radio/music/mission streams, seeking/looping and world transitions using AUDIO lookup/SDT/VB/RAW metadata correctly.
 - [x] M07-06 Add pinned target movie decoder dependencies or equivalent validated implementation; host FFmpeg libraries are forbidden.
 - [x] M07-07 Decode/render INTRO/STINGS PSS and gameplay cutscenes with audio/video sync, correct colors/aspect and bounded memory.
-- [ ] M07-08 Validate skip/pause/seek/stop and cancellation with pending I/O/audio; no stale buffers replay after transitions.
-- [ ] M07-09 Verify HOME/suspend/resume/device shutdown and error recovery without double audren ownership or callback I/O.
+- [x] M07-08 Validate skip/pause/seek/stop and cancellation with pending I/O/audio; no stale buffers replay after transitions.
+- [x] M07-09 Verify HOME/suspend/resume/device shutdown and error recovery without double audren ownership or callback I/O.
 - [x] M07-10 Record audible hardware playback plus PCM comparison and long streaming route; silence/nonzero PCM alone cannot close this milestone.
 - [x] M07-11 Verify no audio drift or cutscene desynchronization across variable frame rates in handheld mode (docked: M10-13, user decision 2026-11-18, docs/milestones/M07/SCOPE_DECISIONS.md).
 

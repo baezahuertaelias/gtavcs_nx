@@ -33,6 +33,7 @@ def main():
     ftp = m04.connect()
     if "mods" in m04.names(m04.listing(ftp, GAME)):
         session.say(f"REFUSED: {MODS} already exists; this run only creates and removes its own")
+        ftp.quit()
         return 1
     returncode = 1
     try:
@@ -49,15 +50,19 @@ def main():
             ftp.close()  # the first connection idles through the game run
         except ftplib.all_errors:
             pass
-        ftp = m04.connect()
-        for step, target in ((ftp.delete, MOD), (ftp.rmd, MOD_DIR), (ftp.rmd, MODS)):
-            try:
-                step(target)
-                session.say(f"removed {target}")
-            except ftplib.all_errors as error:
-                session.say(f"could not remove {target}: {error}")
-        left = "mods" in m04.names(m04.listing(ftp, GAME))
-        ftp.quit()
+        left = True
+        try:
+            ftp = m04.connect()
+            for step, target in ((ftp.delete, MOD), (ftp.rmd, MOD_DIR), (ftp.rmd, MODS)):
+                try:
+                    step(target)
+                    session.say(f"removed {target}")
+                except ftplib.all_errors as error:
+                    session.say(f"could not remove {target}: {error}")
+            left = "mods" in m04.names(m04.listing(ftp, GAME))
+            ftp.quit()
+        except (ftplib.all_errors, OSError) as error:
+            session.say(f"cleanup failed: {error}; remove {MODS} by hand")
         session.say(f"mods left={left}")
         if left:
             returncode = returncode or 1

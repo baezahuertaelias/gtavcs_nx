@@ -40,3 +40,8 @@ Review 1 follow-up (2026-11-19, handheld, stock clocks, NRO 6976c8d7 with the re
     "Several sounds together, none cut out, stopped early or crackled.").
 - The question wording of the 2026-11-18 radio answer ("Yes, it worked") was not recorded at the time; it is not
   reconstructed here.
+- resume-handheld (m07-resume.cfg, NRO e3583aa2, review 3 follow-up, 2026-11-19): the person was asked to "1) HOME
+  during the opening movie, ~5 s, back in; 2) once walking: sleep (power button), ~5 s, wake; 3) close from HOME".
+  The log shows four suspensions (7.1 s during STINGS.PSS, 24.0 s during INTRO.PSS, 12.2 s on foot in S4, 1.3 s before
+  the close), a skip of INTRO.PSS with Cross at 56.3 s (not asked for), and the close from HOME. The log cannot tell a
+  HOME press from sleep. The person reported nothing about this run and was not asked anything afterwards.

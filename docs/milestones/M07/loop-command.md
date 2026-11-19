@@ -33,4 +33,5 @@ position 0) plus one cutscene preload (0x90236, file 54), e.g. file 4 opened at 
 
 So M07-05's "seeking / looping" is, for this game: seeking = the open-at-position path (exercised on hardware); looping
 = not used by the game (the driver's loop path is unreachable from it). Limitation: a static scan; a command assembled
-by arithmetic other than `lui`+`ori`/`addiu` (none seen at the 12 call sites) would escape it.
+by arithmetic other than `lui`+`ori`/`addiu` (none seen at the 12 call sites), or an indirect call to 0x10DD50
+(`jalr`, a function-pointer table), would escape it; the radio log's 168 commands agree with it.

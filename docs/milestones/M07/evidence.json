@@ -160,7 +160,7 @@
   },
   {
    "path": "docs/milestones/M07/hardware/resume-handheld-gtavcs.txt",
-   "result": "Candidate NRO e3583aa2: suspensions of 7.1 s (STINGS.PSS) and 24.0 s (INTRO.PSS), the movie clock resumed where it stopped (7.04 -> 7.08 s, 9.54 -> 10.54 s), 0 dropped pictures"
+   "result": "Candidate NRO e3583aa2: suspensions of 7.1 s (STINGS.PSS) and 24.0 s (INTRO.PSS), the movie clock resumed where it stopped (7.04 -> 7.08 s, 9.54 -> 10.54 s), 0 dropped pictures; INTRO.PSS then skipped by the person (Cross, not asked for)"
   }
  ],
  "M07-09": [
@@ -190,7 +190,7 @@
   },
   {
    "path": "docs/milestones/M07/hardware/resume-handheld-gtavcs.txt",
-   "result": "Candidate NRO e3583aa2: four suspensions (7.1 / 24.0 s in the movies, 12.2 s on foot, 1.3 s before the close), audio paused / resumed each time, 0 underruns; after the on-foot one 41,706 frames (0.87 s) dropped once, the ring 200 / 165 / 141 ms; closed from HOME in order"
+   "result": "Candidate NRO e3583aa2: four suspensions (7.1 / 24.0 s in the movies, 12.2 s on foot, 1.3 s before the close), audio paused / resumed each time; 3 underruns, all in windows 0-2 (the movie windows and a 39 ms hand-over after the person's skip of INTRO.PSS), none after a resume; after the on-foot one 41,706 frames (0.87 s) dropped once, the ring 200 / 165 / 141 ms; closed from HOME in order"
   }
  ],
  "M07-10": [
