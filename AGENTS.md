@@ -309,7 +309,7 @@ patch); patch 0011 records that the game never loops a music stream. The user he
 radio, left / right and a mission's speech as correct. Docked audio: M16-01.
 M08 (2026-11-19, handheld, paired Joy-Cons attached): L3+R3 opens one developer menu (src/devmenu) with
 settings, trainer, free camera, performance overlay, frame-time recording and diagnostics; every L3/R3 press waits
-100 ms for the other, and no chord's L3/R3 reached the game (30 chords in the acceptance run; lone presses handed on
-103-185 ms late, R1-then-L3 free aim works). Menus use A to choose and B to go back; touch is read from HID (switch-sdl2
+100 ms for the other, and no chord's L3/R3 reached the game (15 chords in the final acceptance run; lone presses handed on
+103-185 ms late; R1-then-L3 sets the game's own free-aim flag). Menus use A to choose and B to go back; touch is read from HID (switch-sdl2
 delivered none). Damaged vcs.ini values are ignored and repaired; settings survive relaunch and reset. Root patch 0012.
 The 1080p menu layout was checked in handheld with VCS_NX_OUTPUT=1080; docked and the Pro Controller: M16.

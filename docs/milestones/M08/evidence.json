@@ -2,29 +2,25 @@
  "M08-01": [
   {
    "path": "docs/milestones/M08/TASKS.md",
-   "result": "Frame order and the single Dear ImGui context (SDL2 input backend, upstream's UiRenderer through the OpenGL RHI), traced in TASKS.md M08-01"
+   "result": "Frame order and the single Dear ImGui context, traced in TASKS.md M08-01"
   },
   {
-   "path": "src/platform/platform_switch_sdl2.cpp",
-   "result": "One ImGui context with imgui_impl_sdl2; beginFrame sets the display to the output size"
-  },
-  {
-   "path": "docs/milestones/M08/hardware/acceptance-f9-gtavcs.txt",
-   "result": "NRO f9aff8f1: developer, settings and trainer menus drawn and used; [rhi-stats] gl errors 0"
+   "path": "docs/milestones/M08/hardware/final-r1-gtavcs.txt",
+   "result": "NRO 6b62dca7: the menus drawn and used through the run, gl errors 0"
   }
  ],
  "M08-02": [
   {
-   "path": "docs/milestones/M08/hardware/acceptance-f9-gtavcs.txt",
-   "result": "NRO f9aff8f1: 30 L3 + R3 chords open / close the menu; Back + Start / RB / LB chords off"
+   "path": "docs/milestones/M08/hardware/final-r1-gtavcs.txt",
+   "result": "15 L3 + R3 chords open / close the menu; Back chords off; rows chosen with A"
   },
   {
    "path": "docs/milestones/M08/hardware/layout1080-f9-2-gtavcs.txt",
-   "result": "VCS_NX_OUTPUT=1080: output 1920x1080, Settings opened from the developer menu, gl errors 0"
+   "result": "1080p layout (VCS_NX_OUTPUT=1080) on f9aff8f1: settings opened from the developer menu"
   },
   {
    "path": "docs/milestones/M08/hardware/person-observations.txt",
-   "result": "The user: Settings text easy to read at 1080p and the frame counter appeared ('Yes to both'); A / B Nintendo layout after the user's report"
+   "result": "The user: 1080p Settings text easy to read, counter shown ('Yes to both')"
   },
   {
    "path": "docs/milestones/M08/SCOPE_DECISIONS.md",
@@ -33,126 +29,110 @@
  ],
  "M08-03": [
   {
-   "path": "docs/milestones/M08/hardware/settings-f9/nxrun-results.txt",
-   "result": "Registry settings changed through the control channel (fps counter, volume, diagnostics, recording): replies ok"
+   "path": "docs/milestones/M08/hardware/settings-r1/nxrun-results.txt",
+   "result": "Registry settings and the recording changed through the control channel on 6b62dca7: replies ok"
   },
   {
    "path": "docs/milestones/M08/hardware/layout1080-f9-2/vcs.ini",
-   "result": "Show frame rate set by the user in the settings menu reached from the developer menu: display.fps_counter=1"
-  },
-  {
-   "path": "src/devmenu/dev_menu.cpp",
-   "result": "Switch diagnostics and frame-time recording registered on Advanced > Diagnostics; 74 desktop-only rows hidden"
+   "result": "Show frame rate set by the user in the settings menu: display.fps_counter=1"
   }
  ],
  "M08-04": [
   {
-   "path": "docs/milestones/M08/hardware/settings-f9-gtavcs.txt",
-   "result": "Damaged vcs.ini: five bad values ignored with a log line, the good one loaded"
+   "path": "docs/milestones/M08/hardware/settings-r1-gtavcs.txt",
+   "result": "Damaged vcs.ini: five bad values ignored with a line, the good one loaded"
   },
   {
-   "path": "docs/milestones/M08/hardware/settings-f9/vcs.ini",
-   "result": "The damaged file repaired by the next save, the run's changes saved"
+   "path": "docs/milestones/M08/hardware/settings-r1/vcs.ini",
+   "result": "The damaged file repaired by the next save, the changes saved"
   },
   {
-   "path": "docs/milestones/M08/hardware/relaunch-f9-gtavcs.txt",
-   "result": "Relaunch: the saved values loaded (5 not at their default), then Reset all"
+   "path": "docs/milestones/M08/hardware/relaunch-r1-gtavcs.txt",
+   "result": "Relaunch: 5 saved values loaded, then Reset all"
   },
   {
-   "path": "docs/milestones/M08/hardware/reset-f9-gtavcs.txt",
-   "result": "After the reset only the run's own env override is not default"
+   "path": "docs/milestones/M08/hardware/reset-r1-gtavcs.txt",
+   "result": "After the reset only the run's env override is not default"
   },
   {
    "path": "docs/milestones/M08/hardware/layout-relaunch-f9-gtavcs.txt",
-   "result": "A setting changed in the menu came back after relaunch: display.fps_counter=1"
+   "result": "A setting changed in the menu came back after relaunch"
   },
   {
    "path": "docs/milestones/M08/host-tests/settings-sanitized.txt",
-   "result": "Registry host tests, ASan / UBSan: all PASS"
+   "result": "Registry host tests from 22bc86b, dirty=False: all PASS"
   }
  ],
  "M08-08": [
   {
-   "path": "docs/milestones/M08/hardware/acceptance-f9-gtavcs.txt",
-   "result": "Menu open / close in play and at the cutscene's end, open across HOME and closed after; every chord: game sees L3=0 R3=0; gl errors 0"
+   "path": "docs/milestones/M08/hardware/final-r1-gtavcs.txt",
+   "result": "Open / close in the flyover, the cutscene and play; HOME and sleep with the menu open (suspension 8.3 s and 15.1 s), closed after; 30 chord lines all game sees L3=0 R3=0; gl errors 0"
   },
   {
-   "path": "docs/milestones/M08/hardware/layout1080-f9-gtavcs.txt",
-   "result": "Open / close in the flyover (camera mode 15) and the cutscene (mode 17); gl errors 0"
+   "path": "docs/milestones/M08/hardware/final-r1/nxrun-results.txt",
+   "result": "gameinfo camera modes every 5 s and devmenu chord counts give the stages"
   }
  ],
  "M08-09": [
   {
    "path": "docs/milestones/M08/TASKS.md",
-   "result": "Static review of the trainer, free camera and menu paths: game-thread frame-kick scripts on the game's VM, nothing from host code mid-frame"
+   "result": "Static review: trainer actions at the game thread's frame kick on the game's script VM; free camera hook; menu main-thread only"
   },
   {
    "path": "patches/upstream/0012-switch-dev-menu-seams.patch",
-   "result": "vcs::trainer::usedCount counts every action and switch turned on"
+   "result": "vcs::trainer::usedCount"
   },
   {
-   "path": "docs/milestones/M08/hardware/acceptance-f9/trainer-used.txt",
-   "result": "Trainer use noted in the run's userdata: saves from then on may hold its changes"
+   "path": "docs/milestones/M08/hardware/final-r1/trainer-used.txt",
+   "result": "Trainer use noted in the run's userdata"
   },
   {
-   "path": "docs/milestones/M08/hardware/acceptance-f9/nxrun-results.txt",
-   "result": "trainer_used=6 in the run's reports; runs without the trainer report 0"
+   "path": "docs/MILESTONES.md",
+   "result": "M14-09: every save test reads trainer-used.txt"
   }
  ],
  "M08-14": [
   {
    "path": "docs/milestones/M08/host-tests/chord-sanitized.txt",
-   "result": "Chord filter host tests at 5-84 ms pumps, ASan / UBSan: all PASS"
+   "result": "Chord filter host tests incl. buttons held across a focus loss, 40 PASS, clean tree"
   },
   {
-   "path": "docs/milestones/M08/hardware/acceptance-f9-gtavcs.txt",
-   "result": "30 chords, none reached the game; R held then L3 clicked three times, each handed on after 103-146 ms (free aim); max withheld 185.3 ms"
-  },
-  {
-   "path": "docs/milestones/M08/hardware/person-observations.txt",
-   "result": "The user: 'Everything worked' (free aim step done this time)"
+   "path": "docs/milestones/M08/hardware/final-r1-gtavcs.txt",
+   "result": "15 chords none to the game; R held then L3 delivered after 104.6 ms and the game's own free-aim flag on"
   }
  ],
  "M08-15": [
   {
-   "path": "docs/milestones/M08/hardware/acceptance-f9-gtavcs.txt",
-   "result": "From the controller through the menu: trainer, free camera on / off, performance overlay"
+   "path": "docs/milestones/M08/hardware/final-r1-gtavcs.txt",
+   "result": "Trainer, recording start / stop with the A button, free camera, overlay from the menu"
   },
   {
-   "path": "docs/milestones/M08/hardware/settings-f9/perf/perf_20261119_154520.csv",
-   "result": "Frame-time recording written under userdata/perf, 208 samples"
-  },
-  {
-   "path": "docs/milestones/M08/hardware/layout1080-f9-gtavcs.txt",
-   "result": "Recording started and saved from the menu by touch"
+   "path": "docs/milestones/M08/hardware/final-r1/perf/perf_20261119_163459.csv",
+   "result": "The recording's CSV, read back"
   }
  ],
  "M08-16": [
   {
-   "path": "docs/milestones/M08/hardware/acceptance-f9-gtavcs.txt",
-   "result": "Paired Joy-Cons attached, handheld: chords in S3 / S4 and across HOME, game sees L3=0 R3=0 for every chord"
+   "path": "docs/milestones/M08/hardware/final-r1-gtavcs.txt",
+   "result": "Paired Joy-Cons attached, handheld: chords in S2 (2 pairs), S3, S4, across HOME and sleep; none reached the game"
   },
   {
-   "path": "docs/milestones/M08/hardware/layout1080-f9-gtavcs.txt",
-   "result": "S2 flyover and S3 cutscene open / close, camera modes 15 / 17 at those times"
-  },
-  {
-   "path": "docs/milestones/M08/hardware/chord-handheld-2-gtavcs.txt",
-   "result": "NRO 022522af: the user's flyover, cutscene, play and HOME sequence, 8 chords none reaching the game"
+   "path": "docs/milestones/M08/hardware/final-r1/nxrun-results.txt",
+   "result": "Camera modes 15 / 17 / 4 at the chord times; stick_delivered=1 (the free-aim L3)"
   },
   {
    "path": "docs/milestones/M08/SCOPE_DECISIONS.md",
-   "result": "Pro Controller part moved to M16-02 by the user's decision"
+   "result": "Pro Controller moved to M16-02"
   }
  ],
  "M08-17": [
   {
-   "path": "docs/milestones/M08/hardware/touch720-f9-gtavcs.txt",
-   "result": "720p: finger at panel 419,175 -> display 419,175 chose Performance overlay; 465,277 chose Close"
+   "path": "docs/milestones/M08/hardware/final-r1-gtavcs.txt",
+   "result": "720p: panel 369,189 -> display 369,189 chose Performance overlay; 379,279 chose Close"
   },
   {
    "path": "docs/milestones/M08/hardware/layout1080-f9-gtavcs.txt",
-   "result": "1080p: panel 490,213 -> display 735,320 and 442,165 -> 663,248 chose the rows touched"
+   "result": "1080p on f9aff8f1: panel to display scaled 1.5x, rows touched chosen"
   },
   {
    "path": "docs/milestones/M08/hardware/person-observations.txt",

@@ -29,3 +29,8 @@ has two [touch] lines (panel 419,175 and 465,277 -> display the same, 1280x720) 
 2026-11-19, NRO f9aff8f1 (layout1080-f9-2, VCS_NX_OUTPUT=1080): asked "was the Settings text easy to read, and did the
 number appear?" (Show frame rate set to Top left from the developer menu's Settings): "Yes to both". The automatic
 relaunch (layout-relaunch-f9) loaded display.fps_counter=1.
+2026-11-19, NRO 6b62dca7 (final-r1, review 1's acceptance run, tests/switch/m08-final.cfg): the user was given the 11
+steps (flyover x2, cutscene, play, trainer gun, R held then L3, recording started and stopped with buttons, free camera
+on / off, finger on "Performance overlay" and "Close", HOME with the menu open, sleep with the menu open, close from
+HOME) and answered "Everything done". The user did not answer the aiming-circle question separately; the game's own
+free-aim flag is in the log ("[devmenu] the game's free aim on").
