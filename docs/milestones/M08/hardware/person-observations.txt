@@ -20,3 +20,12 @@ SDL_FINGER* event either. Touch is read from HID from 04a6b45 on.
 with your finger on 'Performance overlay', or move there with the D-pad and press A?"): "Used D-pad and A" (touch not
 tried; the log has no [touch] line, touches=0). The chords came at about 88-102 s (26 open / close, the camera in mode 17
 flyby / cutscene at t=70), not in the flyover (mode 15 at t=10).
+2026-11-19, NRO f9aff8f1 (layout1080-f9, VCS_NX_OUTPUT=1080): the user: "Yes, touch works". Asked "the log shows two
+finger touches: the first chose 'Frame-time recording', the second chose 'Performance overlay'. Which rows did your
+finger actually touch?": "Those exact rows" ("Each touch hit the row under my finger"). Asked whether step 3 (Settings,
+Show frame rate) was skipped: "Skipped it".
+2026-11-19, NRO f9aff8f1 (touch720-f9): asked to touch "Performance overlay" then "Close" with a finger in play; the log
+has two [touch] lines (panel 419,175 and 465,277 -> display the same, 1280x720) choosing exactly those rows.
+2026-11-19, NRO f9aff8f1 (layout1080-f9-2, VCS_NX_OUTPUT=1080): asked "was the Settings text easy to read, and did the
+number appear?" (Show frame rate set to Top left from the developer menu's Settings): "Yes to both". The automatic
+relaunch (layout-relaunch-f9) loaded display.fps_counter=1.

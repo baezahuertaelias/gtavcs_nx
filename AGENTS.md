@@ -35,8 +35,8 @@ authorize general implementation delegation or additional user-owned chats.
 GitHub plan limitations on private branch protection must be recorded honestly;
 they do not relax these operating rules.
 
-**Current deliverable (M07: real sound and movies proven on the Switch, handheld; awaiting independent review).**
-M06 (the handheld beta) is merged.
+**Current deliverable (M08: the developer menu on L3+R3 proven on the Switch, handheld; awaiting independent review).**
+M06 (the handheld beta) and M07 (sound and movies) are merged.
 `python tools/build_game.py` links the private generated EE/VU archive, the
 overlaid upstream runtime/game layer, `src/core/core.cpp` behind the C ABI in
 `src/core.h`, the SDL2 platform adapter and the OpenGL 3.3 RHI backend
@@ -305,3 +305,9 @@ volume settings apply. Root patch 0010 keeps the sound mixing through long game 
 (a 16-minute drive: 169 underruns before, 0 after the boot movies with the revised
 patch); patch 0011 records that the game never loops a music stream. The user heard movies, effects,
 radio, left / right and a mission's speech as correct. Docked audio: M16-01.
+M08 (2026-11-19, handheld, paired Joy-Cons attached): L3+R3 opens one developer menu (src/devmenu) with
+settings, trainer, free camera, performance overlay, frame-time recording and diagnostics; every L3/R3 press waits
+100 ms for the other, and no chord's L3/R3 reached the game (30 chords in the acceptance run; lone presses handed on
+103-185 ms late, R1-then-L3 free aim works). Menus use A to choose and B to go back; touch is read from HID (switch-sdl2
+delivered none). Damaged vcs.ini values are ignored and repaired; settings survive relaunch and reset. Root patch 0012.
+The 1080p menu layout was checked in handheld with VCS_NX_OUTPUT=1080; docked and the Pro Controller: M16.

@@ -1,0 +1,57 @@
+[devmenu] 74 desktop-only settings hidden (Keyboard page, window, background)
+[settings] display aspect 1.333, HUD 4:3
+[settings] display aspect 1.333, HUD 4:3
+[settings] /switch/gtavcs_nx/gamefolder/userdata/tests/m08-layout1080/vcs.ini: 122 settings, 1 not at their default: display.skip_intro=1
+[devmenu] L3 + R3 opens the developer menu; Back + Start / RB / LB chords off
+[chord] L3 + R3 opens the developer menu; every L3 / R3 press waits 100 ms for the other
+[platform] focus lost: audio paused, pad neutral
+[platform] focus back: audio resumed, pad live
+[platform] controller physical: No1 styles 0x0 (none, device type 0x0), handheld styles 0x2 (Joy-Cons attached (handheld), device type 0xc)
+[chord] 8.644 s R3 withheld: game sees L3=0 R3=0
+[chord] 8.675 s L3 chord after 0.0 ms: game sees L3=0 R3=0
+[chord] 8.675 s R3 chord after 30.8 ms: game sees L3=0 R3=0 (menu toggle)
+[devmenu] opened by L3 + R3: menu=1 settings=0 trainer=0 chords=1
+[chord] 8.861 s L3 suppressed-up: game sees L3=0 R3=0
+[chord] 8.892 s R3 suppressed-up: game sees L3=0 R3=0
+[chord] 17.942 s L3 chord after 0.0 ms: game sees L3=0 R3=0
+[chord] 17.942 s R3 chord after 0.0 ms: game sees L3=0 R3=0 (menu toggle)
+[devmenu] closed by L3 + R3: menu=0 settings=0 trainer=0 chords=2
+[chord] 18.206 s L3 suppressed-up: game sees L3=0 R3=0
+[chord] 18.206 s R3 suppressed-up: game sees L3=0 R3=0
+[chord] 23.427 s R3 withheld: game sees L3=0 R3=0
+[chord] 23.467 s L3 chord after 0.0 ms: game sees L3=0 R3=0
+[chord] 23.467 s R3 chord after 40.1 ms: game sees L3=0 R3=0 (menu toggle)
+[devmenu] opened by L3 + R3: menu=1 settings=0 trainer=0 chords=3
+[chord] 23.629 s L3 suppressed-up: game sees L3=0 R3=0
+[chord] 23.643 s R3 suppressed-up: game sees L3=0 R3=0
+[chord] 28.628 s R3 withheld: game sees L3=0 R3=0
+[chord] 28.784 s R3 tap-delivered after 156.1 ms: game sees L3=0 R3=1
+[chord] 28.887 s R3 released: game sees L3=0 R3=0
+[chord] 29.347 s L3 chord after 0.0 ms: game sees L3=0 R3=0
+[chord] 29.347 s R3 chord after 0.0 ms: game sees L3=0 R3=0 (menu toggle)
+[devmenu] closed by L3 + R3: menu=0 settings=0 trainer=0 chords=4
+[chord] 29.560 s L3 suppressed-up: game sees L3=0 R3=0
+[chord] 29.560 s R3 suppressed-up: game sees L3=0 R3=0
+[chord] 34.346 s L3 chord after 0.0 ms: game sees L3=0 R3=0
+[chord] 34.346 s R3 chord after 0.0 ms: game sees L3=0 R3=0 (menu toggle)
+[devmenu] opened by L3 + R3: menu=1 settings=0 trainer=0 chords=5
+[chord] 34.661 s L3 suppressed-up: game sees L3=0 R3=0
+[chord] 34.709 s R3 suppressed-up: game sees L3=0 R3=0
+[chord] 36.044 s R3 withheld: game sees L3=0 R3=0
+[chord] 36.092 s L3 chord after 0.0 ms: game sees L3=0 R3=0
+[chord] 36.092 s R3 chord after 48.4 ms: game sees L3=0 R3=0 (menu toggle)
+[devmenu] closed by L3 + R3: menu=0 settings=0 trainer=0 chords=6
+[chord] 36.344 s L3 suppressed-up: game sees L3=0 R3=0
+[chord] 36.392 s R3 suppressed-up: game sees L3=0 R3=0
+[chord] 43.226 s R3 withheld: game sees L3=0 R3=0
+[chord] 43.325 s L3 chord after 0.0 ms: game sees L3=0 R3=0
+[chord] 43.325 s R3 chord after 99.6 ms: game sees L3=0 R3=0 (menu toggle)
+[devmenu] opened by L3 + R3: menu=1 settings=0 trainer=0 chords=7
+[chord] 43.495 s L3 suppressed-up: game sees L3=0 R3=0
+[chord] 43.544 s R3 suppressed-up: game sees L3=0 R3=0
+[touch] finger down at panel 490,213 -> display 735,320 (display 1920x1080)
+[devmenu] chose: recording start
+[perf] recording to /switch/gtavcs_nx/gamefolder/userdata/tests/m08-layout1080/perf/perf_20261119_155532.csv
+[touch] finger down at panel 442,165 -> display 663,248 (display 1920x1080)
+[devmenu] chose: performance overlay on
+[perf] recording saved: /switch/gtavcs_nx/gamefolder/userdata/tests/m08-layout1080/perf/perf_20261119_155532.csv (summarise with: python tools/perf_report.py /switch/gtavcs_nx/gamefolder/userdata/tests/m08-layout1080/perf/perf_20261119_155532.csv)
