@@ -19,3 +19,11 @@ What changes:
 
 What does not change: nothing is claimed for the Pro Controller or for docked play. Every other M08 task stays as
 written.
+
+## A milestone for the Pro Controller and docked mode (user decision, 2026-11-19)
+
+Later the same day the user asked: "When all handheld is done, create a milestone to test pro controller and docked".
+Asked where it goes, the user chose "After M14, before release". So **M16 — Pro Controller and docked mode** is added
+to docs/MILESTONES.md and runs after M14 and before M15. M10-13 (all docked work deferred from M06, M07 and M08) moves
+to M16-01 and M13-11 (all Pro Controller work deferred from M06 and M08) to M16-02; the two old IDs stay as "moved"
+records. M16-03 collects what M09-M14 defer to it. The deferrals above now land in M16.

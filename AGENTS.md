@@ -217,7 +217,7 @@ Switch build command. See the checklist before attempting ARM64 core compilation
   drawn at the operation mode's output size (1280x720 handheld, 1920x1080 docked)
   and the layer cropped to it (src/switch/output.c, M06-20); the renderer sees the
   output size as its back buffer. Proven in handheld only; docked output and dock
-  changes are M10-13. Output sizes are targets, not measured performance.
+  changes are M16-01. Output sizes are targets, not measured performance.
   Keep render scale distinct from output size and keep HUD aspect correct.
 - Snapshot controller state once per event pump; publish a synchronized snapshot
   to the future game thread. Handle hotplug, disconnect-to-neutral, dead zones,
@@ -296,12 +296,12 @@ Review 3 (2026-11-18): a 21-minute drive found a host heap leak in upstream's RS
 recording cache; root patch 0009 prunes it and the heap levels off while driving
 (M06-12). The acceptance was repeated on the patched code (run 17: about 6 minutes
 of play, game frame median 84.6 ms / p95 419.9 ms while moving).
-Docked mode, docking and the Pro Controller are untested (user decisions: M10-13,
-M13-11).
+Docked mode, docking and the Pro Controller are untested (user decisions: M16, added
+2026-11-19 after M14, takes over M10-13 and M13-11).
 M07 (2026-11-18, handheld): the boot movies play through the locked switch-ffmpeg 7.1
 (target build, GPL) in sync with their sound (the picture due 0.00-0.07 s ahead, across HOME and
 frame stalls); the game's sound matches the desktop reference in format and level, and the
 volume settings apply. Root patch 0010 keeps the sound mixing through long game frames
 (a 16-minute drive: 169 underruns before, 0 after the boot movies with the revised
 patch); patch 0011 records that the game never loops a music stream. The user heard movies, effects,
-radio, left / right and a mission's speech as correct. Docked audio: M10-13.
+radio, left / right and a mission's speech as correct. Docked audio: M16-01.
