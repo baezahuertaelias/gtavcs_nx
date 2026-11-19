@@ -1,0 +1,19 @@
+22:15:41 removed /switch/gtavcs_nx/gamefolder/userdata/tests/m07-stall: files=2 folders=4
+22:15:41 == m07-stall: profile=m07-stall nro sha256=4a4001d0f31a5989f515b8868cd23a73c33c78a0670d635090680d9c12d7280c
+22:15:44 tree /switch/gtavcs_nx/gamefolder/userdata entries=247 file=userdata-before-m07-stall.txt
+22:15:44 deleted /switch/gtavcs_nx/gamefolder/gtavcs.log
+22:15:44 nothing to delete at /switch/gtavcs_nx/gamefolder/userdata/tests/m07-stall/nxrun-results.txt
+22:15:44 wrote /switch/gtavcs_nx/gamefolder/userdata/nxrun.cfg bytes=999 sha256=fecd42d5624d6a6fd7e81e8463701ae33f6977a25135489d8f2f7f1ef23a1127
+22:15:49 nxlink attempt=1 exit=0 output='Sending /switch/gtavcs_nx/gtavcs.nro, 66338040 bytes\n26178579 sent (39.46%), 2158 blocks'
+22:16:04 ACTION FOR THE PERSON AT THE SWITCH: do not touch (5.5 min)
+22:21:30 ftp back after 340s: the payload has ended
+22:21:33 deleted /switch/gtavcs_nx/gamefolder/userdata/nxrun.cfg
+22:21:33 read-back /switch/gtavcs_nx/gamefolder/gtavcs.log bytes=119063 sha256=90f2feee49551235dc0cc0062ebacee6817a7abf1117f9282d1709c57b297dc9
+22:21:33 read-back /switch/gtavcs_nx/gtavcs-boot.log bytes=62 sha256=3dfe21382f340edd44bac1bf1dd0af6377ec3f03f87b166979ec89c9759bba4b
+22:21:33 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m07-stall/nxrun-results.txt bytes=59999 sha256=224d90bff7131e11ae09d3b84976c5336780397ff25e6dc2277d315d04d069b1
+22:21:36 tree /switch/gtavcs_nx/gamefolder/userdata entries=254 file=userdata-after-m07-stall.txt
+22:21:41 m07-stall: clean_exit_line=True results_tail=['stop t=330.027 reason=seconds frames=13529', 'shutdown t=330.027 frames=13529', 'audit t=330.027 file_opens=148 iso_opens=0 first_iso="" threads_created=7'] sd_matches_local=True new_crashes=[]
+22:21:41 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m07-stall/nxrun-results.txt bytes=59999 sha256=224d90bff7131e11ae09d3b84976c5336780397ff25e6dc2277d315d04d069b1
+22:21:42 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m07-stall/perf.csv bytes=1338001 sha256=c8a7e532f9eebd18304be5d36da5e67152b083369517554f7595428438f9a8f5
+22:21:42 stall-handheld-2: read back 2 files from /switch/gtavcs_nx/gamefolder/userdata/tests/m07-stall (screenshots private under build\evidence\M06\screenshots\stall-handheld-2)
+22:21:42 RESULT game PASS
