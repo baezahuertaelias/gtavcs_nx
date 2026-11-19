@@ -308,9 +308,7 @@
 /switch/gtavcs_nx/gamefolder/userdata/tests/m08-chord/cache	d
 /switch/gtavcs_nx/gamefolder/userdata/tests/m08-chord/mc0	d
 /switch/gtavcs_nx/gamefolder/userdata/tests/m08-chord/mc1	d
-/switch/gtavcs_nx/gamefolder/userdata/tests/m08-chord/nxrun-results.txt	95565
-/switch/gtavcs_nx/gamefolder/userdata/tests/m08-chord/trainer-used.txt	86
-/switch/gtavcs_nx/gamefolder/userdata/tests/m08-chord/vcs.ini	110
+/switch/gtavcs_nx/gamefolder/userdata/tests/m08-chord/nxrun-results.txt	20246
 /switch/gtavcs_nx/gamefolder/userdata/tests/m08-settings	d
 /switch/gtavcs_nx/gamefolder/userdata/tests/m08-settings/backups	d
 /switch/gtavcs_nx/gamefolder/userdata/tests/m08-settings/cache	d

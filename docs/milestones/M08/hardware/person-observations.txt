@@ -1,0 +1,6 @@
+2026-11-19, NRO 0fec62d9 (chord-handheld): the user, during the run: "When opening windows with l3r3 the AB and XY
+are inverted" (the menus followed the PS2 positions: south = choose). Fixed in 394fa5a (Nintendo layout in the menus).
+2026-11-19, NRO 022522af (chord-handheld-2): asked "In that run, where did you open and close the menu? The log shows
+open/close pairs at about 66 s, 72 s and 84 s after the game started, then the HOME one." The user chose: "Flyover,
+cutscene, play" ("First pair during the flyover, second during the cutscene, third in play, then the HOME one in
+play"). The run's config had no gameinfo (stage) query; later runs add one.

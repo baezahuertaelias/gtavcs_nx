@@ -111,3 +111,27 @@
 13:20:04 chord-handheld: read back 3 files from /switch/gtavcs_nx/gamefolder/userdata/tests/m08-chord (screenshots private under build\evidence\M06\screenshots\chord-handheld)
 13:20:04 chord-handheld: 62 chord / menu / touch / settings lines -> chord-handheld-m08.txt
 13:20:04 RESULT game PASS
+15:11:12 ftp 192.168.1.107:5000 reachable
+15:11:19 tree /switch/gtavcs_nx entries=865 file=sd-tree-preflight.txt
+15:11:19 disc images under /switch/gtavcs_nx: none
+15:11:19 folder disc manifest present=True elf present=True
+15:11:19 RESULT preflight PASS
+15:11:25 removed /switch/gtavcs_nx/gamefolder/userdata/tests/m08-chord: files=3 folders=4
+15:11:25 == m08-chord: profile=m08-chord nro sha256=022522af9117cc528953210fa85cdb79a40c305a8ad23b5d8b1baf6a38e8a638
+15:11:31 tree /switch/gtavcs_nx/gamefolder/userdata entries=314 file=userdata-before-m08-chord.txt
+15:11:31 deleted /switch/gtavcs_nx/gamefolder/gtavcs.log
+15:11:31 nothing to delete at /switch/gtavcs_nx/gamefolder/userdata/tests/m08-chord/nxrun-results.txt
+15:11:31 wrote /switch/gtavcs_nx/gamefolder/userdata/nxrun.cfg bytes=959 sha256=da75e3adbf3b9315774939ecb3b8b34c735c44dc1822bd49ffe0a20d8ddf58a8
+15:11:40 nxlink attempt=1 exit=0 output='Sending /switch/gtavcs_nx/gtavcs.nro, 66362616 bytes\n26191877 sent (39.47%), 2163 blocks'
+15:11:55 ACTION FOR THE PERSON AT THE SWITCH: L3+R3 open/close in flyover, cutscene, play; once across HOME; close from HOME
+15:13:47 ftp back after 126s: the payload has ended
+15:13:50 deleted /switch/gtavcs_nx/gamefolder/userdata/nxrun.cfg
+15:13:51 read-back /switch/gtavcs_nx/gamefolder/gtavcs.log bytes=42423 sha256=772cc89fb05b52f0e76b810199e0c58fe6063810e02ae19f786c9413a3a45618
+15:13:51 read-back /switch/gtavcs_nx/gtavcs-boot.log bytes=62 sha256=3dfe21382f340edd44bac1bf1dd0af6377ec3f03f87b166979ec89c9759bba4b
+15:13:51 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m08-chord/nxrun-results.txt bytes=20246 sha256=61667958f087cb47c7d7a5073a0224611596f66be2c070ea120169e2f1630364
+15:13:56 tree /switch/gtavcs_nx/gamefolder/userdata entries=320 file=userdata-after-m08-chord.txt
+15:14:04 m08-chord: clean_exit_line=True results_tail=['shutdown t=96.961 frames=2412', 'audit t=96.961 file_opens=144 iso_opens=0 first_iso="" threads_created=7'] sd_matches_local=True new_crashes=[]
+15:14:05 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m08-chord/nxrun-results.txt bytes=20246 sha256=61667958f087cb47c7d7a5073a0224611596f66be2c070ea120169e2f1630364
+15:14:05 chord-handheld-2: read back 1 files from /switch/gtavcs_nx/gamefolder/userdata/tests/m08-chord (screenshots private under build\evidence\M06\screenshots\chord-handheld-2)
+15:14:05 chord-handheld-2: 53 chord / menu / touch / settings lines -> chord-handheld-2-m08.txt
+15:14:05 RESULT game PASS
