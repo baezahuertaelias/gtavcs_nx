@@ -13,7 +13,7 @@ its delay slot, (c) any 32-bit data word equal to 0x00090500.
 
 | Call site of 0x10DD50 | Command (a0) |
 |---|---|
-| 0x10DC8C | 0x4A0000 |
+| 0x10DC8C | 0x80000 (init; set by `lui a0,8` in the delay slot of the BGEZL at 0x10DC78; the `lui a0,0x4a` path branches past the jal) |
 | 0x10E630 | 0x90200 (preload, cutscenes) |
 | 0x10E658 | 0x90300 (start preloaded) |
 | 0x10E698 | 0x80200 (open at a position) |
@@ -27,9 +27,9 @@ its delay slot, (c) any 32-bit data word equal to 0x00090500.
 
 Result: no instruction pair builds 0x90500 and no loaded word equals 0x00090500. The game never asks the driver to
 loop a music stream; `m_loop` stays 0 (also reset by every preload). A station or score that should continue is
-re-opened at a computed position (0x802xx with the position in ms): the radio drive shows 12 opens across 5 files plus one cutscene
-preload (0x90236, file 54), e.g. file 4 opened at 986,803 / 998,187 / 1,073,451 / 1,177,387 / 1,191,723 / 1,227,563 /
-1,380,779 ms, each ended by a stop (0x80700).
+re-opened at a computed position (0x802xx with the position in ms): the radio drive shows 12 opens across 5 files (3 at
+position 0) plus one cutscene preload (0x90236, file 54), e.g. file 4 opened at 986,803 / 998,187 / 1,073,451 /
+1,177,387 / 1,191,723 / 1,227,563 / 1,380,779 ms; 11 opens ended by a stop (0x80700), the last still playing at exit.
 
 So M07-05's "seeking / looping" is, for this game: seeking = the open-at-position path (exercised on hardware); looping
 = not used by the game (the driver's loop path is unreachable from it). Limitation: a static scan; a command assembled

@@ -2,7 +2,7 @@
  "M07-01": [
   {
    "path": "docs/milestones/M07/hardware/movies-handheld-2-gtavcs.txt",
-   "result": "[platform] audio device 2: 48000 Hz, 2 channels, 1024 frames (switch); [audio] produced 100% of real time, underruns 0 after the movies"
+   "result": "[platform] audio device 2: 48000 Hz, 2 channels, 1024 frames (switch): upstream's rate, nothing to convert"
   },
   {
    "path": "src/platform/platform_switch_sdl2.cpp",
@@ -10,7 +10,7 @@
   },
   {
    "path": "docs/milestones/M07/hardware/drive-handheld-4-gtavcs.txt",
-   "result": "Revised patch 0010 (NRO 6976c8d7), 16-minute drive: 3 underruns, all in the two boot-movie windows (the movies' 11.0 s and 2.5 s), then 0 underruns, 0 dropped"
+   "result": "Revised patch 0010 (NRO 6976c8d7), 16-minute drive: 3 underruns, all in windows 0-1 (the boot movies' time, 528,351 + 121,816 frames, which includes the hand-over after INTRO.PSS), then 0 underruns, 0 dropped, produced 100 % of real time"
   }
  ],
  "M07-02": [
@@ -37,72 +37,64 @@
    "result": "Before patch 0010, 16-minute streaming drive: 169 underruns, 54.3 s starved, 42.1 s dropped (producer on the game thread)"
   },
   {
-   "path": "docs/milestones/M07/hardware/drive-handheld-2-gtavcs.txt",
-   "result": "With patch 0010, the same drive: 0 underruns, 0.0 s starved, 0.8 s dropped, 0 GL errors, keeper thread joined at shutdown; filler produced 86%"
-  },
-  {
-   "path": "docs/milestones/M07/hardware/stall-handheld-2-gtavcs.txt",
-   "result": "Main / game thread stalls of 100 ms - 2 s with patch 0010: 0 underruns, 0 dropped (16 underruns before: stall-handheld-gtavcs.txt)"
+   "path": "docs/milestones/M07/hardware/stall-handheld-gtavcs.txt",
+   "result": "Before patch 0010, stalls of 100 ms - 2 s: main 100 / 500 / 1000 ms 1 underrun each, 250 / 2000 ms 2; game 100 ms 0, 250 / 500 ms 1, 1000 ms 2, 2000 ms 3 (counted to the next stall)"
   },
   {
    "path": "patches/upstream/0010-audio-starvation-filler.patch",
-   "result": "Keeper thread in ps2_audio_out asks the native sound driver to mix ahead when the ring is under 40 ms and nothing was pushed for 15 ms; PS2X_AUDIO_FILL=0 = before"
+   "result": "Keeper thread asks the native sound driver to mix ahead when the ring is under 40 ms and nothing was pushed for 15 ms; primes in whole 256-frame blocks; idle under a movie; a lead over 1 s moves the engine's EE time along; Switch-only default"
   },
   {
    "path": "docs/milestones/M07/hardware/stall-handheld-4-gtavcs.txt",
-   "result": "Revised patch 0010 (NRO 6976c8d7): main / game stalls of 100 ms - 2 s, 0 underruns and 0 dropped after boot; the filled share falls back after the 2 s game stall (clock() mixes again)"
+   "result": "Revised patch 0010 (NRO 6976c8d7): main / game stalls of 100 ms - 2 s, 0 underruns and 0 dropped after windows 0-1; the filled share falls back after the 2 s game stall (69 / 17 / 25 %: clock() mixes again)"
   },
   {
    "path": "docs/milestones/M07/hardware/drive-handheld-4-gtavcs.txt",
-   "result": "Revised patch 0010, 16-minute drive: 0 underruns, 0 dropped after the boot movies; mean filled 52 %; 0 GL errors"
+   "result": "Revised patch 0010, 16-minute drive: 0 underruns, 0 dropped after windows 0-1; mean filled 52 %; 0 GL errors"
   },
   {
    "path": "docs/milestones/M07/hardware/stall-handheld-3-gtavcs.txt",
-   "result": "Intermediate build 60c49e96 (lead capped at 1 s): a 0.96 s underrun after the 2 s game stall; drive-handheld-3: 21 underruns after boot (the cap replaced)"
+   "result": "Intermediate build 60c49e96 (lead capped at 1 s): a 0.96 s underrun after the 2 s game stall; drive-handheld-3: 21 underruns (9.85 s) after boot; the cap replaced"
+  },
+  {
+   "path": "docs/milestones/M07/hardware/drive-handheld-2-gtavcs.txt",
+   "result": "First patch 0010 (NRO 4a4001d0, before review 1): 0 underruns, 688,128 frames (14.3 s) starved in window 0 before priming, filler 86 %: the game thread out of the mixing path (review 1 finding 2); superseded by drive-handheld-4"
   }
  ],
  "M07-04": [
   {
    "path": "docs/milestones/M07/hardware/listen-handheld-gtavcs.txt",
-   "result": "On foot and driving, sleep / wake, closed from HOME; 0 underruns in 78 stats windows, 0 GL errors"
+   "result": "On foot and driving, sleep / wake, closed from HOME; 0 underruns in 78 stats windows, 0 GL errors (NRO 4a4001d0)"
   },
   {
-   "path": "docs/milestones/M07/hardware/mission-handheld-gtavcs.txt",
-   "result": "The first mission running (32 scripts active, mission running), its sounds and speech; 0 underruns"
+   "path": "docs/milestones/M07/hardware/mission-handheld-2-gtavcs.txt",
+   "result": "NRO 6976c8d7: boot movies, the opening intro cutscene (speech), on foot and driving; up to 12 voices at once; underruns only in the movie windows and one 3,375-frame (70 ms) hand-over after INTRO.PSS"
   },
   {
    "path": "docs/milestones/M07/hardware/person-observations.txt",
-   "result": "'Sound is good', 'Yes, correct side', 'Everything good' (the mission)"
+   "result": "'Sound is good', 'Yes, correct side' (listen-handheld); mission-handheld-2, several sounds at once, exact question recorded: \"Yes, all clean\""
   },
   {
    "path": "docs/milestones/M07/hardware/drive-handheld-3-gtavcs.txt",
    "result": "PS2X_TRACE_SPU2=1: up to 32 SPU2 voices sounding at once (26 in drive-handheld-4, 29 in radio-handheld)"
-  },
-  {
-   "path": "docs/milestones/M07/hardware/person-observations.txt",
-   "result": "mission-handheld-2 (NRO 6976c8d7): several sounds at once, exact question recorded: \"Yes, all clean\""
   }
  ],
  "M07-05": [
   {
    "path": "docs/milestones/M07/hardware/person-observations.txt",
-   "result": "Radio: 'Yes, it worked' (played, stations changed, no breaks)"
-  },
-  {
-   "path": "docs/milestones/M07/hardware/drive-handheld-2-gtavcs.txt",
-   "result": "16 minutes across both sides of the bay with VCS_STREAM_LOG: 0 underruns with patch 0010"
-  },
-  {
-   "path": "docs/milestones/M07/hardware/mission-handheld-gtavcs.txt",
-   "result": "Mission and cutscene streams during the first mission: 0 underruns"
+   "result": "Radio: 'Yes, it worked' (the question's wording not recorded)"
   },
   {
    "path": "docs/milestones/M07/hardware/radio-handheld-gtavcs.txt",
-   "result": "VCS_MUSIC_LOG=1: 12 stream opens at start positions across 5 files, each ended by a stop; a cutscene preload / start; no loop command"
+   "result": "VCS_MUSIC_LOG=1: 12 opens (0x802xx) across 5 files, each with a start position (3 at 0), 11 ended by a stop, the last (file 4 at 1,380,779 ms) still playing at exit; a cutscene preload / start (0x90236, 0x90300) with its stop; no loop command"
   },
   {
    "path": "docs/milestones/M07/loop-command.md",
    "result": "Static ELF scan: no code builds 0x90500 and no data word holds it; the game never loops a music stream through the driver"
+  },
+  {
+   "path": "docs/milestones/M07/hardware/drive-handheld-4-gtavcs.txt",
+   "result": "16 minutes across both sides of the bay with VCS_STREAM_LOG on the revised patch: 0 underruns after windows 0-1"
   }
  ],
  "M07-06": [
@@ -122,11 +114,11 @@
  "M07-07": [
   {
    "path": "docs/milestones/M07/hardware/movies-handheld-2-gtavcs.txt",
-   "result": "STINGS.PSS 321 pictures, INTRO.PSS 2,527 pictures (84.3 s), 0 dropped, then S3 / S4, 0 GL errors"
+   "result": "STINGS.PSS 321 pictures, INTRO.PSS 2,527 pictures (84.3 s), 0 dropped, 0 GL errors"
   },
   {
    "path": "docs/milestones/M07/hardware/movie-sync-handheld-gtavcs.txt",
-   "result": "VCS_MOVIE_LOG: next picture due 0.01-0.05 s ahead of the sound clock every second, through a 500 ms main-thread stall; 0 dropped"
+   "result": "VCS_MOVIE_LOG: next picture due 0.01-0.07 s ahead of the sound clock every second (0.07 only at a movie's first line; 0.00-0.07 over all movie runs, never behind), through a 500 ms main-thread stall; 0 dropped"
   },
   {
    "path": "docs/milestones/M07/hardware/movie-sync-handheld-results.txt",
@@ -138,7 +130,7 @@
   },
   {
    "path": "docs/milestones/M07/hardware/movie-sync-handheld-2-gtavcs.txt",
-   "result": "Next picture due 0.01-0.07 s ahead of the sound clock (0.07 only at 0.00 s), 500 ms main stall, Cross skip, 0 dropped"
+   "result": "NRO 60c49e96: the same margins, 500 ms main stall, Cross skip, 0 dropped"
   },
   {
    "path": "docs/milestones/M07/hardware/person-observations.txt",
@@ -147,26 +139,22 @@
  ],
  "M07-08": [
   {
-   "path": "docs/milestones/M07/hardware/movie-sync-handheld-gtavcs.txt",
-   "result": "Scheduled Cross skipped INTRO.PSS at 38.9 s; no movie sound or underrun after; the game's sound caught up once (0.8 s dropped)"
+   "path": "docs/milestones/M07/hardware/movie-sync-handheld-2-gtavcs.txt",
+   "result": "Scheduled Cross at 50.2 s skipped INTRO.PSS at 38.8 s; no movie sound after; one 2,339-frame (49 ms) underrun at the hand-over"
   },
   {
    "path": "docs/milestones/M07/hardware/mission-handheld-gtavcs.txt",
-   "result": "HOME during INTRO.PSS: 7.6 s suspension, movie clock paused with its sound (6.06 s, then 6.10 s), next picture within 0.01 s; skipped with B at 33.2 s, 0 dropped"
+   "result": "HOME during INTRO.PSS: 7.6 s suspension, movie clock paused with its sound (6.06 s, then 6.10 s), next picture within 0.01 s; four B presses at 43.0-44.3 s did not skip, Start at 45.5 s skipped INTRO.PSS 33.2 s in, 0 dropped"
   },
   {
    "path": "docs/milestones/M07/hardware/movies-handheld-gtavcs.txt",
    "result": "Closed from HOME 60.8 s into INTRO.PSS: orderly stop (stop reason=runtime)"
-  },
-  {
-   "path": "docs/milestones/M07/hardware/mission-handheld-gtavcs.txt",
-   "result": "User skip: four B presses at 43.0-44.3 s did not skip; Start at 45.5 s skipped INTRO.PSS"
   }
  ],
  "M07-09": [
   {
    "path": "docs/milestones/M07/hardware/mission-handheld-gtavcs.txt",
-   "result": "HOME during a movie: '[platform] focus lost: audio paused' / 'focus back: audio resumed', 0 underruns, closed from HOME"
+   "result": "HOME during a movie: '[platform] focus lost: audio paused' / 'focus back: audio resumed', closed from HOME"
   },
   {
    "path": "docs/milestones/M07/hardware/listen-handheld-gtavcs.txt",
@@ -177,40 +165,40 @@
    "result": "SDL owns audren: no audren call anywhere in src/; the callback only reads the ring (all file writes are in ps2AudioPush on the producer)"
   },
   {
+   "path": "patches/upstream/0010-audio-starvation-filler.patch",
+   "result": "runEnd calls ps2AudioShutdown (joins the keeper) before platform::shutdown, after the game thread is joined; no log line shows the join (the \"audio closed\" line comes from platform::shutdown itself in every run)"
+  },
+  {
    "path": "docs/milestones/M07/hardware/noaudio-handheld-gtavcs.txt",
-   "result": "PS2X_AUDIO=0 (no device): movies whole on the host clock, S4 on foot, 0 GL errors, clean exit"
+   "result": "PS2X_AUDIO=0 (no device): movies whole on the host clock, the player on foot outdoors with the follow camera, 0 GL errors, clean exit"
   },
   {
    "path": "docs/milestones/M07/hardware/readfail-handheld-gtavcs.txt",
-   "result": "Undecodable STINGS.PSS (same-size zero mod): skipped, INTRO.PSS whole, S4, clean exit; mod removed (session-readfail-handheld.txt)"
-  },
-  {
-   "path": "docs/milestones/M07/hardware/stall-handheld-4-gtavcs.txt",
-   "result": "\"[platform] audio closed\" before \"[platform] shut down\": the keeper joined before the device closes"
+   "result": "Undecodable STINGS.PSS (same-size zero mod): skipped without a log line, INTRO.PSS whole, the S3 intro cutscene still running at the 240 s stop, clean exit; mod removed (session-readfail-handheld.txt)"
   }
  ],
  "M07-10": [
   {
    "path": "docs/milestones/M07/hardware/person-observations.txt",
-   "result": "Audible on the Switch: 'Everything runs good', 'Sound is good', left / right and radio confirmed, 'All synced ... Everything good'"
+   "result": "Audible on the Switch: 'Everything runs good', 'Sound is good', left / right and radio confirmed, 'All synced ... Everything good'; on NRO 6976c8d7 \"Yes, in sync\" and \"Yes, all clean\""
   },
   {
    "path": "docs/milestones/M07/hardware/pcm-compare-2.txt",
    "result": "PCM comparison with the desktop reference (M07-02)"
   },
   {
-   "path": "docs/milestones/M07/hardware/drive-handheld-2-gtavcs.txt",
-   "result": "Long streaming route: 16 minutes, 0 underruns"
+   "path": "docs/milestones/M07/hardware/drive-handheld-4-gtavcs.txt",
+   "result": "Long streaming route on the revised patch: 16 minutes, 0 underruns, 0 dropped after windows 0-1"
   }
  ],
  "M07-11": [
   {
    "path": "docs/milestones/M07/hardware/movie-sync-handheld-gtavcs.txt",
-   "result": "Movie sync within 0.05 s through a 500 ms frame stall"
+   "result": "Movie sync 0.01-0.07 s here, 0.00-0.07 s over all movie runs (the picture due at or ahead of the sound clock, never behind) through a 500 ms frame stall"
   },
   {
-   "path": "docs/milestones/M07/hardware/stall-handheld-2-gtavcs.txt",
-   "result": "Game sound through stalls of 100 ms - 2 s: 0 underruns"
+   "path": "docs/milestones/M07/hardware/stall-handheld-4-gtavcs.txt",
+   "result": "Game sound through stalls of 100 ms - 2 s on the revised patch: 0 underruns after windows 0-1"
   },
   {
    "path": "docs/milestones/M07/SCOPE_DECISIONS.md",
@@ -222,7 +210,7 @@
   },
   {
    "path": "docs/milestones/M07/hardware/drive-handheld-4-gtavcs.txt",
-   "result": "Variable frame times (about 20 fps): 0 underruns after boot in 16 minutes on the revised patch"
+   "result": "Variable frame times (about 20 fps): 0 underruns after windows 0-1 in 16 minutes on the revised patch"
   }
  ]
 }

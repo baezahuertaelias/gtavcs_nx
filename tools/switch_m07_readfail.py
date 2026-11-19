@@ -8,6 +8,7 @@ nothing of the person's is touched or removed.
 """
 
 import argparse
+import ftplib
 import subprocess
 import sys
 from pathlib import Path
@@ -33,22 +34,28 @@ def main():
     if "mods" in m04.names(m04.listing(ftp, GAME)):
         session.say(f"REFUSED: {MODS} already exists; this run only creates and removes its own")
         return 1
-    ftp.mkd(MODS)
-    ftp.mkd(MOD_DIR)
-    session.say(f"created {MOD_DIR}")
-    m04.put(session, bytes(STINGS_SIZE), MOD)
+    returncode = 1
     try:
-        result = subprocess.run([sys.executable, str(ROOT / "tools/switch_m06_session.py"), "game", args.evidence,
-                                 str(ROOT / "tests/switch/m07-readfail.cfg"), "--label", args.label,
-                                 "--prompt", "do not touch (4 min)"])
+        ftp.mkd(MODS)
+        ftp.mkd(MOD_DIR)
+        session.say(f"created {MOD_DIR}")
+        m04.put(session, bytes(STINGS_SIZE), MOD)
+        returncode = subprocess.run([sys.executable, str(ROOT / "tools/switch_m06_session.py"), "game", args.evidence,
+                                     str(ROOT / "tests/switch/m07-readfail.cfg"), "--label", args.label,
+                                     "--prompt", "do not touch (4 min)"]).returncode
     finally:
+        # every step on its own: a failed one never skips the rest (only what this run created is removed)
         ftp = m04.connect()
-        ftp.delete(MOD)
-        ftp.rmd(MOD_DIR)
-        ftp.rmd(MODS)
+        for step, target in ((ftp.delete, MOD), (ftp.rmd, MOD_DIR), (ftp.rmd, MODS)):
+            try:
+                step(target)
+            except ftplib.all_errors as error:
+                session.say(f"could not remove {target}: {error}")
         left = "mods" in m04.names(m04.listing(ftp, GAME))
         session.say(f"removed {MOD}, {MOD_DIR}, {MODS}; mods left={left}")
-    return result.returncode
+        if left:
+            returncode = returncode or 1
+    return returncode
 
 
 if __name__ == "__main__":
