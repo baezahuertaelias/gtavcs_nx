@@ -1,0 +1,9 @@
+switch: game.wav: 48000 Hz, 2 channels, 204.0 s
+  channel 0: RMS 0.0, peak 0, clipped 0, silent 100.0 %
+  channel 1: RMS 0.0, peak 0, clipped 0, silent 100.0 %
+reference: game.wav: 48000 Hz, 2 channels, 204.0 s
+  channel 0: RMS 1860.8, peak 14084, clipped 0, silent 8.5 %
+  channel 1: RMS 1832.6, peak 13925, clipped 0, silent 8.7 %
+envelope offset +0.00 s (reference against switch), window 10 ms
+  channel 0: envelope correlation nan (with the other channel nan); level switch - reference +nan dB (against the other channel +nan dB) over 204.0 s
+  channel 1: envelope correlation nan (with the other channel nan); level switch - reference +nan dB (against the other channel +nan dB) over 204.0 s

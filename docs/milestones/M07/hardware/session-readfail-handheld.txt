@@ -1,0 +1,21 @@
+11:31:29 created /switch/gtavcs_nx/gamefolder/mods/MOVIES
+11:31:30 wrote /switch/gtavcs_nx/gamefolder/mods/MOVIES/STINGS.PSS bytes=3014660 sha256=466c8ba6d3766f4bf3349924482b9e7f8f87083305d414491f4dd577f2e64848
+11:31:30 nothing to delete at /switch/gtavcs_nx/gamefolder/userdata/tests/m07-readfail
+11:31:30 == m07-readfail: profile=m07-readfail nro sha256=6976c8d7b9ffbc24cae31adaeeaac584321515316e1c2708e9a620023f8791ca
+11:31:35 tree /switch/gtavcs_nx/gamefolder/userdata entries=293 file=userdata-before-m07-readfail.txt
+11:31:35 deleted /switch/gtavcs_nx/gamefolder/gtavcs.log
+11:31:35 nothing to delete at /switch/gtavcs_nx/gamefolder/userdata/tests/m07-readfail/nxrun-results.txt
+11:31:35 wrote /switch/gtavcs_nx/gamefolder/userdata/nxrun.cfg bytes=606 sha256=4d901fd5e63196979143dd9a13b2489fd6a962d1b1912909e408e9f8fb96d107
+11:31:45 nxlink attempt=1 exit=0 output='Sending /switch/gtavcs_nx/gtavcs.nro, 66338040 bytes\n26178534 sent (39.46%), 2158 blocks'
+11:32:00 ACTION FOR THE PERSON AT THE SWITCH: do not touch (4 min)
+11:35:57 ftp back after 251s: the payload has ended
+11:36:00 deleted /switch/gtavcs_nx/gamefolder/userdata/nxrun.cfg
+11:36:00 read-back /switch/gtavcs_nx/gamefolder/gtavcs.log bytes=81301 sha256=3c137e8ef0788868cc8db5f570c57809c188b2d89993720ca4cfc85af1e18d9b
+11:36:00 read-back /switch/gtavcs_nx/gtavcs-boot.log bytes=62 sha256=3dfe21382f340edd44bac1bf1dd0af6377ec3f03f87b166979ec89c9759bba4b
+11:36:00 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m07-readfail/nxrun-results.txt bytes=44663 sha256=3c0e06a84df605e3d67d2bf61092a6c41839b2b61737848776cb5aa8e04687d1
+11:36:04 tree /switch/gtavcs_nx/gamefolder/userdata entries=299 file=userdata-after-m07-readfail.txt
+11:36:09 m07-readfail: clean_exit_line=True results_tail=['stop t=240.041 reason=seconds frames=8787', 'shutdown t=240.041 frames=8787', 'audit t=240.041 file_opens=144 iso_opens=0 first_iso="" threads_created=7'] sd_matches_local=True new_crashes=[]
+11:36:10 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m07-readfail/nxrun-results.txt bytes=44663 sha256=3c0e06a84df605e3d67d2bf61092a6c41839b2b61737848776cb5aa8e04687d1
+11:36:10 readfail-handheld: read back 1 files from /switch/gtavcs_nx/gamefolder/userdata/tests/m07-readfail (screenshots private under build\evidence\M06\screenshots\readfail-handheld)
+11:36:10 RESULT game PASS
+11:36:10 removed /switch/gtavcs_nx/gamefolder/mods/MOVIES/STINGS.PSS, /switch/gtavcs_nx/gamefolder/mods/MOVIES, /switch/gtavcs_nx/gamefolder/mods; mods left=False

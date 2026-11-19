@@ -1,0 +1,19 @@
+10:16:48 nothing to delete at /switch/gtavcs_nx/gamefolder/userdata/tests/m07-noaudio
+10:16:48 == m07-noaudio: profile=m07-noaudio nro sha256=60c49e96d9231e219e40e508aee169556c6bed404b7c98ea3363e0ffeed99ac4
+10:16:53 tree /switch/gtavcs_nx/gamefolder/userdata entries=280 file=userdata-before-m07-noaudio.txt
+10:16:53 deleted /switch/gtavcs_nx/gamefolder/gtavcs.log
+10:16:53 nothing to delete at /switch/gtavcs_nx/gamefolder/userdata/tests/m07-noaudio/nxrun-results.txt
+10:16:54 wrote /switch/gtavcs_nx/gamefolder/userdata/nxrun.cfg bytes=524 sha256=2c82409534ccb595a9f1e560a046698dc3f9c008cb5439a72637760b84520af1
+10:17:03 nxlink attempt=1 exit=0 output='Sending /switch/gtavcs_nx/gtavcs.nro, 66338040 bytes\n26178606 sent (39.46%), 2158 blocks'
+10:17:18 ACTION FOR THE PERSON AT THE SWITCH: do not touch (6 min)
+10:23:19 ftp back after 376s: the payload has ended
+10:23:22 deleted /switch/gtavcs_nx/gamefolder/userdata/nxrun.cfg
+10:23:22 read-back /switch/gtavcs_nx/gamefolder/gtavcs.log bytes=112484 sha256=eedc95e6aaa8f5579a066b6c1aed45f529c9bfe0ae8c40ecf2f63a8175a65338
+10:23:22 read-back /switch/gtavcs_nx/gtavcs-boot.log bytes=62 sha256=3dfe21382f340edd44bac1bf1dd0af6377ec3f03f87b166979ec89c9759bba4b
+10:23:22 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m07-noaudio/nxrun-results.txt bytes=66432 sha256=186a0d307224a5c38e217dc7433c992809e00045f793648fe688727f08cca734
+10:23:28 tree /switch/gtavcs_nx/gamefolder/userdata entries=287 file=userdata-after-m07-noaudio.txt
+10:23:34 m07-noaudio: clean_exit_line=True results_tail=['stop t=360.080 reason=seconds frames=11872', 'shutdown t=360.080 frames=11872', 'audit t=360.080 file_opens=148 iso_opens=0 first_iso="" threads_created=5'] sd_matches_local=True new_crashes=[]
+10:23:34 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m07-noaudio/nxrun-results.txt bytes=66432 sha256=186a0d307224a5c38e217dc7433c992809e00045f793648fe688727f08cca734
+10:23:34 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m07-noaudio/perf.csv bytes=600816 sha256=a15005f63b4c1b40df7ac50e297824b775aeed2a42782893139e855a55ee091c
+10:23:34 noaudio-handheld: read back 2 files from /switch/gtavcs_nx/gamefolder/userdata/tests/m07-noaudio (screenshots private under build\evidence\M06\screenshots\noaudio-handheld)
+10:23:34 RESULT game PASS

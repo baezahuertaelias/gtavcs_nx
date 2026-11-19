@@ -1,0 +1,18 @@
+17:37:49 nothing to delete at /switch/gtavcs_nx/gamefolder/userdata/tests/m07-drive
+17:37:49 == m07-drive: profile=m07-drive nro sha256=3216d0893586cc2585e531e8e336821a10188e0e04acf91ffb1ba22cf3676967
+17:37:53 tree /switch/gtavcs_nx/gamefolder/userdata entries=248 file=userdata-before-m07-drive.txt
+17:37:53 deleted /switch/gtavcs_nx/gamefolder/gtavcs.log
+17:37:53 nothing to delete at /switch/gtavcs_nx/gamefolder/userdata/tests/m07-drive/nxrun-results.txt
+17:37:53 wrote /switch/gtavcs_nx/gamefolder/userdata/nxrun.cfg bytes=818 sha256=594ae902d97145fb248af8402ab5d4f012419c2ec5df8591e09cf2c82335c6d3
+17:37:58 nxlink attempt=1 exit=0 output='Sending /switch/gtavcs_nx/gtavcs.nro, 66333944 bytes\n26177635 sent (39.46%), 2158 blocks'
+17:38:13 ACTION FOR THE PERSON AT THE SWITCH: do not touch (16 min)
+17:55:02 ftp back after 1023s: the payload has ended
+17:55:05 deleted /switch/gtavcs_nx/gamefolder/userdata/nxrun.cfg
+17:55:05 read-back /switch/gtavcs_nx/gamefolder/gtavcs.log bytes=221076 sha256=35c85e77f91872e6904d07fdc77d892d69334c39f3c5e4de5687999c1ef4bb1e
+17:55:05 read-back /switch/gtavcs_nx/gtavcs-boot.log bytes=62 sha256=3dfe21382f340edd44bac1bf1dd0af6377ec3f03f87b166979ec89c9759bba4b
+17:55:06 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m07-drive/nxrun-results.txt bytes=94468 sha256=49e4e40c91bf4266ae175694e90682b7e6baac494b3eb5d3817a466ff6d3257f
+17:55:08 tree /switch/gtavcs_nx/gamefolder/userdata entries=254 file=userdata-after-m07-drive.txt
+17:55:14 m07-drive: clean_exit_line=True results_tail=['stop t=960.041 reason=seconds frames=28184', 'shutdown t=960.041 frames=28184', 'audit t=960.041 file_opens=150 iso_opens=0 first_iso="" threads_created=6'] sd_matches_local=True new_crashes=[]
+17:55:14 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m07-drive/nxrun-results.txt bytes=94468 sha256=49e4e40c91bf4266ae175694e90682b7e6baac494b3eb5d3817a466ff6d3257f
+17:55:14 drive-handheld: read back 1 files from /switch/gtavcs_nx/gamefolder/userdata/tests/m07-drive (screenshots private under build\evidence\M06\screenshots\drive-handheld)
+17:55:14 RESULT game PASS

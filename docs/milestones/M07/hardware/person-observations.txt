@@ -1,0 +1,47 @@
+What the user, at the Switch, reported during the M07 session (2026-11-18, handheld, stock clocks):
+
+- movies-handheld (m07-movies.cfg, NRO 19bd154c from 5c13f7d, the first build with switch-ffmpeg): "Everything runs
+  good" (asked to watch and listen to the boot movies: picture, colours, aspect, sound, sync). The log shows a
+  1.6 s suspension and the applet's exit request at 75.2 s (stop reason=runtime), 60.8 s into INTRO.PSS: the game
+  was closed during the intro, so INTRO.PSS is logged as skipped there and the run covers STINGS.PSS whole and the
+  first 60.8 s of INTRO.PSS only.
+- movies-handheld-2 (m07-movies.cfg, the same NRO 19bd154c, sent with nxlink at the user's request): nobody
+  touching the console; stopped by itself at 240 s. STINGS.PSS 321 pictures, 0 dropped, 10.8 s; INTRO.PSS played to its
+  end, 2,527 pictures, 0 dropped, 84.3 s; then S3 / S4 (on foot). Between the
+  two runs gtavcs.nro and gtavcs_rhi_tests.nro were found missing from /switch/gtavcs_nx (not by the session tools);
+  gtavcs.nro was put back over FTP at the user's request (19bd154c, read back).
+- listen-handheld (m07-listen.cfg, NRO 4a4001d0 with patch 0010, from d72b431): the user was asked to press HOME during
+  the opening movie and skip it with B, play on foot, drive with the radio and change stations, check a sound's side
+  (left / right), sleep and wake, then close from HOME. The user: "Everything went well, fps is laggy. Sound is good".
+  The log shows: no focus change during the movies (INTRO.PSS played whole, 2,527 pictures, 0 dropped: the HOME and B
+  steps during the movie are not in this run); on foot and driving in S4; one suspension of 4.9 s at 419 s (sleep or
+  HOME) with audio paused and resumed; 0 underruns in 78 stats windows; 0 GL errors; closed from HOME at 477 s.
+  Asked afterwards: the left / right check: "Yes, correct side" (the sound came from the side it was on); the radio
+  in the vehicle: "Yes, it worked" (played, stations changed, no breaks).
+- mission-handheld (m07-mission.cfg, NRO 4a4001d0): asked to press HOME during the opening movie and resume, then
+  play the first mission and listen to its cutscene speech, sounds and music, then close from HOME. The user: "1. All
+  synced 2. Everything good". The log: a 7.6 s suspension during INTRO.PSS, the movie's clock paused with its sound
+  (6.06 s before, 6.10 s after) and the next picture due within 0.01 s after; INTRO skipped at 33.2 s, 0 dropped;
+  32 scripts active with a mission running, on foot and driving; 0 underruns in 27 stats windows; 0 GL errors;
+  closed from HOME at 164 s.
+
+Review 1 follow-up (2026-11-19, handheld, stock clocks, NRO 6976c8d7 with the revised patch 0010):
+
+- mission-handheld-2 (m07-mission.cfg, PS2X_TRACE_SPU2=1): the user was asked to "watch the first mission's cutscene
+  (lips, speech, music), walk a busy street, close from HOME". The log: both boot movies played whole (STINGS.PSS 321
+  pictures, INTRO.PSS 2,527, 0 dropped), the in-engine intro cutscene (player state 0xc at 105-135 s), then on foot
+  and driving; up to 12 SPU2 voices sounding at once; closed from HOME at 375 s. Asked afterwards, with these exact
+  questions (multiple choice; the user picked the answer quoted):
+  - "In the cutscene you just watched (the first mission's intro, after the boot movies), did the characters' lip
+    movements match their speech, and did the music and sounds stay in time with the picture?" - "Yes, in sync"
+    (option text: "Speech matched the lips; music and sounds in time with the picture.").
+  - "While walking and driving, when several sounds played at once (traffic, footsteps, voices, music), did they all
+    play together without any sound cutting out, stopping early or crackling?" - "Yes, all clean" (option text:
+    "Several sounds together, none cut out, stopped early or crackled.").
+- The question wording of the 2026-11-18 radio answer ("Yes, it worked") was not recorded at the time; it is not
+  reconstructed here.
+- resume-handheld (m07-resume.cfg, NRO e3583aa2, review 3 follow-up, 2026-11-19): the person was asked to "1) HOME
+  during the opening movie, ~5 s, back in; 2) once walking: sleep (power button), ~5 s, wake; 3) close from HOME".
+  The log shows four suspensions (7.1 s during STINGS.PSS, 24.0 s during INTRO.PSS, 12.2 s on foot in S4, 1.3 s before
+  the close), a skip of INTRO.PSS with Cross at 56.3 s (not asked for), and the close from HOME. The log cannot tell a
+  HOME press from sleep. The person reported nothing about this run and was not asked anything afterwards.

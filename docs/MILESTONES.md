@@ -295,17 +295,17 @@ logs and video. Tag the beta only after independent review and merge.
 
 Branch: `milestone/m07-audio-movies` <!-- M07 -->
 
-- [ ] M07-01 Connect native libsd/SPU2 output to bounded PCM producer ring and SDL2 AudioStream/device consumer; remove silence stub.
-- [ ] M07-02 Preserve sample rate, interpolation, stereo channel order, clipping/saturation and game volume settings against desktop reference.
-- [ ] M07-03 Keep consumer timing independent of rendering; measure queue depth, latency, underruns and recovery from deliberate frame stalls.
-- [ ] M07-04 Verify effects/voice/mission banks, ambient sounds, positional balance and simultaneous channels across representative scenes.
-- [ ] M07-05 Verify radio/music/mission streams, seeking/looping and world transitions using AUDIO lookup/SDT/VB/RAW metadata correctly.
-- [ ] M07-06 Add pinned target movie decoder dependencies or equivalent validated implementation; host FFmpeg libraries are forbidden.
-- [ ] M07-07 Decode/render INTRO/STINGS PSS and gameplay cutscenes with audio/video sync, correct colors/aspect and bounded memory.
-- [ ] M07-08 Validate skip/pause/seek/stop and cancellation with pending I/O/audio; no stale buffers replay after transitions.
-- [ ] M07-09 Verify HOME/suspend/resume/device shutdown and error recovery without double audren ownership or callback I/O.
-- [ ] M07-10 Record audible hardware playback plus PCM comparison and long streaming route; silence/nonzero PCM alone cannot close this milestone.
-- [ ] M07-11 Verify no audio drift or cutscene desynchronization across variable frame rates and both output modes.
+- [x] M07-01 Connect native libsd/SPU2 output to bounded PCM producer ring and SDL2 AudioStream/device consumer; remove silence stub.
+- [x] M07-02 Preserve sample rate, interpolation, stereo channel order, clipping/saturation and game volume settings against desktop reference.
+- [x] M07-03 Keep consumer timing independent of rendering; measure queue depth, latency, underruns and recovery from deliberate frame stalls.
+- [x] M07-04 Verify effects/voice/mission banks, ambient sounds, positional balance and simultaneous channels across representative scenes.
+- [x] M07-05 Verify radio/music/mission streams, seeking/looping and world transitions using AUDIO lookup/SDT/VB/RAW metadata correctly.
+- [x] M07-06 Add pinned target movie decoder dependencies or equivalent validated implementation; host FFmpeg libraries are forbidden.
+- [x] M07-07 Decode/render INTRO/STINGS PSS and gameplay cutscenes with audio/video sync, correct colors/aspect and bounded memory.
+- [x] M07-08 Validate skip/pause/seek/stop and cancellation with pending I/O/audio; no stale buffers replay after transitions.
+- [x] M07-09 Verify HOME/suspend/resume/device shutdown and error recovery without double audren ownership or callback I/O.
+- [x] M07-10 Record audible hardware playback plus PCM comparison and long streaming route; silence/nonzero PCM alone cannot close this milestone.
+- [x] M07-11 Verify no audio drift or cutscene desynchronization across variable frame rates in handheld mode (docked: M10-13, user decision 2026-11-18, docs/milestones/M07/SCOPE_DECISIONS.md).
 
 ## M08 — Developer menu on L3+R3 and settings
 
@@ -357,7 +357,7 @@ Branch: `milestone/m10-stability-performance` <!-- M10 -->
 - [ ] M10-09 Inject missing/corrupt assets, allocation/I/O failures and save interruptions safely; prove diagnostics and bounded recovery.
 - [ ] M10-10 Fix all crash/hang/leak/save/audio/visual findings and rerun the affected reference matrices; retain unresolved issues as unchecked tasks.
 - [ ] M10-11 Validate memory headroom and thermal/clock observations over the soak; no undocumented overclock requirement.
-- [ ] M10-13 Complete the docked work deferred from M06 by the user decision of 2026-11-17 (docs/milestones/M06/SCOPE_DECISIONS.md): M06-06's target and camera recreation on docking, M06-13's docking check, M06-20's docked 1920x1080 output and repeated dock changes from both start modes with a flat heap, docked S2/S4 timing (M06-11) and the docked beta acceptance run (M06-18), on hardware with logs and video.
+- [ ] M10-13 Complete the docked work deferred from M06 by the user decision of 2026-11-17 (docs/milestones/M06/SCOPE_DECISIONS.md): M06-06's target and camera recreation on docking, M06-13's docking check, M06-20's docked 1920x1080 output and repeated dock changes from both start modes with a flat heap, docked S2/S4 timing (M06-11) and the docked beta acceptance run (M06-18), and M07-11's docked audio drift and cutscene synchronization (user decision 2026-11-18, docs/milestones/M07/SCOPE_DECISIONS.md), on hardware with logs and video.
 - [ ] M10-12 Produce a reproducible performance/stability report and final acceptance matrix tied to exact candidate SHA.
 
 25+ baseline is operationalized as >=25 measured presented gameplay frames/s over

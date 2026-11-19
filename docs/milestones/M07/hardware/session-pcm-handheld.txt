@@ -1,0 +1,19 @@
+16:13:28 nothing to delete at /switch/gtavcs_nx/gamefolder/userdata/tests/m07-pcm
+16:13:29 == m07-pcm: profile=m07-pcm nro sha256=6d0d2ac7e6ee9dc067cf3f09d038cd0ceee01cc288042b29f4a73c528d13aaee
+16:13:32 tree /switch/gtavcs_nx/gamefolder/userdata entries=234 file=userdata-before-m07-pcm.txt
+16:13:32 deleted /switch/gtavcs_nx/gamefolder/gtavcs.log
+16:13:32 nothing to delete at /switch/gtavcs_nx/gamefolder/userdata/tests/m07-pcm/nxrun-results.txt
+16:13:32 wrote /switch/gtavcs_nx/gamefolder/userdata/nxrun.cfg bytes=687 sha256=3146063de747d47791387d2282d7546ba6a7196d2604a09c438447aacdb0ca34
+16:13:37 nxlink attempt=1 exit=0 output='Sending /switch/gtavcs_nx/gtavcs.nro, 66325752 bytes\n26173797 sent (39.46%), 2158 blocks'
+16:13:52 ACTION FOR THE PERSON AT THE SWITCH: do not touch (5 min)
+16:18:51 ftp back after 313s: the payload has ended
+16:18:54 deleted /switch/gtavcs_nx/gamefolder/userdata/nxrun.cfg
+16:18:54 read-back /switch/gtavcs_nx/gamefolder/gtavcs.log bytes=91091 sha256=6fbefcc8d1d2e1c50c98ae857a5946dc60b3851f87b3005b8ce2a29630ea454f
+16:18:54 read-back /switch/gtavcs_nx/gtavcs-boot.log bytes=62 sha256=3dfe21382f340edd44bac1bf1dd0af6377ec3f03f87b166979ec89c9759bba4b
+16:18:54 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m07-pcm/nxrun-results.txt bytes=55931 sha256=210868b438496ab6a567a6e181594472cc8646cee2f26f8675270933922e9a0c
+16:18:58 tree /switch/gtavcs_nx/gamefolder/userdata entries=241 file=userdata-after-m07-pcm.txt
+16:19:05 m07-pcm: clean_exit_line=True results_tail=['stop t=300.014 reason=seconds frames=15581', 'shutdown t=300.014 frames=15581', 'audit t=300.014 file_opens=147 iso_opens=0 first_iso="" threads_created=6'] sd_matches_local=True new_crashes=[]
+16:19:09 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m07-pcm/game.wav bytes=39525420 sha256=117b90e886573188e734447dcf1f788db6698f87d8a4e4484a52fbfda5bc6776
+16:19:09 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m07-pcm/nxrun-results.txt bytes=55931 sha256=210868b438496ab6a567a6e181594472cc8646cee2f26f8675270933922e9a0c
+16:19:09 pcm-handheld: read back 2 files from /switch/gtavcs_nx/gamefolder/userdata/tests/m07-pcm (screenshots private under build\evidence\M06\screenshots\pcm-handheld)
+16:19:09 RESULT game PASS

@@ -1,0 +1,18 @@
+10:28:18 nothing to delete at /switch/gtavcs_nx/gamefolder/userdata/tests/m07-radio
+10:28:18 == m07-radio: profile=m07-radio nro sha256=60c49e96d9231e219e40e508aee169556c6bed404b7c98ea3363e0ffeed99ac4
+10:28:23 tree /switch/gtavcs_nx/gamefolder/userdata entries=287 file=userdata-before-m07-radio.txt
+10:28:24 deleted /switch/gtavcs_nx/gamefolder/gtavcs.log
+10:28:24 nothing to delete at /switch/gtavcs_nx/gamefolder/userdata/tests/m07-radio/nxrun-results.txt
+10:28:24 wrote /switch/gtavcs_nx/gamefolder/userdata/nxrun.cfg bytes=948 sha256=a9d25b830302033c0e664c84cc3d463a27830186b4cac2c91e132fbd64842f89
+10:28:30 nxlink attempt=1 exit=0 output='Sending /switch/gtavcs_nx/gtavcs.nro, 66338040 bytes\n26178606 sent (39.46%), 2158 blocks'
+10:28:45 ACTION FOR THE PERSON AT THE SWITCH: do not touch (8 min)
+10:37:09 ftp back after 519s: the payload has ended
+10:37:12 deleted /switch/gtavcs_nx/gamefolder/userdata/nxrun.cfg
+10:37:12 read-back /switch/gtavcs_nx/gamefolder/gtavcs.log bytes=177491 sha256=0461cc262f74fd0b559eb4763b33f205072bb268a613072258b7fc940230cc42
+10:37:12 read-back /switch/gtavcs_nx/gtavcs-boot.log bytes=62 sha256=3dfe21382f340edd44bac1bf1dd0af6377ec3f03f87b166979ec89c9759bba4b
+10:37:12 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m07-radio/nxrun-results.txt bytes=48037 sha256=0b24a7ffd83c2c0e131477831402df674df0355925c8d65653e4aafdc8a7f693
+10:37:16 tree /switch/gtavcs_nx/gamefolder/userdata entries=293 file=userdata-after-m07-radio.txt
+10:37:21 m07-radio: clean_exit_line=True results_tail=['stop t=480.006 reason=seconds frames=11228', 'shutdown t=480.006 frames=11228', 'audit t=480.006 file_opens=151 iso_opens=0 first_iso="" threads_created=7'] sd_matches_local=True new_crashes=[]
+10:37:21 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m07-radio/nxrun-results.txt bytes=48037 sha256=0b24a7ffd83c2c0e131477831402df674df0355925c8d65653e4aafdc8a7f693
+10:37:21 radio-handheld: read back 1 files from /switch/gtavcs_nx/gamefolder/userdata/tests/m07-radio (screenshots private under build\evidence\M06\screenshots\radio-handheld)
+10:37:21 RESULT game PASS

@@ -121,7 +121,7 @@ def restore_sd(session):
     return True
 
 
-def game(session, config, label, prompt, keep_card):
+def game(session, config, label, prompt, keep_card, settings=None):
     m04.NRO_LOCAL = ROOT / "build/m04/private/gtavcs.nro"
     text = Path(config).read_text()
     profile = m04.profile_of(text)
@@ -138,7 +138,16 @@ def game(session, config, label, prompt, keep_card):
         session.say(f"created {m04.GAME}/userdata")
     except ftplib.all_errors:
         pass
+    # M07: a prepared vcs.ini for the run's own settings (the profile's settings file; nothing else is put there)
+    if settings:
+        for part in ("tests", f"tests/{profile}"):
+            try:
+                ftp.mkd(f"{m04.GAME}/userdata/{part}")
+            except ftplib.all_errors:
+                pass
     ftp.quit()
+    if settings:
+        m04.put(session, Path(settings).read_bytes(), f"{folder}/vcs.ini")
     ok = m04.game(session, config, prompt, None)
     # m04.game names repeated runs label-2, label-3, ...: find the label it used from the newest log
     logs = sorted(session.evidence.glob(f"{Path(config).stem}*-gtavcs.log"), key=lambda p: p.stat().st_mtime)
@@ -274,6 +283,7 @@ def main():
     ap.add_argument("--label")
     ap.add_argument("--prompt")
     ap.add_argument("--keep-card", action="store_true")
+    ap.add_argument("--settings", help="game: a vcs.ini put into the empty test profile before the run")
     ap.add_argument("--window", action="append", default=[], metavar="NAME:FROM:TO",
                     help="summary: a stage window in seconds, from the run's camera transitions (repeatable)")
     a = ap.parse_args()
@@ -282,7 +292,7 @@ def main():
         if a.command == "preflight":
             ok = m04.preflight(session)
         elif a.command == "game":
-            ok = game(session, a.config, a.label, a.prompt, a.keep_card)
+            ok = game(session, a.config, a.label, a.prompt, a.keep_card, a.settings)
         elif a.command == "clean-sd":
             ok = clean_sd(session)
         elif a.command == "restore-sd":

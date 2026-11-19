@@ -1,0 +1,18 @@
+11:24:15 removed /switch/gtavcs_nx/gamefolder/userdata/tests/m07-mission: files=1 folders=4
+11:24:15 == m07-mission: profile=m07-mission nro sha256=6976c8d7b9ffbc24cae31adaeeaac584321515316e1c2708e9a620023f8791ca
+11:24:19 tree /switch/gtavcs_nx/gamefolder/userdata entries=287 file=userdata-before-m07-mission.txt
+11:24:19 deleted /switch/gtavcs_nx/gamefolder/gtavcs.log
+11:24:19 nothing to delete at /switch/gtavcs_nx/gamefolder/userdata/tests/m07-mission/nxrun-results.txt
+11:24:19 wrote /switch/gtavcs_nx/gamefolder/userdata/nxrun.cfg bytes=632 sha256=50f5b4a58a234400a1835d06fa751d255a2e9832bb483b5568e28463f5bd4ae5
+11:24:29 nxlink attempt=1 exit=0 output='Sending /switch/gtavcs_nx/gtavcs.nro, 66338040 bytes\n26178534 sent (39.46%), 2158 blocks'
+11:24:44 ACTION FOR THE PERSON AT THE SWITCH: watch the first mission's cutscene (lips, speech, music), walk a busy street, close from HOME
+11:31:00 ftp back after 390s: the payload has ended
+11:31:03 deleted /switch/gtavcs_nx/gamefolder/userdata/nxrun.cfg
+11:31:03 read-back /switch/gtavcs_nx/gamefolder/gtavcs.log bytes=130585 sha256=ea57981303888f7b3cde1757ca3205a3cf19f7685a245d13985c31651dd396ba
+11:31:03 read-back /switch/gtavcs_nx/gtavcs-boot.log bytes=62 sha256=3dfe21382f340edd44bac1bf1dd0af6377ec3f03f87b166979ec89c9759bba4b
+11:31:03 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m07-mission/nxrun-results.txt bytes=41828 sha256=61afa6928130c4180009bc58e5501a24d8a9454fafd138cfa6209852c040392b
+11:31:08 tree /switch/gtavcs_nx/gamefolder/userdata entries=293 file=userdata-after-m07-mission.txt
+11:31:14 m07-mission: clean_exit_line=True results_tail=['shutdown t=375.418 frames=12261', 'audit t=375.418 file_opens=150 iso_opens=0 first_iso="" threads_created=7'] sd_matches_local=True new_crashes=[]
+11:31:14 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m07-mission/nxrun-results.txt bytes=41828 sha256=61afa6928130c4180009bc58e5501a24d8a9454fafd138cfa6209852c040392b
+11:31:14 mission-handheld-2: read back 1 files from /switch/gtavcs_nx/gamefolder/userdata/tests/m07-mission (screenshots private under build\evidence\M06\screenshots\mission-handheld-2)
+11:31:14 RESULT game PASS

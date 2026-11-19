@@ -1,0 +1,18 @@
+22:55:24 nothing to delete at /switch/gtavcs_nx/gamefolder/userdata/tests/m07-mission
+22:55:24 == m07-mission: profile=m07-mission nro sha256=4a4001d0f31a5989f515b8868cd23a73c33c78a0670d635090680d9c12d7280c
+22:55:28 tree /switch/gtavcs_nx/gamefolder/userdata entries=274 file=userdata-before-m07-mission.txt
+22:55:28 deleted /switch/gtavcs_nx/gamefolder/gtavcs.log
+22:55:28 nothing to delete at /switch/gtavcs_nx/gamefolder/userdata/tests/m07-mission/nxrun-results.txt
+22:55:29 wrote /switch/gtavcs_nx/gamefolder/userdata/nxrun.cfg bytes=512 sha256=dd66260a87eb84fc397c9953a5418add165b964bbe2c3cb6da05411144f46914
+22:55:34 nxlink attempt=1 exit=0 output='Sending /switch/gtavcs_nx/gtavcs.nro, 66338040 bytes\n26178579 sent (39.46%), 2158 blocks'
+22:55:49 ACTION FOR THE PERSON AT THE SWITCH: HOME during the movie, resume; play the first mission; close from HOME
+22:58:43 ftp back after 188s: the payload has ended
+22:58:46 deleted /switch/gtavcs_nx/gamefolder/userdata/nxrun.cfg
+22:58:46 read-back /switch/gtavcs_nx/gamefolder/gtavcs.log bytes=54983 sha256=d5c0fef91b22c9dd1380671d949a47bcf9b36baa43388e82ea3c7c1df2342f4a
+22:58:46 read-back /switch/gtavcs_nx/gtavcs-boot.log bytes=62 sha256=3dfe21382f340edd44bac1bf1dd0af6377ec3f03f87b166979ec89c9759bba4b
+22:58:46 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m07-mission/nxrun-results.txt bytes=18310 sha256=1bf4362de35dfac70595ce670405ff380dab493ba0ce93810f07e17a6392fb86
+22:58:49 tree /switch/gtavcs_nx/gamefolder/userdata entries=280 file=userdata-after-m07-mission.txt
+22:58:57 m07-mission: clean_exit_line=True results_tail=['shutdown t=163.858 frames=6440', 'audit t=163.858 file_opens=153 iso_opens=0 first_iso="" threads_created=7'] sd_matches_local=True new_crashes=[]
+22:58:58 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m07-mission/nxrun-results.txt bytes=18310 sha256=1bf4362de35dfac70595ce670405ff380dab493ba0ce93810f07e17a6392fb86
+22:58:58 mission-handheld: read back 1 files from /switch/gtavcs_nx/gamefolder/userdata/tests/m07-mission (screenshots private under build\evidence\M06\screenshots\mission-handheld)
+22:58:58 RESULT game PASS

@@ -1,0 +1,18 @@
+22:37:12 nothing to delete at /switch/gtavcs_nx/gamefolder/userdata/tests/m07-movie-sync
+22:37:12 == m07-movie-sync: profile=m07-movie-sync nro sha256=4a4001d0f31a5989f515b8868cd23a73c33c78a0670d635090680d9c12d7280c
+22:37:16 tree /switch/gtavcs_nx/gamefolder/userdata entries=260 file=userdata-before-m07-movie-sync.txt
+22:37:16 deleted /switch/gtavcs_nx/gamefolder/gtavcs.log
+22:37:16 nothing to delete at /switch/gtavcs_nx/gamefolder/userdata/tests/m07-movie-sync/nxrun-results.txt
+22:37:16 wrote /switch/gtavcs_nx/gamefolder/userdata/nxrun.cfg bytes=806 sha256=518908587b48123eccea1661c493102a2a79b97ba751428afa9d793d1cc742bd
+22:37:21 nxlink attempt=1 exit=0 output='Sending /switch/gtavcs_nx/gtavcs.nro, 66338040 bytes\n26178579 sent (39.46%), 2158 blocks'
+22:37:36 ACTION FOR THE PERSON AT THE SWITCH: do not touch (4 min)
+22:41:34 ftp back after 252s: the payload has ended
+22:41:37 deleted /switch/gtavcs_nx/gamefolder/userdata/nxrun.cfg
+22:41:37 read-back /switch/gtavcs_nx/gamefolder/gtavcs.log bytes=82078 sha256=e2308b1ce43e0ff9f75d0e16e3b4d59a6b67b1dd95b06ffbfb50a8a5f9c2c1fe
+22:41:37 read-back /switch/gtavcs_nx/gtavcs-boot.log bytes=62 sha256=3dfe21382f340edd44bac1bf1dd0af6377ec3f03f87b166979ec89c9759bba4b
+22:41:37 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m07-movie-sync/nxrun-results.txt bytes=45639 sha256=90b5c89aecef1951cfa82f8704c3d0e4d7531ad4d9b0800d3f2b27d68c974d6a
+22:41:40 tree /switch/gtavcs_nx/gamefolder/userdata entries=266 file=userdata-after-m07-movie-sync.txt
+22:41:45 m07-movie-sync: clean_exit_line=True results_tail=['stop t=240.005 reason=seconds frames=10858', 'shutdown t=240.005 frames=10858', 'audit t=240.005 file_opens=145 iso_opens=0 first_iso="" threads_created=7'] sd_matches_local=True new_crashes=[]
+22:41:45 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m07-movie-sync/nxrun-results.txt bytes=45639 sha256=90b5c89aecef1951cfa82f8704c3d0e4d7531ad4d9b0800d3f2b27d68c974d6a
+22:41:45 movie-sync-handheld: read back 1 files from /switch/gtavcs_nx/gamefolder/userdata/tests/m07-movie-sync (screenshots private under build\evidence\M06\screenshots\movie-sync-handheld)
+22:41:45 RESULT game PASS

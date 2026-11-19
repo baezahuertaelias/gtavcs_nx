@@ -1,0 +1,20 @@
+diff --git a/docs/game-internals.md b/docs/game-internals.md
+index 6bb7afa..4a2e010 100644
+--- a/docs/game-internals.md
++++ b/docs/game-internals.md
+@@ -1556,8 +1556,14 @@ below are module offsets (CDSTREAM loads at IOP 0x1D600 on the emulated IOP); "d
+   data 0x6410, 40 bytes apart: radio stations, ambience, news, cutscene audio; SLES builds swap in WAVE_EU.VB) ->
+   the thread id; `0x80200+n` open stream n at arg ms; `0x80700` stop; `0x80E00` state; `0x90000` a stream's length in
+   ms (bytes x 7 / 256); `0x90100` position in ms; `0x90200+n` preload n held (cutscenes) / `0x90300` start it;
+-  `0x90400` mono; `0x90500` loop; `0xB00` volume at the next step; `0xC00` volume now (left voice gets the high
++  `0x90400` mono; `0x90500` loop (never sent by the game: see below); `0xB00` volume at the next step; `0xC00` volume now (left voice gets the high
+   half, right voice the low half); `0xD00+core` a core's main volume.
++- **The game never loops a music stream** (found 2026-11-19 by the Switch port, M07-05): the EE-side sender
++  0x10DD50 (a0 = command, a1 = argument) has 12 call sites, all with a constant command - 0x80000 (0x10DC8C, set in
++  the delay slot of the BGEZL at 0x10DC78), 0x90200, 0x90300, 0x80200, 0x80E00 (twice), 0x80700, 0x90100, 0xC00,
++  0xB00, 0x90000, 0x90400; no `lui`+`ori`/`addiu` pair in the ELF builds 0x90500 and no data word holds it (a scan of
++  the loaded segments). An 8-minute radio drive with `VCS_MUSIC_LOG=1` logged 168 commands and no 0x905xx: a station
++  is re-opened at a computed position (0x802xx) instead, so the driver's loop flag stays 0.
+ - **Streams** (.VB): stereo ADPCM at 32 kHz, interleaved in 8 KB chunks (L R L R ...). Two 256 KB IOP buffers read
+   from disc; two 16 KB SPU2 rings at 0x5010 (left) / 0x9010 (right) played by core 1 voices 22 / 23 as loops. The
+   IOP marks the ADPCM block flags in each 8 KB chunk before sending it (first block 6 = loop start or 2, last block

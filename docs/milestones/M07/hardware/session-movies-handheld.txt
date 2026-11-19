@@ -1,0 +1,23 @@
+11:36:06 nothing to delete at /switch/gtavcs_nx/gamefolder/userdata/tests/m07-movies
+11:36:07 == m07-movies: profile=m07-movies nro sha256=19bd154c1ebe10b90bc75857d671e12ff22a23feb9abae713dd2da5abb3b25ee
+11:36:10 tree /switch/gtavcs_nx/gamefolder/userdata entries=222 file=userdata-before-m07-movies.txt
+11:36:10 deleted /switch/gtavcs_nx/gamefolder/gtavcs.log
+11:36:10 nothing to delete at /switch/gtavcs_nx/gamefolder/userdata/tests/m07-movies/nxrun-results.txt
+11:36:10 wrote /switch/gtavcs_nx/gamefolder/userdata/nxrun.cfg bytes=949 sha256=211741ae6d559cd8d20bb335441451a6d02c6e8f3771592e8fea85a683289156
+11:36:16 nxlink attempt=1 exit=0 output='Sending /switch/gtavcs_nx/gtavcs.nro, 66320581 bytes\n26167766 sent (39.46%), 2156 blocks'
+11:36:31 ACTION FOR THE PERSON AT THE SWITCH: do not touch (4 min); watch / listen to the movies
+11:37:46 ftp back after 90s: the payload has ended
+11:37:49 deleted /switch/gtavcs_nx/gamefolder/userdata/nxrun.cfg
+11:37:49 read-back /switch/gtavcs_nx/gamefolder/gtavcs.log bytes=23920 sha256=2a4c9e2db6caac288cc1566c628e28c92d9f1f4acbe4af8b77b79e57a102728c
+11:37:49 read-back /switch/gtavcs_nx/gtavcs-boot.log bytes=62 sha256=3dfe21382f340edd44bac1bf1dd0af6377ec3f03f87b166979ec89c9759bba4b
+11:37:49 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m07-movies/nxrun-results.txt bytes=14448 sha256=26770e91ce05d90ccacb4b6a17bc715209718f1d51a5fca70c67dd8c9ae30090
+11:37:52 tree /switch/gtavcs_nx/gamefolder/userdata entries=233 file=userdata-after-m07-movies.txt
+11:38:00 m07-movies: clean_exit_line=True results_tail=['stop t=75.195 reason=runtime frames=4458', 'shutdown t=75.195 frames=4458', 'audit t=75.195 file_opens=142 iso_opens=0 first_iso="" threads_created=6'] sd_matches_local=True new_crashes=[]
+11:38:00 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m07-movies/movie-008.png bytes=69588 sha256=08b9aeb4aa329fe2645849e5a8b4a1a5a0f660236fc78488d35bffeb0fd5c4ab
+11:38:00 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m07-movies/movie-020.png bytes=3382 sha256=087bc99ae7cf6490d3b63d2bcccd2005ecdc44d649ca167fa0cd4eba8c9a5f5c
+11:38:00 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m07-movies/movie-040.png bytes=16420 sha256=a88084b9df66d8dd9dd2c6af9b8d49fa07f0f442adfd4d25d84211cd4bbeb41f
+11:38:00 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m07-movies/movie-070.png bytes=155198 sha256=4fc96e7fd98d3494941ec1c6d84e418e691045fc51982c9bf4b94ab3a0e794f6
+11:38:00 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m07-movies/nxrun-results.txt bytes=14448 sha256=26770e91ce05d90ccacb4b6a17bc715209718f1d51a5fca70c67dd8c9ae30090
+11:38:00 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m07-movies/perf.csv bytes=5811 sha256=d45eea6801114f590a8dcd115867cd0d4fb9d7cbec9f95feedc18542af4635a8
+11:38:00 movies-handheld: read back 6 files from /switch/gtavcs_nx/gamefolder/userdata/tests/m07-movies (screenshots private under build\evidence\M06\screenshots\movies-handheld)
+11:38:00 RESULT game PASS

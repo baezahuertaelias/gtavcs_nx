@@ -36,6 +36,14 @@
     {
       "path": "0009-rsl-recordings-prune.patch",
       "sha256": "be41e128559fbe68bd9a8dfa5830c39f54c78cdbc60552a3965f05f576da1fe7"
+    },
+    {
+      "path": "0010-audio-starvation-filler.patch",
+      "sha256": "4b4ee641ef72151b5e8a33fef3547412a53779d969d575f9a6204393da932d81"
+    },
+    {
+      "path": "0011-music-loop-unused.patch",
+      "sha256": "97e31bc32676a23b375a69d32d158f8b0222fb3dfae9ca00618e56b4b7238546"
     }
   ]
 }

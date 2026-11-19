@@ -35,7 +35,8 @@ authorize general implementation delegation or additional user-owned chats.
 GitHub plan limitations on private branch protection must be recorded honestly;
 they do not relax these operating rules.
 
-**Current deliverable (M06: handheld beta proven on the Switch, awaiting independent review).**
+**Current deliverable (M07: real sound and movies proven on the Switch, handheld; awaiting independent review).**
+M06 (the handheld beta) is merged.
 `python tools/build_game.py` links the private generated EE/VU archive, the
 overlaid upstream runtime/game layer, `src/core/core.cpp` behind the C ABI in
 `src/core.h`, the SDL2 platform adapter and the OpenGL 3.3 RHI backend
@@ -154,7 +155,7 @@ Install devkitPro using its official instructions, then in a devkitPro-enabled
 Ubuntu/container environment install packages (not Ubuntu SDL/OpenGL packages):
 
 ```bash
-sudo dkp-pacman -Syu --needed switch-dev switch-cmake switch-pkg-config switch-sdl2 switch-mesa
+sudo dkp-pacman -Syu --needed switch-dev switch-cmake switch-pkg-config switch-sdl2 switch-mesa switch-ffmpeg
 ```
 
 Omit `sudo` inside a root container. Install host CMake >=3.24 and Ninja using
@@ -297,3 +298,10 @@ recording cache; root patch 0009 prunes it and the heap levels off while driving
 of play, game frame median 84.6 ms / p95 419.9 ms while moving).
 Docked mode, docking and the Pro Controller are untested (user decisions: M10-13,
 M13-11).
+M07 (2026-11-18, handheld): the boot movies play through the locked switch-ffmpeg 7.1
+(target build, GPL) in sync with their sound (the picture due 0.00-0.07 s ahead, across HOME and
+frame stalls); the game's sound matches the desktop reference in format and level, and the
+volume settings apply. Root patch 0010 keeps the sound mixing through long game frames
+(a 16-minute drive: 169 underruns before, 0 after the boot movies with the revised
+patch); patch 0011 records that the game never loops a music stream. The user heard movies, effects,
+radio, left / right and a mission's speech as correct. Docked audio: M10-13.
