@@ -82,7 +82,7 @@
   },
   {
    "path": "docs/milestones/M08/hardware/trainer-r3-gtavcs.txt",
-   "result": "NRO 2a02c7b6: the trainer opened from the menu twice, 'nothing chosen', trainer_used=0"
+   "result": "NRO 2a02c7b6: review 3's hand-over (g_padWas seeding), replaced in review 4; history only, not proof for c81c7428"
   },
   {
    "path": "docs/milestones/M08/hardware/nav-r3/nxrun-results.txt",
@@ -90,7 +90,7 @@
   },
   {
    "path": "docs/milestones/M08/hardware/trainer-r4c-gtavcs.txt",
-   "result": "NRO c81c7428: Right arrow and A held while opening the trainer: 2 buttons ignored until let go, trainer_used=0 (the trainer was on its main page)"
+   "result": "NRO c81c7428: Right arrow and A held while opening the trainer: 2 buttons ignored until let go (g_padIgnored), Right held 3.6 s more, trainer_used=0 in all 50 reports; reopened on the main page with Player selected; the Player-page cases rest on code reading"
   }
  ],
  "M08-09": [
@@ -112,11 +112,11 @@
   },
   {
    "path": "docs/milestones/M08/hardware/trainer-r3-gtavcs.txt",
-   "result": "NRO 2a02c7b6: reopening the trainer from the menu two pages deep chose nothing, no trainer use counted"
+   "result": "NRO 2a02c7b6: review 3's hand-over (g_padWas seeding), replaced in review 4; history only, not proof for c81c7428"
   },
   {
    "path": "docs/milestones/M08/hardware/trainer-r4c-gtavcs.txt",
-   "result": "NRO c81c7428: Right arrow and A held while opening the trainer: 2 buttons ignored until let go, trainer_used=0 (the trainer was on its main page)"
+   "result": "NRO c81c7428: Right arrow and A held while opening the trainer: 2 buttons ignored until let go (g_padIgnored), Right held 3.6 s more, trainer_used=0 in all 50 reports; reopened on the main page with Player selected; the Player-page cases rest on code reading"
   }
  ],
  "M08-14": [
@@ -144,7 +144,7 @@
   },
   {
    "path": "docs/milestones/M08/hardware/trainer-r3-gtavcs.txt",
-   "result": "NRO 2a02c7b6: trainer reached through the menu without the choosing button acting in it"
+   "result": "NRO 2a02c7b6: review 3's hand-over (g_padWas seeding), replaced in review 4; history only, not proof for c81c7428"
   },
   {
    "path": "docs/milestones/M08/hardware/trainer-r4c-gtavcs.txt",
