@@ -1,0 +1,39 @@
+[devmenu] 74 desktop-only settings hidden (Keyboard page, window, background)
+[settings] display aspect 1.333, HUD 4:3
+[settings] display aspect 1.333, HUD 4:3
+[settings] /switch/gtavcs_nx/gamefolder/userdata/tests/m08-functions/vcs.ini: 122 settings, 1 not at their default: display.skip_intro=1
+[devmenu] L3 + R3 opens the developer menu; Back + Start / RB / LB chords off
+[chord] L3 + R3 opens the developer menu; every L3 / R3 press waits 100 ms for the other
+[platform] focus lost: audio paused, pad neutral
+[platform] focus back: audio resumed, pad live
+[platform] controller physical: No1 styles 0x0 (none, device type 0x0), handheld styles 0x2 (Joy-Cons attached (handheld), device type 0xc)
+[chord] 44.282 s L3 chord after 0.0 ms: game sees L3=0 R3=0
+[chord] 44.282 s R3 chord after 0.0 ms: game sees L3=0 R3=0 (menu toggle)
+[devmenu] opened by L3 + R3: menu=1 settings=0 trainer=0 chords=1
+[chord] 44.483 s L3 suppressed-up: game sees L3=0 R3=0
+[chord] 44.483 s R3 suppressed-up: game sees L3=0 R3=0
+[devmenu] chose: trainer
+[devmenu] to the trainer: menu=0 settings=0 trainer=1 chords=1
+[devmenu] trainer used: 1 action(s) this run; a save made from now on may hold trainer changes (noted in /switch/gtavcs_nx/gamefolder/userdata/tests/m08-functions/trainer-used.txt)
+[devmenu] trainer used: 7 action(s) this run; a save made from now on may hold trainer changes (noted in /switch/gtavcs_nx/gamefolder/userdata/tests/m08-functions/trainer-used.txt)
+[chord] 152.652 s L3 chord after 0.0 ms: game sees L3=0 R3=0
+[chord] 152.652 s R3 chord after 0.0 ms: game sees L3=0 R3=0 (menu toggle)
+[devmenu] opened by L3 + R3: menu=1 settings=0 trainer=0 chords=2
+[chord] 152.899 s L3 suppressed-up: game sees L3=0 R3=0
+[chord] 152.899 s R3 suppressed-up: game sees L3=0 R3=0
+[devmenu] chose: free camera on
+[devmenu] free camera on: the sticks fly it: menu=0 settings=0 trainer=0 chords=2
+[chord] 171.532 s L3 chord after 0.0 ms: game sees L3=0 R3=0
+[chord] 171.532 s R3 chord after 0.0 ms: game sees L3=0 R3=0 (menu toggle)
+[devmenu] opened by L3 + R3: menu=1 settings=0 trainer=0 chords=3
+[chord] 171.751 s L3 suppressed-up: game sees L3=0 R3=0
+[chord] 171.781 s R3 suppressed-up: game sees L3=0 R3=0
+[devmenu] chose: free camera off
+[devmenu] chose: performance overlay on
+[devmenu] chose: recording start
+[perf] recording to /switch/gtavcs_nx/gamefolder/userdata/tests/m08-functions/perf/perf_20261119_153006.csv
+[devmenu] chose: performance overlay off
+[devmenu] chose: recording stop
+[perf] recording saved: /switch/gtavcs_nx/gamefolder/userdata/tests/m08-functions/perf/perf_20261119_153006.csv (summarise with: python tools/perf_report.py /switch/gtavcs_nx/gamefolder/userdata/tests/m08-functions/perf/perf_20261119_153006.csv)
+[devmenu] chose: close
+[devmenu] closed from its row: menu=0 settings=0 trainer=0 chords=3

@@ -1,0 +1,57 @@
+2026-11-19, NRO 0fec62d9 (chord-handheld): the user, during the run: "When opening windows with l3r3 the AB and XY
+are inverted" (the menus followed the PS2 positions: south = choose). Fixed in 394fa5a (Nintendo layout in the menus).
+2026-11-19, NRO 022522af (chord-handheld-2): asked "In that run, where did you open and close the menu? The log shows
+open/close pairs at about 66 s, 72 s and 84 s after the game started, then the HOME one." The user chose: "Flyover,
+cutscene, play" ("First pair during the flyover, second during the cutscene, third in play, then the HOME one in
+play"). The run's config had no gameinfo (stage) query; later runs add one.
+2026-11-19, NRO 022522af (functions-handheld): the user closed the game from HOME after the trainer step, before
+the other steps ("I closed it early").
+2026-11-19, NRO 022522af (functions-handheld-2): asked "Did tapping the screen do anything in the menu?": "Nothing
+happened" (no [touch] line in the log: switch-sdl2 makes no mouse events of fingers; fixed in 0a7694f). Asked "For free
+aim: did you hold R and click the left stick in while holding it?": "Did it, circle". The log has no L3 press outside
+the two L3 + R3 chords ([input] leftstick only at 45.3 s), only R presses: the circle seen was R's lock-on, not proof of
+R1-then-L3 free aim. Repeated on the final NRO.
+2026-11-19, NRO 8e520298 (acceptance-final): the user missed the flyover ("Missed the flyover"; the log has one
+open / close pair before the trainer, at about 84 s, the camera in mode 17 flyby / cutscene at t=70). Free aim step:
+"Didn't do it". Touch step: "Tap worked", but the log has no touch event: the overlay row was chosen by the A button
+([input] button b, the east position, just before "chose: performance overlay on"); switch-sdl2 delivered no
+SDL_FINGER* event either. Touch is read from HID from 04a6b45 on.
+2026-11-19, NRO f9aff8f1 (acceptance-f9): the user: "Everything worked". Asked about step 6 ("did you touch the screen
+with your finger on 'Performance overlay', or move there with the D-pad and press A?"): "Used D-pad and A" (touch not
+tried; the log has no [touch] line, touches=0). The chords came at about 88-102 s (26 open / close, the camera in mode 17
+flyby / cutscene at t=70), not in the flyover (mode 15 at t=10).
+2026-11-19, NRO f9aff8f1 (layout1080-f9, VCS_NX_OUTPUT=1080): the user: "Yes, touch works". Asked "the log shows two
+finger touches: the first chose 'Frame-time recording', the second chose 'Performance overlay'. Which rows did your
+finger actually touch?": "Those exact rows" ("Each touch hit the row under my finger"). Asked whether step 3 (Settings,
+Show frame rate) was skipped: "Skipped it".
+2026-11-19, NRO f9aff8f1 (touch720-f9): asked to touch "Performance overlay" then "Close" with a finger in play; the log
+has two [touch] lines (panel 419,175 and 465,277 -> display the same, 1280x720) choosing exactly those rows.
+2026-11-19, NRO f9aff8f1 (layout1080-f9-2, VCS_NX_OUTPUT=1080): asked "was the Settings text easy to read, and did the
+number appear?" (Show frame rate set to Top left from the developer menu's Settings): "Yes to both". The automatic
+relaunch (layout-relaunch-f9) loaded display.fps_counter=1.
+2026-11-19, NRO 6b62dca7 (final-r1, review 1's acceptance run, tests/switch/m08-final.cfg): the user was given the 11
+steps (flyover x2, cutscene, play, trainer gun, R held then L3, recording started and stopped with buttons, free camera
+on / off, finger on "Performance overlay" and "Close", HOME with the menu open, sleep with the menu open, close from
+HOME) and answered "Everything done". The user did not answer the aiming-circle question separately; the game's own
+free-aim flag is in the log ("[devmenu] the game's free aim on").
+2026-11-19, review 2: asked "Do you have [a USB mouse], or should that part move to M16 (the hardware-we-lack
+milestone)?", the user chose "Move it to M16" (docs/milestones/M08/SCOPE_DECISIONS.md, M16-04).
+2026-11-19, NRO 63360935 (navhand-r2): asked, in play, to open the menu with L3 + R3, go down with the D-pad to
+"Performance overlay", press A, close with B and close from HOME; done as the log shows (dpdown x4, chose: performance
+overlay on, closed by B).
+2026-11-19, NRO 2a02c7b6 (trainer-r3, review 3): asked to open the trainer from the developer menu, enter the Player
+page, close everything with L3 + R3 without B, reopen the trainer from the menu and say whether anything turned on by
+itself: "It went great". Log: "[trainer] opened from another menu, 2 page(s) deep, nothing chosen", trainer_used=0.
+2026-11-19, NRO c81c7428 (trainer-r4, review 4): the user: "Its broken"; asked what: "When choosing trainer, the
+window closed itself", then "Trainer showed and the window to choose trainer or free cam, that closed" (the developer
+menu closes when the trainer opens, as designed; the log: "[trainer] opened from another menu, 1 page(s) deep; 1
+button(s) held now ignored until let go", trainer=1 at t=511). For step 3 (hold D-pad Right, press A on Trainer...) the
+user said the developer menu "Closed on its own"; the log has no D-pad event in that time and both sticks down at the
+same millisecond (528673 ms leftstick / rightstick down -> "closed by L3 + R3"), so the trainer was not reopened and
+step 3 was not done. The retry (trainer-r4b) was sent but the user was away from the console; not done.
+2026-11-19, NRO c81c7428 (trainer-r4c; logs renamed from trainer-r4b-gtavcs.log / m08-chord-2-results.txt after a label
+clash with the stopped attempt, now trainer-r4-away-*): the user held the Right arrow and pressed A on "Trainer...":
+"[trainer] opened from another menu, 1 page(s) deep; 2 button(s) held now ignored until let go", Right held 3.6 s
+more, trainer_used=0 in every report. The trainer was on its main page (1 page deep), not on Player, so the case of a
+held Right toggling God mode was not reproduced. Asked for one more run with the Player page open, the user declined:
+"I won't do more test, this is enough". That run (trainer-r4d) was stopped unplayed.

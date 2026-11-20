@@ -1,0 +1,58 @@
+[devmenu] 74 desktop-only settings hidden (Keyboard page, window, background)
+[settings] display aspect 1.333, HUD 4:3
+[settings] display aspect 1.333, HUD 4:3
+[settings] /switch/gtavcs_nx/gamefolder/userdata/tests/m08-functions/vcs.ini: 122 settings, 1 not at their default: display.skip_intro=1
+[devmenu] L3 + R3 opens the developer menu; Back + Start / RB / LB chords off
+[chord] L3 + R3 opens the developer menu; every L3 / R3 press waits 100 ms for the other
+[platform] focus lost: audio paused, pad neutral
+[platform] focus back: audio resumed, pad live
+[platform] controller physical: No1 styles 0x0 (none, device type 0x0), handheld styles 0x2 (Joy-Cons attached (handheld), device type 0xc)
+[chord] 85.994 s L3 chord after 0.0 ms: game sees L3=0 R3=0
+[chord] 85.994 s R3 chord after 0.0 ms: game sees L3=0 R3=0 (menu toggle)
+[devmenu] opened by L3 + R3: menu=1 settings=0 trainer=0 chords=1
+[chord] 86.182 s L3 suppressed-up: game sees L3=0 R3=0
+[chord] 86.182 s R3 suppressed-up: game sees L3=0 R3=0
+[chord] 86.427 s L3 chord after 0.0 ms: game sees L3=0 R3=0
+[chord] 86.427 s R3 chord after 0.0 ms: game sees L3=0 R3=0 (menu toggle)
+[devmenu] closed by L3 + R3: menu=0 settings=0 trainer=0 chords=2
+[chord] 86.512 s L3 suppressed-up: game sees L3=0 R3=0
+[chord] 86.561 s R3 suppressed-up: game sees L3=0 R3=0
+[chord] 94.697 s L3 chord after 0.0 ms: game sees L3=0 R3=0
+[chord] 94.697 s R3 chord after 0.0 ms: game sees L3=0 R3=0 (menu toggle)
+[devmenu] opened by L3 + R3: menu=1 settings=0 trainer=0 chords=3
+[chord] 94.880 s L3 suppressed-up: game sees L3=0 R3=0
+[chord] 94.880 s R3 suppressed-up: game sees L3=0 R3=0
+[devmenu] chose: trainer
+[devmenu] to the trainer: menu=0 settings=0 trainer=1 chords=3
+[devmenu] trainer used: 1 action(s) this run; a save made from now on may hold trainer changes (noted in /switch/gtavcs_nx/gamefolder/userdata/tests/m08-functions/trainer-used.txt)
+[devmenu] trainer used: 2 action(s) this run; a save made from now on may hold trainer changes (noted in /switch/gtavcs_nx/gamefolder/userdata/tests/m08-functions/trainer-used.txt)
+[devmenu] trainer used: 3 action(s) this run; a save made from now on may hold trainer changes (noted in /switch/gtavcs_nx/gamefolder/userdata/tests/m08-functions/trainer-used.txt)
+[devmenu] trainer used: 4 action(s) this run; a save made from now on may hold trainer changes (noted in /switch/gtavcs_nx/gamefolder/userdata/tests/m08-functions/trainer-used.txt)
+[devmenu] trainer used: 5 action(s) this run; a save made from now on may hold trainer changes (noted in /switch/gtavcs_nx/gamefolder/userdata/tests/m08-functions/trainer-used.txt)
+[devmenu] trainer used: 6 action(s) this run; a save made from now on may hold trainer changes (noted in /switch/gtavcs_nx/gamefolder/userdata/tests/m08-functions/trainer-used.txt)
+[devmenu] trainer used: 7 action(s) this run; a save made from now on may hold trainer changes (noted in /switch/gtavcs_nx/gamefolder/userdata/tests/m08-functions/trainer-used.txt)
+[devmenu] trainer used: 8 action(s) this run; a save made from now on may hold trainer changes (noted in /switch/gtavcs_nx/gamefolder/userdata/tests/m08-functions/trainer-used.txt)
+[devmenu] trainer used: 9 action(s) this run; a save made from now on may hold trainer changes (noted in /switch/gtavcs_nx/gamefolder/userdata/tests/m08-functions/trainer-used.txt)
+[devmenu] trainer used: 10 action(s) this run; a save made from now on may hold trainer changes (noted in /switch/gtavcs_nx/gamefolder/userdata/tests/m08-functions/trainer-used.txt)
+[chord] 140.558 s L3 chord after 0.0 ms: game sees L3=0 R3=0
+[chord] 140.558 s R3 chord after 0.0 ms: game sees L3=0 R3=0 (menu toggle)
+[devmenu] opened by L3 + R3: menu=1 settings=0 trainer=0 chords=4
+[chord] 140.750 s L3 suppressed-up: game sees L3=0 R3=0
+[chord] 140.750 s R3 suppressed-up: game sees L3=0 R3=0
+[devmenu] chose: free camera on
+[devmenu] free camera on: the sticks fly it: menu=0 settings=0 trainer=0 chords=4
+[chord] 154.585 s L3 chord after 0.0 ms: game sees L3=0 R3=0
+[chord] 154.585 s R3 chord after 0.0 ms: game sees L3=0 R3=0 (menu toggle)
+[devmenu] opened by L3 + R3: menu=1 settings=0 trainer=0 chords=5
+[chord] 154.796 s L3 suppressed-up: game sees L3=0 R3=0
+[chord] 154.832 s R3 suppressed-up: game sees L3=0 R3=0
+[devmenu] chose: free camera off
+[devmenu] chose: performance overlay on
+[platform] focus lost: audio paused, pad neutral
+[platform] focus back: audio resumed, pad live
+[chord] 183.004 s R3 withheld: game sees L3=0 R3=0
+[chord] 183.032 s L3 chord after 0.0 ms: game sees L3=0 R3=0
+[chord] 183.032 s R3 chord after 27.4 ms: game sees L3=0 R3=0 (menu toggle)
+[devmenu] closed by L3 + R3: menu=0 settings=0 trainer=0 chords=6
+[chord] 183.289 s L3 suppressed-up: game sees L3=0 R3=0
+[chord] 183.289 s R3 suppressed-up: game sees L3=0 R3=0

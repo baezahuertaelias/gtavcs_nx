@@ -1,0 +1,353 @@
+[boot] checked chdir succeeded: sdmc:/switch/gtavcs_nx/gamefolder
+[boot] SDL Switch; audio switch
+[boot] GL 4.3 (Core Profile) Mesa 20.1.0-rc3; renderer NV120
+[video] output 1280x720 on the 1920x1080 surface, crop lower-left (00000000)
+[resources] boot live_threads=2 (svc 00000000 via own)
+[resources] boot mapped_total=3343908864 mapped_used=3339763712 heap_in_use=145576896 heap_obtained=145608704 threads_created=1 default_thread_stack=8388608 file_opens=2 iso_opens=0
+[core] root=/switch/gtavcs_nx/gamefolder userdata=/switch/gtavcs_nx/gamefolder/userdata/tests/m08-chord settings=/switch/gtavcs_nx/gamefolder/userdata/tests/m08-chord/vcs.ini mc0=/switch/gtavcs_nx/gamefolder/userdata/tests/m08-chord/mc0 mc1=/switch/gtavcs_nx/gamefolder/userdata/tests/m08-chord/mc1 backups=/switch/gtavcs_nx/gamefolder/userdata/tests/m08-chord/backups cache=/switch/gtavcs_nx/gamefolder/userdata/tests/m08-chord/cache elf=/switch/gtavcs_nx/gamefolder/SLUS_215.90 profile=m08-chord
+[nxrun] config t=0.000 profile="m08-chord" seconds=0.000000 commands=490 env=3 verify_files=0
+[core] env VCS_SKIP_MOVIES=1
+[core] env PS2X_RHI_STATS=1
+[core] env VCS_NX_INPUT_LOG=1
+[devmenu] 74 desktop-only settings hidden (Keyboard page, window, background)
+[settings] display aspect 1.333, HUD 4:3
+[settings] display aspect 1.333, HUD 4:3
+[framerate] cap 30.00 fps (independent timing)
+[framerate] cap 60.00 fps (independent timing)
+[settings] /switch/gtavcs_nx/gamefolder/userdata/tests/m08-chord/vcs.ini: 122 settings, 1 not at their default: display.skip_intro=1
+[core] /switch/gtavcs_nx/gamefolder/SLUS_215.90 sha1 d1832508caf0990c2291c0f255c96a889cce9f88: GTA: Vice City Stories - USA (SLUS-21590) v1.00
+[core] folder disc 1066336 sectors, 0 mods applied; no disc image opened
+[devmenu] L3 + R3 opens the developer menu; Back + Start / RB / LB chords off
+[gs] hardware GS renderer (OpenGL)
+[render-worker] on: render submission runs on its own thread
+[render-worker] GS stage on: the GS front end and frame building on a second thread
+[platform] gamepad: Switch Controller (instance 0) mapping 000038f853776974636820436f6e7400,Switch Controller,a:b1,b:b0,back:b11,dpdown:b15,dpleft:b12,dpright:b14,dpup:b13,leftshoulder:b6,leftstick:b4,lefttrigger:b8,leftx:a0,lefty:a1,rightshoulder:b7,rightstick:b5,righttrigger:b9,rightx:a2,righty:a3,start:b10,x:b3,y:b2,crc:f838,platform:Unknown (see SDL_platform.h)
+[chord] L3 + R3 opens the developer menu; every L3 / R3 press waits 100 ms for the other
+[platform] SDL2 2.28.5 adopted main.c's window 1920x1080 (asked 640x448); ImGui on
+[rhi] OpenGL 4.3: clip_control 1, viewport_array 1, anisotropy 1 (max 16), KHR_debug 1, dual-source draw buffers 1, samples 8/8/8, max texture 16384, framebuffer encoding 0x2601
+[present] OpenGL on NV120 (4.3 (Core Profile) Mesa 20.1.0-rc3; GLSL 4.30)
+[platform] audio device 2: 48000 Hz, 2 channels, 1024 frames (switch)
+[menu] pause menu: Enter selects, Escape goes back, the mouse points and clicks
+[sound] native sound driver (CDSTREAM's servers on the host)
+[iop] emulated IOP off: no IRX module loaded or run (PS2X_IOP=1 runs it)
+[core] io elf=/switch/gtavcs_nx/gamefolder/SLUS_215.90 host=/switch/gtavcs_nx/gamefolder cd=/switch/gtavcs_nx/gamefolder mc=/switch/gtavcs_nx/gamefolder/userdata/tests/m08-chord/mc0 cdImage=(none)
+[input] player bindings
+[core] desktop watchdog and sampling profiler not started (detached desktop threads; progress comes from the run's report lines)
+[resources] running live_threads=5 (svc 00000000 via own)
+[resources] running mapped_total=3343908864 mapped_used=3339763712 heap_in_use=231300512 heap_obtained=234262528 threads_created=6 default_thread_stack=8388608 file_opens=12 iso_opens=0
+[lifecycle] suspension_clock=1
+[lifecycle] resume=0 focus_notifications=1 focus=1
+[platform] focus lost: audio paused, pad neutral
+[nxrun] focus t=0.000 state=out
+[platform] focus back: audio resumed, pad live
+[nxrun] focus t=0.000 state=in
+[video] drawable=1920x1080 window=1920x1080 output=1280x720 mode=0 (was -1); 0 frames, 0.00 ms each since the last change; heap 318032976
+[platform] controller physical: No1 styles 0x0 (none, device type 0x0), handheld styles 0x2 (Joy-Cons attached (handheld), device type 0xc)
+[gs-hw] renderer ready (NV120 (4.3 (Core Profile) Mesa 20.1.0-rc3; GLSL 4.30)), scale 1x
+[movie] cdrom0:\MOVIES\STINGS.PSS;1 skipped (Display > Intro movies)
+[movie] cdrom0:\MOVIES\INTRO.PSS;1 skipped (Display > Intro movies)
+[present] display aspect 1.333
+[platform] mouse capture: not on the Switch (accepted, no effect)
+[nxrun] progress t=0.000 host_frames=1 game_frames=0 ee_cycle=14746217 ee_threads=1 ready=1 waiting=0 dormant=0 running=1 pc=00264448 ra=002643e4 pumps=1 audio_callbacks=25 audio_frames=25600 gamepad=1 heap_in_use=329151328 heap_obtained=334020608
+[nxrun] perf t=0.000 "game_fps=16.2 frame_ms=61.8 vblank_per_s=16.2 game_ms=61.2 render_ms=0.1 iop_ms=0.5 wait_ms=0.0 draws=0 verts=0 tex_uploads=0 dma_tags=0 vu1_programs=0 host_fps=0 gl_ms=0.0 audio_ms=64 black_frames=0 dip_frames=0 probed_frames=0 worker_ms=0.1 gs_ms=39.7 gs_draws=0.0 gs_verts=0.0 gs_vu1=0.0 gs_hle=0.0 gs_path2=0.0 gs_path3=0.0 native_draws=0.0 hud_draws=0.0 post_draws=0.0 packed_draws=0.0 packed_verts=0.0 tex_create_us=0.0 tex_kb=0.0 tex_decode_us=0.0"
+[nxrun] devmenu t=0.000 menu=0 settings=0 trainer=0 blocked=0 chords=0 opens=0 closes=0 stick_presses=0 stick_delivered=0 max_withheld_ms=0.0 touches=0 trainer_used=0 last=""
+[gs-hw] a draw samples its own render target: reading a copy
+[nxrun] command t=1.031 at=1.000000 command="devmenu" status=ok reply="ok menu=0 settings=0 trainer=0 blocked=0 chords=0 opens=0 closes=0 stick_presses=0 stick_delivered=0 max_withheld_ms=0.0 touches=0 trainer_used=0 last=\"\""
+[nxrun] command t=1.031 at=1.000000 command="padstate" status=ok reply="ok buttons=0000 rx=128 ry=128 lx=128 ly=128 reads=274"
+[menu] the Display page's Widescreen row hidden (2 focus moves past it, 4 rows up 27)
+[nxrun] command t=3.031 at=3.000000 command="padstate" status=ok reply="ok buttons=0000 rx=128 ry=128 lx=128 ly=128 reads=276"
+[vu0native] running VCS VU0 segment vs triangle (0x020) natively (VU0 0x0020, 1960 bytes)
+[vu0native] running VCS VU0 sphere vs triangle (0x3A0) natively (VU0 0x03a0, 1960 bytes)
+[vu0native] running VCS VU0 store vf1..vf12 (0x0E30) natively (VU0 0x0e30, 104 bytes)
+[vu0native] running VCS VU0 3x matrix product (0x0E98) natively (VU0 0x0e98, 272 bytes)
+[vu0native] running VCS VU0 3x matrix product (0x0EB8) natively (VU0 0x0eb8, 240 bytes)
+[vu0native] running VCS VU0 sector box clip (0x0CF8) natively (VU0 0x0cf8, 312 bytes)
+[vu0native] running VCS VU0 sphere vs three plane sets (0x0C10) natively (VU0 0x0c10, 216 bytes)
+[vu0native] running VCS VU0 segment vs triangle, float inputs (0x068) natively (VU0 0x0068, 1960 bytes)
+[rhi-stats] textures 26 (24.5 MiB) buffers 21 (1.3 MiB) samplers 9 pipelines 23 programs 15 fbos 16 pending 0 | draws 527 passes 431 presents 218 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[gs-hw] input delay by stage: input -> queued 55.0 ms (game, render worker, GS stage), queued -> taken 109.1 ms
+[nxrun] command t=5.018 at=5.000000 command="padstate" status=ok reply="ok buttons=0000 rx=128 ry=128 lx=128 ly=128 reads=648"
+[nxrun] command t=5.018 at=5.000000 command="player" status=ok reply="ok 01d439c0 -1440.235 -314.627 14.396 1"
+[nxrun] command t=6.034 at=6.000000 command="devmenu" status=ok reply="ok menu=0 settings=0 trainer=0 blocked=0 chords=0 opens=0 closes=0 stick_presses=0 stick_delivered=0 max_withheld_ms=0.0 touches=0 trainer_used=0 last=\"\""
+[hle] world packets 4389: culled 969, drawn 2407 + 0 GPU-clipped (148215 vertices), 1013 C++-clipped, VU fallback 0
+[nxrun] command t=7.051 at=7.000000 command="padstate" status=ok reply="ok buttons=0000 rx=128 ry=128 lx=128 ly=128 reads=828"
+[vu1compiled] running VU1 program 10 (ELF 0x2ac130) compiled (254 pairs at VU 0x0000)
+[vu1compiled] running VU1 program 11 (ELF 0x2ac920) compiled (84 pairs at VU 0x07f0)
+[vu1compiled] running VU1 program 12 (ELF 0x2acbc0) compiled (40 pairs at VU 0x0a90)
+[vu1compiled] running VU1 program 13 (ELF 0x2acd00) compiled (10 pairs at VU 0x0bd0)
+[vu1compiled] running VU1 program 14 (ELF 0x2acd50) compiled (3 pairs at VU 0x0c20)
+[vu1compiled] running VU1 program 15 (ELF 0x2acd68) compiled (88 pairs at VU 0x0c38)
+[vu1compiled] running VU1 program 16 (ELF 0x2ad028) compiled (30 pairs at VU 0x0ef8)
+[vu1compiled] running VU1 program 18 (ELF 0x2ad168) compiled (129 pairs at VU 0x1038)
+[vu1compiled] running VU1 program 19 (ELF 0x2ad570) compiled (38 pairs at VU 0x1440)
+[vu1compiled] running VU1 program 20 (ELF 0x2ad6a0) compiled (4 pairs at VU 0x1570)
+[vu1compiled] running VU1 program 21 (ELF 0x2ad6c0) compiled (558 pairs at VU 0x1590)
+[vu1compiled] running VU1 program 22 (ELF 0x2d08f0) compiled (112 pairs at VU 0x2bf0)
+[vu1compiled] running VU1 program 26 (ELF 0x2f13d0) compiled (18 pairs at VU 0x2700)
+[vu1compiled] running VU1 program 27 (ELF 0x2f1460) compiled (36 pairs at VU 0x2790)
+[vu1compiled] running VU1 program 28 (ELF 0x2f1580) compiled (48 pairs at VU 0x28b0)
+[vu1compiled] running VU1 program 29 (ELF 0x2f1700) compiled (30 pairs at VU 0x2a30)
+[vu1compiled] running VU1 program 30 (ELF 0x2f17f0) compiled (6 pairs at VU 0x2b20)
+[vu1compiled] running VU1 program 31 (ELF 0x2f1820) compiled (20 pairs at VU 0x2b50)
+[vu1compiled] running VU1 program 32 (ELF 0x2f18c0) compiled (18 pairs at VU 0x2700)
+[vu1compiled] running VU1 program 38 (ELF 0x368730) compiled (84 pairs at VU 0x07f0)
+[vu1compiled] running VU1 program 39 (ELF 0x3689d0) compiled (40 pairs at VU 0x0a90)
+[vu1compiled] running VU1 program 40 (ELF 0x368b10) compiled (10 pairs at VU 0x0bd0)
+[vu1compiled] running VU1 program 41 (ELF 0x368b60) compiled (88 pairs at VU 0x0c38)
+[vu1compiled] running VU1 program 42 (ELF 0x368e20) compiled (30 pairs at VU 0x0ef8)
+[vu1compiled] running VU1 program 43 (ELF 0x368f10) compiled (10 pairs at VU 0x0fe8)
+[vu1compiled] running VU1 program 44 (ELF 0x368f60) compiled (38 pairs at VU 0x1440)
+[vu1compiled] running VU1 program 45 (ELF 0x369090) compiled (4 pairs at VU 0x1570)
+[nxrun] command t=9.097 at=9.000000 command="padstate" status=ok reply="ok buttons=0000 rx=128 ry=128 lx=128 ly=128 reads=933"
+[rhi-stats] textures 605 (32.9 MiB) buffers 972 (2.7 MiB) samplers 9 pipelines 31 programs 15 fbos 16 pending 0 | draws 20142 passes 3397 presents 383 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[gs-hw] input delay by stage: input -> queued 188.4 ms (game, render worker, GS stage), queued -> taken 55.9 ms
+[nxrun] progress t=10.001 host_frames=403 game_frames=136 ee_cycle=1742880319 ee_threads=1 ready=1 waiting=0 dormant=0 running=1 pc=0021ef14 ra=0021ef14 pumps=403 audio_callbacks=521 audio_frames=533504 gamepad=1 heap_in_use=409079760 heap_obtained=413855744
+[nxrun] perf t=10.001 "game_fps=8.1 frame_ms=124.1 vblank_per_s=35.8 game_ms=37.2 render_ms=28.7 iop_ms=2.4 wait_ms=55.9 draws=1382 verts=82218 tex_uploads=18 dma_tags=325 vu1_programs=91 host_fps=37 gl_ms=22.8 audio_ms=62 black_frames=0 dip_frames=0 probed_frames=0 worker_ms=94.4 gs_ms=79.0 gs_draws=56.2 gs_verts=19330.7 gs_vu1=56.2 gs_hle=0.0 gs_path2=0.0 gs_path3=0.0 native_draws=1401.0 hud_draws=0.0 post_draws=19.6 packed_draws=33.0 packed_verts=2899.3 tex_create_us=25690.7 tex_kb=382.4 tex_decode_us=644.1"
+[nxrun] devmenu t=10.001 menu=0 settings=0 trainer=0 blocked=0 chords=0 opens=0 closes=0 stick_presses=0 stick_delivered=0 max_withheld_ms=0.0 touches=0 trainer_used=0 last=""
+[nxrun] command t=11.044 at=11.000000 command="devmenu" status=ok reply="ok menu=0 settings=0 trainer=0 blocked=0 chords=0 opens=0 closes=0 stick_presses=0 stick_delivered=0 max_withheld_ms=0.0 touches=0 trainer_used=0 last=\"\""
+[nxrun] command t=11.044 at=11.000000 command="padstate" status=ok reply="ok buttons=0000 rx=128 ry=128 lx=128 ly=128 reads=999"
+[nxrun] command t=13.026 at=13.000000 command="padstate" status=ok reply="ok buttons=0000 rx=128 ry=128 lx=128 ly=128 reads=1056"
+[rhi-stats] textures 709 (33.8 MiB) buffers 1493 (4.9 MiB) samplers 9 pipelines 37 programs 18 fbos 16 pending 0 | draws 105069 passes 5037 presents 525 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[gs-hw] input delay by stage: input -> queued 124.0 ms (game, render worker, GS stage), queued -> taken 24.0 ms
+[nxrun] command t=15.058 at=15.000000 command="padstate" status=ok reply="ok buttons=0000 rx=128 ry=128 lx=128 ly=128 reads=1140"
+[nxrun] command t=16.091 at=16.000000 command="devmenu" status=ok reply="ok menu=0 settings=0 trainer=0 blocked=0 chords=0 opens=0 closes=0 stick_presses=0 stick_delivered=0 max_withheld_ms=0.0 touches=0 trainer_used=0 last=\"\""
+[hle] world packets 134438: culled 4840, drawn 126183 + 0 GPU-clipped (5797846 vertices), 3415 C++-clipped, VU fallback 0
+[nxrun] command t=17.018 at=17.000000 command="padstate" status=ok reply="ok buttons=0000 rx=128 ry=128 lx=128 ly=128 reads=1212"
+[nxrun] command t=19.068 at=19.000000 command="padstate" status=ok reply="ok buttons=0000 rx=128 ry=128 lx=128 ly=128 reads=1338"
+[rhi-stats] textures 796 (36.7 MiB) buffers 2334 (6.9 MiB) samplers 9 pipelines 37 programs 18 fbos 16 pending 0 | draws 207387 passes 7318 presents 633 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[gs-hw] input delay by stage: input -> queued 72.4 ms (game, render worker, GS stage), queued -> taken 33.2 ms
+[nxrun] progress t=20.001 host_frames=646 game_frames=282 ee_cycle=3794143769 ee_threads=1 ready=1 waiting=0 dormant=0 running=1 pc=0021ebfc ra=0021ebfc pumps=646 audio_callbacks=991 audio_frames=1014784 gamepad=1 heap_in_use=437410256 heap_obtained=441298944
+[nxrun] perf t=20.001 "game_fps=21.0 frame_ms=47.7 vblank_per_s=45.0 game_ms=26.1 render_ms=2.0 iop_ms=1.3 wait_ms=18.2 draws=780 verts=52273 tex_uploads=0 dma_tags=229 vu1_programs=0 host_fps=22 gl_ms=27.9 audio_ms=95 black_frames=0 dip_frames=0 probed_frames=0 worker_ms=21.8 gs_ms=32.2 gs_draws=0.0 gs_verts=0.0 gs_vu1=0.0 gs_hle=0.0 gs_path2=0.0 gs_path3=0.0 native_draws=691.0 hud_draws=0.0 post_draws=16.0 packed_draws=73.2 packed_verts=9111.4 tex_create_us=0.0 tex_kb=0.0 tex_decode_us=0.0"
+[nxrun] devmenu t=20.001 menu=0 settings=0 trainer=0 blocked=0 chords=0 opens=0 closes=0 stick_presses=0 stick_delivered=0 max_withheld_ms=0.0 touches=0 trainer_used=0 last=""
+[nxrun] command t=21.153 at=21.000000 command="devmenu" status=ok reply="ok menu=0 settings=0 trainer=0 blocked=0 chords=0 opens=0 closes=0 stick_presses=0 stick_delivered=0 max_withheld_ms=0.0 touches=0 trainer_used=0 last=\"\""
+[nxrun] command t=21.153 at=21.000000 command="padstate" status=ok reply="ok buttons=0000 rx=128 ry=128 lx=128 ly=128 reads=1452"
+[nxrun] command t=23.103 at=23.000000 command="padstate" status=ok reply="ok buttons=0000 rx=128 ry=128 lx=128 ly=128 reads=1536"
+[rhi-stats] textures 914 (39.5 MiB) buffers 2711 (7.5 MiB) samplers 9 pipelines 37 programs 18 fbos 16 pending 0 | draws 307855 passes 9434 presents 737 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[gs-hw] input delay by stage: input -> queued 96.2 ms (game, render worker, GS stage), queued -> taken 40.0 ms
+[nxrun] command t=25.152 at=25.000000 command="padstate" status=ok reply="ok buttons=0000 rx=128 ry=128 lx=128 ly=128 reads=1620"
+[nxrun] command t=25.152 at=25.000000 command="player" status=ok reply="ok 01d439c0 -1715.402 -290.607 15.011 1"
+[nxrun] command t=26.091 at=26.000000 command="devmenu" status=ok reply="ok menu=0 settings=0 trainer=0 blocked=0 chords=0 opens=0 closes=0 stick_presses=0 stick_delivered=0 max_withheld_ms=0.0 touches=0 trainer_used=0 last=\"\""
+[hle] world packets 288527: culled 9790, drawn 265954 + 0 GPU-clipped (13193437 vertices), 12783 C++-clipped, VU fallback 0
+[nxrun] command t=27.044 at=27.000000 command="padstate" status=ok reply="ok buttons=0000 rx=128 ry=128 lx=128 ly=128 reads=1695"
+[nxrun] command t=29.039 at=29.000000 command="padstate" status=ok reply="ok buttons=0000 rx=128 ry=128 lx=128 ly=128 reads=1737"
+[rhi-stats] textures 1500 (48.2 MiB) buffers 3925 (9.9 MiB) samplers 9 pipelines 37 programs 18 fbos 16 pending 0 | draws 397978 passes 10895 presents 821 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[gs-hw] input delay by stage: input -> queued 188.5 ms (game, render worker, GS stage), queued -> taken 45.4 ms
+[nxrun] progress t=30.014 host_frames=834 game_frames=401 ee_cycle=5694605399 ee_threads=1 ready=1 waiting=0 dormant=0 running=1 pc=0021ebfc ra=0021ebfc pumps=834 audio_callbacks=1460 audio_frames=1495040 gamepad=1 heap_in_use=477809632 heap_obtained=486252544
+[nxrun] perf t=30.014 "game_fps=6.5 frame_ms=154.5 vblank_per_s=32.4 game_ms=41.6 render_ms=38.9 iop_ms=2.5 wait_ms=71.5 draws=1430 verts=85198 tex_uploads=29 dma_tags=777 vu1_programs=0 host_fps=31 gl_ms=54.7 audio_ms=66 black_frames=0 dip_frames=0 probed_frames=0 worker_ms=98.9 gs_ms=120.3 gs_draws=0.0 gs_verts=0.0 gs_vu1=0.0 gs_hle=0.0 gs_path2=0.0 gs_path3=0.0 native_draws=1517.4 hud_draws=0.0 post_draws=16.0 packed_draws=161.9 packed_verts=24786.4 tex_create_us=50951.1 tex_kb=584.9 tex_decode_us=2157.0"
+[nxrun] devmenu t=30.014 menu=0 settings=0 trainer=0 blocked=0 chords=0 opens=0 closes=0 stick_presses=0 stick_delivered=0 max_withheld_ms=0.0 touches=0 trainer_used=0 last=""
+[nxrun] command t=31.051 at=31.000000 command="devmenu" status=ok reply="ok menu=0 settings=0 trainer=0 blocked=0 chords=0 opens=0 closes=0 stick_presses=0 stick_delivered=0 max_withheld_ms=0.0 touches=0 trainer_used=0 last=\"\""
+[nxrun] command t=31.051 at=31.000000 command="padstate" status=ok reply="ok buttons=0000 rx=128 ry=128 lx=128 ly=128 reads=1788"
+[nxrun] command t=33.026 at=33.000000 command="padstate" status=ok reply="ok buttons=0000 rx=128 ry=128 lx=128 ly=128 reads=1845"
+[rhi-stats] textures 1666 (52.3 MiB) buffers 4150 (10.4 MiB) samplers 9 pipelines 37 programs 18 fbos 16 pending 0 | draws 485352 passes 12585 presents 944 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[gs-hw] input delay by stage: input -> queued 125.5 ms (game, render worker, GS stage), queued -> taken 29.1 ms
+[nxrun] command t=35.084 at=35.000000 command="padstate" status=ok reply="ok buttons=0000 rx=128 ry=128 lx=128 ly=128 reads=1947"
+[nxrun] command t=36.142 at=36.000000 command="devmenu" status=ok reply="ok menu=0 settings=0 trainer=0 blocked=0 chords=0 opens=0 closes=0 stick_presses=0 stick_delivered=0 max_withheld_ms=0.0 touches=0 trainer_used=0 last=\"\""
+[hle] world packets 424278: culled 14978, drawn 385541 + 0 GPU-clipped (19002231 vertices), 23759 C++-clipped, VU fallback 0
+[nxrun] command t=37.118 at=37.000000 command="padstate" status=ok reply="ok buttons=0000 rx=128 ry=128 lx=128 ly=128 reads=2037"
+[nxrun] command t=39.140 at=39.000000 command="padstate" status=ok reply="ok buttons=0000 rx=128 ry=128 lx=128 ly=128 reads=2088"
+[rhi-stats] textures 1753 (55.3 MiB) buffers 4781 (12.3 MiB) samplers 9 pipelines 37 programs 18 fbos 16 pending 0 | draws 573650 passes 14263 presents 1055 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[gs-hw] input delay by stage: input -> queued 135.0 ms (game, render worker, GS stage), queued -> taken 27.7 ms
+[nxrun] progress t=40.049 host_frames=1075 game_frames=525 ee_cycle=7633459353 ee_threads=1 ready=1 waiting=0 dormant=0 running=1 pc=003babd0 ra=003babd0 pumps=1075 audio_callbacks=1931 audio_frames=1977344 gamepad=1 heap_in_use=517539680 heap_obtained=523747328
+[nxrun] perf t=40.049 "game_fps=12.7 frame_ms=78.8 vblank_per_s=40.0 game_ms=29.5 render_ms=22.8 iop_ms=1.5 wait_ms=25.1 draws=770 verts=52027 tex_uploads=6 dma_tags=317 vu1_programs=0 host_fps=39 gl_ms=23.8 audio_ms=57 black_frames=0 dip_frames=0 probed_frames=0 worker_ms=65.3 gs_ms=57.9 gs_draws=0.0 gs_verts=0.0 gs_vu1=0.0 gs_hle=0.0 gs_path2=0.0 gs_path3=0.0 native_draws=718.3 hud_draws=0.0 post_draws=16.0 packed_draws=101.1 packed_verts=16783.8 tex_create_us=11745.3 tex_kb=222.8 tex_decode_us=783.1"
+[nxrun] devmenu t=40.049 menu=0 settings=0 trainer=0 blocked=0 chords=0 opens=0 closes=0 stick_presses=0 stick_delivered=0 max_withheld_ms=0.0 touches=0 trainer_used=0 last=""
+[nxrun] command t=41.062 at=41.000000 command="devmenu" status=ok reply="ok menu=0 settings=0 trainer=0 blocked=0 chords=0 opens=0 closes=0 stick_presses=0 stick_delivered=0 max_withheld_ms=0.0 touches=0 trainer_used=0 last=\"\""
+[nxrun] command t=41.062 at=41.000000 command="padstate" status=ok reply="ok buttons=0000 rx=128 ry=128 lx=128 ly=128 reads=2187"
+[nxrun] command t=43.059 at=43.000000 command="padstate" status=ok reply="ok buttons=0000 rx=128 ry=128 lx=128 ly=128 reads=2307"
+[rhi-stats] textures 1773 (55.8 MiB) buffers 6561 (17.5 MiB) samplers 9 pipelines 39 programs 18 fbos 16 pending 0 | draws 650664 passes 17020 presents 1178 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[gs-hw] input delay by stage: input -> queued 53.5 ms (game, render worker, GS stage), queued -> taken 39.4 ms
+[nxrun] command t=45.060 at=45.000000 command="padstate" status=ok reply="ok buttons=0000 rx=128 ry=128 lx=128 ly=128 reads=2433"
+[nxrun] command t=45.060 at=45.000000 command="player" status=ok reply="ok 01d439c0 -1668.765 -138.431 14.999 1"
+[nxrun] command t=46.059 at=46.000000 command="devmenu" status=ok reply="ok menu=0 settings=0 trainer=0 blocked=0 chords=0 opens=0 closes=0 stick_presses=0 stick_delivered=0 max_withheld_ms=0.0 touches=0 trainer_used=0 last=\"\""
+[hle] world packets 503587: culled 20664, drawn 446238 + 0 GPU-clipped (22151444 vertices), 36685 C++-clipped, VU fallback 0
+[nxrun] command t=47.092 at=47.000000 command="padstate" status=ok reply="ok buttons=0000 rx=128 ry=128 lx=128 ly=128 reads=2559"
+[nxrun] command t=49.091 at=49.000000 command="padstate" status=ok reply="ok buttons=0000 rx=128 ry=128 lx=128 ly=128 reads=2631"
+[rhi-stats] textures 1959 (62.7 MiB) buffers 8099 (22.0 MiB) samplers 9 pipelines 39 programs 18 fbos 16 pending 0 | draws 724065 passes 19280 presents 1287 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[gs-hw] input delay by stage: input -> queued 81.7 ms (game, render worker, GS stage), queued -> taken 42.7 ms
+[nxrun] progress t=50.110 host_frames=1296 game_frames=707 ee_cycle=9952863010 ee_threads=1 ready=1 waiting=0 dormant=0 running=1 pc=0021ebfc ra=0021ebfc pumps=1296 audio_callbacks=2406 audio_frames=2463744 gamepad=1 heap_in_use=543090624 heap_obtained=553246720
+[nxrun] perf t=50.110 "game_fps=12.8 frame_ms=78.3 vblank_per_s=41.0 game_ms=37.3 render_ms=5.6 iop_ms=1.8 wait_ms=33.6 draws=1100 verts=66007 tex_uploads=1 dma_tags=462 vu1_programs=0 host_fps=26 gl_ms=39.4 audio_ms=47 black_frames=0 dip_frames=0 probed_frames=0 worker_ms=52.5 gs_ms=67.9 gs_draws=0.0 gs_verts=0.0 gs_vu1=0.0 gs_hle=0.0 gs_path2=0.0 gs_path3=0.0 native_draws=1039.6 hud_draws=0.0 post_draws=16.0 packed_draws=123.8 packed_verts=20760.2 tex_create_us=3808.6 tex_kb=69.1 tex_decode_us=229.0"
+[nxrun] devmenu t=50.110 menu=0 settings=0 trainer=0 blocked=0 chords=0 opens=0 closes=0 stick_presses=0 stick_delivered=0 max_withheld_ms=0.0 touches=0 trainer_used=0 last=""
+[nxrun] command t=51.027 at=51.000000 command="devmenu" status=ok reply="ok menu=0 settings=0 trainer=0 blocked=0 chords=0 opens=0 closes=0 stick_presses=0 stick_delivered=0 max_withheld_ms=0.0 touches=0 trainer_used=0 last=\"\""
+[nxrun] command t=51.027 at=51.000000 command="padstate" status=ok reply="ok buttons=0000 rx=128 ry=128 lx=128 ly=128 reads=2694"
+[nxrun] command t=53.061 at=53.000000 command="padstate" status=ok reply="ok buttons=0000 rx=128 ry=128 lx=128 ly=128 reads=2772"
+[rhi-stats] textures 2024 (66.6 MiB) buffers 8105 (22.0 MiB) samplers 9 pipelines 39 programs 18 fbos 16 pending 0 | draws 817525 passes 20980 presents 1395 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[gs-hw] input delay by stage: input -> queued 121.3 ms (game, render worker, GS stage), queued -> taken 31.0 ms
+[nxrun] command t=55.133 at=55.000000 command="padstate" status=ok reply="ok buttons=0000 rx=128 ry=128 lx=128 ly=128 reads=2844"
+[nxrun] command t=56.092 at=56.000000 command="devmenu" status=ok reply="ok menu=0 settings=0 trainer=0 blocked=0 chords=0 opens=0 closes=0 stick_presses=0 stick_delivered=0 max_withheld_ms=0.0 touches=0 trainer_used=0 last=\"\""
+[hle] world packets 636140: culled 29317, drawn 555085 + 0 GPU-clipped (27061096 vertices), 51738 C++-clipped, VU fallback 0
+[nxrun] command t=57.145 at=57.000000 command="padstate" status=ok reply="ok buttons=0000 rx=128 ry=128 lx=128 ly=128 reads=2916"
+[nxrun] command t=59.049 at=59.000000 command="padstate" status=ok reply="ok buttons=0000 rx=128 ry=128 lx=128 ly=128 reads=2973"
+[rhi-stats] textures 2149 (72.0 MiB) buffers 8301 (22.4 MiB) samplers 9 pipelines 39 programs 18 fbos 16 pending 0 | draws 898987 passes 22517 presents 1516 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[gs-hw] input delay by stage: input -> queued 115.1 ms (game, render worker, GS stage), queued -> taken 31.9 ms
+[nxrun] progress t=60.145 host_frames=1526 game_frames=830 ee_cycle=11907696987 ee_threads=1 ready=1 waiting=0 dormant=0 running=1 pc=0021ebfc ra=0021ebfc pumps=1526 audio_callbacks=2875 audio_frames=2944000 gamepad=1 heap_in_use=558525920 heap_obtained=567898112
+[nxrun] perf t=60.145 "game_fps=11.5 frame_ms=87.3 vblank_per_s=40.1 game_ms=41.7 render_ms=5.4 iop_ms=1.5 wait_ms=38.6 draws=1444 verts=74379 tex_uploads=1 dma_tags=119 vu1_programs=0 host_fps=23 gl_ms=41.1 audio_ms=84 black_frames=0 dip_frames=0 probed_frames=0 worker_ms=64.1 gs_ms=71.9 gs_draws=0.0 gs_verts=0.0 gs_vu1=0.0 gs_hle=0.0 gs_path2=0.0 gs_path3=0.0 native_draws=1314.2 hud_draws=2.0 post_draws=16.0 packed_draws=111.9 packed_verts=18460.2 tex_create_us=2876.8 tex_kb=58.8 tex_decode_us=219.7"
+[nxrun] devmenu t=60.145 menu=0 settings=0 trainer=0 blocked=0 chords=0 opens=0 closes=0 stick_presses=0 stick_delivered=0 max_withheld_ms=0.0 touches=0 trainer_used=0 last=""
+[nxrun] command t=61.042 at=61.000000 command="devmenu" status=ok reply="ok menu=0 settings=0 trainer=0 blocked=0 chords=0 opens=0 closes=0 stick_presses=0 stick_delivered=0 max_withheld_ms=0.0 touches=0 trainer_used=0 last=\"\""
+[nxrun] command t=61.042 at=61.000000 command="padstate" status=ok reply="ok buttons=0000 rx=128 ry=128 lx=128 ly=128 reads=3039"
+[nxrun] command t=63.139 at=63.000000 command="padstate" status=ok reply="ok buttons=0000 rx=128 ry=128 lx=128 ly=128 reads=3120"
+[rhi-stats] textures 2221 (75.8 MiB) buffers 8305 (22.4 MiB) samplers 9 pipelines 39 programs 18 fbos 16 pending 0 | draws 990777 passes 24227 presents 1627 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[gs-hw] input delay by stage: input -> queued 119.0 ms (game, render worker, GS stage), queued -> taken 23.1 ms
+[nxrun] command t=65.044 at=65.000000 command="padstate" status=ok reply="ok buttons=0000 rx=128 ry=128 lx=128 ly=128 reads=3180"
+[nxrun] command t=65.044 at=65.000000 command="player" status=ok reply="ok 01d439c0 -1646.560 -139.230 14.820 1"
+[nxrun] command t=66.078 at=66.000000 command="devmenu" status=ok reply="ok menu=0 settings=0 trainer=0 blocked=0 chords=0 opens=0 closes=0 stick_presses=0 stick_delivered=0 max_withheld_ms=0.0 touches=0 trainer_used=0 last=\"\""
+[hle] world packets 776232: culled 42252, drawn 669776 + 0 GPU-clipped (32023402 vertices), 64204 C++-clipped, VU fallback 0
+[nxrun] command t=67.063 at=67.000000 command="padstate" status=ok reply="ok buttons=0000 rx=128 ry=128 lx=128 ly=128 reads=3255"
+[input] 69832 ms instance 0 button leftstick down
+[input] 69832 ms instance 0 button rightstick down
+[chord] 68.834 s L3 chord after 0.0 ms: game sees L3=0 R3=0
+[chord] 68.834 s R3 chord after 0.0 ms: game sees L3=0 R3=0 (menu toggle)
+[devmenu] opened by L3 + R3: menu=1 settings=0 trainer=0 chords=1
+[input] 70015 ms instance 0 button leftstick up
+[input] 70015 ms instance 0 button rightstick up
+[chord] 69.013 s L3 suppressed-up: game sees L3=0 R3=0
+[chord] 69.013 s R3 suppressed-up: game sees L3=0 R3=0
+[input] 70634 ms instance 0 button leftstick down
+[input] 70634 ms instance 0 button rightstick down
+[chord] 69.636 s L3 chord after 0.0 ms: game sees L3=0 R3=0
+[chord] 69.636 s R3 chord after 0.0 ms: game sees L3=0 R3=0 (menu toggle)
+[devmenu] closed by L3 + R3: menu=0 settings=0 trainer=0 chords=2
+[input] 70839 ms instance 0 button leftstick up
+[chord] 69.838 s L3 suppressed-up: game sees L3=0 R3=0
+[input] 70912 ms instance 0 button rightstick up
+[chord] 69.909 s R3 suppressed-up: game sees L3=0 R3=0
+[nxrun] command t=69.042 at=69.000000 command="padstate" status=ok reply="ok buttons=0000 rx=128 ry=128 lx=128 ly=128 reads=3321"
+[rhi-stats] textures 2287 (79.4 MiB) buffers 8315 (22.6 MiB) samplers 9 pipelines 39 programs 18 fbos 16 pending 0 | draws 1075006 passes 26022 presents 1748 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[gs-hw] input delay by stage: input -> queued 105.8 ms (game, render worker, GS stage), queued -> taken 23.4 ms
+[nxrun] progress t=70.158 host_frames=1756 game_frames=955 ee_cycle=13910296173 ee_threads=1 ready=1 waiting=0 dormant=0 running=1 pc=0021ec2c ra=0021ec2c pumps=1756 audio_callbacks=3344 audio_frames=3424256 gamepad=1 heap_in_use=567035424 heap_obtained=578240512
+[nxrun] perf t=70.158 "game_fps=19.0 frame_ms=52.6 vblank_per_s=48.0 game_ms=23.9 render_ms=6.0 iop_ms=0.8 wait_ms=21.9 draws=434 verts=23684 tex_uploads=1 dma_tags=179 vu1_programs=0 host_fps=33 gl_ms=10.8 audio_ms=48 black_frames=0 dip_frames=0 probed_frames=0 worker_ms=26.8 gs_ms=33.8 gs_draws=0.0 gs_verts=0.0 gs_vu1=0.0 gs_hle=0.0 gs_path2=0.0 gs_path3=0.0 native_draws=330.5 hud_draws=0.0 post_draws=15.2 packed_draws=48.5 packed_verts=4848.0 tex_create_us=1529.7 tex_kb=22.5 tex_decode_us=74.8"
+[nxrun] devmenu t=70.158 menu=0 settings=0 trainer=0 blocked=0 chords=2 opens=1 closes=1 stick_presses=4 stick_delivered=0 max_withheld_ms=0.0 touches=0 trainer_used=0 last=""
+[nxrun] command t=71.075 at=71.000000 command="devmenu" status=ok reply="ok menu=0 settings=0 trainer=0 blocked=0 chords=2 opens=1 closes=1 stick_presses=4 stick_delivered=0 max_withheld_ms=0.0 touches=0 trainer_used=0 last=\"\""
+[nxrun] command t=71.075 at=71.000000 command="padstate" status=ok reply="ok buttons=0000 rx=128 ry=128 lx=128 ly=128 reads=3441"
+[nxrun] command t=73.140 at=73.000000 command="padstate" status=ok reply="ok buttons=0000 rx=128 ry=128 lx=128 ly=128 reads=3552"
+[input] 76491 ms instance 0 button leftstick down
+[input] 76491 ms instance 0 button rightstick down
+[chord] 75.492 s L3 chord after 0.0 ms: game sees L3=0 R3=0
+[chord] 75.492 s R3 chord after 0.0 ms: game sees L3=0 R3=0 (menu toggle)
+[devmenu] opened by L3 + R3: menu=1 settings=0 trainer=0 chords=3
+[input] 76637 ms instance 0 button leftstick up
+[chord] 75.635 s L3 suppressed-up: game sees L3=0 R3=0
+[input] 76715 ms instance 0 button rightstick up
+[chord] 75.712 s R3 suppressed-up: game sees L3=0 R3=0
+[input] 76965 ms instance 0 button leftstick down
+[input] 76965 ms instance 0 button rightstick down
+[chord] 75.967 s L3 chord after 0.0 ms: game sees L3=0 R3=0
+[chord] 75.967 s R3 chord after 0.0 ms: game sees L3=0 R3=0 (menu toggle)
+[devmenu] closed by L3 + R3: menu=0 settings=0 trainer=0 chords=4
+[rhi-stats] textures 2333 (81.5 MiB) buffers 8322 (22.7 MiB) samplers 9 pipelines 39 programs 18 fbos 16 pending 0 | draws 1151499 passes 28338 presents 1846 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[gs-hw] input delay by stage: input -> queued 66.2 ms (game, render worker, GS stage), queued -> taken 36.6 ms
+[input] 77121 ms instance 0 button leftstick up
+[input] 77121 ms instance 0 button rightstick up
+[chord] 76.120 s L3 suppressed-up: game sees L3=0 R3=0
+[chord] 76.120 s R3 suppressed-up: game sees L3=0 R3=0
+[nxrun] command t=75.115 at=75.000000 command="padstate" status=ok reply="ok buttons=0000 rx=128 ry=128 lx=128 ly=128 reads=3627"
+[nxrun] command t=76.025 at=76.000000 command="devmenu" status=ok reply="ok menu=0 settings=0 trainer=0 blocked=0 chords=4 opens=2 closes=2 stick_presses=8 stick_delivered=0 max_withheld_ms=0.0 touches=0 trainer_used=0 last=\"\""
+[input] 79054 ms instance 0 button b down
+[input] 79138 ms instance 0 button b up
+[hle] world packets 898740: culled 65940, drawn 752643 + 0 GPU-clipped (35852672 vertices), 80157 C++-clipped, VU fallback 0
+[nxrun] command t=77.075 at=77.000000 command="padstate" status=ok reply="ok buttons=0000 rx=128 ry=128 lx=128 ly=128 reads=3729"
+[input] 80571 ms instance 0 button a down
+[input] 80771 ms instance 0 button a up
+[nxrun] command t=79.075 at=79.000000 command="padstate" status=ok reply="ok buttons=0000 rx=128 ry=128 lx=128 ly=128 reads=3858"
+[gs-hw] input delay by stage: input -> queued 63.3 ms (game, render worker, GS stage), queued -> taken 38.7 ms
+[rhi-stats] textures 2343 (82.1 MiB) buffers 8322 (22.7 MiB) samplers 9 pipelines 39 programs 18 fbos 16 pending 0 | draws 1196131 passes 30905 presents 1975 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[nxrun] progress t=80.159 host_frames=1992 game_frames=1152 ee_cycle=16270255830 ee_threads=1 ready=1 waiting=0 dormant=0 running=1 pc=0021e9d8 ra=0021e9d8 pumps=1992 audio_callbacks=3811 audio_frames=3902464 gamepad=1 heap_in_use=570104656 heap_obtained=581947392
+[nxrun] perf t=80.159 "game_fps=36.5 frame_ms=27.4 vblank_per_s=53.3 game_ms=12.4 render_ms=0.4 iop_ms=0.4 wait_ms=14.3 draws=64 verts=3196 tex_uploads=0 dma_tags=38 vu1_programs=0 host_fps=51 gl_ms=3.0 audio_ms=50 black_frames=0 dip_frames=0 probed_frames=0 worker_ms=4.1 gs_ms=8.5 gs_draws=0.0 gs_verts=0.0 gs_vu1=0.0 gs_hle=0.0 gs_path2=0.0 gs_path3=0.0 native_draws=63.8 hud_draws=0.5 post_draws=4.9 packed_draws=10.7 packed_verts=882.9 tex_create_us=0.0 tex_kb=0.0 tex_decode_us=0.0"
+[nxrun] devmenu t=80.159 menu=0 settings=0 trainer=0 blocked=0 chords=4 opens=2 closes=2 stick_presses=8 stick_delivered=0 max_withheld_ms=0.0 touches=0 trainer_used=0 last=""
+[nxrun] command t=81.092 at=81.000000 command="devmenu" status=ok reply="ok menu=0 settings=0 trainer=0 blocked=0 chords=4 opens=2 closes=2 stick_presses=8 stick_delivered=0 max_withheld_ms=0.0 touches=0 trainer_used=0 last=\"\""
+[nxrun] command t=81.092 at=81.000000 command="padstate" status=ok reply="ok buttons=0000 rx=128 ry=128 lx=128 ly=128 reads=4037"
+[nxrun] command t=83.075 at=83.000000 command="padstate" status=ok reply="ok buttons=0000 rx=128 ry=128 lx=128 ly=128 reads=4160"
+[input] 85388 ms instance 0 button b down
+[input] 85588 ms instance 0 button b up
+[input] 86055 ms instance 0 button a down
+[input] 86204 ms instance 0 button a up
+[rhi-stats] textures 2360 (82.9 MiB) buffers 8341 (22.7 MiB) samplers 9 pipelines 40 programs 18 fbos 17 pending 0 | draws 1254550 passes 33482 presents 2109 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[gs-hw] input delay by stage: input -> queued 40.0 ms (game, render worker, GS stage), queued -> taken 36.6 ms
+[nxrun] command t=85.075 at=85.000000 command="padstate" status=ok reply="ok buttons=0000 rx=128 ry=128 lx=128 ly=128 reads=4283"
+[nxrun] command t=85.075 at=85.000000 command="player" status=ok reply="ok 01d439c0 -1614.150 -132.330 14.811 1"
+[input] 88185 ms instance 0 axis lefty -27267
+[input] 88222 ms instance 0 axis leftx -18868
+[input] 88222 ms instance 0 button leftstick down
+[input] 88222 ms instance 0 button rightstick down
+[chord] 87.222 s L3 chord after 0.0 ms: game sees L3=0 R3=0
+[chord] 87.222 s R3 chord after 0.0 ms: game sees L3=0 R3=0 (menu toggle)
+[devmenu] opened by L3 + R3: menu=1 settings=0 trainer=0 chords=5
+[nxrun] command t=86.060 at=86.000000 command="devmenu" status=ok reply="ok menu=1 settings=0 trainer=0 blocked=1 chords=5 opens=3 closes=2 stick_presses=10 stick_delivered=0 max_withheld_ms=0.0 touches=0 trainer_used=0 last=\"\""
+[input] 88376 ms instance 0 axis leftx -5575
+[input] 88423 ms instance 0 axis lefty -15333
+[input] 88423 ms instance 0 button leftstick up
+[input] 88423 ms instance 0 button rightstick up
+[chord] 87.423 s L3 suppressed-up: game sees L3=0 R3=0
+[chord] 87.423 s R3 suppressed-up: game sees L3=0 R3=0
+[input] 89023 ms instance 0 axis lefty -16574
+[input] 89023 ms instance 0 button leftstick down
+[chord] 88.023 s L3 withheld: game sees L3=0 R3=0
+[input] 89071 ms instance 0 button rightstick down
+[chord] 88.069 s L3 chord after 45.6 ms: game sees L3=0 R3=0
+[chord] 88.069 s R3 chord after 0.0 ms: game sees L3=0 R3=0 (menu toggle)
+[devmenu] closed by L3 + R3: menu=0 settings=0 trainer=0 chords=6
+[input] 89171 ms instance 0 button leftstick up
+[chord] 88.169 s L3 suppressed-up: game sees L3=0 R3=0
+[input] 89221 ms instance 0 axis lefty -14303
+[input] 89221 ms instance 0 button rightstick up
+[chord] 88.219 s R3 suppressed-up: game sees L3=0 R3=0
+[hle] world packets 947995: culled 81200, drawn 776134 + 0 GPU-clipped (37277216 vertices), 90661 C++-clipped, VU fallback 0
+[nxrun] command t=87.059 at=87.000000 command="padstate" status=ok reply="ok buttons=0000 rx=128 ry=128 lx=125 ly=81 reads=4445"
+[input] 89988 ms instance 0 axis lefty -17823
+[input] 89988 ms instance 0 button leftstick down
+[input] 89988 ms instance 0 button rightstick down
+[chord] 88.990 s L3 chord after 0.0 ms: game sees L3=0 R3=0
+[chord] 88.990 s R3 chord after 0.0 ms: game sees L3=0 R3=0 (menu toggle)
+[devmenu] opened by L3 + R3: menu=1 settings=0 trainer=0 chords=7
+[input] 90188 ms instance 0 button leftstick up
+[chord] 89.187 s L3 suppressed-up: game sees L3=0 R3=0
+[input] 90238 ms instance 0 axis lefty -6770
+[input] 90238 ms instance 0 button rightstick up
+[chord] 89.237 s R3 suppressed-up: game sees L3=0 R3=0
+[nxrun] command t=89.059 at=89.000000 command="padstate" status=ok reply="ok buttons=0000 rx=128 ry=128 lx=128 ly=128 reads=4568"
+[rhi-stats] textures 2460 (88.4 MiB) buffers 8414 (22.9 MiB) samplers 9 pipelines 42 programs 18 fbos 17 pending 0 | draws 1307300 passes 36502 presents 2241 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[gs-hw] input delay by stage: input -> queued 46.9 ms (game, render worker, GS stage), queued -> taken 34.3 ms
+[nxrun] progress t=90.159 host_frames=2246 game_frames=1386 ee_cycle=18782054069 ee_threads=1 ready=1 waiting=0 dormant=0 running=1 pc=003706c8 ra=00317a74 pumps=2246 audio_callbacks=4281 audio_frames=4383744 gamepad=1 heap_in_use=580972128 heap_obtained=591355904
+[nxrun] perf t=90.159 "game_fps=19.2 frame_ms=52.1 vblank_per_s=48.0 game_ms=37.5 render_ms=2.8 iop_ms=1.4 wait_ms=10.5 draws=353 verts=28707 tex_uploads=1 dma_tags=207 vu1_programs=0 host_fps=20 gl_ms=26.0 audio_ms=89 black_frames=0 dip_frames=0 probed_frames=0 worker_ms=21.9 gs_ms=19.2 gs_draws=0.0 gs_verts=0.0 gs_vu1=0.0 gs_hle=0.0 gs_path2=0.0 gs_path3=0.0 native_draws=266.7 hud_draws=18.9 post_draws=16.8 packed_draws=68.2 packed_verts=12018.8 tex_create_us=3310.2 tex_kb=64.0 tex_decode_us=397.6"
+[nxrun] devmenu t=90.159 menu=1 settings=0 trainer=0 blocked=1 chords=7 opens=4 closes=3 stick_presses=14 stick_delivered=0 max_withheld_ms=0.0 touches=0 trainer_used=0 last=""
+[nxrun] command t=91.059 at=91.000000 command="devmenu" status=ok reply="ok menu=1 settings=0 trainer=0 blocked=1 chords=7 opens=4 closes=3 stick_presses=14 stick_delivered=0 max_withheld_ms=0.0 touches=0 trainer_used=0 last=\"\""
+[nxrun] command t=91.059 at=91.000000 command="padstate" status=ok reply="ok buttons=0000 rx=128 ry=128 lx=128 ly=128 reads=4688"
+[hle] world packets 964763: culled 83578, drawn 785857 + 0 GPU-clipped (37867675 vertices), 95328 C++-clipped, VU fallback 0
+[rhi-stats] textures 2485 (90.0 MiB) buffers 8417 (23.0 MiB) samplers 9 pipelines 42 programs 18 fbos 17 pending 0 | draws 1322457 passes 37329 presents 2268 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[lifecycle] confirmed suspension_ns=7435353282
+[lifecycle] resume=1 focus_notifications=0 focus=1
+[platform] focus lost: audio paused, pad neutral
+[nxrun] focus t=91.159 state=out
+[platform] focus back: audio resumed, pad live
+[nxrun] focus t=91.159 state=in
+[gs-hw] input delay by stage: input -> queued 65.8 ms (game, render worker, GS stage), queued -> taken 325.0 ms
+[nxrun] command t=93.098 at=93.000000 command="padstate" status=ok reply="ok buttons=0000 rx=128 ry=128 lx=128 ly=128 reads=4808"
+[input] 103321 ms instance 0 button leftstick down
+[chord] 102.320 s L3 withheld: game sees L3=0 R3=0
+[input] 103376 ms instance 0 button rightstick down
+[chord] 102.373 s L3 chord after 52.6 ms: game sees L3=0 R3=0
+[chord] 102.373 s R3 chord after 0.0 ms: game sees L3=0 R3=0 (menu toggle)
+[devmenu] closed by L3 + R3: menu=0 settings=0 trainer=0 chords=8
+[input] 103554 ms instance 0 button leftstick up
+[input] 103554 ms instance 0 button rightstick up
+[chord] 102.556 s L3 suppressed-up: game sees L3=0 R3=0
+[chord] 102.556 s R3 suppressed-up: game sees L3=0 R3=0
+[input] 104755 ms instance 0 axis lefty -32764
+[nxrun] command t=95.081 at=95.000000 command="padstate" status=ok reply="ok buttons=0000 rx=128 ry=128 lx=126 ly=0 reads=4934"
+[input] 104988 ms instance 0 axis leftx -21245
+[input] 105088 ms instance 0 axis lefty -13142
+[rhi-stats] textures 2577 (95.7 MiB) buffers 8695 (23.8 MiB) samplers 9 pipelines 42 programs 18 fbos 17 pending 0 | draws 1380035 passes 40501 presents 2395 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[nxrun] command t=96.081 at=96.000000 command="devmenu" status=ok reply="ok menu=0 settings=0 trainer=0 blocked=0 chords=8 opens=4 closes=4 stick_presses=16 stick_delivered=0 max_withheld_ms=0.0 touches=0 trainer_used=0 last=\"\""
+[input] 105855 ms instance 0 axis lefty -20496
+[gs-hw] input delay by stage: input -> queued 481.1 ms (game, render worker, GS stage), queued -> taken 31.0 ms
+[input] 106088 ms instance 0 axis leftx -12056
+[input] 106138 ms instance 0 axis lefty 0
+[nxrun] shutdown t=96.961 frames=2412
+[platform] audio closed after 4667 callbacks, 4779008 frames
+[platform] shut down (window, context and SDL left to main.c)
+[core] game thread joined, render worker and platform stopped
+[stream] reader stopped
+[core] runtime destroyed
+[core] folder disc closed
+[nxrun] audit t=96.961 file_opens=144 iso_opens=0 first_iso="" threads_created=7
+[resources] shutdown live_threads=2 (svc 00000000 via own)
+[resources] shutdown mapped_total=3343908864 mapped_used=3339763712 heap_in_use=456546080 heap_obtained=602103808 threads_created=7 default_thread_stack=8388608 file_opens=144 iso_opens=0
+[shutdown] core, context, window and SDL closed

@@ -1,0 +1,1 @@
+2026-11-19 13:07:18 trainer used in this run: saves from then on may hold its changes

@@ -12,9 +12,11 @@
 //     the platform layer stop before the disc is unmapped and destroyed.
 //   - The desktop watchdog and sampling profiler (detached threads, Windows/Linux facilities) are not started; the
 //     crash handler is upstream's portable part only (terminate / abort messages).
+//   - The developer menu (src/devmenu/dev_menu.h, M08) replaces the desktop's F-keys and Back chords: L3 + R3.
 #include "core.h"
 
 #include "core/run_config.h"
+#include "devmenu/dev_menu.h"
 #include "platform/platform_switch.h"
 #include "vfs/folder_disc.h"
 #include "vfs/game_paths.h"
@@ -199,6 +201,23 @@ namespace
                       static_cast<size_t>(heap.uordblks), static_cast<size_t>(heap.arena));
         result(core, "progress", line);
         result(core, "perf", quote(ps2perf::summaryLine()));
+        result(core, "devmenu", devmenu::reportLine());
+    }
+
+    // M08-04: what the settings file gave this run: every value that is not the default (the rest are defaults), so a
+    // relaunch shows the saved settings came back and a damaged file fell back
+    void logSettings(const std::string &path)
+    {
+        std::string changed;
+        int count = 0;
+        for (const settings::Spec &s : settings::all())
+            if (s.type != settings::Type::Action && settings::value(s.key) != s.defaultValue)
+            {
+                changed += " " + s.key + "=" + std::to_string(settings::value(s.key));
+                ++count;
+            }
+        std::fprintf(stderr, "[settings] %s: %zu settings, %d not at their default:%s\n", path.c_str(), settings::all().size(),
+                     count, count ? changed.c_str() : " (none)");
     }
 
     // M07-03: deliberate stalls for a run schedule only. `stall main <ms>` blocks the main thread (events, GL, present:
@@ -361,10 +380,12 @@ namespace
             setenv("PS2X_GS", "hw", 1);
 
         vcs::launcher::registerSettings();
+        devmenu::registerSettings();
         settings::load(p.settings);
         if (ps2control::hiddenMode())
             settings::keepFile();
         settings::applyAll();
+        logSettings(p.settings);
         vcs::launcher::restoreWindowPlacement();
 
         // the ELF from the extracted tree, checked as stageElf checked the disc's copy
@@ -423,6 +444,7 @@ namespace
 
         core.runtime = std::make_unique<PS2Runtime>();
         vcs::launcher::setScreenshotDirectory(p.userdata + "/screenshots");
+        devmenu::install(p.userdata);
         vcs::launcher::setUiCallbacks(*core.runtime);
         if (!core.runtime->initialize("GTA: Vice City Stories"))
             return fail("runtime initialize failed (platform, presenter or audio)"), GTAVCS_EXIT_INIT_FAILED;
@@ -440,6 +462,7 @@ namespace
                      set.cdImage.empty() ? "(none)" : set.cdImage.string().c_str());
 
         vcs::launcher::installHooks(*core.runtime);
+        devmenu::installCommands(core.runtime->memory().getRDRAM());
         vcs::runSelfTest(*core.runtime);
         std::fprintf(stderr, "[core] desktop watchdog and sampling profiler not started (detached desktop threads; "
                              "progress comes from the run's report lines)\n");

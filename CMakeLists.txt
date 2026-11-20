@@ -134,7 +134,7 @@ add_library(nx_core STATIC ${runtime_sources} ${kernel_sources} ${game_sources}
     "${upstream}/src/render/presenter.cpp" "${upstream}/src/render/gs_shaders.cpp"
     "${upstream}/src/render/ui_renderer.cpp" "${upstream}/src/rhi/rhi.cpp" "${upstream}/src/rhi/null/rhi_null.cpp"
     src/rhi/gl/rhi_gl.cpp src/core/core.cpp src/core/run_config.cpp src/vfs/folder_disc.cpp src/vfs/game_paths.cpp
-    src/switch/branch_trace.cpp)
+    src/switch/branch_trace.cpp src/devmenu/dev_menu.cpp)
 nx_cpu_options(nx_core)
 target_include_directories(nx_core PRIVATE "${upstream}/src" "${runtime}/src/lib" "${PORT_ROOT}/src" "${NX_SHADER_DIR}")
 add_dependencies(nx_core nx_glsl)
@@ -155,7 +155,7 @@ target_compile_definitions(nx_self_registering PRIVATE PS2X_HAS_FFMPEG=1 PS2X_EN
 target_link_libraries(nx_self_registering PUBLIC nx_core)
 
 # upstream's platform.h on SDL2 (src/platform/platform_switch_sdl2.cpp)
-add_library(nx_platform STATIC src/platform/platform_switch_sdl2.cpp src/platform/gl_loader_egl.cpp)
+add_library(nx_platform STATIC src/platform/platform_switch_sdl2.cpp src/platform/gl_loader_egl.cpp src/devmenu/chord.cpp)
 target_include_directories(nx_platform PRIVATE "${upstream}/src" "${PORT_ROOT}/src"
     ${NX_SDL2_INCLUDE_DIRS} ${NX_ZLIB_INCLUDE_DIRS} ${NX_EGL_INCLUDE_DIRS})
 target_compile_options(nx_platform PRIVATE -O2 -fPIE ${NX_SDL2_CFLAGS_OTHER} ${NX_EGL_CFLAGS_OTHER})

@@ -1,0 +1,186 @@
+{
+ "M08-01": [
+  {
+   "path": "docs/milestones/M08/TASKS.md",
+   "result": "Frame order and the single Dear ImGui context, traced in TASKS.md M08-01"
+  },
+  {
+   "path": "docs/milestones/M08/hardware/final-r1-gtavcs.txt",
+   "result": "NRO 6b62dca7: the menus drawn and used through the run, gl errors 0"
+  }
+ ],
+ "M08-02": [
+  {
+   "path": "docs/milestones/M08/hardware/final-r1-gtavcs.txt",
+   "result": "15 L3 + R3 chords open / close the menu; Back chords off; rows chosen with A"
+  },
+  {
+   "path": "docs/milestones/M08/hardware/layout1080-f9-2-gtavcs.txt",
+   "result": "1080p layout (VCS_NX_OUTPUT=1080) on f9aff8f1: settings opened from the developer menu"
+  },
+  {
+   "path": "docs/milestones/M08/hardware/person-observations.txt",
+   "result": "The user: 1080p Settings text easy to read, counter shown ('Yes to both')"
+  },
+  {
+   "path": "docs/milestones/M08/SCOPE_DECISIONS.md",
+   "result": "Docked layout moved to M16-01 by the user's decision"
+  }
+ ],
+ "M08-03": [
+  {
+   "path": "docs/milestones/M08/hardware/settings-r1/nxrun-results.txt",
+   "result": "Registry settings and the recording changed through the control channel on 6b62dca7: replies ok"
+  },
+  {
+   "path": "docs/milestones/M08/hardware/layout1080-f9-2/vcs.ini",
+   "result": "Show frame rate set by the user in the settings menu: display.fps_counter=1"
+  }
+ ],
+ "M08-04": [
+  {
+   "path": "docs/milestones/M08/hardware/settings-r1-gtavcs.txt",
+   "result": "Damaged vcs.ini: five bad values ignored with a line, the good one loaded"
+  },
+  {
+   "path": "docs/milestones/M08/hardware/settings-r1/vcs.ini",
+   "result": "The damaged file repaired by the next save, the changes saved"
+  },
+  {
+   "path": "docs/milestones/M08/hardware/relaunch-r1-gtavcs.txt",
+   "result": "Relaunch: 5 saved values loaded, then Reset all"
+  },
+  {
+   "path": "docs/milestones/M08/hardware/reset-r1-gtavcs.txt",
+   "result": "After the reset only the run's env override is not default"
+  },
+  {
+   "path": "docs/milestones/M08/hardware/layout-relaunch-f9-gtavcs.txt",
+   "result": "A setting changed in the menu came back after relaunch"
+  },
+  {
+   "path": "docs/milestones/M08/host-tests/settings-sanitized.txt",
+   "result": "Registry host tests from 22bc86b, dirty=False: all PASS"
+  },
+  {
+   "path": "docs/milestones/M08/hardware/relaunch-r2b-gtavcs.txt",
+   "result": "NRO 63360935: 5 saved values loaded after relaunch, then Reset all"
+  }
+ ],
+ "M08-08": [
+  {
+   "path": "docs/milestones/M08/hardware/final-r1-gtavcs.txt",
+   "result": "Open / close in the flyover, the cutscene and play; HOME and sleep with the menu open (suspension 8.3 s and 15.1 s), closed after; 30 chord lines all game sees L3=0 R3=0; gl errors 0"
+  },
+  {
+   "path": "docs/milestones/M08/hardware/final-r1/nxrun-results.txt",
+   "result": "gameinfo camera modes every 5 s and devmenu chord counts give the stages"
+  },
+  {
+   "path": "docs/milestones/M08/hardware/nav-r2b/nxrun-results.txt",
+   "result": "NRO 63360935: nav=0 at boot, 1 with the developer or settings menu open, 0 with the trainer open and after closing"
+  },
+  {
+   "path": "docs/milestones/M08/hardware/trainer-r3-gtavcs.txt",
+   "result": "NRO 2a02c7b6: review 3's hand-over (g_padWas seeding), replaced in review 4; history only, not proof for c81c7428"
+  },
+  {
+   "path": "docs/milestones/M08/hardware/nav-r3/nxrun-results.txt",
+   "result": "NRO 2a02c7b6: nav flags as before (0 at boot, 0 with the trainer)"
+  },
+  {
+   "path": "docs/milestones/M08/hardware/trainer-r4c-gtavcs.txt",
+   "result": "NRO c81c7428: Right arrow and A held while opening the trainer: 2 buttons ignored until let go (g_padIgnored), Right held 3.6 s more, trainer_used=0 in all 50 reports; reopened on the main page with Player selected; the Player-page cases rest on code reading"
+  }
+ ],
+ "M08-09": [
+  {
+   "path": "docs/milestones/M08/TASKS.md",
+   "result": "Static review: trainer actions at the game thread's frame kick on the game's script VM; free camera hook; menu main-thread only"
+  },
+  {
+   "path": "patches/upstream/0012-switch-dev-menu-seams.patch",
+   "result": "vcs::trainer::usedCount"
+  },
+  {
+   "path": "docs/milestones/M08/hardware/final-r1/trainer-used.txt",
+   "result": "Trainer use noted in the run's userdata"
+  },
+  {
+   "path": "docs/MILESTONES.md",
+   "result": "M14-09: every save test reads trainer-used.txt"
+  },
+  {
+   "path": "docs/milestones/M08/hardware/trainer-r3-gtavcs.txt",
+   "result": "NRO 2a02c7b6: review 3's hand-over (g_padWas seeding), replaced in review 4; history only, not proof for c81c7428"
+  },
+  {
+   "path": "docs/milestones/M08/hardware/trainer-r4c-gtavcs.txt",
+   "result": "NRO c81c7428: Right arrow and A held while opening the trainer: 2 buttons ignored until let go (g_padIgnored), Right held 3.6 s more, trainer_used=0 in all 50 reports; reopened on the main page with Player selected; the Player-page cases rest on code reading"
+  }
+ ],
+ "M08-14": [
+  {
+   "path": "docs/milestones/M08/host-tests/chord-sanitized.txt",
+   "result": "Chord filter host tests incl. buttons held across a focus loss, 40 PASS, clean tree"
+  },
+  {
+   "path": "docs/milestones/M08/hardware/final-r1-gtavcs.txt",
+   "result": "15 chords none to the game; R held then L3 delivered after 104.6 ms and the game's own free-aim flag on"
+  }
+ ],
+ "M08-15": [
+  {
+   "path": "docs/milestones/M08/hardware/final-r1-gtavcs.txt",
+   "result": "Trainer, recording start / stop with the A button, free camera, overlay from the menu"
+  },
+  {
+   "path": "docs/milestones/M08/hardware/final-r1/perf/perf_20261119_163459.csv",
+   "result": "The recording's CSV, read back"
+  },
+  {
+   "path": "docs/milestones/M08/hardware/navhand-r2-gtavcs.txt",
+   "result": "NRO 63360935: D-pad down x4, A chose Performance overlay, B closed the menu"
+  },
+  {
+   "path": "docs/milestones/M08/hardware/trainer-r3-gtavcs.txt",
+   "result": "NRO 2a02c7b6: review 3's hand-over (g_padWas seeding), replaced in review 4; history only, not proof for c81c7428"
+  },
+  {
+   "path": "docs/milestones/M08/hardware/trainer-r4c-gtavcs.txt",
+   "result": "NRO c81c7428: Right arrow and A held while opening the trainer: 2 buttons ignored until let go, trainer_used=0 (the trainer was on its main page)"
+  }
+ ],
+ "M08-16": [
+  {
+   "path": "docs/milestones/M08/hardware/final-r1-gtavcs.txt",
+   "result": "Paired Joy-Cons attached, handheld: chords in S2 (2 pairs), S3, S4, across HOME and sleep; none reached the game"
+  },
+  {
+   "path": "docs/milestones/M08/hardware/final-r1/nxrun-results.txt",
+   "result": "Camera modes 15 / 17 / 4 at the chord times; stick_delivered=1 (the free-aim L3)"
+  },
+  {
+   "path": "docs/milestones/M08/SCOPE_DECISIONS.md",
+   "result": "Pro Controller moved to M16-02"
+  }
+ ],
+ "M08-17": [
+  {
+   "path": "docs/milestones/M08/hardware/final-r1-gtavcs.txt",
+   "result": "720p: panel 369,189 -> display 369,189 chose Performance overlay; 379,279 chose Close"
+  },
+  {
+   "path": "docs/milestones/M08/hardware/layout1080-f9-gtavcs.txt",
+   "result": "1080p on f9aff8f1: panel to display scaled 1.5x, rows touched chosen"
+  },
+  {
+   "path": "docs/milestones/M08/hardware/person-observations.txt",
+   "result": "The user: each touch hit the row under the finger"
+  },
+  {
+   "path": "docs/milestones/M08/SCOPE_DECISIONS.md",
+   "result": "USB mouse check moved to M16-04 by the user's decision"
+  }
+ ]
+}

@@ -35,8 +35,8 @@ authorize general implementation delegation or additional user-owned chats.
 GitHub plan limitations on private branch protection must be recorded honestly;
 they do not relax these operating rules.
 
-**Current deliverable (M07: real sound and movies proven on the Switch, handheld; awaiting independent review).**
-M06 (the handheld beta) is merged.
+**Current deliverable (M08: the developer menu on L3+R3 proven on the Switch, handheld; awaiting independent review).**
+M06 (the handheld beta) and M07 (sound and movies) are merged.
 `python tools/build_game.py` links the private generated EE/VU archive, the
 overlaid upstream runtime/game layer, `src/core/core.cpp` behind the C ABI in
 `src/core.h`, the SDL2 platform adapter and the OpenGL 3.3 RHI backend
@@ -93,6 +93,7 @@ gtavcs_nx/
     rhi/gl/                      OpenGL 3.3 core backend of upstream's rhi::Device (M05)
     render/glsl/                 GLSL 330 ports of upstream's HLSL shaders (README: conventions)
     rhi_tests/                   RHI conformance scenes: host runner, Switch NRO
+    devmenu/                     developer menu on L3+R3 and its chord filter (M08)
   third_party/glad/              generated GLAD 2.0.8, GL 3.3 core, no extensions
     include/{glad,KHR}/
     src/gl.c
@@ -217,7 +218,7 @@ Switch build command. See the checklist before attempting ARM64 core compilation
   drawn at the operation mode's output size (1280x720 handheld, 1920x1080 docked)
   and the layer cropped to it (src/switch/output.c, M06-20); the renderer sees the
   output size as its back buffer. Proven in handheld only; docked output and dock
-  changes are M10-13. Output sizes are targets, not measured performance.
+  changes are M16-01. Output sizes are targets, not measured performance.
   Keep render scale distinct from output size and keep HUD aspect correct.
 - Snapshot controller state once per event pump; publish a synchronized snapshot
   to the future game thread. Handle hotplug, disconnect-to-neutral, dead zones,
@@ -245,8 +246,9 @@ Switch build command. See the checklist before attempting ARM64 core compilation
   cross setup. Do not claim devkitA64 GCC is already supported by the game.
 - Reuse upstream's ImGui context and RHI UI renderer. Replace its SDL3 backend
   with `imgui_impl_sdl2`, enable gamepad navigation and design an overlay chord
-  that consumes input without leaking it into gameplay. No ImGui implementation
-  or menu is included in the current smoke target.
+  that consumes input without leaking it into gameplay. Done in M08: one context
+  (platform layer), upstream's settings menu and trainer, and the port's developer
+  menu on L3+R3 (src/devmenu: the chord filter withholds every L3/R3 press 100 ms).
 - Preserve original source licenses and credit; no game ISO, ELF, extracted assets,
   saves, generated game C++ or copyrighted shader dumps in commits/releases.
   Keep generated GLAD notices. Record runtime modifications in upstream's
@@ -296,12 +298,18 @@ Review 3 (2026-11-18): a 21-minute drive found a host heap leak in upstream's RS
 recording cache; root patch 0009 prunes it and the heap levels off while driving
 (M06-12). The acceptance was repeated on the patched code (run 17: about 6 minutes
 of play, game frame median 84.6 ms / p95 419.9 ms while moving).
-Docked mode, docking and the Pro Controller are untested (user decisions: M10-13,
-M13-11).
+Docked mode, docking and the Pro Controller are untested (user decisions: M16, added
+2026-11-19 after M14, takes over M10-13 and M13-11).
 M07 (2026-11-18, handheld): the boot movies play through the locked switch-ffmpeg 7.1
 (target build, GPL) in sync with their sound (the picture due 0.00-0.07 s ahead, across HOME and
 frame stalls); the game's sound matches the desktop reference in format and level, and the
 volume settings apply. Root patch 0010 keeps the sound mixing through long game frames
 (a 16-minute drive: 169 underruns before, 0 after the boot movies with the revised
 patch); patch 0011 records that the game never loops a music stream. The user heard movies, effects,
-radio, left / right and a mission's speech as correct. Docked audio: M10-13.
+radio, left / right and a mission's speech as correct. Docked audio: M16-01.
+M08 (2026-11-19, handheld, paired Joy-Cons attached): L3+R3 opens one developer menu (src/devmenu) with
+settings, trainer, free camera, performance overlay, frame-time recording and diagnostics; every L3/R3 press waits
+100 ms for the other, and no chord's L3/R3 reached the game (15 chords in the final acceptance run; lone presses handed on
+103-185 ms late; R1-then-L3 sets the game's own free-aim flag). Menus use A to choose and B to go back; touch is read from HID (switch-sdl2
+delivered none). Damaged vcs.ini values are ignored and repaired; settings survive relaunch and reset. Root patch 0012.
+The 1080p menu layout was checked in handheld with VCS_NX_OUTPUT=1080; docked and the Pro Controller: M16.
