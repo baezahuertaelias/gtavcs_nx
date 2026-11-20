@@ -11,3 +11,7 @@ M08-08, 09 and 15 were reopened (`5388408`) and proven again. New candidate NRO 
 
 Also on c81c7428: host tests from 610817c, all PASS. Not rerun on c81c7428: the automatic settings / nav runs (their code
 is unchanged since 2a02c7b6, where they passed: `nav-r3`, `settings-r3`, `relaunch-r3`, `reset-r3`).
+
+A further run of the Player-page case was sent at 18:01:14 (c81c7428) as the user declined more tests; it was not
+carried out: the session tool timed out at 18:26:08 with no FTP and could not delete `nxrun.cfg` from the card
+(transcript). No result is claimed from it; `nxrun.cfg` must be removed (`cleanup`) before the next ordinary launch.
