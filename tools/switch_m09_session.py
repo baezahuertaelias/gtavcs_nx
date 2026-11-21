@@ -11,10 +11,12 @@ made and emptied first (the runtime's burst does not create its folder) and read
 afterwards, then `shapes` runs on each. After every run <label>-m09.txt lists the peekf / setting / screenshot replies,
 the display-aspect lines, the camera modes (gameinfo) and the [rhi-stats] target lines, for the task records.
 
-`shapes` reads a burst folder: burst.txt (the runtime's line per presented frame: its display aspect, the frame's
-shape, whether the frame drew 3D / the game's menu) and each burst_NNNN.png's lit rectangle (the picture inside the
-capture; 4:3 is pillarboxed in a 16:9 capture). A frame passes when the rectangle's shape matches the shape burst.txt
-gives it, and a frame of the game's menu without 3D is 4:3 (upstream's regress step "menushape"). NX_HOST names the
+`shapes` reads a burst folder: burst.txt (the runtime's line per presented frame: `aspect`, the shape the picture is
+shown at; `frame`, the 16:9 rectangle it is placed in; whether the frame drew 3D / the game's menu) and each
+burst_NNNN.png: its lit rectangle (the picture inside the capture; 4:3 is pillarboxed in a 16:9 capture) and what it
+shows, by upstream's regress step "menushape": the game outside the barracks has its blue sky at the top middle, the
+pause menu has none. A frame passes when its rectangle has the shape burst.txt gives it, and that shape fits what it
+shows: the game wide, the menu 4:3. NX_HOST names the
 console (default 192.168.1.107).
 """
 import argparse
@@ -77,14 +79,25 @@ def fetch_bursts(session, label, folders):
     return out
 
 
-def rect_shape(path):
-    """The lit rectangle's width / height in a capture (a 4:3 picture is pillarboxed in a 16:9 capture)."""
+def rect_shape(path, content=False):
+    """The lit rectangle's width / height in a capture (a 4:3 picture is pillarboxed in a 16:9 capture), the capture's,
+    and with `content` whether the picture shows the game (blue sky at the top middle: upstream's "menushape" test)."""
     w, h, rows = read_png(path)
     lit = lambda x, y: sum(rows[y][x * 3:x * 3 + 3]) > 24  # noqa: E731
     cols = [x for x in range(w) if any(lit(x, y) for y in range(0, h, max(1, h // 24)))]
     if not cols:
-        return None, w / h
-    return (cols[-1] - cols[0] + 1) / h, w / h
+        return (None, w / h, None) if content else (None, w / h)
+    shape = (cols[-1] - cols[0] + 1) / h
+    if not content:
+        return shape, w / h
+    pw = cols[-1] - cols[0] + 1
+    red = blue = n = 0
+    for y in range(2, h // 6):
+        for x in range(w // 2 - pw // 8, w // 2 + pw // 8):
+            red += rows[y][x * 3]
+            blue += rows[y][x * 3 + 2]
+            n += 1
+    return shape, w / h, blue / n > 150 and blue / n > red / n + 40
 
 
 def shapes(folder):
@@ -100,18 +113,20 @@ def shapes(folder):
     lines, bad, frames = [], 0, 0
     for png in sorted(folder.glob("burst_*.png")):
         key = png.stem.split("_")[1]
-        shape, capture = rect_shape(png)
+        shape, capture, game = rect_shape(png, content=True)
         rec = records.get(key)
         frames += 1
         if shape is None or rec is None:
             lines.append(f"{key} rect {'black' if shape is None else f'{shape:.3f}'} record {rec} (not judged)")
             continue
-        _, frame, drew3d, menu = rec
+        aspect, frame, drew3d, menu = rec
         # the picture fills the capture when its shape is the capture's; a dark edge column may shave a pixel or two
-        expect = min(frame, capture)
-        ok = abs(shape - expect) < 0.06 and not (menu and not drew3d and frame > 1.34)
+        expect = min(aspect, frame, capture)
+        wide = aspect > 1.34
+        ok = abs(shape - expect) < 0.06 and wide == game
         bad += 0 if ok else 1
-        lines.append(f"{key} rect {shape:.3f} frame {frame:.3f} 3d {drew3d} menu {menu} {'ok' if ok else 'MISMATCH'}")
+        lines.append(f"{key} rect {shape:.3f} aspect {aspect:.3f} frame {frame:.3f} shows {'game' if game else 'menu'} "
+                     f"3d {drew3d} menu {menu} {'ok' if ok else 'MISMATCH'}")
     lines.append(f"frames {frames} mismatched {bad}")
     return lines, frames, bad
 
