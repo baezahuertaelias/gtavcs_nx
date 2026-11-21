@@ -2041,8 +2041,7 @@ namespace rhi
                              static_cast<unsigned long long>(s.glErrors), static_cast<unsigned long long>(s.debugMessages),
                              static_cast<unsigned long long>(s.incompleteFramebuffers), static_cast<unsigned long long>(s.ownerViolations),
                              static_cast<unsigned long long>(s.rejected), static_cast<unsigned long long>(s.hazards));
-                std::fprintf(stderr, "[rhi-stats] targets %llu (%.1f MiB) largest %ux%u
-", static_cast<unsigned long long>(s.targets),
+                std::fprintf(stderr, "[rhi-stats] targets %llu (%.1f MiB) largest %ux%u\n", static_cast<unsigned long long>(s.targets),
                              s.targetBytes / 1048576.0, s.largestTargetWidth, s.largestTargetHeight);
             }
 
