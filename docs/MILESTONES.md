@@ -343,9 +343,9 @@ from the dev menu; 4:3 remains available. Upstream's design and limits:
 - [ ] M09-03 Verify HUD modes (keep 4:3, screen edges, stretch), HUD classification and scissor squeeze on GL, including radar and centred text.
 - [ ] M09-04 Verify 2D-only frames (loading, pause map) stay 4:3 inside the frame, and each presented frame's shape matches its picture at transitions.
 - [ ] M09-05 Keep the game's own PS2 widescreen option off and its menu row hidden; verify the cutscene-bars setting and the scope/camera mask.
-- [ ] M09-06 Size internal render targets for 16:9 and record memory and GPU cost against 4:3 at the same scale in both modes.
+- [ ] M09-06 Size internal render targets for 16:9 and record memory and GPU cost against 4:3 at the same scale in both modes (handheld here; docked: M16-03, user decision 2026-11-19, docs/milestones/M09/SCOPE_DECISIONS.md).
 - [ ] M09-07 Verify no missing geometry or unstreamed cells at the frame edges in S2-S4 and a driven route.
-- [ ] M09-08 Hardware acceptance in handheld and docked: reference-scene comparison with desktop at 16:9, and live 4:3/16:9 switching without corruption.
+- [ ] M09-08 Hardware acceptance in handheld and docked: reference-scene comparison with desktop at 16:9, and live 4:3/16:9 switching without corruption (handheld here, paired Joy-Cons; docked: M16-03, user decision 2026-11-19, docs/milestones/M09/SCOPE_DECISIONS.md).
 
 ## M10 — Stability, lifecycle and measured performance
 
@@ -446,7 +446,7 @@ Controller and a working dock.
 
 - [ ] M16-01 (was M10-13) Complete the docked work deferred from M06 by the user decision of 2026-11-17 (docs/milestones/M06/SCOPE_DECISIONS.md): M06-06's target and camera recreation on docking, M06-13's docking check, M06-20's docked 1920x1080 output and repeated dock changes from both start modes with a flat heap, docked S2/S4 timing (M06-11) and the docked beta acceptance run (M06-18), M07-11's docked audio drift and cutscene synchronization (user decision 2026-11-18, docs/milestones/M07/SCOPE_DECISIONS.md), and M08-02's docked developer-menu layout, including a dock change while the menu is open (user decision 2026-11-19, docs/milestones/M08/SCOPE_DECISIONS.md), on hardware with logs and video.
 - [ ] M16-02 (was M13-11) Complete the Pro Controller work deferred from M06-14/M06-16 by the user decision of 2026-11-17 (docs/milestones/M06/SCOPE_DECISIONS.md): identity, physical-position mapping, the physical connection-state matrix (initial open, hotplug, disconnect to neutral, reconnect, orderly exit) and play on a real Pro Controller, with hardware logs; and M08-16's L3+R3 developer-menu acceptance on the Pro Controller (user decision 2026-11-19, docs/milestones/M08/SCOPE_DECISIONS.md).
-- [ ] M16-03 Repeat in docked mode, and on the Pro Controller where a controller is involved, every docked or Pro Controller part that M09-M14 deferred here, each listed with its source task, on hardware with logs.
+- [ ] M16-03 Repeat in docked mode, and on the Pro Controller where a controller is involved, every docked or Pro Controller part that M09-M14 deferred here, each listed with its source task, on hardware with logs. From M09: M09-06's memory and GPU cost of 16:9 against 4:3 at the docked 1920x1080 output, and M09-08's docked acceptance (the 16:9 picture on a TV, a dock change at 16:9 and at 4:3, live switching docked).
 - [ ] M16-04 (from M08-17) With a USB mouse on the Switch, verify that Dear ImGui's mouse position matches the pointer on the screen in handheld and docked output (src/platform/platform_switch_sdl2.cpp `toUiCoordinates`), and fix the mapping if switch-sdl2 reports surface pixels rather than panel-scaled positions; user decision 2026-11-19, docs/milestones/M08/SCOPE_DECISIONS.md.
 
 ## M15 — Final packaging, clean deployment and acceptance
