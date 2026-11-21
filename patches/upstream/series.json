@@ -48,6 +48,10 @@
     {
       "path": "0012-switch-dev-menu-seams.patch",
       "sha256": "d293933ef8402eff651c5567e9fcba1939e089ed13b792b1476c289478c9f74d"
+    },
+    {
+      "path": "0013-switch-aspect-choices.patch",
+      "sha256": "d1b583bc9b0f1165f2e33ed25e45ddf3225ab370fd90ce4a5a672a75f203a462"
     }
   ]
 }
