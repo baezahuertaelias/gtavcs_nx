@@ -1,0 +1,80 @@
+# M09 — Widescreen: measurements and comparisons
+
+Switch: handheld, paired Joy-Cons attached, 1280x720 output, internal scale 1x, stock clocks, Mesa nouveau GL. Desktop
+reference: upstream's Windows build at the pin (`build/m02/reference`, M02-01) through D3D11 (NVIDIA GeForce RTX 4060),
+hidden, started by `tools/m04_reference.py <cfg> <dir> --rhi d3d11 [--setting display.aspect=169]` on the same
+schedules. Logs and results: `hardware/<run>-gtavcs.txt`, `hardware/<run>-results.txt`,
+`hardware/reference-<run>/reference-*.txt`. Game pictures are kept privately (`hardware/screenshots-sha256.txt`).
+
+## Runs
+
+| Run | NRO | Schedule | What it shows |
+|---|---|---|---|
+| `silent3` | 99472722 | `m09-silent.cfg`, no input, 470 s | S1-S4; view window and planes in S2, S3, S4, at 16:9 and live 4:3; cutscene bars; HUD modes; scope and camera masks |
+| `presets` | 99472722 | `m09-presets.cfg` | Enhanced / Widescreen, light / Authentic with the narrowed aspect |
+| `shape3` | 99472722 | `m09-shape.cfg` | every presented frame into and out of the pause menu (Map page) |
+| `text` | 99472722 | `m09-text.cfg` | the mission subtitle and help box in each HUD mode |
+| `silent2`, `shape2` | b3fc1722 | as above | the same, before the preset fix (`silent2`'s scope commands lacked TERMINATE: no scope) |
+| `cost-43`, `cost-169`, `cost-169n` | b3fc1722 | `m09-cost-*.cfg`, Cross to S4, 150 s standing | cost of 16:9 against 4:3; `169n` with `PS2X_HW_WIDE_SCALE=0` (diagnosis) |
+| `drive` | b3fc1722 | `m09-drive.cfg` | 360 s on upstream's city route at 40 m/s, a screenshot every 15 s |
+| `accept2`, `relaunch` | b3fc1722 | `m09-accept.cfg`, `m09-relaunch.cfg` | the person switching in the developer menu; the choice loading at the next start |
+| `reference-silent2`, `reference-cost-43`, `reference-cost-169` | desktop | the same schedules | numbers and pictures to compare |
+
+Superseded runs kept as history: `wide-base` (main's NRO, `VCS_ASPECT=169` locked the setting), `silent` (scheduled
+for M06's stage times; M07's boot movies now come first), `shape` (Start pressed 150 ms: missed at ~10 game frames a
+second), `accept` (nobody pressed a button).
+
+## Hor+ view window and entity planes (M09-02)
+
+`peekf 0x742AC0 4` = (view window x = tan(FOV / 2) x r, aspect x r, near, far); right plane TheCamera + 0xB60 = (cos h,
+-sin h), left + 0xB70 = (-cos h, -sin h): the plane's edge is sin h / cos h.
+
+| Scene | Switch | Desktop | Edge (Switch) |
+|---|---|---|---|
+| S2 flyover, 16:9 (120 s) | `0.93361 1.66667 0.1 2000`, `0.730967 -0.682412` (`silent2`, `silent3`) | the same (`reference-silent2`) | 0.93357 |
+| S3 cutscene, 16:9 (200 s) | `0.259437 1.66667 0.3 2000`, `0.967957 -0.251116` (`silent2`, `silent3`) | the same | 0.25943 |
+| S3, one frame at 16:9 and 4:3 | `0.433374` (`silent3`, 231 s) | `0.433374` / `0.325031` at 4:3: ratio 1.33333 (`reference-silent`) | 0.43336 |
+| S4, 16:9 | `0.93361 1.77778 0.1125 2000`, `0.730967 -0.682412` (`silent3` 360 / 385 s, `cost-169`) | the same (`reference-silent2`, `reference-cost-169`) | 0.93357 |
+| S4, 4:3 (live switch) | `0.700208 1.33333 0.1125 2000`, `0.819162 -0.573562` (`silent3` 379 s, `cost-43`) | the same (`reference-silent2`, `reference-cost-43`) | 0.70018 = tan 35 degrees |
+
+0.93361 / 0.700208 = 1.33331 (r = 16:9 / 4:3). The entity planes follow the view window at both ratios and back. One
+desktop sample (`reference-cost-169` 150 s) caught the right plane between the game's rebuild (FUN_0037b2c8, each camera
+update) and the widening, which runs just before each sphere test; the next sample matched. S3 4:3 samples on the two
+machines fell on different cutscene frames (other FOVs), so only same-frame pairs are compared.
+
+## Frame shapes (M09-04)
+
+`hardware/shape3-burst-in-shapes.txt`, `-out-shapes.txt`: per presented frame the picture rectangle (lit columns of the
+320x180 capture), the shape the runtime showed it at (burst.txt `aspect`) and what it shows (upstream's menushape
+test: the game's sky at the top middle). Entering: 24 x (16:9, game), 96 x (4:3, menu). Leaving: 12 x (4:3, menu),
+108 x (16:9, game). 0 mismatched of 240. `shape2` (b3fc1722): the same, 0 of 240.
+
+## Cost of 16:9 against 4:3 (M09-06)
+
+Handheld, 1x, the player standing at the S4 spot; game frames from `perf.csv` over 80-200 s, GPU from the
+`[rhi-stats] gpu` lines over the same span (GL_TIME_ELAPSED from one present to the next), targets from
+`[rhi-stats] targets`, heap from the `progress` lines.
+
+| | 4:3 (`cost-43`) | 16:9 (`cost-169`) | 16:9, 640-wide targets (`cost-169n`) |
+|---|---|---|---|
+| Largest target (picture) | 640x1472 | 853x1472 | 640x1472 |
+| Render targets + depth | 17.6-21.1 MiB | 23.0-26.5 MiB | 19.9-23.4 MiB |
+| GPU per presented frame, mean | 11.43 ms | 21.28 ms | 34.20 ms |
+| GPU time per second | ~548 ms | ~537 ms | ~611 ms |
+| Game frame median / p95 | 23.9 / 57.5 ms | 48.8 / 366.1 ms | 49.1 / 103.3 ms |
+| Game frames over 250 ms | - | 131 of 1,288 | - |
+| Heap in use at 200 s | 590.0 MB | 638.0 MB | 632.1 MB |
+
+At 16:9 the game waits on the render pipeline (`wait_ms` median 0 -> 23.7 ms); the GS stage goes from ~12 to ~70 ms
+(`perf` lines), and with the wide targets about once a second a game frame takes 350-450 ms (render stage 240-330 ms,
+the game waiting its 100 ms limit, the main thread's longest pump ~95 ms). The desktop reference moves the same way at
+its scale: render worker 1.7 -> 3.6 ms, GS stage 1.25 -> 2.4 ms (upstream: "the render worker roughly doubles with the
+pixels and the extra draws"). The heap figures include the texture cache, which differs between the runs (more of the
+world in view at 16:9); they are not a controlled memory cost. The user kept 16:9 the default at this cost
+(SCOPE_DECISIONS.md); the stall is M10-03's.
+
+## Frame edges while driving (M09-07)
+
+`drive`: `cruise status` 334 -> 5,336 m of the 5,736 m loop in 360 s; the player's positions every 15 s cover both
+sides of the bay (574,509 ... -675,1162 ... 574,236). 24 screenshots: buildings, trees, roads, water and the skyline
+reach both outer eighths of the 16:9 picture in every frame; no hole, missing cell or late pop-in at the edges seen.
