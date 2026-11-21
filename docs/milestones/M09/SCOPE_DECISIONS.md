@@ -19,3 +19,19 @@ What changes:
 What does not change: nothing is claimed for docked play. The 16:9 picture is laid out for the output size, which the
 renderer sees as its back buffer (src/switch/output.c, M06-20); the docked output's geometry is the same 16:9 shape,
 but no docked run backs it. Every other M09 task stays as written.
+
+## 16:9 stays the default at its measured cost; the stall goes to M10 (user decision, 2026-11-21)
+
+M09-06's measurement (handheld, internal scale 1x, the player standing at the S4 spot, game frames from perf.csv over
+80-200 s; runs `cost-43`, `cost-169`, `cost-169n` on NRO b3fc1722): 4:3 median 23.9 ms / p95 57.5 ms per game frame;
+16:9 median 48.8 / p95 366.1 ms, with a stall of about 350-450 ms roughly once a second (131 of 1,288 game frames over
+250 ms; the render stage 240-330 ms, the game waiting its 100 ms limit, the main thread's longest pump ~95 ms); 16:9
+with the picture's targets kept 640 wide (`PS2X_HW_WIDE_SCALE=0`, diagnosis only) median 49.1 / p95 103.3 ms, no such
+stall. The desktop reference shows the same direction at a smaller scale (its render worker 1.7 -> 3.6 ms, as upstream
+documents: "the render worker roughly doubles with the pixels and the extra draws").
+
+Asked "How should M09 handle the default and the stall?" with the options fix the stall first, 16:9 default with
+640-wide targets, keep 4:3 default, or 16:9 default as is, the user chose "16:9 default as is" (record it for M10).
+
+What changes: nothing in M09's tasks. 16:9 with upstream's wide targets is the Switch default (M09-01); the cost and
+the stall are recorded in M09-06 and added to **M10-03** (find and fix bottlenecks) as a measured starting point.
